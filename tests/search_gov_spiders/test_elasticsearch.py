@@ -3,6 +3,7 @@ import asyncio
 import pytest
 from unittest.mock import patch, MagicMock
 from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
+from elasticsearch import Elasticsearch
 
 html_content = """
     <html lang="en">
@@ -31,7 +32,7 @@ def sample_spider():
 
 # Mock environment variables
 @pytest.fixture(autouse=True)
-def mock_env_vars():
+def search_gov_es():
     with patch.dict(os.environ, {
         "ES_HOSTS": "http://localhost:9200",
         "SPIDER_ES_INDEX_NAME": "test_index",
@@ -39,7 +40,17 @@ def mock_env_vars():
         "ES_USER": "test_user",
         "ES_PASSWORD": "test_password"
     }):
-        yield
+        yield SearchGovElasticsearch(batch_size=2)
+
+@pytest.fixture
+def mock_es_client():
+    client = MagicMock(spec=Elasticsearch)
+    client.indices = MagicMock()
+    client.indices.exists = MagicMock()
+    client.indices.create = MagicMock()
+    client.indices.update_aliases = MagicMock()
+    client.indices.get_alias = MagicMock()
+    return client
 
 # Mock convert_html function
 @pytest.fixture
@@ -114,3 +125,51 @@ def test_parse_es_urls_valid_urls():
     es_uploader = SearchGovElasticsearch()
     hosts = es_uploader._parse_es_urls("http://localhost:9200,https://remotehost:9300")
     assert hosts == [{"host": "localhost", "port": 9200, "scheme": "http"}, {"host": "remotehost", "port": 9300, "scheme": "https"}]
+
+def test_index_exists(mock_es_client, search_gov_es):
+    with patch("search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client", return_value=mock_es_client):
+        search_gov_es.create_index_if_not_exists()
+        mock_es_client.indices.exists.assert_called_once_with(index="test_index")
+
+def test_get_client(search_gov_es, mock_es_client):
+    with patch("search_gov_crawler.elasticsearch.es_batch_upload.Elasticsearch", return_value=mock_es_client):
+        client = search_gov_es._get_client()
+        assert client is mock_es_client
+        assert search_gov_es._es_client is mock_es_client
+
+def test_get_client_exception(search_gov_es):
+    with patch("search_gov_crawler.elasticsearch.es_batch_upload.Elasticsearch", side_effect=Exception("Test Exception")), \
+         patch("search_gov_crawler.elasticsearch.es_batch_upload.log") as mock_log:
+        client = search_gov_es._get_client()
+        assert client is None
+        mock_log.error.assert_called_once()
+
+def test_create_index_if_not_exists(search_gov_es, mock_es_client):
+    with patch("search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client", return_value=mock_es_client):
+        mock_es_client.indices.exists.return_value = False
+        search_gov_es.create_index_if_not_exists()
+        mock_es_client.indices.create.assert_called_once()
+
+def test_create_index_if_exists(search_gov_es, mock_es_client):
+    with patch("search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client", return_value=mock_es_client):
+        mock_es_client.indices.exists.return_value = True
+        mock_es_client.indices.get_alias.return_value = {"test_index": {"aliases": {"old_alias": {}}}}
+        search_gov_es.create_index_if_not_exists()
+        mock_es_client.indices.update_aliases.assert_called()
+
+def test_create_actions(search_gov_es):
+    docs = [{"_id": "1", "content": "test1"}, {"_id": "2", "content": "test2"}]
+    actions = search_gov_es._create_actions(docs)
+    assert actions == [
+        {"_index": "test_index", "_id": "1", "_source": {"content": "test1"}},
+        {"_index": "test_index", "_id": "2", "_source": {"content": "test2"}},
+    ]
+
+@pytest.mark.asyncio
+async def test_batch_elasticsearch_upload_error(search_gov_es, sample_spider, mock_es_client):
+    with patch("search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client", return_value=mock_es_client), \
+         patch("search_gov_crawler.elasticsearch.es_batch_upload.helpers.bulk", side_effect=Exception("bulk error")):
+        docs = [{"_id": "1", "content": "test1"}, {"_id": "2", "content": "test2"}]
+        loop = asyncio.get_event_loop()
+        await search_gov_es._batch_elasticsearch_upload(docs, loop, sample_spider)
+        sample_spider.logger.error.assert_called_once()

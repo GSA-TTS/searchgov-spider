@@ -5,13 +5,19 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import Any
 from urllib.parse import urlparse
 
-from elasticsearch import Elasticsearch, helpers
+from elasticsearch import Elasticsearch, helpers, exceptions
 from scrapy.spiders import Spider
 
 from search_gov_crawler.elasticsearch.convert_html_i14y import convert_html
+from pythonjsonlogger.json import JsonFormatter
+from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 
 # limit excess INFO messages from elasticsearch that are not tied to a spider
 logging.getLogger("elastic_transport.transport").setLevel("ERROR")
+
+logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
+logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
+log = logging.getLogger("search_gov_crawler.elasticsearch")
 
 
 class SearchGovElasticsearch:
@@ -67,38 +73,63 @@ class SearchGovElasticsearch:
             hosts.append({"host": parsed.hostname, "port": parsed.port, "scheme": parsed.scheme})
         return hosts
 
-    def _get_client(self, spider: Spider):
+    def _get_client(self):
         """
         Lazily initializes the Elasticsearch client.
         """
         if not self._es_client:
-            self._es_client = Elasticsearch(
-                hosts=self._parse_es_urls(self._env_es_hosts),
-                verify_certs=False,
-                ssl_show_warn=False,
-                basic_auth=(self._env_es_username, self._env_es_password),
-            )
-            self._create_index_if_not_exists(spider)
+            try:
+                self._es_client = Elasticsearch(
+                    hosts=self._parse_es_urls(self._env_es_hosts),
+                    verify_certs=False,
+                    ssl_show_warn=False,
+                    basic_auth=(self._env_es_username, self._env_es_password),
+                )
+            except Exception as e:
+                log.error(f"Couldn't create an elasticsearch client: {str(e)}")
         return self._es_client
 
-    def _create_index_if_not_exists(self, spider: Spider):
+    def create_index_if_not_exists(self):
         """
         Creates an index in Elasticsearch if it does not exist.
+        If the index exists, it updates the alias settings.
         """
         index_name = self._env_es_index_name
+        alias_name = self._env_es_index_alias
         try:
-            es_client = self._get_client(spider)
+            es_client = self._get_client()
             if not es_client.indices.exists(index=index_name):
                 index_settings = {
                     "settings": {"index": {"number_of_shards": 6, "number_of_replicas": 1}},
-                    "aliases": {self._env_es_index_alias: {}},
+                    "aliases": {alias_name: {}} if alias_name else {},
                 }
                 es_client.indices.create(index=index_name, body=index_settings)
-                spider.logger.info(f"Index '{index_name}' created successfully.")
+                log.info(f"Index '{index_name}' created successfully.")
             else:
-                spider.logger.info(f"Index '{index_name}' already exists.")
+                current_aliases = es_client.indices.get_alias(index=index_name)
+                existing_aliases = list(current_aliases.get(index_name, {}).get("aliases", {}).keys())
+
+                if existing_aliases:
+                    actions = [{"remove": {"index": index_name, "alias": alias}} for alias in existing_aliases]
+                    try:
+                        es_client.indices.update_aliases(body={"actions": actions})
+                        log.info(f"Removed existing aliases '{existing_aliases}' from index '{index_name}'.")
+                    except exceptions.ElasticsearchException as e:
+                        log.error(f"Error removing aliases: {str(e)}")
+
+                if alias_name:
+                    try:
+                        es_client.indices.update_aliases(body={"actions": [{"add": {"index": index_name, "alias": alias_name}}]})
+                        log.info(f"Set alias '{alias_name}' for index '{index_name}'.")
+                    except exceptions.ElasticsearchException as e:
+                        log.error(f"Error setting alias: {str(e)}")
+                else:
+                    log.info(f"No alias set for index '{index_name}'.")
+
+        except exceptions.ElasticsearchException as e:
+            log.error(f"Elasticsearch error creating/updating index: {str(e)}")
         except Exception as e:
-            spider.logger.error(f"Error creating/checking index: {str(e)}")
+            log.error(f"General error creating/updating index: {str(e)}")
 
     def _create_actions(self, docs: list[dict[Any, Any]]) -> list[dict[str, Any]]:
         """
