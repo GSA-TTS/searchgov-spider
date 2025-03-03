@@ -6,9 +6,9 @@ pytest-mock==3.14.0
 
 python-json-logger==3.2.1
 scrapy==2.12.0
-scrapy-playwright==0.0.42
+scrapy-playwright==0.0.43
 scrapyd==1.5.0
-scrapyd-client==2.0.0
+scrapyd-client==2.0.1
 scrapydweb @ git+https://github.com/GSA/searchgov-scrapydweb
 spidermon[monitoring]==1.23.0
 
