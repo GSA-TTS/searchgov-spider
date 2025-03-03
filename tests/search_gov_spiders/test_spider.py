@@ -1,5 +1,8 @@
+import re
+
 import pytest
-from scrapy.http import Response, Request
+from scrapy.http.request import Request
+from scrapy.http.response import Response
 
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import DomainSpiderJs
@@ -7,7 +10,7 @@ from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import Domai
 TEST_URL = "http://example.com"
 
 
-@pytest.fixture(name="spider", params=[DomainSpider(), DomainSpiderJs()])
+@pytest.fixture(name="spider", params=[DomainSpider(output_target="csv"), DomainSpiderJs(output_target="csv")])
 def fixture_spider(request):
     return request.param
 
@@ -37,9 +40,41 @@ def test_invalid_content(spider):
     assert results is None
 
 
-@pytest.mark.parametrize("spider_cls", [DomainSpider, DomainSpiderJs])
-def test_invalid_args(spider_cls):
-    with pytest.raises(
-        ValueError, match="Invalid arguments: allowed_domains and start_urls must be used together or not at all."
-    ):
-        spider_cls(allowed_domains="test.example.com")
+INVALID_ARGS_TEST_CASES = [
+    (
+        DomainSpider,
+        {"allowed_domains": "test.example.com", "output_target": "csv"},
+        "Invalid arguments: allowed_domains and start_urls must be used together or not at all.",
+    ),
+    (
+        DomainSpiderJs,
+        {"allowed_domains": "test.example.com", "output_target": "csv"},
+        "Invalid arguments: allowed_domains and start_urls must be used together or not at all.",
+    ),
+    (
+        DomainSpider,
+        {"allowed_domains": "test.example.com", "start_urls": "http://test.example.com/", "output_target": "yaml"},
+        "Invalid arguments: output_target must be one of the following: ['csv', 'endpoint', 'elasticsearch']",
+    ),
+    (
+        DomainSpiderJs,
+        {"allowed_domains": "test.example.com", "start_urls": "http://test.example.com/", "output_target": "yaml"},
+        "Invalid arguments: output_target must be one of the following: ['csv', 'endpoint', 'elasticsearch']",
+    ),
+    (
+        DomainSpider,
+        {"output_target": "yaml"},
+        "Invalid arguments: output_target must be one of the following: ['csv', 'endpoint', 'elasticsearch']",
+    ),
+    (
+        DomainSpiderJs,
+        {"output_target": "yaml"},
+        "Invalid arguments: output_target must be one of the following: ['csv', 'endpoint', 'elasticsearch']",
+    ),
+]
+
+
+@pytest.mark.parametrize(("spider_cls", "kwargs", "msg"), INVALID_ARGS_TEST_CASES)
+def test_invalid_args(spider_cls, kwargs, msg):
+    with pytest.raises(ValueError, match=re.escape(msg)):
+        spider_cls(**kwargs)
