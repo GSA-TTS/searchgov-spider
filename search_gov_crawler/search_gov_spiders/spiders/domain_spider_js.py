@@ -139,5 +139,4 @@ class DomainSpiderJs(CrawlSpider):
         """Set meta tags for playwright to run"""
 
         request.meta["playwright"] = True
-        request.meta["errback"] = request.errback
         return request
