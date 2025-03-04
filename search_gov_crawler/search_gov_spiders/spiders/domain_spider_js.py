@@ -1,8 +1,9 @@
-from scrapy.http import Request, Response
-from scrapy.spiders import CrawlSpider, Rule
+from scrapy.http.request import Request
+from scrapy.http.response import Response
+from scrapy.spiders.crawl import CrawlSpider, Rule
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
-import search_gov_crawler.search_gov_spiders.helpers.encoding as encoding
+from search_gov_crawler.search_gov_spiders.helpers import encoding
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 
@@ -27,32 +28,41 @@ class DomainSpiderJs(CrawlSpider):
     be either single values or comma separated lists. An optional allow_query_string parameter can also
     be passed. The default is false.
 
-    `scrapy crawl domain_spider -a allowed_domains=<desired_domains> -a start_urls=<desired_urls>`
+    ```scrapy crawl domain_spider\
+        -a allowed_domains=<desired_domains>\
+        -a start_urls=<desired_urls>\
+        -a output_target=<desired_output_target>```
 
     Examples:
     Class Arguments
     - `allowed_domains="test-1.example.com,test-2.example.com"`
     - `start_urls="http://test-1.example.com/,https://test-2.example.com/"`
+    - `output_target="csv"`
 
     - `allowed_domains="test-3.example.com"`
     - `start_urls="http://test-3.example.com/"`
+    - `output_target="elasticsearch"`
 
     - `allow_query_string=true`
     - `allowed_domains="test-4.example.com"`
     - `start_urls="http://test-4.example.com/"`
+    - `output_target="endpoint"`
 
     CLI Usage
-    - ```scrapy crawl domain_spider_js```
+    - `scrapy crawl domain_spider_js -a output_target=csv`
     - ```scrapy crawl domain_spider_js \
              -a allowed_domains=test-1.example.com,test-2.example.com \
-             -a start_urls=http://test-1.example.com/,https://test-2.example.com/```
+             -a start_urls=http://test-1.example.com/,https://test-2.example.com/\
+             -a output_target=csv```
     - ```scrapy crawl domain_spider \
              -a allowed_domains=test-3.example.com \
-             -a start_urls=http://test-3.example.com/```
+             -a start_urls=http://test-3.example.com/
+             -a output_target=elasticsearch```
     - ```scrapy crawl domain_spider \
              -a allow_query_string=true \
              -a allowed_domains=test-4.example.com \
-             -a start_urls=http://test-4.example.com/```
+             -a start_urls=http://test-4.example.com/
+             -a output_target=csv```
     """
 
     name: str = "domain_spider_js"
@@ -88,11 +98,10 @@ class DomainSpiderJs(CrawlSpider):
         allow_query_string: bool = False,
         allowed_domains: str | None = None,
         start_urls: str | None = None,
-        output_target: str | None = None,
+        output_target: str,
         **kwargs,
     ) -> None:
-        if any([allowed_domains, start_urls]) and not all([allowed_domains, start_urls]):
-            raise ValueError("Invalid arguments: allowed_domains and start_urls must be used together or not at all.")
+        helpers.validate_spider_arguments(allowed_domains, start_urls, output_target)
 
         super().__init__(*args, **kwargs)
 
@@ -107,10 +116,11 @@ class DomainSpiderJs(CrawlSpider):
         self.allowed_domain_paths = (
             allowed_domains.split(",")
             if allowed_domains
-            else helpers.default_allowed_domains(handle_javascript=False, remove_paths=False)
+            else helpers.default_allowed_domains(handle_javascript=True, remove_paths=False)
         )
         self.start_urls = start_urls.split(",") if start_urls else helpers.default_starting_urls(handle_javascript=True)
         self.output_target = output_target
+
     def parse_item(self, response: Response):
         """
         This method is called by spiders to gather the url.  Placed in the spider to assist with
@@ -129,5 +139,4 @@ class DomainSpiderJs(CrawlSpider):
         """Set meta tags for playwright to run"""
 
         request.meta["playwright"] = True
-        request.meta["errback"] = request.errback
         return request

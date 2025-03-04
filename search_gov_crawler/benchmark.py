@@ -37,9 +37,10 @@ from dotenv import load_dotenv
 from pythonjsonlogger.json import JsonFormatter
 
 from search_gov_crawler import scrapy_scheduler
+from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 from search_gov_crawler.search_gov_spiders.utility_files.crawl_sites import CrawlSites
-from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
+from search_gov_crawler.search_gov_spiders.helpers.domain_spider import ALLOWED_CONTENT_TYPE_OUTPUT_MAP
 
 load_dotenv()
 
@@ -143,7 +144,8 @@ def benchmark_from_args(
 
     msg = (
         "Starting benchmark from args! "
-        "allow_query_string=%s allowed_domains=%s starting_urls=%s handle_javascript=%s output_target=%s runtime_offset_seconds=%s"
+        "allow_query_string=%s allowed_domains=%s starting_urls=%s "
+        "handle_javascript=%s output_target=%s runtime_offset_seconds=%s"
     )
     log.info(
         msg,
@@ -183,6 +185,14 @@ if __name__ == "__main__":
     parser.add_argument("-d", "--allowed_domains", type=str, help="domains allowed to crawl", required=no_input_arg)
     parser.add_argument("-u", "--starting_urls", type=str, help="url used to start crawl", required=no_input_arg)
     parser.add_argument(
+        "-o",
+        "--output_target",
+        type=str,
+        help="Point the output of the crawls to a backend",
+        required=no_input_arg,
+        choices=list(ALLOWED_CONTENT_TYPE_OUTPUT_MAP.keys()),
+    )
+    parser.add_argument(
         "-js",
         "--handle_js",
         action=argparse.BooleanOptionalAction,
@@ -195,13 +205,6 @@ if __name__ == "__main__":
         action=argparse.BooleanOptionalAction,
         default=False,
         help="Flag to enable capturing URLs with query strings",
-    )
-    parser.add_argument(
-        "-o",
-        "--output_target",
-        type=str,
-        default="csv",
-        help="Point the output of the crawls to a backend",
     )
     parser.add_argument("-t", "--runtime_offset", type=int, default=5, help="Number of seconds to offset job start")
     args = parser.parse_args()
