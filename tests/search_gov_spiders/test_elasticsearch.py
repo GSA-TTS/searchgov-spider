@@ -123,11 +123,6 @@ def test_parse_es_urls_valid_urls():
     hosts = es_uploader._parse_es_urls("http://localhost:9200,https://remotehost:9300")
     assert hosts == [{"host": "localhost", "port": 9200, "scheme": "http"}, {"host": "remotehost", "port": 9300, "scheme": "https"}]
 
-def test_index_exists(mock_es_client, search_gov_es):
-    with patch("search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client", return_value=mock_es_client):
-        search_gov_es.create_index_if_not_exists()
-        mock_es_client.indices.exists.assert_called_once_with(index="test_index")
-
 def test_get_client(search_gov_es, mock_es_client):
     with patch("search_gov_crawler.elasticsearch.es_batch_upload.Elasticsearch", return_value=mock_es_client):
         client = search_gov_es._get_client()
@@ -140,17 +135,6 @@ def test_get_client_exception(search_gov_es):
         client = search_gov_es._get_client()
         assert client is None
         mock_log.error.assert_called_once()
-
-def test_create_index_if_not_exists(search_gov_es, mock_es_client):
-    with patch("search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client", return_value=mock_es_client):
-        mock_es_client.indices.exists.return_value = False
-        search_gov_es.create_index_if_not_exists()
-        mock_es_client.indices.create.assert_called_once()
-
-def test_create_index_if_exists(search_gov_es, mock_es_client):
-    with patch("search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client", return_value=mock_es_client):
-        mock_es_client.indices.exists.return_value = True
-        search_gov_es.create_index_if_not_exists()
 
 def test_create_actions(search_gov_es):
     docs = [{"_id": "1", "content": "test1"}, {"_id": "2", "content": "test2"}]

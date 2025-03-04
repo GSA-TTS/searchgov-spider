@@ -81,6 +81,15 @@ services:
     networks:
       - elastic
 
+  run-script:
+    image: alpine
+    env_file:
+      - .env
+    volumes:
+      - ./es_index_settings.json:/es_index_settings.json
+    command: >
+      bash -c 'if [ -f .env ]; then source .env; fi; curl -X PUT "http://es-node1:9200/$SPIDER_ES_INDEX_NAME" -H "Content-Type: application/json" -d "@es_index_settings.json"'
+
 volumes:
   es-data1:
     driver: local

@@ -88,22 +88,6 @@ class SearchGovElasticsearch:
                 log.error(f"Couldn't create an elasticsearch client: {str(e)}")
         return self._es_client
 
-    def create_index_if_not_exists(self):
-        """
-        Creates an index in Elasticsearch if it does not exist.
-        """
-        index_name = self._env_es_index_name
-        try:
-            es_client = self._get_client()
-            if not es_client.indices.exists(index=index_name):
-                index_settings = {
-                    "settings": {"index": {"number_of_shards": 6, "number_of_replicas": 1}},
-                }
-                es_client.indices.create(index=index_name, body=index_settings)
-                log.info(f"Index '{index_name}' created successfully.")
-        except Exception as e:
-            log.error(f"General error creating/updating index: {str(e)}")
-
     def _create_actions(self, docs: list[dict[Any, Any]]) -> list[dict[str, Any]]:
         """
         Create actions for bulk upload from documents.
