@@ -1,6 +1,6 @@
 // This file is used to generate the crawl list for just endpoint (legacy scrutiny) domains.
 
-local endpoint_domains = import 'domains_endpoint.libsonnet';
+local endpoint_domains = import 'config/domains_endpoint.libsonnet';
 
 [
   {

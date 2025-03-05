@@ -1,8 +1,8 @@
 ## Using Jsonnet to generate crawl files
 So as to have better control and readabilty of these configuration files, we use [Jsonnet](https://jsonnet.org/) to generate json files that control our jobs.
 
-### Domain Files
-There is one file for each of the different output targets we support (csv, endpoint, and elasticsearc) as well as a common file imported by the other domain files that contains code used by all others.
+### Domain Configuration Files
+In the config directory, there is one file for each of the different output targets we support (csv, endpoint, and elasticsearc) as well as a common file imported by the other domain files that contains code used by all others.
 
 - domains_csv.libsonnet: contains configuration for domains with an output target of `csv`.
 - domains_endpoint.libsonnet: contains configuration for domains with an output target of `endpoint`.
@@ -12,11 +12,11 @@ There is one file for each of the different output targets we support (csv, endp
 ### Check Formatting
 Use the `jsonnetfmt` command to check formatting prior to commiting and changes, for example:
 ```bash
-jsonnetfmt -i *.jsonnet *.libsonnet
+jsonnetfmt -i *.jsonnet config/*.libsonnet
 ```
 
 ### Generate JSON files
-Use the `jsonnet` command to create new json files after adjusting domain configurations, for example:
+For each json file we need, we have a corresponding jsonnet file.  To create or recreate the json file after changes, use the `jsonnet` command to create new json files after adjusting domain configurations, for example:
 ```bash
 # To create/recreate the full production file
 jsonnet crawl-sites-production.jsonnet > crawl-sites-production.json

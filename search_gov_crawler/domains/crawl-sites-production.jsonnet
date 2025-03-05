@@ -1,8 +1,8 @@
 // This file is used to generate the full production crawl list.
 
-local csv_domains = import 'domains_csv.libsonnet';
-local elasticsearch_domains = import 'domains_elasticsearch.libsonnet';
-local endpoint_domains = import 'domains_endpoint.libsonnet';
+local csv_domains = import 'config/domains_csv.libsonnet';
+local elasticsearch_domains = import 'config/domains_elasticsearch.libsonnet';
+local endpoint_domains = import 'config/domains_endpoint.libsonnet';
 
 // generate the crawl list
 [

@@ -1,6 +1,6 @@
 // This file is used to generate a sample crawl list that can be used for lower environments.
 
-local endpoint_domains = import 'domains_endpoint.libsonnet';
+local endpoint_domains = import 'config/domains_endpoint.libsonnet';
 
 [
   {
