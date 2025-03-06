@@ -10,20 +10,16 @@ In the config directory, there is one file for each of the different output targ
 - domain_config.libsonnet: contains source for `DomainConfig` fuction used to generate domain configurations for all output targets.
 
 ### Check Formatting
-Use the `jsonnetfmt` command to check formatting prior to commiting and changes, for example:
+Use the `jsonnetfmt` command to check formatting prior to commiting and changes:
 ```bash
 jsonnetfmt -i *.jsonnet config/*.libsonnet
 ```
 
+### Jsonnet File
+We use a single jsonnet file to generate all the files we need.  The file is setup to use [multi-file output](https://jsonnet.org/learning/getting_started.html#multi) with both the names and the contents of the output files defined in the jsonnet file.
+
 ### Generate JSON files
-For each json file we need, we have a corresponding jsonnet file.  To create or recreate the json file after changes, use the `jsonnet` command to create new json files after adjusting domain configurations, for example:
+To create or recreate the json files after changes, use the `jsonnet` command:
 ```bash
-# To create/recreate the full production file
-jsonnet crawl-sites-production.jsonnet > crawl-sites-production.json
-
-# To create/recreate the production scrutiny-only file
-jsonnet crawl-sites-production-scrutiny.jsonnet > crawl-sites-production-scrutiny.json
-
-# To create/recreate the sample file
-jsonnet crawl-sites-sample.jsonnet > crawl-sites-sample.json
+jsonnet -m . crawl-sites.jsonnet
 ```
