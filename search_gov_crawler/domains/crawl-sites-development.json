@@ -349,5 +349,14 @@
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
       "starting_urls": "https://www.dantes.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "fac.gov",
+      "handle_javascript": false,
+      "name": "Federal Audit Clearinghouse",
+      "output_target": "elasticsearch",
+      "schedule": "00 06 * * TUE",
+      "starting_urls": "https://www.fac.gov/"
    }
 ]
