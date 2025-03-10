@@ -99,6 +99,24 @@ def test_convert_html_with_publish_date():
     assert result is not None
     assert result["updated"] is not None # newspaper4k may or may not parse date from meta; this checks for any value.
 
+def test_convert_html_with_out_publish_date():
+    html_content = """
+    <html lang="en">
+    <head>
+        <meta name="date">
+    </head>
+    <body>
+        <h1>Test Article Title</h1>
+        <p>This is the main content.</p>
+    </body>
+    </html>
+    """
+    url = "https://example.com/test-article"
+    result = conversion.convert_html(html_content, url)
+    assert result is not None
+    assert result["updated"] is not ""
+    assert result["updated"] is None # newspaper4k may or may not parse date from meta; this checks for any value.
+
 def test_convert_html_languages():
     html_content = """
         <html>

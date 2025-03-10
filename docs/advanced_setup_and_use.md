@@ -25,8 +25,7 @@ SPIDER_DEPTH_LIMIT="3"
 SPIDER_CRAWL_SITES_FILE_NAME="crawl-sites-sample.json"
 
 # Needed for elasticsearch Output target
-SPIDER_ES_INDEX_NAME="i14y-documents-spider"
-SPIDER_ES_INDEX_ALIAS="i14y-documents"
+SEARCHELASTIC_INDEX="development-i14y-documents-searchgov"
 ES_HOSTS="http://localhost:9200"
 ES_USER="username"
 ES_PASSWORD="password"

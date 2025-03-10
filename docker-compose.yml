@@ -1,14 +1,11 @@
 services:
-  es-node1:
+  elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.20
-    container_name: es-node1
+    container_name: elasticsearch
+    restart: on-failure
+    tty: true
     environment:
-      - node.name=es-node1
-      - cluster.name=es-cluster
-      - discovery.seed_hosts=es-node2,es-node3
-      - cluster.initial_master_nodes=es-node1,es-node2,es-node3
-      - bootstrap.memory_lock=true
-      - network.host=0.0.0.0
+      - discovery.type=single-node
       - xpack.security.enabled=false
       - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
     ulimits:
@@ -16,65 +13,30 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - es-data1:/usr/share/elasticsearch/data
+      - es-data:/usr/share/elasticsearch/data
+      - ./setup_docker_es.sh:/setup_docker_es.sh
+    post_start:
+      - command: bash -i /setup_docker_es.sh
+        user: root
+        privileged: true
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s http://localhost:9200 >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
     ports:
       - 9200:9200
-      - 9300:9300
-    networks:
-      - elastic
-
-  es-node2:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.20
-    container_name: es-node2
-    environment:
-      - node.name=es-node2
-      - cluster.name=es-cluster
-      - discovery.seed_hosts=es-node1,es-node3
-      - cluster.initial_master_nodes=es-node1,es-node2,es-node3
-      - bootstrap.memory_lock=true
-      - network.host=0.0.0.0
-      - xpack.security.enabled=false
-      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - es-data2:/usr/share/elasticsearch/data
-    ports:
-      - 9301:9300
-    networks:
-      - elastic
-
-  es-node3:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.20
-    container_name: es-node3
-    environment:
-      - node.name=es-node3
-      - cluster.name=es-cluster
-      - discovery.seed_hosts=es-node1,es-node2
-      - cluster.initial_master_nodes=es-node1,es-node2,es-node3
-      - bootstrap.memory_lock=true
-      - network.host=0.0.0.0
-      - xpack.security.enabled=false
-      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - es-data3:/usr/share/elasticsearch/data
-    ports:
-      - 9302:9300
     networks:
       - elastic
 
   kibana:
     container_name: kibana
-    image: docker.elastic.co/kibana/kibana:7.17.28
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    image: docker.elastic.co/kibana/kibana:7.17.20
     environment:
-      - ELASTICSEARCH_URL="http://es-node1:9200"
-      - ELASTICSEARCH_HOSTS="http://es-node1:9200"
+      - ELASTICSEARCH_URL="http://elasticsearch:9200"
       - DISABLE_SECURITY_DASHBOARDS_PLUGIN="true"
     ports:
       - 5601:5601
@@ -82,11 +44,7 @@ services:
       - elastic
 
 volumes:
-  es-data1:
-    driver: local
-  es-data2:
-    driver: local
-  es-data3:
+  es-data:
     driver: local
 
 networks:

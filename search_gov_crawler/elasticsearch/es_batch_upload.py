@@ -5,15 +5,15 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import Any
 from urllib.parse import urlparse
 
-from elasticsearch import Elasticsearch, helpers
+from elasticsearch import Elasticsearch, helpers  # pylint: disable=wrong-import-order
+from pythonjsonlogger.json import JsonFormatter
 from scrapy.spiders import Spider
 
 from search_gov_crawler.elasticsearch.convert_html_i14y import convert_html
-from pythonjsonlogger.json import JsonFormatter
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 
 # limit excess INFO messages from elasticsearch that are not tied to a spider
-logging.getLogger("elastic_transport.transport").setLevel("ERROR")
+logging.getLogger("elastic_transport").setLevel("ERROR")
 
 logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
 logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
@@ -27,8 +27,8 @@ class SearchGovElasticsearch:
         self._current_batch = []
         self._batch_size = batch_size
         self._es_client = None
-        self._env_es_hosts = os.environ.get("ES_HOSTS", "")
-        self._env_es_index_name = os.environ.get("SPIDER_ES_INDEX_NAME", "")
+        self._env_es_hosts = os.environ.get("ES_HOSTS", "http://localhost:9200")
+        self._env_es_index_name = os.environ.get("SEARCHELASTIC_INDEX", "development-i14y-documents-searchgov")
         self._env_es_username = os.environ.get("ES_USER", "")
         self._env_es_password = os.environ.get("ES_PASSWORD", "")
         self._executor = ThreadPoolExecutor(max_workers=5)  # Reuse one executor
@@ -84,25 +84,9 @@ class SearchGovElasticsearch:
                     ssl_show_warn=False,
                     basic_auth=(self._env_es_username, self._env_es_password),
                 )
-            except Exception as e:
-                log.error(f"Couldn't create an elasticsearch client: {str(e)}")
+            except Exception:  # pylint: disable=broad-except
+                log.exception("Couldn't create an elasticsearch client")
         return self._es_client
-
-    def create_index_if_not_exists(self):
-        """
-        Creates an index in Elasticsearch if it does not exist.
-        """
-        index_name = self._env_es_index_name
-        try:
-            es_client = self._get_client()
-            if not es_client.indices.exists(index=index_name):
-                index_settings = {
-                    "settings": {"index": {"number_of_shards": 6, "number_of_replicas": 1}},
-                }
-                es_client.indices.create(index=index_name, body=index_settings)
-                log.info(f"Index '{index_name}' created successfully.")
-        except Exception as e:
-            log.error(f"General error creating/updating index: {str(e)}")
 
     def _create_actions(self, docs: list[dict[Any, Any]]) -> list[dict[str, Any]]:
         """
@@ -118,9 +102,12 @@ class SearchGovElasticsearch:
         def _bulk_upload():
             try:
                 actions = self._create_actions(docs)
-                success, _ = helpers.bulk(self._get_client(), actions)
-                spider.logger.info("Loaded %s records to Elasticsearch!", success)
-            except Exception as e:
-                spider.logger.error(f"Error in bulk upload: {str(e)}")
+                success, errors = helpers.bulk(self._get_client(), actions, raise_on_error=False)
+                if success:
+                    spider.logger.info("Loaded %s records to Elasticsearch!", success)
+                if errors:
+                    spider.logger.error("Error in bulk upload: %s document(s) failed to index: %s", len(errors), errors)
+            except Exception:  # pylint: disable=broad-except
+                spider.logger.exception("Error in bulk upload")
 
         await loop.run_in_executor(self._executor, _bulk_upload)

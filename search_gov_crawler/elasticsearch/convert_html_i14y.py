@@ -19,7 +19,12 @@ ALLOWED_LANGUAGE_CODE = (
 )
 # fmt: on
 
-
+def checkDate(article_date):
+    if article_date != "": 
+        return article_date
+    else:
+        return None 
+    
 def convert_html(html_content: str, url: str):
     """Extracts and processes article content from HTML using newspaper4k."""
     config = newspaper.Config()
@@ -50,10 +55,10 @@ def convert_html(html_content: str, url: str):
 
     return {
         "audience": article_backup["audience"],
-        "changed": article_backup["changed"],
+        "changed": checkDate(article_backup["changed"]),
         "click_count": None,
         "content_type": "article",
-        "created_at": article_backup["created_at"] or time_now_str,
+        "created_at": checkDate(article_backup["created_at"]) or time_now_str,
         "created": None,
         "_id": sha_id,
         "id": sha_id,
@@ -67,7 +72,7 @@ def convert_html(html_content: str, url: str):
         "searchgov_custom3": None,
         "tags": article.tags or article.keywords or article.meta_keywords or article_backup["keywords"],
         "updated_at": time_now_str,
-        "updated": article.publish_date or article_backup["created_at"],
+        "updated": checkDate(article.publish_date) or checkDate(article_backup["created_at"]),
         f"title{valid_language}": title,
         f"description{valid_language}": content.sanitize_text(description),
         f"content{valid_language}": content.sanitize_text(main_content),

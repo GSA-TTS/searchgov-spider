@@ -11,7 +11,7 @@ requires-python = ">=3.8"
 dependencies = [
     "freezegun==1.5.1",
     "pylint==3.3.4",
-    "pytest==8.3.4",
+    "pytest==8.3.5",
     "pytest-console-scripts==1.4.1",
     "scrapy==2.12.0",
     "scrapy-playwright==0.0.42",
@@ -47,5 +47,13 @@ disable= [
     "missing-function-docstring",
     "too-few-public-methods",
     "too-many-arguments",
-    "too-many-positional-arguments"
+    "too-many-positional-arguments",
+    "too-many-instance-attributes"
+]
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "module"
+filterwarnings = [
+    "ignore:pkg_resources is deprecated as an API:DeprecationWarning",
+    "ignore:Deprecated call to `pkg_resources.declare_namespace:DeprecationWarning"
 ]
