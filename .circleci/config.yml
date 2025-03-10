@@ -1,21 +1,24 @@
 version: 2.1
 
 jobs:
-  build-and-test:
+  python-lint-and-test:
     docker:
       - image: cimg/python:3.12
     steps:
       - checkout
-      - run: python --version > python_version
+      - run:
+          name: Store Python Version
+          command: python --version > python_version
       - restore_cache:
           keys:
             - deps-{{ .Branch }}-{{ checksum "./search_gov_crawler/requirements.txt" }}-{{ checksum "python_version"}}
       - run:
-          name: Install dependencies
+          name: Install Python dependencies
           command: |
             python -m venv venv
             . venv/bin/activate
-            pip install -r ./search_gov_crawler/requirements.txt
+            python -m pip install --upgrade pip
+            python -m pip install -r ./search_gov_crawler/requirements.txt
       - run:
           name: Install NLTK resources
           command: |
@@ -26,13 +29,37 @@ jobs:
             - ./venv
           key: deps-{{ .Branch }}-{{ checksum "./search_gov_crawler/requirements.txt" }}-{{ checksum "python_version"}}
       - run:
-          name: Run tests
+          name: Run Tests
           command: |
             . venv/bin/activate
             python -m pytest tests
 
+  jsonnet-check-domain-configs:
+    docker:
+      - image: cimg/go:1.23
+    environment:
+      DOMAINS_PATH: search_gov_crawler/domains
+    steps:
+      - checkout
+      - run:
+          name: Install Jsonnet
+          command: |
+            go install github.com/google/go-jsonnet/cmd/jsonnet@v0.20.0
+            go install github.com/google/go-jsonnet/cmd/jsonnetfmt@v0.20.0
+      - run:
+          name: Verify Jsonnet Formatting
+          command: |
+            jsonnetfmt --test ${DOMAINS_PATH}/*.jsonnet ${DOMAINS_PATH}/config/*.libsonnet
+      - run:
+          name: Verify Up-to-date JSON Files
+          command: |
+            jsonnet --multi ${DOMAINS_PATH} ${DOMAINS_PATH}/crawl-sites.jsonnet
+            git diff ${DOMAINS_PATH} | tee git_diff_output
+            if [ -s git_diff_output ]; then exit 1; else exit 0; fi
+
 workflows:
   version: 2
-  build-test:
+  lint-and-test:
     jobs:
-      - build-and-test
+      - python-lint-and-test
+      - jsonnet-check-domain-configs

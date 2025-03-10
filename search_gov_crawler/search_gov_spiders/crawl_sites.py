@@ -31,7 +31,7 @@ class CrawlSite:
                 missing_field_names.append(field.name)
 
         if missing_field_names:
-            msg = f"All CrawlSite fields are required!  Add values for {",".join(missing_field_names)}"
+            msg = f"All CrawlSite fields are required!  Add values for {','.join(missing_field_names)}"
             raise TypeError(msg)
 
         # check types
@@ -41,7 +41,7 @@ class CrawlSite:
                     f"Invalid type! Field {field.name} with value {getattr(self, field.name)} must be type {field.type}"
                 )
                 raise TypeError(msg)
-        
+
         # validate output_target values
         valid_output_targets = {"endpoint", "elasticsearch", "csv"}
         if self.output_target not in valid_output_targets:

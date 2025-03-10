@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from search_gov_crawler.search_gov_spiders.utility_files.crawl_sites import CrawlSites
+from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSites
 
 
 @pytest.fixture(name="crawl_sites_test_file")

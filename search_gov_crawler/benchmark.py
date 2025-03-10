@@ -38,8 +38,8 @@ from pythonjsonlogger.json import JsonFormatter
 
 from search_gov_crawler import scrapy_scheduler
 from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
+from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSites
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
-from search_gov_crawler.search_gov_spiders.utility_files.crawl_sites import CrawlSites
 from search_gov_crawler.search_gov_spiders.helpers.domain_spider import ALLOWED_CONTENT_TYPE_OUTPUT_MAP
 
 load_dotenv()

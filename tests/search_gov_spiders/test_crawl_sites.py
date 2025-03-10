@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from search_gov_crawler.search_gov_spiders.utility_files.crawl_sites import CrawlSite, CrawlSites
+from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSite, CrawlSites
 
 
 @pytest.fixture(name="base_crawl_site_args")
@@ -122,9 +122,9 @@ def test_invalid_crawl_sites_duplicates(base_crawl_site_args):
 @pytest.mark.parametrize(
     "file_name",
     [
-        "crawl-sites-sample.json",
+        "crawl-sites-development.json",
+        "crawl-sites-staging.json",
         "crawl-sites-production.json",
-        "crawl-sites-production-scrutiny.json",
     ],
 )
 def test_crawl_sites_file_is_valid(file_name):
@@ -134,9 +134,7 @@ def test_crawl_sites_file_is_valid(file_name):
     Additionally, we are assuming that there is at least one scheduled job in the file.
     """
 
-    crawl_sites_file = (
-        Path(__file__).parent.parent.parent / f"search_gov_crawler/search_gov_spiders/utility_files/{file_name}"
-    )
+    crawl_sites_file = Path(__file__).parent.parent.parent / "search_gov_crawler" / "domains" / file_name
 
     cs = CrawlSites.from_file(file=crawl_sites_file)
     assert len(list(cs.scheduled())) > 0

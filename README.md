@@ -17,14 +17,14 @@ We currently run python 3.12.  The spider is based on the open source [scrapy](h
 
 ```bash
 ├── search_gov_crawler              # scrapy root
-|   ├── elasticsearch               # code related to indexing content in elasticsearch
+│   ├── domains                     # json files with domains to scrape
+│   ├── elasticsearch               # code related to indexing content in elasticsearch
 │   ├── search_gov_spider           # scrapy project dir
 │   │   ├── extensions              # custom scrapy extensions
 │   │   ├── helpers                 # common functions
 │   │   ├── spiders                 # all search_gov_spider spiders
 │   │   │   ├── domain_spider.py    # for html pages
 │   │   │   ├── domain_spider_js.py # for js pages
-│   │   ├── utility_files           # json files with default domains to scrape
 │   │   ├── items.py                # defines individual output of scrapes
 │   │   ├── middlewares.py          # custom middleware code
 │   │   ├── monitors.py             # custom spidermon monitors
@@ -78,10 +78,8 @@ For more advanced usage, see the [Advanced Setup and Use Page](docs/advanced_set
 
 * [Running Scrapydweb UI](docs/running_scrapydwebui.md)
 
-* [Spider Schedules and Configs README](search_gov_crawler/search_gov_spiders/utility_files/README.md)
-  * [Current Scrutiny-only Domain Configuration](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites-production-scrutiny.json)
-
-  * [Current Full Domain Configuration](search_gov_crawler/search_gov_spiders/utility_files/crawl-sites-production.json)
+* [Spider Schedules and Domain Configs README](search_gov_crawler/domains/README.md)
+  * [Current Production Domain List](search_gov_crawler/domains/crawl-sites-production.json)
 
 * [Scheduler Entrypoint - scrapy_scheduler.py](search_gov_crawler/scrapy_scheduler.py)
 

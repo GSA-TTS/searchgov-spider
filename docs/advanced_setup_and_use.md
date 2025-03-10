@@ -81,7 +81,7 @@ you want to redirect your ouput to a log file and not have the terminal session 
 python search_gov_spiders/benchmark.py -u https://www.example.com -d example.com -o csv
 ```
 
-2. To run multiple spiders simultaneously, provide a json file in the format of the [*crawl-sites-sample.json file*](../search_gov_crawler/search_gov_spiders/utility_files/crawl-sites-sample.json) as an argument:
+2. To run multiple spiders simultaneously, provide a json file in the format of the [*crawl-sites-development.json file*](../search_gov_crawler/domains/crawl-sites-development.json) as an argument:
 ```bash
 python search_gov_spiders/benchmark.py -f /path/to/crawl-sites-like-file.json
 ```
