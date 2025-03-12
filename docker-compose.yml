@@ -1,9 +1,9 @@
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.20
     container_name: elasticsearch
-    restart: on-failure
-    tty: true
+    build:
+      context: ./
+      dockerfile: Dockerfile
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
@@ -14,11 +14,15 @@ services:
         hard: -1
     volumes:
       - es-data:/usr/share/elasticsearch/data
-      - ./setup_docker_es.sh:/setup_docker_es.sh
+      - ./es_index_setup.sh:/es_index_setup.sh
+      - ./es_index_settings.json:/es_index_settings.json
     post_start:
-      - command: bash -i /setup_docker_es.sh
+      - command: bash -c "source /es_index_setup.sh"
         user: root
         privileged: true
+        environment:
+          - SEARCHELASTIC_INDEX=searchgov-spider
+          - ES_HOSTS=http://localhost:9200
     healthcheck:
       test: ["CMD-SHELL", "curl -s http://localhost:9200 >/dev/null 2>&1"]
       interval: 10s
