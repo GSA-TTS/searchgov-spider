@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Any, Optional
 
 from scrapy.linkextractors import LinkExtractor
+from scrapy.http.response import Response
 
 # fmt: off
 FILTER_EXTENSIONS = [
@@ -39,6 +40,7 @@ ALLOWED_CONTENT_TYPE = [
 
 ES_ALLOWED_CONTENT_TYPE = [
     "text/html",
+    "application/pdf",
 ]
 
 ALLOWED_CONTENT_TYPE_OUTPUT_MAP = {
@@ -72,13 +74,25 @@ def split_allowed_domains(allowed_domains: str) -> list[str]:
     return host_only_domains
 
 
-def is_valid_content_type(content_type_header: Any, output_target: str) -> bool:
+def is_valid_content_type(content_type_header: str, output_target: str) -> bool:
     """Check that content type header is in list of allowed values"""
+    if not content_type_header:
+        return None
     content_type_header = str(content_type_header)
     for type_regex in ALLOWED_CONTENT_TYPE_OUTPUT_MAP[output_target]:
         if re.search(type_regex, content_type_header):
             return True
     return False
+
+def get_simple_content_type(content_type_header: str, output_target: str) -> str:
+    """Returns simple content time like: \"text/html\""""
+    if not content_type_header:
+        return None
+    content_type_header = str(content_type_header)
+    for type_regex in ALLOWED_CONTENT_TYPE_OUTPUT_MAP[output_target]:
+        if re.search(type_regex, content_type_header):
+            return type_regex
+    return None
 
 
 def get_crawl_sites(crawl_file_path: Optional[str] = None) -> list[dict]:
@@ -130,3 +144,24 @@ def validate_spider_arguments(allowed_domains: str | None, start_urls: str | Non
             f"{list(ALLOWED_CONTENT_TYPE_OUTPUT_MAP.keys())}"
         )
         raise ValueError(msg)
+
+
+def get_response_language_code(response: Response) -> str:
+    """
+    Retrieves the two-letter language code from Content-Language header of a response.
+
+    Args:
+        response (Response): Scrapy's response object
+
+    Returns:
+        str: The two-letter language code, or None if not found or invalid.
+    """
+    try:
+        header_name = "Content-Language"
+        content_language = response.headers.get(header_name, response.headers.get(header_name.lower(), None))
+        if content_language:
+            return content_language[:2]
+    except Exception:
+        pass
+    return None
+    

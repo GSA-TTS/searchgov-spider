@@ -211,6 +211,14 @@ if __name__ == "__main__":
         choices=list(ALLOWED_CONTENT_TYPE_OUTPUT_MAP.keys()),
     )
     parser.add_argument(
+        "-o",
+        "--output_target",
+        type=str,
+        help="Point the output of the crawls to a backend",
+        required=no_input_arg,
+        choices=list(ALLOWED_CONTENT_TYPE_OUTPUT_MAP.keys()),
+    )
+    parser.add_argument(
         "-js",
         "--handle_js",
         action=argparse.BooleanOptionalAction,

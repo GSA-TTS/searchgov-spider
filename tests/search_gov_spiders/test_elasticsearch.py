@@ -21,6 +21,7 @@ html_content = """
     </html>
 """
 
+response_bytes = html_content.encode()
 
 @pytest.fixture
 def sample_spider():
@@ -81,10 +82,10 @@ async def test_add_to_batch(mock_convert_html, sample_spider):
     es_uploader = SearchGovElasticsearch(batch_size=2)
     mock_convert_html.return_value = {"_id": "1", "title": "Test Document"}
 
-    es_uploader.add_to_batch(html_content, "http://example.com/1", sample_spider)
+    es_uploader.add_to_batch(response_bytes, "http://example.com/1", sample_spider, "en", "text/html")
     assert len(es_uploader._current_batch) == 1
 
-    es_uploader.add_to_batch(html_content, "http://example.com/2", sample_spider)
+    es_uploader.add_to_batch(response_bytes, "http://example.com/2", sample_spider, "en", "text/html")
     assert len(es_uploader._current_batch) == 0
 
 
@@ -122,7 +123,7 @@ def test_add_to_batch_no_doc(mock_convert_html, sample_spider):
     es_uploader = SearchGovElasticsearch(batch_size=2)
     mock_convert_html.return_value = None
 
-    es_uploader.add_to_batch("<html></html>", "http://example.com/1", sample_spider)
+    es_uploader.add_to_batch(b"<html></html>", "http://example.com/1", sample_spider, "en", "text/html")
     assert len(es_uploader._current_batch) == 0
 
 

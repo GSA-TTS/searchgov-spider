@@ -98,7 +98,12 @@ class DomainSpider(CrawlSpider):
         @returns items 1 1
         @scrapes url
         """
-
-        if helpers.is_valid_content_type(response.headers.get("content-type", None), output_target=self.output_target):
-            html_content = encoding.decode_http_response(response_bytes=response.body)
-            yield SearchGovSpidersItem(url=response.url, html_content=html_content, output_target=self.output_target)
+        content_type_name = "Content-Type"
+        content_type_value = response.headers.get(content_type_name, response.headers.get(content_type_name.lower(), None))
+        if helpers.is_valid_content_type(content_type_value, output_target=self.output_target):
+            yield SearchGovSpidersItem(
+                url=response.url,
+                response_bytes=response.body,
+                output_target=self.output_target,
+                content_type=helpers.get_simple_content_type(content_type_value, output_target=self.output_target)
+            )

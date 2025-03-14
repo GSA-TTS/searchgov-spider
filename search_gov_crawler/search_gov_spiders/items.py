@@ -7,6 +7,8 @@ import scrapy
 
 class SearchGovSpidersItem(scrapy.Item):
     """Class for Item which is a container for every returned scraped page"""
-    html_content = scrapy.Field()
+    response_bytes = scrapy.Field()
     url = scrapy.Field()
     output_target = scrapy.Field()
+    response_language = scrapy.Field()
+    content_type = scrapy.Field()

@@ -1,4 +1,4 @@
-from search_gov_crawler.elasticsearch import convert_html_i14y as conversion
+from search_gov_crawler.elasticsearch import convert_html_i14y
 from search_gov_crawler.search_gov_spiders.helpers import content
 
 def test_convert_html_valid_article():
@@ -17,8 +17,9 @@ def test_convert_html_valid_article():
     </body>
     </html>
     """
+    response_bytes = html_content.encode()
     url = "https://example.com/test-article"
-    result = conversion.convert_html(html_content, url)
+    result = convert_html_i14y.convert_html(response_bytes, url, "en")
 
     assert result is not None
     assert result["title_en"] == "Test Article Title"
@@ -44,7 +45,7 @@ def test_convert_html_no_content():
     </html>
     """
     url = "https://example.com/test-article"
-    result = conversion.convert_html(html_content, url)
+    result = convert_html_i14y.convert_html(html_content.encode(), url, "en")
     assert result is None
 
 def test_convert_html_no_title_or_description():
@@ -58,10 +59,11 @@ def test_convert_html_no_title_or_description():
     </html>
     """
     url = "https://example.com/test-article"
-    result = conversion.convert_html(html_content, url)
+    result = convert_html_i14y.convert_html(html_content.encode(), url, "en")
+    content = "This is the main content of the test article."
     assert result is not None
     assert result["title_en"] is None
-    assert result["description_en"] is None
+    assert result["description_en"] in content
     assert "This is the main content of the test article." in result["content_en"]
 
 def test_convert_html_with_meta_site_name():
@@ -77,7 +79,7 @@ def test_convert_html_with_meta_site_name():
     </html>
     """
     url = "https://example.com/test-article"
-    result = conversion.convert_html(html_content, url)
+    result = convert_html_i14y.convert_html(html_content.encode(), url, "en")
     assert result is not None
     assert result["title_en"] == "Example Site"  # Uses meta_site_name
     assert "This is the main content." in result["content_en"]
@@ -95,7 +97,7 @@ def test_convert_html_with_publish_date():
     </html>
     """
     url = "https://example.com/test-article"
-    result = conversion.convert_html(html_content, url)
+    result = convert_html_i14y.convert_html(html_content.encode(), url, "en")
     assert result is not None
     assert result["updated"] is not None # newspaper4k may or may not parse date from meta; this checks for any value.
 
@@ -112,7 +114,7 @@ def test_convert_html_with_out_publish_date():
     </html>
     """
     url = "https://example.com/test-article"
-    result = conversion.convert_html(html_content, url)
+    result = convert_html_i14y.convert_html(html_content.encode(), url, "en")
     assert result is not None
     assert result["updated"] is not ""
     assert result["updated"] is None # newspaper4k may or may not parse date from meta; this checks for any value.
@@ -136,7 +138,7 @@ def test_convert_html_languages():
     """
     url = "https://example.cn/article"
     
-    result = conversion.convert_html(html_content, url)
+    result = convert_html_i14y.convert_html(html_content.encode(), url, "zh")
 
     assert result is not None
     assert result["content_zh"] == "労化合測断秒化任面件気子人球分向無圧。了作果批入選教済球主運私信成笑論情禁。首着場研打表阪東日善能最囲値名陣必。想必愛交備見事新演内高青録断狙。詳期斉幕善確込対危継属会提円和動会分子。中常特処秘局創企真刊葉戸獲人師。前場明持二本聞通調写何観。薫大本設紋証済球取縮不園。辺案惑報湖買含応給奥専申琴真集情月続。"

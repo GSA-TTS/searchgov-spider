@@ -10,6 +10,7 @@ from pythonjsonlogger.json import JsonFormatter
 from scrapy.spiders import Spider
 
 from search_gov_crawler.elasticsearch.convert_html_i14y import convert_html
+from search_gov_crawler.elasticsearch.convert_pdf_i14y import convert_pdf
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 
 # limit excess INFO messages from elasticsearch that are not tied to a spider
@@ -33,11 +34,16 @@ class SearchGovElasticsearch:
         self._env_es_password = os.environ.get("ES_PASSWORD", "")
         self._executor = ThreadPoolExecutor(max_workers=5)  # Reuse one executor
 
-    def add_to_batch(self, html_content: str, url: str, spider: Spider):
+    def add_to_batch(self, response_bytes: bytes, url: str, spider: Spider, response_language: str, content_type: str):
         """
         Add a document to the batch for Elasticsearch upload.
         """
-        doc = convert_html(html_content=html_content, url=url)
+        doc = None
+        if content_type == "text/html":
+            doc = convert_html(response_bytes=response_bytes, url=url, response_language=response_language)
+        elif content_type == "application/pdf":
+            doc = convert_pdf(response_bytes=response_bytes, url=url, response_language=response_language)
+
         if doc:
             self._current_batch.append(doc)
 

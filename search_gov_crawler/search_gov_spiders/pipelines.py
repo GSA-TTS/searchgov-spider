@@ -62,7 +62,9 @@ class SearchGovSpidersPipeline:
             self._process_file_item(url)
         
         safe_del(item, "output_target")
-        safe_del(item, "html_content")
+        safe_del(item, "response_bytes")
+        safe_del(item, "response_language")
+        safe_del(item, "content_type")
 
         return item
     
@@ -74,13 +76,18 @@ class SearchGovSpidersPipeline:
     
     def _process_es_item(self, item: SearchGovSpidersItem, spider: Spider):
         url = item.get("url", None)
-        html_content = item.get("html_content", None)
+        response_bytes = item.get("response_bytes", None)
+        response_language = item.get("response_language", None)
+        content_type = item.get("content_type", None)
 
-        if not html_content:
-            spider.logger.error(f"Missing 'html_content' for url: {url}")
-            raise DropItem("Missing URL or HTML in item")
+        if not response_bytes:
+            err = f"Missing 'response_bytes' for url: {url}"
+            spider.logger.error(err)
+            raise DropItem(err)
         try:
-            self._get_elasticsearch_client().add_to_batch(html_content=html_content, url=url, spider=spider)
+            self._get_elasticsearch_client().add_to_batch(
+                response_bytes=response_bytes, url=url, spider=spider, response_language=response_language, content_type=content_type
+            )
         except Exception as e:
             raise DropItem(f"Item 'elasticsearch' add_to_batch() failed: {str(e)}")
 

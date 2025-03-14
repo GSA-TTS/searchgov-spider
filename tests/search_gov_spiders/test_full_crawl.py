@@ -122,6 +122,7 @@ def test_full_crawl(mock_scrapy_settings, monkeypatch, spider, use_dedup, crawl_
             pipeline_cls.current_file = open(pipeline_cls.file_path, "w", encoding="utf-8")
             pipeline_cls.file_open = False
             pipeline_cls._es = None
+            pipeline_cls.urls_batch = []
 
         monkeypatch.setattr(
             "search_gov_crawler.search_gov_spiders.pipelines.SearchGovSpidersPipeline.__init__", mock_init

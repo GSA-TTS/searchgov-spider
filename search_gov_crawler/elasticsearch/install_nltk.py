@@ -9,7 +9,7 @@ def download_nltk_package(package):
     except Exception as e:
         return f"Failed to download {package}: {str(e)}"
 
-nltk_packages = ["popular", "punkt_tab", "punkt", "perluniprops", "nonbreaking_prefixes"]
+nltk_packages = ["popular", "punkt_tab", "punkt", "perluniprops", "nonbreaking_prefixes", "stopwords"]
 
 with ThreadPoolExecutor(max_workers=len(nltk_packages)) as executor:
     future_to_package = {

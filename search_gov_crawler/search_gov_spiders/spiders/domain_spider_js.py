@@ -131,9 +131,16 @@ class DomainSpiderJs(CrawlSpider):
         @scrapes url
         """
 
-        if helpers.is_valid_content_type(response.headers.get("content-type", None), output_target=self.output_target):
-            html_content = encoding.decode_http_response(response_bytes=response.body)
-            yield SearchGovSpidersItem(url=response.url, html_content=html_content, output_target=self.output_target)
+        content_type_name = "Content-Type"
+        content_type_value = response.headers.get(content_type_name, response.headers.get(content_type_name.lower(), None))
+        if helpers.is_valid_content_type(content_type_value, output_target=self.output_target):
+            yield SearchGovSpidersItem(
+                url=response.url,
+                response_bytes=response.body,
+                output_target=self.output_target,
+                response_language=helpers.get_response_language_code(response),
+                content_type=helpers.get_simple_content_type(content_type_value, output_target=self.output_target)
+            )
 
     def set_playwright_usage(self, request: Request, _response: Response) -> Request:
         """Set meta tags for playwright to run"""
