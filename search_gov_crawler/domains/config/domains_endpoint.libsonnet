@@ -115,6 +115,13 @@ local output_target = 'endpoint';
                          output_target=output_target),
   },
   {
+    name: 'NIH National Institute of General Medical Sciences',
+    config: DomainConfig(allowed_domains='nigms.nih.gov',
+                         starting_urls='https://www.nigms.nih.gov/',
+                         schedule='30 09 * * MON',
+                         output_target=output_target),
+  },
+  {
     name: 'NOAA Coastwatch Great Lakes',
     config: DomainConfig(allowed_domains='coastwatch.glerl.noaa.gov',
                          starting_urls='https://coastwatch.glerl.noaa.gov/',

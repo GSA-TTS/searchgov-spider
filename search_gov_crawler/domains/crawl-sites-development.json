@@ -136,6 +136,15 @@
    },
    {
       "allow_query_string": false,
+      "allowed_domains": "nigms.nih.gov",
+      "handle_javascript": false,
+      "name": "NIH National Institute of General Medical Sciences",
+      "output_target": "endpoint",
+      "schedule": "30 09 * * MON",
+      "starting_urls": "https://www.nigms.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
       "allowed_domains": "coastwatch.glerl.noaa.gov",
       "handle_javascript": false,
       "name": "NOAA Coastwatch Great Lakes",
