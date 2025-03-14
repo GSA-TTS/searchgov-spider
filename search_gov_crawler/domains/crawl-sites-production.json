@@ -349,5 +349,59 @@
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
       "starting_urls": "https://www.dantes.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "researchfestival.nih.gov",
+      "handle_javascript": false,
+      "name": "NIH Research Festival (nih-oir-research_festival)",
+      "output_target": "elasticsearch",
+      "schedule": "00 06 * * TUE",
+      "starting_urls": "https://researchfestival.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "search.gov",
+      "handle_javascript": false,
+      "name": "Search.gov (usasearch)",
+      "output_target": "elasticsearch",
+      "schedule": "15 06 * * TUE",
+      "starting_urls": "https://www.search.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "bep.gov",
+      "handle_javascript": false,
+      "name": "Bureau of Engraving and Printing (bep)",
+      "output_target": "elasticsearch",
+      "schedule": "15 06 * * TUE",
+      "starting_urls": "https://www.bep.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "hydrogen.energy.gov",
+      "handle_javascript": false,
+      "name": "Department of Energy - Hydrogen (doe-h2)",
+      "output_target": "elasticsearch",
+      "schedule": "15 06 * * TUE",
+      "starting_urls": "https://www.hydrogen.energy.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "eisenhowerlibrary.gov",
+      "handle_javascript": false,
+      "name": "Eisenhower Presidential Library (eisenhower)",
+      "output_target": "elasticsearch",
+      "schedule": "15 06 * * TUE",
+      "starting_urls": "https://www.eisenhowerlibrary.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "cdfifund.gov",
+      "handle_javascript": false,
+      "name": "CDFI Fund (cdfifund)",
+      "output_target": "elasticsearch",
+      "schedule": "15 06 * * TUE",
+      "starting_urls": "https://www.cdfifund.gov/"
    }
 ]
