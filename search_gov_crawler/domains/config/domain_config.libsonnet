@@ -16,7 +16,6 @@ function(allowed_domains, starting_urls, schedule, output_target, depth_limit=3,
   starting_urls: starting_urls,
   schedule: schedule,
   output_target: output_target,
-  depth_limit: depth_limit,
   handle_javascript: if ['handle_javascript'] == [o for o in options if o == 'handle_javascript'] then true else false,
   depth_limit: depth_limit,
 }
