@@ -9,11 +9,12 @@ Exports the domain config function used for all domain output targets. Expects t
     - handle_javascript: if set, the crawler will handle javascript on the page
 */
 
-function(allowed_domains, starting_urls, schedule, output_target, options=[]) {
+function(allowed_domains, starting_urls, schedule, output_target, depth_limit=3, options=[]) {
   allowed_domains: allowed_domains,
   allow_query_string: if ['allow_query_string'] == [o for o in options if o == 'allow_query_string'] then true else false,
   starting_urls: starting_urls,
   schedule: schedule,
   output_target: output_target,
+  depth_limit: depth_limit,
   handle_javascript: if ['handle_javascript'] == [o for o in options if o == 'handle_javascript'] then true else false,
 }

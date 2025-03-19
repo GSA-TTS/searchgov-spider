@@ -2,6 +2,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "allhands.navy.mil",
+      "depth_limit": 3,
       "handle_javascript": true,
       "name": "Navy All Hands Magazine",
       "output_target": "endpoint",
@@ -11,6 +12,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "help.nfc.usda.gov",
+      "depth_limit": 3,
       "handle_javascript": true,
       "name": "USDA NFC Help Documentation",
       "output_target": "endpoint",
@@ -20,6 +22,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "armymwr.com",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "DOD Army MWR",
       "output_target": "endpoint",
@@ -29,6 +32,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "coastwatch.noaa.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "NOAA CoastWatch",
       "output_target": "endpoint",
@@ -38,6 +42,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "eastcoast.coastwatch.noaa.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "NOAA CoastWatch East Coast Node",
       "output_target": "endpoint",
@@ -47,6 +52,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "benefits.va.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "VA Benefits.va.gov",
       "output_target": "endpoint",
@@ -56,6 +62,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "research.va.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "VA Research & Development",
       "output_target": "endpoint",
@@ -65,6 +72,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "travel.dod.mil",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "DOD Defense Travel Management Office",
       "output_target": "endpoint",
@@ -74,6 +82,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "ais.usvisa-info.com",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "DOS AIS USVISA INFO",
       "output_target": "endpoint",
@@ -83,6 +92,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "toolkit.climate.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "Drought - Toolkit.climate.gov",
       "output_target": "endpoint",
@@ -92,6 +102,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "oha.ed.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "ED Office of Hearings and Appeals OHA",
       "output_target": "endpoint",
@@ -101,6 +112,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "accessdata.fda.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "FDA Import Alerts",
       "output_target": "endpoint",
@@ -110,6 +122,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "mynavyhr.navy.mil",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "Navy MyNavyHR",
       "output_target": "endpoint",
@@ -119,6 +132,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "lrp.nih.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "NIH LRP",
       "output_target": "endpoint",
@@ -128,6 +142,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "orwh.od.nih.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "NIH ORWH",
       "output_target": "endpoint",
@@ -137,6 +152,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "nigms.nih.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "NIH National Institute of General Medical Sciences",
       "output_target": "endpoint",
@@ -146,6 +162,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "coastwatch.glerl.noaa.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "NOAA Coastwatch Great Lakes",
       "output_target": "endpoint",
@@ -155,6 +172,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "coastwatch.pfeg.noaa.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "NOAA CoastWatch West Coast",
       "output_target": "endpoint",
@@ -164,6 +182,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "goes-r.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "NOAA GOES-R",
       "output_target": "endpoint",
@@ -173,6 +192,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "fincen.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "TREAS - FinCEN",
       "output_target": "endpoint",
@@ -182,6 +202,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "cacb.uscourts.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "USCOURTS CACB",
       "output_target": "endpoint",
@@ -191,6 +212,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "are.uscourts.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "USCOURTS ARE",
       "output_target": "endpoint",
@@ -200,6 +222,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "caep.uscourts.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "USCOURTS CAEP",
       "output_target": "endpoint",
@@ -209,6 +232,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "jpml.uscourts.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "USCOURTS JPML",
       "output_target": "endpoint",
@@ -218,6 +242,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "msnd.uscourts.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "USCOURTS MSND",
       "output_target": "endpoint",
@@ -227,6 +252,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "mssd.uscourts.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "USCOURTS MSSD",
       "output_target": "endpoint",
@@ -236,6 +262,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "ncwba.uscourts.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "USCOURTS NCWBA",
       "output_target": "endpoint",
@@ -245,6 +272,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "pawd.uscourts.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "USCOURTS PAWD",
       "output_target": "endpoint",
@@ -254,6 +282,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "utb.uscourts.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "USCOURTS UTB",
       "output_target": "endpoint",
@@ -263,6 +292,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "fpacbc.usda.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "USDA FPAC Business Center",
       "output_target": "endpoint",
@@ -272,6 +302,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "accesstocare.va.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "VA Access To Care",
       "output_target": "endpoint",
@@ -281,6 +312,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "cfm.va.gov/til/",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "VA CFM Technical Information Library TIL",
       "output_target": "endpoint",
@@ -290,6 +322,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "cider.research.va.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "VA CIDER Research",
       "output_target": "endpoint",
@@ -299,6 +332,7 @@
    {
       "allow_query_string": true,
       "allowed_domains": "herc.research.va.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "VA HERC Research",
       "output_target": "endpoint",
@@ -308,6 +342,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "hsrd.research.va.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "VA HSRD Research",
       "output_target": "endpoint",
@@ -317,6 +352,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "myhealth.va.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "VA My Health",
       "output_target": "endpoint",
@@ -326,6 +362,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "va.gov/accountability/",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "VA Office of Accountability and Whistleblower Protection",
       "output_target": "endpoint",
@@ -335,6 +372,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "queri.research.va.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "VA QUERI Research",
       "output_target": "endpoint",
@@ -344,6 +382,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "va.gov/resources/",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "VA Resources",
       "output_target": "endpoint",
@@ -353,6 +392,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "dantes.mil",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "DOD DANTES",
       "output_target": "endpoint",
@@ -362,6 +402,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "researchfestival.nih.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "NIH Research Festival (nih-oir-research_festival)",
       "output_target": "elasticsearch",
@@ -371,6 +412,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "search.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "Search.gov (usasearch)",
       "output_target": "elasticsearch",
@@ -380,6 +422,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "bep.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "Bureau of Engraving and Printing (bep)",
       "output_target": "elasticsearch",
@@ -389,6 +432,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "hydrogen.energy.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "Department of Energy - Hydrogen (doe-h2)",
       "output_target": "elasticsearch",
@@ -398,6 +442,7 @@
    {
       "allow_query_string": false,
       "allowed_domains": "eisenhowerlibrary.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "Eisenhower Presidential Library (eisenhower)",
       "output_target": "elasticsearch",
@@ -407,10 +452,711 @@
    {
       "allow_query_string": false,
       "allowed_domains": "cdfifund.gov",
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "CDFI Fund (cdfifund)",
       "output_target": "elasticsearch",
       "schedule": "15 06 * * TUE",
       "starting_urls": "https://www.cdfifund.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "noaa.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NOAA (noaa)",
+      "output_target": "elasticsearch",
+      "schedule": "01 18 * * WED",
+      "starting_urls": "https://www.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nws.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "National Weather Service (nws)",
+      "output_target": "elasticsearch",
+      "schedule": "01 18 * * WED",
+      "starting_urls": "https://www.nws.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ncei.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "National Centers for Environmental Information (ncei)",
+      "output_target": "elasticsearch",
+      "schedule": "01 18 * * WED",
+      "starting_urls": "https://www.ncei.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "spc.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Storm Prediction Center (spc)",
+      "output_target": "elasticsearch",
+      "schedule": "02 18 * * WED",
+      "starting_urls": "https://www.spc.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "fisheries.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Fisheries (fisheries)",
+      "output_target": "elasticsearch",
+      "schedule": "02 18 * * WED",
+      "starting_urls": "https://www.fisheries.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "water.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Water (water)",
+      "output_target": "elasticsearch",
+      "schedule": "02 18 * * WED",
+      "starting_urls": "https://water.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "wpc.ncep.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Weather Prediction Center (wpc)",
+      "output_target": "elasticsearch",
+      "schedule": "03 18 * * WED",
+      "starting_urls": "https://www.wpc.ncep.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "tgftp.nws.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "TGFTP NWS (tgftp)",
+      "output_target": "elasticsearch",
+      "schedule": "03 18 * * WED",
+      "starting_urls": "https://tgftp.nws.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "oceanservice.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Ocean Service (oceanservice)",
+      "output_target": "elasticsearch",
+      "schedule": "03 18 * * WED",
+      "starting_urls": "https://oceanservice.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "swpc.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Space Weather Prediction Center (swpc)",
+      "output_target": "elasticsearch",
+      "schedule": "04 18 * * WED",
+      "starting_urls": "https://www.swpc.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "cpc.ncep.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Climate Prediction Center (cpc)",
+      "output_target": "elasticsearch",
+      "schedule": "04 18 * * WED",
+      "starting_urls": "https://www.cpc.ncep.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ncdc.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "National Centers for Environmental Information (ncdc)",
+      "output_target": "elasticsearch",
+      "schedule": "04 18 * * WED",
+      "starting_urls": "https://www.ncdc.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nhc.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "National Hurricane Center (nhc)",
+      "output_target": "elasticsearch",
+      "schedule": "05 18 * * WED",
+      "starting_urls": "https://www.nhc.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ndbc.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "National Data Buoy Center (ndbc)",
+      "output_target": "elasticsearch",
+      "schedule": "05 18 * * WED",
+      "starting_urls": "https://www.ndbc.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "gml.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Global Monitoring Laboratory (gml)",
+      "output_target": "elasticsearch",
+      "schedule": "05 18 * * WED",
+      "starting_urls": "https://gml.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nesdis.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NESDIS (nesdis)",
+      "output_target": "elasticsearch",
+      "schedule": "06 18 * * WED",
+      "starting_urls": "https://www.nesdis.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "tidesandcurrents.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Tides and Currents (tidesandcurrents)",
+      "output_target": "elasticsearch",
+      "schedule": "06 18 * * WED",
+      "starting_urls": "https://tidesandcurrents.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "oceanexplorer.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Ocean Explorer (oceanexplorer)",
+      "output_target": "elasticsearch",
+      "schedule": "06 18 * * WED",
+      "starting_urls": "https://oceanexplorer.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "repository.library.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Library Repository (repository.library)",
+      "output_target": "elasticsearch",
+      "schedule": "07 18 * * WED",
+      "starting_urls": "https://repository.library.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "star.nesdis.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "STAR NESDIS (star)",
+      "output_target": "elasticsearch",
+      "schedule": "07 18 * * WED",
+      "starting_urls": "https://www.star.nesdis.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ngdc.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "National Geophysical Data Center (ngdc)",
+      "output_target": "elasticsearch",
+      "schedule": "07 18 * * WED",
+      "starting_urls": "https://www.ngdc.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nohrsc.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "National Operational Hydrologic Remote Sensing Center (nohrsc)",
+      "output_target": "elasticsearch",
+      "schedule": "08 18 * * WED",
+      "starting_urls": "https://www.nohrsc.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nwrfc.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Northwest River Forecast Center (nwrfc)",
+      "output_target": "elasticsearch",
+      "schedule": "08 18 * * WED",
+      "starting_urls": "https://www.nwrfc.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nssl.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "National Severe Storms Laboratory (nssl)",
+      "output_target": "elasticsearch",
+      "schedule": "08 18 * * WED",
+      "starting_urls": "https://www.nssl.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "coast.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Coast (coast)",
+      "output_target": "elasticsearch",
+      "schedule": "09 18 * * WED",
+      "starting_urls": "https://coast.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "aoml.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Atlantic Oceanographic and Meteorological Laboratory (aoml)",
+      "output_target": "elasticsearch",
+      "schedule": "09 18 * * WED",
+      "starting_urls": "https://www.aoml.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "inws.ncep.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Integrated Warning System (inws)",
+      "output_target": "elasticsearch",
+      "schedule": "09 18 * * WED",
+      "starting_urls": "https://inws.ncep.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "psl.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Physical Sciences Laboratory (psl)",
+      "output_target": "elasticsearch",
+      "schedule": "10 18 * * WED",
+      "starting_urls": "https://psl.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "cnrfc.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "California Nevada River Forecast Center (cnrfc)",
+      "output_target": "elasticsearch",
+      "schedule": "10 18 * * WED",
+      "starting_urls": "https://www.cnrfc.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "sos.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Science On a Sphere (sos)",
+      "output_target": "elasticsearch",
+      "schedule": "10 18 * * WED",
+      "starting_urls": "https://sos.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "glerl.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Great Lakes Environmental Research Laboratory (glerl)",
+      "output_target": "elasticsearch",
+      "schedule": "11 18 * * WED",
+      "starting_urls": "https://www.glerl.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "research.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Research (research)",
+      "output_target": "elasticsearch",
+      "schedule": "11 18 * * WED",
+      "starting_urls": "https://research.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "pmel.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Pacific Marine Environmental Laboratory (pmel)",
+      "output_target": "elasticsearch",
+      "schedule": "11 18 * * WED",
+      "starting_urls": "https://www.pmel.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "sanctuaries.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "National Marine Sanctuaries (sanctuaries)",
+      "output_target": "elasticsearch",
+      "schedule": "12 18 * * WED",
+      "starting_urls": "https://sanctuaries.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "goes.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Geostationary Operational Environmental Satellites (goes)",
+      "output_target": "elasticsearch",
+      "schedule": "12 18 * * WED",
+      "starting_urls": "https://www.goes.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ngs.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "National Geodetic Survey (ngs)",
+      "output_target": "elasticsearch",
+      "schedule": "12 18 * * WED",
+      "starting_urls": "https://www.ngs.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "hads.ncep.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Hydrometeorological Automated Data System (hads)",
+      "output_target": "elasticsearch",
+      "schedule": "13 18 * * WED",
+      "starting_urls": "https://hads.ncep.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "vlab.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Virtual Lab (vlab)",
+      "output_target": "elasticsearch",
+      "schedule": "13 18 * * WED",
+      "starting_urls": "https://vlab.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "response.restoration.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Office of Response and Restoration (response_restoration)",
+      "output_target": "elasticsearch",
+      "schedule": "13 18 * * WED",
+      "starting_urls": "https://response.restoration.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ready.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Ready (ready)",
+      "output_target": "elasticsearch",
+      "schedule": "14 18 * * WED",
+      "starting_urls": "https://www.ready.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "coastalscience.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Coastal Science (coastalscience)",
+      "output_target": "elasticsearch",
+      "schedule": "14 18 * * WED",
+      "starting_urls": "https://coastalscience.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "oceantoday.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Ocean Today (oceantoday)",
+      "output_target": "elasticsearch",
+      "schedule": "14 18 * * WED",
+      "starting_urls": "https://oceantoday.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "library.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Library (library)",
+      "output_target": "elasticsearch",
+      "schedule": "15 18 * * WED",
+      "starting_urls": "https://library.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "tsunami.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Tsunami Warning Center (tsunami)",
+      "output_target": "elasticsearch",
+      "schedule": "15 18 * * WED",
+      "starting_urls": "https://www.tsunami.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "arctic.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Arctic Program (arctic)",
+      "output_target": "elasticsearch",
+      "schedule": "15 18 * * WED",
+      "starting_urls": "https://arctic.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "charts.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Charts (charts)",
+      "output_target": "elasticsearch",
+      "schedule": "16 18 * * WED",
+      "starting_urls": "https://www.charts.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "marinedebris.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Marine Debris Program (marinedebris)",
+      "output_target": "elasticsearch",
+      "schedule": "16 18 * * WED",
+      "starting_urls": "https://marinedebris.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "cpo.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Climate Program Office (cpo)",
+      "output_target": "elasticsearch",
+      "schedule": "16 18 * * WED",
+      "starting_urls": "https://cpo.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "marinenavigation.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Marine Navigation (marinenavigation)",
+      "output_target": "elasticsearch",
+      "schedule": "17 18 * * WED",
+      "starting_urls": "https://marinenavigation.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "hdsc.nws.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "HDSC (hdsc)",
+      "output_target": "elasticsearch",
+      "schedule": "17 18 * * WED",
+      "starting_urls": "https://hdsc.nws.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "origin-east-01-drupal-climate.woc.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Origin East 01 Drupal Climate (origin-east-01-drupal-climate)",
+      "output_target": "elasticsearch",
+      "schedule": "17 18 * * WED",
+      "starting_urls": "https://origin-east-01-drupal-climate.woc.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "csl.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "CSL (csl)",
+      "output_target": "elasticsearch",
+      "schedule": "18 18 * * WED",
+      "starting_urls": "https://csl.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "st.nmfs.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NMFS (nmfs)",
+      "output_target": "elasticsearch",
+      "schedule": "18 18 * * WED",
+      "starting_urls": "https://www.st.nmfs.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ospo.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "OSPO (ospo)",
+      "output_target": "elasticsearch",
+      "schedule": "18 18 * * WED",
+      "starting_urls": "https://www.ospo.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "omao.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "OMAO (omao)",
+      "output_target": "elasticsearch",
+      "schedule": "19 18 * * WED",
+      "starting_urls": "https://www.omao.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "coastwatch.glerl.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Coastwatch (coastwatch)",
+      "output_target": "elasticsearch",
+      "schedule": "19 18 * * WED",
+      "starting_urls": "https://coastwatch.glerl.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "geodesy.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Geodesy (geodesy)",
+      "output_target": "elasticsearch",
+      "schedule": "19 18 * * WED",
+      "starting_urls": "https://geodesy.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "oceanacidification.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Ocean Acidification (oceanacidification)",
+      "output_target": "elasticsearch",
+      "schedule": "20 18 * * WED",
+      "starting_urls": "https://oceanacidification.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nauticalcharts.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Nautical Charts (nauticalcharts)",
+      "output_target": "elasticsearch",
+      "schedule": "20 18 * * WED",
+      "starting_urls": "https://nauticalcharts.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "coralreefwatch.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Coral Reef Watch (coralreefwatch)",
+      "output_target": "elasticsearch",
+      "schedule": "20 18 * * WED",
+      "starting_urls": "https://coralreefwatch.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "media.fisheries.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Fisheries Media (media.fisheries)",
+      "output_target": "elasticsearch",
+      "schedule": "21 18 * * WED",
+      "starting_urls": "https://media.fisheries.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "gfdl.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Geophysical Fluid Dynamics Laboratory (gfdl)",
+      "output_target": "elasticsearch",
+      "schedule": "21 18 * * WED",
+      "starting_urls": "https://www.gfdl.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nsd.rdc.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NSD RDC (nsd)",
+      "output_target": "elasticsearch",
+      "schedule": "21 18 * * WED",
+      "starting_urls": "https://nsd.rdc.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "globalocean.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Global Ocean (globalocean)",
+      "output_target": "elasticsearch",
+      "schedule": "22 18 * * WED",
+      "starting_urls": "https://globalocean.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "storms.ngs.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Storms (storms)",
+      "output_target": "elasticsearch",
+      "schedule": "22 18 * * WED",
+      "starting_urls": "https://storms.ngs.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "sarsat.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "SARSAT (sarsat)",
+      "output_target": "elasticsearch",
+      "schedule": "22 18 * * WED",
+      "starting_urls": "https://www.sarsat.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "coris.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "CORIS (coris)",
+      "output_target": "elasticsearch",
+      "schedule": "23 18 * * WED",
+      "starting_urls": "https://www.coris.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ntwc.ncep.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "National Tsunami Warning Center (ntwc)",
+      "output_target": "elasticsearch",
+      "schedule": "23 18 * * WED",
+      "starting_urls": "https://ntwc.ncep.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "spo.nmfs.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NOAA Fisheries SPO (spo)",
+      "output_target": "elasticsearch",
+      "schedule": "23 18 * * WED",
+      "starting_urls": "https://spo.nmfs.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "blog.response.restoration.noaa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Blog - NOAA Restoration (blogresponse)",
+      "output_target": "elasticsearch",
+      "schedule": "24 18 * * WED",
+      "starting_urls": "https://blog.response.restoration.noaa.gov/"
    }
 ]

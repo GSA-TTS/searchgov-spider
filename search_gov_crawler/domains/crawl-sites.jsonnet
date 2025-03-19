@@ -11,6 +11,7 @@ local CrawlSite(domain) = {
   handle_javascript: domain.config.handle_javascript,
   schedule: domain.config.schedule,
   output_target: domain.config.output_target,
+  depth_limit: domain.config.depth_limit,
   starting_urls: domain.config.starting_urls,
 };
 
