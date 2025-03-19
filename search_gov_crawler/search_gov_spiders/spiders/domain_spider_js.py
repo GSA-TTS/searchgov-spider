@@ -80,7 +80,9 @@ class DomainSpiderJs(CrawlSpider):
         """Moved settings update to this classmethod due to complexity."""
 
         super().update_settings(settings)
-        settings.set("PLAYWRIGHT_ABORT_REQUEST", should_abort_request, priority="spider")
+        settings.set(
+            "PLAYWRIGHT_ABORT_REQUEST", should_abort_request, priority="spider"
+        )
         settings.set("PLAYWRIGHT_BROWSER_TYPE", "chromium", priority="spider")
         settings.set("PLAYWRIGHT_LAUNCH_OPTIONS", {"headless": True}, priority="spider")
         settings.set(
@@ -116,10 +118,27 @@ class DomainSpiderJs(CrawlSpider):
         self.allowed_domain_paths = (
             allowed_domains.split(",")
             if allowed_domains
-            else helpers.default_allowed_domains(handle_javascript=True, remove_paths=False)
+            else helpers.default_allowed_domains(
+                handle_javascript=True, remove_paths=False
+            )
         )
-        self.start_urls = start_urls.split(",") if start_urls else helpers.default_starting_urls(handle_javascript=True)
+        self.start_urls = (
+            start_urls.split(",")
+            if start_urls
+            else helpers.default_starting_urls(handle_javascript=True)
+        )
         self.output_target = output_target
+
+    @classmethod
+    def from_crawler(cls, crawler, depth_limit: int | None = None, *args, **kwargs):
+        # DEPTH_LIMIT default is set in settings.py file. This default can be overridden either by command line argument (-a depth_limit=x) or within a json scheduling file.
+        spider = super().from_crawler(crawler, *args, **kwargs)
+        if int(depth_limit) > 250 or int(depth_limit) < 1:
+            msg = f"Search Depth must be between 1 and 250 inclusive. You submitted: {depth_limit} "
+            raise ValueError(msg)
+
+        spider.settings.set("DEPTH_LIMIT", depth_limit, priority="spider")
+        return spider
 
     def parse_item(self, response: Response):
         """
@@ -132,14 +151,20 @@ class DomainSpiderJs(CrawlSpider):
         """
 
         content_type_name = "Content-Type"
-        content_type_value = response.headers.get(content_type_name, response.headers.get(content_type_name.lower(), None))
-        if helpers.is_valid_content_type(content_type_value, output_target=self.output_target):
+        content_type_value = response.headers.get(
+            content_type_name, response.headers.get(content_type_name.lower(), None)
+        )
+        if helpers.is_valid_content_type(
+            content_type_value, output_target=self.output_target
+        ):
             yield SearchGovSpidersItem(
                 url=response.url,
                 response_bytes=response.body,
                 output_target=self.output_target,
                 response_language=helpers.get_response_language_code(response),
-                content_type=helpers.get_simple_content_type(content_type_value, output_target=self.output_target)
+                content_type=helpers.get_simple_content_type(
+                    content_type_value, output_target=self.output_target
+                ),
             )
 
     def set_playwright_usage(self, request: Request, _response: Response) -> Request:

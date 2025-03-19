@@ -16,6 +16,7 @@ from search_gov_crawler.benchmark import (
     init_scheduler,
 )
 
+
 @pytest.fixture
 def mock_es_client():
     client = MagicMock(spec=Elasticsearch)
@@ -24,7 +25,10 @@ def mock_es_client():
     client.indices.create = MagicMock()
     return client
 
-@pytest.mark.parametrize(("scrapy_max_workers", "expected_val"), [("100", 100), (None, 5)])
+
+@pytest.mark.parametrize(
+    ("scrapy_max_workers", "expected_val"), [("100", 100), (None, 5)]
+)
 def test_init_scheduler(caplog, monkeypatch, scrapy_max_workers, expected_val):
     if scrapy_max_workers:
         monkeypatch.setenv("SPIDER_SCRAPY_MAX_WORKERS", scrapy_max_workers)
@@ -46,7 +50,10 @@ def test_init_scheduler(caplog, monkeypatch, scrapy_max_workers, expected_val):
 
 
 @freeze_time("2024-01-01 00:00:00", tz_offset=0)
-@pytest.mark.parametrize(("handle_javascript", "spider_arg"), [(True, "domain_spider_js"), (False, "domain_spider")])
+@pytest.mark.parametrize(
+    ("handle_javascript", "spider_arg"),
+    [(True, "domain_spider_js"), (False, "domain_spider")],
+)
 def test_create_apscheduler_job(handle_javascript, spider_arg):
     test_args = {
         "name": "test",
@@ -56,6 +63,7 @@ def test_create_apscheduler_job(handle_javascript, spider_arg):
         "handle_javascript": handle_javascript,
         "output_target": "csv",
         "runtime_offset_seconds": 5,
+        "depth_limit": 3,
     }
 
     assert create_apscheduler_job(**test_args) == {
@@ -69,6 +77,7 @@ def test_create_apscheduler_job(handle_javascript, spider_arg):
             test_args["allowed_domains"],
             test_args["starting_urls"],
             test_args["output_target"],
+            test_args["depth_limit"],
         ],
     }
 
@@ -88,9 +97,14 @@ class MockScheduler:
 
 
 def test_benchmark_from_args(caplog, monkeypatch, mock_es_client):
-    with patch("search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client", return_value=mock_es_client):
+    with patch(
+        "search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client",
+        return_value=mock_es_client,
+    ):
         monkeypatch.setattr(time, "sleep", lambda x: True)
-        monkeypatch.setattr("search_gov_crawler.benchmark.init_scheduler", lambda: MockScheduler())  # pylint: disable=unnecessary-lambda
+        monkeypatch.setattr(
+            "search_gov_crawler.benchmark.init_scheduler", lambda: MockScheduler()
+        )  # pylint: disable=unnecessary-lambda
         test_args = {
             "allow_query_string": True,
             "allowed_domains": "unit-test.example.com",
@@ -98,6 +112,7 @@ def test_benchmark_from_args(caplog, monkeypatch, mock_es_client):
             "handle_javascript": False,
             "output_target": "csv",
             "runtime_offset_seconds": 0,
+            "depth_limit": 3,
         }
         with caplog.at_level("INFO"):
             benchmark_from_args(**test_args)
@@ -105,24 +120,34 @@ def test_benchmark_from_args(caplog, monkeypatch, mock_es_client):
         expected_log_msg = (
             "Starting benchmark from args! "
             "allow_query_string=True allowed_domains=unit-test.example.com starting_urls=https://unit-test.example.com "
-            "handle_javascript=False output_target=csv runtime_offset_seconds=0"
+            "handle_javascript=False output_target=csv runtime_offset_seconds=0 depth_limit=3"
         )
         assert expected_log_msg in caplog.messages
 
 
 def test_benchmark_from_file(caplog, monkeypatch, mock_es_client):
-    with patch("search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client", return_value=mock_es_client):
+    with patch(
+        "search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client",
+        return_value=mock_es_client,
+    ):
         monkeypatch.setattr(time, "sleep", lambda x: True)
-        monkeypatch.setattr("search_gov_crawler.benchmark.init_scheduler", lambda: MockScheduler())  # pylint: disable=unnecessary-lambda
+        monkeypatch.setattr(
+            "search_gov_crawler.benchmark.init_scheduler", lambda: MockScheduler()
+        )  # pylint: disable=unnecessary-lambda
 
         input_file = Path(__file__).parent / "crawl-sites-test.json"
         with caplog.at_level("INFO"):
             benchmark_from_file(input_file=input_file, runtime_offset_seconds=0)
 
-        assert "Starting benchmark from file! input_file=crawl-sites-test.json runtime_offset_seconds=0" in caplog.messages
+        assert (
+            "Starting benchmark from file! input_file=crawl-sites-test.json runtime_offset_seconds=0"
+            in caplog.messages
+        )
 
 
 def test_benchmark_from_file_missing_file():
     input_file = Path("/does/not/exist.json")
-    with pytest.raises(FileNotFoundError, match=f"Input file {input_file} does not exist!"):
+    with pytest.raises(
+        FileNotFoundError, match=f"Input file {input_file} does not exist!"
+    ):
         benchmark_from_file(input_file=input_file, runtime_offset_seconds=0)

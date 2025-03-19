@@ -21,7 +21,6 @@ If running a scheduler or benchmark, we support the use of a `.env` file in the 
 # Optional variables for process control and info
 SCRAPY_LOG_LEVEL="INFO"
 SPIDER_SCRAPY_MAX_WORKERS="5"
-SPIDER_DEPTH_LIMIT="3"
 SPIDER_CRAWL_SITES_FILE_NAME="crawl-sites-sample.json"
 
 # Needed for elasticsearch Output target

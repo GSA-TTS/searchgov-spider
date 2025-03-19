@@ -14,6 +14,7 @@ def fixture_base_crawl_site_args() -> dict:
         "handle_javascript": False,
         "output_target": "csv",
         "starting_urls": "https://www.example.com",
+        "depth_limit": 3,
     }
 
 
@@ -41,7 +42,12 @@ def test_crawl_site_to_dict(base_crawl_site_args, exclude):
 
 @pytest.mark.parametrize(
     "fields",
-    [("name",), ("allow_query_string",), ("allowed_domains",), ("handle_javascript", "starting_urls")],
+    [
+        ("name",),
+        ("allow_query_string",),
+        ("allowed_domains",),
+        ("handle_javascript", "starting_urls"),
+    ],
 )
 def test_invalid_crawl_site_missing_field(fields, base_crawl_site_args):
     test_args = base_crawl_site_args | {"schedule": "* * * * *"}
@@ -64,7 +70,9 @@ def test_invalid_crawl_site_missing_field(fields, base_crawl_site_args):
         ("starting_urls", {"some": "dict"}, str),
     ],
 )
-def test_invalid_crawl_site_wrong_type(base_crawl_site_args, field, new_value, expected_type):
+def test_invalid_crawl_site_wrong_type(
+    base_crawl_site_args, field, new_value, expected_type
+):
     test_args = base_crawl_site_args | {"schedule": "* * * * *"}
     test_args[field] = new_value
 
@@ -79,7 +87,9 @@ def test_invalid_crawl_site_wrong_type(base_crawl_site_args, field, new_value, e
         ("output_target", "index", {"endpoint", "elasticsearch", "csv"}),
     ],
 )
-def test_invalid_crawl_site_output_target(base_crawl_site_args, field, new_value, expected_type):
+def test_invalid_crawl_site_output_target(
+    base_crawl_site_args, field, new_value, expected_type
+):
     test_args = base_crawl_site_args | {field: new_value}
 
     match = f"Invalid output_target value {new_value}! Must be one of {expected_type}"
@@ -106,17 +116,26 @@ def test_valid_crawl_sites_scheduled(base_crawl_site_args):
         "allowed_domains": "another.example.com",
         "schedule": "* * * * *",
         "starting_urls": "https://another.example.com",
+        "depth_limit": 3,
     }
 
-    test_input = [CrawlSite(**base_crawl_site_args), CrawlSite(**different_crawl_site_args)]
+    test_input = [
+        CrawlSite(**base_crawl_site_args),
+        CrawlSite(**different_crawl_site_args),
+    ]
 
     cs = CrawlSites(test_input)
     assert len(list(cs.scheduled())) == 1
 
 
 def test_invalid_crawl_sites_duplicates(base_crawl_site_args):
-    with pytest.raises(TypeError, match="The combination of allowed_domain and starting_urls must be unique in file!"):
-        CrawlSites([CrawlSite(**base_crawl_site_args), CrawlSite(**base_crawl_site_args)])
+    with pytest.raises(
+        TypeError,
+        match="The combination of allowed_domain and starting_urls must be unique in file!",
+    ):
+        CrawlSites(
+            [CrawlSite(**base_crawl_site_args), CrawlSite(**base_crawl_site_args)]
+        )
 
 
 @pytest.mark.parametrize(
@@ -134,7 +153,12 @@ def test_crawl_sites_file_is_valid(file_name):
     Additionally, we are assuming that there is at least one scheduled job in the file.
     """
 
-    crawl_sites_file = Path(__file__).parent.parent.parent / "search_gov_crawler" / "domains" / file_name
+    crawl_sites_file = (
+        Path(__file__).parent.parent.parent
+        / "search_gov_crawler"
+        / "domains"
+        / file_name
+    )
 
     cs = CrawlSites.from_file(file=crawl_sites_file)
     assert len(list(cs.scheduled())) > 0

@@ -7,6 +7,7 @@ Exports the domain config function used for all domain output targets. Expects t
   - options (list): a list of options that can be passed to the domain config function.  Current options include:
     - allow_query_string: if set, the crawler will allow query strings in URLs
     - handle_javascript: if set, the crawler will handle javascript on the page
+  - depth_limit: how far down you want the spider to crawl the site
 */
 
 function(allowed_domains, starting_urls, schedule, output_target, depth_limit=3, options=[]) {
@@ -17,4 +18,5 @@ function(allowed_domains, starting_urls, schedule, output_target, depth_limit=3,
   output_target: output_target,
   depth_limit: depth_limit,
   handle_javascript: if ['handle_javascript'] == [o for o in options if o == 'handle_javascript'] then true else false,
+  depth_limit: depth_limit,
 }

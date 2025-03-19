@@ -7,7 +7,7 @@ from typing import Self
 @dataclass
 class CrawlSite:
     """
-    Represents a single crawl site record.  All fields required except schedule.
+    Represents a single crawl site record.  All fields required except schedule and depth_limit.
     In normal operations, When schedule is blank, a job will not be scheduled.  When running
     a benchmark, schedule is ignored.
     """
@@ -18,6 +18,7 @@ class CrawlSite:
     handle_javascript: bool
     starting_urls: str
     output_target: str
+    depth_limit: int
     schedule: str | None = None
 
     def __post_init__(self):
@@ -25,7 +26,7 @@ class CrawlSite:
         # check required fields
         missing_field_names = []
         for field in fields(self):
-            if field.name == "schedule":
+            if field.name == "schedule" or field.name == "depth_limit":
                 pass
             elif getattr(self, field.name) is None:
                 missing_field_names.append(field.name)
@@ -37,9 +38,7 @@ class CrawlSite:
         # check types
         for field in fields(self):
             if not isinstance(getattr(self, field.name), field.type):
-                msg = (
-                    f"Invalid type! Field {field.name} with value {getattr(self, field.name)} must be type {field.type}"
-                )
+                msg = f"Invalid type! Field {field.name} with value {getattr(self, field.name)} must be type {field.type}"
                 raise TypeError(msg)
 
         # validate output_target values
@@ -70,7 +69,10 @@ class CrawlSites:
     def __post_init__(self):
         """Perform validations on entire list"""
 
-        unique_sites = {(crawl_site.allowed_domains, crawl_site.starting_urls) for crawl_site in self.root}
+        unique_sites = {
+            (crawl_site.allowed_domains, crawl_site.starting_urls)
+            for crawl_site in self.root
+        }
         if len(unique_sites) != len(self.root):
             msg = "The combination of allowed_domain and starting_urls must be unique in file!"
             raise TypeError(msg)

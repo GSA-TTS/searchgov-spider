@@ -6,7 +6,8 @@
         "handle_javascript": false,
         "schedule": "0,15,30,45 * * * *",
         "output_target": "csv",
-        "starting_urls": "https://quotes.toscrape.com/"
+        "starting_urls": "https://quotes.toscrape.com/",
+        "depth_limit": 3
     },
     {
         "name": "Quotes 2",
@@ -15,7 +16,8 @@
         "handle_javascript": true,
         "schedule": "0,15,30,45 * * * *",
         "output_target": "csv",
-        "starting_urls": "https://quotes.toscrape.com/js/"
+        "starting_urls": "https://quotes.toscrape.com/js/",
+        "depth_limit": 3
     },
     {
         "name": "Quotes 3",
@@ -24,7 +26,8 @@
         "handle_javascript": true,
         "schedule": "0,15,30,45 * * * *",
         "output_target": "endpoint",
-        "starting_urls": "https://quotes.toscrape.com/js-delayed/"
+        "starting_urls": "https://quotes.toscrape.com/js-delayed/",
+        "depth_limit": 3
     },
     {
         "name": "Quotes 4",
@@ -33,6 +36,7 @@
         "handle_javascript": false,
         "schedule": "0,15,30,45 * * * *",
         "output_target": "endpoint",
-        "starting_urls": "https://quotes.toscrape.com/"
+        "starting_urls": "https://quotes.toscrape.com/",
+        "depth_limit": 3
     }
 ]

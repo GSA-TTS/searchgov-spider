@@ -8,24 +8,34 @@ from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
-from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import DomainSpiderJs
+from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import (
+    DomainSpiderJs,
+)
 
 
 @pytest.fixture(name="mock_scrapy_settings")
 def fixture_mock_scrapy_settings(monkeypatch):
     # setup for test run
-    monkeypatch.setenv("SCRAPY_SETTINGS_MODULE", "search_gov_crawler.search_gov_spiders.settings")
+    monkeypatch.setenv(
+        "SCRAPY_SETTINGS_MODULE", "search_gov_crawler.search_gov_spiders.settings"
+    )
 
     settings = get_project_settings()
 
     settings.set("SPIDER_MODULES", ["search_gov_crawler.search_gov_spiders.spiders"])
     settings.set(
         "SPIDER_MIDDLEWARES",
-        {f"search_gov_crawler.{k}": v for k, v in dict(settings.get("SPIDER_MIDDLEWARES").attributes).items()},
+        {
+            f"search_gov_crawler.{k}": v
+            for k, v in dict(settings.get("SPIDER_MIDDLEWARES").attributes).items()
+        },
     )
     settings.set(
         "DOWNLOADER_MIDDLEWARES",
-        {f"search_gov_crawler.{k}": v for k, v in dict(settings.get("DOWNLOADER_MIDDLEWARES").attributes).items()},
+        {
+            f"search_gov_crawler.{k}": v
+            for k, v in dict(settings.get("DOWNLOADER_MIDDLEWARES").attributes).items()
+        },
     )
     settings.set("EXTENSIONS", {})
     settings.set("JOBDIR", None)
@@ -56,6 +66,7 @@ FULL_CRAWL_TEST_CASES = [
             "allowed_domains": "quotes.toscrape.com",
             "start_urls": "https://quotes.toscrape.com/",
             "output_target": "csv",
+            "depth_limit": 20,
         },
         378,
     ),
@@ -67,6 +78,7 @@ FULL_CRAWL_TEST_CASES = [
             "allowed_domains": "quotes.toscrape.com/tag/",
             "start_urls": "https://quotes.toscrape.com/",
             "output_target": "csv",
+            "depth_limit": 20,
         },
         120,
     ),
@@ -78,6 +90,7 @@ FULL_CRAWL_TEST_CASES = [
             "allowed_domains": "quotes.toscrape.com",
             "start_urls": "https://quotes.toscrape.com/js/",
             "output_target": "endpoint",
+            "depth_limit": 20,
         },
         0,
     ),
@@ -89,25 +102,35 @@ FULL_CRAWL_TEST_CASES = [
             "allowed_domains": "quotes.toscrape.com/js/",
             "start_urls": "https://quotes.toscrape.com/js/",
             "output_target": "endpoint",
+            "depth_limit": 20,
         },
         0,
     ),
 ]
 
 
-@pytest.mark.parametrize(("spider", "use_dedup", "crawl_kwargs", "expected_results"), FULL_CRAWL_TEST_CASES)
-def test_full_crawl(mock_scrapy_settings, monkeypatch, spider, use_dedup, crawl_kwargs, expected_results):
+@pytest.mark.parametrize(
+    ("spider", "use_dedup", "crawl_kwargs", "expected_results"), FULL_CRAWL_TEST_CASES
+)
+def test_full_crawl(
+    mock_scrapy_settings, monkeypatch, spider, use_dedup, crawl_kwargs, expected_results
+):
     # only use dedup pipeline for js test, otherwise dupes are not cleared between runs
     mock_scrapy_settings.set(
         "ITEM_PIPELINES",
         {
             f"search_gov_crawler.{k}": v
             for k, v in dict(mock_scrapy_settings.get("ITEM_PIPELINES")).items()
-            if (k == "search_gov_spiders.pipelines.SearchGovSpidersPipeline" or use_dedup)
+            if (
+                k == "search_gov_spiders.pipelines.SearchGovSpidersPipeline"
+                or use_dedup
+            )
         },
     )
 
-    max_file_size = 3900  # intentionally kept low to allow for paging of files in small dataset
+    max_file_size = (
+        3900  # intentionally kept low to allow for paging of files in small dataset
+    )
 
     with tempfile.NamedTemporaryFile(suffix=".json") as output_file:
         temp_dir = Path(str(output_file.name)).parent
@@ -119,13 +142,16 @@ def test_full_crawl(mock_scrapy_settings, monkeypatch, spider, use_dedup, crawl_
             pipeline_cls.parent_file_path = temp_dir
             pipeline_cls.base_file_name = temp_dir / "output" / "all-links-p1234.csv"
             pipeline_cls.file_path = pipeline_cls.base_file_name
-            pipeline_cls.current_file = open(pipeline_cls.file_path, "w", encoding="utf-8")
+            pipeline_cls.current_file = open(
+                pipeline_cls.file_path, "w", encoding="utf-8"
+            )
             pipeline_cls.file_open = False
             pipeline_cls._es = None
             pipeline_cls.urls_batch = []
 
         monkeypatch.setattr(
-            "search_gov_crawler.search_gov_spiders.pipelines.SearchGovSpidersPipeline.__init__", mock_init
+            "search_gov_crawler.search_gov_spiders.pipelines.SearchGovSpidersPipeline.__init__",
+            mock_init,
         )
 
         mock_scrapy_settings.set("FEEDS", {output_file.name: {"format": "json"}})
@@ -143,4 +169,6 @@ def test_full_crawl(mock_scrapy_settings, monkeypatch, spider, use_dedup, crawl_
         assert len(links) == expected_results
 
         # verify split files exist and are under max file size
-        assert all(split_file.stat().st_size < max_file_size for split_file in split_files)
+        assert all(
+            split_file.stat().st_size < max_file_size for split_file in split_files
+        )
