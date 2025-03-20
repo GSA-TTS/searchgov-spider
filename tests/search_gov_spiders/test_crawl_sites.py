@@ -1,5 +1,4 @@
 from pathlib import Path
-
 import pytest
 
 from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSite, CrawlSites
@@ -131,7 +130,7 @@ def test_valid_crawl_sites_scheduled(base_crawl_site_args):
 def test_invalid_crawl_sites_duplicates(base_crawl_site_args):
     with pytest.raises(
         TypeError,
-        match="The combination of allowed_domain and starting_urls must be unique in file!",
+        match=r".*allowed_domain and starting_urls must be unique.*",
     ):
         CrawlSites(
             [CrawlSite(**base_crawl_site_args), CrawlSite(**base_crawl_site_args)]

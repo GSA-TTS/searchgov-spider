@@ -12,7 +12,7 @@
     {
         "name": "Quotes 2",
         "allow_query_string": false,
-        "allowed_domains": "quotes.toscrape.com",
+        "allowed_domains": "quotes.toscrape.com/js",
         "handle_javascript": true,
         "schedule": "0,15,30,45 * * * *",
         "output_target": "csv",
@@ -22,7 +22,7 @@
     {
         "name": "Quotes 3",
         "allow_query_string": false,
-        "allowed_domains": "quotes.toscrape.com",
+        "allowed_domains": "quotes.toscrape.com/js-delayed",
         "handle_javascript": true,
         "schedule": "0,15,30,45 * * * *",
         "output_target": "endpoint",

@@ -83,7 +83,7 @@ def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
             "args": [
                 "domain_spider_js",
                 False,
-                "quotes.toscrape.com",
+                "quotes.toscrape.com/js",
                 "https://quotes.toscrape.com/js/",
                 "csv",
                 3,
@@ -96,7 +96,7 @@ def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
             "args": [
                 "domain_spider_js",
                 False,
-                "quotes.toscrape.com",
+                "quotes.toscrape.com/js-delayed",
                 "https://quotes.toscrape.com/js-delayed/",
                 "endpoint",
                 3,

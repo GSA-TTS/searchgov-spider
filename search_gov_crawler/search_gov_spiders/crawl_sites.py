@@ -68,14 +68,12 @@ class CrawlSites:
 
     def __post_init__(self):
         """Perform validations on entire list"""
-
-        unique_sites = {
-            (crawl_site.allowed_domains, crawl_site.starting_urls)
-            for crawl_site in self.root
-        }
-        if len(unique_sites) != len(self.root):
-            msg = "The combination of allowed_domain and starting_urls must be unique in file!"
-            raise TypeError(msg)
+        domains_map = {}
+        for site in self.root:
+            site_key = f"{site.output_target}::{site.allowed_domains}"
+            if site_key in domains_map:
+                raise TypeError(f"The combination of allowed_domain and starting_urls must be unique in file. Duplicate site domain:\n{site}")
+            domains_map[site_key] = True
 
     @classmethod
     def from_file(cls, file: Path) -> Self:
