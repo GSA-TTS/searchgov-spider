@@ -466,7 +466,7 @@
       "handle_javascript": false,
       "name": "NOAA (noaa)",
       "output_target": "elasticsearch",
-      "schedule": "01 18 * * WED",
+      "schedule": "01 19 * * FRI",
       "starting_urls": "https://www.noaa.gov/"
    },
    {
@@ -476,7 +476,7 @@
       "handle_javascript": false,
       "name": "National Weather Service (nws)",
       "output_target": "elasticsearch",
-      "schedule": "01 18 * * WED",
+      "schedule": "01 19 * * FRI",
       "starting_urls": "https://www.nws.noaa.gov/"
    },
    {
@@ -486,7 +486,7 @@
       "handle_javascript": false,
       "name": "National Centers for Environmental Information (ncei)",
       "output_target": "elasticsearch",
-      "schedule": "01 18 * * WED",
+      "schedule": "01 19 * * FRI",
       "starting_urls": "https://www.ncei.noaa.gov/"
    },
    {
@@ -496,7 +496,7 @@
       "handle_javascript": false,
       "name": "Storm Prediction Center (spc)",
       "output_target": "elasticsearch",
-      "schedule": "02 18 * * WED",
+      "schedule": "02 19 * * FRI",
       "starting_urls": "https://www.spc.noaa.gov/"
    },
    {
@@ -506,7 +506,7 @@
       "handle_javascript": false,
       "name": "NOAA Fisheries (fisheries)",
       "output_target": "elasticsearch",
-      "schedule": "02 18 * * WED",
+      "schedule": "02 19 * * FRI",
       "starting_urls": "https://www.fisheries.noaa.gov/"
    },
    {
@@ -516,7 +516,7 @@
       "handle_javascript": false,
       "name": "NOAA Water (water)",
       "output_target": "elasticsearch",
-      "schedule": "02 18 * * WED",
+      "schedule": "02 19 * * FRI",
       "starting_urls": "https://water.noaa.gov/"
    },
    {
@@ -526,7 +526,7 @@
       "handle_javascript": false,
       "name": "Weather Prediction Center (wpc)",
       "output_target": "elasticsearch",
-      "schedule": "03 18 * * WED",
+      "schedule": "03 19 * * FRI",
       "starting_urls": "https://www.wpc.ncep.noaa.gov/"
    },
    {
@@ -536,7 +536,7 @@
       "handle_javascript": false,
       "name": "TGFTP NWS (tgftp)",
       "output_target": "elasticsearch",
-      "schedule": "03 18 * * WED",
+      "schedule": "03 19 * * FRI",
       "starting_urls": "https://tgftp.nws.noaa.gov/"
    },
    {
@@ -546,7 +546,7 @@
       "handle_javascript": false,
       "name": "NOAA Ocean Service (oceanservice)",
       "output_target": "elasticsearch",
-      "schedule": "03 18 * * WED",
+      "schedule": "03 19 * * FRI",
       "starting_urls": "https://oceanservice.noaa.gov/"
    },
    {
@@ -556,7 +556,7 @@
       "handle_javascript": false,
       "name": "Space Weather Prediction Center (swpc)",
       "output_target": "elasticsearch",
-      "schedule": "04 18 * * WED",
+      "schedule": "04 19 * * FRI",
       "starting_urls": "https://www.swpc.noaa.gov/"
    },
    {
@@ -566,7 +566,7 @@
       "handle_javascript": false,
       "name": "Climate Prediction Center (cpc)",
       "output_target": "elasticsearch",
-      "schedule": "04 18 * * WED",
+      "schedule": "04 19 * * FRI",
       "starting_urls": "https://www.cpc.ncep.noaa.gov/"
    },
    {
@@ -576,7 +576,7 @@
       "handle_javascript": false,
       "name": "National Centers for Environmental Information (ncdc)",
       "output_target": "elasticsearch",
-      "schedule": "04 18 * * WED",
+      "schedule": "04 19 * * FRI",
       "starting_urls": "https://www.ncdc.noaa.gov/"
    },
    {
@@ -586,7 +586,7 @@
       "handle_javascript": false,
       "name": "National Hurricane Center (nhc)",
       "output_target": "elasticsearch",
-      "schedule": "05 18 * * WED",
+      "schedule": "05 19 * * FRI",
       "starting_urls": "https://www.nhc.noaa.gov/"
    },
    {
@@ -596,7 +596,7 @@
       "handle_javascript": false,
       "name": "National Data Buoy Center (ndbc)",
       "output_target": "elasticsearch",
-      "schedule": "05 18 * * WED",
+      "schedule": "05 19 * * FRI",
       "starting_urls": "https://www.ndbc.noaa.gov/"
    },
    {
@@ -606,7 +606,7 @@
       "handle_javascript": false,
       "name": "Global Monitoring Laboratory (gml)",
       "output_target": "elasticsearch",
-      "schedule": "05 18 * * WED",
+      "schedule": "05 19 * * FRI",
       "starting_urls": "https://gml.noaa.gov/"
    },
    {
@@ -616,7 +616,7 @@
       "handle_javascript": false,
       "name": "NESDIS (nesdis)",
       "output_target": "elasticsearch",
-      "schedule": "06 18 * * WED",
+      "schedule": "06 19 * * FRI",
       "starting_urls": "https://www.nesdis.noaa.gov/"
    },
    {
@@ -626,7 +626,7 @@
       "handle_javascript": false,
       "name": "NOAA Tides and Currents (tidesandcurrents)",
       "output_target": "elasticsearch",
-      "schedule": "06 18 * * WED",
+      "schedule": "06 19 * * FRI",
       "starting_urls": "https://tidesandcurrents.noaa.gov/"
    },
    {
@@ -636,7 +636,7 @@
       "handle_javascript": false,
       "name": "NOAA Ocean Explorer (oceanexplorer)",
       "output_target": "elasticsearch",
-      "schedule": "06 18 * * WED",
+      "schedule": "06 19 * * FRI",
       "starting_urls": "https://oceanexplorer.noaa.gov/"
    },
    {
@@ -646,7 +646,7 @@
       "handle_javascript": false,
       "name": "NOAA Library Repository (repository.library)",
       "output_target": "elasticsearch",
-      "schedule": "07 18 * * WED",
+      "schedule": "07 19 * * FRI",
       "starting_urls": "https://repository.library.noaa.gov/"
    },
    {
@@ -656,7 +656,7 @@
       "handle_javascript": false,
       "name": "STAR NESDIS (star)",
       "output_target": "elasticsearch",
-      "schedule": "07 18 * * WED",
+      "schedule": "07 19 * * FRI",
       "starting_urls": "https://www.star.nesdis.noaa.gov/"
    },
    {
@@ -666,7 +666,7 @@
       "handle_javascript": false,
       "name": "National Geophysical Data Center (ngdc)",
       "output_target": "elasticsearch",
-      "schedule": "07 18 * * WED",
+      "schedule": "07 19 * * FRI",
       "starting_urls": "https://www.ngdc.noaa.gov/"
    },
    {
@@ -676,7 +676,7 @@
       "handle_javascript": false,
       "name": "National Operational Hydrologic Remote Sensing Center (nohrsc)",
       "output_target": "elasticsearch",
-      "schedule": "08 18 * * WED",
+      "schedule": "08 19 * * FRI",
       "starting_urls": "https://www.nohrsc.noaa.gov/"
    },
    {
@@ -686,7 +686,7 @@
       "handle_javascript": false,
       "name": "Northwest River Forecast Center (nwrfc)",
       "output_target": "elasticsearch",
-      "schedule": "08 18 * * WED",
+      "schedule": "08 19 * * FRI",
       "starting_urls": "https://www.nwrfc.noaa.gov/"
    },
    {
@@ -696,7 +696,7 @@
       "handle_javascript": false,
       "name": "National Severe Storms Laboratory (nssl)",
       "output_target": "elasticsearch",
-      "schedule": "08 18 * * WED",
+      "schedule": "08 19 * * FRI",
       "starting_urls": "https://www.nssl.noaa.gov/"
    },
    {
@@ -706,7 +706,7 @@
       "handle_javascript": false,
       "name": "NOAA Coast (coast)",
       "output_target": "elasticsearch",
-      "schedule": "09 18 * * WED",
+      "schedule": "09 19 * * FRI",
       "starting_urls": "https://coast.noaa.gov/"
    },
    {
@@ -716,7 +716,7 @@
       "handle_javascript": false,
       "name": "Atlantic Oceanographic and Meteorological Laboratory (aoml)",
       "output_target": "elasticsearch",
-      "schedule": "09 18 * * WED",
+      "schedule": "09 19 * * FRI",
       "starting_urls": "https://www.aoml.noaa.gov/"
    },
    {
@@ -726,7 +726,7 @@
       "handle_javascript": false,
       "name": "Integrated Warning System (inws)",
       "output_target": "elasticsearch",
-      "schedule": "09 18 * * WED",
+      "schedule": "09 19 * * FRI",
       "starting_urls": "https://inws.ncep.noaa.gov/"
    },
    {
@@ -736,7 +736,7 @@
       "handle_javascript": false,
       "name": "Physical Sciences Laboratory (psl)",
       "output_target": "elasticsearch",
-      "schedule": "10 18 * * WED",
+      "schedule": "10 19 * * FRI",
       "starting_urls": "https://psl.noaa.gov/"
    },
    {
@@ -746,7 +746,7 @@
       "handle_javascript": false,
       "name": "California Nevada River Forecast Center (cnrfc)",
       "output_target": "elasticsearch",
-      "schedule": "10 18 * * WED",
+      "schedule": "10 19 * * FRI",
       "starting_urls": "https://www.cnrfc.noaa.gov/"
    },
    {
@@ -756,7 +756,7 @@
       "handle_javascript": false,
       "name": "Science On a Sphere (sos)",
       "output_target": "elasticsearch",
-      "schedule": "10 18 * * WED",
+      "schedule": "10 19 * * FRI",
       "starting_urls": "https://sos.noaa.gov/"
    },
    {
@@ -766,7 +766,7 @@
       "handle_javascript": false,
       "name": "Great Lakes Environmental Research Laboratory (glerl)",
       "output_target": "elasticsearch",
-      "schedule": "11 18 * * WED",
+      "schedule": "11 19 * * FRI",
       "starting_urls": "https://www.glerl.noaa.gov/"
    },
    {
@@ -776,7 +776,7 @@
       "handle_javascript": false,
       "name": "NOAA Research (research)",
       "output_target": "elasticsearch",
-      "schedule": "11 18 * * WED",
+      "schedule": "11 19 * * FRI",
       "starting_urls": "https://research.noaa.gov/"
    },
    {
@@ -786,7 +786,7 @@
       "handle_javascript": false,
       "name": "Pacific Marine Environmental Laboratory (pmel)",
       "output_target": "elasticsearch",
-      "schedule": "11 18 * * WED",
+      "schedule": "11 19 * * FRI",
       "starting_urls": "https://www.pmel.noaa.gov/"
    },
    {
@@ -796,7 +796,7 @@
       "handle_javascript": false,
       "name": "National Marine Sanctuaries (sanctuaries)",
       "output_target": "elasticsearch",
-      "schedule": "12 18 * * WED",
+      "schedule": "12 19 * * FRI",
       "starting_urls": "https://sanctuaries.noaa.gov/"
    },
    {
@@ -806,7 +806,7 @@
       "handle_javascript": false,
       "name": "Geostationary Operational Environmental Satellites (goes)",
       "output_target": "elasticsearch",
-      "schedule": "12 18 * * WED",
+      "schedule": "12 19 * * FRI",
       "starting_urls": "https://www.goes.noaa.gov/"
    },
    {
@@ -816,7 +816,7 @@
       "handle_javascript": false,
       "name": "National Geodetic Survey (ngs)",
       "output_target": "elasticsearch",
-      "schedule": "12 18 * * WED",
+      "schedule": "12 19 * * FRI",
       "starting_urls": "https://www.ngs.noaa.gov/"
    },
    {
@@ -826,7 +826,7 @@
       "handle_javascript": false,
       "name": "Hydrometeorological Automated Data System (hads)",
       "output_target": "elasticsearch",
-      "schedule": "13 18 * * WED",
+      "schedule": "13 19 * * FRI",
       "starting_urls": "https://hads.ncep.noaa.gov/"
    },
    {
@@ -836,7 +836,7 @@
       "handle_javascript": false,
       "name": "NOAA Virtual Lab (vlab)",
       "output_target": "elasticsearch",
-      "schedule": "13 18 * * WED",
+      "schedule": "13 19 * * FRI",
       "starting_urls": "https://vlab.noaa.gov/"
    },
    {
@@ -846,7 +846,7 @@
       "handle_javascript": false,
       "name": "Office of Response and Restoration (response_restoration)",
       "output_target": "elasticsearch",
-      "schedule": "13 18 * * WED",
+      "schedule": "13 19 * * FRI",
       "starting_urls": "https://response.restoration.noaa.gov/"
    },
    {
@@ -856,7 +856,7 @@
       "handle_javascript": false,
       "name": "NOAA Ready (ready)",
       "output_target": "elasticsearch",
-      "schedule": "14 18 * * WED",
+      "schedule": "14 19 * * FRI",
       "starting_urls": "https://www.ready.noaa.gov/"
    },
    {
@@ -866,7 +866,7 @@
       "handle_javascript": false,
       "name": "NOAA Coastal Science (coastalscience)",
       "output_target": "elasticsearch",
-      "schedule": "14 18 * * WED",
+      "schedule": "14 19 * * FRI",
       "starting_urls": "https://coastalscience.noaa.gov/"
    },
    {
@@ -876,7 +876,7 @@
       "handle_javascript": false,
       "name": "NOAA Ocean Today (oceantoday)",
       "output_target": "elasticsearch",
-      "schedule": "14 18 * * WED",
+      "schedule": "14 19 * * FRI",
       "starting_urls": "https://oceantoday.noaa.gov/"
    },
    {
@@ -886,7 +886,7 @@
       "handle_javascript": false,
       "name": "NOAA Library (library)",
       "output_target": "elasticsearch",
-      "schedule": "15 18 * * WED",
+      "schedule": "15 19 * * FRI",
       "starting_urls": "https://library.noaa.gov/"
    },
    {
@@ -896,7 +896,7 @@
       "handle_javascript": false,
       "name": "Tsunami Warning Center (tsunami)",
       "output_target": "elasticsearch",
-      "schedule": "15 18 * * WED",
+      "schedule": "15 19 * * FRI",
       "starting_urls": "https://www.tsunami.noaa.gov/"
    },
    {
@@ -906,7 +906,7 @@
       "handle_javascript": false,
       "name": "Arctic Program (arctic)",
       "output_target": "elasticsearch",
-      "schedule": "15 18 * * WED",
+      "schedule": "15 19 * * FRI",
       "starting_urls": "https://arctic.noaa.gov/"
    },
    {
@@ -916,7 +916,7 @@
       "handle_javascript": false,
       "name": "NOAA Charts (charts)",
       "output_target": "elasticsearch",
-      "schedule": "16 18 * * WED",
+      "schedule": "16 19 * * FRI",
       "starting_urls": "https://www.charts.noaa.gov/"
    },
    {
@@ -926,7 +926,7 @@
       "handle_javascript": false,
       "name": "NOAA Marine Debris Program (marinedebris)",
       "output_target": "elasticsearch",
-      "schedule": "16 18 * * WED",
+      "schedule": "16 19 * * FRI",
       "starting_urls": "https://marinedebris.noaa.gov/"
    },
    {
@@ -936,7 +936,7 @@
       "handle_javascript": false,
       "name": "NOAA Climate Program Office (cpo)",
       "output_target": "elasticsearch",
-      "schedule": "16 18 * * WED",
+      "schedule": "16 19 * * FRI",
       "starting_urls": "https://cpo.noaa.gov/"
    },
    {
@@ -946,7 +946,7 @@
       "handle_javascript": false,
       "name": "Marine Navigation (marinenavigation)",
       "output_target": "elasticsearch",
-      "schedule": "17 18 * * WED",
+      "schedule": "17 19 * * FRI",
       "starting_urls": "https://marinenavigation.noaa.gov/"
    },
    {
@@ -956,7 +956,7 @@
       "handle_javascript": false,
       "name": "HDSC (hdsc)",
       "output_target": "elasticsearch",
-      "schedule": "17 18 * * WED",
+      "schedule": "17 19 * * FRI",
       "starting_urls": "https://hdsc.nws.noaa.gov/"
    },
    {
@@ -966,7 +966,7 @@
       "handle_javascript": false,
       "name": "Origin East 01 Drupal Climate (origin-east-01-drupal-climate)",
       "output_target": "elasticsearch",
-      "schedule": "17 18 * * WED",
+      "schedule": "17 19 * * FRI",
       "starting_urls": "https://origin-east-01-drupal-climate.woc.noaa.gov/"
    },
    {
@@ -976,7 +976,7 @@
       "handle_javascript": false,
       "name": "CSL (csl)",
       "output_target": "elasticsearch",
-      "schedule": "18 18 * * WED",
+      "schedule": "18 19 * * FRI",
       "starting_urls": "https://csl.noaa.gov/"
    },
    {
@@ -986,7 +986,7 @@
       "handle_javascript": false,
       "name": "NMFS (nmfs)",
       "output_target": "elasticsearch",
-      "schedule": "18 18 * * WED",
+      "schedule": "18 19 * * FRI",
       "starting_urls": "https://www.st.nmfs.noaa.gov/"
    },
    {
@@ -996,7 +996,7 @@
       "handle_javascript": false,
       "name": "OSPO (ospo)",
       "output_target": "elasticsearch",
-      "schedule": "18 18 * * WED",
+      "schedule": "18 19 * * FRI",
       "starting_urls": "https://www.ospo.noaa.gov/"
    },
    {
@@ -1006,7 +1006,7 @@
       "handle_javascript": false,
       "name": "OMAO (omao)",
       "output_target": "elasticsearch",
-      "schedule": "19 18 * * WED",
+      "schedule": "19 19 * * FRI",
       "starting_urls": "https://www.omao.noaa.gov/"
    },
    {
@@ -1016,7 +1016,7 @@
       "handle_javascript": false,
       "name": "Coastwatch (coastwatch)",
       "output_target": "elasticsearch",
-      "schedule": "19 18 * * WED",
+      "schedule": "19 19 * * FRI",
       "starting_urls": "https://coastwatch.glerl.noaa.gov/"
    },
    {
@@ -1026,7 +1026,7 @@
       "handle_javascript": false,
       "name": "Geodesy (geodesy)",
       "output_target": "elasticsearch",
-      "schedule": "19 18 * * WED",
+      "schedule": "19 19 * * FRI",
       "starting_urls": "https://geodesy.noaa.gov/"
    },
    {
@@ -1036,7 +1036,7 @@
       "handle_javascript": false,
       "name": "Ocean Acidification (oceanacidification)",
       "output_target": "elasticsearch",
-      "schedule": "20 18 * * WED",
+      "schedule": "20 19 * * FRI",
       "starting_urls": "https://oceanacidification.noaa.gov/"
    },
    {
@@ -1046,7 +1046,7 @@
       "handle_javascript": false,
       "name": "Nautical Charts (nauticalcharts)",
       "output_target": "elasticsearch",
-      "schedule": "20 18 * * WED",
+      "schedule": "20 19 * * FRI",
       "starting_urls": "https://nauticalcharts.noaa.gov/"
    },
    {
@@ -1056,7 +1056,7 @@
       "handle_javascript": false,
       "name": "Coral Reef Watch (coralreefwatch)",
       "output_target": "elasticsearch",
-      "schedule": "20 18 * * WED",
+      "schedule": "20 19 * * FRI",
       "starting_urls": "https://coralreefwatch.noaa.gov/"
    },
    {
@@ -1066,7 +1066,7 @@
       "handle_javascript": false,
       "name": "NOAA Fisheries Media (media.fisheries)",
       "output_target": "elasticsearch",
-      "schedule": "21 18 * * WED",
+      "schedule": "21 19 * * FRI",
       "starting_urls": "https://media.fisheries.noaa.gov/"
    },
    {
@@ -1076,7 +1076,7 @@
       "handle_javascript": false,
       "name": "Geophysical Fluid Dynamics Laboratory (gfdl)",
       "output_target": "elasticsearch",
-      "schedule": "21 18 * * WED",
+      "schedule": "21 19 * * FRI",
       "starting_urls": "https://www.gfdl.noaa.gov/"
    },
    {
@@ -1086,7 +1086,7 @@
       "handle_javascript": false,
       "name": "NSD RDC (nsd)",
       "output_target": "elasticsearch",
-      "schedule": "21 18 * * WED",
+      "schedule": "21 19 * * FRI",
       "starting_urls": "https://nsd.rdc.noaa.gov/"
    },
    {
@@ -1096,7 +1096,7 @@
       "handle_javascript": false,
       "name": "Global Ocean (globalocean)",
       "output_target": "elasticsearch",
-      "schedule": "22 18 * * WED",
+      "schedule": "22 19 * * FRI",
       "starting_urls": "https://globalocean.noaa.gov/"
    },
    {
@@ -1106,7 +1106,7 @@
       "handle_javascript": false,
       "name": "Storms (storms)",
       "output_target": "elasticsearch",
-      "schedule": "22 18 * * WED",
+      "schedule": "22 19 * * FRI",
       "starting_urls": "https://storms.ngs.noaa.gov/"
    },
    {
@@ -1116,7 +1116,7 @@
       "handle_javascript": false,
       "name": "SARSAT (sarsat)",
       "output_target": "elasticsearch",
-      "schedule": "22 18 * * WED",
+      "schedule": "22 19 * * FRI",
       "starting_urls": "https://www.sarsat.noaa.gov/"
    },
    {
@@ -1126,7 +1126,7 @@
       "handle_javascript": false,
       "name": "CORIS (coris)",
       "output_target": "elasticsearch",
-      "schedule": "23 18 * * WED",
+      "schedule": "23 19 * * FRI",
       "starting_urls": "https://www.coris.noaa.gov/"
    },
    {
@@ -1136,7 +1136,7 @@
       "handle_javascript": false,
       "name": "National Tsunami Warning Center (ntwc)",
       "output_target": "elasticsearch",
-      "schedule": "23 18 * * WED",
+      "schedule": "23 19 * * FRI",
       "starting_urls": "https://ntwc.ncep.noaa.gov/"
    },
    {
@@ -1146,7 +1146,7 @@
       "handle_javascript": false,
       "name": "NOAA Fisheries SPO (spo)",
       "output_target": "elasticsearch",
-      "schedule": "23 18 * * WED",
+      "schedule": "23 19 * * FRI",
       "starting_urls": "https://spo.nmfs.noaa.gov/"
    },
    {
@@ -1156,7 +1156,7 @@
       "handle_javascript": false,
       "name": "Blog - NOAA Restoration (blogresponse)",
       "output_target": "elasticsearch",
-      "schedule": "24 18 * * WED",
+      "schedule": "24 19 * * FRI",
       "starting_urls": "https://blog.response.restoration.noaa.gov/"
    }
 ]
