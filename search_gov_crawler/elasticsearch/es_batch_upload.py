@@ -20,6 +20,10 @@ logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
 logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 log = logging.getLogger("search_gov_crawler.elasticsearch")
 
+"""
+Temporary variable to disable the PDF functionality until we're ready to launch it
+"""
+DISABLE_PDF = True
 
 class SearchGovElasticsearch:
     """Defines the shape and methods of the spider's connection to Elasticsearch"""
@@ -41,7 +45,7 @@ class SearchGovElasticsearch:
         doc = None
         if content_type == "text/html":
             doc = convert_html(response_bytes=response_bytes, url=url, response_language=response_language)
-        elif content_type == "application/pdf":
+        elif content_type == "application/pdf" and not DISABLE_PDF:
             doc = convert_pdf(response_bytes=response_bytes, url=url, response_language=response_language)
 
         if doc:
