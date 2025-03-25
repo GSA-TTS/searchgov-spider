@@ -44,7 +44,8 @@ CONCURRENT_REQUESTS = 1
 CONCURRENT_REQUESTS_PER_DOMAIN = 1
 DOWNLOAD_DELAY = 1
 
-DOWNLOAD_MAXSIZE = 15728640  # 15MB
+# Limit downloads to 15MB
+DOWNLOAD_MAXSIZE = 15728640
 
 # settings for broad crawling
 SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
