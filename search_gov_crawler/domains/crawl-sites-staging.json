@@ -1161,33 +1161,33 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.learningprofessionals.af.mil",
+      "allowed_domains": "learningprofessionals.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Learning Professionals (aflearningprofessionals)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.learningprofessionals.af.mil/"
+      "schedule": "0 0 * * SUN",
+      "starting_urls": "https://learningprofessionals.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.af.mil",
+      "allowed_domains": "af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "af.mi (af.mil)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.af.mil/"
+      "schedule": "42 0 * * SUN",
+      "starting_urls": "https://af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.aiaccelerator.af.mil",
+      "allowed_domains": "aiaccelerator.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "MIT-AF AI Accelerator (af_aiaccelerator)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.aiaccelerator.af.mil/"
+      "schedule": "24 1 * * SUN",
+      "starting_urls": "https://aiaccelerator.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -1196,58 +1196,58 @@
       "handle_javascript": false,
       "name": "Yellow Ribbon Reintegration Program (af_yellowribbon)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "5 2 * * SUN",
       "starting_urls": "https://yellowribbon.usaf.afpims.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.wavelength.af.mil",
+      "allowed_domains": "wavelength.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Wavelength Detachment 1, 850th Spectrum Warfare Group (af_wavelength)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.wavelength.af.mil/"
+      "schedule": "47 2 * * SUN",
+      "starting_urls": "https://wavelength.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afwerx.af.mil",
+      "allowed_domains": "afwerx.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "AFWERX (af_werx)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afwerx.af.mil/"
+      "schedule": "29 3 * * SUN",
+      "starting_urls": "https://afwerx.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.521amow.af.mil",
+      "allowed_domains": "521amow.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "521st Air Mobility Operations Wing (af_521amow)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.521amow.af.mil/"
+      "schedule": "11 4 * * SUN",
+      "starting_urls": "https://521amow.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afsig.af.mil",
+      "allowed_domains": "afsig.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "CSAF Strategic Integration Group (afpw_afsig)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afsig.af.mil/"
+      "schedule": "53 4 * * SUN",
+      "starting_urls": "https://afsig.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.resilience.af.mil",
+      "allowed_domains": "resilience.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Resilience (afpw_resil)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.resilience.af.mil/"
+      "schedule": "35 5 * * SUN",
+      "starting_urls": "https://resilience.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -1256,288 +1256,288 @@
       "handle_javascript": false,
       "name": "afcca (afcca)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "16 6 * * SUN",
       "starting_urls": "https://afcca.law.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.specialwarfaretw.af.mil",
+      "allowed_domains": "specialwarfaretw.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Special Warfare Training Wing (afpw_swtw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.specialwarfaretw.af.mil/"
+      "schedule": "58 6 * * SUN",
+      "starting_urls": "https://specialwarfaretw.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afinspectorgeneral.af.mil",
+      "allowed_domains": "afinspectorgeneral.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Inspector General (afpw_afinspectorgeneral)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afinspectorgeneral.af.mil/"
+      "schedule": "40 7 * * SUN",
+      "starting_urls": "https://afinspectorgeneral.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.innovation.af.mil",
+      "allowed_domains": "innovation.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Innovation (afpw_innovation)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.innovation.af.mil/"
+      "schedule": "22 8 * * SUN",
+      "starting_urls": "https://innovation.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.12ftw.af.mil",
+      "allowed_domains": "12ftw.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "12th Flying Training Wing (afpw_12ftw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.12ftw.af.mil/"
+      "schedule": "4 9 * * SUN",
+      "starting_urls": "https://12ftw.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.airforcesmallbiz.af.mil",
+      "allowed_domains": "airforcesmallbiz.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Small Business (afpw_afsb)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.airforcesmallbiz.af.mil/"
+      "schedule": "46 9 * * SUN",
+      "starting_urls": "https://airforcesmallbiz.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.doctrine.af.mil",
+      "allowed_domains": "doctrine.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Curtis E. Lemay Center for Doctrine Development and Education (afpw_lemay)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.doctrine.af.mil/"
+      "schedule": "27 10 * * SUN",
+      "starting_urls": "https://doctrine.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afsbirsttr.af.mil",
+      "allowed_domains": "afsbirsttr.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Small Business Innovation Research and Small Business Technology Transfer (afpw_sbirsttr)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afsbirsttr.af.mil/"
+      "schedule": "9 11 * * SUN",
+      "starting_urls": "https://afsbirsttr.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.2af.aetc.af.mil",
+      "allowed_domains": "2af.aetc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "2nd Air Force (afpw_2af)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.2af.aetc.af.mil/"
+      "schedule": "51 11 * * SUN",
+      "starting_urls": "https://2af.aetc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.194wg.ang.af.mil",
+      "allowed_domains": "194wg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "194th Wing, Wahington ANG (afpw_194wg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.194wg.ang.af.mil/"
+      "schedule": "33 12 * * SUN",
+      "starting_urls": "https://194wg.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.125fw.ang.af.mil",
+      "allowed_domains": "125fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "125th Fighter Wing (afpw_125fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.125fw.ang.af.mil/"
+      "schedule": "15 13 * * SUN",
+      "starting_urls": "https://125fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.174attackwing.ang.af.mil",
+      "allowed_domains": "174attackwing.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "174th Attack Wing (afpw_174aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.174attackwing.ang.af.mil/"
+      "schedule": "57 13 * * SUN",
+      "starting_urls": "https://174attackwing.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.aftc.af.mil",
+      "allowed_domains": "aftc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Test Center (afpw_aftc)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.aftc.af.mil/"
+      "schedule": "38 14 * * SUN",
+      "starting_urls": "https://aftc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.airforcebes.af.mil",
+      "allowed_domains": "airforcebes.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force BES (afpw_gunter)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.airforcebes.af.mil/"
+      "schedule": "20 15 * * SUN",
+      "starting_urls": "https://airforcebes.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.413ftg.afrc.af.mil",
+      "allowed_domains": "413ftg.afrc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "413th Flight Test Group (afpw_413ftg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.413ftg.afrc.af.mil/"
+      "schedule": "2 16 * * SUN",
+      "starting_urls": "https://413ftg.afrc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.195wg.ang.af.mil",
+      "allowed_domains": "195wg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "195th Wing (afpw_195wg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.195wg.ang.af.mil/"
+      "schedule": "44 16 * * SUN",
+      "starting_urls": "https://195wg.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.156aw.ang.af.mil",
+      "allowed_domains": "156aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "156th Airlift Wing (afpw_156aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.156aw.ang.af.mil/"
+      "schedule": "26 17 * * SUN",
+      "starting_urls": "https://156aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.150sow.ang.af.mil",
+      "allowed_domains": "150sow.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "150th Special Operations Wing (afpw_150sow)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.150sow.ang.af.mil/"
+      "schedule": "7 18 * * SUN",
+      "starting_urls": "https://150sow.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afhistory.af.mil",
+      "allowed_domains": "afhistory.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Historical Support Division (afpw-afhm)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afhistory.af.mil/"
+      "schedule": "49 18 * * SUN",
+      "starting_urls": "https://afhistory.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afhistoryandmuseums.af.mil",
+      "allowed_domains": "afhistoryandmuseums.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force History and Museums (afhm)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afhistoryandmuseums.af.mil/"
+      "schedule": "31 19 * * SUN",
+      "starting_urls": "https://afhistoryandmuseums.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.airuniversity.af.edu",
+      "allowed_domains": "airuniversity.af.edu",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air University (afpw_au)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.airuniversity.af.edu/"
+      "schedule": "13 20 * * SUN",
+      "starting_urls": "https://airuniversity.af.edu/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.chief-of-staff-reading-list.af.mil",
+      "allowed_domains": "chief-of-staff-reading-list.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Chief of Staff Reading List (afpw_cosrl)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.chief-of-staff-reading-list.af.mil/"
+      "schedule": "55 20 * * SUN",
+      "starting_urls": "https://chief-of-staff-reading-list.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.portraits-in-courage.af.mil",
+      "allowed_domains": "portraits-in-courage.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Portraits in Courage (afpw_pic)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.portraits-in-courage.af.mil/"
+      "schedule": "37 21 * * SUN",
+      "starting_urls": "https://portraits-in-courage.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.veterans-in-blue.af.mil",
+      "allowed_domains": "veterans-in-blue.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Veterans in Blue (afpw_vib)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.veterans-in-blue.af.mil/"
+      "schedule": "18 22 * * SUN",
+      "starting_urls": "https://veterans-in-blue.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.acq.osd.mil/eie/afpmb",
+      "allowed_domains": "acq.osd.mil/eie/afpmb",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Armed Forces Pest Management Board (afpmb)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.acq.osd.mil/eie/afpmb/"
+      "schedule": "0 23 * * SUN",
+      "starting_urls": "https://acq.osd.mil/eie/afpmb/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.ninth.af.mil",
+      "allowed_domains": "ninth.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "15th Air Force (afpw_ninth)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.ninth.af.mil/"
+      "schedule": "42 23 * * SUN",
+      "starting_urls": "https://ninth.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.15af.acc.af.mil",
+      "allowed_domains": "15af.acc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "15th Air Force (afpw_ninth)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.15af.acc.af.mil/"
+      "schedule": "24 0 * * MON",
+      "starting_urls": "https://15af.acc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.pope.afrc.af.mil",
+      "allowed_domains": "pope.afrc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Pope Field Reserve Base (afpw_popeafrc)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.pope.afrc.af.mil/"
+      "schedule": "6 1 * * MON",
+      "starting_urls": "https://pope.afrc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afaccessionscenter.af.mil",
+      "allowed_domains": "afaccessionscenter.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Recruiting Service (afpw_rs)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afaccessionscenter.af.mil/"
+      "schedule": "48 1 * * MON",
+      "starting_urls": "https://afaccessionscenter.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -1546,7 +1546,7 @@
       "handle_javascript": false,
       "name": "Air Force Pentagon (afpw_pentagon)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "29 2 * * MON",
       "starting_urls": "https://pentagon.af.mil/"
    },
    {
@@ -1556,7 +1556,7 @@
       "handle_javascript": false,
       "name": "Western Air Defense Sector (afpw_wads)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "11 3 * * MON",
       "starting_urls": "https://wads.ang.af.mil/"
    },
    {
@@ -1566,18 +1566,18 @@
       "handle_javascript": false,
       "name": "Office of Transformational Innovation (afpw_transform)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "53 3 * * MON",
       "starting_urls": "https://transform.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.15wing.af.mil",
+      "allowed_domains": "15wing.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "15th Wing (afpw_15wing)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.15wing.af.mil/"
+      "schedule": "35 4 * * MON",
+      "starting_urls": "https://15wing.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -1586,7 +1586,7 @@
       "handle_javascript": false,
       "name": "National Air and Space Intelligence Center (afpw_nasic)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "17 5 * * MON",
       "starting_urls": "https://nasic.af.mil/"
    },
    {
@@ -1596,18 +1596,18 @@
       "handle_javascript": false,
       "name": "Profession of Arms Center of Excellence (PACE) (afpw_pace)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "59 5 * * MON",
       "starting_urls": "https://airman.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.studyguides.af.mil",
+      "allowed_domains": "studyguides.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Professional Development Guide (afpw_pdg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.studyguides.af.mil/"
+      "schedule": "40 6 * * MON",
+      "starting_urls": "https://studyguides.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -1616,7 +1616,7 @@
       "handle_javascript": false,
       "name": "American Forces Network Europe (afneurope)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "22 7 * * MON",
       "starting_urls": "https://afneurope.net/"
    },
    {
@@ -1626,7 +1626,7 @@
       "handle_javascript": false,
       "name": "American Forces Network Pacific (afnpacific)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "4 8 * * MON",
       "starting_urls": "https://afnpacific.net/"
    },
    {
@@ -1636,7 +1636,7 @@
       "handle_javascript": false,
       "name": "GoSERE (afpw_gosere)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "46 8 * * MON",
       "starting_urls": "https://gosere.af.mil/"
    },
    {
@@ -1646,7 +1646,7 @@
       "handle_javascript": false,
       "name": "Air Force Public Affairs (afpw_publicaffairs)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "28 9 * * MON",
       "starting_urls": "https://publicaffairs.af.mil/"
    },
    {
@@ -1656,7 +1656,7 @@
       "handle_javascript": false,
       "name": "557th Weather Wing (afpw_557ww)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "9 10 * * MON",
       "starting_urls": "https://557weatherwing.af.mil/"
    },
    {
@@ -1666,7 +1666,7 @@
       "handle_javascript": false,
       "name": "352nd Special Operations Wing (afpw_352sow)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "51 10 * * MON",
       "starting_urls": "https://352sow.af.mil/"
    },
    {
@@ -1676,7 +1676,7 @@
       "handle_javascript": false,
       "name": "22nd Air Force (afpw_22af)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "33 11 * * MON",
       "starting_urls": "https://22af.afrc.af.mil/"
    },
    {
@@ -1686,7 +1686,7 @@
       "handle_javascript": false,
       "name": "Air National Guard Band of the Southwest (afpw_angbandsouthwest)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "15 12 * * MON",
       "starting_urls": "https://bandofthesouthwest.ang.af.mil/"
    },
    {
@@ -1696,7 +1696,7 @@
       "handle_javascript": false,
       "name": "US AFRICOM (africom)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "57 12 * * MON",
       "starting_urls": "https://africom.mil/"
    },
    {
@@ -1706,7 +1706,7 @@
       "handle_javascript": false,
       "name": "Air Force Installation and Mission Support Center (afpw_afimsc)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "39 13 * * MON",
       "starting_urls": "https://afimsc.af.mil/"
    },
    {
@@ -1716,7 +1716,7 @@
       "handle_javascript": false,
       "name": "960th Cyberspace Operations Group (afpw_960cyog)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "20 14 * * MON",
       "starting_urls": "https://960cyber.afrc.af.mil/"
    },
    {
@@ -1726,7 +1726,7 @@
       "handle_javascript": false,
       "name": "Alaska Fisheries Science Center (afsc)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "2 15 * * MON",
       "starting_urls": "https://afsc.noaa.gov/"
    },
    {
@@ -1736,208 +1736,208 @@
       "handle_javascript": false,
       "name": "Sexual Assault Prevention Response (afsapr)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "44 15 * * MON",
       "starting_urls": "https://sexualassaultpreventionresponse.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.expeditionarycenter.af.mil",
+      "allowed_domains": "expeditionarycenter.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "U.S. Air Force Expeditionary Center (afpw_usafec)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.expeditionarycenter.af.mil/"
+      "schedule": "26 16 * * MON",
+      "starting_urls": "https://expeditionarycenter.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.79mdw.af.mil",
+      "allowed_domains": "79mdw.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "79th Medical Wing (afpw_79mdw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.79mdw.af.mil/"
+      "schedule": "8 17 * * MON",
+      "starting_urls": "https://79mdw.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afpaa.af.mil",
+      "allowed_domains": "afpaa.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Public Affairs Agency (afpw_afpaa)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afpaa.af.mil/"
+      "schedule": "50 17 * * MON",
+      "starting_urls": "https://afpaa.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.scott.af.mil",
+      "allowed_domains": "scott.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Scott Air Force Base (afpw_scott)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.scott.af.mil/"
+      "schedule": "31 18 * * MON",
+      "starting_urls": "https://scott.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.charleston.af.mil",
+      "allowed_domains": "charleston.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Joint Base Charleston (afpw_charleston)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.charleston.af.mil/"
+      "schedule": "13 19 * * MON",
+      "starting_urls": "https://charleston.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.chaplaincorps.af.mil",
+      "allowed_domains": "chaplaincorps.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Chaplain Corps (afpw_chaplain)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.chaplaincorps.af.mil/"
+      "schedule": "55 19 * * MON",
+      "starting_urls": "https://chaplaincorps.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.ca.ang.af.mil",
+      "allowed_domains": "ca.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "California Air National Guard (afpw_caang)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.ca.ang.af.mil/"
+      "schedule": "37 20 * * MON",
+      "starting_urls": "https://ca.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.bandofthesouth.ang.af.mil",
+      "allowed_domains": "bandofthesouth.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air National Guard Band of the South (afpw_angbandsouth)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.bandofthesouth.ang.af.mil/"
+      "schedule": "19 21 * * MON",
+      "starting_urls": "https://bandofthesouth.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.safety.af.mil",
+      "allowed_domains": "safety.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Safety Center (afpw_afsc)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.safety.af.mil/"
+      "schedule": "0 22 * * MON",
+      "starting_urls": "https://safety.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afc2ic.af.mil",
+      "allowed_domains": "afc2ic.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "AF Command & Control Integration Center (afpw_afc2ic)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afc2ic.af.mil/"
+      "schedule": "42 22 * * MON",
+      "starting_urls": "https://afc2ic.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.62aw.af.mil,www.mcchord.af.mil",
+      "allowed_domains": "62aw.af.mil,www.mcchord.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Team McChord (afpw_62aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.62aw.af.mil,www.mcchord.af.mil/"
+      "schedule": "24 23 * * MON",
+      "starting_urls": "https://62aw.af.mil,www.mcchord.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.166aw.ang.af.mil",
+      "allowed_domains": "166aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "166th Airlift Wing, Delaware Air National Guard (afpw_166aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.166aw.ang.af.mil/"
+      "schedule": "6 0 * * TUE",
+      "starting_urls": "https://166aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.307bw.afrc.af.mil",
+      "allowed_domains": "307bw.afrc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "307th Bomb Wing (afpw_307bw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.307bw.afrc.af.mil/"
+      "schedule": "48 0 * * TUE",
+      "starting_urls": "https://307bw.afrc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.124thfighterwing.ang.af.mil",
+      "allowed_domains": "124thfighterwing.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "124th Fighter Wing, Idaho ANG (afpw_idaho)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.124thfighterwing.ang.af.mil/"
+      "schedule": "30 1 * * TUE",
+      "starting_urls": "https://124thfighterwing.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.113wg.ang.af.mil",
+      "allowed_domains": "113wg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "113th Wing, Air National Guard (afpw_113wg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.113wg.ang.af.mil/"
+      "schedule": "11 2 * * TUE",
+      "starting_urls": "https://113wg.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.106rqw.ang.af.mil",
+      "allowed_domains": "106rqw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "106th Rescue Wing (afpw_106rqw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.106rqw.ang.af.mil/"
+      "schedule": "53 2 * * TUE",
+      "starting_urls": "https://106rqw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afm.ars.usda.gov",
+      "allowed_domains": "afm.ars.usda.gov",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Administrative & Financial Management (afm)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afm.ars.usda.gov/"
+      "schedule": "35 3 * * TUE",
+      "starting_urls": "https://afm.ars.usda.gov/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afcec.af.mil",
+      "allowed_domains": "afcec.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Civil Engineer Center (afpw_afcec)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afcec.af.mil/"
+      "schedule": "17 4 * * TUE",
+      "starting_urls": "https://afcec.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.189aw.ang.af.mil",
+      "allowed_domains": "189aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "189th Airlift Wing (afpw_189aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.189aw.ang.af.mil/"
+      "schedule": "59 4 * * TUE",
+      "starting_urls": "https://189aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afsc.af.mil",
+      "allowed_domains": "afsc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Sustainment Center (afpw_sustainment)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afsc.af.mil/"
+      "schedule": "41 5 * * TUE",
+      "starting_urls": "https://afsc.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -1946,138 +1946,138 @@
       "handle_javascript": false,
       "name": "Air Force Personnel Center (afpw_afpc)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "22 6 * * TUE",
       "starting_urls": "https://afpc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.10af.afrc.af.mil",
+      "allowed_domains": "10af.afrc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "10th Air Force (afpw_10af)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.10af.afrc.af.mil/"
+      "schedule": "4 7 * * TUE",
+      "starting_urls": "https://10af.afrc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.109aw.ang.af.mil",
+      "allowed_domains": "109aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "109th Airlift Wing, New York ANG (afpw_109aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.109aw.ang.af.mil/"
+      "schedule": "46 7 * * TUE",
+      "starting_urls": "https://109aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.105aw.ang.af.mil",
+      "allowed_domains": "105aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "105th Airlift Wing (afpw_105aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.105aw.ang.af.mil/"
+      "schedule": "28 8 * * TUE",
+      "starting_urls": "https://105aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.104fw.ang.af.mil",
+      "allowed_domains": "104fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "104th Fighter Wing (afpw_104fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.104fw.ang.af.mil/"
+      "schedule": "10 9 * * TUE",
+      "starting_urls": "https://104fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.103aw.ang.af.mil",
+      "allowed_domains": "103aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "103rd Airlift Wing (afpw_103aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.103aw.ang.af.mil/"
+      "schedule": "52 9 * * TUE",
+      "starting_urls": "https://103aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.101arw.ang.af.mil",
+      "allowed_domains": "101arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "101st Air Refueling Wing (afpw_101arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.101arw.ang.af.mil/"
+      "schedule": "33 10 * * TUE",
+      "starting_urls": "https://101arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.102iw.ang.af.mil",
+      "allowed_domains": "102iw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "102nd Intelligence Wing (afpw_102iw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.102iw.ang.af.mil/"
+      "schedule": "15 11 * * TUE",
+      "starting_urls": "https://102iw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afrc.af.mil",
+      "allowed_domains": "afrc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Reserve Command (afrc)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afrc.af.mil/"
+      "schedule": "57 11 * * TUE",
+      "starting_urls": "https://afrc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afsoc.af.mil,www2.afsoc.af.mil",
+      "allowed_domains": "afsoc.af.mil,www2.afsoc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Special Operations Command (afsoc)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afsoc.af.mil,www2.afsoc.af.mil/"
+      "schedule": "39 12 * * TUE",
+      "starting_urls": "https://afsoc.af.mil,www2.afsoc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afspc.af.mil",
+      "allowed_domains": "afspc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Space Command (afspc)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afspc.af.mil/"
+      "schedule": "21 13 * * TUE",
+      "starting_urls": "https://afspc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afweather.af.mil",
+      "allowed_domains": "afweather.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Weather Observer (afwa)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afweather.af.mil/"
+      "schedule": "2 14 * * TUE",
+      "starting_urls": "https://afweather.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.posturestatement.af.mil",
+      "allowed_domains": "posturestatement.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "United States Air Force Posture Statement (afpw_posturestatement)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.posturestatement.af.mil/"
+      "schedule": "44 14 * * TUE",
+      "starting_urls": "https://posturestatement.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.privacy.af.mil",
+      "allowed_domains": "privacy.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Privacy Act (afpw_privacyact)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.privacy.af.mil/"
+      "schedule": "26 15 * * TUE",
+      "starting_urls": "https://privacy.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -2086,28 +2086,28 @@
       "handle_javascript": false,
       "name": "Air Force Acquisition (afpw_safaq)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "8 16 * * TUE",
       "starting_urls": "https://ww3.safaq.hq.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.safgc.hq.af.mil",
+      "allowed_domains": "safgc.hq.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force General Counsel (afpw_safgc)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.safgc.hq.af.mil/"
+      "schedule": "50 16 * * TUE",
+      "starting_urls": "https://safgc.hq.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.safia.hq.af.mil",
+      "allowed_domains": "safia.hq.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force International Affairs (afpw_safia)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.safia.hq.af.mil/"
+      "schedule": "32 17 * * TUE",
+      "starting_urls": "https://safia.hq.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -2116,68 +2116,68 @@
       "handle_javascript": false,
       "name": "Air Force Medical Service (afpw_sg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "13 18 * * TUE",
       "starting_urls": "https://airforcemedicine.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.trademark.af.mil",
+      "allowed_domains": "trademark.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Trademark and Licensing Program (afpw_trademark)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.trademark.af.mil/"
+      "schedule": "55 18 * * TUE",
+      "starting_urls": "https://trademark.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.travis.af.mil",
+      "allowed_domains": "travis.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Travis Air Force Base (afpw_travis)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.travis.af.mil/"
+      "schedule": "37 19 * * TUE",
+      "starting_urls": "https://travis.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.volkfield.ang.af.mil",
+      "allowed_domains": "volkfield.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Volk Field (afpw_volk)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.volkfield.ang.af.mil/"
+      "schedule": "19 20 * * TUE",
+      "starting_urls": "https://volkfield.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.woundedwarrior.af.mil",
+      "allowed_domains": "woundedwarrior.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Wounded Warrior (afpw_wounded)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.woundedwarrior.af.mil/"
+      "schedule": "1 21 * * TUE",
+      "starting_urls": "https://woundedwarrior.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.jtfb.southcom.mil",
+      "allowed_domains": "jtfb.southcom.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "JTF-Bravo, Soto Cano Air Base (afpw_jtfb)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.jtfb.southcom.mil/"
+      "schedule": "43 21 * * TUE",
+      "starting_urls": "https://jtfb.southcom.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.maxwell.af.mil",
+      "allowed_domains": "maxwell.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Maxwell Air Force Base (afpw_maxwell)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.maxwell.af.mil/"
+      "schedule": "24 22 * * TUE",
+      "starting_urls": "https://maxwell.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -2186,208 +2186,208 @@
       "handle_javascript": false,
       "name": "McConnell Air Force Base (afpw_mcconnell)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "6 23 * * TUE",
       "starting_urls": "https://public.mcconnell.amc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.mcconnell.af.mil",
+      "allowed_domains": "mcconnell.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "McConnell Air Force Base (afpw_mcconnell)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.mcconnell.af.mil/"
+      "schedule": "48 23 * * TUE",
+      "starting_urls": "https://mcconnell.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.jbmdl.jb.mil",
+      "allowed_domains": "jbmdl.jb.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Joint Base McGuire-Dix-Lakehurst (afpw_mcguire)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.jbmdl.jb.mil/"
+      "schedule": "30 0 * * WED",
+      "starting_urls": "https://jbmdl.jb.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.mortuary.af.mil",
+      "allowed_domains": "mortuary.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Mortuary Affairs Operations (afpw_mortuary)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.mortuary.af.mil/"
+      "schedule": "12 1 * * WED",
+      "starting_urls": "https://mortuary.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.offutt.af.mil",
+      "allowed_domains": "offutt.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Offutt Air Force Base (afpw_offutt)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.offutt.af.mil/"
+      "schedule": "54 1 * * WED",
+      "starting_urls": "https://offutt.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.oh.ang.af.mil",
+      "allowed_domains": "oh.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Ohio Air National Guard (afpw_ohang)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.oh.ang.af.mil/"
+      "schedule": "35 2 * * WED",
+      "starting_urls": "https://oh.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.pope.af.mil",
+      "allowed_domains": "pope.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Pope Field (afpw_pope)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.pope.af.mil/"
+      "schedule": "17 3 * * WED",
+      "starting_urls": "https://pope.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.ppahq.af.mil",
+      "allowed_domains": "ppahq.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Personal Property Activity Headquarters (afpw_ppahq)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.ppahq.af.mil/"
+      "schedule": "59 3 * * WED",
+      "starting_urls": "https://ppahq.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.airforcehollywood.af.mil",
+      "allowed_domains": "airforcehollywood.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Entertainment Liaison Office (afpw_hollywood)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.airforcehollywood.af.mil/"
+      "schedule": "41 4 * * WED",
+      "starting_urls": "https://airforcehollywood.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.airforcehollywood.hq.af.mil",
+      "allowed_domains": "airforcehollywood.hq.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Entertainment Liaison Office (afpw_hollywood)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.airforcehollywood.hq.af.mil/"
+      "schedule": "23 5 * * WED",
+      "starting_urls": "https://airforcehollywood.hq.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.honorguard.af.mil",
+      "allowed_domains": "honorguard.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "United States Air Force Honor Guard (afpw_honor)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.honorguard.af.mil/"
+      "schedule": "4 6 * * WED",
+      "starting_urls": "https://honorguard.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afnic.af.mil",
+      "allowed_domains": "afnic.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Network Integration Center (afnic)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afnic.af.mil/"
+      "schedule": "46 6 * * WED",
+      "starting_urls": "https://afnic.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.fairchild.af.mil",
+      "allowed_domains": "fairchild.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Fairchild Air Force Base (afpw_fairchild)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.fairchild.af.mil/"
+      "schedule": "28 7 * * WED",
+      "starting_urls": "https://fairchild.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.compliance.af.mil",
+      "allowed_domains": "compliance.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Compliance Division (afpw_foia)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.compliance.af.mil/"
+      "schedule": "10 8 * * WED",
+      "starting_urls": "https://compliance.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.grandforks.af.mil",
+      "allowed_domains": "grandforks.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Grand Forks Air Force Base (afpw_grandforks)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.grandforks.af.mil/"
+      "schedule": "52 8 * * WED",
+      "starting_urls": "https://grandforks.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.retirees.af.mil",
+      "allowed_domains": "retirees.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Retirees Services (afpw_afro)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.retirees.af.mil/"
+      "schedule": "34 9 * * WED",
+      "starting_urls": "https://retirees.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.rs.af.mil",
+      "allowed_domains": "rs.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Recruiting Service (afpw_afrs)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.rs.af.mil/"
+      "schedule": "15 10 * * WED",
+      "starting_urls": "https://rs.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afsfc.af.mil",
+      "allowed_domains": "afsfc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Security Forces Center (afpw_afsfc)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afsfc.af.mil/"
+      "schedule": "57 10 * * WED",
+      "starting_urls": "https://afsfc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.airforceweek.af.mil",
+      "allowed_domains": "airforceweek.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Week (afpw_afweek)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.airforceweek.af.mil/"
+      "schedule": "39 11 * * WED",
+      "starting_urls": "https://airforceweek.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.altus.af.mil",
+      "allowed_domains": "altus.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Altus Air Force Base (afpw_altus)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.altus.af.mil/"
+      "schedule": "21 12 * * WED",
+      "starting_urls": "https://altus.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.jba.af.mil",
+      "allowed_domains": "jba.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Joint Base Andrews (afpw_andrews)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.jba.af.mil/"
+      "schedule": "3 13 * * WED",
+      "starting_urls": "https://jba.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -2396,128 +2396,118 @@
       "handle_javascript": false,
       "name": "Air National Guard (afpw_ang)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "45 13 * * WED",
       "starting_urls": "https://ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.bandofthemidwest.ang.af.mil",
+      "allowed_domains": "bandofthemidwest.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air National Guard Band of the Midwest (afpw_angbandmidwest)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.bandofthemidwest.ang.af.mil/"
+      "schedule": "26 14 * * WED",
+      "starting_urls": "https://bandofthemidwest.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.bandofthenortheast.ang.af.mil",
+      "allowed_domains": "bandofthenortheast.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air National Guard Band of the Northeast (afpw_angbandnortheast)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.bandofthenortheast.ang.af.mil/"
+      "schedule": "8 15 * * WED",
+      "starting_urls": "https://bandofthenortheast.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.bandofthesouthwest.ang.af.mil",
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Air National Guard Band of the Southwest (afpw_angbandsw)",
-      "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.bandofthesouthwest.ang.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.bandofthewestcoast.ang.af.mil",
+      "allowed_domains": "bandofthewestcoast.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air National Guard Band of the West Coast (afpw_angbandwestcoast)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.bandofthewestcoast.ang.af.mil/"
+      "schedule": "50 15 * * WED",
+      "starting_urls": "https://bandofthewestcoast.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.bands.af.mil",
+      "allowed_domains": "bands.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Bands Program (afpw_bandsprogram)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.bands.af.mil/"
+      "schedule": "32 16 * * WED",
+      "starting_urls": "https://bands.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.usafband.af.mil",
+      "allowed_domains": "usafband.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "The United States Air Force Band (afpw_bandusaf)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.usafband.af.mil/"
+      "schedule": "14 17 * * WED",
+      "starting_urls": "https://usafband.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.bandofthewest.af.mil",
+      "allowed_domains": "bandofthewest.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "USAF Band of the West (afpw_bandwest)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.bandofthewest.af.mil/"
+      "schedule": "56 17 * * WED",
+      "starting_urls": "https://bandofthewest.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.creech.af.mil",
+      "allowed_domains": "creech.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Creech Air Force Base (afpw_creech)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.creech.af.mil/"
+      "schedule": "37 18 * * WED",
+      "starting_urls": "https://creech.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.secretsdeclassified.af.mil",
+      "allowed_domains": "secretsdeclassified.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "AF Declassification (afpw_dclass)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.secretsdeclassified.af.mil/"
+      "schedule": "19 19 * * WED",
+      "starting_urls": "https://secretsdeclassified.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.dimo.af.mil",
+      "allowed_domains": "dimo.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Defense Institute for Medical Operations (afpw_dimo)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.dimo.af.mil/"
+      "schedule": "1 20 * * WED",
+      "starting_urls": "https://dimo.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.dover.af.mil",
+      "allowed_domains": "dover.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Dover Air Force Base (afpw_dover)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.dover.af.mil/"
+      "schedule": "43 20 * * WED",
+      "starting_urls": "https://dover.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.eads.ang.af.mil",
+      "allowed_domains": "eads.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Eastern Air Defense Sector (afpw_eads)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.eads.ang.af.mil/"
+      "schedule": "25 21 * * WED",
+      "starting_urls": "https://eads.ang.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -2526,388 +2516,388 @@
       "handle_javascript": false,
       "name": "Department of the Air Force - E-Publishing (afpw_epubs)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "6 22 * * WED",
       "starting_urls": "https://static.e-publishing.af.mil,www.e-publishing.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.125fw.ang.af.mil,www.fl.ang.af.mil",
+      "allowed_domains": "125fw.ang.af.mil,www.fl.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Florida Air National Guard (afpw_flang)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.125fw.ang.af.mil,www.fl.ang.af.mil/"
+      "schedule": "48 22 * * WED",
+      "starting_urls": "https://125fw.ang.af.mil,www.fl.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.477fg.afrc.af.mil",
+      "allowed_domains": "477fg.afrc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "477th Fighter Group (afpw_477fg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.477fg.afrc.af.mil/"
+      "schedule": "30 23 * * WED",
+      "starting_urls": "https://477fg.afrc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.505ccw.acc.af.mil",
+      "allowed_domains": "505ccw.acc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "505th Command and Control Wing (afpw_505ccw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.505ccw.acc.af.mil/"
+      "schedule": "12 0 * * THU",
+      "starting_urls": "https://505ccw.acc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.618tacc.amc.af.mil",
+      "allowed_domains": "618tacc.amc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "618th Air and Space Operations Center (TACC) (afpw_618tacc)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.618tacc.amc.af.mil/"
+      "schedule": "54 0 * * THU",
+      "starting_urls": "https://618tacc.amc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.624rsg.afrc.af.mil",
+      "allowed_domains": "624rsg.afrc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "624th Regional Support Group (afpw_624rsg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.624rsg.afrc.af.mil/"
+      "schedule": "36 1 * * THU",
+      "starting_urls": "https://624rsg.afrc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.8af.af.mil",
+      "allowed_domains": "8af.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "8th Air Force (afpw_8af)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.8af.af.mil/"
+      "schedule": "17 2 * * THU",
+      "starting_urls": "https://8af.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.926wing.afrc.af.mil",
+      "allowed_domains": "926wing.afrc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "926th Group (afpw_926gp)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.926wing.afrc.af.mil/"
+      "schedule": "59 2 * * THU",
+      "starting_urls": "https://926wing.afrc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.aatc.ang.af.mil",
+      "allowed_domains": "aatc.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "ANG AFRC Command Test Center (afpw_aatc)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.aatc.ang.af.mil/"
+      "schedule": "41 3 * * THU",
+      "starting_urls": "https://aatc.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.adr.af.mil",
+      "allowed_domains": "adr.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Alternative Dispute Resolution (afpw_adr)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.adr.af.mil/"
+      "schedule": "23 4 * * THU",
+      "starting_urls": "https://adr.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.beready.af.mil",
+      "allowed_domains": "beready.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Be Ready (afpw_afbr)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.beready.af.mil/"
+      "schedule": "5 5 * * THU",
+      "starting_urls": "https://beready.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afgsc.af.mil",
+      "allowed_domains": "afgsc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Global Strike Command (afpw_afgsc)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afgsc.af.mil/"
+      "schedule": "47 5 * * THU",
+      "starting_urls": "https://afgsc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.dafhistory.af.mil",
+      "allowed_domains": "dafhistory.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Historical Research Agency (afpw_afhra)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.dafhistory.af.mil/"
+      "schedule": "28 6 * * THU",
+      "starting_urls": "https://dafhistory.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afhso.af.mil",
+      "allowed_domains": "afhso.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Historical Studies Office (afpw_afhso)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afhso.af.mil/"
+      "schedule": "10 7 * * THU",
+      "starting_urls": "https://afhso.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afia.af.mil",
+      "allowed_domains": "afia.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "USAF - www.afia.af.mil (afpw_afia) (afpw_afia)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afia.af.mil/"
+      "schedule": "52 7 * * THU",
+      "starting_urls": "https://afia.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afjag.af.mil",
+      "allowed_domains": "afjag.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Judge Advocate General's Corps (afpw_afjag)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afjag.af.mil/"
+      "schedule": "34 8 * * THU",
+      "starting_urls": "https://afjag.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.172aw.ang.af.mil",
+      "allowed_domains": "172aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "172nd Airlift Wing, Mississippi Air National Guard (afpw_172aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.172aw.ang.af.mil/"
+      "schedule": "16 9 * * THU",
+      "starting_urls": "https://172aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.173fw.ang.af.mil",
+      "allowed_domains": "173fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "173rd Fighter Wing, Oregon Air National Guard (afpw_173fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.173fw.ang.af.mil/"
+      "schedule": "58 9 * * THU",
+      "starting_urls": "https://173fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.175wg.ang.af.mil",
+      "allowed_domains": "175wg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "175th Wing, Maryland Air National Guard (afpw_175wg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.175wg.ang.af.mil/"
+      "schedule": "39 10 * * THU",
+      "starting_urls": "https://175wg.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.176wg.ang.af.mil",
+      "allowed_domains": "176wg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "176th Wing, Alaska Air National Guard (afpw_176wg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.176wg.ang.af.mil/"
+      "schedule": "21 11 * * THU",
+      "starting_urls": "https://176wg.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.177fw.ang.af.mil",
+      "allowed_domains": "177fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "177th Fighter Wing, New Jersey ANG (afpw_177fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.177fw.ang.af.mil/"
+      "schedule": "3 12 * * THU",
+      "starting_urls": "https://177fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.178wing.ang.af.mil",
+      "allowed_domains": "178wing.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "178th Wing, Ohio Air National Guard (afpw_178fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.178wing.ang.af.mil/"
+      "schedule": "45 12 * * THU",
+      "starting_urls": "https://178wing.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.178fw.ang.af.mil",
+      "allowed_domains": "178fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "178th Wing, Ohio Air National Guard (afpw_178fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.178fw.ang.af.mil/"
+      "schedule": "27 13 * * THU",
+      "starting_urls": "https://178fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.179aw.ang.af.mil",
+      "allowed_domains": "179aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "179th Airlift Wing, Ohio ANG (afpw_179aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.179aw.ang.af.mil/"
+      "schedule": "8 14 * * THU",
+      "starting_urls": "https://179aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.180fw.ang.af.mil",
+      "allowed_domains": "180fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "180th Fighter Wing, Ohio Air National Guard (afpw_180fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.180fw.ang.af.mil/"
+      "schedule": "50 14 * * THU",
+      "starting_urls": "https://180fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.181iw.ang.af.mil",
+      "allowed_domains": "181iw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "181st Intelligence Wing, Indiana ANG (afpw_181iw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.181iw.ang.af.mil/"
+      "schedule": "32 15 * * THU",
+      "starting_urls": "https://181iw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.182aw.ang.af.mil",
+      "allowed_domains": "182aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "182nd Airlift Wing, Illinois Air National Guard (afpw_182aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.182aw.ang.af.mil/"
+      "schedule": "14 16 * * THU",
+      "starting_urls": "https://182aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.184iw.ang.af.mil",
+      "allowed_domains": "184iw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "184th Intelligence Wing, Kansas Air National Guard (afpw_184iw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.184iw.ang.af.mil/"
+      "schedule": "56 16 * * THU",
+      "starting_urls": "https://184iw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.185arw.ang.af.mil",
+      "allowed_domains": "185arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "185th Air Refueling Wing, Iowa ANG (afpw_185arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.185arw.ang.af.mil/"
+      "schedule": "38 17 * * THU",
+      "starting_urls": "https://185arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.186arw.ang.af.mil",
+      "allowed_domains": "186arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "186th Air Refueling Wing, Mississippi Air National Guard (afpw_186arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.186arw.ang.af.mil/"
+      "schedule": "19 18 * * THU",
+      "starting_urls": "https://186arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.188fw.ang.af.mil",
+      "allowed_domains": "188fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "188th Wing, Arkansas ANG (afpw_188fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.188fw.ang.af.mil/"
+      "schedule": "1 19 * * THU",
+      "starting_urls": "https://188fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.188wg.ang.af.mil",
+      "allowed_domains": "188wg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "188th Wing, Arkansas ANG (afpw_188fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.188wg.ang.af.mil/"
+      "schedule": "43 19 * * THU",
+      "starting_urls": "https://188wg.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.18af.amc.af.mil",
+      "allowed_domains": "18af.amc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "18th Air Force (afpw_18af)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.18af.amc.af.mil/"
+      "schedule": "25 20 * * THU",
+      "starting_urls": "https://18af.amc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.190arw.ang.af.mil",
+      "allowed_domains": "190arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "190th Air Refueling Wing, Kansas Air National Guard (afpw_190arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.190arw.ang.af.mil/"
+      "schedule": "7 21 * * THU",
+      "starting_urls": "https://190arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.192fw.ang.af.mil",
+      "allowed_domains": "192fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "192D Fighter Wing (afpw_192fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.192fw.ang.af.mil/"
+      "schedule": "49 21 * * THU",
+      "starting_urls": "https://192fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.192wg.ang.af.mil",
+      "allowed_domains": "192wg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "192D Fighter Wing (afpw_192fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.192wg.ang.af.mil/"
+      "schedule": "30 22 * * THU",
+      "starting_urls": "https://192wg.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.193sow.ang.af.mil",
+      "allowed_domains": "193sow.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "193rd SOW, Pa. ANG (afpw_193sow)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.193sow.ang.af.mil/"
+      "schedule": "12 23 * * THU",
+      "starting_urls": "https://193sow.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.214rg.ang.af.mil",
+      "allowed_domains": "214rg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "214th Reconnaissance Group, Arizona Air National Guard (afpw_214rg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.214rg.ang.af.mil/"
+      "schedule": "54 23 * * THU",
+      "starting_urls": "https://214rg.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.254ccg.ang.af.mil",
+      "allowed_domains": "254ccg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "254th Combat Communications Group (afpw_254ccg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.254ccg.ang.af.mil/"
+      "schedule": "36 0 * * FRI",
+      "starting_urls": "https://254ccg.ang.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -2916,608 +2906,608 @@
       "handle_javascript": false,
       "name": "310th Space Wing (afpw_310sw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "18 1 * * FRI",
       "starting_urls": "https://310sw.afrc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.134arw.ang.af.mil",
+      "allowed_domains": "134arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "134th ARW, Tennessee Air National Guard (afpw_134arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.134arw.ang.af.mil/"
+      "schedule": "0 2 * * FRI",
+      "starting_urls": "https://134arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.136aw.ang.af.mil",
+      "allowed_domains": "136aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "136th Airlift Wing, Texas Air National Guard (afpw_136aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.136aw.ang.af.mil/"
+      "schedule": "41 2 * * FRI",
+      "starting_urls": "https://136aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.137sow.ang.af.mil",
+      "allowed_domains": "137sow.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "137th Air Refueling Wing, Oklahoma ANG (afpw_137arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.137sow.ang.af.mil/"
+      "schedule": "23 3 * * FRI",
+      "starting_urls": "https://137sow.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.138fw.ang.af.mil",
+      "allowed_domains": "138fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "138th Fighter Wing, Oklahoma ANG (afpw_138fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.138fw.ang.af.mil/"
+      "schedule": "5 4 * * FRI",
+      "starting_urls": "https://138fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.139aw.ang.af.mil",
+      "allowed_domains": "139aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "139th Airlift Wing, Missouri Air National Guard (afpw_139aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.139aw.ang.af.mil/"
+      "schedule": "47 4 * * FRI",
+      "starting_urls": "https://139aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.140wg.ang.af.mil",
+      "allowed_domains": "140wg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "140th Wing, Colorado Air National Guard (afpw_140wg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.140wg.ang.af.mil/"
+      "schedule": "29 5 * * FRI",
+      "starting_urls": "https://140wg.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.141arw.ang.af.mil",
+      "allowed_domains": "141arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "141st Air Refueling Wing, Washington ANG (afpw_141arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.141arw.ang.af.mil/"
+      "schedule": "10 6 * * FRI",
+      "starting_urls": "https://141arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.142fw.ang.af.mil",
+      "allowed_domains": "142fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "142nd Wing, Oregon Air National Guard (afpw_142fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.142fw.ang.af.mil/"
+      "schedule": "52 6 * * FRI",
+      "starting_urls": "https://142fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.143aw.ang.af.mil",
+      "allowed_domains": "143aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "143rd Airlift Wing, Rhode Island ANG (afpw_143aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.143aw.ang.af.mil/"
+      "schedule": "34 7 * * FRI",
+      "starting_urls": "https://143aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.144fw.ang.af.mil",
+      "allowed_domains": "144fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "144th Fighter Wing, California Air National Guard (afpw_144fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.144fw.ang.af.mil/"
+      "schedule": "16 8 * * FRI",
+      "starting_urls": "https://144fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.145aw.ang.af.mil",
+      "allowed_domains": "145aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "145th Airlift Wing, North Carolina ANG (afpw_145aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.145aw.ang.af.mil/"
+      "schedule": "58 8 * * FRI",
+      "starting_urls": "https://145aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.146aw.ang.af.mil",
+      "allowed_domains": "146aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "146th Airlift Wing, California ANG (afpw_146aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.146aw.ang.af.mil/"
+      "schedule": "40 9 * * FRI",
+      "starting_urls": "https://146aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.147rw.ang.af.mil",
+      "allowed_domains": "147rw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "147th Reconnaissance Wing (afpw_147rw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.147rw.ang.af.mil/"
+      "schedule": "21 10 * * FRI",
+      "starting_urls": "https://147rw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.148fw.ang.af.mil",
+      "allowed_domains": "148fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "148th Fighter Wing, Minnesota ANG (afpw_148fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.148fw.ang.af.mil/"
+      "schedule": "3 11 * * FRI",
+      "starting_urls": "https://148fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.149fw.ang.af.mil",
+      "allowed_domains": "149fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "149th Fighter Wing, Texas ANG (afpw_149fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.149fw.ang.af.mil/"
+      "schedule": "45 11 * * FRI",
+      "starting_urls": "https://149fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.151arw.ang.af.mil",
+      "allowed_domains": "151arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "151st ARW, Utah Air National Guard (afpw_151arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.151arw.ang.af.mil/"
+      "schedule": "27 12 * * FRI",
+      "starting_urls": "https://151arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.152aw.ang.af.mil",
+      "allowed_domains": "152aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "152nd Airlift Wing, NV ANG (afpw_152aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.152aw.ang.af.mil/"
+      "schedule": "9 13 * * FRI",
+      "starting_urls": "https://152aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.153aw.ang.af.mil",
+      "allowed_domains": "153aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "153rd Airlift Wing, Wyoming ANG (afpw_153aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.153aw.ang.af.mil/"
+      "schedule": "51 13 * * FRI",
+      "starting_urls": "https://153aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.154wg.ang.af.mil",
+      "allowed_domains": "154wg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "154th Wing, Hawaii Air National Guard (afpw_154wg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.154wg.ang.af.mil/"
+      "schedule": "32 14 * * FRI",
+      "starting_urls": "https://154wg.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.155arw.ang.af.mil",
+      "allowed_domains": "155arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "155th Air Refueling Wing (afpw_155arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.155arw.ang.af.mil/"
+      "schedule": "14 15 * * FRI",
+      "starting_urls": "https://155arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.157arw.ang.af.mil",
+      "allowed_domains": "157arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "157th ARW, New Hampshire ANG (afpw_157arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.157arw.ang.af.mil/"
+      "schedule": "56 15 * * FRI",
+      "starting_urls": "https://157arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.158fw.ang.af.mil",
+      "allowed_domains": "158fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "158th Fighter Wing, Vermont ANG (afpw_158fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.158fw.ang.af.mil/"
+      "schedule": "38 16 * * FRI",
+      "starting_urls": "https://158fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.161arw.ang.af.mil",
+      "allowed_domains": "161arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "161st Air Refueling Wing (afpw_161arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.161arw.ang.af.mil/"
+      "schedule": "20 17 * * FRI",
+      "starting_urls": "https://161arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.162ccg.ang.af.mil",
+      "allowed_domains": "162ccg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "162nd Combat Communications Group (afpw_162ccg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.162ccg.ang.af.mil/"
+      "schedule": "1 18 * * FRI",
+      "starting_urls": "https://162ccg.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.162wing.ang.af.mil",
+      "allowed_domains": "162wing.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "162nd Wing, Arizona ANG (afpw_162fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.162wing.ang.af.mil/"
+      "schedule": "43 18 * * FRI",
+      "starting_urls": "https://162wing.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.162fw.ang.af.mil",
+      "allowed_domains": "162fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "162nd Wing, Arizona ANG (afpw_162fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.162fw.ang.af.mil/"
+      "schedule": "25 19 * * FRI",
+      "starting_urls": "https://162fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.163rw.ang.af.mil",
+      "allowed_domains": "163rw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "163rd ATKW, California Air National Guard (afpw_163rw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.163rw.ang.af.mil/"
+      "schedule": "7 20 * * FRI",
+      "starting_urls": "https://163rw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.163atkw.ang.af.mil",
+      "allowed_domains": "163atkw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "163rd ATKW, California Air National Guard (afpw_163rw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.163atkw.ang.af.mil/"
+      "schedule": "49 20 * * FRI",
+      "starting_urls": "https://163atkw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.167aw.ang.af.mil",
+      "allowed_domains": "167aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "167th Airlift Wing, West Virginia Air National Guard (afpw_167aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.167aw.ang.af.mil/"
+      "schedule": "31 21 * * FRI",
+      "starting_urls": "https://167aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.168arw.ang.af.mil",
+      "allowed_domains": "168arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "168th Air Refueling Wing, Alaska ANG (afpw_168arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.168arw.ang.af.mil/"
+      "schedule": "12 22 * * FRI",
+      "starting_urls": "https://168arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.169fw.ang.af.mil",
+      "allowed_domains": "169fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "169th Fighter Wing (afpw_169fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.169fw.ang.af.mil/"
+      "schedule": "54 22 * * FRI",
+      "starting_urls": "https://169fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.171arw.ang.af.mil",
+      "allowed_domains": "171arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "171st ARW, Pennsylvania ANG (afpw_171arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.171arw.ang.af.mil/"
+      "schedule": "36 23 * * FRI",
+      "starting_urls": "https://171arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.107aw.ang.af.mil",
+      "allowed_domains": "107aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "107th AW (afpw_107aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.107aw.ang.af.mil/"
+      "schedule": "18 0 * * SAT",
+      "starting_urls": "https://107aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.108arw.ang.af.mil",
+      "allowed_domains": "108arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "108th Wing (afpw_108arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.108arw.ang.af.mil/"
+      "schedule": "0 1 * * SAT",
+      "starting_urls": "https://108arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.110wg.ang.af.mil",
+      "allowed_domains": "110wg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "110th Wing (afpw_110aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.110wg.ang.af.mil/"
+      "schedule": "42 1 * * SAT",
+      "starting_urls": "https://110wg.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.111fw.ang.af.mil",
+      "allowed_domains": "111fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "111th Attack Wing (afpw_111fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.111fw.ang.af.mil/"
+      "schedule": "23 2 * * SAT",
+      "starting_urls": "https://111fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.111attackwing.ang.af.mil",
+      "allowed_domains": "111attackwing.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "111th Attack Wing (afpw_111fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.111attackwing.ang.af.mil/"
+      "schedule": "5 3 * * SAT",
+      "starting_urls": "https://111attackwing.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.114fw.ang.af.mil",
+      "allowed_domains": "114fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "114th Fighter Wing (afpw_114fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.114fw.ang.af.mil/"
+      "schedule": "47 3 * * SAT",
+      "starting_urls": "https://114fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.115fw.ang.af.mil",
+      "allowed_domains": "115fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "115th Fighter Wing (afpw_115fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.115fw.ang.af.mil/"
+      "schedule": "29 4 * * SAT",
+      "starting_urls": "https://115fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.117arw.ang.af.mil",
+      "allowed_domains": "117arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "117th Air Refueling Wing (afpw_117arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.117arw.ang.af.mil/"
+      "schedule": "11 5 * * SAT",
+      "starting_urls": "https://117arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.118wg.ang.af.mil",
+      "allowed_domains": "118wg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "118th Wing (afpw_118aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.118wg.ang.af.mil/"
+      "schedule": "53 5 * * SAT",
+      "starting_urls": "https://118wg.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.119wg.ang.af.mil",
+      "allowed_domains": "119wg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "119th Wing, North Dakota Air National Guard (afpw_119wg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.119wg.ang.af.mil/"
+      "schedule": "34 6 * * SAT",
+      "starting_urls": "https://119wg.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.120thairliftwing.ang.af.mil",
+      "allowed_domains": "120thairliftwing.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "120th Airlift Wing (afpw_120fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.120thairliftwing.ang.af.mil/"
+      "schedule": "16 7 * * SAT",
+      "starting_urls": "https://120thairliftwing.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.120fw.ang.af.mil",
+      "allowed_domains": "120fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "120th Airlift Wing (afpw_120fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.120fw.ang.af.mil/"
+      "schedule": "58 7 * * SAT",
+      "starting_urls": "https://120fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.121arw.ang.af.mil",
+      "allowed_domains": "121arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "121st ARW, Ohio Air National Guard (afpw_121arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.121arw.ang.af.mil/"
+      "schedule": "40 8 * * SAT",
+      "starting_urls": "https://121arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.122fw.ang.af.mil",
+      "allowed_domains": "122fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "122nd Fighter Wing, Indiana ANG (afpw_122fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.122fw.ang.af.mil/"
+      "schedule": "22 9 * * SAT",
+      "starting_urls": "https://122fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.123aw.ang.af.mil",
+      "allowed_domains": "123aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "123rd Airlift Wing, Kentucky ANG (afpw_123aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.123aw.ang.af.mil/"
+      "schedule": "3 10 * * SAT",
+      "starting_urls": "https://123aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.126arw.ang.af.mil",
+      "allowed_domains": "126arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "126th Air Refueling Wing, Illinois Air National Guard (afpw_126arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.126arw.ang.af.mil/"
+      "schedule": "45 10 * * SAT",
+      "starting_urls": "https://126arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.127wg.ang.af.mil",
+      "allowed_domains": "127wg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "127th Wing, Michigan Air National Guard (afpw_127wg)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.127wg.ang.af.mil/"
+      "schedule": "27 11 * * SAT",
+      "starting_urls": "https://127wg.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.128arw.ang.af.mil",
+      "allowed_domains": "128arw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "128th Air Refueling Wing, Wisconsin ANG (afpw_128arw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.128arw.ang.af.mil/"
+      "schedule": "9 12 * * SAT",
+      "starting_urls": "https://128arw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.129rqw.ang.af.mil",
+      "allowed_domains": "129rqw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "129th Rescue Wing, California ANG (afpw_129rqw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.129rqw.ang.af.mil/"
+      "schedule": "51 12 * * SAT",
+      "starting_urls": "https://129rqw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.130aw.ang.af.mil",
+      "allowed_domains": "130aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "130th Airlift Wing, West Virginia Air National Guard (afpw_130aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.130aw.ang.af.mil/"
+      "schedule": "33 13 * * SAT",
+      "starting_urls": "https://130aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.131bw.ang.af.mil",
+      "allowed_domains": "131bw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "131st Bomb Wing, Missouri ANG (afpw_131bw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.131bw.ang.af.mil/"
+      "schedule": "14 14 * * SAT",
+      "starting_urls": "https://131bw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.132fw.ang.af.mil",
+      "allowed_domains": "132fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "132nd Wing, Iowa ANG (afpw_132fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.132fw.ang.af.mil/"
+      "schedule": "56 14 * * SAT",
+      "starting_urls": "https://132fw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.132dwing.ang.af.mil",
+      "allowed_domains": "132dwing.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "132nd Wing, Iowa ANG (afpw_132fw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.132dwing.ang.af.mil/"
+      "schedule": "38 15 * * SAT",
+      "starting_urls": "https://132dwing.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.133aw.ang.af.mil",
+      "allowed_domains": "133aw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "133rd Airlift Wing, Minnesota Air National Guard (afpw_133aw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.133aw.ang.af.mil/"
+      "schedule": "20 16 * * SAT",
+      "starting_urls": "https://133aw.ang.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afaa.af.mil",
+      "allowed_domains": "afaa.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Audit Agency (afaa)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afaa.af.mil/"
+      "schedule": "2 17 * * SAT",
+      "starting_urls": "https://afaa.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afams.af.mil",
+      "allowed_domains": "afams.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Agency for Modeling and Simulation (afams)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afams.af.mil/"
+      "schedule": "44 17 * * SAT",
+      "starting_urls": "https://afams.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.basictraining.af.mil",
+      "allowed_domains": "basictraining.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Basic Military Training (afbmt)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.basictraining.af.mil/"
+      "schedule": "25 18 * * SAT",
+      "starting_urls": "https://basictraining.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afdw.af.mil",
+      "allowed_domains": "afdw.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force District of Washington (afdw)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afdw.af.mil/"
+      "schedule": "7 19 * * SAT",
+      "starting_urls": "https://afdw.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -3526,28 +3516,28 @@
       "handle_javascript": false,
       "name": "25th Air Force (afisra)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "49 19 * * SAT",
       "starting_urls": "https://25af.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afmc.af.mil",
+      "allowed_domains": "afmc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Materiel Command (afmc)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afmc.af.mil/"
+      "schedule": "31 20 * * SAT",
+      "starting_urls": "https://afmc.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.osi.af.mil",
+      "allowed_domains": "osi.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Office of Special Investigations (afosi)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.osi.af.mil/"
+      "schedule": "13 21 * * SAT",
+      "starting_urls": "https://osi.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -3556,27 +3546,27 @@
       "handle_javascript": false,
       "name": "Office of Special Investigations (afosi)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
+      "schedule": "55 21 * * SAT",
       "starting_urls": "https://osi.andrews.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afotec.af.mil",
+      "allowed_domains": "afotec.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Operational Test and Evaluation Center (afotec)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afotec.af.mil/"
+      "schedule": "36 22 * * SAT",
+      "starting_urls": "https://afotec.af.mil/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afoutreach.af.mil",
+      "allowed_domains": "afoutreach.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Outreach (afoutreach)",
       "output_target": "elasticsearch",
-      "schedule": "30 20 * * FRI",
-      "starting_urls": "https://www.afoutreach.af.mil/"
+      "schedule": "18 23 * * SAT",
+      "starting_urls": "https://afoutreach.af.mil/"
    }
 ]
