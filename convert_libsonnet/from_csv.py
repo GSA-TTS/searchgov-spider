@@ -1,6 +1,27 @@
 import csv
 import os
 from pathlib import Path
+from typing import Dict
+
+day_names = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
+
+def generate_cron_expressions(current_expression: int, total_expressions: int  = 30):
+    """
+    Generate a cron expression that's evenly spread throughout the week.
+    
+    :param current_expression: Current expression number
+    :param total_expressions: Total expressions expected (does not need to be exact)
+    :return: Cron expression as strings.
+    """
+
+    minute_offset = min(round(current_expression * 10080 / total_expressions), 10080 - 1)
+    day_of_week_num = minute_offset // 1440
+    day_of_week = day_names[day_of_week_num]
+    minute_of_day = minute_offset % 1440
+    hour = minute_of_day // 60
+    minute = minute_of_day % 60
+
+    return f"{minute} {hour} * * {day_of_week}"
 
 def convert_to_libsonnet(options):
     """
@@ -9,9 +30,11 @@ def convert_to_libsonnet(options):
     Args:
         options (dict): Dictionary containing:
             - file_name (str): Path to the input CSV file
-            - column_index (dict): Mapping of field names to CSV column indices
+            - column_index (dict): Mapping of field names to CSV column indices, eg:
+                "name": 1, #The name that will be in the name field
+                "affiliate": 2, #The affiliate name that will be part of the name field
+                "allowed_domains": 3, #Will go into the allowed domains field, www. will be stripped
             - depth_limit (int): Crawl depth limit for all entries
-            - schedule (str): Cron expression for scheduling
     """
 
     ROOT_DIR = Path(__file__).parent
@@ -23,22 +46,41 @@ def convert_to_libsonnet(options):
         # how you exported it from google sheets (or SuperAdmin)
         next(reader)
         
-        items = []
-        unique_map = {}
-        
+        items: list[str] = []
+        unique_map: Dict[str, bool] = {}
+        rows = []
+
         for row in reader:
             name: str = row[options["column_index"]["name"]]
             name = name.replace("'", "\\'") # since we use single quotes in our libsonnet files
             affiliate: str = row[options["column_index"]["affiliate"]]
             allowed_domains: str = row[options["column_index"]["allowed_domains"]]
 
+            if allowed_domains.startswith("www."):
+                allowed_domains = allowed_domains[4:]
+
             if allowed_domains in unique_map:
                 print(f"Found a duplicate of: {allowed_domains}")
                 continue
             
             unique_map[allowed_domains] = True
-            schedule = options["schedule"]
-            depth_limit = options["depth_limit"]
+            
+            rows.append({
+                "name": name,
+                "affiliate": affiliate,
+                "allowed_domains": allowed_domains,
+                "depth_limit": options["depth_limit"],
+            })
+        
+        # We need to do this in a seperate loop since we need the exact number of expected items.
+        # There's no way to get it from the byte reader since the head can not go back/re-read
+        rows_length = len(rows)
+        for index, row in enumerate(rows):
+            name = row.get("name")
+            affiliate = row.get("affiliate")
+            allowed_domains = row.get("allowed_domains")
+            depth_limit = row.get("depth_limit")
+            schedule = generate_cron_expressions(index, rows_length)
             
             jsonnet_array_item = \
 f"""  {{
@@ -70,7 +112,6 @@ if __name__ == "__main__":
             "allowed_domains": 3,
         },
         "depth_limit": 8,
-        "schedule": "30 20 * * FRI",
     }
     
     convert_to_libsonnet(options)
