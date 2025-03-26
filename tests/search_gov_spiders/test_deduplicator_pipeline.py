@@ -154,3 +154,17 @@ def test_deduplicator_pipeline(items, urls_seen_length):
             pl.process_item(item, None)
 
     assert len(pl.urls_seen) == urls_seen_length
+
+
+def test_item_repr():
+    item = SearchGovSpidersItem(
+        url="https://www.example.com",
+        output_target="csv",
+        content_type="text/html",
+        response_language="en",
+        response_bytes=b"long long long long long long long long long response bytes",
+    )
+
+    assert str(item) == (
+        "Item(url=https://www.example.com, output_target=csv, content_type=text/html, response_language=en)"
+    )

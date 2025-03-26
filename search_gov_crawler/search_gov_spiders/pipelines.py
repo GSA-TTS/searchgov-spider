@@ -10,8 +10,9 @@ import requests
 from scrapy.exceptions import DropItem
 from scrapy.spiders import Spider
 
-from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
+from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
+
 
 def safe_del(item, key: str):
     """
@@ -22,6 +23,7 @@ def safe_del(item, key: str):
         del item[key]
     except Exception as _:
         pass
+
 
 class SearchGovSpidersPipeline:
     """
@@ -44,36 +46,39 @@ class SearchGovSpidersPipeline:
     def process_item(self, item: SearchGovSpidersItem, spider: Spider) -> SearchGovSpidersItem:
         """Handle each item by writing to file or batching URLs for an API POST."""
         url = item.get("url", None)
-        output_target= item.get("output_target", None)
+        output_target = item.get("output_target", None)
 
         if output_target not in ["endpoint", "elasticsearch", "csv"]:
-            raise DropItem(f"Not a valid output_target: {output_target}")
+            msg = f"Not a valid output_target: {output_target}"
+            raise DropItem(msg)
 
         if not url:
-            raise DropItem("Missing URL in item")
-        
+            msg = "Missing URL in item"
+            raise DropItem(msg)
+
         if output_target == "elasticsearch":
             self._process_es_item(item, spider)
         elif output_target == "endpoint":
             if not self.api_url:
-                raise DropItem("Item 'endpoint' not resolved, env.SPIDER_URLS_API is not set")
+                msg = "Item 'endpoint' not resolved, env.SPIDER_URLS_API is not set"
+                raise DropItem(msg)
             self._process_api_item(url, spider)
-        else: # csv
+        else:  # csv
             self._process_file_item(url)
-        
+
         safe_del(item, "output_target")
         safe_del(item, "response_bytes")
         safe_del(item, "response_language")
         safe_del(item, "content_type")
 
         return item
-    
+
     def _get_elasticsearch_client(self) -> SearchGovElasticsearch:
         if self._es:
             return self._es
         self._es = SearchGovElasticsearch()
         return self._es
-    
+
     def _process_es_item(self, item: SearchGovSpidersItem, spider: Spider):
         url = item.get("url", None)
         response_bytes = item.get("response_bytes", None)
@@ -86,10 +91,16 @@ class SearchGovSpidersPipeline:
             raise DropItem(err)
         try:
             self._get_elasticsearch_client().add_to_batch(
-                response_bytes=response_bytes, url=url, spider=spider, response_language=response_language, content_type=content_type
+                response_bytes=response_bytes,
+                url=url,
+                spider=spider,
+                response_language=response_language,
+                content_type=content_type,
             )
-        except Exception as e:
-            raise DropItem(f"Item 'elasticsearch' add_to_batch() failed: {str(e)}")
+        except Exception:
+            msg = "Failed to add item to Elasticsearch batch"
+            spider.logger.exception(msg)
+            raise DropItem(msg) from None
 
     def _process_api_item(self, url: str, spider: Spider) -> None:
         """Batch URLs for API and send POST if size limit is reached."""
@@ -134,10 +145,11 @@ class SearchGovSpidersPipeline:
         try:
             response = requests.post(self.api_url, json={"urls": self.urls_batch})
             response.raise_for_status()
-            spider.logger.info(f"Successfully posted {len(self.urls_batch)} URLs to {self.api_url}")
-        except requests.RequestException as e:
-            spider.logger.error(f"Failed to send URLs to {self.api_url}: {e}")
-            raise DropItem(f"POST request failed: {e}")
+            spider.logger.info("Successfully posted %s URLs to %s", len(self.urls_batch), {self.api_url})
+        except requests.RequestException:
+            msg = f"Failed to send URLs to {self.api_url}"
+            spider.logger.exception(msg)
+            raise DropItem(msg) from None
         finally:
             self.urls_batch.clear()
 
@@ -147,12 +159,13 @@ class SearchGovSpidersPipeline:
         try:
             if self._es:
                 self._get_elasticsearch_client().batch_upload(spider)
-        except Exception as e:
-            spider.logger.error(str(e))
-        
-        if len(self.urls_batch):
+        except Exception:  # pylint: disable=broad-except
+            msg = "Failed to upload Elasticsearch batch"
+            spider.logger.exception(msg)
+
+        if self.urls_batch:
             self._send_post_request(spider)
-        
+
         if self.current_file:
             self.current_file.close()
 
@@ -168,7 +181,8 @@ class DeDeuplicatorPipeline:
         If item has already been seen, drop it otherwise add to
         """
         if item["url"] in self.urls_seen:
-            raise DropItem("Item already seen!")
+            msg = "Item already seen!"
+            raise DropItem(msg)
 
         self.urls_seen.add(item["url"])
         return item

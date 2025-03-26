@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
     "freezegun==1.5.1",
-    "pylint==3.3.4",
+    "pylint==3.3.6",
     "pytest==8.3.5",
     "pytest-console-scripts==1.4.1",
     "scrapy==2.12.0",
