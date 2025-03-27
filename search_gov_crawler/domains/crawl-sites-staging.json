@@ -4101,6 +4101,16 @@
    },
    {
       "allow_query_string": false,
+      "allowed_domains": "jobs.tsa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "TSA Jobs (usagov-replacement)",
+      "output_target": "elasticsearch",
+      "schedule": "30 06 * * THU",
+      "starting_urls": "https://jobs.tsa.gov/"
+   },
+   {
+      "allow_query_string": false,
       "allowed_domains": "do.usembassy.gov",
       "depth_limit": 3,
       "handle_javascript": false,
@@ -4161,12 +4171,1222 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "jobs.tsa.gov",
+      "allowed_domains": "newsroom.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_newsroom",
+      "output_target": "elasticsearch",
+      "schedule": "00 01 * * SUN",
+      "starting_urls": "https://newsroom.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "martin.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_martin",
+      "output_target": "elasticsearch",
+      "schedule": "00 02 * * SUN",
+      "starting_urls": "https://martin.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "mhs-europe.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_mhseurope",
+      "output_target": "elasticsearch",
+      "schedule": "00 03 * * SUN",
+      "starting_urls": "https://mhs-europe.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "redstone.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_redstone",
+      "output_target": "elasticsearch",
+      "schedule": "00 04 * * SUN",
+      "starting_urls": "https://redstone.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "desmond-doss.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_desmonddoss",
+      "output_target": "elasticsearch",
+      "schedule": "00 05 * * SUN",
+      "starting_urls": "https://desmond-doss.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "diegogarcia.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_diegogarcia",
+      "output_target": "elasticsearch",
+      "schedule": "00 06 * * SUN",
+      "starting_urls": "https://diegogarcia.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "belvoirhospital.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_belvoir",
+      "output_target": "elasticsearch",
+      "schedule": "00 07 * * SUN",
+      "starting_urls": "https://belvoirhospital.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "womack.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_womack",
+      "output_target": "elasticsearch",
+      "schedule": "00 08 * * SUN",
+      "starting_urls": "https://womack.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "brianallgood.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_brianallgood",
+      "output_target": "elasticsearch",
+      "schedule": "00 09 * * SUN",
+      "starting_urls": "https://briandallgood.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nhc-charleston.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_charleston",
+      "output_target": "elasticsearch",
+      "schedule": "00 10 * * SUN",
+      "starting_urls": "https://nhc-charleston.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "guantanamo.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_guantanamo",
+      "output_target": "elasticsearch",
+      "schedule": "00 11 * * SUN",
+      "starting_urls": "https://guantanamo.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "paxriver.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_paxriver",
+      "output_target": "elasticsearch",
+      "schedule": "00 12 * * SUN",
+      "starting_urls": "https://paxriver.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "eisenhower.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_eisenhower",
+      "output_target": "elasticsearch",
+      "schedule": "00 13 * * SUN",
+      "starting_urls": "https://eisenhower.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "raymond-bliss.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_raymondbliss",
+      "output_target": "elasticsearch",
+      "schedule": "00 14 * * SUN",
+      "starting_urls": "https://raymond-bliss.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "munson.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_munson",
+      "output_target": "elasticsearch",
+      "schedule": "00 15 * * SUN",
+      "starting_urls": "https://munson.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "leonard-wood.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_leonardwood",
+      "output_target": "elasticsearch",
+      "schedule": "00 16 * * SUN",
+      "starting_urls": "https://leonard-wood.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "william-beaumont.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_williambeaumont",
+      "output_target": "elasticsearch",
+      "schedule": "00 17 * * SUN",
+      "starting_urls": "https://william-beaumont.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "weed-irwin.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_weedirwin",
+      "output_target": "elasticsearch",
+      "schedule": "00 18 * * SUN",
+      "starting_urls": "https://weed-irwin.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "bamc.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_brooke",
+      "output_target": "elasticsearch",
+      "schedule": "00 01 * * MON",
+      "starting_urls": "https://bamc.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "bg-crawford.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_bgcrawford",
+      "output_target": "elasticsearch",
+      "schedule": "00 02 * * MON",
+      "starting_urls": "https://bg-crawford.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "bayne-jones.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_baynejones",
+      "output_target": "elasticsearch",
+      "schedule": "00 03 * * MON",
+      "starting_urls": "https://bayne-jones.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "reynolds.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_reynolds",
+      "output_target": "elasticsearch",
+      "schedule": "00 04 * * MON",
+      "starting_urls": "https://reynolds.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nhchawaii.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_nhch",
+      "output_target": "elasticsearch",
+      "schedule": "00 05 * * MON",
+      "starting_urls": "https://nhchawaii.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "blanchfield.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_blanchfield",
+      "output_target": "elasticsearch",
+      "schedule": "00 06 * * MON",
+      "starting_urls": "https://blanchfield.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "southcomclinic.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_southcomclinic",
+      "output_target": "elasticsearch",
+      "schedule": "00 07 * * MON",
+      "starting_urls": "https://southcomclinic.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "guthrie.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_guthrie",
+      "output_target": "elasticsearch",
+      "schedule": "00 08 * * MON",
+      "starting_urls": "https://guthrie.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "kenner.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_kenner",
+      "output_target": "elasticsearch",
+      "schedule": "00 09 * * MON",
+      "starting_urls": "https://kenner.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "kimbrough.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_kimbrough",
+      "output_target": "elasticsearch",
+      "schedule": "00 10 * * MON",
+      "starting_urls": "https://kimbrough.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "rodriguez.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_rodriguez",
+      "output_target": "elasticsearch",
+      "schedule": "00 11 * * MON",
+      "starting_urls": "https://rodriguez.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "tripler.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_tripler",
+      "output_target": "elasticsearch",
+      "schedule": "00 12 * * MON",
+      "starting_urls": "https://tripler.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "yokosuka.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_yokosuka",
+      "output_target": "elasticsearch",
+      "schedule": "00 13 * * MON",
+      "starting_urls": "https://yokosuka.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "mcdonald.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_mdahc",
+      "output_target": "elasticsearch",
+      "schedule": "00 14 * * MON",
+      "starting_urls": "https://mcdonald.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "bavaria.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_bmv",
+      "output_target": "elasticsearch",
+      "schedule": "00 15 * * MON",
+      "starting_urls": "https://mhs-europe.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "landstuhl.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_lrmc",
+      "output_target": "elasticsearch",
+      "schedule": "00 16 * * MON",
+      "starting_urls": "https://landstuhl.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "portsmouth.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_nmcp",
+      "output_target": "elasticsearch",
+      "schedule": "00 17 * * MON",
+      "starting_urls": "https://portsmouth.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "guam.dod.afpims.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_guam",
+      "output_target": "elasticsearch",
+      "schedule": "00 18 * * MON",
+      "starting_urls": "https://guam.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "charleston.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_nhcc",
+      "output_target": "elasticsearch",
+      "schedule": "00 01 * * TUE",
+      "starting_urls": "http,://harleston.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "camp-lejeune.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_camplejeune",
+      "output_target": "elasticsearch",
+      "schedule": "00 02 * * TUE",
+      "starting_urls": "https://camp-lejeune.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "lemoore.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_lemoore",
+      "output_target": "elasticsearch",
+      "schedule": "00 03 * * TUE",
+      "starting_urls": "https://lemoore.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "beaufort.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_beaufort",
+      "output_target": "elasticsearch",
+      "schedule": "00 04 * * TUE",
+      "starting_urls": "https://beaufort.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "annapolis.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_annapolis",
+      "output_target": "elasticsearch",
+      "schedule": "00 05 * * TUE",
+      "starting_urls": "https://annapolis.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "carl-darnall.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_carldarnall",
+      "output_target": "elasticsearch",
+      "schedule": "00 06 * * TUE",
+      "starting_urls": "https://darnall.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "sigonella.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_sigonella",
+      "output_target": "elasticsearch",
+      "schedule": "00 07 * * TUE",
+      "starting_urls": "https://sigonella.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "evans.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_evans",
+      "output_target": "elasticsearch",
+      "schedule": "00 08 * * TUE",
+      "starting_urls": "https://evans.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "camp-pendleton.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_nhcp",
+      "output_target": "elasticsearch",
+      "schedule": "00 09 * * TUE",
+      "starting_urls": "https://camp-pendleton.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "pensacola.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_nhp",
+      "output_target": "elasticsearch",
+      "schedule": "00 10 * * TUE",
+      "starting_urls": "https://pensacola.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "rota.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_nhr",
+      "output_target": "elasticsearch",
+      "schedule": "00 11 * * TUE",
+      "starting_urls": "https://rota.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "newengland.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_nhcne",
+      "output_target": "elasticsearch",
+      "schedule": "00 12 * * TUE",
+      "starting_urls": "https://newengland.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "cherrypoint.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_cherrypoint",
+      "output_target": "elasticsearch",
+      "schedule": "00 13 * * TUE",
+      "starting_urls": "https://cherrypoint.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "irwin.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_irwin",
+      "output_target": "elasticsearch",
+      "schedule": "00 14 * * TUE",
+      "starting_urls": "https://irwin.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "twentynine-palms.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_twentynine-palms",
+      "output_target": "elasticsearch",
+      "schedule": "00 15 * * TUE",
+      "starting_urls": "https://twentynine-palms.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "bremerton.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_bremerton",
+      "output_target": "elasticsearch",
+      "schedule": "00 16 * * TUE",
+      "starting_urls": "https://bremerton.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "sandiego.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_nmcsd",
+      "output_target": "elasticsearch",
+      "schedule": "00 17 * * TUE",
+      "starting_urls": "https://sandiego.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "jacksonville.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_nhj",
+      "output_target": "elasticsearch",
+      "schedule": "00 18 * * TUE",
+      "starting_urls": "https://jacksonville.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "quantico.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_nhcq",
+      "output_target": "elasticsearch",
+      "schedule": "00 01 * * WED",
+      "starting_urls": "https://quantico.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "walterreed.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_wrnmc",
+      "output_target": "elasticsearch",
+      "schedule": "00 02 * * WED",
+      "starting_urls": "https://walterreed.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "corpuschristi.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_nhccc",
+      "output_target": "elasticsearch",
+      "schedule": "00 03 * * WED",
+      "starting_urls": "https://corpuschristi.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "lewismcchord.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_62ms",
+      "output_target": "elasticsearch",
+      "schedule": "00 04 * * WED",
+      "starting_urls": "https://lewismcchord.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "naples.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_naples",
+      "output_target": "elasticsearch",
+      "schedule": "00 05 * * WED",
+      "starting_urls": "https://naples.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "okinawa.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_okinawa",
+      "output_target": "elasticsearch",
+      "schedule": "00 06 * * WED",
+      "starting_urls": "https://okinawa.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "calmed.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_cmd",
+      "output_target": "elasticsearch",
+      "schedule": "00 07 * * WED",
+      "starting_urls": "https://calmed.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "winn.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_wach",
+      "output_target": "elasticsearch",
+      "schedule": "00 08 * * WED",
+      "starting_urls": "https://winn.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "dunham.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_dusahc",
+      "output_target": "elasticsearch",
+      "schedule": "00 09 * * WED",
+      "starting_urls": "https://dunham.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "moncrief.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_mahc",
+      "output_target": "elasticsearch",
+      "schedule": "00 10 * * WED",
+      "starting_urls": "https://moncrief.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "oakharbor.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_omc",
+      "output_target": "elasticsearch",
+      "schedule": "00 11 * * WED",
+      "starting_urls": "https://oakharbor.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "bassett-wainwright.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_ahcbw",
+      "output_target": "elasticsearch",
+      "schedule": "00 12 * * WED",
+      "starting_urls": "https://bassett-wainwright.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "madigan.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_mamc",
+      "output_target": "elasticsearch",
+      "schedule": "00 13 * * WED",
+      "starting_urls": "https://madigan.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "lyster.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_lyster",
+      "output_target": "elasticsearch",
+      "schedule": "00 14 * * WED",
+      "starting_urls": "https://lyster.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "keller.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_keller",
+      "output_target": "elasticsearch",
+      "schedule": "00 15 * * WED",
+      "starting_urls": "https://keller.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ireland.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_ireland",
+      "output_target": "elasticsearch",
+      "schedule": "00 16 * * WED",
+      "starting_urls": "https://ireland.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "dyess.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_dyess",
+      "output_target": "elasticsearch",
+      "schedule": "00 17 * * WED",
+      "starting_urls": "https://dyess.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "edwards.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_412mg",
+      "output_target": "elasticsearch",
+      "schedule": "00 18 * * WED",
+      "starting_urls": "https://edwards.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "eglin.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_96mg",
+      "output_target": "elasticsearch",
+      "schedule": "00 01 * * FRI",
+      "starting_urls": "https://eglin.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "dover.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_dover",
+      "output_target": "elasticsearch",
+      "schedule": "00 02 * * FRI",
+      "starting_urls": "https://dover.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "rafalconbury.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_rafalconbury",
+      "output_target": "elasticsearch",
+      "schedule": "00 03 * * FRI",
+      "starting_urls": "https://rafalconbury.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "goodfellow.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_goodfellow",
+      "output_target": "elasticsearch",
+      "schedule": "00 04 * * FRI",
+      "starting_urls": "https://goodfellow.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "seymourjohnson.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_seymourjohnson",
+      "output_target": "elasticsearch",
+      "schedule": "00 05 * * FRI",
+      "starting_urls": "https://seymourjohnson.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "scott.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_scott",
+      "output_target": "elasticsearch",
+      "schedule": "00 06 * * FRI",
+      "starting_urls": "https://scott.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "robins.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_robins",
+      "output_target": "elasticsearch",
+      "schedule": "00 07 * * FRI",
+      "starting_urls": "https://robins.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "shaw.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_20mg",
+      "output_target": "elasticsearch",
+      "schedule": "00 08 * * FRI",
+      "starting_urls": "https://shaw.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ramstein.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_ramstein",
+      "output_target": "elasticsearch",
+      "schedule": "00 09 * * FRI",
+      "starting_urls": "https://ramstein.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "sheppard.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_82mg",
+      "output_target": "elasticsearch",
+      "schedule": "00 10 * * FRI",
+      "starting_urls": "https://sheppard.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "vandenberg.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_30mg",
+      "output_target": "elasticsearch",
+      "schedule": "00 11 * * FRI",
+      "starting_urls": "https://vandenberg.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "pope.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_pope",
+      "output_target": "elasticsearch",
+      "schedule": "00 12 * * FRI",
+      "starting_urls": "https://pope.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "peterson.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_peterson",
+      "output_target": "elasticsearch",
+      "schedule": "00 13 * * FRI",
+      "starting_urls": "https://peterson.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "losangeles.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_losangeles",
+      "output_target": "elasticsearch",
+      "schedule": "00 14 * * FRI",
+      "starting_urls": "https://losangeles.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "macdill.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_macdill",
+      "output_target": "elasticsearch",
+      "schedule": "00 15 * * FRI",
+      "starting_urls": "https://macdill.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "luke.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_luke",
+      "output_target": "elasticsearch",
+      "schedule": "00 16 * * FRI",
+      "starting_urls": "https://luke.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "langleyeustis.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_langleyeustis",
+      "output_target": "elasticsearch",
+      "schedule": "00 17 * * FRI",
+      "starting_urls": "https://langleyeustis.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "grandforks.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_grandforks",
+      "output_target": "elasticsearch",
+      "schedule": "00 18 * * FRI",
+      "starting_urls": "https://grandforks.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "fewarren.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_fewarren",
+      "output_target": "elasticsearch",
+      "schedule": "00 01 * * SAT",
+      "starting_urls": "https://fewarren.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "elmendorfrichardson.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_elmendorfrichardson",
+      "output_target": "elasticsearch",
+      "schedule": "00 02 * * SAT",
+      "starting_urls": "https://elmendorfrichardson.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "beale.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_beale",
+      "output_target": "elasticsearch",
+      "schedule": "00 03 * * SAT",
+      "starting_urls": "https://beale.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "barksdale.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_barksdale",
+      "output_target": "elasticsearch",
+      "schedule": "00 04 * * SAT",
+      "starting_urls": "https://barksdale.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "andersen.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_andersen",
+      "output_target": "elasticsearch",
+      "schedule": "00 05 * * SAT",
+      "starting_urls": "https://andersen.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "buckley.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_buckley",
+      "output_target": "elasticsearch",
+      "schedule": "00 06 * * SAT",
+      "starting_urls": "https://buckley.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "altus.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_altus",
+      "output_target": "elasticsearch",
+      "schedule": "00 07 * * SAT",
+      "starting_urls": "https://altus.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "offutt.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_offutt",
+      "output_target": "elasticsearch",
+      "schedule": "00 08 * * SAT",
+      "starting_urls": "https://offutt.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "osan.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_osan",
+      "output_target": "elasticsearch",
+      "schedule": "00 09 * * SAT",
+      "starting_urls": "https://osan.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nellis.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_nellis",
+      "output_target": "elasticsearch",
+      "schedule": "00 10 * * SAT",
+      "starting_urls": "https://nellis.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "tyndall.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_tyndall",
+      "output_target": "elasticsearch",
+      "schedule": "00 11 * * SAT",
+      "starting_urls": "https://tyndall.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "vance.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_vance",
+      "output_target": "elasticsearch",
+      "schedule": "00 12 * * SAT",
+      "starting_urls": "https://vance.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "whiteman.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_whiteman",
+      "output_target": "elasticsearch",
+      "schedule": "00 13 * * SAT",
+      "starting_urls": "https://whiteman.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "wilfordhall.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_willfordhall",
+      "output_target": "elasticsearch",
+      "schedule": "00 14 * * SAT",
+      "starting_urls": "https://wilfordhall.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "kirtland.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_kirtland",
+      "output_target": "elasticsearch",
+      "schedule": "00 15 * * SAT",
+      "starting_urls": "https://kirtland.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "wrightpatterson.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_wrightpatterson",
+      "output_target": "elasticsearch",
+      "schedule": "00 16 * * SAT",
+      "starting_urls": "https://wrightpatterson.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "keesler.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_keesler",
+      "output_target": "elasticsearch",
+      "schedule": "00 17 * * SAT",
+      "starting_urls": "https://keesler.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "yokota.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_374mg",
+      "output_target": "elasticsearch",
+      "schedule": "00 18 * * SAT",
+      "starting_urls": "https://yokota.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "airforceacademy.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_10mgafa",
+      "output_target": "elasticsearch",
+      "schedule": "00 19 * * SAT",
+      "starting_urls": "https://airforceacademy.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "lncirlik.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_incirlik",
+      "output_target": "elasticsearch",
+      "schedule": "00 20 * * SAT",
+      "starting_urls": "https://incirlik.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "hurlburt.tricare.mil",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "tricare_hurlburt",
+      "output_target": "elasticsearch",
+      "schedule": "00 21 * * SAT",
+      "starting_urls": "https://hurlburt.tricare.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "boem.gov",
       "depth_limit": 3,
       "handle_javascript": false,
-      "name": "TSA Jobs (usagov-replacement)",
+      "name": "boem",
       "output_target": "elasticsearch",
-      "schedule": "30 06 * * THU",
-      "starting_urls": "https://jobs.tsa.gov/"
+      "schedule": "15 10 * * FRI",
+      "starting_urls": "https://www.boem.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ccac.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "ccac.gov",
+      "output_target": "elasticsearch",
+      "schedule": "15 01 * * FRI",
+      "starting_urls": "https://www.ccac.gov"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "chemm.hhs.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "chemicalhazardsemergencymedicalma",
+      "output_target": "elasticsearch",
+      "schedule": "15 04 * * FRI",
+      "starting_urls": "https://chemm.hhs.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "tva.com",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "tva",
+      "output_target": "elasticsearch",
+      "schedule": "15 11 * * FRI",
+      "starting_urls": "https://www.tva.com/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "affoa.org",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "affoa",
+      "output_target": "elasticsearch",
+      "schedule": "15 03 * * FRI",
+      "starting_urls": "https://affoa.org/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "cdo.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "cdo_gov",
+      "output_target": "elasticsearch",
+      "schedule": "15 02 * * FRI",
+      "starting_urls": "https://www.cdo.gov"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "zerowaste.dc.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "dc_zerowaste",
+      "output_target": "elasticsearch",
+      "schedule": "15 05 * * FRI",
+      "starting_urls": "https://zerowaste.dc.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "girlshealth.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "girlshealth.gov",
+      "output_target": "elasticsearch",
+      "schedule": "15 06 * * FRI",
+      "starting_urls": "https://girlshealth.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "mmc.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "mmc",
+      "output_target": "elasticsearch",
+      "schedule": "15 07 * * FRI",
+      "starting_urls": "https://www.mmc.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "crb.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "crb",
+      "output_target": "elasticsearch",
+      "schedule": "15 08 * * FRI",
+      "starting_urls": "https://www.crb.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "firstnet.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "firstnet",
+      "output_target": "elasticsearch",
+      "schedule": "15 09 * * FRI",
+      "starting_urls": "https://firstnet.gov/"
    }
 ]

@@ -20,6 +20,7 @@ updates:
           - "python-dotenv"
           - "pypdf"
           - "langdetect"
+          - "python-dateutil"
       testing-and-linting:
         patterns:
           - "freezegun"
