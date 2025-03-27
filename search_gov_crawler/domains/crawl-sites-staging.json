@@ -3111,6 +3111,26 @@
    },
    {
       "allow_query_string": false,
+      "allowed_domains": "smithsonianmag.com",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Smithsonian Magazine (usagov-replacement)",
+      "output_target": "elasticsearch",
+      "schedule": "30 06 * * WED",
+      "starting_urls": "https://www.smithsonianmag.com/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "grants.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "Grants.gov (usagov-replacement)",
+      "output_target": "elasticsearch",
+      "schedule": "30 06 * * WED",
+      "starting_urls": "https://www.grants.gov/"
+   },
+   {
+      "allow_query_string": false,
       "allowed_domains": "oversightdemocrats.house.gov",
       "depth_limit": 3,
       "handle_javascript": false,
@@ -4128,5 +4148,25 @@
       "output_target": "elasticsearch",
       "schedule": "30 06 * * THU",
       "starting_urls": "https://www.va.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ntrs.nasa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "NATA Technical Reports Server (usagov-replacement)",
+      "output_target": "elasticsearch",
+      "schedule": "30 06 * * THU",
+      "starting_urls": "https://ntrs.nasa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "jobs.tsa.gov",
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "TSA Jobs (usagov-replacement)",
+      "output_target": "elasticsearch",
+      "schedule": "30 06 * * THU",
+      "starting_urls": "https://jobs.tsa.gov/"
    }
 ]
