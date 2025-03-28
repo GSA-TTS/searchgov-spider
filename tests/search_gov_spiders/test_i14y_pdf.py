@@ -3,6 +3,7 @@ from datetime import datetime
 from unittest.mock import patch, MagicMock
 from search_gov_crawler.elasticsearch import convert_pdf_i14y
 
+
 class FakePage:
     def __init__(self, text):
         self._text = text
@@ -10,9 +11,10 @@ class FakePage:
 
     def extract_text(self):
         return self._text
-    
+
     def get_object(self):
         return self._object
+
 
 class FakePdfReader:
     def __init__(self, stream, is_encrypted=False, pages=None, metadata=None):
@@ -20,40 +22,52 @@ class FakePdfReader:
         self.pages = pages if pages is not None else []
         self.metadata = metadata if metadata is not None else {}
 
+
 # Dummy helper functions to override external dependencies. We're already testing them in other places
 def dummy_get_base_extension(url):
     return ("fake_basename", "pdf")
 
+
 def dummy_separate_file_name(filename):
     return "Fake Title from filename"
+
 
 def dummy_summarize_text(text, lang_code):
     # Return a tuple: (description, list of keywords)
     return ("Fake description", ["keyword1", "keyword2"])
 
+
 def dummy_generate_url_sha256(url):
     return "dummy_sha"
+
 
 def dummy_detect_lang(text):
     return "en"
 
+
 def dummy_current_utc_iso():
     return "2023-01-01T00:00:00Z"
 
-def dummy_null_date(date_str):
+
+def dummy_parse_date_safely(date_str):
     # For testing, simply return the date_str (or a default if none provided)
-    return date_str if date_str else "null_date"
+    return date_str if date_str else "parse_date_safely"
+
 
 def dummy_get_url_path(url):
     return "/fake/path"
 
+
 def dummy_get_domain_name(url):
     return "fake.domain.com"
+
 
 def dummy_sanitize_text(text):
     return text.strip()
 
+
 # ----- Pytest fixture to patch helper functions -----
+
 
 @pytest.fixture(autouse=True)
 def patch_helpers(monkeypatch):
@@ -63,14 +77,16 @@ def patch_helpers(monkeypatch):
     monkeypatch.setattr(convert_pdf_i14y, "generate_url_sha256", dummy_generate_url_sha256)
     monkeypatch.setattr(convert_pdf_i14y, "detect_lang", dummy_detect_lang)
     monkeypatch.setattr(convert_pdf_i14y, "current_utc_iso", dummy_current_utc_iso)
-    monkeypatch.setattr(convert_pdf_i14y, "null_date", dummy_null_date)
+    monkeypatch.setattr(convert_pdf_i14y, "parse_date_safely", dummy_parse_date_safely)
     monkeypatch.setattr(convert_pdf_i14y, "get_url_path", dummy_get_url_path)
     monkeypatch.setattr(convert_pdf_i14y, "get_domain_name", dummy_get_domain_name)
     monkeypatch.setattr(convert_pdf_i14y.content, "sanitize_text", dummy_sanitize_text)
     # Ensure the allowed language list includes "en" so that we get a valid language suffix.
     monkeypatch.setattr(convert_pdf_i14y, "ALLOWED_LANGUAGE_CODE", {"en": "english"})
 
+
 # ----- Tests for helper functions -----
+
 
 def test_get_pdf_text():
     """Test that get_pdf_text concatenates text from each page."""
@@ -87,12 +103,10 @@ def test_get_pdf_text():
     expected = f"{fake_page_content_1} {fake_page_content_2} "
     assert result == expected
 
+
 def test_get_pdf_meta():
     """Test that metadata is cleaned and dates are parsed."""
-    metadata = {
-        "/Title": "Fake Title",
-        "/CreationDate": "D:20230101000000"
-    }
+    metadata = {"/Title": "Fake Title", "/CreationDate": "D:20230101000000"}
     fake_reader = FakePdfReader(None, metadata=metadata)
     meta = convert_pdf_i14y.get_pdf_meta(fake_reader)
     # Check that the Title is preserved and the CreationDate is parsed to a datetime.
@@ -101,12 +115,14 @@ def test_get_pdf_meta():
     assert isinstance(creation_date, datetime)
     assert creation_date == datetime(2023, 1, 1, 0, 0, 0)
 
+
 def test_parse_if_date_valid():
     """Test parse_if_date with a valid PDF date string."""
     date_str = "D:20230101023045"
     result = convert_pdf_i14y.parse_if_date(date_str)
     expected = datetime(2023, 1, 1, 2, 30, 45)
     assert result == expected
+
 
 def test_parse_if_date_invalid():
     """Test parse_if_date with an invalid date string starting with 'D:'."""
@@ -115,29 +131,29 @@ def test_parse_if_date_invalid():
     result = convert_pdf_i14y.parse_if_date(invalid_date)
     assert result == invalid_date.strip()
 
+
 def test_parse_if_date_non_date():
     """Test parse_if_date with a non-string value (or a string not starting with 'D:')."""
     non_date = "Not a date"
     result = convert_pdf_i14y.parse_if_date(non_date)
     assert result == non_date.strip()
 
+
 # ----- Tests for the main conversion function -----
+
 
 def test_convert_pdf_normal(monkeypatch):
     """Test convert_pdf with a non-encrypted PDF simulation."""
-    fake_metadata = {
-        "/Title": "Fake Title",
-        "/CreationDate": "D:20230101000000"
-    }
+    fake_metadata = {"/Title": "Fake Title", "/CreationDate": "D:20230101000000"}
     pages = [FakePage("This is the content of the PDF.")]
     fake_reader = FakePdfReader(None, is_encrypted=False, pages=pages, metadata=fake_metadata)
     # Patch PdfReader so that any instantiation returns our fake_reader.
     monkeypatch.setattr(convert_pdf_i14y, "PdfReader", lambda stream: fake_reader)
-    
+
     response_bytes = b"dummy bytes representing pdf"
     url = "http://example.com/fake.pdf"
     result = convert_pdf_i14y.convert_pdf(response_bytes, url, response_language="en")
-    
+
     # Check that the result is a dict with expected keys and values.
     assert result is not None
     # Since ALLOWED_LANGUAGE_CODE includes "en", we expect language suffix "_en" on these fields.
@@ -150,6 +166,7 @@ def test_convert_pdf_normal(monkeypatch):
     assert result["extension"] == "pdf"
     assert result["url_path"] == "/fake/path"
     assert result["domain_name"] == "fake.domain.com"
+
 
 def test_convert_pdf_encrypted(monkeypatch):
     """Test convert_pdf when the PDF is encrypted (should return None)."""
@@ -167,7 +184,7 @@ def test_add_title_and_filename():
         "title_en": "Sample PDF",
         "basename": "sample",
         "extension": "pdf",
-        "content_en": "This is some sample content."
+        "content_en": "This is some sample content.",
     }
     convert_pdf_i14y.add_title_and_filename("content_en", "title_en", doc)
     expected_content = "Sample PDF sample.pdf This is some sample content."
@@ -179,14 +196,14 @@ def test_get_links_set():
     # Mocking PdfReader and its pages
     fake_page1 = MagicMock()
     fake_page1.extract_text.return_value = "Visit https://example.com for more info."
-    
+
     fake_page2 = MagicMock()
     fake_page2.extract_text.return_value = "Check out www.test.com and also https://example.com"
-    
+
     fake_reader = MagicMock()
     fake_reader.pages = [fake_page1, fake_page2]
-    
+
     links = convert_pdf_i14y.get_links_set(fake_reader)
     expected_links = {"https://example.com", "www.test.com"}
-    
+
     assert set(links) == expected_links

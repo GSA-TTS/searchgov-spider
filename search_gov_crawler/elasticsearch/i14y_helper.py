@@ -1,12 +1,18 @@
-import re
-import os
 import hashlib
-from langdetect import detect
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize, sent_tokenize
+import logging
+import os
+import re
 from datetime import UTC, datetime
 from urllib.parse import urlparse
-
+from dotenv import load_dotenv
+from dateutil import parser
+from langdetect import detect
+from nltk.corpus import stopwords
+from nltk.tokenize import sent_tokenize, word_tokenize
+from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
+from pythonjsonlogger.json import JsonFormatter
+from typing import Any
+from dateutil.parser import ParserError
 
 # fmt: off
 ALLOWED_LANGUAGE_CODE = {
@@ -20,18 +26,39 @@ ALLOWED_LANGUAGE_CODE = {
 }
 # fmt: on
 
-def null_date(article_date):
+load_dotenv()
+logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
+logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
+logger = logging.getLogger("search_gov_crawler.i14y_helper")
+
+
+def parse_date_safely(date_value: Any) -> str | None:
     """
     Convert falsey date values (like an empty string) to None,
-    which will yield a null value in elasticsearch
+    which will yield a null value in elasticsearch.
 
     Args:
-        article_date (str | Any): Date value that needs to fallback to null
+        date_value (str | Any): Date value that needs to fallback to null
 
     Returns:
-        str: Either the original date, or NoneValue
+        str: Either the date in isoformat (YYYY-MM-DD'T'HH:MM:SS), or None
     """
-    return article_date or None
+    datetime_format = "%Y-%m-%dT%H:%M:%S"
+
+    if date_value is None or date_value == "":
+        return None
+
+    if isinstance(date_value, datetime):
+        return date_value.strftime(datetime_format)
+
+    try:
+        datetime_object = parser.parse(date_value, fuzzy=True)
+        return datetime_object.strftime(datetime_format)
+
+    except (ParserError, TypeError):
+        logger.warning("Could not parse date: '%s'", date_value)
+        return None
+
 
 def detect_lang(text: str) -> str:
     """
@@ -49,9 +76,9 @@ def detect_lang(text: str) -> str:
     except Exception:
         pass
     return None
-    
 
-def summarize_text(text: str, lang_code: str=None):
+
+def summarize_text(text: str, lang_code: str = None):
     """
     Summarizes text and extracts keywords using nltk, and calculates execution time.
 
@@ -64,7 +91,6 @@ def summarize_text(text: str, lang_code: str=None):
 
     if (lang_code not in ALLOWED_LANGUAGE_CODE) or not text or type(text) != str:
         return None, None
-    
     stop_words = set(stopwords.words(ALLOWED_LANGUAGE_CODE[lang_code]))
     sentences = sent_tokenize(text)
 
@@ -86,7 +112,7 @@ def summarize_text(text: str, lang_code: str=None):
                     sentence_scores[sentence] += word_frequencies[word]
 
     summary_sentences = sorted(sentence_scores, key=sentence_scores.get, reverse=True)[:3]
-    summary = ' '.join(summary_sentences)
+    summary = " ".join(summary_sentences)
 
     sorted_words = sorted(word_frequencies, key=word_frequencies.get, reverse=True)[:10]
     keywords = ", ".join(sorted_words)
