@@ -21,7 +21,7 @@ typing_extensions==4.12.2
 
 newspaper4k[all]==0.9.3.1 # This also installs the nltk library
 cchardet==2.2.0a2 # C version of chardet
-pytest-asyncio==0.25.3
+pytest-asyncio==0.26.0
 python-dotenv==1.0.1
 
 pypdf==5.3.1
