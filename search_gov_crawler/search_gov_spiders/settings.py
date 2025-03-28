@@ -44,6 +44,9 @@ CONCURRENT_REQUESTS = 1
 CONCURRENT_REQUESTS_PER_DOMAIN = 1
 DOWNLOAD_DELAY = 1
 
+# Limit downloads to 15MB
+DOWNLOAD_MAXSIZE = 15728640
+
 # settings for broad crawling
 SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
 # set to True for BFO
@@ -59,11 +62,7 @@ SCHEDULER_MEMORY_QUEUE = "scrapy.squeues.FifoMemoryQueue"
 
 # Enable on-disk job queue using pid and start time as unique name
 # https://docs.scrapy.org/en/latest/topics/jobs.html
-JOBDIR = str(
-    Path(__file__).parent.parent
-    / "jobs"
-    / f"{os.getpid()}-{spider_start.strftime('%Y%m%d%H%M%S')}"
-)
+JOBDIR = str(Path(__file__).parent.parent / "jobs" / f"{os.getpid()}-{spider_start.strftime('%Y%m%d%H%M%S')}")
 SCHEDULER_DEBUG = True
 
 # Enable or disable spider middlewares
