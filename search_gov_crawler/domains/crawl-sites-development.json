@@ -5724,7 +5724,7 @@
       "allowed_domains": "ninth.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "15th Air Force (afpw_ninth)",
+      "name": "9th Air Force (afpw_ninth)",
       "output_target": "elasticsearch",
       "schedule": "42 23 * * SUN",
       "starting_urls": "https://www.ninth.af.mil/"
@@ -6404,7 +6404,7 @@
       "allowed_domains": "public.mcconnell.amc.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "McConnell Air Force Base (afpw_mcconnell)",
+      "name": "McConnell Air Force Base Public (afpw_mcconnell)",
       "output_target": "elasticsearch",
       "schedule": "6 23 * * TUE",
       "starting_urls": "https://public.mcconnell.amc.af.mil/"
@@ -6484,7 +6484,7 @@
       "allowed_domains": "airforcehollywood.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "Air Force Entertainment Liaison Office (afpw_hollywood)",
+      "name": "Air Force Entertainment Liaison Office HQ (afpw_hollywood)",
       "output_target": "elasticsearch",
       "schedule": "41 4 * * WED",
       "starting_urls": "https://www.airforcehollywood.af.mil/"
@@ -6954,7 +6954,7 @@
       "allowed_domains": "178fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "178th Wing, Ohio Air National Guard (afpw_178fw)",
+      "name": "178th Wing, Ohio Air National Guard FW (afpw_178fw)",
       "output_target": "elasticsearch",
       "schedule": "27 13 * * THU",
       "starting_urls": "https://www.178fw.ang.af.mil/"
@@ -7034,7 +7034,7 @@
       "allowed_domains": "188fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "188th Wing, Arkansas ANG (afpw_188fw)",
+      "name": "188th FW, Arkansas ANG (afpw_188fw)",
       "output_target": "elasticsearch",
       "schedule": "1 19 * * THU",
       "starting_urls": "https://www.188fw.ang.af.mil/"
@@ -7044,7 +7044,7 @@
       "allowed_domains": "188wg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "188th Wing, Arkansas ANG (afpw_188fw)",
+      "name": "188th WG, Arkansas ANG (afpw_188fw)",
       "output_target": "elasticsearch",
       "schedule": "43 19 * * THU",
       "starting_urls": "https://www.188wg.ang.af.mil/"
@@ -7084,7 +7084,7 @@
       "allowed_domains": "192wg.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "192D Fighter Wing (afpw_192fw)",
+      "name": "192D WG (afpw_192fw)",
       "output_target": "elasticsearch",
       "schedule": "30 22 * * THU",
       "starting_urls": "https://www.192wg.ang.af.mil/"
@@ -7384,7 +7384,7 @@
       "allowed_domains": "162fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "162nd Wing, Arizona ANG (afpw_162fw)",
+      "name": "162nd FW, Arizona ANG (afpw_162fw)",
       "output_target": "elasticsearch",
       "schedule": "25 19 * * FRI",
       "starting_urls": "https://www.162fw.ang.af.mil/"
@@ -7394,7 +7394,7 @@
       "allowed_domains": "163rw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "163rd ATKW, California Air National Guard (afpw_163rw)",
+      "name": "163rd RW, California Air National Guard (afpw_163rw)",
       "output_target": "elasticsearch",
       "schedule": "7 20 * * FRI",
       "starting_urls": "https://www.163rw.ang.af.mil/"
@@ -7484,7 +7484,7 @@
       "allowed_domains": "111fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "111th Attack Wing (afpw_111fw)",
+      "name": "111th Attack Wing FW (afpw_111fw)",
       "output_target": "elasticsearch",
       "schedule": "23 2 * * SAT",
       "starting_urls": "https://www.111fw.ang.af.mil/"
@@ -7564,7 +7564,7 @@
       "allowed_domains": "120fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "120th Airlift Wing (afpw_120fw)",
+      "name": "120th FW (afpw_120fw)",
       "output_target": "elasticsearch",
       "schedule": "58 7 * * SAT",
       "starting_urls": "https://www.120fw.ang.af.mil/"
@@ -7664,7 +7664,7 @@
       "allowed_domains": "132fw.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "132nd Wing, Iowa ANG (afpw_132fw)",
+      "name": "132nd FW, Iowa ANG (afpw_132fw)",
       "output_target": "elasticsearch",
       "schedule": "56 14 * * SAT",
       "starting_urls": "https://www.132fw.ang.af.mil/"
@@ -7674,7 +7674,7 @@
       "allowed_domains": "132dwing.ang.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "132nd Wing, Iowa ANG (afpw_132fw)",
+      "name": "132nd DWing, Iowa ANG (afpw_132fw)",
       "output_target": "elasticsearch",
       "schedule": "38 15 * * SAT",
       "starting_urls": "https://www.132dwing.ang.af.mil/"
@@ -7764,7 +7764,7 @@
       "allowed_domains": "osi.andrews.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "Office of Special Investigations (afosi)",
+      "name": "Office of Special Investigations Andrews (afosi)",
       "output_target": "elasticsearch",
       "schedule": "55 21 * * SAT",
       "starting_urls": "https://osi.andrews.af.mil/"

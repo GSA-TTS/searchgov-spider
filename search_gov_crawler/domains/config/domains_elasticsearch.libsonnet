@@ -4270,7 +4270,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: '15th Air Force (afpw_ninth)',
+    name: '9th Air Force (afpw_ninth)',
     config: DomainConfig(allowed_domains='ninth.af.mil',
                          starting_urls='https://www.ninth.af.mil/',
                          schedule='42 23 * * SUN',
@@ -4814,7 +4814,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: 'McConnell Air Force Base (afpw_mcconnell)',
+    name: 'McConnell Air Force Base Public (afpw_mcconnell)',
     config: DomainConfig(allowed_domains='public.mcconnell.amc.af.mil',
                          starting_urls='https://public.mcconnell.amc.af.mil/',
                          schedule='6 23 * * TUE',
@@ -4878,7 +4878,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: 'Air Force Entertainment Liaison Office (afpw_hollywood)',
+    name: 'Air Force Entertainment Liaison Office HQ (afpw_hollywood)',
     config: DomainConfig(allowed_domains='airforcehollywood.af.mil',
                          starting_urls='https://www.airforcehollywood.af.mil/',
                          schedule='41 4 * * WED',
@@ -5254,7 +5254,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: '178th Wing, Ohio Air National Guard (afpw_178fw)',
+    name: '178th Wing, Ohio Air National Guard FW (afpw_178fw)',
     config: DomainConfig(allowed_domains='178fw.ang.af.mil',
                          starting_urls='https://www.178fw.ang.af.mil/',
                          schedule='27 13 * * THU',
@@ -5318,7 +5318,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: '188th Wing, Arkansas ANG (afpw_188fw)',
+    name: '188th FW, Arkansas ANG (afpw_188fw)',
     config: DomainConfig(allowed_domains='188fw.ang.af.mil',
                          starting_urls='https://www.188fw.ang.af.mil/',
                          schedule='1 19 * * THU',
@@ -5326,7 +5326,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: '188th Wing, Arkansas ANG (afpw_188fw)',
+    name: '188th WG, Arkansas ANG (afpw_188fw)',
     config: DomainConfig(allowed_domains='188wg.ang.af.mil',
                          starting_urls='https://www.188wg.ang.af.mil/',
                          schedule='43 19 * * THU',
@@ -5358,7 +5358,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: '192D Fighter Wing (afpw_192fw)',
+    name: '192D WG (afpw_192fw)',
     config: DomainConfig(allowed_domains='192wg.ang.af.mil',
                          starting_urls='https://www.192wg.ang.af.mil/',
                          schedule='30 22 * * THU',
@@ -5598,7 +5598,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: '162nd Wing, Arizona ANG (afpw_162fw)',
+    name: '162nd FW, Arizona ANG (afpw_162fw)',
     config: DomainConfig(allowed_domains='162fw.ang.af.mil',
                          starting_urls='https://www.162fw.ang.af.mil/',
                          schedule='25 19 * * FRI',
@@ -5606,7 +5606,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: '163rd ATKW, California Air National Guard (afpw_163rw)',
+    name: '163rd RW, California Air National Guard (afpw_163rw)',
     config: DomainConfig(allowed_domains='163rw.ang.af.mil',
                          starting_urls='https://www.163rw.ang.af.mil/',
                          schedule='7 20 * * FRI',
@@ -5678,7 +5678,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: '111th Attack Wing (afpw_111fw)',
+    name: '111th Attack Wing FW (afpw_111fw)',
     config: DomainConfig(allowed_domains='111fw.ang.af.mil',
                          starting_urls='https://www.111fw.ang.af.mil/',
                          schedule='23 2 * * SAT',
@@ -5742,7 +5742,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: '120th Airlift Wing (afpw_120fw)',
+    name: '120th FW (afpw_120fw)',
     config: DomainConfig(allowed_domains='120fw.ang.af.mil',
                          starting_urls='https://www.120fw.ang.af.mil/',
                          schedule='58 7 * * SAT',
@@ -5822,7 +5822,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: '132nd Wing, Iowa ANG (afpw_132fw)',
+    name: '132nd FW, Iowa ANG (afpw_132fw)',
     config: DomainConfig(allowed_domains='132fw.ang.af.mil',
                          starting_urls='https://www.132fw.ang.af.mil/',
                          schedule='56 14 * * SAT',
@@ -5830,7 +5830,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: '132nd Wing, Iowa ANG (afpw_132fw)',
+    name: '132nd DWing, Iowa ANG (afpw_132fw)',
     config: DomainConfig(allowed_domains='132dwing.ang.af.mil',
                          starting_urls='https://www.132dwing.ang.af.mil/',
                          schedule='38 15 * * SAT',
@@ -5902,7 +5902,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: 'Office of Special Investigations (afosi)',
+    name: 'Office of Special Investigations Andrews (afosi)',
     config: DomainConfig(allowed_domains='osi.andrews.af.mil',
                          starting_urls='https://osi.andrews.af.mil/',
                          schedule='55 21 * * SAT',
