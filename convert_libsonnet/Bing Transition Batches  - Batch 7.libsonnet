@@ -2,7 +2,7 @@
   {
     name: 'Air Force Learning Professionals (aflearningprofessionals)',
     config: DomainConfig(allowed_domains='learningprofessionals.af.mil',
-                         starting_urls='https://learningprofessionals.af.mil/',
+                         starting_urls='https://www.learningprofessionals.af.mil/',
                          schedule='0 0 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -10,7 +10,7 @@
   {
     name: 'af.mi (af.mil)',
     config: DomainConfig(allowed_domains='af.mil',
-                         starting_urls='https://af.mil/',
+                         starting_urls='https://www.af.mil/',
                          schedule='42 0 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -18,7 +18,7 @@
   {
     name: 'MIT-AF AI Accelerator (af_aiaccelerator)',
     config: DomainConfig(allowed_domains='aiaccelerator.af.mil',
-                         starting_urls='https://aiaccelerator.af.mil/',
+                         starting_urls='https://www.aiaccelerator.af.mil/',
                          schedule='24 1 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -34,7 +34,7 @@
   {
     name: 'Wavelength Detachment 1, 850th Spectrum Warfare Group (af_wavelength)',
     config: DomainConfig(allowed_domains='wavelength.af.mil',
-                         starting_urls='https://wavelength.af.mil/',
+                         starting_urls='https://www.wavelength.af.mil/',
                          schedule='47 2 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -42,7 +42,7 @@
   {
     name: 'AFWERX (af_werx)',
     config: DomainConfig(allowed_domains='afwerx.af.mil',
-                         starting_urls='https://afwerx.af.mil/',
+                         starting_urls='https://www.afwerx.af.mil/',
                          schedule='29 3 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -50,7 +50,7 @@
   {
     name: '521st Air Mobility Operations Wing (af_521amow)',
     config: DomainConfig(allowed_domains='521amow.af.mil',
-                         starting_urls='https://521amow.af.mil/',
+                         starting_urls='https://www.521amow.af.mil/',
                          schedule='11 4 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -58,7 +58,7 @@
   {
     name: 'CSAF Strategic Integration Group (afpw_afsig)',
     config: DomainConfig(allowed_domains='afsig.af.mil',
-                         starting_urls='https://afsig.af.mil/',
+                         starting_urls='https://www.afsig.af.mil/',
                          schedule='53 4 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -66,7 +66,7 @@
   {
     name: 'Air Force Resilience (afpw_resil)',
     config: DomainConfig(allowed_domains='resilience.af.mil',
-                         starting_urls='https://resilience.af.mil/',
+                         starting_urls='https://www.resilience.af.mil/',
                          schedule='35 5 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -82,7 +82,7 @@
   {
     name: 'Special Warfare Training Wing (afpw_swtw)',
     config: DomainConfig(allowed_domains='specialwarfaretw.af.mil',
-                         starting_urls='https://specialwarfaretw.af.mil/',
+                         starting_urls='https://www.specialwarfaretw.af.mil/',
                          schedule='58 6 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -90,7 +90,7 @@
   {
     name: 'Air Force Inspector General (afpw_afinspectorgeneral)',
     config: DomainConfig(allowed_domains='afinspectorgeneral.af.mil',
-                         starting_urls='https://afinspectorgeneral.af.mil/',
+                         starting_urls='https://www.afinspectorgeneral.af.mil/',
                          schedule='40 7 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -98,7 +98,7 @@
   {
     name: 'Air Force Innovation (afpw_innovation)',
     config: DomainConfig(allowed_domains='innovation.af.mil',
-                         starting_urls='https://innovation.af.mil/',
+                         starting_urls='https://www.innovation.af.mil/',
                          schedule='22 8 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -106,7 +106,7 @@
   {
     name: '12th Flying Training Wing (afpw_12ftw)',
     config: DomainConfig(allowed_domains='12ftw.af.mil',
-                         starting_urls='https://12ftw.af.mil/',
+                         starting_urls='https://www.12ftw.af.mil/',
                          schedule='4 9 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -114,7 +114,7 @@
   {
     name: 'Air Force Small Business (afpw_afsb)',
     config: DomainConfig(allowed_domains='airforcesmallbiz.af.mil',
-                         starting_urls='https://airforcesmallbiz.af.mil/',
+                         starting_urls='https://www.airforcesmallbiz.af.mil/',
                          schedule='46 9 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -122,7 +122,7 @@
   {
     name: 'Curtis E. Lemay Center for Doctrine Development and Education (afpw_lemay)',
     config: DomainConfig(allowed_domains='doctrine.af.mil',
-                         starting_urls='https://doctrine.af.mil/',
+                         starting_urls='https://www.doctrine.af.mil/',
                          schedule='27 10 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -130,7 +130,7 @@
   {
     name: 'Air Force Small Business Innovation Research and Small Business Technology Transfer (afpw_sbirsttr)',
     config: DomainConfig(allowed_domains='afsbirsttr.af.mil',
-                         starting_urls='https://afsbirsttr.af.mil/',
+                         starting_urls='https://www.afsbirsttr.af.mil/',
                          schedule='9 11 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -138,7 +138,7 @@
   {
     name: '2nd Air Force (afpw_2af)',
     config: DomainConfig(allowed_domains='2af.aetc.af.mil',
-                         starting_urls='https://2af.aetc.af.mil/',
+                         starting_urls='https://www.2af.aetc.af.mil/',
                          schedule='51 11 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -146,7 +146,7 @@
   {
     name: '194th Wing, Wahington ANG (afpw_194wg)',
     config: DomainConfig(allowed_domains='194wg.ang.af.mil',
-                         starting_urls='https://194wg.ang.af.mil/',
+                         starting_urls='https://www.194wg.ang.af.mil/',
                          schedule='33 12 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -154,7 +154,7 @@
   {
     name: '125th Fighter Wing (afpw_125fw)',
     config: DomainConfig(allowed_domains='125fw.ang.af.mil',
-                         starting_urls='https://125fw.ang.af.mil/',
+                         starting_urls='https://www.125fw.ang.af.mil/',
                          schedule='15 13 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -162,7 +162,7 @@
   {
     name: '174th Attack Wing (afpw_174aw)',
     config: DomainConfig(allowed_domains='174attackwing.ang.af.mil',
-                         starting_urls='https://174attackwing.ang.af.mil/',
+                         starting_urls='https://www.174attackwing.ang.af.mil/',
                          schedule='57 13 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -170,7 +170,7 @@
   {
     name: 'Air Force Test Center (afpw_aftc)',
     config: DomainConfig(allowed_domains='aftc.af.mil',
-                         starting_urls='https://aftc.af.mil/',
+                         starting_urls='https://www.aftc.af.mil/',
                          schedule='38 14 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -178,7 +178,7 @@
   {
     name: 'Air Force BES (afpw_gunter)',
     config: DomainConfig(allowed_domains='airforcebes.af.mil',
-                         starting_urls='https://airforcebes.af.mil/',
+                         starting_urls='https://www.airforcebes.af.mil/',
                          schedule='20 15 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -186,7 +186,7 @@
   {
     name: '413th Flight Test Group (afpw_413ftg)',
     config: DomainConfig(allowed_domains='413ftg.afrc.af.mil',
-                         starting_urls='https://413ftg.afrc.af.mil/',
+                         starting_urls='https://www.413ftg.afrc.af.mil/',
                          schedule='2 16 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -194,7 +194,7 @@
   {
     name: '195th Wing (afpw_195wg)',
     config: DomainConfig(allowed_domains='195wg.ang.af.mil',
-                         starting_urls='https://195wg.ang.af.mil/',
+                         starting_urls='https://www.195wg.ang.af.mil/',
                          schedule='44 16 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -202,7 +202,7 @@
   {
     name: '156th Airlift Wing (afpw_156aw)',
     config: DomainConfig(allowed_domains='156aw.ang.af.mil',
-                         starting_urls='https://156aw.ang.af.mil/',
+                         starting_urls='https://www.156aw.ang.af.mil/',
                          schedule='26 17 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -210,7 +210,7 @@
   {
     name: '150th Special Operations Wing (afpw_150sow)',
     config: DomainConfig(allowed_domains='150sow.ang.af.mil',
-                         starting_urls='https://150sow.ang.af.mil/',
+                         starting_urls='https://www.150sow.ang.af.mil/',
                          schedule='7 18 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -218,7 +218,7 @@
   {
     name: 'Air Force Historical Support Division (afpw-afhm)',
     config: DomainConfig(allowed_domains='afhistory.af.mil',
-                         starting_urls='https://afhistory.af.mil/',
+                         starting_urls='https://www.afhistory.af.mil/',
                          schedule='49 18 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -226,7 +226,7 @@
   {
     name: 'Air Force History and Museums (afhm)',
     config: DomainConfig(allowed_domains='afhistoryandmuseums.af.mil',
-                         starting_urls='https://afhistoryandmuseums.af.mil/',
+                         starting_urls='https://www.afhistoryandmuseums.af.mil/',
                          schedule='31 19 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -234,7 +234,7 @@
   {
     name: 'Air University (afpw_au)',
     config: DomainConfig(allowed_domains='airuniversity.af.edu',
-                         starting_urls='https://airuniversity.af.edu/',
+                         starting_urls='https://www.airuniversity.af.edu/',
                          schedule='13 20 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -242,7 +242,7 @@
   {
     name: 'Chief of Staff Reading List (afpw_cosrl)',
     config: DomainConfig(allowed_domains='chief-of-staff-reading-list.af.mil',
-                         starting_urls='https://chief-of-staff-reading-list.af.mil/',
+                         starting_urls='https://www.chief-of-staff-reading-list.af.mil/',
                          schedule='55 20 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -250,7 +250,7 @@
   {
     name: 'Portraits in Courage (afpw_pic)',
     config: DomainConfig(allowed_domains='portraits-in-courage.af.mil',
-                         starting_urls='https://portraits-in-courage.af.mil/',
+                         starting_urls='https://www.portraits-in-courage.af.mil/',
                          schedule='37 21 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -258,7 +258,7 @@
   {
     name: 'Veterans in Blue (afpw_vib)',
     config: DomainConfig(allowed_domains='veterans-in-blue.af.mil',
-                         starting_urls='https://veterans-in-blue.af.mil/',
+                         starting_urls='https://www.veterans-in-blue.af.mil/',
                          schedule='18 22 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -266,7 +266,7 @@
   {
     name: 'Armed Forces Pest Management Board (afpmb)',
     config: DomainConfig(allowed_domains='acq.osd.mil/eie/afpmb',
-                         starting_urls='https://acq.osd.mil/eie/afpmb/',
+                         starting_urls='https://www.acq.osd.mil/eie/afpmb/',
                          schedule='0 23 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -274,7 +274,7 @@
   {
     name: '15th Air Force (afpw_ninth)',
     config: DomainConfig(allowed_domains='ninth.af.mil',
-                         starting_urls='https://ninth.af.mil/',
+                         starting_urls='https://www.ninth.af.mil/',
                          schedule='42 23 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -282,7 +282,7 @@
   {
     name: '15th Air Force (afpw_ninth)',
     config: DomainConfig(allowed_domains='15af.acc.af.mil',
-                         starting_urls='https://15af.acc.af.mil/',
+                         starting_urls='https://www.15af.acc.af.mil/',
                          schedule='24 0 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -290,7 +290,7 @@
   {
     name: 'Pope Field Reserve Base (afpw_popeafrc)',
     config: DomainConfig(allowed_domains='pope.afrc.af.mil',
-                         starting_urls='https://pope.afrc.af.mil/',
+                         starting_urls='https://www.pope.afrc.af.mil/',
                          schedule='6 1 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -298,7 +298,7 @@
   {
     name: 'Air Force Recruiting Service (afpw_rs)',
     config: DomainConfig(allowed_domains='afaccessionscenter.af.mil',
-                         starting_urls='https://afaccessionscenter.af.mil/',
+                         starting_urls='https://www.afaccessionscenter.af.mil/',
                          schedule='48 1 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -330,7 +330,7 @@
   {
     name: '15th Wing (afpw_15wing)',
     config: DomainConfig(allowed_domains='15wing.af.mil',
-                         starting_urls='https://15wing.af.mil/',
+                         starting_urls='https://www.15wing.af.mil/',
                          schedule='35 4 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -354,7 +354,7 @@
   {
     name: 'Professional Development Guide (afpw_pdg)',
     config: DomainConfig(allowed_domains='studyguides.af.mil',
-                         starting_urls='https://studyguides.af.mil/',
+                         starting_urls='https://www.studyguides.af.mil/',
                          schedule='40 6 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -466,7 +466,7 @@
   {
     name: 'U.S. Air Force Expeditionary Center (afpw_usafec)',
     config: DomainConfig(allowed_domains='expeditionarycenter.af.mil',
-                         starting_urls='https://expeditionarycenter.af.mil/',
+                         starting_urls='https://www.expeditionarycenter.af.mil/',
                          schedule='26 16 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -474,7 +474,7 @@
   {
     name: '79th Medical Wing (afpw_79mdw)',
     config: DomainConfig(allowed_domains='79mdw.af.mil',
-                         starting_urls='https://79mdw.af.mil/',
+                         starting_urls='https://www.79mdw.af.mil/',
                          schedule='8 17 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -482,7 +482,7 @@
   {
     name: 'Air Force Public Affairs Agency (afpw_afpaa)',
     config: DomainConfig(allowed_domains='afpaa.af.mil',
-                         starting_urls='https://afpaa.af.mil/',
+                         starting_urls='https://www.afpaa.af.mil/',
                          schedule='50 17 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -490,7 +490,7 @@
   {
     name: 'Scott Air Force Base (afpw_scott)',
     config: DomainConfig(allowed_domains='scott.af.mil',
-                         starting_urls='https://scott.af.mil/',
+                         starting_urls='https://www.scott.af.mil/',
                          schedule='31 18 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -498,7 +498,7 @@
   {
     name: 'Joint Base Charleston (afpw_charleston)',
     config: DomainConfig(allowed_domains='charleston.af.mil',
-                         starting_urls='https://charleston.af.mil/',
+                         starting_urls='https://www.charleston.af.mil/',
                          schedule='13 19 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -506,7 +506,7 @@
   {
     name: 'Air Force Chaplain Corps (afpw_chaplain)',
     config: DomainConfig(allowed_domains='chaplaincorps.af.mil',
-                         starting_urls='https://chaplaincorps.af.mil/',
+                         starting_urls='https://www.chaplaincorps.af.mil/',
                          schedule='55 19 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -514,7 +514,7 @@
   {
     name: 'California Air National Guard (afpw_caang)',
     config: DomainConfig(allowed_domains='ca.ang.af.mil',
-                         starting_urls='https://ca.ang.af.mil/',
+                         starting_urls='https://www.ca.ang.af.mil/',
                          schedule='37 20 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -522,7 +522,7 @@
   {
     name: 'Air National Guard Band of the South (afpw_angbandsouth)',
     config: DomainConfig(allowed_domains='bandofthesouth.ang.af.mil',
-                         starting_urls='https://bandofthesouth.ang.af.mil/',
+                         starting_urls='https://www.bandofthesouth.ang.af.mil/',
                          schedule='19 21 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -530,7 +530,7 @@
   {
     name: 'Air Force Safety Center (afpw_afsc)',
     config: DomainConfig(allowed_domains='safety.af.mil',
-                         starting_urls='https://safety.af.mil/',
+                         starting_urls='https://www.safety.af.mil/',
                          schedule='0 22 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -538,7 +538,7 @@
   {
     name: 'AF Command & Control Integration Center (afpw_afc2ic)',
     config: DomainConfig(allowed_domains='afc2ic.af.mil',
-                         starting_urls='https://afc2ic.af.mil/',
+                         starting_urls='https://www.afc2ic.af.mil/',
                          schedule='42 22 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -546,7 +546,7 @@
   {
     name: 'Team McChord (afpw_62aw)',
     config: DomainConfig(allowed_domains='62aw.af.mil,www.mcchord.af.mil',
-                         starting_urls='https://62aw.af.mil,www.mcchord.af.mil/',
+                         starting_urls='https://www.62aw.af.mil,www.mcchord.af.mil/',
                          schedule='24 23 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -554,7 +554,7 @@
   {
     name: '166th Airlift Wing, Delaware Air National Guard (afpw_166aw)',
     config: DomainConfig(allowed_domains='166aw.ang.af.mil',
-                         starting_urls='https://166aw.ang.af.mil/',
+                         starting_urls='https://www.166aw.ang.af.mil/',
                          schedule='6 0 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -562,7 +562,7 @@
   {
     name: '307th Bomb Wing (afpw_307bw)',
     config: DomainConfig(allowed_domains='307bw.afrc.af.mil',
-                         starting_urls='https://307bw.afrc.af.mil/',
+                         starting_urls='https://www.307bw.afrc.af.mil/',
                          schedule='48 0 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -570,7 +570,7 @@
   {
     name: '124th Fighter Wing, Idaho ANG (afpw_idaho)',
     config: DomainConfig(allowed_domains='124thfighterwing.ang.af.mil',
-                         starting_urls='https://124thfighterwing.ang.af.mil/',
+                         starting_urls='https://www.124thfighterwing.ang.af.mil/',
                          schedule='30 1 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -578,7 +578,7 @@
   {
     name: '113th Wing, Air National Guard (afpw_113wg)',
     config: DomainConfig(allowed_domains='113wg.ang.af.mil',
-                         starting_urls='https://113wg.ang.af.mil/',
+                         starting_urls='https://www.113wg.ang.af.mil/',
                          schedule='11 2 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -586,7 +586,7 @@
   {
     name: '106th Rescue Wing (afpw_106rqw)',
     config: DomainConfig(allowed_domains='106rqw.ang.af.mil',
-                         starting_urls='https://106rqw.ang.af.mil/',
+                         starting_urls='https://www.106rqw.ang.af.mil/',
                          schedule='53 2 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -594,7 +594,7 @@
   {
     name: 'Administrative & Financial Management (afm)',
     config: DomainConfig(allowed_domains='afm.ars.usda.gov',
-                         starting_urls='https://afm.ars.usda.gov/',
+                         starting_urls='https://www.afm.ars.usda.gov/',
                          schedule='35 3 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -602,7 +602,7 @@
   {
     name: 'Air Force Civil Engineer Center (afpw_afcec)',
     config: DomainConfig(allowed_domains='afcec.af.mil',
-                         starting_urls='https://afcec.af.mil/',
+                         starting_urls='https://www.afcec.af.mil/',
                          schedule='17 4 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -610,7 +610,7 @@
   {
     name: '189th Airlift Wing (afpw_189aw)',
     config: DomainConfig(allowed_domains='189aw.ang.af.mil',
-                         starting_urls='https://189aw.ang.af.mil/',
+                         starting_urls='https://www.189aw.ang.af.mil/',
                          schedule='59 4 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -618,7 +618,7 @@
   {
     name: 'Air Force Sustainment Center (afpw_sustainment)',
     config: DomainConfig(allowed_domains='afsc.af.mil',
-                         starting_urls='https://afsc.af.mil/',
+                         starting_urls='https://www.afsc.af.mil/',
                          schedule='41 5 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -634,7 +634,7 @@
   {
     name: '10th Air Force (afpw_10af)',
     config: DomainConfig(allowed_domains='10af.afrc.af.mil',
-                         starting_urls='https://10af.afrc.af.mil/',
+                         starting_urls='https://www.10af.afrc.af.mil/',
                          schedule='4 7 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -642,7 +642,7 @@
   {
     name: '109th Airlift Wing, New York ANG (afpw_109aw)',
     config: DomainConfig(allowed_domains='109aw.ang.af.mil',
-                         starting_urls='https://109aw.ang.af.mil/',
+                         starting_urls='https://www.109aw.ang.af.mil/',
                          schedule='46 7 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -650,7 +650,7 @@
   {
     name: '105th Airlift Wing (afpw_105aw)',
     config: DomainConfig(allowed_domains='105aw.ang.af.mil',
-                         starting_urls='https://105aw.ang.af.mil/',
+                         starting_urls='https://www.105aw.ang.af.mil/',
                          schedule='28 8 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -658,7 +658,7 @@
   {
     name: '104th Fighter Wing (afpw_104fw)',
     config: DomainConfig(allowed_domains='104fw.ang.af.mil',
-                         starting_urls='https://104fw.ang.af.mil/',
+                         starting_urls='https://www.104fw.ang.af.mil/',
                          schedule='10 9 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -666,7 +666,7 @@
   {
     name: '103rd Airlift Wing (afpw_103aw)',
     config: DomainConfig(allowed_domains='103aw.ang.af.mil',
-                         starting_urls='https://103aw.ang.af.mil/',
+                         starting_urls='https://www.103aw.ang.af.mil/',
                          schedule='52 9 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -674,7 +674,7 @@
   {
     name: '101st Air Refueling Wing (afpw_101arw)',
     config: DomainConfig(allowed_domains='101arw.ang.af.mil',
-                         starting_urls='https://101arw.ang.af.mil/',
+                         starting_urls='https://www.101arw.ang.af.mil/',
                          schedule='33 10 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -682,7 +682,7 @@
   {
     name: '102nd Intelligence Wing (afpw_102iw)',
     config: DomainConfig(allowed_domains='102iw.ang.af.mil',
-                         starting_urls='https://102iw.ang.af.mil/',
+                         starting_urls='https://www.102iw.ang.af.mil/',
                          schedule='15 11 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -690,7 +690,7 @@
   {
     name: 'Air Force Reserve Command (afrc)',
     config: DomainConfig(allowed_domains='afrc.af.mil',
-                         starting_urls='https://afrc.af.mil/',
+                         starting_urls='https://www.afrc.af.mil/',
                          schedule='57 11 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -698,7 +698,7 @@
   {
     name: 'Air Force Special Operations Command (afsoc)',
     config: DomainConfig(allowed_domains='afsoc.af.mil,www2.afsoc.af.mil',
-                         starting_urls='https://afsoc.af.mil,www2.afsoc.af.mil/',
+                         starting_urls='https://www.afsoc.af.mil,www2.afsoc.af.mil/',
                          schedule='39 12 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -706,7 +706,7 @@
   {
     name: 'Air Force Space Command (afspc)',
     config: DomainConfig(allowed_domains='afspc.af.mil',
-                         starting_urls='https://afspc.af.mil/',
+                         starting_urls='https://www.afspc.af.mil/',
                          schedule='21 13 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -714,7 +714,7 @@
   {
     name: 'Air Force Weather Observer (afwa)',
     config: DomainConfig(allowed_domains='afweather.af.mil',
-                         starting_urls='https://afweather.af.mil/',
+                         starting_urls='https://www.afweather.af.mil/',
                          schedule='2 14 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -722,7 +722,7 @@
   {
     name: 'United States Air Force Posture Statement (afpw_posturestatement)',
     config: DomainConfig(allowed_domains='posturestatement.af.mil',
-                         starting_urls='https://posturestatement.af.mil/',
+                         starting_urls='https://www.posturestatement.af.mil/',
                          schedule='44 14 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -730,7 +730,7 @@
   {
     name: 'Air Force Privacy Act (afpw_privacyact)',
     config: DomainConfig(allowed_domains='privacy.af.mil',
-                         starting_urls='https://privacy.af.mil/',
+                         starting_urls='https://www.privacy.af.mil/',
                          schedule='26 15 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -746,7 +746,7 @@
   {
     name: 'Air Force General Counsel (afpw_safgc)',
     config: DomainConfig(allowed_domains='safgc.hq.af.mil',
-                         starting_urls='https://safgc.hq.af.mil/',
+                         starting_urls='https://www.safgc.hq.af.mil/',
                          schedule='50 16 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -754,7 +754,7 @@
   {
     name: 'Air Force International Affairs (afpw_safia)',
     config: DomainConfig(allowed_domains='safia.hq.af.mil',
-                         starting_urls='https://safia.hq.af.mil/',
+                         starting_urls='https://www.safia.hq.af.mil/',
                          schedule='32 17 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -770,7 +770,7 @@
   {
     name: 'Air Force Trademark and Licensing Program (afpw_trademark)',
     config: DomainConfig(allowed_domains='trademark.af.mil',
-                         starting_urls='https://trademark.af.mil/',
+                         starting_urls='https://www.trademark.af.mil/',
                          schedule='55 18 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -778,7 +778,7 @@
   {
     name: 'Travis Air Force Base (afpw_travis)',
     config: DomainConfig(allowed_domains='travis.af.mil',
-                         starting_urls='https://travis.af.mil/',
+                         starting_urls='https://www.travis.af.mil/',
                          schedule='37 19 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -786,7 +786,7 @@
   {
     name: 'Volk Field (afpw_volk)',
     config: DomainConfig(allowed_domains='volkfield.ang.af.mil',
-                         starting_urls='https://volkfield.ang.af.mil/',
+                         starting_urls='https://www.volkfield.ang.af.mil/',
                          schedule='19 20 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -794,7 +794,7 @@
   {
     name: 'Air Force Wounded Warrior (afpw_wounded)',
     config: DomainConfig(allowed_domains='woundedwarrior.af.mil',
-                         starting_urls='https://woundedwarrior.af.mil/',
+                         starting_urls='https://www.woundedwarrior.af.mil/',
                          schedule='1 21 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -802,7 +802,7 @@
   {
     name: 'JTF-Bravo, Soto Cano Air Base (afpw_jtfb)',
     config: DomainConfig(allowed_domains='jtfb.southcom.mil',
-                         starting_urls='https://jtfb.southcom.mil/',
+                         starting_urls='https://www.jtfb.southcom.mil/',
                          schedule='43 21 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -810,7 +810,7 @@
   {
     name: 'Maxwell Air Force Base (afpw_maxwell)',
     config: DomainConfig(allowed_domains='maxwell.af.mil',
-                         starting_urls='https://maxwell.af.mil/',
+                         starting_urls='https://www.maxwell.af.mil/',
                          schedule='24 22 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -826,7 +826,7 @@
   {
     name: 'McConnell Air Force Base (afpw_mcconnell)',
     config: DomainConfig(allowed_domains='mcconnell.af.mil',
-                         starting_urls='https://mcconnell.af.mil/',
+                         starting_urls='https://www.mcconnell.af.mil/',
                          schedule='48 23 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -834,7 +834,7 @@
   {
     name: 'Joint Base McGuire-Dix-Lakehurst (afpw_mcguire)',
     config: DomainConfig(allowed_domains='jbmdl.jb.mil',
-                         starting_urls='https://jbmdl.jb.mil/',
+                         starting_urls='https://www.jbmdl.jb.mil/',
                          schedule='30 0 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -842,7 +842,7 @@
   {
     name: 'Air Force Mortuary Affairs Operations (afpw_mortuary)',
     config: DomainConfig(allowed_domains='mortuary.af.mil',
-                         starting_urls='https://mortuary.af.mil/',
+                         starting_urls='https://www.mortuary.af.mil/',
                          schedule='12 1 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -850,7 +850,7 @@
   {
     name: 'Offutt Air Force Base (afpw_offutt)',
     config: DomainConfig(allowed_domains='offutt.af.mil',
-                         starting_urls='https://offutt.af.mil/',
+                         starting_urls='https://www.offutt.af.mil/',
                          schedule='54 1 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -858,7 +858,7 @@
   {
     name: 'Ohio Air National Guard (afpw_ohang)',
     config: DomainConfig(allowed_domains='oh.ang.af.mil',
-                         starting_urls='https://oh.ang.af.mil/',
+                         starting_urls='https://www.oh.ang.af.mil/',
                          schedule='35 2 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -866,7 +866,7 @@
   {
     name: 'Pope Field (afpw_pope)',
     config: DomainConfig(allowed_domains='pope.af.mil',
-                         starting_urls='https://pope.af.mil/',
+                         starting_urls='https://www.pope.af.mil/',
                          schedule='17 3 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -874,7 +874,7 @@
   {
     name: 'Personal Property Activity Headquarters (afpw_ppahq)',
     config: DomainConfig(allowed_domains='ppahq.af.mil',
-                         starting_urls='https://ppahq.af.mil/',
+                         starting_urls='https://www.ppahq.af.mil/',
                          schedule='59 3 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -882,7 +882,7 @@
   {
     name: 'Air Force Entertainment Liaison Office (afpw_hollywood)',
     config: DomainConfig(allowed_domains='airforcehollywood.af.mil',
-                         starting_urls='https://airforcehollywood.af.mil/',
+                         starting_urls='https://www.airforcehollywood.af.mil/',
                          schedule='41 4 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -890,7 +890,7 @@
   {
     name: 'Air Force Entertainment Liaison Office (afpw_hollywood)',
     config: DomainConfig(allowed_domains='airforcehollywood.hq.af.mil',
-                         starting_urls='https://airforcehollywood.hq.af.mil/',
+                         starting_urls='https://www.airforcehollywood.hq.af.mil/',
                          schedule='23 5 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -898,7 +898,7 @@
   {
     name: 'United States Air Force Honor Guard (afpw_honor)',
     config: DomainConfig(allowed_domains='honorguard.af.mil',
-                         starting_urls='https://honorguard.af.mil/',
+                         starting_urls='https://www.honorguard.af.mil/',
                          schedule='4 6 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -906,7 +906,7 @@
   {
     name: 'Air Force Network Integration Center (afnic)',
     config: DomainConfig(allowed_domains='afnic.af.mil',
-                         starting_urls='https://afnic.af.mil/',
+                         starting_urls='https://www.afnic.af.mil/',
                          schedule='46 6 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -914,7 +914,7 @@
   {
     name: 'Fairchild Air Force Base (afpw_fairchild)',
     config: DomainConfig(allowed_domains='fairchild.af.mil',
-                         starting_urls='https://fairchild.af.mil/',
+                         starting_urls='https://www.fairchild.af.mil/',
                          schedule='28 7 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -922,7 +922,7 @@
   {
     name: 'Air Force Compliance Division (afpw_foia)',
     config: DomainConfig(allowed_domains='compliance.af.mil',
-                         starting_urls='https://compliance.af.mil/',
+                         starting_urls='https://www.compliance.af.mil/',
                          schedule='10 8 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -930,7 +930,7 @@
   {
     name: 'Grand Forks Air Force Base (afpw_grandforks)',
     config: DomainConfig(allowed_domains='grandforks.af.mil',
-                         starting_urls='https://grandforks.af.mil/',
+                         starting_urls='https://www.grandforks.af.mil/',
                          schedule='52 8 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -938,7 +938,7 @@
   {
     name: 'Air Force Retirees Services (afpw_afro)',
     config: DomainConfig(allowed_domains='retirees.af.mil',
-                         starting_urls='https://retirees.af.mil/',
+                         starting_urls='https://www.retirees.af.mil/',
                          schedule='34 9 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -946,7 +946,7 @@
   {
     name: 'Air Force Recruiting Service (afpw_afrs)',
     config: DomainConfig(allowed_domains='rs.af.mil',
-                         starting_urls='https://rs.af.mil/',
+                         starting_urls='https://www.rs.af.mil/',
                          schedule='15 10 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -954,7 +954,7 @@
   {
     name: 'Air Force Security Forces Center (afpw_afsfc)',
     config: DomainConfig(allowed_domains='afsfc.af.mil',
-                         starting_urls='https://afsfc.af.mil/',
+                         starting_urls='https://www.afsfc.af.mil/',
                          schedule='57 10 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -962,7 +962,7 @@
   {
     name: 'Air Force Week (afpw_afweek)',
     config: DomainConfig(allowed_domains='airforceweek.af.mil',
-                         starting_urls='https://airforceweek.af.mil/',
+                         starting_urls='https://www.airforceweek.af.mil/',
                          schedule='39 11 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -970,7 +970,7 @@
   {
     name: 'Altus Air Force Base (afpw_altus)',
     config: DomainConfig(allowed_domains='altus.af.mil',
-                         starting_urls='https://altus.af.mil/',
+                         starting_urls='https://www.altus.af.mil/',
                          schedule='21 12 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -978,7 +978,7 @@
   {
     name: 'Joint Base Andrews (afpw_andrews)',
     config: DomainConfig(allowed_domains='jba.af.mil',
-                         starting_urls='https://jba.af.mil/',
+                         starting_urls='https://www.jba.af.mil/',
                          schedule='3 13 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -994,7 +994,7 @@
   {
     name: 'Air National Guard Band of the Midwest (afpw_angbandmidwest)',
     config: DomainConfig(allowed_domains='bandofthemidwest.ang.af.mil',
-                         starting_urls='https://bandofthemidwest.ang.af.mil/',
+                         starting_urls='https://www.bandofthemidwest.ang.af.mil/',
                          schedule='26 14 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -1002,7 +1002,7 @@
   {
     name: 'Air National Guard Band of the Northeast (afpw_angbandnortheast)',
     config: DomainConfig(allowed_domains='bandofthenortheast.ang.af.mil',
-                         starting_urls='https://bandofthenortheast.ang.af.mil/',
+                         starting_urls='https://www.bandofthenortheast.ang.af.mil/',
                          schedule='8 15 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -1010,7 +1010,7 @@
   {
     name: 'Air National Guard Band of the West Coast (afpw_angbandwestcoast)',
     config: DomainConfig(allowed_domains='bandofthewestcoast.ang.af.mil',
-                         starting_urls='https://bandofthewestcoast.ang.af.mil/',
+                         starting_urls='https://www.bandofthewestcoast.ang.af.mil/',
                          schedule='50 15 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -1018,7 +1018,7 @@
   {
     name: 'Air Force Bands Program (afpw_bandsprogram)',
     config: DomainConfig(allowed_domains='bands.af.mil',
-                         starting_urls='https://bands.af.mil/',
+                         starting_urls='https://www.bands.af.mil/',
                          schedule='32 16 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -1026,7 +1026,7 @@
   {
     name: 'The United States Air Force Band (afpw_bandusaf)',
     config: DomainConfig(allowed_domains='usafband.af.mil',
-                         starting_urls='https://usafband.af.mil/',
+                         starting_urls='https://www.usafband.af.mil/',
                          schedule='14 17 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -1034,7 +1034,7 @@
   {
     name: 'USAF Band of the West (afpw_bandwest)',
     config: DomainConfig(allowed_domains='bandofthewest.af.mil',
-                         starting_urls='https://bandofthewest.af.mil/',
+                         starting_urls='https://www.bandofthewest.af.mil/',
                          schedule='56 17 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -1042,7 +1042,7 @@
   {
     name: 'Creech Air Force Base (afpw_creech)',
     config: DomainConfig(allowed_domains='creech.af.mil',
-                         starting_urls='https://creech.af.mil/',
+                         starting_urls='https://www.creech.af.mil/',
                          schedule='37 18 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -1050,7 +1050,7 @@
   {
     name: 'AF Declassification (afpw_dclass)',
     config: DomainConfig(allowed_domains='secretsdeclassified.af.mil',
-                         starting_urls='https://secretsdeclassified.af.mil/',
+                         starting_urls='https://www.secretsdeclassified.af.mil/',
                          schedule='19 19 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -1058,7 +1058,7 @@
   {
     name: 'Defense Institute for Medical Operations (afpw_dimo)',
     config: DomainConfig(allowed_domains='dimo.af.mil',
-                         starting_urls='https://dimo.af.mil/',
+                         starting_urls='https://www.dimo.af.mil/',
                          schedule='1 20 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -1066,7 +1066,7 @@
   {
     name: 'Dover Air Force Base (afpw_dover)',
     config: DomainConfig(allowed_domains='dover.af.mil',
-                         starting_urls='https://dover.af.mil/',
+                         starting_urls='https://www.dover.af.mil/',
                          schedule='43 20 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -1074,7 +1074,7 @@
   {
     name: 'Eastern Air Defense Sector (afpw_eads)',
     config: DomainConfig(allowed_domains='eads.ang.af.mil',
-                         starting_urls='https://eads.ang.af.mil/',
+                         starting_urls='https://www.eads.ang.af.mil/',
                          schedule='25 21 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -1090,7 +1090,7 @@
   {
     name: 'Florida Air National Guard (afpw_flang)',
     config: DomainConfig(allowed_domains='125fw.ang.af.mil,www.fl.ang.af.mil',
-                         starting_urls='https://125fw.ang.af.mil,www.fl.ang.af.mil/',
+                         starting_urls='https://www.125fw.ang.af.mil,www.fl.ang.af.mil/',
                          schedule='48 22 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -1098,7 +1098,7 @@
   {
     name: '477th Fighter Group (afpw_477fg)',
     config: DomainConfig(allowed_domains='477fg.afrc.af.mil',
-                         starting_urls='https://477fg.afrc.af.mil/',
+                         starting_urls='https://www.477fg.afrc.af.mil/',
                          schedule='30 23 * * WED',
                          output_target=output_target,
                          depth_limit=8),
@@ -1106,7 +1106,7 @@
   {
     name: '505th Command and Control Wing (afpw_505ccw)',
     config: DomainConfig(allowed_domains='505ccw.acc.af.mil',
-                         starting_urls='https://505ccw.acc.af.mil/',
+                         starting_urls='https://www.505ccw.acc.af.mil/',
                          schedule='12 0 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1114,7 +1114,7 @@
   {
     name: '618th Air and Space Operations Center (TACC) (afpw_618tacc)',
     config: DomainConfig(allowed_domains='618tacc.amc.af.mil',
-                         starting_urls='https://618tacc.amc.af.mil/',
+                         starting_urls='https://www.618tacc.amc.af.mil/',
                          schedule='54 0 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1122,7 +1122,7 @@
   {
     name: '624th Regional Support Group (afpw_624rsg)',
     config: DomainConfig(allowed_domains='624rsg.afrc.af.mil',
-                         starting_urls='https://624rsg.afrc.af.mil/',
+                         starting_urls='https://www.624rsg.afrc.af.mil/',
                          schedule='36 1 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1130,7 +1130,7 @@
   {
     name: '8th Air Force (afpw_8af)',
     config: DomainConfig(allowed_domains='8af.af.mil',
-                         starting_urls='https://8af.af.mil/',
+                         starting_urls='https://www.8af.af.mil/',
                          schedule='17 2 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1138,7 +1138,7 @@
   {
     name: '926th Group (afpw_926gp)',
     config: DomainConfig(allowed_domains='926wing.afrc.af.mil',
-                         starting_urls='https://926wing.afrc.af.mil/',
+                         starting_urls='https://www.926wing.afrc.af.mil/',
                          schedule='59 2 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1146,7 +1146,7 @@
   {
     name: 'ANG AFRC Command Test Center (afpw_aatc)',
     config: DomainConfig(allowed_domains='aatc.ang.af.mil',
-                         starting_urls='https://aatc.ang.af.mil/',
+                         starting_urls='https://www.aatc.ang.af.mil/',
                          schedule='41 3 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1154,7 +1154,7 @@
   {
     name: 'Alternative Dispute Resolution (afpw_adr)',
     config: DomainConfig(allowed_domains='adr.af.mil',
-                         starting_urls='https://adr.af.mil/',
+                         starting_urls='https://www.adr.af.mil/',
                          schedule='23 4 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1162,7 +1162,7 @@
   {
     name: 'Air Force Be Ready (afpw_afbr)',
     config: DomainConfig(allowed_domains='beready.af.mil',
-                         starting_urls='https://beready.af.mil/',
+                         starting_urls='https://www.beready.af.mil/',
                          schedule='5 5 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1170,7 +1170,7 @@
   {
     name: 'Air Force Global Strike Command (afpw_afgsc)',
     config: DomainConfig(allowed_domains='afgsc.af.mil',
-                         starting_urls='https://afgsc.af.mil/',
+                         starting_urls='https://www.afgsc.af.mil/',
                          schedule='47 5 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1178,7 +1178,7 @@
   {
     name: 'Air Force Historical Research Agency (afpw_afhra)',
     config: DomainConfig(allowed_domains='dafhistory.af.mil',
-                         starting_urls='https://dafhistory.af.mil/',
+                         starting_urls='https://www.dafhistory.af.mil/',
                          schedule='28 6 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1186,7 +1186,7 @@
   {
     name: 'Air Force Historical Studies Office (afpw_afhso)',
     config: DomainConfig(allowed_domains='afhso.af.mil',
-                         starting_urls='https://afhso.af.mil/',
+                         starting_urls='https://www.afhso.af.mil/',
                          schedule='10 7 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1194,7 +1194,7 @@
   {
     name: 'USAF - www.afia.af.mil (afpw_afia) (afpw_afia)',
     config: DomainConfig(allowed_domains='afia.af.mil',
-                         starting_urls='https://afia.af.mil/',
+                         starting_urls='https://www.afia.af.mil/',
                          schedule='52 7 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1202,7 +1202,7 @@
   {
     name: 'Air Force Judge Advocate General\'s Corps (afpw_afjag)',
     config: DomainConfig(allowed_domains='afjag.af.mil',
-                         starting_urls='https://afjag.af.mil/',
+                         starting_urls='https://www.afjag.af.mil/',
                          schedule='34 8 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1210,7 +1210,7 @@
   {
     name: '172nd Airlift Wing, Mississippi Air National Guard (afpw_172aw)',
     config: DomainConfig(allowed_domains='172aw.ang.af.mil',
-                         starting_urls='https://172aw.ang.af.mil/',
+                         starting_urls='https://www.172aw.ang.af.mil/',
                          schedule='16 9 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1218,7 +1218,7 @@
   {
     name: '173rd Fighter Wing, Oregon Air National Guard (afpw_173fw)',
     config: DomainConfig(allowed_domains='173fw.ang.af.mil',
-                         starting_urls='https://173fw.ang.af.mil/',
+                         starting_urls='https://www.173fw.ang.af.mil/',
                          schedule='58 9 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1226,7 +1226,7 @@
   {
     name: '175th Wing, Maryland Air National Guard (afpw_175wg)',
     config: DomainConfig(allowed_domains='175wg.ang.af.mil',
-                         starting_urls='https://175wg.ang.af.mil/',
+                         starting_urls='https://www.175wg.ang.af.mil/',
                          schedule='39 10 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1234,7 +1234,7 @@
   {
     name: '176th Wing, Alaska Air National Guard (afpw_176wg)',
     config: DomainConfig(allowed_domains='176wg.ang.af.mil',
-                         starting_urls='https://176wg.ang.af.mil/',
+                         starting_urls='https://www.176wg.ang.af.mil/',
                          schedule='21 11 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1242,7 +1242,7 @@
   {
     name: '177th Fighter Wing, New Jersey ANG (afpw_177fw)',
     config: DomainConfig(allowed_domains='177fw.ang.af.mil',
-                         starting_urls='https://177fw.ang.af.mil/',
+                         starting_urls='https://www.177fw.ang.af.mil/',
                          schedule='3 12 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1250,7 +1250,7 @@
   {
     name: '178th Wing, Ohio Air National Guard (afpw_178fw)',
     config: DomainConfig(allowed_domains='178wing.ang.af.mil',
-                         starting_urls='https://178wing.ang.af.mil/',
+                         starting_urls='https://www.178wing.ang.af.mil/',
                          schedule='45 12 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1258,7 +1258,7 @@
   {
     name: '178th Wing, Ohio Air National Guard (afpw_178fw)',
     config: DomainConfig(allowed_domains='178fw.ang.af.mil',
-                         starting_urls='https://178fw.ang.af.mil/',
+                         starting_urls='https://www.178fw.ang.af.mil/',
                          schedule='27 13 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1266,7 +1266,7 @@
   {
     name: '179th Airlift Wing, Ohio ANG (afpw_179aw)',
     config: DomainConfig(allowed_domains='179aw.ang.af.mil',
-                         starting_urls='https://179aw.ang.af.mil/',
+                         starting_urls='https://www.179aw.ang.af.mil/',
                          schedule='8 14 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1274,7 +1274,7 @@
   {
     name: '180th Fighter Wing, Ohio Air National Guard (afpw_180fw)',
     config: DomainConfig(allowed_domains='180fw.ang.af.mil',
-                         starting_urls='https://180fw.ang.af.mil/',
+                         starting_urls='https://www.180fw.ang.af.mil/',
                          schedule='50 14 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1282,7 +1282,7 @@
   {
     name: '181st Intelligence Wing, Indiana ANG (afpw_181iw)',
     config: DomainConfig(allowed_domains='181iw.ang.af.mil',
-                         starting_urls='https://181iw.ang.af.mil/',
+                         starting_urls='https://www.181iw.ang.af.mil/',
                          schedule='32 15 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1290,7 +1290,7 @@
   {
     name: '182nd Airlift Wing, Illinois Air National Guard (afpw_182aw)',
     config: DomainConfig(allowed_domains='182aw.ang.af.mil',
-                         starting_urls='https://182aw.ang.af.mil/',
+                         starting_urls='https://www.182aw.ang.af.mil/',
                          schedule='14 16 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1298,7 +1298,7 @@
   {
     name: '184th Intelligence Wing, Kansas Air National Guard (afpw_184iw)',
     config: DomainConfig(allowed_domains='184iw.ang.af.mil',
-                         starting_urls='https://184iw.ang.af.mil/',
+                         starting_urls='https://www.184iw.ang.af.mil/',
                          schedule='56 16 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1306,7 +1306,7 @@
   {
     name: '185th Air Refueling Wing, Iowa ANG (afpw_185arw)',
     config: DomainConfig(allowed_domains='185arw.ang.af.mil',
-                         starting_urls='https://185arw.ang.af.mil/',
+                         starting_urls='https://www.185arw.ang.af.mil/',
                          schedule='38 17 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1314,7 +1314,7 @@
   {
     name: '186th Air Refueling Wing, Mississippi Air National Guard (afpw_186arw)',
     config: DomainConfig(allowed_domains='186arw.ang.af.mil',
-                         starting_urls='https://186arw.ang.af.mil/',
+                         starting_urls='https://www.186arw.ang.af.mil/',
                          schedule='19 18 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1322,7 +1322,7 @@
   {
     name: '188th Wing, Arkansas ANG (afpw_188fw)',
     config: DomainConfig(allowed_domains='188fw.ang.af.mil',
-                         starting_urls='https://188fw.ang.af.mil/',
+                         starting_urls='https://www.188fw.ang.af.mil/',
                          schedule='1 19 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1330,7 +1330,7 @@
   {
     name: '188th Wing, Arkansas ANG (afpw_188fw)',
     config: DomainConfig(allowed_domains='188wg.ang.af.mil',
-                         starting_urls='https://188wg.ang.af.mil/',
+                         starting_urls='https://www.188wg.ang.af.mil/',
                          schedule='43 19 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1338,7 +1338,7 @@
   {
     name: '18th Air Force (afpw_18af)',
     config: DomainConfig(allowed_domains='18af.amc.af.mil',
-                         starting_urls='https://18af.amc.af.mil/',
+                         starting_urls='https://www.18af.amc.af.mil/',
                          schedule='25 20 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1346,7 +1346,7 @@
   {
     name: '190th Air Refueling Wing, Kansas Air National Guard (afpw_190arw)',
     config: DomainConfig(allowed_domains='190arw.ang.af.mil',
-                         starting_urls='https://190arw.ang.af.mil/',
+                         starting_urls='https://www.190arw.ang.af.mil/',
                          schedule='7 21 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1354,7 +1354,7 @@
   {
     name: '192D Fighter Wing (afpw_192fw)',
     config: DomainConfig(allowed_domains='192fw.ang.af.mil',
-                         starting_urls='https://192fw.ang.af.mil/',
+                         starting_urls='https://www.192fw.ang.af.mil/',
                          schedule='49 21 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1362,7 +1362,7 @@
   {
     name: '192D Fighter Wing (afpw_192fw)',
     config: DomainConfig(allowed_domains='192wg.ang.af.mil',
-                         starting_urls='https://192wg.ang.af.mil/',
+                         starting_urls='https://www.192wg.ang.af.mil/',
                          schedule='30 22 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1370,7 +1370,7 @@
   {
     name: '193rd SOW, Pa. ANG (afpw_193sow)',
     config: DomainConfig(allowed_domains='193sow.ang.af.mil',
-                         starting_urls='https://193sow.ang.af.mil/',
+                         starting_urls='https://www.193sow.ang.af.mil/',
                          schedule='12 23 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1378,7 +1378,7 @@
   {
     name: '214th Reconnaissance Group, Arizona Air National Guard (afpw_214rg)',
     config: DomainConfig(allowed_domains='214rg.ang.af.mil',
-                         starting_urls='https://214rg.ang.af.mil/',
+                         starting_urls='https://www.214rg.ang.af.mil/',
                          schedule='54 23 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -1386,7 +1386,7 @@
   {
     name: '254th Combat Communications Group (afpw_254ccg)',
     config: DomainConfig(allowed_domains='254ccg.ang.af.mil',
-                         starting_urls='https://254ccg.ang.af.mil/',
+                         starting_urls='https://www.254ccg.ang.af.mil/',
                          schedule='36 0 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1402,7 +1402,7 @@
   {
     name: '134th ARW, Tennessee Air National Guard (afpw_134arw)',
     config: DomainConfig(allowed_domains='134arw.ang.af.mil',
-                         starting_urls='https://134arw.ang.af.mil/',
+                         starting_urls='https://www.134arw.ang.af.mil/',
                          schedule='0 2 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1410,7 +1410,7 @@
   {
     name: '136th Airlift Wing, Texas Air National Guard (afpw_136aw)',
     config: DomainConfig(allowed_domains='136aw.ang.af.mil',
-                         starting_urls='https://136aw.ang.af.mil/',
+                         starting_urls='https://www.136aw.ang.af.mil/',
                          schedule='41 2 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1418,7 +1418,7 @@
   {
     name: '137th Air Refueling Wing, Oklahoma ANG (afpw_137arw)',
     config: DomainConfig(allowed_domains='137sow.ang.af.mil',
-                         starting_urls='https://137sow.ang.af.mil/',
+                         starting_urls='https://www.137sow.ang.af.mil/',
                          schedule='23 3 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1426,7 +1426,7 @@
   {
     name: '138th Fighter Wing, Oklahoma ANG (afpw_138fw)',
     config: DomainConfig(allowed_domains='138fw.ang.af.mil',
-                         starting_urls='https://138fw.ang.af.mil/',
+                         starting_urls='https://www.138fw.ang.af.mil/',
                          schedule='5 4 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1434,7 +1434,7 @@
   {
     name: '139th Airlift Wing, Missouri Air National Guard (afpw_139aw)',
     config: DomainConfig(allowed_domains='139aw.ang.af.mil',
-                         starting_urls='https://139aw.ang.af.mil/',
+                         starting_urls='https://www.139aw.ang.af.mil/',
                          schedule='47 4 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1442,7 +1442,7 @@
   {
     name: '140th Wing, Colorado Air National Guard (afpw_140wg)',
     config: DomainConfig(allowed_domains='140wg.ang.af.mil',
-                         starting_urls='https://140wg.ang.af.mil/',
+                         starting_urls='https://www.140wg.ang.af.mil/',
                          schedule='29 5 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1450,7 +1450,7 @@
   {
     name: '141st Air Refueling Wing, Washington ANG (afpw_141arw)',
     config: DomainConfig(allowed_domains='141arw.ang.af.mil',
-                         starting_urls='https://141arw.ang.af.mil/',
+                         starting_urls='https://www.141arw.ang.af.mil/',
                          schedule='10 6 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1458,7 +1458,7 @@
   {
     name: '142nd Wing, Oregon Air National Guard (afpw_142fw)',
     config: DomainConfig(allowed_domains='142fw.ang.af.mil',
-                         starting_urls='https://142fw.ang.af.mil/',
+                         starting_urls='https://www.142fw.ang.af.mil/',
                          schedule='52 6 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1466,7 +1466,7 @@
   {
     name: '143rd Airlift Wing, Rhode Island ANG (afpw_143aw)',
     config: DomainConfig(allowed_domains='143aw.ang.af.mil',
-                         starting_urls='https://143aw.ang.af.mil/',
+                         starting_urls='https://www.143aw.ang.af.mil/',
                          schedule='34 7 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1474,7 +1474,7 @@
   {
     name: '144th Fighter Wing, California Air National Guard (afpw_144fw)',
     config: DomainConfig(allowed_domains='144fw.ang.af.mil',
-                         starting_urls='https://144fw.ang.af.mil/',
+                         starting_urls='https://www.144fw.ang.af.mil/',
                          schedule='16 8 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1482,7 +1482,7 @@
   {
     name: '145th Airlift Wing, North Carolina ANG (afpw_145aw)',
     config: DomainConfig(allowed_domains='145aw.ang.af.mil',
-                         starting_urls='https://145aw.ang.af.mil/',
+                         starting_urls='https://www.145aw.ang.af.mil/',
                          schedule='58 8 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1490,7 +1490,7 @@
   {
     name: '146th Airlift Wing, California ANG (afpw_146aw)',
     config: DomainConfig(allowed_domains='146aw.ang.af.mil',
-                         starting_urls='https://146aw.ang.af.mil/',
+                         starting_urls='https://www.146aw.ang.af.mil/',
                          schedule='40 9 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1498,7 +1498,7 @@
   {
     name: '147th Reconnaissance Wing (afpw_147rw)',
     config: DomainConfig(allowed_domains='147rw.ang.af.mil',
-                         starting_urls='https://147rw.ang.af.mil/',
+                         starting_urls='https://www.147rw.ang.af.mil/',
                          schedule='21 10 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1506,7 +1506,7 @@
   {
     name: '148th Fighter Wing, Minnesota ANG (afpw_148fw)',
     config: DomainConfig(allowed_domains='148fw.ang.af.mil',
-                         starting_urls='https://148fw.ang.af.mil/',
+                         starting_urls='https://www.148fw.ang.af.mil/',
                          schedule='3 11 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1514,7 +1514,7 @@
   {
     name: '149th Fighter Wing, Texas ANG (afpw_149fw)',
     config: DomainConfig(allowed_domains='149fw.ang.af.mil',
-                         starting_urls='https://149fw.ang.af.mil/',
+                         starting_urls='https://www.149fw.ang.af.mil/',
                          schedule='45 11 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1522,7 +1522,7 @@
   {
     name: '151st ARW, Utah Air National Guard (afpw_151arw)',
     config: DomainConfig(allowed_domains='151arw.ang.af.mil',
-                         starting_urls='https://151arw.ang.af.mil/',
+                         starting_urls='https://www.151arw.ang.af.mil/',
                          schedule='27 12 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1530,7 +1530,7 @@
   {
     name: '152nd Airlift Wing, NV ANG (afpw_152aw)',
     config: DomainConfig(allowed_domains='152aw.ang.af.mil',
-                         starting_urls='https://152aw.ang.af.mil/',
+                         starting_urls='https://www.152aw.ang.af.mil/',
                          schedule='9 13 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1538,7 +1538,7 @@
   {
     name: '153rd Airlift Wing, Wyoming ANG (afpw_153aw)',
     config: DomainConfig(allowed_domains='153aw.ang.af.mil',
-                         starting_urls='https://153aw.ang.af.mil/',
+                         starting_urls='https://www.153aw.ang.af.mil/',
                          schedule='51 13 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1546,7 +1546,7 @@
   {
     name: '154th Wing, Hawaii Air National Guard (afpw_154wg)',
     config: DomainConfig(allowed_domains='154wg.ang.af.mil',
-                         starting_urls='https://154wg.ang.af.mil/',
+                         starting_urls='https://www.154wg.ang.af.mil/',
                          schedule='32 14 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1554,7 +1554,7 @@
   {
     name: '155th Air Refueling Wing (afpw_155arw)',
     config: DomainConfig(allowed_domains='155arw.ang.af.mil',
-                         starting_urls='https://155arw.ang.af.mil/',
+                         starting_urls='https://www.155arw.ang.af.mil/',
                          schedule='14 15 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1562,7 +1562,7 @@
   {
     name: '157th ARW, New Hampshire ANG (afpw_157arw)',
     config: DomainConfig(allowed_domains='157arw.ang.af.mil',
-                         starting_urls='https://157arw.ang.af.mil/',
+                         starting_urls='https://www.157arw.ang.af.mil/',
                          schedule='56 15 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1570,7 +1570,7 @@
   {
     name: '158th Fighter Wing, Vermont ANG (afpw_158fw)',
     config: DomainConfig(allowed_domains='158fw.ang.af.mil',
-                         starting_urls='https://158fw.ang.af.mil/',
+                         starting_urls='https://www.158fw.ang.af.mil/',
                          schedule='38 16 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1578,7 +1578,7 @@
   {
     name: '161st Air Refueling Wing (afpw_161arw)',
     config: DomainConfig(allowed_domains='161arw.ang.af.mil',
-                         starting_urls='https://161arw.ang.af.mil/',
+                         starting_urls='https://www.161arw.ang.af.mil/',
                          schedule='20 17 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1586,7 +1586,7 @@
   {
     name: '162nd Combat Communications Group (afpw_162ccg)',
     config: DomainConfig(allowed_domains='162ccg.ang.af.mil',
-                         starting_urls='https://162ccg.ang.af.mil/',
+                         starting_urls='https://www.162ccg.ang.af.mil/',
                          schedule='1 18 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1594,7 +1594,7 @@
   {
     name: '162nd Wing, Arizona ANG (afpw_162fw)',
     config: DomainConfig(allowed_domains='162wing.ang.af.mil',
-                         starting_urls='https://162wing.ang.af.mil/',
+                         starting_urls='https://www.162wing.ang.af.mil/',
                          schedule='43 18 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1602,7 +1602,7 @@
   {
     name: '162nd Wing, Arizona ANG (afpw_162fw)',
     config: DomainConfig(allowed_domains='162fw.ang.af.mil',
-                         starting_urls='https://162fw.ang.af.mil/',
+                         starting_urls='https://www.162fw.ang.af.mil/',
                          schedule='25 19 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1610,7 +1610,7 @@
   {
     name: '163rd ATKW, California Air National Guard (afpw_163rw)',
     config: DomainConfig(allowed_domains='163rw.ang.af.mil',
-                         starting_urls='https://163rw.ang.af.mil/',
+                         starting_urls='https://www.163rw.ang.af.mil/',
                          schedule='7 20 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1618,7 +1618,7 @@
   {
     name: '163rd ATKW, California Air National Guard (afpw_163rw)',
     config: DomainConfig(allowed_domains='163atkw.ang.af.mil',
-                         starting_urls='https://163atkw.ang.af.mil/',
+                         starting_urls='https://www.163atkw.ang.af.mil/',
                          schedule='49 20 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1626,7 +1626,7 @@
   {
     name: '167th Airlift Wing, West Virginia Air National Guard (afpw_167aw)',
     config: DomainConfig(allowed_domains='167aw.ang.af.mil',
-                         starting_urls='https://167aw.ang.af.mil/',
+                         starting_urls='https://www.167aw.ang.af.mil/',
                          schedule='31 21 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1634,7 +1634,7 @@
   {
     name: '168th Air Refueling Wing, Alaska ANG (afpw_168arw)',
     config: DomainConfig(allowed_domains='168arw.ang.af.mil',
-                         starting_urls='https://168arw.ang.af.mil/',
+                         starting_urls='https://www.168arw.ang.af.mil/',
                          schedule='12 22 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1642,7 +1642,7 @@
   {
     name: '169th Fighter Wing (afpw_169fw)',
     config: DomainConfig(allowed_domains='169fw.ang.af.mil',
-                         starting_urls='https://169fw.ang.af.mil/',
+                         starting_urls='https://www.169fw.ang.af.mil/',
                          schedule='54 22 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1650,7 +1650,7 @@
   {
     name: '171st ARW, Pennsylvania ANG (afpw_171arw)',
     config: DomainConfig(allowed_domains='171arw.ang.af.mil',
-                         starting_urls='https://171arw.ang.af.mil/',
+                         starting_urls='https://www.171arw.ang.af.mil/',
                          schedule='36 23 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -1658,7 +1658,7 @@
   {
     name: '107th AW (afpw_107aw)',
     config: DomainConfig(allowed_domains='107aw.ang.af.mil',
-                         starting_urls='https://107aw.ang.af.mil/',
+                         starting_urls='https://www.107aw.ang.af.mil/',
                          schedule='18 0 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1666,7 +1666,7 @@
   {
     name: '108th Wing (afpw_108arw)',
     config: DomainConfig(allowed_domains='108arw.ang.af.mil',
-                         starting_urls='https://108arw.ang.af.mil/',
+                         starting_urls='https://www.108arw.ang.af.mil/',
                          schedule='0 1 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1674,7 +1674,7 @@
   {
     name: '110th Wing (afpw_110aw)',
     config: DomainConfig(allowed_domains='110wg.ang.af.mil',
-                         starting_urls='https://110wg.ang.af.mil/',
+                         starting_urls='https://www.110wg.ang.af.mil/',
                          schedule='42 1 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1682,7 +1682,7 @@
   {
     name: '111th Attack Wing (afpw_111fw)',
     config: DomainConfig(allowed_domains='111fw.ang.af.mil',
-                         starting_urls='https://111fw.ang.af.mil/',
+                         starting_urls='https://www.111fw.ang.af.mil/',
                          schedule='23 2 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1690,7 +1690,7 @@
   {
     name: '111th Attack Wing (afpw_111fw)',
     config: DomainConfig(allowed_domains='111attackwing.ang.af.mil',
-                         starting_urls='https://111attackwing.ang.af.mil/',
+                         starting_urls='https://www.111attackwing.ang.af.mil/',
                          schedule='5 3 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1698,7 +1698,7 @@
   {
     name: '114th Fighter Wing (afpw_114fw)',
     config: DomainConfig(allowed_domains='114fw.ang.af.mil',
-                         starting_urls='https://114fw.ang.af.mil/',
+                         starting_urls='https://www.114fw.ang.af.mil/',
                          schedule='47 3 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1706,7 +1706,7 @@
   {
     name: '115th Fighter Wing (afpw_115fw)',
     config: DomainConfig(allowed_domains='115fw.ang.af.mil',
-                         starting_urls='https://115fw.ang.af.mil/',
+                         starting_urls='https://www.115fw.ang.af.mil/',
                          schedule='29 4 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1714,7 +1714,7 @@
   {
     name: '117th Air Refueling Wing (afpw_117arw)',
     config: DomainConfig(allowed_domains='117arw.ang.af.mil',
-                         starting_urls='https://117arw.ang.af.mil/',
+                         starting_urls='https://www.117arw.ang.af.mil/',
                          schedule='11 5 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1722,7 +1722,7 @@
   {
     name: '118th Wing (afpw_118aw)',
     config: DomainConfig(allowed_domains='118wg.ang.af.mil',
-                         starting_urls='https://118wg.ang.af.mil/',
+                         starting_urls='https://www.118wg.ang.af.mil/',
                          schedule='53 5 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1730,7 +1730,7 @@
   {
     name: '119th Wing, North Dakota Air National Guard (afpw_119wg)',
     config: DomainConfig(allowed_domains='119wg.ang.af.mil',
-                         starting_urls='https://119wg.ang.af.mil/',
+                         starting_urls='https://www.119wg.ang.af.mil/',
                          schedule='34 6 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1738,7 +1738,7 @@
   {
     name: '120th Airlift Wing (afpw_120fw)',
     config: DomainConfig(allowed_domains='120thairliftwing.ang.af.mil',
-                         starting_urls='https://120thairliftwing.ang.af.mil/',
+                         starting_urls='https://www.120thairliftwing.ang.af.mil/',
                          schedule='16 7 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1746,7 +1746,7 @@
   {
     name: '120th Airlift Wing (afpw_120fw)',
     config: DomainConfig(allowed_domains='120fw.ang.af.mil',
-                         starting_urls='https://120fw.ang.af.mil/',
+                         starting_urls='https://www.120fw.ang.af.mil/',
                          schedule='58 7 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1754,7 +1754,7 @@
   {
     name: '121st ARW, Ohio Air National Guard (afpw_121arw)',
     config: DomainConfig(allowed_domains='121arw.ang.af.mil',
-                         starting_urls='https://121arw.ang.af.mil/',
+                         starting_urls='https://www.121arw.ang.af.mil/',
                          schedule='40 8 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1762,7 +1762,7 @@
   {
     name: '122nd Fighter Wing, Indiana ANG (afpw_122fw)',
     config: DomainConfig(allowed_domains='122fw.ang.af.mil',
-                         starting_urls='https://122fw.ang.af.mil/',
+                         starting_urls='https://www.122fw.ang.af.mil/',
                          schedule='22 9 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1770,7 +1770,7 @@
   {
     name: '123rd Airlift Wing, Kentucky ANG (afpw_123aw)',
     config: DomainConfig(allowed_domains='123aw.ang.af.mil',
-                         starting_urls='https://123aw.ang.af.mil/',
+                         starting_urls='https://www.123aw.ang.af.mil/',
                          schedule='3 10 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1778,7 +1778,7 @@
   {
     name: '126th Air Refueling Wing, Illinois Air National Guard (afpw_126arw)',
     config: DomainConfig(allowed_domains='126arw.ang.af.mil',
-                         starting_urls='https://126arw.ang.af.mil/',
+                         starting_urls='https://www.126arw.ang.af.mil/',
                          schedule='45 10 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1786,7 +1786,7 @@
   {
     name: '127th Wing, Michigan Air National Guard (afpw_127wg)',
     config: DomainConfig(allowed_domains='127wg.ang.af.mil',
-                         starting_urls='https://127wg.ang.af.mil/',
+                         starting_urls='https://www.127wg.ang.af.mil/',
                          schedule='27 11 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1794,7 +1794,7 @@
   {
     name: '128th Air Refueling Wing, Wisconsin ANG (afpw_128arw)',
     config: DomainConfig(allowed_domains='128arw.ang.af.mil',
-                         starting_urls='https://128arw.ang.af.mil/',
+                         starting_urls='https://www.128arw.ang.af.mil/',
                          schedule='9 12 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1802,7 +1802,7 @@
   {
     name: '129th Rescue Wing, California ANG (afpw_129rqw)',
     config: DomainConfig(allowed_domains='129rqw.ang.af.mil',
-                         starting_urls='https://129rqw.ang.af.mil/',
+                         starting_urls='https://www.129rqw.ang.af.mil/',
                          schedule='51 12 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1810,7 +1810,7 @@
   {
     name: '130th Airlift Wing, West Virginia Air National Guard (afpw_130aw)',
     config: DomainConfig(allowed_domains='130aw.ang.af.mil',
-                         starting_urls='https://130aw.ang.af.mil/',
+                         starting_urls='https://www.130aw.ang.af.mil/',
                          schedule='33 13 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1818,7 +1818,7 @@
   {
     name: '131st Bomb Wing, Missouri ANG (afpw_131bw)',
     config: DomainConfig(allowed_domains='131bw.ang.af.mil',
-                         starting_urls='https://131bw.ang.af.mil/',
+                         starting_urls='https://www.131bw.ang.af.mil/',
                          schedule='14 14 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1826,7 +1826,7 @@
   {
     name: '132nd Wing, Iowa ANG (afpw_132fw)',
     config: DomainConfig(allowed_domains='132fw.ang.af.mil',
-                         starting_urls='https://132fw.ang.af.mil/',
+                         starting_urls='https://www.132fw.ang.af.mil/',
                          schedule='56 14 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1834,7 +1834,7 @@
   {
     name: '132nd Wing, Iowa ANG (afpw_132fw)',
     config: DomainConfig(allowed_domains='132dwing.ang.af.mil',
-                         starting_urls='https://132dwing.ang.af.mil/',
+                         starting_urls='https://www.132dwing.ang.af.mil/',
                          schedule='38 15 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1842,7 +1842,7 @@
   {
     name: '133rd Airlift Wing, Minnesota Air National Guard (afpw_133aw)',
     config: DomainConfig(allowed_domains='133aw.ang.af.mil',
-                         starting_urls='https://133aw.ang.af.mil/',
+                         starting_urls='https://www.133aw.ang.af.mil/',
                          schedule='20 16 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1850,7 +1850,7 @@
   {
     name: 'Air Force Audit Agency (afaa)',
     config: DomainConfig(allowed_domains='afaa.af.mil',
-                         starting_urls='https://afaa.af.mil/',
+                         starting_urls='https://www.afaa.af.mil/',
                          schedule='2 17 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1858,7 +1858,7 @@
   {
     name: 'Air Force Agency for Modeling and Simulation (afams)',
     config: DomainConfig(allowed_domains='afams.af.mil',
-                         starting_urls='https://afams.af.mil/',
+                         starting_urls='https://www.afams.af.mil/',
                          schedule='44 17 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1866,7 +1866,7 @@
   {
     name: 'Air Force Basic Military Training (afbmt)',
     config: DomainConfig(allowed_domains='basictraining.af.mil',
-                         starting_urls='https://basictraining.af.mil/',
+                         starting_urls='https://www.basictraining.af.mil/',
                          schedule='25 18 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1874,7 +1874,7 @@
   {
     name: 'Air Force District of Washington (afdw)',
     config: DomainConfig(allowed_domains='afdw.af.mil',
-                         starting_urls='https://afdw.af.mil/',
+                         starting_urls='https://www.afdw.af.mil/',
                          schedule='7 19 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1890,7 +1890,7 @@
   {
     name: 'Air Force Materiel Command (afmc)',
     config: DomainConfig(allowed_domains='afmc.af.mil',
-                         starting_urls='https://afmc.af.mil/',
+                         starting_urls='https://www.afmc.af.mil/',
                          schedule='31 20 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1898,7 +1898,7 @@
   {
     name: 'Office of Special Investigations (afosi)',
     config: DomainConfig(allowed_domains='osi.af.mil',
-                         starting_urls='https://osi.af.mil/',
+                         starting_urls='https://www.osi.af.mil/',
                          schedule='13 21 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1914,7 +1914,7 @@
   {
     name: 'Air Force Operational Test and Evaluation Center (afotec)',
     config: DomainConfig(allowed_domains='afotec.af.mil',
-                         starting_urls='https://afotec.af.mil/',
+                         starting_urls='https://www.afotec.af.mil/',
                          schedule='36 22 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -1922,7 +1922,7 @@
   {
     name: 'Air Force Outreach (afoutreach)',
     config: DomainConfig(allowed_domains='afoutreach.af.mil',
-                         starting_urls='https://afoutreach.af.mil/',
+                         starting_urls='https://www.afoutreach.af.mil/',
                          schedule='18 23 * * SAT',
                          output_target=output_target,
                          depth_limit=8),

@@ -55,6 +55,7 @@ def convert_to_libsonnet(options):
             name = name.replace("'", "\\'") # since we use single quotes in our libsonnet files
             affiliate: str = row[options["column_index"]["affiliate"]]
             allowed_domains: str = row[options["column_index"]["allowed_domains"]]
+            starting_urls: str = f"https://{allowed_domains}/"
 
             if allowed_domains.startswith("www."):
                 allowed_domains = allowed_domains[4:]
@@ -69,6 +70,7 @@ def convert_to_libsonnet(options):
                 "name": name,
                 "affiliate": affiliate,
                 "allowed_domains": allowed_domains,
+                "starting_urls": starting_urls,
                 "depth_limit": options["depth_limit"],
             })
         
@@ -80,13 +82,14 @@ def convert_to_libsonnet(options):
             affiliate = row.get("affiliate")
             allowed_domains = row.get("allowed_domains")
             depth_limit = row.get("depth_limit")
+            starting_urls = row.get("starting_urls")
             schedule = generate_cron_expressions(index, rows_length)
             
             jsonnet_array_item = \
 f"""  {{
     name: '{name} ({affiliate})',
     config: DomainConfig(allowed_domains='{allowed_domains}',
-                         starting_urls='https://{allowed_domains}/',
+                         starting_urls='{starting_urls}',
                          schedule='{schedule}',
                          output_target=output_target,
                          depth_limit={depth_limit}),
