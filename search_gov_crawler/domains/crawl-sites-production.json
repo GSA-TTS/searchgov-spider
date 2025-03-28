@@ -5388,5 +5388,185 @@
       "output_target": "elasticsearch",
       "schedule": "15 09 * * FRI",
       "starting_urls": "https://firstnet.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nei.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "National Eye Institute (www.nei.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "28 6 * * SUN",
+      "starting_urls": "https://www.nei.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "niaaa.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "National Institute on Alcohol Abuse and Alcoholism (NIAAA) (www.niaaa.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "18 8 * * MON",
+      "starting_urls": "https://www.niaaa.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "niaid.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "National Institute of Allergy and Infectious Diseases (NIAID) (www.niaid.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "46 14 * * MON",
+      "starting_urls": "https://www.niaid.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "niams.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "National Institute of Arthritis and Musculoskeletal and Skin Diseases (NIAMS) (www.niams.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "14 21 * * MON",
+      "starting_urls": "https://www.niams.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nibib.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "National Institute of Biomedical Imaging and Bioengineering (NIBIB) (www.nibib.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "42 3 * * TUE",
+      "starting_urls": "https://www.nibib.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nichd.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Eunice Kennedy Shriver National Institute of Child Health and Human Development (NICHD) (www.nichd.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "9 10 * * TUE",
+      "starting_urls": "https://www.nichd.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nidcr.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "National Institute of Dental and Craniofacial Research (NIDCR) (www.nidcr.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "37 16 * * TUE",
+      "starting_urls": "https://www.nidcr.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "niddk.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK) (www.niddk.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "5 23 * * TUE",
+      "starting_urls": "https://www.niddk.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nigms.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "National Institute of General Medical Sciences (NIGMS) (www.nigms.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "28 18 * * WED",
+      "starting_urls": "https://www.nigms.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nimhd.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "National Institute on Minority Health and Health Disparities (NIMHD) (www.nimhd.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "23 7 * * THU",
+      "starting_urls": "https://www.nimhd.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ninds.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "National Institute of Neurological Disorders and Stroke (NINDS) (www.ninds.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "51 13 * * THU",
+      "starting_urls": "https://www.ninds.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ninr.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "National Institute of Nursing Research (NINR) (www.ninr.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "18 20 * * THU",
+      "starting_urls": "https://www.ninr.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "cc.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NIH Clinical Center (CC) (www.cc.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "14 9 * * FRI",
+      "starting_urls": "https://www.cc.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "cit.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Center for Information Technology (CIT) (www.cit.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "42 15 * * FRI",
+      "starting_urls": "https://www.cit.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "public.csr.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Center for Scientific Review (CSR) (public.csr.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "9 22 * * FRI",
+      "starting_urls": "https://public.csr.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "fic.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Fogarty International Center (FIC) (www.fic.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "37 4 * * SAT",
+      "starting_urls": "https://www.fic.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ncats.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "National Center for Advancing Translational Sciences (NCATS) (ncats.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "5 11 * * SAT",
+      "starting_urls": "https://ncats.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "nccih.nih.gov",
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "National Center for Complementary and Integrative Health (NCCIH) (www.nccih.nih.gov)",
+      "output_target": "elasticsearch",
+      "schedule": "32 17 * * SAT",
+      "starting_urls": "https://www.nccih.nih.gov/"
    }
 ]
