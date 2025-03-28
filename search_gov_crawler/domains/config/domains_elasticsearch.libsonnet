@@ -4005,7 +4005,7 @@ local output_target = 'elasticsearch';
   },
 
   // Batch 7 - Air force:
-    {
+  {
     name: 'Air Force Learning Professionals (aflearningprofessionals)',
     config: DomainConfig(allowed_domains='learningprofessionals.af.mil',
                          starting_urls='https://www.learningprofessionals.af.mil/',
@@ -5206,7 +5206,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: 'Air Force Judge Advocate General\'s Corps (afpw_afjag)',
+    name: "Air Force Judge Advocate General's Corps (afpw_afjag)",
     config: DomainConfig(allowed_domains='afjag.af.mil',
                          starting_urls='https://www.afjag.af.mil/',
                          schedule='34 8 * * THU',
