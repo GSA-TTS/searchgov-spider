@@ -5401,16 +5401,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "af.mil",
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "af.mi (af.mil)",
-      "output_target": "elasticsearch",
-      "schedule": "42 0 * * SUN",
-      "starting_urls": "https://www.af.mil/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "aiaccelerator.af.mil",
       "depth_limit": 8,
       "handle_javascript": false,

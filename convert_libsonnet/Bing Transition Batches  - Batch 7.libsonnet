@@ -8,14 +8,6 @@
                          depth_limit=8),
   },
   {
-    name: 'af.mi (af.mil)',
-    config: DomainConfig(allowed_domains='af.mil',
-                         starting_urls='https://www.af.mil/',
-                         schedule='42 0 * * SUN',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
     name: 'MIT-AF AI Accelerator (af_aiaccelerator)',
     config: DomainConfig(allowed_domains='aiaccelerator.af.mil',
                          starting_urls='https://www.aiaccelerator.af.mil/',
