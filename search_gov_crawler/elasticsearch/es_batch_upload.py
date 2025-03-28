@@ -23,7 +23,7 @@ log = logging.getLogger("search_gov_crawler.elasticsearch")
 """
 Temporary variable to disable the PDF functionality until we're ready to launch it
 """
-DISABLE_PDF = True
+DISABLE_PDF = False
 
 class SearchGovElasticsearch:
     """Defines the shape and methods of the spider's connection to Elasticsearch"""

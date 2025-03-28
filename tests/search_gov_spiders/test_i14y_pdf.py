@@ -99,7 +99,7 @@ def test_get_pdf_text():
     fake_page_content_2 = f"Page 2 content: {fake_page_content_1}"
     pages = [FakePage(fake_page_content_1), FakePage(fake_page_content_2)]
     fake_reader = FakePdfReader(None, pages=pages)
-    result = convert_pdf_i14y.get_pdf_text(fake_reader)
+    result, _ = convert_pdf_i14y.get_pdf_text(fake_reader)
     expected = f"{fake_page_content_1} {fake_page_content_2} "
     assert result == expected
 
@@ -193,17 +193,20 @@ def test_add_title_and_filename():
 
 def test_get_links_set():
     """Test that get_links_set extracts unique links from PDF pages."""
-    # Mocking PdfReader and its pages
+
+    page1_text = "Visit https://example.com for more info."
+    page2_text = "Check out www.test.com and also https://example.com"
+
     fake_page1 = MagicMock()
-    fake_page1.extract_text.return_value = "Visit https://example.com for more info."
+    fake_page1.get_object.return_value = {}
 
     fake_page2 = MagicMock()
-    fake_page2.extract_text.return_value = "Check out www.test.com and also https://example.com"
-
-    fake_reader = MagicMock()
-    fake_reader.pages = [fake_page1, fake_page2]
-
-    links = convert_pdf_i14y.get_links_set(fake_reader)
+    fake_page2.get_object.return_value = {}
+    
+    page_items = [(page1_text, fake_page1), (page2_text, fake_page2)]
+    
+    links = convert_pdf_i14y.get_links_set(page_items)
+    
     expected_links = {"https://example.com", "www.test.com"}
 
     assert set(links) == expected_links

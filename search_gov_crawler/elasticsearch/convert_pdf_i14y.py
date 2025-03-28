@@ -1,6 +1,7 @@
 import re
 from io import BytesIO
-from pypdf import PdfReader
+from pypdf import PdfReader, PageObject
+from typing import Tuple
 from datetime import UTC, datetime, timedelta
 from search_gov_crawler.search_gov_spiders.helpers import content
 from search_gov_crawler.elasticsearch.i14y_helper import (
@@ -32,7 +33,7 @@ def add_title_and_filename(key: str, title_key: str, doc: dict):
     doc[key] = f"{doc[title_key]} {doc['basename']}.{doc['extension']} {doc[key]}"
 
 
-def get_links_set(reader: PdfReader):
+def get_links_set(pages: list[Tuple[str, PageObject]]):
     """
     Returns a set of links for all pages in the PDF
 
@@ -47,8 +48,8 @@ def get_links_set(reader: PdfReader):
     ank = "/A"
     links = {}
 
-    for page in reader.pages:
-        text = page.extract_text()
+    for page_item in pages:
+        text, page = page_item
         page_links = re.findall(r"https?://\S+|www\.\S+", text)
         # Get all visible links
         for link in page_links:
@@ -78,7 +79,8 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
 
     basename, extension = get_base_extension(url)
     title = meta_values.get("Title") or separate_file_name(f"{basename}.{extension}")
-    main_content = get_pdf_text(reader) or title
+    main_content, pages = get_pdf_text(reader)
+    main_content = main_content or title
 
     sha_id = generate_url_sha256(url)
 
@@ -125,13 +127,13 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
 
     add_title_and_filename(content_key, title_key, i14y_doc)
     add_title_and_filename(description_key, title_key, i14y_doc)
-    all_links = get_links_set(reader)
+    all_links = get_links_set(pages)
     i14y_doc[content_key] = f"{i14y_doc[content_key]} {' '.join(all_links) if len(all_links) > 0 else ''}"
 
     return i14y_doc
 
 
-def get_pdf_text(reader: PdfReader) -> str:
+def get_pdf_text(reader: PdfReader) -> Tuple[str, list[Tuple[str, PageObject]]]:
     """
     Returns clean text/content from all pdf pages
 
@@ -142,9 +144,12 @@ def get_pdf_text(reader: PdfReader) -> str:
         (string) without new any special characters
     """
     text = ""
+    pages = []
     for page in reader.pages:
-        text += page.extract_text() + " "
-    return text
+        page_text = page.extract_text()
+        text += page_text + " "
+        pages.append((page_text, page))
+    return (text, pages)
 
 
 def get_pdf_meta(reader: PdfReader):
