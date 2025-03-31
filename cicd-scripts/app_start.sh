@@ -3,20 +3,20 @@
 # CD into the current script directory (which != $pwd)
 cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && cd ../
 
-sudo chmod +x ./cicd-scripts/helpers/ensure_executable.sh
-source ./cicd-scripts/helpers/ensure_executable.sh
+LOG_FILE=/var/log/scrapy_scheduler.log
+START_SCRIPT=search_gov_crawler/scrapy_scheduler.py
 
-# TODO: Make it part of the local env variable that is set by Ansible
-SPIDER_RUN_WITH_UI=false
+source ~/.profile
 
-# Determine which script to run based on the SPIDER_RUN_WITH_UI flag
-SCRIPT="./cicd-scripts/helpers/run_without_ui.sh"
-if $SPIDER_RUN_WITH_UI; then
-    SCRIPT="./cicd-scripts/helpers/run_with_ui.sh"
-fi
+# Run the script in the background using the virtual environment
+sudo chmod +x ./$START_SCRIPT
 
-# Ensure the script exists, is executable, and run it
-ensure_executable "$SCRIPT"
+sudo touch $LOG_FILE
+sudo chown -R $(whoami) $LOG_FILE
+
+echo PYTHONPATH is $PYTHONPATH
+
+nohup bash -c "source ./venv/bin/activate && ./venv/bin/python ./$START_SCRIPT" >> $LOG_FILE 2>&1 &
 
 # check that scheduler is running before exit, it not raise error
 if [[ -n $(pgrep -f "scrapy_scheduler.py") ]]; then

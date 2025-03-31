@@ -8,9 +8,7 @@ This page gives a more detailed description and further instructions on running 
 * [Starting Spider Jobs](#starting-spider-jobs)
   * [Option 1: command-line](#option-1-scrapy-crawl-with-different-output)
   * [Option 2: benchmark](#option-2-benchmark-command-line)
-  * [Option 3: custom scheduler](#option-3-custom-scheduler)
-  * [Option 4: scrapyd](#option-4-deploying-on-server-scrapyd)
-* [Running Scrapy Scheduler](#running-scrapy-scheduler)
+  * [Option 3: running-scrapy-scheduler](#option-3-running-scrapy-scheduler)
 * [Running For All Domains](#running-against-all-listed-searchgov-domains)
 * [Adding New Spiders](#adding-new-spiders)
 
@@ -34,7 +32,6 @@ SPIDER_URLS_API="https://jsonplaceholder.typicode.com/posts"
 
 # Needed for deployment
 SPIDER_PYTHON_VERSION="3.12"
-SPIDER_RUN_WITH_UI="False"
 ```
 
 ## Elasticsearch
@@ -87,62 +84,7 @@ python search_gov_spiders/benchmark.py -f /path/to/crawl-sites-like-file.json
 
 There are other options available.  Run `python search_gov_spiders/benchmark.py -h` for more info.
 
-### Option 3: Custom Scheduler
-
-See the [Running Scrapy Scheduler](#running-scrapy-scheduler) section below.
-
-### Option 4: deploying on server (Scrapyd)
-
-***We do not actively use this option but it remains in place for potential future use.***
-
-1. Navigate to the [*Scrapy project root directory*](search_gov_crawler) and start the server.
-```bash
-scrapyd
-```
-* Note: the directory where you start the server is arbitrary. It's simply where the logs and Scrapy project FEED destination (relative to the server directory) will be.
-
-2. Run this command to eggify the Scrapy project and deploy it to the Scrapyd server:
-```bash
-scrapyd-deploy default
-```
-Note: This will simply deploy it to a local Scrapyd server. To add custom deployment endpoints, you navigate to the [scrapy.cfg](../search_gov_crawler/scrapy.cfg) file and add or customize endpoints.
-
-For instance, if you wanted local and production endpoints:
-```yaml
-[settings]
-default = search_gov_spiders.settings
-
-[deploy: local]
-url = http://localhost:6800/
-project = search_gov_spiders
-
-[deploy: production]
-url = <IP_ADDRESS>
-project = search_gov_spiders
-```
-
-And then to deploy:
-```bash
-# deploy locally
-scrapyd-deploy local
-
-# deploy production
-scrapyd-deploy production
-```
-
-3. For an interface to view jobs (pending, running, finished) and logs, access http://localhost:6800/. However, to actually manipulate the spiders deployed to the Scrapyd server, you'll need to use the [Scrapyd JSON API](https://scrapyd.readthedocs.io/en/latest/api.html).
-
-Some often-used commands:
-* Schedule a job:
-```bash
-curl http://localhost:6800/schedule.json -d project=search_gov_spiders -d spider=<spider_name>
-```
-* Check load status of a service:
-```bash
-curl http://localhost:6800/daemonstatus.json
-```
-
-## Running scrapy scheduler
+### Option 3: Running scrapy scheduler
 
 This process allows for scrapy to be run directly using an in-memory scheduler.  The schedule is based on the initial schedule setup in the [crawl-sites-sample.json file](../search_gov_crawler/search_gov_spiders/utility_files/crawl-sites-sample.json).  The process will run until killed.
 
@@ -193,9 +135,3 @@ scrapy crawl domain_spider_js
 2. Using the [domain spider](../search_gov_crawler/search_gov_spiders/spiders/domain_spider.py) as an example, copy code to the new spider file.
 
 3. Modify the `rules` in the new spider as needed. Here's the [Scrapy rules documentation](https://docs.scrapy.org/en/latest/topics/spiders.html#crawling-rules) for the specifics.
-
-4. To update the Scrapyd server with the new spider, run:
-
-        $ scrapyd-deploy <default or endpoint_name>
-
-        ## Running Against All Listed Search.gov Domains
