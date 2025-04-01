@@ -61,9 +61,13 @@ def get_links_set(pages: list[Tuple[str, PageObject]]):
             ann = page_object[key]
             for a in ann:
                 u = a.get_object()
-                if uri in u[ank].keys():
-                    link = u[ank][uri]
-                    links[link] = link
+                try:
+                    if ank in u and uri in u[ank].keys():
+                        link = u[ank][uri]
+                        links[link] = link
+                except ValueError:
+                    pass
+                
     return links.values()
 
 
