@@ -53,7 +53,7 @@ def get_links_set(pages: list[Tuple[str, PageObject]]):
         page_links = re.findall(r"https?://\S+|www\.\S+", text)
         # Get all visible links
         for link in page_links:
-            links[link] = link
+            links[link] = True
 
         # Get all hidden links
         page_object = page.get_object()
@@ -64,11 +64,11 @@ def get_links_set(pages: list[Tuple[str, PageObject]]):
                 try:
                     if ank in u and uri in u[ank].keys():
                         link = u[ank][uri]
-                        links[link] = link
+                        links[link] = True
                 except ValueError:
                     pass
                 
-    return links.values()
+    return links.keys()
 
 
 def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
