@@ -235,7 +235,7 @@ if __name__ == "__main__":
         help="Number of seconds to offset job start",
     )
     parser.add_argument(
-        "-sd",
+        "-l",
         "--depth_limit",
         type=int,
         default=3,
