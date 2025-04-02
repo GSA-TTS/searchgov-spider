@@ -32,13 +32,12 @@ def add_title_and_filename(key: str, title_key: str, doc: dict):
     """
     doc[key] = f"{doc[title_key]} {doc['basename']}.{doc['extension']} {doc[key]}"
 
-
 def get_links_set(pages: list[Tuple[str, PageObject]]):
     """
     Returns a set of links for all pages in the PDF
 
     Args:
-        reader: PdfReader from pypdf
+        pages: list of tuples containing (text, PageObject)
 
     Returns:
         (list[str]) unique set of links
@@ -46,16 +45,16 @@ def get_links_set(pages: list[Tuple[str, PageObject]]):
     key = "/Annots"
     uri = "/URI"
     ank = "/A"
-    links = {}
+    links = set()  # Use a set for unique links
 
     for page_item in pages:
         text, page = page_item
+        # Get all visible links from text
         page_links = re.findall(r"https?://\S+|www\.\S+", text)
-        # Get all visible links
         for link in page_links:
-            links[link] = True
+            links.add(link)
 
-        # Get all hidden links
+        # Get all hidden links from annotations
         page_object = page.get_object()
         if key in page_object.keys():
             ann = page_object[key]
@@ -64,11 +63,14 @@ def get_links_set(pages: list[Tuple[str, PageObject]]):
                 try:
                     if ank in u and uri in u[ank].keys():
                         link = u[ank][uri]
-                        links[link] = True
+                        # Convert bytes to string if necessary
+                        if isinstance(link, bytes):
+                            link = link.decode("utf-8")
+                        links.add(link)
                 except ValueError:
                     pass
-                
-    return links.keys()
+
+    return list(links)
 
 
 def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
