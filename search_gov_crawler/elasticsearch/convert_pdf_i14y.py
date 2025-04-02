@@ -32,6 +32,7 @@ def add_title_and_filename(key: str, title_key: str, doc: dict):
     """
     doc[key] = f"{doc[title_key]} {doc['basename']}.{doc['extension']} {doc[key]}"
 
+
 def get_links_set(pages: list[Tuple[str, PageObject]]):
     """
     Returns a set of links for all pages in the PDF
