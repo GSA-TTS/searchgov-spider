@@ -54,10 +54,8 @@ nohup python search_gov_crawler/benchmark.py -d usa.gov -u https://www.usa.gov/ 
 #### Restart the Scheduler
 In some cases we may need to restart the scheudler using the normal process.  In that case it is best to use the same scripts as the deployment process.
 * Move to the correct deployment directory (the PYTHONPATH env var can be used for this)
-* Source the virtual environment
 * Source the run script
 ```bash
 cd $PYTHONPATH
-source venv/bin/activate
-source cicd-scripts/helpers/run_without_ui.sh
+source cicd-scripts/app_start.sh
 ```

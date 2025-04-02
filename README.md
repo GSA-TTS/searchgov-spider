@@ -76,8 +76,6 @@ For more advanced usage, see the [Advanced Setup and Use Page](docs/advanced_set
 
 * [Operations](docs/operations.md)
 
-* [Running Scrapydweb UI](docs/running_scrapydwebui.md)
-
 * [Spider Schedules and Domain Configs README](search_gov_crawler/domains/README.md)
   * [Current Production Domain List](search_gov_crawler/domains/crawl-sites-production.json)
 

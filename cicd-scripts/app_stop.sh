@@ -27,25 +27,6 @@ stop_scrapy_scheduler() {
     ensure_executable "./cicd-scripts/helpers/kill_scheduler.sh"
 }
 
-# Stop scrapyd and scrapydweb tasks
-stop_scrapy_tasks() {
-    echo "Stopping all scrapyd and scrapydweb tasks..."
-
-    # Kill scrapydweb tasks
-    if pkill -f "scrapydweb" 2>/dev/null; then
-        echo "scrapydweb tasks stopped."
-    else
-        echo "No scrapydweb tasks running."
-    fi
-
-    # Kill scrapyd tasks
-    if pkill -f "scrapyd" 2>/dev/null; then
-        echo "scrapyd tasks stopped."
-    else
-        echo "No scrapyd tasks running."
-    fi
-}
-
 # Display remaining scrapy processes
 display_remaining_scrapy_processes() {
     echo -e "\nRemaining scrapy processes (if any):"
@@ -100,9 +81,6 @@ purge_pip_cache
 
 # Stop scrapy scheduler if running
 stop_scrapy_scheduler
-
-# Stop scrapyd and scrapydweb tasks
-stop_scrapy_tasks
 
 # Display remaining scrapy processes (if any)
 display_remaining_scrapy_processes
