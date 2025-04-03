@@ -44,7 +44,13 @@ jsonnet -m . crawl-sites.jsonnet
 ```
 
 ### Generate Markdown Schedules 
-To generate human readable schedules run readschedule with the json file you would like to create/update: 
+To generate all human readable schedules run readschedule
+```bash 
+cd search_gov_crawler/domains
+python readschedule.py
+```
+
+To generate individual human readable schedules run readschedule with the json file you would like to create/update: 
 
 ```bash
 cd search_gov_crawler/domains
