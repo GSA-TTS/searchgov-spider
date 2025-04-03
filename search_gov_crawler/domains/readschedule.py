@@ -55,11 +55,11 @@ def put_into_schedule_format(data):
     return unsorted_schedule
 
 
-def create_markdown(name, data, file_name):
+def create_markdown(day, data, file_name):
     if not data:
         return ""
 
-    md_table = f"""|{name}|Time (UST)|\n|---|---|\n"""
+    md_table = f"""## {day} \n|{day}|Time (UST)|\n|---|---|\n"""
 
     for entry in data:
         name = entry["name"]
@@ -84,10 +84,18 @@ def create_sorted_markdown(unsorted_schedule, file_path):
         create_markdown(day, sorted_by_time, file_path)
 
 
+def create_markdown_schedule_file(file_path):
+    file_name = file_path.split(".")[0] + ".md"
+    toc = "*[Monday](#monday)\n*[Tuesday](#tuesday)\n*[Wednesday](#wednesday)\n*[Thursday](#thursday)\n*[Friday](#friday)\n*[Saturday](#saturday)\n*[Sunday](#sunday)\n"
+    with open(file_name, "w", encoding="utf-8") as file:
+        file.write(toc)
+
+
 def main(file_path):
     data = read_json_file(file_path)
     if data is not None:
         unsorted_schedule = put_into_schedule_format(data)
+        create_markdown_schedule_file(file_path)
         create_sorted_markdown(unsorted_schedule, file_path)
     else:
         print(f"No data found in {file_path}")

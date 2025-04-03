@@ -1,3 +1,11 @@
+*[Monday](#monday)
+*[Tuesday](#tuesday)
+*[Wednesday](#wednesday)
+*[Thursday](#thursday)
+*[Friday](#friday)
+*[Saturday](#saturday)
+*[Sunday](#sunday)
+## Monday 
 |Monday|Time (UST)|
 |---|---|
 |15th Air Force (afpw_ninth)|00:24|
@@ -97,6 +105,7 @@
 |Team McChord (afpw_62aw)|23:24|
 
 
+## Tuesday 
 |Tuesday|Time (UST)|
 |---|---|
 |166th Airlift Wing, Delaware Air National Guard (afpw_166aw)|00:06|
@@ -260,6 +269,7 @@
 |McConnell Air Force Base (afpw_mcconnell)|23:48|
 
 
+## Wednesday 
 |Wednesday|Time (UST)|
 |---|---|
 |Joint Base McGuire-Dix-Lakehurst (afpw_mcguire)|00:30|
@@ -418,6 +428,7 @@
 |477th Fighter Group (afpw_477fg)|23:30|
 
 
+## Thursday 
 |Thursday|Time (UST)|
 |---|---|
 |505th Command and Control Wing (afpw_505ccw)|00:12|
@@ -564,6 +575,7 @@
 |214th Reconnaissance Group, Arizona Air National Guard (afpw_214rg)|23:54|
 
 
+## Friday 
 |Friday|Time (UST)|
 |---|---|
 |254th Combat Communications Group (afpw_254ccg)|00:36|
@@ -704,6 +716,7 @@
 |171st ARW, Pennsylvania ANG (afpw_171arw)|23:36|
 
 
+## Saturday 
 |Saturday|Time (UST)|
 |---|---|
 |107th AW (afpw_107aw)|00:18|
@@ -766,6 +779,7 @@
 |Air Force Outreach (afoutreach)|23:18|
 
 
+## Sunday 
 |Sunday|Time (UST)|
 |---|---|
 |Air Force Learning Professionals (aflearningprofessionals)|00:00|
