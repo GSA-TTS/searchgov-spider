@@ -86,7 +86,7 @@ def create_sorted_markdown(unsorted_schedule, file_path):
 
 def create_markdown_schedule_file(file_path):
     file_name = file_path.split(".")[0] + ".md"
-    toc = "*[Monday](#monday)\n*[Tuesday](#tuesday)\n*[Wednesday](#wednesday)\n*[Thursday](#thursday)\n*[Friday](#friday)\n*[Saturday](#saturday)\n*[Sunday](#sunday)\n"
+    toc = " * [Monday](#monday)\n * [Tuesday](#tuesday)\n * [Wednesday](#wednesday)\n * [Thursday](#thursday)\n * [Friday](#friday)\n * [Saturday](#saturday)\n * [Sunday](#sunday)\n"
     with open(file_name, "w", encoding="utf-8") as file:
         file.write(toc)
 
