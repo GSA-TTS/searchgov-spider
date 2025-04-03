@@ -111,5 +111,5 @@ if __name__ == "__main__":
         main(sys.argv[1])
     else:
         schedules = ["crawl-sites-development.json", "crawl-sites-staging.json", "crawl-sites-production.json"]
-        for schedule in schedules:
-            main(schedule)
+        for json_schedule in schedules:
+            main(json_schedule)
