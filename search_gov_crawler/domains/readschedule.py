@@ -4,7 +4,7 @@ import sys
 
 def read_json_file(file_path) -> str:
     try:
-        with open(file_path, "r") as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             data = json.load(file)
             return data
     except FileNotFoundError:
@@ -16,16 +16,16 @@ def read_json_file(file_path) -> str:
 
 
 def create_time(time):
-    min = time.split(" ")[0]
+    minute = time.split(" ")[0]
     hour = time.split(" ")[1]
 
-    if len(min) < 2:
-        min = "0" + min
+    if len(minute) < 2:
+        minute = "0" + minute
 
     if len(hour) < 2:
         hour = "0" + hour
 
-    time = hour + ":" + min
+    time = hour + ":" + minute
     return time
 
 
@@ -72,7 +72,6 @@ def create_markdown(name, data, file_name):
 
 def write_schedule(md_table, file_path):
     file_name = file_path.split(".")[0] + ".md"
-    # file_path = "schedule.md"
     with open(file_name, "a+", encoding="utf-8") as file:
         file.write(md_table)
 
@@ -87,8 +86,11 @@ def create_sorted_markdown(unsorted_schedule, file_path):
 
 def main(file_path):
     data = read_json_file(file_path)
-    unsorted_schedule = put_into_schedule_format(data)
-    create_sorted_markdown(unsorted_schedule, file_path)
+    if data is not None:
+        unsorted_schedule = put_into_schedule_format(data)
+        create_sorted_markdown(unsorted_schedule, file_path)
+    else:
+        print(f"No data found in {file_path}")
 
 
 if __name__ == "__main__":
