@@ -7,7 +7,7 @@
  * [Saturday](#saturday)
  * [Sunday](#sunday)
 ## Monday 
-|Monday|Time (UST)|
+|Domain|Time (UST)|
 |---|---|
 |15th Air Force (afpw_ninth)|00:24|
 |tricare_brooke|01:00|
@@ -107,7 +107,7 @@
 
 
 ## Tuesday 
-|Tuesday|Time (UST)|
+|Domain|Time (UST)|
 |---|---|
 |166th Airlift Wing, Delaware Air National Guard (afpw_166aw)|00:06|
 |307th Bomb Wing (afpw_307bw)|00:48|
@@ -271,7 +271,7 @@
 
 
 ## Wednesday 
-|Wednesday|Time (UST)|
+|Domain|Time (UST)|
 |---|---|
 |Joint Base McGuire-Dix-Lakehurst (afpw_mcguire)|00:30|
 |tricare_nhcq|01:00|
@@ -430,7 +430,7 @@
 
 
 ## Thursday 
-|Thursday|Time (UST)|
+|Domain|Time (UST)|
 |---|---|
 |505th Command and Control Wing (afpw_505ccw)|00:12|
 |618th Air and Space Operations Center (TACC) (afpw_618tacc)|00:54|
@@ -577,7 +577,7 @@
 
 
 ## Friday 
-|Friday|Time (UST)|
+|Domain|Time (UST)|
 |---|---|
 |254th Combat Communications Group (afpw_254ccg)|00:36|
 |tricare_96mg|01:00|
@@ -718,7 +718,7 @@
 
 
 ## Saturday 
-|Saturday|Time (UST)|
+|Domain|Time (UST)|
 |---|---|
 |107th AW (afpw_107aw)|00:18|
 |tricare_fewarren|01:00|
@@ -781,7 +781,7 @@
 
 
 ## Sunday 
-|Sunday|Time (UST)|
+|Domain|Time (UST)|
 |---|---|
 |Air Force Learning Professionals (aflearningprofessionals)|00:00|
 |tricare_newsroom|01:00|
