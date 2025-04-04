@@ -4931,7 +4931,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.grandforks.af.mil/',
                          schedule='52 8 * * WED',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['/Site-Index/']),
   },
   {
     name: 'Air Force Retirees Services (afpw_afro)',
@@ -5651,7 +5652,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.171arw.ang.af.mil/',
                          schedule='36 23 * * FRI',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['/Resiliancy-Team/']),
   },
   {
     name: '107th AW (afpw_107aw)',
@@ -5787,7 +5789,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.127wg.ang.af.mil/',
                          schedule='27 11 * * SAT',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['/media/photos/igphoto/']),
   },
   {
     name: '128th Air Refueling Wing, Wisconsin ANG (afpw_128arw)',

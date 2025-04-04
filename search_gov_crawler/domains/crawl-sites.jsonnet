@@ -13,6 +13,7 @@ local CrawlSite(domain) = {
   output_target: domain.config.output_target,
   starting_urls: domain.config.starting_urls,
   depth_limit: domain.config.depth_limit,
+  deny_paths: domain.config.deny_paths,
 };
 
 // define output file names and their contents below

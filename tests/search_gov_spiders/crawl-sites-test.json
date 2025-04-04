@@ -7,7 +7,8 @@
         "schedule": "0,15,30,45 * * * *",
         "output_target": "csv",
         "starting_urls": "https://quotes.toscrape.com/",
-        "depth_limit": 3
+        "depth_limit": 3,
+        "deny_paths": null
     },
     {
         "name": "Quotes 2",
@@ -17,7 +18,8 @@
         "schedule": "0,15,30,45 * * * *",
         "output_target": "csv",
         "starting_urls": "https://quotes.toscrape.com/js/",
-        "depth_limit": 3
+        "depth_limit": 3,
+        "deny_paths": null
     },
     {
         "name": "Quotes 3",
@@ -27,7 +29,8 @@
         "schedule": "0,15,30,45 * * * *",
         "output_target": "endpoint",
         "starting_urls": "https://quotes.toscrape.com/js-delayed/",
-        "depth_limit": 3
+        "depth_limit": 3,
+        "deny_paths": ["/author/", "/tag/"]
     },
     {
         "name": "Quotes 4",
@@ -37,6 +40,7 @@
         "schedule": "0,15,30,45 * * * *",
         "output_target": "endpoint",
         "starting_urls": "https://quotes.toscrape.com/",
-        "depth_limit": 3
+        "depth_limit": 3,
+        "deny_paths": ["/author/"]
     }
 ]
