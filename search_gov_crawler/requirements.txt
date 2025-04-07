@@ -14,7 +14,7 @@ elasticsearch==8.17.1
 
 ### These two packages are required by newspaper4k, but not explicitly installed by it
 lxml_html_clean==0.4.1
-typing_extensions==4.12.2
+typing_extensions==4.13.1
 ###
 
 newspaper4k[all]==0.9.3.1 # This also installs the nltk library
