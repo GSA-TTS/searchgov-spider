@@ -108,11 +108,13 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 # SPIDERMON SETTINGS
 date_time = spider_start.isoformat()
 body_html_template = Path(__file__).parent / "actions" / "results.jinja"
+SPIDER_URLS_API = os.environ.get("SPIDER_URLS_API", "https://local.search.usa.gov/urls")
+env_name = SPIDER_URLS_API.split("https://")[1].split(".")[0]
 
-SPIDERMON_ENABLED = os.environ.get("SPIDERMON_ENABLED", "False")
-SPIDERMON_MIN_ITEMS = 1000
-SPIDERMON_TIME_INTERVAL = 1  # time is in seconds
-SPIDERMON_ITEM_COUNT_INCREASE = 100
+SPIDERMON_ENABLED = os.environ.get("SPIDER_SPIDERMON_ENABLED", "True")
+SPIDERMON_MIN_ITEMS = 10
+SPIDERMON_TIME_INTERVAL = 60  # time is in seconds
+SPIDERMON_ITEM_COUNT_INCREASE = 10
 SPIDERMON_MAX_EXECUTION_TIME = 86400
 SPIDERMON_UNWANTED_HTTP_CODES_MAX_COUNT = 10
 SPIDERMON_UNWANTED_HTTP_CODES = [400, 407, 429, 500, 502, 503, 504, 523, 540, 541]
@@ -120,16 +122,13 @@ SPIDERMON_REPORT_TEMPLATE = "results.jinja"
 SPIDERMON_BODY_HTML_TEMPLATE = body_html_template
 SPIDERMON_REPORT_CONTEXT = {"report_title": "Spidermon File Report"}
 SPIDERMON_REPORT_FILENAME = f"{date_time}_spidermon_file_report.html"
-SPIDERMON_EMAIL_SUBJECT = "Spidermon report"
-SPIDERMON_EMAIL_SENDER = os.environ.get("SPIDERMON_EMAIL_SENDER")
-SPIDERMON_EMAIL_TO = os.environ.get("SPIDERMON_EMAIL_TO")
-SPIDERMON_SMTP_HOST = os.environ.get("SPIDERMON_SMTP_HOST")
-SPIDERMON_SMTP_PORT = os.environ.get("SPIDERMON_SMTP_PORT")
-SPIDERMON_SMTP_USER = os.environ.get("SPIDERMON_SMTP_USER")
-SPIDERMON_SMTP_PASSWORD = os.environ.get("SPIDERMON_SMTP_PASSWORD")
-SPIDERMON_SMTP_ENFORCE_SSL = False
-SPIDERMON_SMTP_ENFORCE_TLS = True
-
+SPIDERMON_EMAIL_SUBJECT = f"{env_name} Spidermon Report".capitalize()
+SPIDERMON_EMAIL_SENDER = "search@support.digitalgov.gov"
+SPIDERMON_EMAIL_TO = "tts-search-devs@gsa.gov"
+SPIDERMON_AWS_ACCESS_KEY_ID = os.environ.get("SEARCH_AWS_ACCESS_KEY_ID")
+SPIDERMON_AWS_SECRET_ACCESS_KEY = os.environ.get("SEARCH_AWS_SECRET_ACCESS_KEY")
+SPIDERMON_AWS_REGION_NAME = "us-east-1"
 SPIDERMON_PERIODIC_MONITORS = {
     "search_gov_spiders.monitors.PeriodicMonitorSuite": SPIDERMON_TIME_INTERVAL,
 }
+SPIDERMON_SPIDER_CLOSE_MONITORS = ("search_gov_spiders.monitors.SpiderCloseMonitorSuite",)
