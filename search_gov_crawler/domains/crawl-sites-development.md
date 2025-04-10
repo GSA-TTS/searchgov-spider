@@ -6,8 +6,8 @@
  * [Friday](#friday)
  * [Saturday](#saturday)
  * [Sunday](#sunday)
-## Monday 
-|Domain|Time (UST)|
+## Monday
+|Domain|Time (UTC)|
 |---|---|
 |15th Air Force (afpw_ninth)|00:24|
 |tricare_brooke|01:00|
@@ -106,8 +106,8 @@
 |Team McChord (afpw_62aw)|23:24|
 
 
-## Tuesday 
-|Domain|Time (UST)|
+## Tuesday
+|Domain|Time (UTC)|
 |---|---|
 |166th Airlift Wing, Delaware Air National Guard (afpw_166aw)|00:06|
 |307th Bomb Wing (afpw_307bw)|00:48|
@@ -270,8 +270,8 @@
 |McConnell Air Force Base (afpw_mcconnell)|23:48|
 
 
-## Wednesday 
-|Domain|Time (UST)|
+## Wednesday
+|Domain|Time (UTC)|
 |---|---|
 |Joint Base McGuire-Dix-Lakehurst (afpw_mcguire)|00:30|
 |tricare_nhcq|01:00|
@@ -425,12 +425,11 @@
 |Dover Air Force Base (afpw_dover)|20:43|
 |Eastern Air Defense Sector (afpw_eads)|21:25|
 |Department of the Air Force - E-Publishing (afpw_epubs)|22:06|
-|Florida Air National Guard (afpw_flang)|22:48|
 |477th Fighter Group (afpw_477fg)|23:30|
 
 
-## Thursday 
-|Domain|Time (UST)|
+## Thursday
+|Domain|Time (UTC)|
 |---|---|
 |505th Command and Control Wing (afpw_505ccw)|00:12|
 |618th Air and Space Operations Center (TACC) (afpw_618tacc)|00:54|
@@ -576,8 +575,8 @@
 |214th Reconnaissance Group, Arizona Air National Guard (afpw_214rg)|23:54|
 
 
-## Friday 
-|Domain|Time (UST)|
+## Friday
+|Domain|Time (UTC)|
 |---|---|
 |254th Combat Communications Group (afpw_254ccg)|00:36|
 |tricare_96mg|01:00|
@@ -717,105 +716,139 @@
 |171st ARW, Pennsylvania ANG (afpw_171arw)|23:36|
 
 
-## Saturday 
-|Domain|Time (UST)|
+## Saturday
+|Domain|Time (UTC)|
 |---|---|
 |107th AW (afpw_107aw)|00:18|
 |tricare_fewarren|01:00|
 |108th Wing (afpw_108arw)|01:00|
+|92nd Medical Group - Fairchild Air Force Base|01:00|
 |110th Wing (afpw_110aw)|01:42|
 |tricare_elmendorfrichardson|02:00|
+|8th Medical Group - Kunsan Air Base|02:00|
 |111th Attack Wing FW (afpw_111fw)|02:23|
 |tricare_beale|03:00|
+|87th Medical Group - Joint Base McGuire-Dix-Lakehurst|03:00|
 |111th Attack Wing (afpw_111fw)|03:05|
 |114th Fighter Wing (afpw_114fw)|03:47|
 |tricare_barksdale|04:00|
+|75th Medical Group - Hill Air Force Base|04:00|
 |115th Fighter Wing (afpw_115fw)|04:29|
 |Fogarty International Center (FIC) (www.fic.nih.gov)|04:37|
 |tricare_andersen|05:00|
+|72d Medical Group - Tinker Air Force Base|05:00|
 |117th Air Refueling Wing (afpw_117arw)|05:11|
 |118th Wing (afpw_118aw)|05:53|
 |tricare_buckley|06:00|
+|66th Medical Squadron - Hanscom Air Force Base|06:00|
 |119th Wing, North Dakota Air National Guard (afpw_119wg)|06:34|
 |tricare_altus|07:00|
 |120th Airlift Wing (afpw_120fw)|07:16|
 |120th FW (afpw_120fw)|07:58|
 |tricare_offutt|08:00|
+|60th Medical Group - Travis Air Force Base|08:00|
 |121st ARW, Ohio Air National Guard (afpw_121arw)|08:40|
 |tricare_osan|09:00|
+|5th Medical Group - Minot Air Force Base|09:00|
 |122nd Fighter Wing, Indiana ANG (afpw_122fw)|09:22|
 |tricare_nellis|10:00|
+|52nd Medical Group - Spangdahlem Air Base|10:00|
 |123rd Airlift Wing, Kentucky ANG (afpw_123aw)|10:03|
 |126th Air Refueling Wing, Illinois Air National Guard (afpw_126arw)|10:45|
 |tricare_tyndall|11:00|
+|49th Medical Group - Holloman Air Force Base|11:00|
 |National Center for Advancing Translational Sciences (NCATS) (ncats.nih.gov)|11:05|
 |127th Wing, Michigan Air National Guard (afpw_127wg)|11:27|
 |tricare_vance|12:00|
+|48th Medical Group - RAF Lakenheath|12:00|
 |128th Air Refueling Wing, Wisconsin ANG (afpw_128arw)|12:09|
 |129th Rescue Wing, California ANG (afpw_129rqw)|12:51|
 |tricare_whiteman|13:00|
+|47th Medical Group - Laughlin Air Force Base|13:00|
 |130th Airlift Wing, West Virginia Air National Guard (afpw_130aw)|13:33|
 |tricare_willfordhall|14:00|
+|45th Medical Group - Patrick Air Force Base|14:00|
 |131st Bomb Wing, Missouri ANG (afpw_131bw)|14:14|
 |132nd FW, Iowa ANG (afpw_132fw)|14:56|
 |tricare_kirtland|15:00|
+|42d Medical Group - Maxwell Air Force Base|15:00|
 |132nd DWing, Iowa ANG (afpw_132fw)|15:38|
 |tricare_wrightpatterson|16:00|
+|422d Medical Squadron - RAF Croughton|16:00|
 |133rd Airlift Wing, Minnesota Air National Guard (afpw_133aw)|16:20|
 |tricare_keesler|17:00|
+|366th Medical Treatment Facility|17:00|
 |Air Force Audit Agency (afaa)|17:02|
 |National Center for Complementary and Integrative Health (NCCIH) (www.nccih.nih.gov)|17:32|
 |Air Force Agency for Modeling and Simulation (afams)|17:44|
 |tricare_374mg|18:00|
+|35th Medical Group - Misawa Air Base|18:00|
 |Air Force Basic Military Training (afbmt)|18:25|
 |tricare_10mgafa|19:00|
+|355th Medical Group - Davis-Monthan Air Force Base|19:00|
 |Air Force District of Washington (afdw)|19:07|
 |25th Air Force (afisra)|19:49|
 |tricare_incirlik|20:00|
+|354th Medical Group - Eielson Air Force Base|20:00|
 |Air Force Materiel Command (afmc)|20:31|
 |tricare_hurlburt|21:00|
+|341st Medical Group - Malmstrom Air Force Base|21:00|
 |Office of Special Investigations (afosi)|21:13|
 |Office of Special Investigations Andrews (afosi)|21:55|
+|28th Medical Group - Ellsworth Air Force Base|22:00|
 |Air Force Operational Test and Evaluation Center (afotec)|22:36|
+|23d Medical Group - Moody Air Force Base|23:00|
 |Air Force Outreach (afoutreach)|23:18|
 
 
-## Sunday 
-|Domain|Time (UST)|
+## Sunday
+|Domain|Time (UTC)|
 |---|---|
 |Air Force Learning Professionals (aflearningprofessionals)|00:00|
 |tricare_newsroom|01:00|
+|22d Medical Group - McConnell Air Force Base|01:00|
 |MIT-AF AI Accelerator (af_aiaccelerator)|01:24|
 |tricare_martin|02:00|
+|19th Medical Group - Little Rock Air Force Base|02:00|
 |Yellow Ribbon Reintegration Program (af_yellowribbon)|02:05|
 |Wavelength Detachment 1, 850th Spectrum Warfare Group (af_wavelength)|02:47|
 |tricare_mhseurope|03:00|
+|18th Medical Group - Kadena Air Base|03:00|
 |AFWERX (af_werx)|03:29|
 |tricare_redstone|04:00|
+|15th Medical Group - Joint Base Pearl Harbor-Hickam|04:00|
 |521st Air Mobility Operations Wing (af_521amow)|04:11|
 |CSAF Strategic Integration Group (afpw_afsig)|04:53|
 |tricare_desmonddoss|05:00|
+|11th Medical Squadron - Joint Base Anacostia-Bolling|05:00|
 |Air Force Resilience (afpw_resil)|05:35|
 |tricare_diegogarcia|06:00|
+|316th Medical Group - Joint Base Andrews (Malcolm Grow Medical Clinics and Surgery Center)|06:00|
 |afcca (afcca)|06:16|
 |National Eye Institute (www.nei.nih.gov)|06:28|
 |Special Warfare Training Wing (afpw_swtw)|06:58|
 |tricare_belvoir|07:00|
+|The Andrew Rader U.S. Army Health Clinic|07:00|
 |Air Force Inspector General (afpw_afinspectorgeneral)|07:40|
 |tricare_womack|08:00|
+|Kirk U.S. Army Medical Health Clinic|08:00|
 |Air Force Innovation (afpw_innovation)|08:22|
-|tricare_brianallgood|09:00|
+|tricare_briandallgood|09:00|
+|Barquist Army Health Clinic|09:00|
 |12th Flying Training Wing (afpw_12ftw)|09:04|
 |Air Force Small Business (afpw_afsb)|09:46|
 |tricare_charleston|10:00|
+|14th Medical Group - Columbus Air Force Base|10:00|
 |Curtis E. Lemay Center for Doctrine Development and Education (afpw_lemay)|10:27|
 |tricare_guantanamo|11:00|
+|27th Special Operations Medical Group - Cannon Air Force Base|11:00|
 |Air Force Small Business Innovation Research and Small Business Technology Transfer (afpw_sbirsttr)|11:09|
 |2nd Air Force (afpw_2af)|11:51|
 |tricare_paxriver|12:00|
+|31st Medical Group - Aviano Air Base|12:00|
 |194th Wing, Wahington ANG (afpw_194wg)|12:33|
 |tricare_eisenhower|13:00|
-|125th Fighter Wing (afpw_125fw)|13:15|
+|125th Fighter Wing (afpw_125fw and afpw_flang)|13:15|
 |174th Attack Wing (afpw_174aw)|13:57|
 |tricare_raymondbliss|14:00|
 |Air Force Test Center (afpw_aftc)|14:38|
@@ -836,5 +869,3 @@
 |Veterans in Blue (afpw_vib)|22:18|
 |Armed Forces Pest Management Board (afpmb)|23:00|
 |9th Air Force (afpw_ninth)|23:42|
-
-
