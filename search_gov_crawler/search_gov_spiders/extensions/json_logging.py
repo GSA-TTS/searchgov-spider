@@ -20,6 +20,8 @@ def search_gov_default(obj) -> dict | None:
             "allowed_domain_paths": getattr(obj, "allowed_domain_paths", None),
             "start_urls": obj.start_urls,
             "output_target": getattr(obj, "output_target", None),
+            "depth_limit": obj.settings.get("DEPTH_LIMIT", None),
+            "deny_paths": getattr(obj, "_deny_paths", None),
         }
 
     if isinstance(obj, Crawler):
@@ -116,11 +118,14 @@ class JsonLogging:
         spider_log.info(
             (
                 "Starting spider %s with following args: "
-                "allowed_domains=%s allowed_domain_paths=%s start_urls=%s output_target=%s"
+                "allowed_domains=%s allowed_domain_paths=%s start_urls=%s "
+                "output_target=%s depth_limit=%s deny_paths=%s"
             ),
             spider.name,
             ",".join(getattr(spider, "allowed_domains", [])),
             ",".join(getattr(spider, "allowed_domains_paths", [])),
             ",".join(spider.start_urls),
             getattr(spider, "output_target", None),
+            spider.settings.get("DEPTH_LIMIT", None),
+            getattr(spider, "_deny_paths", None),
         )

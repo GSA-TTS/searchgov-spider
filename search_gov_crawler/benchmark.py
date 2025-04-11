@@ -38,7 +38,6 @@ from dotenv import load_dotenv
 from pythonjsonlogger.json import JsonFormatter
 
 from search_gov_crawler import scrapy_scheduler
-from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
 from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSites
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 from search_gov_crawler.search_gov_spiders.helpers.domain_spider import (
@@ -82,6 +81,7 @@ def create_apscheduler_job(
     output_target: str,
     runtime_offset_seconds: int,
     depth_limit: int,
+    deny_paths: str,
 ) -> dict:
     """Creates job record in format needed by apscheduler"""
 
@@ -99,6 +99,7 @@ def create_apscheduler_job(
             starting_urls,
             output_target,
             depth_limit,
+            deny_paths if deny_paths else [],
         ],
     }
 
@@ -143,13 +144,15 @@ def benchmark_from_args(
     output_target: str,
     runtime_offset_seconds: int,
     depth_limit: int,
+    deny_paths: str,
 ):
     """Run an individual benchmarking job based on args"""
 
     msg = (
         "Starting benchmark from args! "
         "allow_query_string=%s allowed_domains=%s starting_urls=%s "
-        "handle_javascript=%s output_target=%s runtime_offset_seconds=%s depth_limit=%s"
+        "handle_javascript=%s output_target=%s runtime_offset_seconds=%s "
+        "depth_limit=%s deny_paths=%s"
     )
     log.info(
         msg,
@@ -160,6 +163,7 @@ def benchmark_from_args(
         output_target,
         runtime_offset_seconds,
         depth_limit,
+        deny_paths,
     )
 
     apscheduler_job_kwargs = {
@@ -171,6 +175,7 @@ def benchmark_from_args(
         "output_target": output_target,
         "runtime_offset_seconds": runtime_offset_seconds,
         "depth_limit": depth_limit,
+        "deny_paths": deny_paths.split(","),
     }
 
     scheduler = init_scheduler()
@@ -242,6 +247,13 @@ if __name__ == "__main__":
         help="How far down should spider crawl",
         choices=range(1, 250),
     )
+    parser.add_argument(
+        "-dp",
+        "--deny_paths",
+        type=str,
+        default="",
+        help="Comma separated list of paths to deny",
+    )
     args = parser.parse_args()
 
     if no_input_arg:
@@ -253,6 +265,7 @@ if __name__ == "__main__":
             "output_target": args.output_target,
             "runtime_offset_seconds": args.runtime_offset,
             "depth_limit": args.depth_limit,
+            "deny_paths": args.deny_paths,
         }
         benchmark_from_args(**benchmark_args)
     else:

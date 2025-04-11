@@ -1,10 +1,10 @@
 import json
 import re
 from pathlib import Path
-from typing import Any, Optional
+from typing import Optional
 
-from scrapy.linkextractors import LinkExtractor
 from scrapy.http.response import Response
+
 
 # fmt: off
 FILTER_EXTENSIONS = [
@@ -49,15 +49,15 @@ ALLOWED_CONTENT_TYPE_OUTPUT_MAP = {
     "elasticsearch": ES_ALLOWED_CONTENT_TYPE,
 }
 
-LINK_DENY_REGEX_STR = ["calendar", "location-contact", "DTMO-Site-Map/FileId/"]
+LINK_DENY_REGEX_STR = set()  # place global deny regex strings here
 
-domain_spider_link_extractor = LinkExtractor(
-    allow=(),
-    deny=LINK_DENY_REGEX_STR,
-    deny_extensions=FILTER_EXTENSIONS,
-    tags=("a", "area", "va-link"),  # specified to account for custom link tags
-    unique=True,
-)
+LINK_TAGS = ("a", "area", "va-link")  # specified to account for custom link tags
+
+
+def set_link_extractor_deny(deny_paths: str | None) -> set[str]:
+    """Set the rules for the domain spiders to follow, union the global set with the input"""
+
+    return LINK_DENY_REGEX_STR | set(deny_paths.split(",") if deny_paths else [])
 
 
 def split_allowed_domains(allowed_domains: str) -> list[str]:
@@ -84,8 +84,9 @@ def is_valid_content_type(content_type_header: str, output_target: str) -> bool:
             return True
     return False
 
+
 def get_simple_content_type(content_type_header: str, output_target: str) -> str:
-    """Returns simple content time like: \"text/html\""""
+    """Returns simple content time like: \"text/html\" """
     if not content_type_header:
         return None
     content_type_header = str(content_type_header)
@@ -164,4 +165,3 @@ def get_response_language_code(response: Response) -> str:
     except Exception:
         pass
     return None
-    

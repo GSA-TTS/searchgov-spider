@@ -1,4 +1,6 @@
+import re
 from pathlib import Path
+
 import pytest
 
 from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSite, CrawlSites
@@ -17,12 +19,21 @@ def fixture_base_crawl_site_args() -> dict:
     }
 
 
-@pytest.mark.parametrize("schedule", [None, "* * * * *"])
-def test_valid_crawl_site(schedule, base_crawl_site_args):
-    test_args = base_crawl_site_args
-    if schedule:
-        test_args["schedule"] = schedule
+def test_valid_crawl_site(base_crawl_site_args):
+    assert isinstance(CrawlSite(**base_crawl_site_args), CrawlSite)
 
+
+@pytest.mark.parametrize(
+    "optional_args",
+    [
+        {"schedule": None},
+        {"schedule": "* * * 1 1"},
+        {"deny_paths": None},
+        {"deny_paths": ["/path1/", "/path2/"]},
+    ],
+)
+def test_valid_crawl_site_optional_fields(base_crawl_site_args, optional_args):
+    test_args = base_crawl_site_args | optional_args
     assert isinstance(CrawlSite(**test_args), CrawlSite)
 
 
@@ -30,7 +41,7 @@ def test_valid_crawl_site(schedule, base_crawl_site_args):
 def test_crawl_site_to_dict(base_crawl_site_args, exclude):
     cs = CrawlSite(**base_crawl_site_args)
     output = cs.to_dict(exclude=exclude)
-    expected_output = base_crawl_site_args | {"schedule": None}
+    expected_output = base_crawl_site_args | {"schedule": None, "deny_paths": None}
 
     for field in exclude:
         expected_output.pop(field)
@@ -60,38 +71,43 @@ def test_invalid_crawl_site_missing_field(fields, base_crawl_site_args):
 
 
 @pytest.mark.parametrize(
-    ("field", "new_value", "expected_type"),
+    ("field", "new_value", "log_text", "expected_type"),
     [
-        ("name", 123, str),
-        ("allow_query_string", "string val", bool),
-        ("allowed_domains", True, str),
-        ("handle_javascript", 99.99, bool),
-        ("starting_urls", {"some": "dict"}, str),
+        ("name", 123, "type", str),
+        ("allow_query_string", "string val", "type", bool),
+        ("allowed_domains", True, "type", str),
+        ("handle_javascript", 99.99, "type", bool),
+        ("starting_urls", {"some": "dict"}, "type", str),
+        ("schedule", True, "one of types", ["str", "NoneType"]),
+        ("deny_paths", 10, "one of types", ["list", "NoneType"]),
     ],
 )
-def test_invalid_crawl_site_wrong_type(
-    base_crawl_site_args, field, new_value, expected_type
-):
+def test_invalid_crawl_site_wrong_type(base_crawl_site_args, field, new_value, log_text, expected_type):
     test_args = base_crawl_site_args | {"schedule": "* * * * *"}
     test_args[field] = new_value
 
-    match = f"Invalid type! Field {field} with value {new_value} must be type {expected_type}"
-    with pytest.raises(TypeError, match=match):
+    match = f"Invalid type! Field {field} with value {new_value} must be {log_text} {expected_type}"
+    with pytest.raises(TypeError, match=re.escape(match)):
         CrawlSite(**test_args)
 
 
 @pytest.mark.parametrize(
     ("field", "new_value", "expected_type"),
     [
-        ("output_target", "index", {"endpoint", "elasticsearch", "csv"}),
+        ("output_target", "index", ["csv", "endpoint", "elasticsearch"]),
     ],
 )
-def test_invalid_crawl_site_output_target(
-    base_crawl_site_args, field, new_value, expected_type
-):
+def test_invalid_crawl_site_output_target(base_crawl_site_args, field, new_value, expected_type):
     test_args = base_crawl_site_args | {field: new_value}
 
     match = f"Invalid output_target value {new_value}! Must be one of {expected_type}"
+    with pytest.raises(TypeError, match=re.escape(match)):
+        CrawlSite(**test_args)
+
+
+def test_invalid_crawl_site_duplicate_deny_path(base_crawl_site_args):
+    test_args = base_crawl_site_args | {"deny_paths": ["/duplicate_path/", "/duplicate_path/"]}
+    match = f"Values in deny_paths must be unique! {base_crawl_site_args['name']} has duplicates!"
     with pytest.raises(TypeError, match=match):
         CrawlSite(**test_args)
 
@@ -132,9 +148,7 @@ def test_invalid_crawl_sites_duplicates(base_crawl_site_args):
         TypeError,
         match=r".*allowed_domain and starting_urls must be unique.*",
     ):
-        CrawlSites(
-            [CrawlSite(**base_crawl_site_args), CrawlSite(**base_crawl_site_args)]
-        )
+        CrawlSites([CrawlSite(**base_crawl_site_args), CrawlSite(**base_crawl_site_args)])
 
 
 @pytest.mark.parametrize(
@@ -152,12 +166,7 @@ def test_crawl_sites_file_is_valid(file_name):
     Additionally, we are assuming that there is at least one scheduled job in the file.
     """
 
-    crawl_sites_file = (
-        Path(__file__).parent.parent.parent
-        / "search_gov_crawler"
-        / "domains"
-        / file_name
-    )
+    crawl_sites_file = Path(__file__).parent.parent.parent / "search_gov_crawler" / "domains" / file_name
 
     cs = CrawlSites.from_file(file=crawl_sites_file)
     assert len(list(cs.scheduled())) > 0

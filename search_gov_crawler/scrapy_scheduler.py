@@ -30,9 +30,7 @@ logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 log = logging.getLogger("search_gov_crawler.scrapy_scheduler")
 
 CRAWL_SITES_FILE = (
-    Path(__file__).parent
-    / "domains"
-    / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
+    Path(__file__).parent / "domains" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
 )
 
 
@@ -43,6 +41,7 @@ def run_scrapy_crawl(
     start_urls: str,
     output_target: str,
     depth_limit: int,
+    deny_paths: list[str],
 ) -> None:
     """Runs `scrapy crawl` command as a subprocess given the allowed arguments"""
 
@@ -56,6 +55,7 @@ def run_scrapy_crawl(
         f" -a start_urls={start_urls}"
         f" -a output_target={output_target}"
         f" -a depth_limit={depth_limit}"
+        f" -a deny_paths={','.join(deny_paths)}"
     )
 
     subprocess.run(
@@ -68,17 +68,10 @@ def run_scrapy_crawl(
     )
     msg = (
         "Successfully completed scrapy crawl with args "
-        "spider=%s, allow_query_string=%s, allowed_domains=%s, start_urls=%s, output_target=%s, depth_limit=%s"
+        "spider=%s, allow_query_string=%s, allowed_domains=%s, "
+        "start_urls=%s, output_target=%s, depth_limit=%s, deny_paths=%s"
     )
-    log.info(
-        msg,
-        spider,
-        allow_query_string,
-        allowed_domains,
-        start_urls,
-        output_target,
-        depth_limit,
-    )
+    log.info(msg, spider, allow_query_string, allowed_domains, start_urls, output_target, depth_limit, deny_paths)
 
 
 def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
@@ -96,20 +89,15 @@ def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
                 "func": run_scrapy_crawl,
                 "id": job_name.lower().replace(" ", "-").replace("---", "-"),
                 "name": job_name,
-                "trigger": CronTrigger.from_crontab(
-                    expr=crawl_site.schedule, timezone="UTC"
-                ),
+                "trigger": CronTrigger.from_crontab(expr=crawl_site.schedule, timezone="UTC"),
                 "args": [
-                    (
-                        "domain_spider"
-                        if not crawl_site.handle_javascript
-                        else "domain_spider_js"
-                    ),
+                    ("domain_spider" if not crawl_site.handle_javascript else "domain_spider_js"),
                     crawl_site.allow_query_string,
                     crawl_site.allowed_domains,
                     crawl_site.starting_urls,
                     crawl_site.output_target,
                     crawl_site.depth_limit,
+                    crawl_site.deny_paths if crawl_site.deny_paths else [],
                 ],
             },
         )

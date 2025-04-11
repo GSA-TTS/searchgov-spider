@@ -3,6 +3,8 @@ from dataclasses import asdict, dataclass, fields
 from pathlib import Path
 from typing import Self
 
+from search_gov_crawler.search_gov_spiders.helpers.domain_spider import ALLOWED_CONTENT_TYPE_OUTPUT_MAP
+
 
 @dataclass
 class CrawlSite:
@@ -19,6 +21,7 @@ class CrawlSite:
     starting_urls: str
     output_target: str
     depth_limit: int
+    deny_paths: list | None = None
     schedule: str | None = None
 
     def __post_init__(self):
@@ -26,7 +29,7 @@ class CrawlSite:
         # check required fields
         missing_field_names = []
         for field in fields(self):
-            if field.name == "schedule" or field.name == "depth_limit":
+            if field.name in {"schedule", "deny_paths"}:
                 pass
             elif getattr(self, field.name) is None:
                 missing_field_names.append(field.name)
@@ -37,14 +40,39 @@ class CrawlSite:
 
         # check types
         for field in fields(self):
-            if not isinstance(getattr(self, field.name), field.type):
-                msg = f"Invalid type! Field {field.name} with value {getattr(self, field.name)} must be type {field.type}"
+            value = getattr(self, field.name)
+            if hasattr(field.type, "__args__"):
+                # for optional fields
+                valid_types = field.type.__args__
+                if value is None and type(None) in valid_types:
+                    continue
+
+                for valid_type in (vt for vt in valid_types if vt is not type(None)):
+                    if not isinstance(value, valid_type):
+                        msg = (
+                            f"Invalid type! Field {field.name} with value "
+                            f"{getattr(self, field.name)} must be one of types {[vt.__name__ for vt in valid_types]}"
+                        )
+                        raise TypeError(msg)
+            elif not isinstance(value, field.type):
+                msg = (
+                    f"Invalid type! Field {field.name} with value {getattr(self, field.name)} must be type {field.type}"
+                )
+                raise TypeError(msg)
+
+        # validate no duplicates in deny_paths
+        if self.deny_paths is not None:
+            unique_deny_paths = set(self.deny_paths)
+            if len(unique_deny_paths) != len(self.deny_paths):
+                msg = f"Values in deny_paths must be unique! {self.name} has duplicates!"
                 raise TypeError(msg)
 
         # validate output_target values
-        valid_output_targets = {"endpoint", "elasticsearch", "csv"}
-        if self.output_target not in valid_output_targets:
-            msg = f"Invalid output_target value {self.output_target}! Must be one of {valid_output_targets}"
+        if self.output_target not in ALLOWED_CONTENT_TYPE_OUTPUT_MAP:
+            msg = (
+                f"Invalid output_target value {self.output_target}! "
+                f"Must be one of {list(ALLOWED_CONTENT_TYPE_OUTPUT_MAP.keys())}"
+            )
             raise TypeError(msg)
 
     def to_dict(self, *, exclude: tuple = ()) -> dict:
@@ -72,7 +100,9 @@ class CrawlSites:
         for site in self.root:
             site_key = f"{site.output_target}::{site.allowed_domains}"
             if site_key in domains_map:
-                raise TypeError(f"The combination of allowed_domain and starting_urls must be unique in file. Duplicate site domain:\n{site}")
+                raise TypeError(
+                    f"The combination of allowed_domain and starting_urls must be unique in file. Duplicate site domain:\n{site}"
+                )
             domains_map[site_key] = True
 
     @classmethod

@@ -1,10 +1,10 @@
 import os
 import subprocess
+from unittest.mock import MagicMock, patch
 
 import pytest
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
-from unittest.mock import patch, MagicMock
 from elasticsearch import Elasticsearch
 
 from search_gov_crawler.scrapy_scheduler import (
@@ -24,24 +24,22 @@ def mock_es_client():
     return client
 
 
-def test_run_scrapy_crawl(caplog, monkeypatch):
+@pytest.mark.parametrize(
+    "run_args",
+    [("test_spider", False, "test-domain.example.com", "http://starting-url.example.com/", "csv", 3, "path")],
+)
+def test_run_scrapy_crawl(caplog, monkeypatch, run_args):
     def mock_run(*_args, **_kwargs):
         return True
 
     monkeypatch.setattr(subprocess, "run", mock_run)
     with caplog.at_level("INFO"):
-        run_scrapy_crawl(
-            "test_spider",
-            False,
-            "test-domain.example.com",
-            "http://starting-url.example.com/",
-            "csv",
-            3,
-        )
+        run_scrapy_crawl(*run_args)
 
     assert (
         "Successfully completed scrapy crawl with args spider=test_spider, allow_query_string=False, "
-        "allowed_domains=test-domain.example.com, start_urls=http://starting-url.example.com/, output_target=csv, depth_limit=3"
+        "allowed_domains=test-domain.example.com, start_urls=http://starting-url.example.com/, "
+        "output_target=csv, depth_limit=3, deny_paths=path"
     ) in caplog.messages
 
 
@@ -67,14 +65,7 @@ def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
             "func": run_scrapy_crawl,
             "id": "quotes-1",
             "name": "Quotes 1",
-            "args": [
-                "domain_spider",
-                False,
-                "quotes.toscrape.com",
-                "https://quotes.toscrape.com/",
-                "csv",
-                3,
-            ],
+            "args": ["domain_spider", False, "quotes.toscrape.com", "https://quotes.toscrape.com/", "csv", 3, []],
         },
         {
             "func": run_scrapy_crawl,
@@ -87,6 +78,7 @@ def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
                 "https://quotes.toscrape.com/js/",
                 "csv",
                 3,
+                [],
             ],
         },
         {
@@ -100,6 +92,7 @@ def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
                 "https://quotes.toscrape.com/js-delayed/",
                 "endpoint",
                 3,
+                ["/author/", "/tag/"],
             ],
         },
         {
@@ -113,14 +106,13 @@ def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
                 "https://quotes.toscrape.com/",
                 "endpoint",
                 3,
+                ["/author/"],
             ],
         },
     ]
 
 
-@pytest.mark.parametrize(
-    ("scrapy_max_workers", "expected_val"), [("100", 100), (None, 5)]
-)
+@pytest.mark.parametrize(("scrapy_max_workers", "expected_val"), [("100", 100), (None, 5)])
 def test_init_scheduler(caplog, monkeypatch, scrapy_max_workers, expected_val):
     if scrapy_max_workers:
         monkeypatch.setenv("SPIDER_SCRAPY_MAX_WORKERS", scrapy_max_workers)
@@ -141,9 +133,7 @@ def test_init_scheduler(caplog, monkeypatch, scrapy_max_workers, expected_val):
     assert f"Max workers for schedule set to {expected_val}" in caplog.messages
 
 
-def test_start_scrapy_scheduler(
-    caplog, monkeypatch, crawl_sites_test_file, mock_es_client
-):
+def test_start_scrapy_scheduler(caplog, monkeypatch, crawl_sites_test_file, mock_es_client):
     with patch(
         "search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client",
         return_value=mock_es_client,
@@ -154,7 +144,4 @@ def test_start_scrapy_scheduler(
             start_scrapy_scheduler(input_file=crawl_sites_test_file)
 
         assert len(caplog.messages) == 5
-        assert (
-            "Adding job tentatively -- it will be properly scheduled when the scheduler starts"
-            in caplog.messages
-        )
+        assert "Adding job tentatively -- it will be properly scheduled when the scheduler starts" in caplog.messages

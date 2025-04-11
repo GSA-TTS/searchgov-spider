@@ -19,6 +19,8 @@ from search_gov_crawler.search_gov_spiders.extensions.on_disk_queue import OnDis
 
 
 class SpiderForTest(Spider):
+    """Mock spider to support extension testing"""
+
     def __repr__(self):
         return str(
             {
@@ -28,8 +30,15 @@ class SpiderForTest(Spider):
                 "name": self.name,
                 "start_urls": self.start_urls,
                 "output_target": getattr(self, "output_target", None),
+                "deny_paths": getattr(self, "_deny_paths", None),
             },
         )
+
+
+@pytest.fixture(name="project_settings")
+def fixture_project_settings(monkeypatch):
+    monkeypatch.setenv("SCRAPY_SETTINGS_MODULE", "search_gov_crawler.search_gov_spiders.settings")
+    return get_project_settings()
 
 
 HANDLER_TEST_CASES = [
@@ -42,6 +51,7 @@ HANDLER_TEST_CASES = [
             allowed_domains="example.com",
             start_urls="https://www.example.com",
             output_target="csv",
+            _deny_paths=None,
         ),
         str(
             {
@@ -51,6 +61,7 @@ HANDLER_TEST_CASES = [
                 "name": "handler_test",
                 "start_urls": "https://www.example.com",
                 "output_target": "csv",
+                "deny_paths": None,
             },
         ),
         SpiderForTest(
@@ -60,6 +71,7 @@ HANDLER_TEST_CASES = [
             allowed_domains="example.com",
             start_urls="https://www.example.com",
             output_target="csv",
+            _deny_paths=None,
         ),
         {
             "allow_query_string": True,
@@ -68,18 +80,22 @@ HANDLER_TEST_CASES = [
             "name": "handler_test",
             "start_urls": "https://www.example.com",
             "output_target": "csv",
+            "deny_paths": None,
+            "depth_limit": 3,
         },
     ),
 ]
 
 
 @pytest.mark.parametrize(("input_message", "logged_message", "input_object", "logged_object"), HANDLER_TEST_CASES)
-def test_stream_hanlder(input_message, logged_message, input_object, logged_object):
+def test_stream_hanlder(project_settings, input_message, logged_message, input_object, logged_object):
     log_stream = io.StringIO()
     log = logging.getLogger("test_stream_hanlder")
     log.setLevel(logging.INFO)
     log.addHandler(SearchGovSpiderStreamHandler(log_level=logging.INFO, stream=log_stream))
 
+    if isinstance(input_object, Spider):
+        input_object.settings = project_settings
     log.info(input_message, extra={"scrapy_object": input_object})
 
     log_message = json.loads(log_stream.getvalue().rstrip("\n"))
@@ -127,12 +143,6 @@ def test_extension_init():
     assert any(isinstance(handler, SearchGovSpiderStreamHandler) for handler in log.handlers)
 
 
-@pytest.fixture(name="project_settings")
-def fixture_project_settings(monkeypatch):
-    monkeypatch.setenv("SCRAPY_SETTINGS_MODULE", "search_gov_crawler.search_gov_spiders.settings")
-    return get_project_settings()
-
-
 @pytest.mark.parametrize(
     ("extension_cls", "extension_settings", "error_message"),
     [
@@ -161,7 +171,7 @@ def test_extension_from_crawler(project_settings, extension_cls):
     assert isinstance(extension, extension_cls)
 
 
-def test_extension_spider_opened(caplog):
+def test_extension_spider_opened(caplog, project_settings):
     log = logging.getLogger("test_spider")
     log.setLevel(logging.INFO)
 
@@ -170,6 +180,8 @@ def test_extension_spider_opened(caplog):
         allowed_domains=["domain 1", "domain 2"],
         start_urls=["url 1", "url 2"],
         output_target="csv",
+        settings=project_settings,
+        _deny_paths="path1",
     )
     extension = JsonLogging(log_level=logging.INFO)
     with caplog.at_level(logging.INFO):
@@ -177,7 +189,8 @@ def test_extension_spider_opened(caplog):
 
     assert (
         "Starting spider test_spider with following args: "
-        "allowed_domains=domain 1,domain 2 allowed_domain_paths= start_urls=url 1,url 2 output_target=csv"
+        "allowed_domains=domain 1,domain 2 allowed_domain_paths= start_urls=url 1,url 2 "
+        "output_target=csv depth_limit=3 deny_paths=path1"
     ) in caplog.messages
 
 
