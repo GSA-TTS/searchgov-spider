@@ -4,13 +4,13 @@ pytest==8.3.5
 pytest-console-scripts==1.4.1
 pytest-mock==3.14.0
 
-python-json-logger==3.2.1
+python-json-logger==3.3.0
 scrapy==2.12.0
-scrapy-playwright==0.0.42
+scrapy-playwright==0.0.43
 apscheduler==3.6.0
-spidermon[monitoring]==1.23.0
+spidermon[monitoring]==1.24.0
 
-elasticsearch==8.17.1
+elasticsearch==8.17.2
 
 ### These two packages are required by newspaper4k, but not explicitly installed by it
 lxml_html_clean==0.4.1
@@ -20,9 +20,9 @@ typing_extensions==4.12.2
 newspaper4k[all]==0.9.3.1 # This also installs the nltk library
 cchardet==2.2.0a2 # C version of chardet
 pytest-asyncio==0.26.0
-python-dotenv==1.0.1
+python-dotenv==1.1.0
 
-pypdf==5.3.1
+pypdf==5.4.0
 langdetect==1.0.9
 
 python-dateutil==2.9.0.post0
