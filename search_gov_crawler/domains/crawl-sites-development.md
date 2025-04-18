@@ -24,21 +24,32 @@
 |Sheppard Air Force Base (sheppard)|03:42|
 |Office of Transformational Innovation (afpw_transform)|03:53|
 |tricare_reynolds|04:00|
+|transportation|04:00|
+|rosap.ntl.bts|04:30|
 |15th Wing (afpw_15wing)|04:35|
+|bts|04:45|
 |tricare_nhch|05:00|
+|data.transportation|05:00|
+|fly.faa|05:15|
 |National Air and Space Intelligence Center (afpw_nasic)|05:17|
 |Seymour Johnson AFB (seymourjohnson)|05:32|
 |Profession of Arms Center of Excellence (PACE) (afpw_pace)|05:59|
 |Navy All Hands Magazine|06:00|
 |tricare_blanchfield|06:00|
+|registry.faa|06:00|
+|myaccessreg.faa|06:15|
 |SAF/CN (safxc)|06:28|
 |Professional Development Guide (afpw_pdg)|06:40|
+|corpweb1.dfas|06:45|
 |tricare_southcomclinic|07:00|
+|mypay.dfas|07:00|
+|smartvoucher.dfas|07:15|
 |American Forces Network Europe (afneurope)|07:22|
 |Principal DoD Space Advisor Staff (safsp)|07:23|
 |USDA NFC Help Documentation|07:30|
 |tricare_guthrie|08:00|
 |American Forces Network Pacific (afnpacific)|08:04|
+|drought|08:15|
 |National Institute on Alcohol Abuse and Alcoholism (NIAAA) (www.niaaa.nih.gov)|08:18|
 |Air Force Installations, Environment & Logistics (safie)|08:18|
 |DOD Army MWR|08:30|
@@ -46,6 +57,7 @@
 |NOAA CoastWatch East Coast Node|08:30|
 |VA Benefits.va.gov|08:30|
 |VA Research & Development|08:30|
+|apps.bea|08:45|
 |GoSERE (afpw_gosere)|08:46|
 |tricare_kenner|09:00|
 |Air Force Financial Management & Comptroller (saffm)|09:14|
@@ -83,9 +95,14 @@
 |VA QUERI Research|09:30|
 |VA Resources|09:30|
 |DOD DANTES|09:30|
+|eforms.atf|09:30|
+|regulations.atf|09:45|
 |tricare_kimbrough|10:00|
+|fflezcheck.atf|10:00|
 |557th Weather Wing (afpw_557ww)|10:09|
 |Air Force Scientific Advisory Board (sab)|10:09|
+|etrace.atf|10:15|
+|clu-in|10:30|
 |352nd Special Operations Wing (afpw_352sow)|10:51|
 |tricare_rodriguez|11:00|
 |Robins Air Force Base (robins)|11:05|
