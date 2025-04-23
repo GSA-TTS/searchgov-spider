@@ -6,7 +6,9 @@
  * [Friday](#friday)
  * [Saturday](#saturday)
  * [Sunday](#sunday)
-## Monday 
+
+
+## Monday
 |Domain|Time (UTC)|
 |---|---|
 |Texas Air National Guard (txang)|00:00|
@@ -148,7 +150,7 @@
 |Team McChord (afpw_62aw)|23:24|
 
 
-## Tuesday 
+## Tuesday
 |Domain|Time (UTC)|
 |---|---|
 |Minot Air Force Base (minot)|00:00|
@@ -336,7 +338,7 @@
 |McConnell Air Force Base (afpw_mcconnell)|23:48|
 
 
-## Wednesday 
+## Wednesday
 |Domain|Time (UTC)|
 |---|---|
 |Hancock Field Air National Guard Base (hancockfield)|00:00|
@@ -519,7 +521,7 @@
 |477th Fighter Group (afpw_477fg)|23:30|
 
 
-## Thursday 
+## Thursday
 |Domain|Time (UTC)|
 |---|---|
 |USAF Band of the Golden West (bandgoldenwest)|00:00|
@@ -692,7 +694,7 @@
 |214th Reconnaissance Group, Arizona Air National Guard (afpw_214rg)|23:54|
 
 
-## Friday 
+## Friday
 |Domain|Time (UTC)|
 |---|---|
 |944th Fighter Wing (944fw)|00:00|
@@ -857,7 +859,7 @@
 |171st ARW, Pennsylvania ANG (afpw_171arw)|23:36|
 
 
-## Saturday 
+## Saturday
 |Domain|Time (UTC)|
 |---|---|
 |419th Fighter Wing (419fw)|00:00|
@@ -965,7 +967,7 @@
 |Air Force Outreach (afoutreach)|23:18|
 
 
-## Sunday 
+## Sunday
 |Domain|Time (UTC)|
 |---|---|
 |Air Force Learning Professionals (aflearningprofessionals)|00:00|
@@ -1058,5 +1060,3 @@
 |Armed Forces Pest Management Board (afpmb)|23:00|
 |Tyndall Air Force Base (tyndall)|23:05|
 |9th Air Force (afpw_ninth)|23:42|
-
-

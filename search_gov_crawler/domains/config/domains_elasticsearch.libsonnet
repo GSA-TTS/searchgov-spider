@@ -5645,7 +5645,7 @@ local output_target = 'elasticsearch';
                          schedule='36 23 * * FRI',
                          output_target=output_target,
                          depth_limit=8,
-                         deny_paths=['/Resiliancy-Team/']),
+                         deny_paths=['/Resiliency-Team/']),
   },
   {
     name: '107th AW (afpw_107aw)',
@@ -6372,7 +6372,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.whiteman.af.mil/',
                          schedule='46 2 * * SUN',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['/Striker-Strong-Resource-Directory/']),
   },
   {
     name: 'Westover Air Reserve Base, Mass (westover)',
@@ -6788,7 +6789,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.macdill.af.mil/',
                          schedule='37 4 * * TUE',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['/STEM/STEAM/igphoto/']),
   },
   {
     name: 'Luke Air Force Base (luke)',

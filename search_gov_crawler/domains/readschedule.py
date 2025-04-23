@@ -59,14 +59,13 @@ def create_markdown(day, data, file_name):
     if not data:
         return ""
 
-    md_table = f"""## {day} \n|Domain|Time (UTC)|\n|---|---|\n"""
+    md_table = f"""\n\n## {day}\n|Domain|Time (UTC)|\n|---|---|\n"""
 
     for entry in data:
         name = entry["name"]
         schedule = entry["time"]
         row = f"|{name}|{schedule}|\n"
         md_table = md_table + row
-    md_table = md_table + "\n\n"
     write_schedule(md_table, file_name)
 
 

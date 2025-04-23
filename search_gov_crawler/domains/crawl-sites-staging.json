@@ -8178,7 +8178,7 @@
       "allow_query_string": false,
       "allowed_domains": "171arw.ang.af.mil",
       "deny_paths": [
-         "/Resiliancy-Team/"
+         "/Resiliency-Team/"
       ],
       "depth_limit": 8,
       "handle_javascript": false,
@@ -9173,7 +9173,9 @@
    {
       "allow_query_string": false,
       "allowed_domains": "whiteman.af.mil",
-      "deny_paths": null,
+      "deny_paths": [
+         "/Striker-Strong-Resource-Directory/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Whiteman Air Force Base (whiteman)",
@@ -9745,7 +9747,9 @@
    {
       "allow_query_string": false,
       "allowed_domains": "macdill.af.mil",
-      "deny_paths": null,
+      "deny_paths": [
+         "/STEM/STEAM/igphoto/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "MacDill Air Force Base (macdillairforcebase)",

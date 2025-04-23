@@ -6,6 +6,8 @@
  * [Friday](#friday)
  * [Saturday](#saturday)
  * [Sunday](#sunday)
+
+
 ## Monday
 |Domain|Time (UTC)|
 |---|---|
