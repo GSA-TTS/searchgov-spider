@@ -27,4 +27,4 @@ redis==5.2.1
 scrapy==2.12.0
 scrapy-playwright==0.0.42
 spidermon[monitoring]==1.23.0
-typing_extensions==4.12.2
+typing_extensions==4.13.2
