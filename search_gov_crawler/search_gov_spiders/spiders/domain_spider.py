@@ -66,24 +66,33 @@ class DomainSpider(CrawlSpider):
         deny_paths: str | None = None,
         start_urls: str | None = None,
         output_target: str,
+        prevent_follow: bool = False,
         **kwargs,
     ) -> None:
         helpers.validate_spider_arguments(allowed_domains, start_urls, output_target)
 
         # assign rules before super()__init__ so they can be processed by CrawlSpider
-        self.rules = (
-            Rule(
-                LinkExtractor(
-                    allow=(),
-                    deny=helpers.set_link_extractor_deny(deny_paths=deny_paths),
-                    deny_extensions=helpers.FILTER_EXTENSIONS,
-                    tags=helpers.LINK_TAGS,
-                    unique=True,
+        if prevent_follow:
+            self.rules = (
+                Rule(
+                    callback="parse_item",
+                    follow=True,
                 ),
-                callback="parse_item",
-                follow=True,
-            ),
-        )
+            )
+        else:
+            self.rules = (
+                Rule(
+                    LinkExtractor(
+                        allow=(),
+                        deny=helpers.set_link_extractor_deny(deny_paths=deny_paths),
+                        deny_extensions=helpers.FILTER_EXTENSIONS,
+                        tags=helpers.LINK_TAGS,
+                        unique=True,
+                    ),
+                    callback="parse_item",
+                    follow=True,
+                ),
+            )
         super().__init__(*args, **kwargs)
         self.allow_query_string = allow_query_string
         self.output_target = output_target

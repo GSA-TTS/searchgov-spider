@@ -41,7 +41,7 @@ def test_valid_crawl_site_optional_fields(base_crawl_site_args, optional_args):
 def test_crawl_site_to_dict(base_crawl_site_args, exclude):
     cs = CrawlSite(**base_crawl_site_args)
     output = cs.to_dict(exclude=exclude)
-    expected_output = base_crawl_site_args | {"schedule": None, "deny_paths": None}
+    expected_output = base_crawl_site_args | {"schedule": None, "deny_paths": None, "check_sitemap_hours": None, "sitemap_url": None}
 
     for field in exclude:
         expected_output.pop(field)

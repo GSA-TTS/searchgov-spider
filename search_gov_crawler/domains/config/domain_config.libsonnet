@@ -9,9 +9,11 @@ Exports the domain config function used for all domain output targets. Expects t
     - handle_javascript: if set, the crawler will handle javascript on the page
   - depth_limit (int): how far down you want the spider to crawl the site
   - deny_paths (list): Optional list of path fragments used to limit the spider
+  - sitemap_url (str): Optional sitemap url to check for updates
+  - check_sitemap_hours: (int): Optional check sitemap in X hours, default is 48 (2 days)
 */
 
-function(allowed_domains, starting_urls, schedule, output_target, depth_limit=3, options=[], deny_paths=null) {
+function(allowed_domains, starting_urls, schedule, output_target, depth_limit=3, options=[], deny_paths=null, sitemap_url=null, check_sitemap_hours=null) {
   allowed_domains: allowed_domains,
   allow_query_string: if ['allow_query_string'] == [o for o in options if o == 'allow_query_string'] then true else false,
   starting_urls: starting_urls,
@@ -20,4 +22,6 @@ function(allowed_domains, starting_urls, schedule, output_target, depth_limit=3,
   handle_javascript: if ['handle_javascript'] == [o for o in options if o == 'handle_javascript'] then true else false,
   depth_limit: depth_limit,
   deny_paths: deny_paths,
+  sitemap_url: sitemap_url,
+  check_sitemap_hours: check_sitemap_hours,
 }

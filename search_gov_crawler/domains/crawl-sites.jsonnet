@@ -14,6 +14,8 @@ local CrawlSite(domain) = {
   starting_urls: domain.config.starting_urls,
   depth_limit: domain.config.depth_limit,
   deny_paths: domain.config.deny_paths,
+  sitemap_url: domain.config.sitemap_url,
+  check_sitemap_hours: domain.config.check_sitemap_hours,
 };
 
 // Define output file names and their contents below.  Development files are a subset of the production files.

@@ -25,6 +25,8 @@ class CrawlSite:
     depth_limit: int
     deny_paths: list | None = None
     schedule: str | None = None
+    sitemap_url: str | None = None
+    check_sitemap_hours: int | None = None
 
     def __post_init__(self):
         """Perform validation on record"""
@@ -87,7 +89,7 @@ class CrawlSite:
 
         missing_field_names = []
         for field in fields(self):
-            if field.name in {"schedule", "deny_paths"}:
+            if field.name in {"schedule", "deny_paths", "sitemap_url", "check_sitemap_hours"}:
                 pass
             elif getattr(self, field.name) is None:
                 missing_field_names.append(field.name)

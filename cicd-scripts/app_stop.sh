@@ -7,6 +7,12 @@ source ./cicd-scripts/helpers/ensure_executable.sh
 
 ### FUNCTIONS ###
 
+# Stop sitemap monitor
+stop_sitemap_monitor() {
+    echo "Stopping sitemap_monitor.py (if running)..."
+    ensure_executable "./cicd-scripts/helpers/kill_sitemap_monitor.sh"
+}
+
 # Remove virtual environment if it exists
 remove_venv() {
     if [ -d ./venv ]; then
@@ -72,6 +78,9 @@ remove_cron_entry() {
 }
 
 ### SCRIPT EXECUTION ###
+
+# Stop sitemap monitoring
+stop_sitemap_monitor
 
 # Remove virtual environment
 remove_venv
