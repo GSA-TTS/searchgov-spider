@@ -15,7 +15,7 @@ from search_gov_crawler.search_gov_spiders.extensions.json_logging import (
     SearchGovSpiderFileHandler,
     SearchGovSpiderStreamHandler,
 )
-from search_gov_crawler.search_gov_spiders.extensions.on_disk_queue import OnDiskSchedulerQueue
+from search_gov_crawler.search_gov_spiders.extensions.scheduler_queue import OnDiskSchedulerQueue
 
 
 class SpiderForTest(Spider):

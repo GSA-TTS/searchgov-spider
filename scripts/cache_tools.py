@@ -17,14 +17,7 @@ from datetime import UTC, datetime
 
 from redis import Redis
 
-from search_gov_crawler.scheduling.redis import get_redis_connection_args
-
-
-def init_redis_client() -> Redis:
-    """Initialize a Redis client using connection arguments from environment variables."""
-    # Create a Redis client with the connection arguments
-    redis_connection_args = get_redis_connection_args()
-    return Redis(**redis_connection_args)
+from search_gov_crawler.scheduling.redis import init_redis_client
 
 
 def print_headers(key: str, results: list) -> None:
