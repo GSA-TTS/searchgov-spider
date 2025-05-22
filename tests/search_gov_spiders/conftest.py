@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 import pytest
+from scrapy.utils.project import get_project_settings
 
 from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSites
 
@@ -19,3 +20,9 @@ def fixture_crawl_sites_test_file_json(crawl_sites_test_file) -> dict:
 @pytest.fixture(name="crawl_sites_test_file_dataclass")
 def fixture_crawl_sites_test_file_dataclass(crawl_sites_test_file) -> CrawlSites:
     return CrawlSites.from_file(file=crawl_sites_test_file)
+
+
+@pytest.fixture(name="project_settings")
+def fixture_project_settings(monkeypatch):
+    monkeypatch.setenv("SCRAPY_SETTINGS_MODULE", "search_gov_crawler.search_gov_spiders.settings")
+    return get_project_settings()

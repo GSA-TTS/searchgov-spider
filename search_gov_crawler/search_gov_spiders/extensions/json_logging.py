@@ -15,6 +15,7 @@ def search_gov_default(obj) -> dict | None:
     if isinstance(obj, Spider):
         return {
             "name": obj.name,
+            "spider_id": getattr(obj, "spider_id", None),
             "allow_query_string": getattr(obj, "allow_query_string", None),
             "allowed_domains": getattr(obj, "allowed_domains", None),
             "allowed_domain_paths": getattr(obj, "allowed_domain_paths", None),
@@ -117,11 +118,12 @@ class JsonLogging:
 
         spider_log.info(
             (
-                "Starting spider %s with following args: "
+                "Starting spider %s (spider_id %s) with following args: "
                 "allowed_domains=%s allowed_domain_paths=%s start_urls=%s "
                 "output_target=%s depth_limit=%s deny_paths=%s"
             ),
             spider.name,
+            getattr(spider, "spider_id", None),
             ",".join(getattr(spider, "allowed_domains", [])),
             ",".join(getattr(spider, "allowed_domains_paths", [])),
             ",".join(spider.start_urls),

@@ -11,6 +11,8 @@ import os
 from datetime import UTC, datetime
 from pathlib import Path
 
+from search_gov_crawler.scheduling.redis import get_redis_connection_args
+
 spider_start = datetime.now(tz=UTC)
 
 # Settings for logging and json logging
@@ -57,13 +59,25 @@ DEPTH_LIMIT = 3
 
 # crawl in BFO order rather than DFO
 DEPTH_PRIORITY = 1
+# These settings remain here to enable memory queue for testing and cases when we don't use redis
 SCHEDULER_DISK_QUEUE = "scrapy.squeues.PickleFifoDiskQueue"
 SCHEDULER_MEMORY_QUEUE = "scrapy.squeues.FifoMemoryQueue"
 
-# Enable on-disk job queue using pid and start time as unique name
-# https://docs.scrapy.org/en/latest/topics/jobs.html
-JOBDIR = str(Path(__file__).parent.parent / "jobs" / f"{os.getpid()}-{spider_start.strftime('%Y%m%d%H%M%S')}")
-SCHEDULER_DEBUG = True
+# Enable requests scheduler and dupefilter in redis using scrapy-redis
+# See https://github.com/rmax/scrapy-redis/wiki/Usage
+redis_connection_args = get_redis_connection_args()
+REDIS_HOST = redis_connection_args["host"]
+REDIS_PORT = redis_connection_args["port"]
+REDIS_DB = redis_connection_args["db"]
+
+SCHEDULER = "search_gov_spiders.job_state.scheduler.SearchGovSpiderRedisScheduler"
+DUPEFILTER_CLASS = "search_gov_spiders.job_state.dupefilter.SearchGovSpiderRedisDupeFilter"
+
+SCHEDULER_PERSIST = True
+SCHEDULER_QUEUE_KEY = "spider.%(spider)s.requests"
+SCHEDULER_QUEUE_CLASS = "search_gov_spiders.job_state.queue.SearchGovSpiderFifoQueue"
+SCHEDULER_DUPEFILTER_KEY = "spider.%(spider)s.dupefilter"
+SCHEDULER_KEY_ORPHAN_AGE = 604800  # one week in seconds
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
@@ -82,7 +96,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 EXTENSIONS = {
     "search_gov_spiders.extensions.json_logging.JsonLogging": -1,
-    "search_gov_spiders.extensions.on_disk_queue.OnDiskSchedulerQueue": 500,
+    "search_gov_spiders.extensions.scheduler_queue.RedisSchedulerQueue": 500,
     "spidermon.contrib.scrapy.extensions.Spidermon": 600,
 }
 

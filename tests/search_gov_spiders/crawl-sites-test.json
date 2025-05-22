@@ -45,7 +45,7 @@
         "handle_javascript": false,
         "schedule": "0,15,30,45 * * * *",
         "output_target": "endpoint",
-        "starting_urls": "https://quotes.toscrape.com/",
+        "starting_urls": "https://quotes.toscrape.com/tag/love/",
         "depth_limit": 3,
         "deny_paths": ["/author/"],
         "sitemap_url": null,

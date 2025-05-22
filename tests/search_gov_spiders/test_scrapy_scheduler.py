@@ -111,7 +111,7 @@ def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
                 "domain_spider",
                 False,
                 "quotes.toscrape.com/tag/",
-                "https://quotes.toscrape.com/",
+                "https://quotes.toscrape.com/tag/love/",
                 "endpoint",
                 3,
                 ["/author/"],

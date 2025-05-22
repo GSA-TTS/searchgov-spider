@@ -21,11 +21,17 @@ updates:
           - "pypdf"
           - "langdetect"
           - "python-dateutil"
-      testing-and-linting:
+      testing-linting-and-scripts:
         patterns:
+          - "click"
           - "freezegun"
           - "pylint"
           - "pytest*"
     ignore:
+      # see requirements.txt for more details
       - dependency-name: "lxml-html-clean"
       - dependency-name: "typing-extensions"
+      - dependency-name: "redis"
+        versions: [ "6" ]
+      - dependency-name: "elasticsearch"
+        versions: [ "9" ]

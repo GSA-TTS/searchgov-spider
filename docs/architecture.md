@@ -31,6 +31,39 @@ flowchart LR
     end
     S <--> Redis
 ```
+
+### Job State
+Each scrapy process stores its current state in redis so that it can be restarted at the point it stoped during a deployment or if there is some other need to stop a job.  For each running spider job there is a key that tracks the pending requests (requests) for the job and another key that tracks URLs that the spider job has already seen (dupefilter) so that they are not scraped again.  As the job finsihed, the requests key gets smaller and smaller until it is empty.  When the spider job finishes, both keys are removed.  If the spider job is stopped prior to being finished the keys remain so that when the spider starts again it can use them to pick up where it left off.
+```mermaid
+flowchart TB
+    subgraph Spider
+    direction LR
+    S0[Scrapy Process 0]
+    S1[Scrapy Process 1]
+    S2[Scrapy Process 2]
+    SN[Scrapy Process N]
+    end
+    subgraph Redis
+    direction TB
+    D0[Dupefilter Key 0]
+    R0[Requests Key 0]
+    D1[Dupefilter Key 1]
+    R1[Requests Key 1]
+    D2[Dupefilter Key 2]
+    R2[Requests Key 2]
+    DN[Dupefilter Key N]
+    RN[Requests Key N]
+    end
+    S0 <--> D0
+    S0 <--> R0
+    S1 <--> D1
+    S1 <--> R1
+    S2 <--> D2
+    S2 <--> R2
+    SN <--> DN
+    SN <--> RN
+```
+
 ## Output Targets
 We support three output targets for our scrapy jobs.  These are specified in a `crawl-sites.json` file or as a command line argument to a scrapy or benchmark job.  The options are:
 

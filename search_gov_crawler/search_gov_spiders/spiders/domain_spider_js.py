@@ -136,6 +136,14 @@ class DomainSpiderJs(CrawlSpider):
         # store input args as private attributes for use in logging
         self._deny_paths = deny_paths
 
+        # create unique id to help with job state queues and elsewhere
+        self.spider_id = helpers.generate_spider_id_from_args(
+            self.name,
+            self.allowed_domains,
+            self.start_urls,
+            prevent_follow,
+        )
+
     @classmethod
     def from_crawler(cls, crawler: Crawler, *args, depth_limit: int | None = None, **kwargs) -> "DomainSpiderJs":
         """

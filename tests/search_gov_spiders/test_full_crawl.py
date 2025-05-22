@@ -5,8 +5,8 @@ from pathlib import Path
 
 import pytest
 from scrapy.crawler import CrawlerProcess
-from scrapy.utils.project import get_project_settings
 
+from search_gov_crawler.search_gov_spiders.job_state.scheduler import disable_redis_job_state
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import (
     DomainSpiderJs,
@@ -14,33 +14,34 @@ from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import (
 
 
 @pytest.fixture(name="mock_scrapy_settings")
-def fixture_mock_scrapy_settings(monkeypatch):
-    # setup for test run
-    monkeypatch.setenv("SCRAPY_SETTINGS_MODULE", "search_gov_crawler.search_gov_spiders.settings")
-
-    settings = get_project_settings()
-
-    settings.set("SPIDER_MODULES", ["search_gov_crawler.search_gov_spiders.spiders"])
-    settings.set(
+def fixture_mock_scrapy_settings(project_settings):
+    project_settings.set("SPIDER_MODULES", ["search_gov_crawler.search_gov_spiders.spiders"])
+    project_settings.set(
         "SPIDER_MIDDLEWARES",
-        {f"search_gov_crawler.{k}": v for k, v in dict(settings.get("SPIDER_MIDDLEWARES").attributes).items()},
+        {f"search_gov_crawler.{k}": v for k, v in dict(project_settings.get("SPIDER_MIDDLEWARES").attributes).items()},
     )
-    settings.set(
+    project_settings.set(
         "DOWNLOADER_MIDDLEWARES",
-        {f"search_gov_crawler.{k}": v for k, v in dict(settings.get("DOWNLOADER_MIDDLEWARES").attributes).items()},
+        {
+            f"search_gov_crawler.{k}": v
+            for k, v in dict(project_settings.get("DOWNLOADER_MIDDLEWARES").attributes).items()
+        },
     )
-    settings.set("EXTENSIONS", {})
-    settings.set("JOBDIR", None)
-    settings.set("HTTPCACHE_ENABLED", True)
-    settings.set("HTTPCACHE_DBM_MODULE", "dbm.dumb")
-    settings.set("HTTPCACHE_DIR", Path(__file__).parent.joinpath("scrapy_httpcache"))
-    settings.set("HTTPCACHE_STORAGE", "scrapy.extensions.httpcache.DbmCacheStorage")
-    settings.set("DEPTH_LIMIT", 0)
+    project_settings.set("EXTENSIONS", {})
+    project_settings.set("JOBDIR", None)
+    project_settings.set("HTTPCACHE_ENABLED", True)
+    project_settings.set("HTTPCACHE_DBM_MODULE", "dbm.dumb")
+    project_settings.set("HTTPCACHE_DIR", Path(__file__).parent.joinpath("scrapy_httpcache"))
+    project_settings.set("HTTPCACHE_STORAGE", "scrapy.extensions.httpcache.DbmCacheStorage")
+    project_settings.set("DEPTH_LIMIT", 0)
 
     # Ensures cache does not change, set to False if you need to update or replace cache files
-    settings.set("HTTPCACHE_IGNORE_MISSING", True)
+    project_settings.set("HTTPCACHE_IGNORE_MISSING", True)
 
-    yield settings
+    # Disable scrapy-redis
+    project_settings = disable_redis_job_state(project_settings)
+
+    yield project_settings
 
     try:
         del sys.modules["twisted.internet.reactor"]

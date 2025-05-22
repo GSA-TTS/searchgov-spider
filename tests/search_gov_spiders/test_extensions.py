@@ -8,18 +8,20 @@ import pytest
 from scrapy.crawler import Crawler
 from scrapy.exceptions import NotConfigured
 from scrapy.spiders import Spider
-from scrapy.utils.project import get_project_settings
 
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import (
     JsonLogging,
     SearchGovSpiderFileHandler,
     SearchGovSpiderStreamHandler,
 )
-from search_gov_crawler.search_gov_spiders.extensions.on_disk_queue import OnDiskSchedulerQueue
+from search_gov_crawler.search_gov_spiders.extensions.scheduler_queue import OnDiskSchedulerQueue, RedisSchedulerQueue
+from tests.scheduling.conftest import MockRedisClient
 
 
 class SpiderForTest(Spider):
     """Mock spider to support extension testing"""
+
+    spider_id = "testtesttest"
 
     def __repr__(self):
         return str(
@@ -28,17 +30,12 @@ class SpiderForTest(Spider):
                 "allowed_domain_paths": getattr(self, "allowed_domain_paths", None),
                 "allowed_domains": getattr(self, "allowed_domains", None),
                 "name": self.name,
+                "spider_id": self.spider_id,
                 "start_urls": self.start_urls,
                 "output_target": getattr(self, "output_target", None),
                 "deny_paths": getattr(self, "_deny_paths", None),
             },
         )
-
-
-@pytest.fixture(name="project_settings")
-def fixture_project_settings(monkeypatch):
-    monkeypatch.setenv("SCRAPY_SETTINGS_MODULE", "search_gov_crawler.search_gov_spiders.settings")
-    return get_project_settings()
 
 
 HANDLER_TEST_CASES = [
@@ -59,6 +56,7 @@ HANDLER_TEST_CASES = [
                 "allowed_domain_paths": None,
                 "allowed_domains": "example.com",
                 "name": "handler_test",
+                "spider_id": "testtesttest",
                 "start_urls": "https://www.example.com",
                 "output_target": "csv",
                 "deny_paths": None,
@@ -78,6 +76,7 @@ HANDLER_TEST_CASES = [
             "allowed_domain_paths": None,
             "allowed_domains": "example.com",
             "name": "handler_test",
+            "spider_id": "testtesttest",
             "start_urls": "https://www.example.com",
             "output_target": "csv",
             "deny_paths": None,
@@ -156,6 +155,32 @@ def test_extension_init():
             ("JOBDIR", None),
             "OnDiskSchedulerQueue extension is listed in settings.EXTENSIONS but JOBDIR is not set.",
         ),
+        (
+            RedisSchedulerQueue,
+            ("SCHEDULER_PERSIST", False),
+            "RedisSchedulerQueue extension is listed in settings.EXTENSIONS but SCHEDULER_PERSIST is not True.",
+        ),
+        (
+            RedisSchedulerQueue,
+            ("SCHEDULER_KEY_ORPHAN_AGE", None),
+            "RedisSchedulerQueue extension is listed in settings.EXTENSIONS but SCHEDULER_KEY_ORPHAN_AGE is not set.",
+        ),
+        (
+            RedisSchedulerQueue,
+            ("SCHEDULER_DUPEFILTER_KEY", None),
+            (
+                "RedisSchedulerQueue extension is listed in settings.EXTENSIONS but "
+                "SCHEDULER_DUPEFILTER_KEY or SCHEDULER_QUEUE_KEY is not set"
+            ),
+        ),
+        (
+            RedisSchedulerQueue,
+            ("SCHEDULER_QUEUE_KEY", None),
+            (
+                "RedisSchedulerQueue extension is listed in settings.EXTENSIONS but "
+                "SCHEDULER_DUPEFILTER_KEY or SCHEDULER_QUEUE_KEY is not set"
+            ),
+        ),
     ],
 )
 def test_extension_from_crawler_not_configured(project_settings, extension_cls, extension_settings, error_message):
@@ -167,6 +192,7 @@ def test_extension_from_crawler_not_configured(project_settings, extension_cls, 
 
 @pytest.mark.parametrize("extension_cls", [JsonLogging, OnDiskSchedulerQueue])
 def test_extension_from_crawler(project_settings, extension_cls):
+    project_settings.set("JOBDIR", "/some/test/value/")
     extension = extension_cls.from_crawler(Crawler(spidercls=Spider, settings=project_settings))
     assert isinstance(extension, extension_cls)
 
@@ -177,6 +203,7 @@ def test_extension_spider_opened(caplog, project_settings):
 
     spider = Spider(
         name="test_spider",
+        spider_id="testtesttest",
         allowed_domains=["domain 1", "domain 2"],
         start_urls=["url 1", "url 2"],
         output_target="csv",
@@ -188,7 +215,7 @@ def test_extension_spider_opened(caplog, project_settings):
         extension.spider_opened(spider)
 
     assert (
-        "Starting spider test_spider with following args: "
+        "Starting spider test_spider (spider_id testtesttest) with following args: "
         "allowed_domains=domain 1,domain 2 allowed_domain_paths= start_urls=url 1,url 2 "
         "output_target=csv depth_limit=3 deny_paths=path1"
     ) in caplog.messages
@@ -216,3 +243,42 @@ def test_extension_spider_closed(project_settings):
         extension.spider_closed(spider)
 
         assert not job_dir.exists()
+
+
+def test_redis_scheduler_spider_closed(project_settings, monkeypatch, caplog):
+    def mock_redis_client(*_args, **_kwargs):
+        return MockRedisClient()
+
+    def mock_is_orphan_key(*_args, **_kwargs):
+        return True
+
+    monkeypatch.setattr(
+        "search_gov_crawler.search_gov_spiders.extensions.scheduler_queue.init_redis_client",
+        mock_redis_client,
+    )
+    monkeypatch.setattr(RedisSchedulerQueue, "_is_orphan_key", mock_is_orphan_key)
+    spider = Spider(
+        name="test_spider",
+        allowed_domains=["domain 1", "domain 2"],
+        start_urls=["url 1", "url 2"],
+        settings=project_settings,
+    )
+
+    extension = RedisSchedulerQueue()
+
+    with caplog.at_level("INFO"):
+        extension.spider_closed(spider)
+
+    assert "Found and deleted 2 orphan keys!" in caplog.messages
+
+
+@pytest.mark.parametrize(("key_age", "expected_result"), [(None, False), (9, False), (10, False), (11, True)])
+def test_is_orphan_key(monkeypatch, key_age, expected_result):
+    extension = RedisSchedulerQueue()
+    redis = MockRedisClient()
+
+    def mock_object(*_args, **_kwargs):
+        return key_age
+
+    monkeypatch.setattr(MockRedisClient, "object", mock_object)
+    assert extension._is_orphan_key(redis=redis, orphan_age=10, key="test-key") == expected_result

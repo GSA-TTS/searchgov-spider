@@ -18,6 +18,9 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/GSA/searchgov-spider"
 
+[project.scripts]
+cache_tools = "scripts.cache_tools:cli"
+
 [tool.coverage.report]
 exclude_also = [
     "if __name__ == .__main__.:",

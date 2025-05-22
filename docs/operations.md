@@ -59,3 +59,32 @@ In some cases we may need to restart the scheudler using the normal process.  In
 cd $PYTHONPATH
 source cicd-scripts/app_start.sh
 ```
+
+### Handling State
+Our schedule of scrapy jobs as well as the state of those individual jobs is stored in redis.  Normally you should not have to adjust this but in some special cases you make have to make manual changes here.
+
+#### Clear the Queue of Pending Jobs
+Since we only run a certain number of jobs at once (defined by SPIDER_SCRAPY_MAX_WORKERS), we often have a queue of pending jobs that have reached their scheduled run time but cannot yet be run because we are already running the maximum number of jobs.  In some cases you may want to clear this queue of jobs.
+
+To view the pending jobs queue run:
+```bash
+python scripts/cache_tools.py show-jobs --pending
+```
+
+To clear the pending jobs queue run:
+```bash
+python scripts/cache_tools.py clear-pending-jobs
+```
+
+#### Remove Job State Keys
+Each jobs stores is job state in redis.  This consists of any pending requests the job is yet to make as well as all the URLs it has already seen and thus will not process again.  If a few cases, such as if a job is not running as desired and needs to be prematurely stopped, you will also need to manually remove the job state keys or the job will restart where it left off the next time it runs.
+
+To verify the existence of a job state key, find the spider_id value from the logs and use it in this command:
+```bash
+python scripts/cache_tools.py delete-job-state-keys --id <spider_id>
+```
+
+To remove the keys, use the `--apply` flag:
+```bash
+python scripts/cache_tools.py delete-job-state-keys --id <spider_id> --apply
+```
