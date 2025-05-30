@@ -61,7 +61,7 @@ def convert_html(response_bytes: bytes, url: str, response_language: str = None)
         "created": None,
         "_id": sha_id,
         "id": sha_id,
-        "thumbnail_url": article.meta_img or article.top_image or article_backup["thumbnail_url"] or None,
+        "thumbnail_url": article_backup["thumbnail_url"] or None,
         "language": language,
         "mime_type": "text/html",
         "path": path,

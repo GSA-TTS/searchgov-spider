@@ -6,18 +6,14 @@ from typing import Any
 from urllib.parse import urlparse
 
 from elasticsearch import Elasticsearch, helpers  # pylint: disable=wrong-import-order
-from pythonjsonlogger.json import JsonFormatter
 from scrapy.spiders import Spider
 
 from search_gov_crawler.elasticsearch.convert_html_i14y import convert_html
 from search_gov_crawler.elasticsearch.convert_pdf_i14y import convert_pdf
-from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 
 # limit excess INFO messages from elasticsearch that are not tied to a spider
 logging.getLogger("elastic_transport").setLevel("ERROR")
 
-logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
-logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 log = logging.getLogger("search_gov_crawler.elasticsearch")
 
 """

@@ -134,13 +134,39 @@ def test_file_handler_from_handler():
         assert spider_file_hanlder.errors == "test"
 
 
-def test_extension_init():
+@pytest.fixture(name="root_logger")
+def fixture_root_logger() -> logging.Logger:
+    """Fixture to provide the root logger for testing"""
     log = logging.getLogger()
     log.setLevel(logging.INFO)
+    return log
 
-    extension = JsonLogging(log_level=logging.INFO)
-    assert extension.file_hanlder_enabled is True
-    assert any(isinstance(handler, SearchGovSpiderStreamHandler) for handler in log.handlers)
+
+@pytest.fixture(name="logging_extension")
+def fixture_logging_extension() -> JsonLogging:
+    log = logging.getLogger()
+    log.setLevel(logging.INFO)
+    return JsonLogging(log_level=logging.INFO)
+
+
+@pytest.mark.parametrize("attr", ["file_hanlder_enabled", "stream_handler_enabled"])
+def test_extension_init_enabled_flags(logging_extension, attr):
+    assert getattr(logging_extension, attr) is True
+
+
+@pytest.mark.usefixtures("logging_extension")
+def test_extension_init_stream_handlers(root_logger):
+    assert any(isinstance(handler, SearchGovSpiderStreamHandler) for handler in root_logger.handlers)
+
+
+@pytest.mark.usefixtures("logging_extension")
+def test_extension_init_extra_handler(root_logger):
+    # Add a standard stream handler after initializing the logging extension
+    root_logger.addHandler(logging.StreamHandler(stream=io.StringIO()))
+
+    # Reinitialize the logging extension and check that the standard stream handler is removed
+    _ext = JsonLogging(log_level=logging.INFO)
+    assert not any(handler for handler in root_logger.handlers if handler.__class__ == logging.StreamHandler)
 
 
 @pytest.mark.parametrize(
@@ -171,7 +197,8 @@ def test_extension_from_crawler(project_settings, extension_cls):
     assert isinstance(extension, extension_cls)
 
 
-def test_extension_spider_opened(caplog, project_settings):
+@pytest.mark.parametrize(("prevent_follow", "start_urls"), [(True, "Generated from Sitemap"), (False, "url 1,url 2")])
+def test_extension_spider_opened(caplog, project_settings, prevent_follow, start_urls):
     log = logging.getLogger("test_spider")
     log.setLevel(logging.INFO)
 
@@ -181,6 +208,7 @@ def test_extension_spider_opened(caplog, project_settings):
         start_urls=["url 1", "url 2"],
         output_target="csv",
         settings=project_settings,
+        _prevent_follow=prevent_follow,
         _deny_paths="path1",
     )
     extension = JsonLogging(log_level=logging.INFO)
@@ -189,7 +217,7 @@ def test_extension_spider_opened(caplog, project_settings):
 
     assert (
         "Starting spider test_spider with following args: "
-        "allowed_domains=domain 1,domain 2 allowed_domain_paths= start_urls=url 1,url 2 "
+        f"allowed_domains=domain 1,domain 2 allowed_domain_paths= start_urls={start_urls} "
         "output_target=csv depth_limit=3 deny_paths=path1"
     ) in caplog.messages
 

@@ -1,7 +1,7 @@
 apscheduler==3.11.0
 cchardet==2.2.0a2 # C version of chardet
 elasticsearch==8.17.1,<9.0.0 # 9.0.0 is not compatible with elasticsearch7
-freezegun==1.5.1
+freezegun==1.5.2
 langdetect==1.0.9
 lxml-html-clean==0.4.1 # Required by newspaper4k, ignored by dependabot
 newspaper4k[all]==0.9.3.1 # This also installs the nltk library
