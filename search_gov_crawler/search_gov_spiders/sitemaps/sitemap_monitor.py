@@ -183,8 +183,8 @@ class SitemapMonitor:
                 session.headers.update({"Cache-Control": "no-cache"})
                 session.cache_disabled = True
                 response = session.get(url, timeout=30)
+                response.raise_for_status()
 
-                # Parse the XML
                 root = ET.fromstring(response.content)
 
                 urls = set()
@@ -194,13 +194,21 @@ class SitemapMonitor:
                     for sitemap in root.findall(f"{ns}sitemap"):
                         loc = sitemap.find(f"{ns}loc")
                         if loc is not None and loc.text:
-                            child_urls = self._fetch_sitemap(loc.text, depth + 1, max_depth)
-                            urls.update(child_urls)
-                else:
+                            loc_text = loc.text.strip()
+
+                            # Heuristic: treat only likely sitemap URLs as sitemaps
+                            if loc_text.endswith(".xml") or "sitemap" in loc_text.lower():
+                                child_urls = self._fetch_sitemap(loc_text, depth + 1, max_depth)
+                                urls.update(child_urls)
+                            else:
+                                log.warning(f"Skipping non-sitemap URL in sitemapindex: {loc_text}")
+                elif root.tag.endswith("urlset"):
                     for url_element in root.findall(f"{ns}url"):
                         loc = url_element.find(f"{ns}loc")
                         if loc is not None and loc.text:
-                            urls.add(loc.text)
+                            urls.add(loc.text.strip())
+                else:
+                    log.warning(f"Unrecognized root tag in sitemap XML: {root.tag}")
 
                 log.info(f"Found {len(urls)} URLs in sitemap {url}")
                 return urls
@@ -214,6 +222,7 @@ class SitemapMonitor:
         except Exception as e:
             log.error(f"Unexpected error processing sitemap {url}: {e}")
             return set()
+
 
     def _check_for_changes(self, sitemap_url: str) -> Tuple[Set[str], int]:
         """
