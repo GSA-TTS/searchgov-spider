@@ -1876,7 +1876,7 @@
       "allowed_domains": "defense.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
-      "depth_limit": 3,
+      "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.defense.gov (usagov-replacement)",
       "output_target": "elasticsearch",
