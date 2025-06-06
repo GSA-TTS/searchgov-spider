@@ -104,16 +104,24 @@ def test_get_pdf_text():
     assert result == expected
 
 
-def test_get_pdf_meta():
+GET_PDF_META_TEST_CASES = [
+    (None, {}),
+    (
+        {"/Title": "Fake Title", "/CreationDate": "D:20230101000000"},
+        {"Title": "Fake Title", "CreationDate": datetime(2023, 1, 1, 0, 0, 0)},
+    ),
+    (
+        {"Test Field": "Test Value", "/CreationDate": "D:20230101000000"},
+        {"Test Field": "Test Value", "CreationDate": datetime(2023, 1, 1, 0, 0, 0)},
+    ),
+]
+
+
+@pytest.mark.parametrize(("metadata", "expected_output"), GET_PDF_META_TEST_CASES)
+def test_get_pdf_meta(metadata, expected_output):
     """Test that metadata is cleaned and dates are parsed."""
-    metadata = {"/Title": "Fake Title", "/CreationDate": "D:20230101000000"}
     fake_reader = FakePdfReader(None, metadata=metadata)
-    meta = convert_pdf_i14y.get_pdf_meta(fake_reader)
-    # Check that the Title is preserved and the CreationDate is parsed to a datetime.
-    assert meta.get("Title") == "Fake Title"
-    creation_date = meta.get("CreationDate")
-    assert isinstance(creation_date, datetime)
-    assert creation_date == datetime(2023, 1, 1, 0, 0, 0)
+    assert convert_pdf_i14y.get_pdf_meta(fake_reader) == expected_output
 
 
 def test_parse_if_date_valid():
