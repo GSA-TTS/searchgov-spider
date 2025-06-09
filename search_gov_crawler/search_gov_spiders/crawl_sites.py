@@ -1,5 +1,5 @@
 import json
-from dataclasses import asdict, dataclass, fields
+from dataclasses import asdict, dataclass, field, fields
 from pathlib import Path
 from typing import Self
 
@@ -23,16 +23,18 @@ class CrawlSite:
     starting_urls: str
     output_target: str
     depth_limit: int
+    job_id: str | None = field(default=None, init=False)
     deny_paths: list | None = None
     schedule: str | None = None
     sitemap_url: str | None = None
     check_sitemap_hours: int | None = None
 
     def __post_init__(self):
-        """Perform validation on record"""
+        """Populate id field and perform validation"""
         self._validate_required_fields()
         self._validate_types()
         self._validate_fields()
+        self.job_id = self.name.lower().replace(" ", "-").replace("---", "-")
 
     def _validate_types(self) -> None:
         """Check field types against class definition to ensure compatability"""
@@ -89,7 +91,7 @@ class CrawlSite:
 
         missing_field_names = []
         for field in fields(self):
-            if field.name in {"schedule", "deny_paths", "sitemap_url", "check_sitemap_hours"}:
+            if field.name in {"schedule", "deny_paths", "sitemap_url", "check_sitemap_hours", "job_id"}:
                 pass
             elif getattr(self, field.name) is None:
                 missing_field_names.append(field.name)
@@ -119,16 +121,24 @@ class CrawlSites:
 
     def __post_init__(self):
         """Perform validations on entire list"""
-        domains_map = {}
-        for site in self.root:
+        unique_job_ids = set()
+        unique_domains_by_target = set()
+        for site in self:
+            job_id = site.job_id
+            if job_id in unique_job_ids:
+                msg = f"Duplicate job_id found: {job_id} in site:\n{site}"
+                raise TypeError(msg)
+
+            unique_job_ids.add(job_id)
+
             site_key = f"{site.output_target}::{site.allowed_domains}"
-            if site_key in domains_map:
+            if site_key in unique_domains_by_target:
                 msg = (
-                    "The combination of allowed_domain and starting_urls must be unique in file. "
+                    "The combination of allowed_domain and output_target must be unique in file. "
                     f"Duplicate site domain:\n{site}"
                 )
                 raise TypeError(msg)
-            domains_map[site_key] = True
+            unique_domains_by_target.add(site_key)
 
     @classmethod
     def from_file(cls, file: Path) -> Self:
