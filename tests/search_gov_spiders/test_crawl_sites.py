@@ -41,7 +41,13 @@ def test_valid_crawl_site_optional_fields(base_crawl_site_args, optional_args):
 def test_crawl_site_to_dict(base_crawl_site_args, exclude):
     cs = CrawlSite(**base_crawl_site_args)
     output = cs.to_dict(exclude=exclude)
-    expected_output = base_crawl_site_args | {"schedule": None, "deny_paths": None, "check_sitemap_hours": None, "sitemap_url": None}
+    expected_output = base_crawl_site_args | {
+        "schedule": None,
+        "deny_paths": None,
+        "check_sitemap_hours": None,
+        "sitemap_url": None,
+        "job_id": cs.job_id,
+    }
 
     for field in exclude:
         expected_output.pop(field)
@@ -128,6 +134,7 @@ def test_valid_crawl_sites_from_file(crawl_sites_test_file):
 
 def test_valid_crawl_sites_scheduled(base_crawl_site_args):
     different_crawl_site_args = base_crawl_site_args | {
+        "name": "another test",
         "allowed_domains": "another.example.com",
         "schedule": "* * * * *",
         "starting_urls": "https://another.example.com",
@@ -143,12 +150,22 @@ def test_valid_crawl_sites_scheduled(base_crawl_site_args):
     assert len(list(cs.scheduled())) == 1
 
 
-def test_invalid_crawl_sites_duplicates(base_crawl_site_args):
+def test_invalid_crawl_sites_duplicate_job_id(base_crawl_site_args):
+    duplicate_job_id_args = base_crawl_site_args | {
+        "allowed_domains": "test.example.com",
+    }
+
+    with pytest.raises(TypeError, match=r".*Duplicate job_id found.*"):
+        CrawlSites([CrawlSite(**base_crawl_site_args), CrawlSite(**duplicate_job_id_args)])
+
+
+def test_invalid_crawl_sites_duplicate_domain_in_target(base_crawl_site_args):
+    duplicate_job_id_args = base_crawl_site_args | {"name": "test 2"}
     with pytest.raises(
         TypeError,
-        match=r".*allowed_domain and starting_urls must be unique.*",
+        match=r".*allowed_domain and output_target must be unique.*",
     ):
-        CrawlSites([CrawlSite(**base_crawl_site_args), CrawlSite(**base_crawl_site_args)])
+        CrawlSites([CrawlSite(**base_crawl_site_args), CrawlSite(**duplicate_job_id_args)])
 
 
 def test_invalid_craw_sites_cron_expression(base_crawl_site_args):
