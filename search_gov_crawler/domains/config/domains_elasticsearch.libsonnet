@@ -10723,7 +10723,7 @@ local output_target = 'elasticsearch';
                          depth_limit=3),
   },
   {
-    name: 'Broadband USA (bbusa)',
+    name: 'NTIA (bbusa)',
     config: DomainConfig(allowed_domains='ntia.gov',
                          starting_urls='https://www.ntia.gov',
                          schedule='52 22 * * FRI',

@@ -17882,7 +17882,7 @@
       "deny_paths": null,
       "depth_limit": 3,
       "handle_javascript": false,
-      "name": "Broadband USA (bbusa)",
+      "name": "NTIA (bbusa)",
       "output_target": "elasticsearch",
       "schedule": "52 22 * * FRI",
       "sitemap_url": null,
