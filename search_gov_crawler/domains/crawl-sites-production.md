@@ -1526,7 +1526,7 @@
 |168th Air Refueling Wing, Alaska ANG (afpw_168arw)|22:12|168arw.ang.af.mil|8|
 |gis.ngdc.noaa.gov (ngdc.noaa.gov)|22:18|gis.ngdc.noaa.gov|8|
 |NIH OCR (nih-ocr)|22:42|ocreco.od.nih.gov|3|
-|Broadband USA (bbusa)|22:52|ntia.gov|3|
+|NTIA (bbusa)|22:52|ntia.gov|3|
 |169th Fighter Wing (afpw_169fw)|22:54|169fw.ang.af.mil|8|
 |433rd Airlift Wing (433aw)|23:05|433aw.afrc.af.mil|8|
 |pclt.defense.gov (dod_pclt)|23:18|pclt.defense.gov|8|
