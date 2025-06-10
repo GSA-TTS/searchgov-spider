@@ -72,7 +72,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.ncei.noaa.gov/',
                          schedule='01 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=3,
+                         deny_paths=['/pub/']),
   },
   {
     name: 'Storm Prediction Center (spc)',
@@ -843,7 +844,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.defense.gov/',
                          schedule='00 12 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.epa.gov (usagov-replacement)',
@@ -2149,7 +2150,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.nsf.gov/',
                          schedule='00 09 * * WED',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['par.nsf.gov/export/']),
   },
   {
     name: 'www.disasterassistance.gov (usagov-replacement)',
@@ -9180,7 +9182,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.nrl.navy.mil/',
                          schedule='13 6 * * SAT',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['wispr.nrl.navy.mil/data/']),
   },
   {
     name: 'www.dtra.mil (dtra)',
@@ -10723,7 +10726,7 @@ local output_target = 'elasticsearch';
                          depth_limit=3),
   },
   {
-    name: 'NTIA (bbusa)',
+    name: 'Broadband USA (bbusa)',
     config: DomainConfig(allowed_domains='ntia.gov',
                          starting_urls='https://www.ntia.gov',
                          schedule='52 22 * * FRI',

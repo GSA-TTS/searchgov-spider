@@ -150,7 +150,7 @@
 |www.loc.gov (usagov-replacement)|11:45|loc.gov|3|
 |2nd Air Force (afpw_2af)|11:51|2af.aetc.af.mil|8|
 |waterwatch.usgs.gov (usgs)|11:52|waterwatch.usgs.gov|8|
-|www.defense.gov (usagov-replacement)|12:00|defense.gov|3|
+|www.defense.gov (usagov-replacement)|12:00|defense.gov|8|
 |tricare_paxriver|12:00|paxriver.tricare.mil|8|
 |31st Medical Group - Aviano Air Base|12:00|aviano.tricare.mil|8|
 |Air Force Technology Transfer and Transition Program (usaf_aft3)|12:00|aft3.af.mil|8|
@@ -1263,13 +1263,13 @@
 |bensguide.gpo.gov (usagov-replacement)|23:12|bensguide.gpo.gov|3|
 |193rd SOW, Pa. ANG (afpw_193sow)|23:12|193sow.ang.af.mil|8|
 |vacareers.va.gov (usagov-replacement)|23:22|vacareers.va.gov|3|
+|Army PEO C3T (army_peo3t)|23:26|peoc3n.army.mil|3|
 |National Credit Union Assn (usagov-replacement)|23:32|ncua.gov|3|
 |www.nyeb.uscourts.gov (nyeb_uscourts)|23:35|nyeb.uscourts.gov|8|
 |FasterData (fasterdata)|23:36|fasterdata.es.net|3|
 |Rep Larson (usagov-replacement)|23:42|larson.house.gov|3|
 |WRAIR (wrair)|23:53|wrair.health.mil|3|
 |214th Reconnaissance Group, Arizona Air National Guard (afpw_214rg)|23:54|214rg.ang.af.mil|8|
-|Army PEO C3T (army_peo3t)|26:23|peoc3n.army.mil|3|
 
 
 ## Friday (260)
@@ -1436,7 +1436,7 @@
 |DOS MEPI (dos_emb_mena_mepi)|18:47|mepi.state.gov|3|
 |NOAA (noaa)|19:01|noaa.gov|8|
 |National Weather Service (nws)|19:01|nws.noaa.gov|3|
-|National Centers for Environmental Information (ncei)|19:01|ncei.noaa.gov|8|
+|National Centers for Environmental Information (ncei)|19:01|ncei.noaa.gov|3|
 |Storm Prediction Center (spc)|19:02|spc.noaa.gov|8|
 |NOAA Fisheries (fisheries)|19:02|fisheries.noaa.gov|3|
 |NOAA Water (water)|19:02|water.noaa.gov|3|
@@ -1544,6 +1544,7 @@
 |419th Fighter Wing (419fw)|00:00|419fw.afrc.af.mil|8|
 |107th AW (afpw_107aw)|00:18|107aw.ang.af.mil|8|
 |US Mission to OSCE (dos_emb_eur_osce)|00:36|osce.usmission.gov|3|
+|USACE Levees SEC (usace_all)|00:39|levees.sec.usace.army.mil|3|
 |Navy CSP (navy_csp)|00:46|csp.navy.mil|3|
 |403rd Wing (403wg)|00:55|403wg.afrc.af.mil|8|
 |DOT FHWA (dot-fhwa)|00:55|fhwa.dot.gov|3|
@@ -1799,4 +1800,3 @@
 |Air Force Outreach (afoutreach)|23:18|afoutreach.af.mil|8|
 |Stellwagen NOAA (stellwagen.noaa.gov)|23:43|stellwagen.noaa.gov|3|
 |PPMS (ppms)|23:53|ppms.gov|3|
-|USACE Levees SEC (usace_all)|39:00|levees.sec.usace.army.mil|3|
