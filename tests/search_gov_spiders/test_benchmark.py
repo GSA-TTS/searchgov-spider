@@ -63,8 +63,6 @@ def test_create_apscheduler_job(handle_javascript, spider_arg):
         "runtime_offset_seconds": 5,
         "depth_limit": 3,
         "deny_paths": "/deny-path1/,/deny-path2/",
-        "sitemap_url": None,
-        "check_sitemap_hours": None,
     }
 
     assert create_apscheduler_job(**test_args) == {
@@ -114,8 +112,6 @@ def test_benchmark_from_args(caplog, monkeypatch, mock_es_client):
             "runtime_offset_seconds": 0,
             "depth_limit": 3,
             "deny_paths": "/deny-path1/,/deny-path2/",
-            "sitemap_url": None,
-            "check_sitemap_hours": None,
         }
         with caplog.at_level("INFO"):
             benchmark_from_args(**test_args)
@@ -123,8 +119,7 @@ def test_benchmark_from_args(caplog, monkeypatch, mock_es_client):
         expected_log_msg = (
             "Starting benchmark from args! allow_query_string=True allowed_domains=unit-test.example.com "
             "starting_urls=https://unit-test.example.com handle_javascript=False output_target=csv "
-            "runtime_offset_seconds=0 depth_limit=3 deny_paths=/deny-path1/,/deny-path2/ sitemap_url=None "
-            "check_sitemap_hours=None"
+            "runtime_offset_seconds=0 depth_limit=3 deny_paths=/deny-path1/,/deny-path2/"
         )
         assert expected_log_msg in caplog.messages
 
