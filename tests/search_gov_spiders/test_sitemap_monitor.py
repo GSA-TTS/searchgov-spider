@@ -189,3 +189,21 @@ class TestSitemapMonitor(BaseTestCase):
             12
         )
  
+    def test_load_stored_sitemaps(self):
+        monitor = SitemapMonitor([
+            MockCrawlSite("http://example.com", sitemap_url="http://example.com/sitemap.xml"),
+        ])
+        url_hash = hashlib.md5("http://example.com/sitemap.xml".encode()).hexdigest()
+        file_path = Path(self.temp_dir) / f"{url_hash}.txt"
+        with open(file_path, "w") as f:
+            f.write("http://example.com/url1\n")
+            f.write("http://example.com/url2\n")
+        monitor._load_stored_sitemaps()
+        self.assertEqual(len(monitor.stored_sitemaps), 1)
+        self.assertEqual(monitor.stored_sitemaps["http://example.com/sitemap.xml"], {"http://example.com/url1", "http://example.com/url2"})
+
+    def test_get_check_interval(self):
+        monitor = SitemapMonitor([
+            MockCrawlSite("http://example.com", sitemap_url="http://example.com/sitemap.xml", check_sitemap_hours=12),
+        ])
+        self.assertEqual(monitor._get_check_interval("http://example.com/sitemap.xml"), 12)
