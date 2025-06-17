@@ -1,6 +1,6 @@
 import pytest
-
 from freezegun import freeze_time
+
 from search_gov_crawler.dap_extractor import main, run_dap_extractor
 
 

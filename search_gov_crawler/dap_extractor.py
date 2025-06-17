@@ -25,7 +25,7 @@ def run_dap_extractor(days_back: int, max_age: int) -> None:
     """
     Function to run the DAP retrieval job.
 
-    Runs for the last N days, starting at yesterday, and writes the data to Redis.
+    Runs for the last `days_back` days, starting at yesterday, and writes the data to Redis.
 
     Args:
         days_back (int): Number of days back to retrieve DAP data.
