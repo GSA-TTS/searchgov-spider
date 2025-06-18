@@ -8513,14 +8513,6 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: 'services.swpc.noaa.gov (ncep.noaa.gov)',
-    config: DomainConfig(allowed_domains='services.swpc.noaa.gov',
-                         starting_urls='https://services.swpc.noaa.gov/',
-                         schedule='17 12 * * TUE',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
     name: 'cfs.ncep.noaa.gov (ncep.noaa.gov)',
     config: DomainConfig(allowed_domains='cfs.ncep.noaa.gov',
                          starting_urls='https://cfs.ncep.noaa.gov/',
