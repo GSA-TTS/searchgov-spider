@@ -11,6 +11,11 @@ REGION=$(ec2metadata --availability-zone | sed 's/.$//')
 # Certain values will have blank spaces, quotes, and brackets removed from exported
 # value due to concerns about quality of the values.
 PARAMS="
+  DAP_API_BASE_URL
+  DAP_EXTRACTOR_SCHEDULE
+  DAP_VISITS_DAYS_BACK
+  DAP_VISITS_MAX_AGE
+  DATA_GOV_API_KEY
   ES_HOSTS
   ES_USER
   ES_PASSWORD
