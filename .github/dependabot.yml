@@ -32,6 +32,6 @@ updates:
       - dependency-name: "lxml-html-clean"
       - dependency-name: "typing-extensions"
       - dependency-name: "redis"
-        versions: [ "6" ]
+        versions: [ ">=6" ]
       - dependency-name: "elasticsearch"
-        versions: [ "9" ]
+        versions: [ ">=9" ]
