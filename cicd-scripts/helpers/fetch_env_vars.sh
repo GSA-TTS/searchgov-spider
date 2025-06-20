@@ -48,7 +48,7 @@ for PARAM in $PARAMS; do
     else
         VALUE=$RAW_VALUE
     fi
-    EXPORT_STATEMENT="export $PARAM=$VALUE"
+    EXPORT_STATEMENT="export $PARAM=${VALUE}"
 
     if grep -q "^export $PARAM=" $PROFILE; then
         sed -i "s|^export $PARAM=.*|$EXPORT_STATEMENT|" $PROFILE
