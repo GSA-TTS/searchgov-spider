@@ -116,5 +116,15 @@ if __name__ == "__main__":
         help=f"Number of days back to retrieve DAP data (default {dap_max_age})",
     )
 
+    parser.add_argument(
+        "--run-now",
+        action="store_true",
+        default=False,
+        help="Flag to trigger a single run, right now (default False)",
+    )
+
     args = parser.parse_args()
-    main(days_back=args.days_back, max_age=args.max_age)
+    if not args.run_now:
+        main(days_back=args.days_back, max_age=args.max_age)
+    else:
+        run_dap_extractor(days_back=args.days_back, max_age=args.max_age)
