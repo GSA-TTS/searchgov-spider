@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-from search_gov_crawler.dap.connect import get_dap_page_by_date, get_dap_api_configs
+from search_gov_crawler.dap.connect import get_dap_api_configs, get_dap_page_by_date
 
 
 @pytest.fixture(name="set_env_variables")
@@ -37,6 +37,7 @@ def test_get_dap_page_by_date(mocker):
     )
 
 
+@pytest.mark.usefixtures("set_env_variables")
 def test_get_dap_age_by_date_error(mocker, caplog):
     mock_response = mocker.patch("requests.get")
     mock_response.return_value.raise_for_status.side_effect = [requests.exceptions.HTTPError("Error")]
