@@ -45,10 +45,12 @@ for PARAM in $PARAMS; do
     # clean value for some
     if [[ $PARAM == "ES_HOSTS" ]]; then
         VALUE=$(echo $RAW_VALUE | tr -d '[:blank:]|[\"\[\]]')
+    elif [[ $PARAM == "DAP_EXTRACTOR_SCHEDULE" ]]; then
+        VALUE="$RAW_VALUE"
     else
         VALUE=$RAW_VALUE
     fi
-    EXPORT_STATEMENT="export $PARAM=${VALUE}"
+    EXPORT_STATEMENT="export $PARAM=$VALUE"
 
     if grep -q "^export $PARAM=" $PROFILE; then
         sed -i "s|^export $PARAM=.*|$EXPORT_STATEMENT|" $PROFILE
