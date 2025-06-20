@@ -46,7 +46,7 @@ for PARAM in $PARAMS; do
     if [[ $PARAM == "ES_HOSTS" ]]; then
         VALUE=$(echo $RAW_VALUE | tr -d '[:blank:]|[\"\[\]]')
     elif [[ $PARAM == "DAP_EXTRACTOR_SCHEDULE" ]]; then
-        VALUE="$RAW_VALUE"
+        VALUE=$(echo \"$RAW_VALUE\")
     else
         VALUE=$RAW_VALUE
     fi
