@@ -42,11 +42,12 @@ for PARAM in $PARAMS; do
         exit 1
     fi
 
-    # clean value for some
+    # clean and prep value for some.  ES_HOSTS sometimes has blanks and leading/trailing brackets.
+    # DAP_EXTRACTOR_SCHEDULE contains spaces so needs quotes added around it.
     if [[ $PARAM == "ES_HOSTS" ]]; then
         VALUE=$(echo $RAW_VALUE | tr -d '[:blank:]|[\"\[\]]')
     elif [[ $PARAM == "DAP_EXTRACTOR_SCHEDULE" ]]; then
-        VALUE=$(echo \"$RAW_VALUE\")
+        VALUE=$(echo \""$RAW_VALUE"\")
     else
         VALUE=$RAW_VALUE
     fi
@@ -55,12 +56,12 @@ for PARAM in $PARAMS; do
     if grep -q "^export $PARAM=" $PROFILE; then
         sed -i "s|^export $PARAM=.*|${EXPORT_STATEMENT}|" $PROFILE
     else
-        echo ${EXPORT_STATEMENT} >> $PROFILE
+        echo "$EXPORT_STATEMENT" >> $PROFILE
     fi
 
     # Apply changes for the current session and verify
     source $PROFILE
-    if [[ $(eval echo \$$PARAM) != $VALUE ]]; then
+    if [[ "$(eval echo \"\$$PARAM\")" != "$(sed -e 's/^"//' -e 's/"$//' <<< "$VALUE")" ]]; then
             echo "ERROR! Value for $PARAM not set properly!"
         exit 2
     fi
