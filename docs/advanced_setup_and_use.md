@@ -11,6 +11,8 @@ This page gives a more detailed description and further instructions on running 
   * [Option 3: running-scrapy-scheduler](#option-3-running-scrapy-scheduler)
 * [Running For All Domains](#running-against-all-listed-searchgov-domains)
 * [Adding New Spiders](#adding-new-spiders)
+* [Running Sitemap Monitor](#running-sitemap-monitor)
+* [Running DAP Extractor](#running-dap-extractor)
 
 ## Environment Variables
 If running a scheduler or benchmark, we support the use of a `.env` file in the project root to read keys and values.  Othewise these must be exported through other means.
@@ -32,6 +34,13 @@ SPIDER_URLS_API="https://jsonplaceholder.typicode.com/posts"
 
 # Needed for deployment
 SPIDER_PYTHON_VERSION="3.12"
+
+# Needed for DAP Extractor
+DAP_API_BASE_URL="https://api.gsa.gov/analytics/dap/v2.0.0"
+DAP_EXTRACTOR_SCHEDULE="*/5 * * * *"
+DAP_VISITS_DAYS_BACK=7
+DAP_VISITS_MAX_AGE=14
+DATA_GOV_API_KEY="NOT-A-REAL-API-KEY"
 ```
 
 ## Elasticsearch
@@ -135,3 +144,33 @@ scrapy crawl domain_spider_js
 2. Using the [domain spider](../search_gov_crawler/search_gov_spiders/spiders/domain_spider.py) as an example, copy code to the new spider file.
 
 3. Modify the `rules` in the new spider as needed. Here's the [Scrapy rules documentation](https://docs.scrapy.org/en/latest/topics/spiders.html#crawling-rules) for the specifics.
+
+
+## Running Sitemap Monitor
+To start the Sitemap monitor run:
+```bash
+# make sure the virtual environment is activate
+cd search_gov_crawler
+python run_sitemap_monitor.py
+```
+
+The process will start by checking all sitemaps that are identified in the schedule or have domain attributes that meet the defined criteria for inclusion.  The URLs from those sitemaps are stored on disk and used to determine if a new URL appears.  If new URLs are found, the sitemap monitor starts a spider process to capture the content at those URLs but does not crawl links found at those URLs.  The process then sleeps for a defined interval.  If no new URLs are found the processes simply sleeps until it is time to check again.
+
+The logic related to discovering sitemaps can be found in the [SitemapFinder class](../search_gov_crawler/search_gov_spiders/sitemaps/sitemap_finder.py) and can also be run idependently to create a list of sitemap locations for all domains.  See the [README](../search_gov_crawler/search_gov_spiders/sitemaps/README.md) in the Sitemaps module for instructions.
+
+## Running DAP Extractor
+Starting the DAP extractor is simple:
+```bash
+# make sure the virtual environment is activate
+python search_gov_crawler/dap_extractor.py
+```
+
+The process schedules itself using APScheduler.  The schedule is controlled by the `DAP_EXTRACTOR_SCHEDULE` environment variable.  It will not run if this value is not set.  The environment variables `DAP_API_BASE_URL` and `DATA_GOV_API_KEY` allow for access to the DAP API by the process and are also required.  The extractor process will by default pull a certain number of days of data and retain data for a certain number of days.  If you want to change these defaults you can add options to the command:
+```bash
+# to see help message
+python search_gov_crawler/dap_extractor.py --help
+
+# Increase the retrival and retention periods
+python search_gov_crawler/dap_extractor.py --days-back 30 --max-age 365
+```
+These retrieval and retention periods are also configurable by environment variables: `DAP_VISITS_DAYS_BACK`and `DAP_VISITS_MAX_AGE` respectively. These essentially serve as default values. Passing values on the command line will override the values in the environment variables.

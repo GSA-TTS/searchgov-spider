@@ -4,6 +4,7 @@ The home for the spider that supports [Search.gov](https://www.search.gov).
 #### Table of contents
 * [About](#about)
 * [Quick Start](#quick-start)
+* [Entry Points](#entrypoints)
 * [Helpful Links](#helpful-links)
 
 ## About
@@ -17,9 +18,10 @@ We currently run python 3.12.  The spider is based on the open source [scrapy](h
 
 ```bash
 ├── search_gov_crawler              # scrapy root
+│   ├── dap                         # code for handling data from DAP
 │   ├── domains                     # json files with domains to scrape
 │   ├── elasticsearch               # code related to indexing content in elasticsearch
-|   ├── scheduling                  # code for job scheduling and storing schedules in redis
+│   ├── scheduling                  # code for job scheduling and storing schedules in redis
 │   ├── search_gov_spider           # scrapy project dir
 │   │   ├── extensions              # custom scrapy extensions
 │   │   ├── helpers                 # common functions
@@ -41,7 +43,7 @@ We currently run python 3.12.  The spider is based on the open source [scrapy](h
 1. Insall and activate virtual environment:
 ```bash
 python -m venv venv
-. venv/bin/activate
+source venv/bin/activate
 ```
 
 2. Install required python modules:
@@ -55,6 +57,8 @@ playwright install chrome --force
 
 3. Run A Spider:
 ```bash
+cd search_gov_crawler
+
 # to run for a non-js domain:
 scrapy crawl domain_spider -a allowed_domains=quotes.toscrape.com -a start_urls=https://quotes.toscrape.com -a output_target=csv
 
@@ -70,6 +74,15 @@ The output of this scrape is one or more csv files containing URLs in the [outpu
 
 For more advanced usage, see the [Advanced Setup and Use Page](docs/advanced_setup_and_use.md)
 
+## Entrypoints
+* [Scrapy Scheduler](search_gov_crawler/scrapy_scheduler.py) - Process that manages and runs spider crawls based on a schedule.
+
+* [Sitemap Monitor](search_gov_crawler/run_sitemap_monitor.py) - Process that monitors domains for changes in their sitemaps and triggers spider runs to capture changes.
+
+* [DAP Extractor](search_gov_crawler/dap_extractor.py) - Stand-alone job that handles extracting and loading DAP visits data for use in spider crawls.
+
+* [Benchmark](search_gov_crawler/benchmark.py) - Allows for manual testing and benchmarking using similar mechanisms as scheduled runs.
+
 ## Helpful Links
 * [Architecture](docs/architecture.md)
 
@@ -80,10 +93,5 @@ For more advanced usage, see the [Advanced Setup and Use Page](docs/advanced_set
 * [Operations](docs/operations.md)
 
 * [Spider Schedules and Domain Configs README](search_gov_crawler/domains/README.md)
-  * [Current Production Domain List](search_gov_crawler/domains/crawl-sites-production.json)
-
-* [Scheduler Entrypoint - scrapy_scheduler.py](search_gov_crawler/scrapy_scheduler.py)
-
-* [Benchmark Entrypoint - benchmark.py](search_gov_crawler/benchmark.py)
-
-* [Sitemaps Entrypoint - run_sitemap_monitor.py](search_gov_crawler/run_sitemap_monitor.py)
+  * [Current Production Domain List - JSON](search_gov_crawler/domains/crawl-sites-production.json)
+  * [Current Production Domain List - Markdown](search_gov_crawler/domains/crawl-sites-production.md)

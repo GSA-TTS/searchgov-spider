@@ -11,6 +11,11 @@ REGION=$(ec2metadata --availability-zone | sed 's/.$//')
 # Certain values will have blank spaces, quotes, and brackets removed from exported
 # value due to concerns about quality of the values.
 PARAMS="
+  DAP_API_BASE_URL
+  DAP_EXTRACTOR_SCHEDULE
+  DAP_VISITS_DAYS_BACK
+  DAP_VISITS_MAX_AGE
+  DATA_GOV_API_KEY
   ES_HOSTS
   ES_USER
   ES_PASSWORD
@@ -37,23 +42,26 @@ for PARAM in $PARAMS; do
         exit 1
     fi
 
-    # clean value for some
+    # clean and prep value for some.  ES_HOSTS sometimes has blanks and leading/trailing brackets.
+    # DAP_EXTRACTOR_SCHEDULE contains spaces so needs quotes added around it.
     if [[ $PARAM == "ES_HOSTS" ]]; then
         VALUE=$(echo $RAW_VALUE | tr -d '[:blank:]|[\"\[\]]')
+    elif [[ $PARAM == "DAP_EXTRACTOR_SCHEDULE" ]]; then
+        VALUE=$(echo \""$RAW_VALUE"\")
     else
         VALUE=$RAW_VALUE
     fi
-    EXPORT_STATEMENT="export $PARAM=$VALUE"
+    EXPORT_STATEMENT="export $PARAM=${VALUE}"
 
     if grep -q "^export $PARAM=" $PROFILE; then
-        sed -i "s|^export $PARAM=.*|$EXPORT_STATEMENT|" $PROFILE
+        sed -i "s|^export $PARAM=.*|${EXPORT_STATEMENT}|" $PROFILE
     else
-        echo $EXPORT_STATEMENT >> $PROFILE
+        echo "$EXPORT_STATEMENT" >> $PROFILE
     fi
 
     # Apply changes for the current session and verify
     source $PROFILE
-    if [[ $(eval echo \$$PARAM) != $VALUE ]]; then
+    if [[ "$(eval echo \"\$$PARAM\")" != "$(sed -e 's/^"//' -e 's/"$//' <<< "$VALUE")" ]]; then
             echo "ERROR! Value for $PARAM not set properly!"
         exit 2
     fi
