@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-from search_gov_crawler.dap.connect import get_dap_api_configs, get_dap_page_by_date
+from search_gov_crawler.dap.connect import get_dap_api_configs, get_dap_data_by_date
 
 
 @pytest.fixture(name="set_env_variables")
@@ -24,26 +24,25 @@ def test_get_dap_api_configs_missing(monkeypatch, env_var):
 
 
 @pytest.mark.usefixtures("set_env_variables")
-def test_get_dap_page_by_date(mocker):
-    mock_response = mocker.patch("requests.get")
-    mock_response.return_value.json.return_value = {"this is": "the response"}
+def test_get_dap_data_by_date(mocker):
+    mock_session = mocker.patch("requests.Session")
+    mock_session.get.return_value.json.side_effect = [
+        [{"data": "data"}, {"data": "data"}],
+        [{"data": "data"}, {"data": "data"}],
+        [],
+    ]
 
-    get_dap_page_by_date("2025-05-21", 1000, 1)
-
-    mock_response.assert_called_once_with(
-        "https://url-var.for.test/reports/site/data?after=2025-05-21&before=2025-05-21&limit=1000&page=1",
-        headers={"x-api-key": "api-key-var-for-test", "Accept": "application/json"},
-        timeout=30,
-    )
+    dap_data = get_dap_data_by_date(mock_session, "https://url-var.for.test", "2025-05-21")
+    assert dap_data == [{"data": "data"}, {"data": "data"}, {"data": "data"}, {"data": "data"}]
 
 
 @pytest.mark.usefixtures("set_env_variables")
 def test_get_dap_age_by_date_error(mocker, caplog):
-    mock_response = mocker.patch("requests.get")
-    mock_response.return_value.raise_for_status.side_effect = [requests.exceptions.HTTPError("Error")]
+    mock_session = mocker.patch("requests.Session")
+    mock_session.get.return_value.raise_for_status.side_effect = [requests.exceptions.HTTPError("Error")]
 
     with caplog.at_level("ERROR"):
         with pytest.raises(requests.exceptions.HTTPError):
-            get_dap_page_by_date("2025-05-21", 1000, 1)
+            get_dap_data_by_date(mock_session, "https://url-var.for.test", "2025-05-21")
 
         assert any(message.startswith("Error during DAP request:") for message in caplog.messages)

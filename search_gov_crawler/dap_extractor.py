@@ -3,11 +3,12 @@ import logging
 import os
 from datetime import UTC, datetime, timedelta
 
+import requests
 from apscheduler.triggers.cron import CronTrigger
 from dotenv import load_dotenv
 from redis import Redis
 
-from search_gov_crawler.dap.connect import get_dap_page_by_date
+from search_gov_crawler.dap.connect import get_dap_api_configs, get_dap_data_by_date
 from search_gov_crawler.dap.datastore import age_off_dap_records, write_dap_record_to_redis
 from search_gov_crawler.dap.schedule import ensure_positive_int, init_scheduler
 from search_gov_crawler.dap.transform import transform_dap_response
@@ -35,37 +36,25 @@ def run_dap_extractor(days_back: int, max_age: int) -> None:
 
     redis_client = Redis(**get_redis_connection_args(db=2))
 
-    for range_day in range(days_back):
-        query_date = (datetime.now(UTC) - timedelta(days=range_day + 1)).strftime("%Y-%m-%d")
-        log.info("Running DAP job for date: %s", query_date)
+    dap_api_base_url, dap_api_key = get_dap_api_configs()
+    with requests.Session() as session:
+        session.headers.update({"x-api-key": dap_api_key, "Accept": "application/json"})
 
-        # query 1000 record pages from DAP API until an empty response is seen
-        query_limit = 1000
-        query_page = 0
-        api_has_data = True
+        for range_day in range(days_back):
+            query_date = (datetime.now(UTC) - timedelta(days=range_day + 1)).strftime("%Y-%m-%d")
+            log.info("Running DAP job for date: %s", query_date)
 
-        dap_response = []
-        while api_has_data:
-            query_page += 1
-            dap_page = get_dap_page_by_date(query_date, query_limit, query_page)
-            log.info("Fetched %s records on page %s for date: %s", len(dap_page), query_page, query_date)
+            dap_response = get_dap_data_by_date(session=session, dap_endpoint=dap_api_base_url, query_date=query_date)
+            log.info("Fetched %s records fetched from DAP for date: %s", len(dap_response), query_date)
 
-            if dap_page:
-                dap_response.extend(dap_page)
-            else:
-                api_has_data = False
-                log.info("No more data found for date: %s", query_date)
+            # transform and normalize dap records into a useful format
+            transformed_dap_records = transform_dap_response(dap_response)
 
-        log.info("Fetched %s records fetched from DAP for date: %s", len(dap_response), query_date)
+            # write all the transformed records to redis
+            for transformed_dap_record in transformed_dap_records:
+                write_dap_record_to_redis(redis=redis_client, **transformed_dap_record)
 
-        # transform and normalize dap records into a useful format
-        transformed_dap_records = transform_dap_response(dap_response)
-
-        # write all the transformed records to redis
-        for transformed_dap_record in transformed_dap_records:
-            write_dap_record_to_redis(redis=redis_client, **transformed_dap_record)
-
-        log.info("Wrote %s records to Redis for date: %s", len(transformed_dap_records), query_date)
+            log.info("Wrote %s records to Redis for date: %s", len(transformed_dap_records), query_date)
 
     # age off records older than a certain number of days
     log.info("Starting Age off of records older than %s days!", max_age)

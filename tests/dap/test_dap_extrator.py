@@ -35,16 +35,14 @@ def test_dap_extractor_main_crontrigger_error(caplog, monkeypatch):
 
 @freeze_time("2025-05-21 01:23:34", tz_offset=0)
 def test_run_dap_extractor(caplog, mocker):
-    mocker.patch("search_gov_crawler.dap_extractor.Redis")
+    mocker.patch("requests.Session")
+    mock_get_dap_api_configs = mocker.patch("search_gov_crawler.dap_extractor.get_dap_api_configs")
+    mock_get_dap_api_configs.return_value = ("test-api-key", "https://test-url.for.api/")
 
-    mock_get_dap_page_by_date = mocker.patch("search_gov_crawler.dap_extractor.get_dap_page_by_date")
-    mock_get_dap_page_by_date.side_effect = [
-        [{"data": "data"}, {"data": "data"}],
-        [{"data": "data"}, {"data": "data"}],
-        [],
-        [{"data": "data"}, {"data": "data"}],
-        [{"data": "data"}, {"data": "data"}],
-        [],
+    mock_get_dap_data_by_date = mocker.patch("search_gov_crawler.dap_extractor.get_dap_data_by_date")
+    mock_get_dap_data_by_date.side_effect = [
+        [{"data": "data"}, {"data": "data"}, {"data": "data"}, {"data": "data"}],
+        [{"data": "data"}, {"data": "data"}, {"data": "data"}, {"data": "data"}],
     ]
     mock_transform_dap_response = mocker.patch("search_gov_crawler.dap_extractor.transform_dap_response")
     mock_transform_dap_response.return_value = [{"data": "data"}, {"data": "data"}, {"data": "data"}, {"data": "data"}]
