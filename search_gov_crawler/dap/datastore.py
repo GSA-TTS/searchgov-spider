@@ -23,16 +23,16 @@ def age_off_dap_records(redis: Redis, days_back: int) -> int:
     Removes DAP records older than `days_back` days.
     """
 
-    dap_records_aged_off = 0
     age_off_date = datetime.now(UTC) - timedelta(days=days_back)
     min_score = int(age_off_date.strftime("%Y%m%d"))
-    keys = redis.keys("dap_visits:*")
 
-    log.info("Checking %d keys for records oder than %s", len(keys), age_off_date.strftime("%Y-%m-%d"))
-    for key in keys:
-        dap_records_aged_off += redis.zremrangebyscore(name=key, min="-inf", max=min_score)
+    log.info("Checking keys for records older than %s", age_off_date.strftime("%Y-%m-%d"))
+    pipe = redis.pipeline()
+    for key in redis.scan_iter(match="dap_visits:*"):
+        pipe.zremrangebyscore(name=key, min="-inf", max=min_score)
 
-    return dap_records_aged_off
+    results = pipe.execute()
+    return sum(results)
 
 
 def get_avg_daily_visits_by_domain(redis: Redis, domain: str, days_back: int) -> dict:
