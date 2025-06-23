@@ -9409,7 +9409,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.lrd.usace.army.mil',
                          schedule='36 16 * * SUN',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['/LINK[0-9]+/']),
   },
   {
     name: 'DPAA (dpaa)',
