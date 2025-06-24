@@ -627,8 +627,10 @@
       "allow_query_string": false,
       "allowed_domains": "ncei.noaa.gov",
       "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
+      "deny_paths": [
+         "/pub/"
+      ],
+      "depth_limit": 3,
       "handle_javascript": false,
       "name": "National Centers for Environmental Information (ncei)",
       "output_target": "elasticsearch",
@@ -1876,7 +1878,7 @@
       "allowed_domains": "defense.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
-      "depth_limit": 3,
+      "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.defense.gov (usagov-replacement)",
       "output_target": "elasticsearch",
@@ -3994,7 +3996,9 @@
       "allow_query_string": false,
       "allowed_domains": "nsf.gov",
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "par.nsf.gov/export/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.nsf.gov (usagov-replacement)",
@@ -14289,19 +14293,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "services.swpc.noaa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "services.swpc.noaa.gov (ncep.noaa.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "17 12 * * TUE",
-      "sitemap_url": null,
-      "starting_urls": "https://services.swpc.noaa.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "cfs.ncep.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -15370,7 +15361,9 @@
       "allow_query_string": false,
       "allowed_domains": "nrl.navy.mil",
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "wispr.nrl.navy.mil/data/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.nrl.navy.mil (nav_nrl)",
@@ -17882,7 +17875,7 @@
       "deny_paths": null,
       "depth_limit": 3,
       "handle_javascript": false,
-      "name": "Broadband USA (bbusa)",
+      "name": "NTIA (bbusa)",
       "output_target": "elasticsearch",
       "schedule": "52 22 * * FRI",
       "sitemap_url": null,

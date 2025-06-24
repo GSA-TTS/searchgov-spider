@@ -90,7 +90,7 @@ def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
         transformed_crawl_sites.append(
             {
                 "func": run_scrapy_crawl,
-                "id": job_name.lower().replace(" ", "-").replace("---", "-"),
+                "id": crawl_site.job_id,
                 "name": job_name,
                 "trigger": CronTrigger.from_crontab(expr=crawl_site.schedule, timezone="UTC"),
                 "args": [
