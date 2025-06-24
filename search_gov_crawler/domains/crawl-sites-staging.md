@@ -194,7 +194,7 @@
 |www.gsa.gov (usagov-replacement)|16:15|gsa.gov|N|3||
 |IWGSC.NAL.USDA.gov (USDA NAL)|16:15|iwgsc.nal.usda.gov|N|3||
 |bidenwhitehouse.archives.gov (usagov-replacement)|16:30|bidenwhitehouse.archives.gov|N|3||
-|Great Lakes Division (greatlakes_div)|16:36|lrd.usace.army.mil|N|8||
+|Great Lakes Division (greatlakes_div)|16:36|lrd.usace.army.mil|N|8|/LINK[0-9]+/|
 |Air Force Life Cycle Management Center (usaf_aflcmc)|16:37|aflcmc.af.mil|N|8||
 |All-domain Anomaly Resolution Office (dod_aaro)|16:43|aaro.mil|N|3||
 |195th Wing (afpw_195wg)|16:44|195wg.ang.af.mil|N|8||
