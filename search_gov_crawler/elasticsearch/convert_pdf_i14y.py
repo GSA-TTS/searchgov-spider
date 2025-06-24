@@ -174,7 +174,11 @@ def get_pdf_meta(reader: PdfReader) -> dict:
     if not reader.metadata:
         return {}
 
-    return {str(k).removeprefix("/"): parse_if_date(v) for k, v in reader.metadata.items()}
+    clean_metadata = {}
+    for k, v in reader.metadata.items():
+        clean_metadata[str(k).removeprefix("/")] = parse_if_date(v)
+
+    return clean_metadata
 
 
 def parse_if_date(value, apply_tz_offset: bool = False):
