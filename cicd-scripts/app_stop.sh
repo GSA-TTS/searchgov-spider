@@ -7,6 +7,12 @@ source ./cicd-scripts/helpers/ensure_executable.sh
 
 ### FUNCTIONS ###
 
+# stop dap extractor
+stop_dap_extractor() {
+    echo "Stopping dap_extractor.py (if running)..."
+    ensure_executable "./cicd-scripts/helpers/kill_dap_extractor.sh"
+}
+
 # Stop sitemap monitor
 stop_sitemap_monitor() {
     echo "Stopping run_sitemap_monitor.py (if running)..."
@@ -78,6 +84,9 @@ remove_cron_entry() {
 }
 
 ### SCRIPT EXECUTION ###
+
+# Stop DAP Extractor
+stop_dap_extractor
 
 # Stop sitemap monitoring
 stop_sitemap_monitor

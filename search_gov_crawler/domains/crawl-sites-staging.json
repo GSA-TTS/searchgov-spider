@@ -14293,19 +14293,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "services.swpc.noaa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "services.swpc.noaa.gov (ncep.noaa.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "17 12 * * TUE",
-      "sitemap_url": null,
-      "starting_urls": "https://services.swpc.noaa.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "cfs.ncep.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -15753,7 +15740,9 @@
       "allow_query_string": false,
       "allowed_domains": "lrd.usace.army.mil",
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "/LINK[0-9]+/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Great Lakes Division (greatlakes_div)",

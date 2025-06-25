@@ -1,21 +1,23 @@
 import re
+from datetime import datetime, timedelta
 from io import BytesIO
-from pypdf import PdfReader, PageObject
 from typing import Tuple
-from datetime import UTC, datetime, timedelta
-from search_gov_crawler.search_gov_spiders.helpers import content
+
+from pypdf import PageObject, PdfReader
+
 from search_gov_crawler.elasticsearch.i14y_helper import (
     ALLOWED_LANGUAGE_CODE,
-    parse_date_safely,
-    get_url_path,
-    get_base_extension,
     current_utc_iso,
-    generate_url_sha256,
-    get_domain_name,
-    summarize_text,
-    separate_file_name,
     detect_lang,
+    generate_url_sha256,
+    get_base_extension,
+    get_domain_name,
+    get_url_path,
+    parse_date_safely,
+    separate_file_name,
+    summarize_text,
 )
+from search_gov_crawler.search_gov_spiders.helpers import content
 
 
 def add_title_and_filename(key: str, title_key: str, doc: dict):
@@ -159,9 +161,9 @@ def get_pdf_text(reader: PdfReader) -> Tuple[str, list[Tuple[str, PageObject]]]:
     return (text, pages)
 
 
-def get_pdf_meta(reader: PdfReader):
+def get_pdf_meta(reader: PdfReader) -> dict:
     """
-    Returns pdf metadata
+    Returns pdf metadata as a dict after its been cleaned.
 
     Args:
         reader: PdfReader from pypdf
@@ -169,15 +171,13 @@ def get_pdf_meta(reader: PdfReader):
     Returns:
         metadata object with possible keys: https://exiftool.org/TagNames/PDF.html
     """
+    if not reader.metadata:
+        return {}
+
     clean_metadata = {}
-    metadata: dict = dict(reader.metadata)
-    if isinstance(metadata, dict):
-        for key, value in metadata.items():
-            new_key = None
-            if key.startswith("/"):
-                new_key = key[1:]
-            new_key = new_key or key
-            clean_metadata[new_key] = parse_if_date(value)
+    for k, v in reader.metadata.items():
+        clean_metadata[str(k).removeprefix("/")] = parse_if_date(v)
+
     return clean_metadata
 
 

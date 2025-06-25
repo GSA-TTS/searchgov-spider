@@ -58,14 +58,16 @@ def create_markdown_tables(transformed_schedule: dict) -> str:
     md_tables = ""
     for day in days_of_week:
         entries = transformed_schedule[day]
-        md_tables += f"\n\n## {day} ({len(entries)})\n|Name|Time (UTC)|Allowed Domains|Depth|\n"
-        md_tables += "|---|---|---|---|\n"
+        md_tables += f"\n\n## {day} ({len(entries)})\n|Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|\n"
+        md_tables += "|---|---|---|---|---|---|\n"
         for entry in entries:
             name = entry["name"]
             schedule = entry["time"]
             allowed_domains = entry["allowed_domains"]
+            js = "Y" if entry["handle_javascript"] else "N"
             depth = entry["depth_limit"]
-            row = f"|{name}|{schedule}|{allowed_domains}|{depth}|\n"
+            deny_paths = ",".join(entry["deny_paths"]) if entry["deny_paths"] else ""
+            row = f"|{name}|{schedule}|{allowed_domains}|{js}|{depth}|{deny_paths}|\n"
             md_tables += row
 
     return md_tables
