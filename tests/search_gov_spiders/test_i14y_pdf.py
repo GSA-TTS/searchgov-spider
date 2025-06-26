@@ -1,6 +1,9 @@
-import pytest
 from datetime import datetime
-from unittest.mock import patch, MagicMock
+
+import pypdf
+from pypdf.generic import IndirectObject
+import pytest
+
 from search_gov_crawler.elasticsearch import convert_pdf_i14y
 
 
@@ -114,12 +117,17 @@ GET_PDF_META_TEST_CASES = [
         {"Test Field": "Test Value", "/CreationDate": "D:20230101000000"},
         {"Test Field": "Test Value", "CreationDate": datetime(2023, 1, 1, 0, 0, 0)},
     ),
+    (
+        {"/IndirectField": IndirectObject(idnum=0, generation=0, pdf="Resolved Value")},
+        {"IndirectField": "Resolved Value"},
+    ),
 ]
 
 
 @pytest.mark.parametrize(("metadata", "expected_output"), GET_PDF_META_TEST_CASES)
-def test_get_pdf_meta(metadata, expected_output):
+def test_get_pdf_meta(monkeypatch, metadata, expected_output):
     """Test that metadata is cleaned and dates are parsed."""
+    monkeypatch.setattr(IndirectObject, "get_object", lambda x: x.pdf)
     fake_reader = FakePdfReader(None, metadata=metadata)
     assert convert_pdf_i14y.get_pdf_meta(fake_reader) == expected_output
 
@@ -199,16 +207,16 @@ def test_add_title_and_filename():
     assert doc["content_en"] == expected_content
 
 
-def test_get_links_set():
+def test_get_links_set(mocker):
     """Test that get_links_set extracts unique links from PDF pages."""
 
     page1_text = "Visit https://example.com for more info."
     page2_text = "Check out www.test.com and also https://example.com"
 
-    fake_page1 = MagicMock()
+    fake_page1 = mocker.MagicMock()
     fake_page1.get_object.return_value = {}
 
-    fake_page2 = MagicMock()
+    fake_page2 = mocker.MagicMock()
     fake_page2.get_object.return_value = {}
 
     page_items = [(page1_text, fake_page1), (page2_text, fake_page2)]
