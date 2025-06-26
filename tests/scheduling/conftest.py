@@ -50,3 +50,8 @@ def fixture_mock_redis_jobstore() -> SpiderRedisJobStore:
     jobstore._alias = "redis"
     jobstore.redis = MockRedisClient()
     return jobstore
+
+
+@pytest.fixture(name="mock_redis_client")
+def fixture_mock_redis_client() -> MockRedisClient:
+    return MockRedisClient()
