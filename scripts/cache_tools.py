@@ -15,6 +15,7 @@ Usage:
 from datetime import UTC, datetime
 
 import click
+import pickle
 from redis import Redis
 
 from search_gov_crawler.scheduling.redis import init_redis_client
@@ -135,6 +136,25 @@ def delete_job_state_keys(spider_id: str, apply: bool):
                 delete_key(redis=redis_client, key=key)
     elif keys:
         print("Run command with --apply to delete these keys")
+
+
+@cli.command()
+@click.option("-id", "--spider_id", type=str, required=True)
+@click.option("-p", "--page_size", type=int, default=20)
+def show_queued_urls(spider_id: str, page_size: int):
+    """Shows URLs in request queue based on spider_id."""
+    redis_client = init_redis_client()
+    key = JOB_STATE_KEY_PATTERN % {"spider_id": spider_id, "key_type": "requests"}
+
+    requests = redis_client.lrange(name=key, start=0, end=-1)
+
+    print_headers(key=key, results=requests, result_label="requests")
+    for idx, request in enumerate(requests):
+        obj = pickle.loads(request)
+        print(obj.get("url"))
+
+        if (idx + 1) % page_size == 0:
+            input("Enter for more...")
 
 
 if __name__ == "__main__":
