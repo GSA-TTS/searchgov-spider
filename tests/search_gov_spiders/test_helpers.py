@@ -9,15 +9,33 @@ from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import shoul
 
 @pytest.mark.parametrize(
     ("content_type_header", "result"),
-    [("text/html", True), ("application/msword.more.and.more", True), ("Something/Else", False)],
-    ids=["good", "regex", "bad"],
+    [("text/html", True), ("application/msword.more.and.more", True), ("Something/Else", False), (None, None)],
+    ids=["good", "regex", "bad", "missing"],
 )
 def test_is_valid_content_type(content_type_header, result):
     assert helpers.is_valid_content_type(content_type_header, "csv") is result
 
 
+@pytest.mark.parametrize(
+    ("content_type_header", "output_target", "result"),
+    [
+        (None, None, None),
+        ("text/html", "csv", "text/html"),
+        ("text/html;extra/whatever", "csv", "text/html"),
+        ("text/html;extra/whatever", "elasticsearch", "text/html"),
+        ("application/msword", "elasticsearch", None),
+    ],
+)
+def test_get_simple_content_type(content_type_header, output_target, result):
+    assert helpers.get_simple_content_type(content_type_header, output_target) == result
+
+
 def test_get_crawl_sites_test_file(crawl_sites_test_file):
     assert len(helpers.get_crawl_sites(str(crawl_sites_test_file.resolve()))) == 4
+
+
+def test_get_crawl_sites_no_input():
+    assert len(helpers.get_crawl_sites()) > 0
 
 
 @pytest.mark.parametrize(("handle_javascript", "results"), [(True, 2), (False, 2)])
@@ -94,6 +112,19 @@ def test_split_allowed_domains():
 )
 def test_set_link_extractor_deny(deny_paths, expected_output):
     assert helpers.set_link_extractor_deny(deny_paths) == expected_output
+
+
+@pytest.mark.parametrize(("content_language", "result"), [("en-US", "en"), (None, None)])
+def test_get_response_language_code(mocker, content_language, result):
+    response = mocker.Mock()
+    response.headers.get.return_value = content_language
+    assert helpers.get_response_language_code(response) == result
+
+
+def test_get_response_language_code_exception(mocker):
+    response = mocker.Mock()
+    response.headers.get.side_effect = Exception("Something went wrong!")
+    assert helpers.get_response_language_code(response) is None
 
 
 @pytest.mark.parametrize(

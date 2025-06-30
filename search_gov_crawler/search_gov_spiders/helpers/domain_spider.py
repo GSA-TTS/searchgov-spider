@@ -90,7 +90,7 @@ def is_valid_content_type(content_type_header: str, output_target: str) -> bool:
 
 
 def get_simple_content_type(content_type_header: str, output_target: str) -> str:
-    """Returns simple content time like: \"text/html\" """
+    r"""Returns simple content time like: \"text/html\" """
     if not content_type_header:
         return None
     content_type_header = str(content_type_header)
