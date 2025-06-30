@@ -49,3 +49,18 @@ def test_init_redis_client(monkeypatch, mock_redis_client):
 
     monkeypatch.setattr("search_gov_crawler.scheduling.redis.Redis", mock_redis)
     assert init_redis_client().ping()
+
+
+@pytest.mark.usefixtures("clear_redis_env_vars")
+def test_init_redis_client_with_extra_args(caplog, monkeypatch, mock_redis_client):
+    extra_args = {"db": 5, "new": "connection arg"}
+    expected_connection_args = {"host": "localhost", "port": 6379, "db": 5, "new": "connection arg"}
+
+    def mock_redis(*_args, **_kwargs):
+        return mock_redis_client
+
+    monkeypatch.setattr("search_gov_crawler.scheduling.redis.Redis", mock_redis)
+    with caplog.at_level("DEBUG"):
+        init_redis_client(**extra_args)
+
+    assert f"Attempting conection to redis with args {expected_connection_args}" in caplog.messages
