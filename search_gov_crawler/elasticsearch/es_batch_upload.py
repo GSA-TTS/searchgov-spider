@@ -6,20 +6,16 @@ from typing import Any
 from urllib.parse import urlparse
 
 from elasticsearch import Elasticsearch, helpers  # pylint: disable=wrong-import-order
-from scrapy.spiders import Spider
 
 from search_gov_crawler.elasticsearch.convert_html_i14y import convert_html
 from search_gov_crawler.elasticsearch.convert_pdf_i14y import convert_pdf
+from search_gov_crawler.elasticsearch.i14y_helper import update_dap_visits_to_document
+from search_gov_crawler.search_gov_spiders.spiders import SearchGovDomainSpider
 
 # limit excess INFO messages from elasticsearch that are not tied to a spider
 logging.getLogger("elastic_transport").setLevel("ERROR")
 
 log = logging.getLogger("search_gov_crawler.elasticsearch")
-
-"""
-Temporary variable to disable the PDF functionality until we're ready to launch it
-"""
-DISABLE_PDF = False
 
 
 class SearchGovElasticsearch:
@@ -35,17 +31,20 @@ class SearchGovElasticsearch:
         self._env_es_password = os.environ.get("ES_PASSWORD", "")
         self._executor = ThreadPoolExecutor(max_workers=5)  # Reuse one executor
 
-    def add_to_batch(self, response_bytes: bytes, url: str, spider: Spider, response_language: str, content_type: str):
+    def add_to_batch(
+        self, response_bytes: bytes, url: str, spider: SearchGovDomainSpider, response_language: str, content_type: str
+    ):
         """
         Add a document to the batch for Elasticsearch upload.
         """
         doc = None
         if content_type == "text/html":
             doc = convert_html(response_bytes=response_bytes, url=url, response_language=response_language)
-        elif content_type == "application/pdf" and not DISABLE_PDF:
+        elif content_type == "application/pdf":
             doc = convert_pdf(response_bytes=response_bytes, url=url, response_language=response_language)
 
         if doc:
+            doc = update_dap_visits_to_document(doc, spider)
             self._current_batch.append(doc)
 
             if len(self._current_batch) >= self._batch_size:
@@ -53,7 +52,7 @@ class SearchGovElasticsearch:
         else:
             spider.logger.warning(f"Did not create i14y document for URL: {url}")
 
-    def batch_upload(self, spider: Spider):
+    def batch_upload(self, spider: SearchGovDomainSpider):
         """
         Initiates batch upload using asyncio.
         """
@@ -115,7 +114,7 @@ class SearchGovElasticsearch:
         """
         return [{"_index": self._env_es_index_name, "_id": doc.pop("_id", None), "_source": doc} for doc in docs]
 
-    async def _batch_elasticsearch_upload(self, docs: list[dict[Any, Any]], loop, spider: Spider):
+    async def _batch_elasticsearch_upload(self, docs: list[dict[Any, Any]], loop, spider: SearchGovDomainSpider):
         """
         Perform bulk upload asynchronously using ThreadPoolExecutor.
         """
