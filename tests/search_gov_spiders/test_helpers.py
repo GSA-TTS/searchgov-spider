@@ -1,8 +1,9 @@
 from collections import namedtuple
 
 import pytest
+from scrapy.spiders import Spider
 
-from search_gov_crawler.search_gov_spiders.helpers import domain_spider as helpers
+import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import should_abort_request
 
 
@@ -128,3 +129,43 @@ def test_generate_spider_id_no_args():
 )
 def test_force_bool(value, expected):
     assert helpers.force_bool(value) is expected
+
+
+GET_DOMAIN_VISITS_TEST_CASES = [
+    (["example.com"], {"test1.example.com": 100, "example.com": 200}),
+    (
+        ["example.com", "example2.com"],
+        {"test1.example.com": 100, "example.com": 200, "test1.example2.com": 100, "example2.com": 200},
+    ),
+    (
+        ["example.com", "example2.com", "test1.example.com"],
+        {
+            "test1.example.com": 200,
+            "example.com": 200,
+            "test1.example2.com": 100,
+            "example2.com": 200,
+            "subtest.test1.example.com": 100,
+        },
+    ),
+]
+
+
+@pytest.mark.parametrize(("allowed_domains", "expected_domain_visits"), GET_DOMAIN_VISITS_TEST_CASES)
+def test_get_domain_visits(mocker, allowed_domains, expected_domain_visits):
+    spider = Spider(
+        name="test_spider",
+        allowed_domains=allowed_domains,
+        start_urls=["https://www.example.com"],
+    )
+
+    mocker.patch("search_gov_crawler.search_gov_spiders.helpers.domain_spider.init_redis_client")
+    mock_avg_daily_vists = mocker.patch(
+        "search_gov_crawler.search_gov_spiders.helpers.domain_spider.get_avg_daily_visits_by_domain",
+    )
+    mock_avg_daily_vists.side_effect = [
+        {"test1.example.com": 100, "example.com": 200},
+        {"test1.example2.com": 100, "example2.com": 200},
+        {"subtest.test1.example.com": 100, "test1.example.com": 200},
+    ]
+
+    assert helpers.get_domain_visits(spider) == expected_domain_visits

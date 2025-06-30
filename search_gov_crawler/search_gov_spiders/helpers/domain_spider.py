@@ -6,6 +6,10 @@ from typing import Any, Optional
 
 from scrapy.http.response import Response
 
+from search_gov_crawler.dap.datastore import get_avg_daily_visits_by_domain
+from search_gov_crawler.scheduling.redis import init_redis_client
+from search_gov_crawler.search_gov_spiders.spiders import SearchGovDomainSpider
+
 # fmt: off
 FILTER_EXTENSIONS = [
     # archives
@@ -192,3 +196,16 @@ def force_bool(value: Any) -> bool:
     """
 
     return str(value).lower() == "true"
+
+
+def get_domain_visits(spider: SearchGovDomainSpider) -> dict:
+    """For all allowed domains, query redis and aggregate results for later use."""
+
+    domain_visits = {}
+    redis = init_redis_client(db=2)
+
+    for allowed_domain in spider.allowed_domains:
+        domain_visits.update(get_avg_daily_visits_by_domain(redis=redis, domain=allowed_domain, days_back=7))
+
+    spider.logger.info("Retrieved %d DAP daily visit domain records for spider", len(domain_visits))
+    return domain_visits
