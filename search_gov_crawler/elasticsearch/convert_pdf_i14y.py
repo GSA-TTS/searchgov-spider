@@ -1,9 +1,11 @@
 import re
+import logging
+
 from datetime import datetime, timedelta
 from io import BytesIO
-from typing import Tuple
 
 from pypdf import PageObject, PdfReader
+from pypdf.generic import IndirectObject
 
 from search_gov_crawler.elasticsearch.i14y_helper import (
     ALLOWED_LANGUAGE_CODE,
@@ -18,6 +20,8 @@ from search_gov_crawler.elasticsearch.i14y_helper import (
     summarize_text,
 )
 from search_gov_crawler.search_gov_spiders.helpers import content
+
+log = logging.getLogger(__name__)
 
 
 def add_title_and_filename(key: str, title_key: str, doc: dict):
@@ -35,7 +39,7 @@ def add_title_and_filename(key: str, title_key: str, doc: dict):
     doc[key] = f"{doc[title_key]} {doc['basename']}.{doc['extension']} {doc[key]}"
 
 
-def get_links_set(pages: list[Tuple[str, PageObject]]):
+def get_links_set(pages: list[tuple[str, PageObject]]):
     """
     Returns a set of links for all pages in the PDF
 
@@ -78,6 +82,8 @@ def get_links_set(pages: list[Tuple[str, PageObject]]):
 
 def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
     """Extracts and processes PDF content using pypdf."""
+    log.debug("Processing PDF content from %s", url)
+
     pdf_stream = BytesIO(response_bytes)
     reader = PdfReader(pdf_stream)
 
@@ -132,6 +138,7 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
         "extension": extension or None,
         "url_path": get_url_path(url),
         "domain_name": get_domain_name(url),
+        "dap_domain_visits_count": 0,
     }
 
     add_title_and_filename(content_key, title_key, i14y_doc)
@@ -142,7 +149,7 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
     return i14y_doc
 
 
-def get_pdf_text(reader: PdfReader) -> Tuple[str, list[Tuple[str, PageObject]]]:
+def get_pdf_text(reader: PdfReader) -> tuple[str, list[tuple[str, PageObject]]]:
     """
     Returns clean text/content from all pdf pages
 
@@ -176,7 +183,8 @@ def get_pdf_meta(reader: PdfReader) -> dict:
 
     clean_metadata = {}
     for k, v in reader.metadata.items():
-        clean_metadata[str(k).removeprefix("/")] = parse_if_date(v)
+        resolved_value = v.get_object() if isinstance(v, IndirectObject) else v
+        clean_metadata[str(k).removeprefix("/")] = parse_if_date(resolved_value)
 
     return clean_metadata
 

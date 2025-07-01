@@ -1,11 +1,12 @@
 import pytest
-
 from nltk.corpus import stopwords
+
 from search_gov_crawler.elasticsearch.i14y_helper import (
     detect_lang,
     parse_date_safely,
     separate_file_name,
     summarize_text,
+    update_dap_visits_to_document,
 )
 
 
@@ -130,11 +131,40 @@ def test_summarize_text(text, url, lang_code, summary, keyword):
 
 
 def test_summarize_text_unsupported_stopwords(caplog):
+    error_msg = (
+        "Unsupported Language. Error when parsing https://example.com Missing "
+        "Stopwords File: No such file or directory: "
+    )
+
     with caplog.at_level("WARNING"):
         results = summarize_text("This is a test for missing stopwork", "https://example.com", "ko")
 
     assert results == (None, None)
-    assert (
-        f"Unsupported Language. Error when parsing https://example.com Missing Stopwords File: No such file or directory: '{stopwords._root.path}/korean'"
-        in caplog.messages
-    )
+    assert f"{error_msg}'{stopwords._root.path}/korean'" in caplog.messages
+
+
+@pytest.mark.parametrize(
+    ("input_doc", "domain_visits", "output_doc"),
+    [
+        ({"field1": "value1"}, None, {"field1": "value1"}),
+        (
+            {"field1": "value1", "domain_name": "example.com"},
+            10,
+            {"field1": "value1", "domain_name": "example.com", "dap_domain_visits_count": 10},
+        ),
+        (
+            {"field1": "value1", "domain_name": "www.example.com"},
+            10,
+            {"field1": "value1", "domain_name": "www.example.com", "dap_domain_visits_count": 10},
+        ),
+        (
+            {"field1": "value1", "domain_name": "missing.example.com"},
+            None,
+            {"field1": "value1", "domain_name": "missing.example.com"},
+        ),
+    ],
+)
+def test_update_dap_visits_to_document(input_doc, domain_visits, output_doc, mocker):
+    spider = mocker.Mock()
+    spider.domain_visits.get.return_value = domain_visits
+    assert update_dap_visits_to_document(input_doc, spider) == output_doc

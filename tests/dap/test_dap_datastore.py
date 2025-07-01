@@ -1,3 +1,4 @@
+import pytest
 from freezegun import freeze_time
 
 from search_gov_crawler.dap.datastore import (
@@ -39,11 +40,11 @@ def test_age_off_dap_records(mocker):
 
 def test_get_avg_daily_visits_by_domain(mocker):
     mock_redis_client = mocker.Mock()
-    mock_redis_client.keys.side_effect = [
-        ["dap_visits:example.com", "dap_visits:test1.example.com"],
-        ["dap_visits:test2.example.com", "dap_visits:test3.example.com"],
+    mock_redis_client.scan_iter.side_effect = [
+        [b"dap_visits:example.com", b"dap_visits:test1.example.com"],
+        [b"dap_visits:test2.example.com", b"dap_visits:test3.example.com"],
     ]
-    mock_redis_client.zrangebyscore.side_effect = [
+    mock_redis_client.pipeline.return_value.execute.return_value = [
         list(range(10, 110, 10)),
         list(range(11, 111, 10)),
         list(range(12, 112, 10)),
@@ -53,8 +54,24 @@ def test_get_avg_daily_visits_by_domain(mocker):
     result = get_avg_daily_visits_by_domain(mock_redis_client, "example.com", 10)
 
     assert result == {
-        "example.com": 55.0,
-        "test1.example.com": 56.0,
-        "test2.example.com": 57.0,
-        "test3.example.com": 58.0,
+        "example.com": 55,
+        "test1.example.com": 56,
+        "test2.example.com": 57,
+        "test3.example.com": 58,
     }
+
+
+def test_get_avg_daily_visits_by_domain_invalid_results(caplog, mocker):
+    mock_redis_client = mocker.Mock()
+    mock_redis_client.scan_iter.side_effect = [
+        [b"dap_visits:example.com", b"dap_visits:test1.example.com"],
+        [b"dap_visits:test2.example.com", b"dap_visits:test3.example.com"],
+    ]
+    mock_redis_client.pipeline.return_value.execute.return_value = [list(range(10, 110, 10))]
+
+    error_msg = "Cannot get avg daily visits.  Invalid response from redis pipeline.  Expceted: 4, Got: 1"
+    with caplog.at_level("ERROR"):
+        result = get_avg_daily_visits_by_domain(mock_redis_client, "example.com", 10)
+
+    assert error_msg in caplog.messages
+    assert not result
