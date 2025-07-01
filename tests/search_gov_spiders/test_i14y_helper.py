@@ -153,6 +153,11 @@ def test_summarize_text_unsupported_stopwords(caplog):
             {"field1": "value1", "domain_name": "example.com", "dap_domain_visits_count": 10},
         ),
         (
+            {"field1": "value1", "domain_name": "www.example.com"},
+            10,
+            {"field1": "value1", "domain_name": "www.example.com", "dap_domain_visits_count": 10},
+        ),
+        (
             {"field1": "value1", "domain_name": "missing.example.com"},
             None,
             {"field1": "value1", "domain_name": "missing.example.com"},

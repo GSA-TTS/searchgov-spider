@@ -185,7 +185,8 @@ def get_domain_name(url: str) -> str:
 def update_dap_visits_to_document(document: dict, spider: SearchGovDomainSpider) -> dict:
     """
     The purpose of this function is to look in the domain_visits dict present on the spider
-    and if there is a match update the value.
+    and if there is a match update the value.  A leading `www.` is removed if it exists to match
+    values normalized by the DAP extractor process.
 
     This function assumes that
       - The `dap_domain_visits_count` is being set to 0 on during the creation of all documents.
@@ -194,9 +195,10 @@ def update_dap_visits_to_document(document: dict, spider: SearchGovDomainSpider)
     """
 
     try:
-        domain_name = document.get("domain_name")
+        domain_name = str(document["domain_name"]).removeprefix("www.")
     except KeyError:
         logger.exception("Missing domain_name on doc id %s. Could not apply dap visits.", document.get("id"))
+        return document
 
     if dap_visits := spider.domain_visits.get(domain_name):
         document["dap_domain_visits_count"] = dap_visits
