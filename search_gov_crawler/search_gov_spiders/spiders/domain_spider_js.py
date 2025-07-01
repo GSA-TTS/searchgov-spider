@@ -137,6 +137,9 @@ class DomainSpiderJs(CrawlSpider):
         self._deny_paths = deny_paths
         self._prevent_follow = prevent_follow
 
+        # gather domain visits for domain and subdomains
+        self.domain_visits = helpers.get_domain_visits(self)
+
         # create unique id to help with job state queues and elsewhere
         self.spider_id = helpers.generate_spider_id_from_args(
             self.name,
