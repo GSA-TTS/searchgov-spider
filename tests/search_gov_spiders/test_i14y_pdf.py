@@ -1,8 +1,7 @@
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
-import pypdf
-from pypdf.generic import IndirectObject
 import pytest
+from pypdf.generic import IndirectObject
 
 from search_gov_crawler.elasticsearch import convert_pdf_i14y
 
@@ -132,20 +131,34 @@ def test_get_pdf_meta(monkeypatch, metadata, expected_output):
     assert convert_pdf_i14y.get_pdf_meta(fake_reader) == expected_output
 
 
-def test_parse_if_date_valid():
-    """Test parse_if_date with a valid PDF date string."""
-    date_str = "D:20230101023045"
-    result = convert_pdf_i14y.parse_if_date(date_str)
-    expected = datetime(2023, 1, 1, 2, 30, 45)
-    assert result == expected
+PARSE_DATE_IF_VALID_TEST_CASES = [
+    ("D:20230101023045", True, datetime(2023, 1, 1, 2, 30, 45)),
+    ("D:20230101023045", False, datetime(2023, 1, 1, 2, 30, 45)),
+    ("D:20191018122555-04'00'", True, datetime(2019, 10, 18, 12, 25, 55, tzinfo=timezone(offset=-timedelta(hours=4)))),
+    ("D:20191018122555-04'00'", False, datetime(2019, 10, 18, 12, 25, 55)),
+    ("D:20200405124512+10'00'", True, datetime(2020, 4, 5, 12, 45, 12, tzinfo=timezone(offset=timedelta(hours=10)))),
+    ("D:20200405124512+10'00'", False, datetime(2020, 4, 5, 12, 45, 12)),
+    (
+        "D:20250930041000-02'30'",
+        True,
+        datetime(2025, 9, 30, 4, 10, 0, tzinfo=timezone(offset=-timedelta(hours=2, minutes=30))),
+    ),
+    ("D:20250930041000-02'30'", False, datetime(2025, 9, 30, 4, 10, 0)),
+    (
+        "D:19981223105959+05'30'",
+        True,
+        datetime(1998, 12, 23, 10, 59, 59, tzinfo=timezone(offset=timedelta(hours=5, minutes=30))),
+    ),
+    ("D:19981223105959+05'30'", False, datetime(1998, 12, 23, 10, 59, 59)),
+    ("D:invalid    ", False, "D:invalid"),
+    ("Just a normal string", True, "Just a normal string"),
+]
 
 
-def test_parse_if_date_invalid():
-    """Test parse_if_date with an invalid date string starting with 'D:'."""
-    invalid_date = "D:invalid"
-    # Since the regex does not match, it should fall back to sanitizing the text.
-    result = convert_pdf_i14y.parse_if_date(invalid_date)
-    assert result == invalid_date.strip()
+@pytest.mark.parametrize(("input_val", "apply_tz_offset", "expected"), PARSE_DATE_IF_VALID_TEST_CASES)
+def test_parse_if_date_valid(input_val, apply_tz_offset, expected):
+    """Test parse_if_date with various valid values"""
+    assert convert_pdf_i14y.parse_if_date(input_val, apply_tz_offset) == expected
 
 
 def test_parse_if_date_non_date():
