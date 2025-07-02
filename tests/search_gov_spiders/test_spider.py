@@ -4,39 +4,67 @@ import pytest
 from scrapy.http.request import Request
 from scrapy.http.response import Response
 
+import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import DomainSpiderJs
 
 TEST_URL = "http://example.com"
 
 
-@pytest.fixture(name="spider", params=[DomainSpider(output_target="csv"), DomainSpiderJs(output_target="csv")])
-def fixture_spider(request):
-    return request.param
+@pytest.fixture(name="spider_args")
+def fixture_spider_args() -> dict:
+    return {
+        "allowed_domains": "example.com",
+        "start_urls": "http://example.com/",
+        "output_target": "csv",
+        "allow_query_string": True,
+        "deny_paths": "/deny/path",
+        "prevent_follow": False,
+    }
 
 
-def get_results(spider, content: str):
+@pytest.fixture(name="domain_spider")
+def fixture_domain_spider(monkeypatch, spider_args) -> DomainSpider:
+    monkeypatch.setattr(helpers, "get_domain_visits", lambda _: {})
+    return DomainSpider(**spider_args)
+
+
+@pytest.fixture(name="domain_spider_js")
+def fixture_domain_spider_js(monkeypatch, spider_args) -> DomainSpiderJs:
+    monkeypatch.setattr(helpers, "get_domain_visits", lambda _: {})
+    return DomainSpiderJs(**spider_args)
+
+
+@pytest.mark.parametrize(
+    ("spider_fixture", "content_type"),
+    [
+        ("domain_spider", "text/html"),
+        ("domain_spider_js", "text/html"),
+        ("domain_spider", "text/html;utf-8"),
+        ("domain_spider_js", "text/html;utf-8"),
+    ],
+)
+def test_valid_content(request, spider_fixture, content_type):
+    spider = request.getfixturevalue(spider_fixture)
     request = Request(url=TEST_URL, encoding="utf-8")
-
-    response = Response(url=TEST_URL, request=request, headers={"content-type": content})
-
-    spider.output_target = "csv"
-    spider.allowed_domains = ["example.com"]
-    return next(spider.parse_item(response), None)
+    response = Response(url=TEST_URL, request=request, headers={"content-type": content_type})
+    results = next(spider.parse_item(response), None)
+    assert results is not None
+    assert results.get("url") == TEST_URL
 
 
-def test_valid_content(spider):
-    results = get_results(spider, "text/html")
-    assert results is not None and results.get("url") == TEST_URL
-
-
-def test_valid_content_plus(spider):
-    results = get_results(spider, "text/html;utf-8")
-    assert results is not None and results.get("url") == TEST_URL
-
-
-def test_invalid_content(spider):
-    results = get_results(spider, "media/image")
+@pytest.mark.parametrize(
+    ("spider_fixture", "content_type"),
+    [
+        ("domain_spider", "media/image"),
+        ("domain_spider_js", "media/image"),
+    ],
+)
+def test_invalid_content(request, spider_fixture, content_type):
+    spider = request.getfixturevalue(spider_fixture)
+    request = Request(url=TEST_URL, encoding="utf-8")
+    response = Response(url=TEST_URL, request=request, headers={"content-type": content_type})
+    results = next(spider.parse_item(response), None)
     assert results is None
 
 
@@ -80,23 +108,6 @@ def test_invalid_args(spider_cls, kwargs, msg):
         spider_cls(**kwargs)
 
 
-@pytest.fixture(name="spider_args")
-def fixture_spider_args() -> dict:
-    return {
-        "allowed_domains": "example.com",
-        "start_urls": "http://example.com/",
-        "output_target": "csv",
-        "allow_query_string": True,
-        "deny_paths": "/deny/path",
-        "prevent_follow": False,
-    }
-
-
-@pytest.fixture(name="domain_spider")
-def fixture_domain_spider(spider_args):
-    return DomainSpider(**spider_args)
-
-
 @pytest.mark.parametrize(
     ("attribute", "value"),
     [
@@ -109,11 +120,6 @@ def fixture_domain_spider(spider_args):
 )
 def test_domain_spider_init(domain_spider, attribute, value):
     assert getattr(domain_spider, attribute) == value
-
-
-@pytest.fixture(name="domain_spider_js")
-def fixture_domain_spider_js(spider_args):
-    return DomainSpiderJs(**spider_args)
 
 
 @pytest.mark.parametrize(
@@ -139,7 +145,8 @@ def test_domain_spider_js_init(domain_spider_js, attribute, value):
         (DomainSpiderJs, "not a boolean"),
     ],
 )
-def test_spider_init_allow_query_string_str_input(spider_cls, spider_args, allow_query_string):
+def test_spider_init_allow_query_string_str_input(monkeypatch, spider_cls, spider_args, allow_query_string):
+    monkeypatch.setattr(helpers, "get_domain_visits", lambda _: {})
     spider_args["allow_query_string"] = allow_query_string
     spider = spider_cls(**spider_args)
     assert spider.allow_query_string is False

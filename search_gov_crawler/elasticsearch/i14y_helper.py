@@ -12,6 +12,8 @@ from langdetect import detect
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
 
+from search_gov_crawler.search_gov_spiders.spiders import SearchGovDomainSpider
+
 # fmt: off
 ALLOWED_LANGUAGE_CODE = {
     "ar": "arabic",     "bg": "bulgarian",      "bn": "bengali",   "ca": "catalan",   "cs": "czech",
@@ -178,3 +180,27 @@ def get_domain_name(url: str) -> str:
     url = ensure_http_prefix(url)
     parsed = urlparse(url)
     return parsed.netloc
+
+
+def update_dap_visits_to_document(document: dict, spider: SearchGovDomainSpider) -> dict:
+    """
+    The purpose of this function is to look in the domain_visits dict present on the spider
+    and if there is a match update the value.  A leading `www.` is removed if it exists to match
+    values normalized by the DAP extractor process.
+
+    This function assumes that
+      - The `dap_domain_visits_count` is being set to 0 on during the creation of all documents.
+      - The `domain_name` field exists on all documents
+      - The `domain_visits` dict exists on all spiders
+    """
+
+    try:
+        domain_name = str(document["domain_name"]).removeprefix("www.")
+    except KeyError:
+        logger.exception("Missing domain_name on doc id %s. Could not apply dap visits.", document.get("id"))
+        return document
+
+    if dap_visits := spider.domain_visits.get(domain_name):
+        document["dap_domain_visits_count"] = dap_visits
+
+    return document

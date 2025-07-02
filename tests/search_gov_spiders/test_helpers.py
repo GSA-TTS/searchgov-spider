@@ -1,22 +1,41 @@
 from collections import namedtuple
 
 import pytest
+from scrapy.spiders import Spider
 
-from search_gov_crawler.search_gov_spiders.helpers import domain_spider as helpers
+import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import should_abort_request
 
 
 @pytest.mark.parametrize(
     ("content_type_header", "result"),
-    [("text/html", True), ("application/msword.more.and.more", True), ("Something/Else", False)],
-    ids=["good", "regex", "bad"],
+    [("text/html", True), ("application/msword.more.and.more", True), ("Something/Else", False), (None, None)],
+    ids=["good", "regex", "bad", "missing"],
 )
 def test_is_valid_content_type(content_type_header, result):
     assert helpers.is_valid_content_type(content_type_header, "csv") is result
 
 
+@pytest.mark.parametrize(
+    ("content_type_header", "output_target", "result"),
+    [
+        (None, None, None),
+        ("text/html", "csv", "text/html"),
+        ("text/html;extra/whatever", "csv", "text/html"),
+        ("text/html;extra/whatever", "elasticsearch", "text/html"),
+        ("application/msword", "elasticsearch", None),
+    ],
+)
+def test_get_simple_content_type(content_type_header, output_target, result):
+    assert helpers.get_simple_content_type(content_type_header, output_target) == result
+
+
 def test_get_crawl_sites_test_file(crawl_sites_test_file):
     assert len(helpers.get_crawl_sites(str(crawl_sites_test_file.resolve()))) == 4
+
+
+def test_get_crawl_sites_no_input():
+    assert len(helpers.get_crawl_sites()) > 0
 
 
 @pytest.mark.parametrize(("handle_javascript", "results"), [(True, 2), (False, 2)])
@@ -95,6 +114,19 @@ def test_set_link_extractor_deny(deny_paths, expected_output):
     assert helpers.set_link_extractor_deny(deny_paths) == expected_output
 
 
+@pytest.mark.parametrize(("content_language", "result"), [("en-US", "en"), (None, None)])
+def test_get_response_language_code(mocker, content_language, result):
+    response = mocker.Mock()
+    response.headers.get.return_value = content_language
+    assert helpers.get_response_language_code(response) == result
+
+
+def test_get_response_language_code_exception(mocker):
+    response = mocker.Mock()
+    response.headers.get.side_effect = Exception("Something went wrong!")
+    assert helpers.get_response_language_code(response) is None
+
+
 @pytest.mark.parametrize(
     ("input_args", "expected_spider_id"),
     [
@@ -128,3 +160,43 @@ def test_generate_spider_id_no_args():
 )
 def test_force_bool(value, expected):
     assert helpers.force_bool(value) is expected
+
+
+GET_DOMAIN_VISITS_TEST_CASES = [
+    (["example.com"], {"test1.example.com": 100, "example.com": 200}),
+    (
+        ["example.com", "example2.com"],
+        {"test1.example.com": 100, "example.com": 200, "test1.example2.com": 100, "example2.com": 200},
+    ),
+    (
+        ["example.com", "example2.com", "test1.example.com"],
+        {
+            "test1.example.com": 200,
+            "example.com": 200,
+            "test1.example2.com": 100,
+            "example2.com": 200,
+            "subtest.test1.example.com": 100,
+        },
+    ),
+]
+
+
+@pytest.mark.parametrize(("allowed_domains", "expected_domain_visits"), GET_DOMAIN_VISITS_TEST_CASES)
+def test_get_domain_visits(mocker, allowed_domains, expected_domain_visits):
+    spider = Spider(
+        name="test_spider",
+        allowed_domains=allowed_domains,
+        start_urls=["https://www.example.com"],
+    )
+
+    mocker.patch("search_gov_crawler.search_gov_spiders.helpers.domain_spider.init_redis_client")
+    mock_avg_daily_vists = mocker.patch(
+        "search_gov_crawler.search_gov_spiders.helpers.domain_spider.get_avg_daily_visits_by_domain",
+    )
+    mock_avg_daily_vists.side_effect = [
+        {"test1.example.com": 100, "example.com": 200},
+        {"test1.example2.com": 100, "example2.com": 200},
+        {"subtest.test1.example.com": 100, "test1.example.com": 200},
+    ]
+
+    assert helpers.get_domain_visits(spider) == expected_domain_visits

@@ -41,24 +41,37 @@ def get_avg_daily_visits_by_domain(redis: Redis, domain: str, days_back: int) ->
     """
     key_prefix = "dap_visits:"
 
-    domain_avg_daily_visits = {}
-    min_score = int((datetime.now(UTC) - timedelta(days=days_back)).strftime("%Y%m%d"))
-    max_score = int(datetime.now(UTC).strftime("%Y%m%d"))
+    # Use yesterday as basis for these calculations to lessen the impact of DAP data not being available
+    base_datetime = datetime.now(UTC) - timedelta(days=1)
+    min_score = int((base_datetime - timedelta(days=days_back)).strftime("%Y%m%d"))
+    max_score = int(base_datetime.strftime("%Y%m%d"))
 
-    domain_keys = list(redis.keys(f"{key_prefix}:*.{domain}"))
-    domain_keys.extend(redis.keys(f"{key_prefix}:{domain}"))
+    domain_keys = [bytes(key).decode("utf-8") for key in redis.scan_iter(f"{key_prefix}*.{domain}")]
+    domain_keys.extend([bytes(key).decode("utf-8") for key in redis.scan_iter(f"{key_prefix}{domain}")])
+    pipe = redis.pipeline()
 
     for domain_key in domain_keys:
-        visits = redis.zrangebyscore(name=domain_key, min=min_score, max=max_score)
+        pipe.zrangebyscore(name=domain_key, min=min_score, max=max_score)
+
+    results = pipe.execute()
+
+    try:
+        domain_key_visits = list(zip(domain_keys, results, strict=True))
+    except ValueError:
+        msg = "Cannot get avg daily visits.  Invalid response from redis pipeline.  Expceted: %d, Got: %d"
+        log.exception(msg, len(domain_keys), len(results))
+        return {}
+
+    domain_avg_daily_visits = {}
+    for domain_key, visits in domain_key_visits:
         avg_daily_visits = sum(int(visit) for visit in visits) / days_back if visits else 0
         domain_name = str(domain_key).removeprefix(key_prefix)
-
-        log.info(
-            "Average daily visits for domain %s over the last %d days: %.2f",
+        log.debug(
+            "Average daily visits for domain %s over the last %d days: %.0f",
             domain_name,
             days_back,
             avg_daily_visits,
         )
-        domain_avg_daily_visits[domain_name] = avg_daily_visits
+        domain_avg_daily_visits[domain_name] = round(avg_daily_visits)
 
     return domain_avg_daily_visits

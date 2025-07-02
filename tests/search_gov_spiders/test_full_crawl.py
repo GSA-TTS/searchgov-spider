@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 from scrapy.crawler import CrawlerProcess
 
+import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 from search_gov_crawler.search_gov_spiders.job_state.scheduler import disable_redis_job_state
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import (
@@ -152,7 +153,7 @@ def test_full_crawl(mock_scrapy_settings, monkeypatch, spider, use_dedup, crawl_
             "search_gov_crawler.search_gov_spiders.pipelines.SearchGovSpidersPipeline.__init__",
             mock_init,
         )
-
+        monkeypatch.setattr(helpers, "get_domain_visits", lambda _: {})
         mock_scrapy_settings.set("FEEDS", {output_file.name: {"format": "json"}})
 
         process = CrawlerProcess(mock_scrapy_settings, install_root_handler=False)
