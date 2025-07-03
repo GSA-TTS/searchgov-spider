@@ -1,8 +1,6 @@
-import asyncio
 import logging
 import os
-from concurrent.futures import ThreadPoolExecutor
-from typing import Any
+from typing import Any, Dict, List, Optional, Union
 from urllib.parse import urlparse
 
 from elasticsearch import Elasticsearch, helpers  # pylint: disable=wrong-import-order
@@ -13,121 +11,173 @@ from search_gov_crawler.elasticsearch.i14y_helper import update_dap_visits_to_do
 from search_gov_crawler.search_gov_spiders.spiders import SearchGovDomainSpider
 
 # limit excess INFO messages from elasticsearch that are not tied to a spider
-logging.getLogger("elastic_transport").setLevel("ERROR")
+logging.getLogger("elastic_transport").setLevel(logging.ERROR)
 
 log = logging.getLogger("search_gov_crawler.elasticsearch")
 
 
 class SearchGovElasticsearch:
-    """Defines the shape and methods of the spider's connection to Elasticsearch"""
+    """Manages batching and bulk-upload of scraped documents to Elasticsearch."""
 
-    def __init__(self, batch_size: int = 50):
-        self._current_batch = []
+    def __init__(
+        self,
+        batch_size: int = 50,
+        es_hosts: Optional[str] = None,
+        es_index: Optional[str] = None,
+        es_user: Optional[str] = None,
+        es_password: Optional[str] = None,
+        timeout: int = 30,
+        max_retries: int = 3,
+    ) -> None:
+        """Initialize batch and ES client parameters.
+
+        Args:
+            batch_size: number of docs to buffer before bulk upload
+            es_hosts: comma-separated ES URLs (e.g. "https://host1:9200,https://host2:9200")
+            es_index: Elasticsearch index name
+            es_user: Basic auth username
+            es_password: Basic auth password
+            timeout: client request timeout in seconds
+            max_retries: how many times to retry on failure
+        """
         self._batch_size = batch_size
-        self._es_client = None
-        self._env_es_hosts = os.environ.get("ES_HOSTS", "http://localhost:9200")
-        self._env_es_index_name = os.environ.get("SEARCHELASTIC_INDEX", "development-i14y-documents-searchgov")
-        self._env_es_username = os.environ.get("ES_USER", "")
-        self._env_es_password = os.environ.get("ES_PASSWORD", "")
-        self._executor = ThreadPoolExecutor(max_workers=5)  # Reuse one executor
+        self._current_batch: List[Dict[str, Any]] = []
 
-    def add_to_batch(
-        self, response_bytes: bytes, url: str, spider: SearchGovDomainSpider, response_language: str, content_type: str
-    ):
-        """
-        Add a document to the batch for Elasticsearch upload.
-        """
-        doc = None
-        if content_type == "text/html":
-            doc = convert_html(response_bytes=response_bytes, url=url, response_language=response_language)
-        elif content_type == "application/pdf":
-            doc = convert_pdf(response_bytes=response_bytes, url=url, response_language=response_language)
+        self._env_es_hosts = es_hosts or os.getenv("ES_HOSTS", "http://localhost:9200")
+        self._env_es_index = es_index or os.getenv(
+            "SEARCHELASTIC_INDEX", "development-i14y-documents-searchgov"
+        )
+        self._env_es_user = es_user or os.getenv("ES_USER", "")
+        self._env_es_password = es_password or os.getenv("ES_PASSWORD", "")
+        self._timeout = timeout
+        self._max_retries = max_retries
+        self._es_client: Optional[Elasticsearch] = None
 
-        if doc:
-            doc = update_dap_visits_to_document(doc, spider)
-            self._current_batch.append(doc)
-
-            if len(self._current_batch) >= self._batch_size:
-                self.batch_upload(spider)
-        else:
-            spider.logger.warning(f"Did not create i14y document for URL: {url}")
-
-    def batch_upload(self, spider: SearchGovDomainSpider):
-        """
-        Initiates batch upload using asyncio.
-        """
-        if not self._current_batch:
-            return
-
-        current_batch_copy = self._current_batch.copy()
-        self._current_batch = []
-
-        loop = asyncio.get_running_loop() if asyncio.get_event_loop().is_running() else asyncio.new_event_loop()
-        asyncio.ensure_future(self._batch_elasticsearch_upload(current_batch_copy, loop, spider))
-
-    def _parse_es_urls(self, url_string: str) -> list[dict[str, Any]]:
-        """
-        Parse Elasticsearch hosts from a comma-separated string.
-        """
-        hosts = []
-        for url in url_string.split(","):
-            parsed = urlparse(url)
-            if not parsed.scheme or not parsed.hostname or not parsed.port:
-                raise ValueError(f"Invalid Elasticsearch URL: {url}")
-
-            hosts.append({"host": parsed.hostname, "port": parsed.port, "scheme": parsed.scheme})
-        return hosts
-
-    @property
-    def client(self) -> Elasticsearch:
-        """
-        Returns the Elasticsearch client.  Helper method for scripts and other external useage.
-        """
-        if not self._es_client:
-            self._es_client = self._get_client()
-        return self._es_client
+        try:
+            self._parsed_hosts = self._parse_es_urls(self._env_es_hosts)
+        except ValueError:
+            log.exception("Environment variable ES_HOSTS is malformed")
+            raise
 
     @property
     def index_name(self) -> str:
-        """Returns the index name.  Helper method for scripts and other external usage."""
-        return self._env_es_index_name
+        """ES index name."""
+        return self._env_es_index
 
-    def _get_client(self):
+    @property
+    def client(self) -> Elasticsearch:
+        """Lazily initialize and return the ES client."""
+        if self._es_client is None:
+            self._es_client = Elasticsearch(
+                hosts=self._parsed_hosts,
+                basic_auth=(self._env_es_user, self._env_es_password)
+                if self._env_es_user or self._env_es_password
+                else None,
+                verify_certs=False,
+                request_timeout=self._timeout,
+                max_retries=self._max_retries,
+                retry_on_timeout=True,
+            )
+        return self._es_client  # type: ignore
+
+    def add_to_batch(
+        self,
+        response_bytes: bytes,
+        url: str,
+        spider: SearchGovDomainSpider,
+        response_language: str,
+        content_type: str,
+    ) -> None:
         """
-        Lazily initializes the Elasticsearch client.
+        Convert a response into an i14y document and add to the batch.
         """
-        if not self._es_client:
-            try:
-                self._es_client = Elasticsearch(
-                    hosts=self._parse_es_urls(self._env_es_hosts),
-                    verify_certs=False,
-                    ssl_show_warn=False,
-                    basic_auth=(self._env_es_username, self._env_es_password),
+        try:
+            if content_type == "text/html":
+                doc = convert_html(response_bytes, url, response_language)
+            elif content_type == "application/pdf":
+                doc = convert_pdf(response_bytes, url, response_language)
+            else:
+                spider.logger.warning(
+                    "Unsupported content type %r for URL %s; skipping", content_type, url
                 )
-            except Exception:  # pylint: disable=broad-except
-                log.exception("Couldn't create an elasticsearch client")
-        return self._es_client
+                return
 
-    def _create_actions(self, docs: list[dict[Any, Any]]) -> list[dict[str, Any]]:
-        """
-        Create actions for bulk upload from documents.
-        """
-        return [{"_index": self._env_es_index_name, "_id": doc.pop("_id", None), "_source": doc} for doc in docs]
+        except Exception as e:
+            spider.logger.error("Failed to convert %s (type %s): %s", url, content_type, e, exc_info=True)
+            return
 
-    async def _batch_elasticsearch_upload(self, docs: list[dict[Any, Any]], loop, spider: SearchGovDomainSpider):
-        """
-        Perform bulk upload asynchronously using ThreadPoolExecutor.
-        """
+        if not doc:
+            spider.logger.warning("No document generated for URL %s", url)
+            return
 
-        def _bulk_upload():
-            try:
-                actions = self._create_actions(docs)
-                success, errors = helpers.bulk(self._get_client(), actions, raise_on_error=False)
-                if success:
-                    spider.logger.info("Loaded %s records to Elasticsearch!", success)
-                if errors:
-                    spider.logger.error("Error in bulk upload: %s document(s) failed to index: %s", len(errors), errors)
-            except Exception:  # pylint: disable=broad-except
-                spider.logger.exception("Error in bulk upload")
+        try:
+            doc = update_dap_visits_to_document(doc, spider)
+        except Exception as e:
+            spider.logger.error("Failed to update DAP visits for %s: %s", url, e, exc_info=True)
+            # still continue to include the doc without DAP data
 
-        await loop.run_in_executor(self._executor, _bulk_upload)
+        self._current_batch.append(doc)
+        if len(self._current_batch) >= self._batch_size:
+            self.batch_upload(spider)
+
+    def _create_actions(self, docs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Build bulk actions, popping out any explicit _id fields."""
+        actions: List[Dict[str, Any]] = []
+        for doc in docs:
+            action: Dict[str, Any] = {"_index": self._env_es_index}
+            if "_id" in doc:
+                action["_id"] = doc["_id"]
+                doc = {k: v for k, v in doc.items() if k != "_id"}
+            action["_source"] = doc
+            actions.append(action)
+        return actions
+
+    def batch_upload(self, spider: SearchGovDomainSpider) -> None:
+        """Send batch of documents to Elasticsearch via bulk API."""
+        if not self._current_batch:
+            return
+
+        batch = self._current_batch
+        self._current_batch = []
+
+        actions = self._create_actions(batch)
+        success_count = 0
+        failure_count = 0
+        failures: List[Any] = []
+
+        try:
+            for ok, info in helpers.parallel_bulk(
+                client=self.client,
+                actions=actions,
+                thread_count=4,
+                queue_size=4,
+                chunk_size=self._batch_size,
+                max_chunk_bytes=10 * 1024 * 1024,
+            ):
+                if ok:
+                    success_count += 1
+                else:
+                    failure_count += 1
+                    failures.append(info)
+
+            if success_count:
+                spider.logger.info("Successfully indexed %d documents", success_count)
+            if failure_count:
+                spider.logger.error(
+                    "Failed to index %d documents; errors: %r", failure_count, failures
+                )
+
+        except Exception as e:
+            spider.logger.exception("Bulk upload to ES failed: %s", e)
+
+    def _parse_es_urls(self, url_string: str) -> List[Dict[str, Union[str, int]]]:
+        """Parse comma-separated ES URLs into host dicts."""
+        hosts: List[Dict[str, Union[str, int]]] = []
+        for raw in url_string.split(","):
+            parsed = urlparse(raw.strip())
+            if not parsed.scheme or not parsed.hostname or not parsed.port:
+                raise ValueError(f"Invalid Elasticsearch URL: {raw!r}")
+            hosts.append(
+                {"host": parsed.hostname, "port": parsed.port, "scheme": parsed.scheme}
+            )
+        return hosts
