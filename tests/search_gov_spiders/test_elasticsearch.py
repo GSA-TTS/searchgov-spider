@@ -155,7 +155,6 @@ def test_batch_upload_with_errors(mocker, search_gov_es, sample_spider):
     sample_spider.logger.error.assert_called_once_with(
         "Failed to index %d documents; errors: %r", 1, [{"error": "Test Error"}]
     )
-    sample_spider.logger.info.assert_called_once_with("Successfully indexed %d documents", 1)
 
 
 def test_batch_upload_exception(mocker, search_gov_es, sample_spider):

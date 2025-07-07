@@ -143,7 +143,6 @@ class SearchGovElasticsearch:
         self._current_batch = []
 
         actions = self._create_actions(batch, spider)
-        success_count = 0
         failure_count = 0
         failures: List[Any] = []
 
@@ -156,15 +155,13 @@ class SearchGovElasticsearch:
                 chunk_size=self._batch_size,
                 max_chunk_bytes=10 * 1024 * 1024,
             ):
-                if ok:
-                    success_count += 1
-                else:
+                if not ok:
                     failure_count += 1
                     failures.append(info)
 
-            if success_count:
-                spider.logger.info("Successfully indexed %d documents", success_count)
-            if failure_count:
+            if not failure_count:
+                    spider.logger.info("Loaded %s records to Elasticsearch!", success)
+            else:
                 spider.logger.error(
                     "Failed to index %d documents; errors: %r", failure_count, failures
                 )
