@@ -150,6 +150,8 @@ PARSE_DATE_IF_VALID_TEST_CASES = [
         datetime(1998, 12, 23, 10, 59, 59, tzinfo=timezone(offset=timedelta(hours=5, minutes=30))),
     ),
     ("D:19981223105959+05'30'", False, datetime(1998, 12, 23, 10, 59, 59)),
+    ("D:20150113143419Z00'00'", False, datetime(2015, 1, 13, 14, 34, 19)),
+    ("D:20150113143419Z00'00'", True, datetime(2015, 1, 13, 14, 34, 19)),
     ("D:invalid    ", False, "D:invalid"),
     ("Just a normal string", True, "Just a normal string"),
 ]

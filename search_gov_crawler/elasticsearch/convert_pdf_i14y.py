@@ -196,7 +196,7 @@ def parse_if_date(value, apply_tz_offset: bool = False) -> Any:
     returns the original value
 
     Examples of str date format:
-         D:20150113143419Z00'00' <---- support this!
+        "D:20150113143419Z00'00'"
         "D:20191018122555-04'00'"
         "D:20191018162538"
 
