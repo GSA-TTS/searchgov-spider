@@ -102,8 +102,8 @@ class SearchGovElasticsearch:
                 )
                 return
 
-        except Exception as e:
-            spider.logger.error("Failed to convert %s (type %s): %s", url, content_type, e, exc_info=True)
+        except Exception:
+            spider.logger.exception("Failed to convert %s (type %s): %s", url, content_type)
             return
 
         if not doc:
@@ -113,21 +113,23 @@ class SearchGovElasticsearch:
         try:
             doc = update_dap_visits_to_document(doc, spider)
         except Exception as e:
-            spider.logger.error("Failed to update DAP visits for %s: %s", url, e, exc_info=True)
+            spider.logger.exception("Failed to update DAP visits for url: %s, content_type: %s", url, content_type)
             # still continue to include the doc without DAP data
 
         self._current_batch.append(doc)
         if len(self._current_batch) >= self._batch_size:
             self.batch_upload(spider)
 
-    def _create_actions(self, docs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    def _create_actions(self, docs: List[Dict[str, Any]], spider: SearchGovDomainSpider) -> List[Dict[str, Any]]:
         """Build bulk actions, popping out any explicit _id fields."""
         actions: List[Dict[str, Any]] = []
         for doc in docs:
             action: Dict[str, Any] = {"_index": self._env_es_index}
             if "_id" in doc:
-                action["_id"] = doc["_id"]
-                doc = {k: v for k, v in doc.items() if k != "_id"}
+                action["_id"] = doc.pop("_id")
+            else:
+                spider.logger.error("Missing _id property in document: %s", doc)
+                continue
             action["_source"] = doc
             actions.append(action)
         return actions
@@ -140,7 +142,7 @@ class SearchGovElasticsearch:
         batch = self._current_batch
         self._current_batch = []
 
-        actions = self._create_actions(batch)
+        actions = self._create_actions(batch, spider)
         success_count = 0
         failure_count = 0
         failures: List[Any] = []

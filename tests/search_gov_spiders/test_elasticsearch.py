@@ -137,9 +137,9 @@ def test_client_property_exception(mocker, search_gov_es):
         _ = search_gov_es.client
 
 
-def test_create_actions(search_gov_es):
+def test_create_actions(search_gov_es, sample_spider):
     docs = [{"_id": "1", "content": "test1"}, {"_id": "2", "content": "test2"}]
-    actions = search_gov_es._create_actions(docs)
+    actions = search_gov_es._create_actions(docs, sample_spider)
     assert actions == [
         {"_index": "test_index", "_id": "1", "_source": {"content": "test1"}},
         {"_index": "test_index", "_id": "2", "_source": {"content": "test2"}},
