@@ -2,9 +2,10 @@
 #
 # Please refer to the documentation for information on how to create and manage
 # your spiders.
-from typing import TypeVar
+from typing import TYPE_CHECKING, TypeVar
 
-from .domain_spider import DomainSpider
-from .domain_spider_js import DomainSpiderJs
+if TYPE_CHECKING:
+    from .domain_spider import DomainSpider
+    from .domain_spider_js import DomainSpiderJs
 
-SearchGovDomainSpider = TypeVar("SearchGovDomainSpider", DomainSpider, DomainSpiderJs)
+SearchGovDomainSpider = TypeVar("SearchGovDomainSpider", "DomainSpider", "DomainSpiderJs")
