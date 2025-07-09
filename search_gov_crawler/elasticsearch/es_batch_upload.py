@@ -160,7 +160,7 @@ class SearchGovElasticsearch:
                     failures.append(info)
 
             if not failure_count:
-                    spider.logger.info("Loaded %s records to Elasticsearch!", success)
+                    spider.logger.info("Loaded %s records to Elasticsearch!", len(batch))
             else:
                 spider.logger.error(
                     "Failed to index %d documents; errors: %r", failure_count, failures
