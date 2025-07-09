@@ -23,6 +23,8 @@ from search_gov_crawler.search_gov_spiders.helpers import content
 
 log = logging.getLogger(__name__)
 
+# Suppress all pypdf debug/warning messages
+logging.getLogger("pypdf._reader").setLevel(logging.ERROR)
 
 def add_title_and_filename(key: str, title_key: str, doc: dict):
     """

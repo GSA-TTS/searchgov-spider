@@ -26,7 +26,10 @@ def sanitize_text(text: str) -> Optional[str]:
     """Sanitize an entire text block by processing each line while preserving or trimming spaces."""
     if not text:
         return None
-    clean_text = text
+
+    # Convert to string to remove non-printable characters and force string type
+    text = clean_text = f"{text}"
+
     try:
         clean_text = "\n".join(
             filter(None, (clean_line(line) for line in text.splitlines()))
