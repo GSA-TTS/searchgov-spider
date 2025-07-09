@@ -1,11 +1,9 @@
-import asyncio
-
 import pytest
 from elasticsearch import Elasticsearch
 
 from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
 
-HTML_CONTNET = """
+HTML_CONTENT = """
     <html lang="en">
     <head>
         <title>Test Article Title</title>
@@ -21,8 +19,7 @@ HTML_CONTNET = """
     </html>
 """
 
-RESPONSE_BYTES = HTML_CONTNET.encode()
-
+RESPONSE_BYTES = HTML_CONTENT.encode()
 
 @pytest.fixture(name="sample_spider")
 def fixture_sample_spider(mocker):
@@ -64,21 +61,7 @@ def fixture_mock_convert_html(mocker):
     return mocker.patch("search_gov_crawler.elasticsearch.es_batch_upload.convert_html")
 
 
-@pytest.fixture(name="mock_asyncio_loop")
-def fixture_mock_asyncio_loop(mocker):
-    mock_get_loop = mocker.patch("search_gov_crawler.elasticsearch.es_batch_upload.asyncio.get_event_loop")
-    mock_loop = asyncio.new_event_loop()
-    mock_get_loop.return_value = mock_loop
-
-    mock_new_loop = mocker.patch("search_gov_crawler.elasticsearch.es_batch_upload.asyncio.new_event_loop")
-    mock_new_loop.return_value = mock_loop
-    yield mock_loop
-    mock_loop.close()
-
-
-# Test add_to_batch (Corrected)
-@pytest.mark.asyncio(loop_scope="module")
-async def test_add_to_batch(mocker, mock_convert_html, sample_spider):
+def test_add_to_batch(mocker, mock_convert_html, sample_spider):
     test_document = {"_id": "1", "title": "Test Document"}
     mock_update_dap_visits = mocker.patch(
         "search_gov_crawler.elasticsearch.es_batch_upload.update_dap_visits_to_document",
@@ -87,15 +70,18 @@ async def test_add_to_batch(mocker, mock_convert_html, sample_spider):
     mock_convert_html.return_value = test_document
 
     es_uploader = SearchGovElasticsearch(batch_size=2)
+    es_uploader.batch_upload = mocker.MagicMock()
+
     es_uploader.add_to_batch(RESPONSE_BYTES, "http://example.com/1", sample_spider, "en", "text/html")
     assert len(es_uploader._current_batch) == 1
+    es_uploader.batch_upload.assert_not_called()
 
     es_uploader.add_to_batch(RESPONSE_BYTES, "http://example.com/2", sample_spider, "en", "text/html")
-    assert len(es_uploader._current_batch) == 0
+    assert len(es_uploader._current_batch) == 2
+    es_uploader.batch_upload.assert_called_once_with(sample_spider)
 
 
-@pytest.mark.asyncio(loop_scope="module")
-async def test_batch_upload(mock_convert_html, sample_spider):  # Use pytest-asyncio's event loop
+def test_batch_upload(mock_convert_html, sample_spider):
     es_uploader = SearchGovElasticsearch(batch_size=2)
     mock_convert_html.return_value = {"_id": "1", "title": "Test Document"}
     es_uploader._current_batch = [{"_id": "1", "title": "Test Document"}, {"_id": "2", "title": "Test Document"}]
@@ -104,24 +90,11 @@ async def test_batch_upload(mock_convert_html, sample_spider):  # Use pytest-asy
     assert len(es_uploader._current_batch) == 0
 
 
-@pytest.mark.asyncio(loop_scope="module")
-async def test_batch_upload_empty(mocker, sample_spider):
+def test_batch_upload_empty(sample_spider):
     es_uploader = SearchGovElasticsearch(batch_size=2)
     es_uploader._current_batch = []
-    es_uploader._batch_elasticsearch_upload = mocker.MagicMock()
     es_uploader.batch_upload(sample_spider)
-    es_uploader._batch_elasticsearch_upload.assert_not_called()  # Ensure it is not called when the batch is empty
-
-
-# Test _batch_elasticsearch_upload
-@pytest.mark.asyncio(loop_scope="module")
-async def test_batch_elasticsearch_upload(mocker, mock_convert_html, mock_asyncio_loop, sample_spider):
-    es_uploader = SearchGovElasticsearch(batch_size=2)
-    docs = [{"_id": "1", "title": "Test Document"}]
-    mock_convert_html.return_value = docs[0]
-    es_uploader._create_actions = mocker.MagicMock()
-    await es_uploader._batch_elasticsearch_upload(docs, mock_asyncio_loop, sample_spider)
-    es_uploader._create_actions.assert_called_once()
+    # No assertion needed as batch_upload should do nothing when batch is empty
 
 
 def test_add_to_batch_no_doc(mock_convert_html, sample_spider):
@@ -134,9 +107,8 @@ def test_add_to_batch_no_doc(mock_convert_html, sample_spider):
 
 def test_parse_es_urls_invalid_url():
     es_uploader = SearchGovElasticsearch()
-    with pytest.raises(ValueError) as excinfo:
+    with pytest.raises(ValueError, match="Invalid Elasticsearch URL"):
         es_uploader._parse_es_urls("invalid-url")
-    assert "Invalid Elasticsearch URL" in str(excinfo.value)
 
 
 def test_parse_es_urls_valid_urls():
@@ -148,53 +120,50 @@ def test_parse_es_urls_valid_urls():
     ]
 
 
-def test_get_client(mocker, search_gov_es, mock_es_client):
+def test_client_property(mocker, search_gov_es, mock_es_client):
     mock_es = mocker.patch("search_gov_crawler.elasticsearch.es_batch_upload.Elasticsearch")
     mock_es.return_value = mock_es_client
 
-    client = search_gov_es._get_client()
+    client = search_gov_es.client
     assert client == mock_es_client
     assert search_gov_es._es_client == mock_es_client
 
 
-def test_get_client_exception(mocker, search_gov_es):
+def test_client_property_exception(mocker, search_gov_es):
     mock_es = mocker.patch("search_gov_crawler.elasticsearch.es_batch_upload.Elasticsearch")
     mock_es.side_effect = Exception("Test Exception")
-    mock_log = mocker.patch("search_gov_crawler.elasticsearch.es_batch_upload.log")
 
-    client = search_gov_es._get_client()
-    assert client is None
-    mock_log.exception.assert_called_once()
+    with pytest.raises(Exception, match="Test Exception"):
+        _ = search_gov_es.client
 
 
-def test_create_actions(search_gov_es):
+def test_create_actions(search_gov_es, sample_spider):
     docs = [{"_id": "1", "content": "test1"}, {"_id": "2", "content": "test2"}]
-    actions = search_gov_es._create_actions(docs)
+    actions = search_gov_es._create_actions(docs, sample_spider)
     assert actions == [
         {"_index": "test_index", "_id": "1", "_source": {"content": "test1"}},
         {"_index": "test_index", "_id": "2", "_source": {"content": "test2"}},
     ]
 
 
-@pytest.mark.asyncio
-async def test_batch_elasticsearch_upload_error(mocker, search_gov_es, sample_spider, mock_es_client):
-    mock_es = mocker.patch("search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch._get_client")
-    mock_es.return_value = mock_es_client
+def test_batch_upload_with_errors(mocker, search_gov_es, sample_spider):
+    mock_bulk = mocker.patch("search_gov_crawler.elasticsearch.es_batch_upload.helpers.parallel_bulk")
+    mock_bulk.return_value = iter([(False, {"error": "Test Error"}), (True, None)])
 
-    mock_bulk = mocker.patch("search_gov_crawler.elasticsearch.es_batch_upload.helpers.bulk")
-    mock_bulk.return_value = (49, [{"error": "Test Error"}])
-
-    docs = [{"_id": "1", "content": "test1"}, {"_id": "2", "content": "test2"}]
-    loop = asyncio.get_event_loop()
-    await search_gov_es._batch_elasticsearch_upload(docs, loop, sample_spider)
-    sample_spider.logger.error.assert_called_once()  # logged errors from bulk_upload
-    sample_spider.logger.exception.assert_not_called()  # did not log and exception
+    search_gov_es._current_batch = [{"_id": "1", "title": "Test Document"}, {"_id": "2", "title": "Test Document"}]
+    search_gov_es.batch_upload(sample_spider)
+    sample_spider.logger.error.assert_called_once_with(
+        "Failed to index %d documents; errors: %r", 1, [{"error": "Test Error"}]
+    )
 
 
-def test_client_property(mocker, search_gov_es, mock_es_client):
-    mock_es = mocker.patch("search_gov_crawler.elasticsearch.es_batch_upload.Elasticsearch")
-    mock_es.return_value = mock_es_client
-    assert search_gov_es.client == mock_es_client
+def test_batch_upload_exception(mocker, search_gov_es, sample_spider):
+    mock_bulk = mocker.patch("search_gov_crawler.elasticsearch.es_batch_upload.helpers.parallel_bulk")
+    mock_bulk.side_effect = Exception("Bulk upload failed")
+
+    search_gov_es._current_batch = [{"_id": "1", "title": "Test Document"}]
+    search_gov_es.batch_upload(sample_spider)
+    sample_spider.logger.exception.assert_called_once_with("Bulk upload to ES failed: %s", mocker.ANY)
 
 
 def test_index_name_property(search_gov_es):

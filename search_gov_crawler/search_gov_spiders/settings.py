@@ -137,8 +137,8 @@ SPIDERMON_REPORT_CONTEXT = {"report_title": "Spidermon File Report"}
 SPIDERMON_REPORT_FILENAME = f"{spider_start.isoformat()}_spidermon_file_report.html"
 SPIDERMON_REPORT_TEMPLATE = "results.jinja"
 
-SPIDERMON_AWS_ACCESS_KEY_ID = os.environ.get("SEARCH_AWS_ACCESS_KEY_ID")
-SPIDERMON_AWS_SECRET_ACCESS_KEY = os.environ.get("SEARCH_AWS_SECRET_ACCESS_KEY")
+SPIDERMON_AWS_ACCESS_KEY_ID = os.environ.get("SEARCH_AWS_ACCESS_KEY_ID", "none")
+SPIDERMON_AWS_SECRET_ACCESS_KEY = os.environ.get("SEARCH_AWS_SECRET_ACCESS_KEY", "none")
 SPIDERMON_AWS_REGION_NAME = "us-east-1"
 SPIDERMON_EMAIL_SUBJECT = f"{env_name} Spidermon Report".capitalize()
 SPIDERMON_EMAIL_SENDER = "search@support.digitalgov.gov"
