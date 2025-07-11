@@ -13799,7 +13799,7 @@ local output_target = 'elasticsearch';
                          depth_limit=3),
   },
 
-  # Move to SearchElastic engine
+  // Move to SearchElastic engine
   {
     name: 'adviserinfo.sec.gov (adviserinfo.sec)',
     config: DomainConfig(allowed_domains='adviserinfo.sec.gov',
