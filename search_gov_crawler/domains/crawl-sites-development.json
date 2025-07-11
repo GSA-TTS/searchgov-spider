@@ -947,5 +947,18 @@
       "schedule": "46 15 * * THU",
       "sitemap_url": null,
       "starting_urls": "https://cnrk.cnic.navy.mil"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "fra.dot.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "fra.dot.gov (fra.dot)",
+      "output_target": "elasticsearch",
+      "schedule": "48 4 * * TUE",
+      "sitemap_url": null,
+      "starting_urls": "https://fra.dot.gov/"
    }
 ]
