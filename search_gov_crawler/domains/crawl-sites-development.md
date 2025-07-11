@@ -1,7 +1,7 @@
 # Development Schedule
  * [Sunday (7)](#sunday-7)
  * [Monday (15)](#monday-15)
- * [Tuesday (9)](#tuesday-9)
+ * [Tuesday (10)](#tuesday-10)
  * [Wednesday (10)](#wednesday-10)
  * [Thursday (12)](#thursday-12)
  * [Friday (11)](#friday-11)
@@ -40,11 +40,12 @@
 |US Embassy Accra (dos_emb_afr_accra)|23:15|gh.usembassy.gov|N|8||
 
 
-## Tuesday (9)
+## Tuesday (10)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |DoD PAC (dod_pac)|03:39|pac.whs.mil|N|3||
 |2021-2025.state.gov (usagov-replacement)|04:30|2021-2025.state.gov|N|3||
+|fra.dot.gov (fra.dot)|04:48|fra.dot.gov|N|8||
 |NIH Research Festival (nih-oir-research_festival)|06:00|researchfestival.nih.gov|N|3||
 |www.fema.gov (usagov-replacement)|06:12|fema.gov|N|3||
 |USA.gov (usagov-replacement)|06:30|usa.gov|N|8||
