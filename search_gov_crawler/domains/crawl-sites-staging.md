@@ -553,7 +553,6 @@
 |Joint Base Langley-Eustis (langley)|07:23|jble.af.mil|N|8||
 |www.fdic.gov (usagov-replacement)|07:30|fdic.gov|N|3||
 |109th Airlift Wing, New York ANG (afpw_109aw)|07:46|109aw.ang.af.mil|N|8||
-|www.peacecorps.gov (peacecorps)|07:54|peacecorps.gov|Y|8||
 |tricare_evans|08:00|evans.tricare.mil|N|8||
 |seedfund.nsf.gov (nsf)|08:00|seedfund.nsf.gov|N|3||
 |CJTF OIR (cjtf_oir)|08:04|inherentresolve.mil|N|3||
@@ -688,6 +687,7 @@
 |JTF-Bravo, Soto Cano Air Base (afpw_jtfb)|21:43|jtfb.southcom.mil|N|8||
 |www.treasurydirect.gov (usagov-replacement)|21:44|treasurydirect.gov|N|3||
 |Campus Drug Prevention (cdp)|21:51|campusdrugprevention.gov|N|8||
+|www.peacecorps.gov (peacecorps)|22:01|peacecorps.gov|Y|8||
 |web-archive-2022.ait.org.tw (dos_emb_eap_ait)|22:10|web-archive-2022.ait.org.tw|N|8||
 |South Atlantic Division (south_atlantic_div)|22:18|sad.usace.army.mil|N|3||
 |budget.house.gov (usagov-replacement)|22:22|budget.house.gov|N|3||
