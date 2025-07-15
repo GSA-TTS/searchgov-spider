@@ -1,8 +1,8 @@
-import re
 import logging
-
-from datetime import datetime, timedelta
+import re
+from datetime import datetime, timedelta, timezone
 from io import BytesIO
+from typing import Any
 
 from pypdf import PageObject, PdfReader
 from pypdf.generic import IndirectObject
@@ -23,6 +23,8 @@ from search_gov_crawler.search_gov_spiders.helpers import content
 
 log = logging.getLogger(__name__)
 
+# Suppress all pypdf debug/warning messages
+logging.getLogger("pypdf._reader").setLevel(logging.ERROR)
 
 def add_title_and_filename(key: str, title_key: str, doc: dict):
     """
@@ -88,6 +90,7 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
     reader = PdfReader(pdf_stream)
 
     if reader.is_encrypted:
+        log.warning("PDF is encrypted, cannot parse: %s", url)
         return None
 
     meta_values = get_pdf_meta(reader)
@@ -189,10 +192,15 @@ def get_pdf_meta(reader: PdfReader) -> dict:
     return clean_metadata
 
 
-def parse_if_date(value, apply_tz_offset: bool = False):
+def parse_if_date(value, apply_tz_offset: bool = False) -> Any:
     """
     Parses a value as date if matched the conventional pdf/exif date format. If parsing fails,
     returns the original value
+
+    Examples of str date format:
+        "D:20150113143419Z00'00'"
+        "D:20191018122555-04'00'"
+        "D:20191018162538"
 
     Args:
         value: The value to parse.
@@ -200,38 +208,40 @@ def parse_if_date(value, apply_tz_offset: bool = False):
     Returns:
         A datetime.datetime object if parsing is successful, otherwise the original value.
     """
-    if not isinstance(value, str) or not value.startswith("D:"):
-        return content.sanitize_text(value)
+    if not isinstance(value, str):
+        return value
 
-    date_string = value[2:]  # Remove the "D:" prefix
+    if value.startswith("D:"):
+        date_string = value.removeprefix("D:")
 
-    """
-    Example of matched date values:
-        "D:20191018122555-04'00'"
-        "D:20191018162538"
-    """
-    match = re.match(
-        r"(\d{4})(\d{2})(\d{2})(\d{2})?(\d{2})?(\d{2})?([+-]\d{2})?'?(\d{2})?'?",
-        date_string,
-    )
+        match = re.match(
+            r"(\d{4})(\d{2})(\d{2})(\d{2})?(\d{2})?(\d{2})?([+-]\d{2})?'?(\d{2})?'?",
+            date_string,
+        )
 
-    if match:
-        year = int(match.group(1))
-        month = int(match.group(2))
-        day = int(match.group(3))
-        hour = int(match.group(4)) if match.group(4) else 0
-        minute = int(match.group(5)) if match.group(5) else 0
-        second = int(match.group(6)) if match.group(6) else 0
-        tz_hour = int(match.group(7)[:3]) if match.group(7) else 0
-        tz_minute = int(match.group(7)[4:]) if match.group(7) and len(match.group(7)) > 4 else 0
+        if match:
+            year = int(match.group(1))
+            month = int(match.group(2))
+            day = int(match.group(3))
+            hour = int(match.group(4)) if match.group(4) else 0
+            minute = int(match.group(5)) if match.group(5) else 0
+            second = int(match.group(6)) if match.group(6) else 0
+            tz_hour = int(match.group(7)) if match.group(7) else 0
+            tz_minute = int(match.group(8)) if match.group(8) else 0
 
-        try:
-            dt = datetime(year, month, day, hour, minute, second)
-            if match.group(7) and apply_tz_offset:  # handle timezone offset if matched
+            # Handle timezone offset if matched
+            if match.group(7) and apply_tz_offset:
                 tz_sign = 1 if tz_hour >= 0 else -1
-                tz_offset = timedelta(hours=tz_hour, minutes=tz_minute)
-                dt = dt - tz_sign * tz_offset
-            return dt
-        except ValueError as err:
-            raise f'Failed to parse Date value "{value}":\n{str(err)}'
+                offset = timedelta(hours=tz_hour, minutes=tz_minute * tz_sign)
+                tz = timezone(offset=offset)
+            else:
+                tz = None
+
+            try:
+                return datetime(year, month, day, hour, minute, second, tzinfo=tz)
+            except ValueError:
+                log.exception("Failed to parse date string: %s", value)
+        else:
+            log.error("Failed to parse date string: %s", value)
+
     return content.sanitize_text(value)
