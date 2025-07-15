@@ -12051,7 +12051,7 @@
       "handle_javascript": true,
       "name": "www.peacecorps.gov (peacecorps)",
       "output_target": "elasticsearch",
-      "schedule": "54 7 * * TUE",
+      "schedule": "01 22 * * TUE",
       "sitemap_url": null,
       "starting_urls": "https://www.peacecorps.gov/"
    },

@@ -7130,7 +7130,7 @@ local output_target = 'elasticsearch';
     name: 'www.peacecorps.gov (peacecorps)',
     config: DomainConfig(allowed_domains='peacecorps.gov',
                          starting_urls='https://www.peacecorps.gov/',
-                         schedule='54 7 * * TUE',
+                         schedule='01 22 * * TUE',
                          output_target=output_target,
                          options=['handle_javascript'],
                          depth_limit=8),
