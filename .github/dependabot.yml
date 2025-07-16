@@ -27,6 +27,7 @@ updates:
           - "freezegun"
           - "pylint"
           - "pytest*"
+          - "rich"
     ignore:
       # see requirements.txt for more details
       - dependency-name: "lxml-html-clean"
