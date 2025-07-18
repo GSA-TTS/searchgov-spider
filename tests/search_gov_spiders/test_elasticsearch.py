@@ -21,6 +21,7 @@ HTML_CONTENT = """
 
 RESPONSE_BYTES = HTML_CONTENT.encode()
 
+
 @pytest.fixture(name="sample_spider")
 def fixture_sample_spider(mocker):
     """Fixture for a mock spider with a logger."""
@@ -163,7 +164,7 @@ def test_batch_upload_exception(mocker, search_gov_es, sample_spider):
 
     search_gov_es._current_batch = [{"_id": "1", "title": "Test Document"}]
     search_gov_es.batch_upload(sample_spider)
-    sample_spider.logger.exception.assert_called_once_with("Bulk upload to ES failed: %s", mocker.ANY)
+    sample_spider.logger.exception.assert_called_once_with("Bulk upload to ES failed")
 
 
 def test_index_name_property(search_gov_es):
