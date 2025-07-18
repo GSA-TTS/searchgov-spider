@@ -44,9 +44,7 @@ class SearchGovElasticsearch:
         self._current_batch: List[Dict[str, Any]] = []
 
         self._env_es_hosts = es_hosts or os.getenv("ES_HOSTS", "http://localhost:9200")
-        self._env_es_index = es_index or os.getenv(
-            "SEARCHELASTIC_INDEX", "development-i14y-documents-searchgov"
-        )
+        self._env_es_index = es_index or os.getenv("SEARCHELASTIC_INDEX", "development-i14y-documents-searchgov")
         self._env_es_user = es_user or os.getenv("ES_USER", "")
         self._env_es_password = es_password or os.getenv("ES_PASSWORD", "")
         self._timeout = timeout
@@ -97,13 +95,11 @@ class SearchGovElasticsearch:
             elif content_type == "application/pdf":
                 doc = convert_pdf(response_bytes, url, response_language)
             else:
-                spider.logger.warning(
-                    "Unsupported content type %r for URL %s; skipping", content_type, url
-                )
+                spider.logger.warning("Unsupported content type %r for URL %s; skipping", content_type, url)
                 return
 
         except Exception:
-            spider.logger.exception("Failed to convert %s (type %s): %s", url, content_type)
+            spider.logger.exception("Failed to convert %s (type %s)", url, content_type)
             return
 
         if not doc:
@@ -160,14 +156,12 @@ class SearchGovElasticsearch:
                     failures.append(info)
 
             if not failure_count:
-                    spider.logger.info("Loaded %s records to Elasticsearch!", len(batch))
+                spider.logger.info("Loaded %s records to Elasticsearch!", len(batch))
             else:
-                spider.logger.error(
-                    "Failed to index %d documents; errors: %r", failure_count, failures
-                )
+                spider.logger.error("Failed to index %d documents; errors: %r", failure_count, failures)
 
-        except Exception as e:
-            spider.logger.exception("Bulk upload to ES failed: %s", e)
+        except Exception:
+            spider.logger.exception("Bulk upload to ES failed")
 
     def _parse_es_urls(self, url_string: str) -> List[Dict[str, Union[str, int]]]:
         """Parse comma-separated ES URLs into host dicts."""
@@ -176,7 +170,5 @@ class SearchGovElasticsearch:
             parsed = urlparse(raw.strip())
             if not parsed.scheme or not parsed.hostname or not parsed.port:
                 raise ValueError(f"Invalid Elasticsearch URL: {raw!r}")
-            hosts.append(
-                {"host": parsed.hostname, "port": parsed.port, "scheme": parsed.scheme}
-            )
+            hosts.append({"host": parsed.hostname, "port": parsed.port, "scheme": parsed.scheme})
         return hosts
