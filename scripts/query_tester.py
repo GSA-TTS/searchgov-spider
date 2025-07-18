@@ -1,10 +1,12 @@
 import warnings
 
 import click
+from elastic_transport import ObjectApiResponse, SecurityWarning
 from elasticsearch import Elasticsearch, ElasticsearchWarning
 from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
+from urllib3.exceptions import InsecureRequestWarning
 
 from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
 
@@ -16,26 +18,9 @@ def initialize_elasticsearch() -> tuple[Elasticsearch, str]:
     return es.client, es.index_name
 
 
-@click.group()
-def cli(): ...
-
-
-@cli.command()
-@click.argument("search_term", nargs=-1, required=True)
-@click.option("--size", type=int, default=10)
-@click.option("--page", type=int, default=1)
-def full_govt_search(search_term: str, size: int, page: int) -> None:
-    """Mimic search.gov results page with full governtment search.  Used for testing query relevance"""
-
-    es_client, index_name = initialize_elasticsearch()
-
-    search_terms = " ".join(search_term)
-
-    page_from = (page - 1) * size
-    query_args = {
-        "index": index_name,
-        "from": page_from,
-        "size": size,
+def get_common_query_args(search_terms: str) -> dict:
+    """Return common query args"""
+    return {
         "query": {
             "function_score": {
                 "query": {
@@ -152,8 +137,7 @@ def full_govt_search(search_term: str, size: int, page: int) -> None:
                                         {
                                             "bool": {
                                                 "minimum_should_match": 1,
-                                                # if you want to change from all govt search, change here
-                                                # "should": [{"bool": {"must": [{"term": {"domain_name": "gsa.gov"}}]}}],
+                                                # This is what is changed for an affiliate search
                                                 "should": [{"bool": {"must": [{"match_all": {}}]}}],
                                             },
                                         },
@@ -249,7 +233,10 @@ def full_govt_search(search_term: str, size: int, page: int) -> None:
         ],
     }
 
-    response = es_client.search(**query_args)
+
+def print_results(response: ObjectApiResponse, search_terms: str, index_name: str, page: int) -> None:
+    """Common function to print results from queries"""
+
     total = response.body["hits"]["total"]["value"]
     max_score = response.body["hits"]["max_score"]
     hits = response.body["hits"]["hits"]
@@ -280,6 +267,82 @@ def full_govt_search(search_term: str, size: int, page: int) -> None:
     console.print(Panel(Text.assemble(*parts), title=title, subtitle=subtitle), highlight=True)
 
 
+def add_domains_to_query(common_query_args: dict, domains: str) -> dict:
+    """Update domains filter with one or more domains passed in from cli"""
+
+    multi_domain_should = [
+        {"bool": {"must": [{"term": {"domain_name": {"value": domain_name}}}]}} for domain_name in domains.split(",")
+    ]
+
+    new_query_filters = [
+        {
+            "bool": {
+                "must": [{"term": {"language": "en"}}],
+                "minimum_should_match": "100%",
+                "should": [
+                    {
+                        "bool": {
+                            "minimum_should_match": 1,
+                            "should": multi_domain_should,
+                        },
+                    },
+                ],
+            },
+        },
+    ]
+
+    common_query_args["query"]["function_score"]["query"]["bool"]["filter"] = new_query_filters
+    return common_query_args
+
+
+@click.group()
+def cli(): ...
+
+
+@cli.command()
+@click.argument("search_term", nargs=-1, required=True)
+@click.option("--size", type=int, default=10, help="Size of results page")
+@click.option("--page", type=int, default=1, help="Page of results to display")
+def full_govt_search(search_term: str, size: int, page: int) -> None:
+    """Mimic search.gov results page with full governtment search.  Used for testing query relevance"""
+
+    es_client, index_name = initialize_elasticsearch()
+
+    search_terms = " ".join(search_term)
+
+    page_from = (page - 1) * size
+    custom_query_args = {"index": index_name, "from": page_from, "size": size}
+    query_args = custom_query_args | get_common_query_args(search_terms)
+    response = es_client.search(**query_args)
+
+    print_results(response=response, search_terms=search_terms, index_name=index_name, page=page)
+
+
+@cli.command()
+@click.argument("search_term", nargs=-1, required=True)
+@click.option("--domains", type=str, required=True, help="Comma separated list of domains to search")
+@click.option("--size", type=int, default=10, help="Size of results page")
+@click.option("--page", type=int, default=1, help="Page of results to display")
+def affiliate_search(search_term: str, domains: str, size: int, page: int) -> None:
+    """Mimic search.gov results page with affiliate search.  Used for testing query relevance"""
+
+    es_client, index_name = initialize_elasticsearch()
+
+    search_terms = " ".join(search_term)
+
+    page_from = (page - 1) * size
+    custom_query_args = {"index": index_name, "from": page_from, "size": size}
+    common_query_args = get_common_query_args(search_terms)
+    affiliate_query_args = add_domains_to_query(common_query_args=common_query_args, domains=domains)
+
+    query_args = custom_query_args | affiliate_query_args
+    response = es_client.search(**query_args)
+
+    print_results(response=response, search_terms=search_terms, index_name=index_name, page=page)
+
+
 if __name__ == "__main__":
     warnings.filterwarnings("ignore", category=ElasticsearchWarning)
+    warnings.filterwarnings("ignore", category=InsecureRequestWarning)
+    warnings.filterwarnings("ignore", category=SecurityWarning)
     cli()
