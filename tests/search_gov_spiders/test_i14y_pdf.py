@@ -1,7 +1,8 @@
 from datetime import datetime, timedelta, timezone
 
 import pytest
-from pypdf.generic import IndirectObject
+from pypdf.errors import PdfReadError
+from pypdf.generic import ByteStringObject, DictionaryObject, IndirectObject, TextStringObject
 
 from search_gov_crawler.elasticsearch import convert_pdf_i14y
 
@@ -163,11 +164,24 @@ def test_parse_if_date_valid(input_val, apply_tz_offset, expected):
     assert convert_pdf_i14y.parse_if_date(input_val, apply_tz_offset) == expected
 
 
+def test_parse_if_date_datetime_exception(caplog):
+    invalid_date_str = "D:20239901023045"
+    with caplog.at_level("ERROR"):
+        convert_pdf_i14y.parse_if_date(invalid_date_str)
+
+    assert "Failed to parse date string: D:20239901023045" in caplog.messages
+
+
 def test_parse_if_date_non_date():
     """Test parse_if_date with a non-string value (or a string not starting with 'D:')."""
     non_date = "Not a date"
     result = convert_pdf_i14y.parse_if_date(non_date)
     assert result == non_date.strip()
+
+
+def test_parse_if_date_non_string():
+    non_string = 10
+    assert convert_pdf_i14y.parse_if_date(non_string) == non_string
 
 
 # ----- Tests for the main conversion function -----
@@ -209,6 +223,19 @@ def test_convert_pdf_encrypted(monkeypatch):
     assert result is None
 
 
+def test_convert_pdf_stream_error(caplog, mocker):
+    mock_reader = mocker.patch("pypdf.PdfReader.__init__")
+    error_msg = "Error reading PDF"
+    mock_reader.side_effect = PdfReadError(error_msg)
+    response_bytes = b"some bytes representing pdf"
+    url = "http://example.com/bad-read-pdf.pdf"
+    with caplog.at_level("WARNING"):
+        doc = convert_pdf_i14y.convert_pdf(response_bytes, url)
+
+    assert f"Could not download PDF file at {url}: {error_msg}" in caplog.messages
+    assert doc is None
+
+
 def test_add_title_and_filename():
     """Test that add_title_and_filename correctly formats the content."""
     doc = {
@@ -224,12 +251,20 @@ def test_add_title_and_filename():
 
 def test_get_links_set(mocker):
     """Test that get_links_set extracts unique links from PDF pages."""
-
     page1_text = "Visit https://example.com for more info."
     page2_text = "Check out www.test.com and also https://example.com"
 
     fake_page1 = mocker.MagicMock()
-    fake_page1.get_object.return_value = {}
+    fake_page1.get_object.return_value = {
+        "/Annots": [
+            DictionaryObject(
+                {"/A": DictionaryObject({"/URI": TextStringObject("https://hidden-link1.example.com")})},
+            ),
+            DictionaryObject(
+                {"/A": DictionaryObject({"/URI": ByteStringObject(b"https://hidden-link2.example.com")})},
+            ),
+        ],
+    }
 
     fake_page2 = mocker.MagicMock()
     fake_page2.get_object.return_value = {}
@@ -238,6 +273,11 @@ def test_get_links_set(mocker):
 
     links = convert_pdf_i14y.get_links_set(page_items)
 
-    expected_links = {"https://example.com", "www.test.com"}
+    expected_links = {
+        "https://example.com",
+        "www.test.com",
+        "https://hidden-link1.example.com",
+        "https://hidden-link2.example.com",
+    }
 
     assert set(links) == expected_links
