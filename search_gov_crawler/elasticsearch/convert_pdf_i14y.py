@@ -5,6 +5,7 @@ from io import BytesIO
 from typing import Any
 
 from pypdf import PageObject, PdfReader
+from pypdf.errors import PdfReadError
 from pypdf.generic import IndirectObject
 
 from search_gov_crawler.elasticsearch.i14y_helper import (
@@ -25,6 +26,7 @@ log = logging.getLogger(__name__)
 
 # Suppress all pypdf debug/warning messages
 logging.getLogger("pypdf._reader").setLevel(logging.ERROR)
+
 
 def add_title_and_filename(key: str, title_key: str, doc: dict):
     """
@@ -82,12 +84,16 @@ def get_links_set(pages: list[tuple[str, PageObject]]):
     return list(links)
 
 
-def convert_pdf(response_bytes: bytes, url: str, response_language: str = None):
+def convert_pdf(response_bytes: bytes, url: str, response_language: str | None = None):
     """Extracts and processes PDF content using pypdf."""
     log.debug("Processing PDF content from %s", url)
 
     pdf_stream = BytesIO(response_bytes)
-    reader = PdfReader(pdf_stream)
+    try:
+        reader = PdfReader(pdf_stream)
+    except PdfReadError as err:
+        log.warning("Could not download PDF file at %s: %s", url, err)
+        return None
 
     if reader.is_encrypted:
         log.warning("PDF is encrypted, cannot parse: %s", url)
