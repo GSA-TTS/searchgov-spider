@@ -220,25 +220,28 @@ def parse_if_date(value, apply_tz_offset: bool = False) -> Any:
     if value.startswith("D:"):
         date_string = value.removeprefix("D:")
 
-        match = re.match(
-            r"(\d{4})(\d{2})(\d{2})(\d{2})?(\d{2})?(\d{2})?([+-]\d{2})?'?(\d{2})?'?",
+        proper_date_format = re.match(
+            r"^(\d{4})(\d{2})(\d{2})(\d{2})?(\d{2})?(\d{2})?([+-Z]{0,1})?(\d{2})?'?(\d{2})?'?$",
             date_string,
         )
+        misformed_date_format = re.match(r"^[0-9zZ+\-']*$", date_string)
 
-        if match:
-            year = int(match.group(1))
-            month = int(match.group(2))
-            day = int(match.group(3))
-            hour = int(match.group(4)) if match.group(4) else 0
-            minute = int(match.group(5)) if match.group(5) else 0
-            second = int(match.group(6)) if match.group(6) else 0
-            tz_hour = int(match.group(7)) if match.group(7) else 0
-            tz_minute = int(match.group(8)) if match.group(8) else 0
+        if proper_date_format:
+            year = int(proper_date_format.group(1))
+            month = int(proper_date_format.group(2))
+            day = int(proper_date_format.group(3))
+            hour = int(proper_date_format.group(4)) if proper_date_format.group(4) else 0
+            minute = int(proper_date_format.group(5)) if proper_date_format.group(5) else 0
+            second = int(proper_date_format.group(6)) if proper_date_format.group(6) else 0
+            tz_sign = proper_date_format.group(7) if proper_date_format.group(7) else "Z"
+            tz_hour = int(proper_date_format.group(8)) if proper_date_format.group(8) else 0
+            tz_minute = int(proper_date_format.group(9)) if proper_date_format.group(9) else 0
 
             # Handle timezone offset if matched
-            if match.group(7) and apply_tz_offset:
-                tz_sign = 1 if tz_hour >= 0 else -1
-                offset = timedelta(hours=tz_hour, minutes=tz_minute * tz_sign)
+            if proper_date_format.group(7) and apply_tz_offset:
+                tz_multiplier = -1 if tz_sign == "-" else 1
+                # tz_sign = 1 if tz_hour >= 0 else -1
+                offset = timedelta(hours=tz_hour, minutes=tz_minute) * tz_multiplier
                 tz = timezone(offset=offset)
             else:
                 tz = None
@@ -246,8 +249,12 @@ def parse_if_date(value, apply_tz_offset: bool = False) -> Any:
             try:
                 return datetime(year, month, day, hour, minute, second, tzinfo=tz)
             except ValueError:
-                log.exception("Failed to parse date string: %s", value)
+                log.debug("Failed to parse date string: %s", value)
+                return None
+        elif misformed_date_format:
+            log.debug("Failed to parse date string: %s", value)
+            return None
         else:
-            log.error("Failed to parse date string: %s", value)
+            pass  # Starts with D: but probably not a date
 
     return content.sanitize_text(value)

@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone, UTC
 
 import pytest
 from pypdf.errors import PdfReadError
@@ -152,9 +152,16 @@ PARSE_DATE_IF_VALID_TEST_CASES = [
     ),
     ("D:19981223105959+05'30'", False, datetime(1998, 12, 23, 10, 59, 59)),
     ("D:20150113143419Z00'00'", False, datetime(2015, 1, 13, 14, 34, 19)),
-    ("D:20150113143419Z00'00'", True, datetime(2015, 1, 13, 14, 34, 19)),
+    (
+        "D:20150113143419Z00'00'",
+        True,
+        datetime(2015, 1, 13, 14, 34, 19, tzinfo=timezone(offset=timedelta(hours=0, minutes=0))),
+    ),
     ("D:invalid    ", False, "D:invalid"),
     ("Just a normal string", True, "Just a normal string"),
+    ("D:20239901023045", False, None),
+    ("D:/this/is/a/directory.pdf", False, "D:/this/is/a/directory.pdf"),
+    ("D:00000000-0--000Z'0000'", False, None),
 ]
 
 
@@ -164,12 +171,12 @@ def test_parse_if_date_valid(input_val, apply_tz_offset, expected):
     assert convert_pdf_i14y.parse_if_date(input_val, apply_tz_offset) == expected
 
 
-def test_parse_if_date_datetime_exception(caplog):
-    invalid_date_str = "D:20239901023045"
-    with caplog.at_level("ERROR"):
-        convert_pdf_i14y.parse_if_date(invalid_date_str)
+@pytest.mark.parametrize("input_val", ["D:20239901023045", "D:00000000-0--000"])
+def test_parse_if_date_datetime_debugging(caplog, input_val):
+    with caplog.at_level("DEBUG"):
+        convert_pdf_i14y.parse_if_date(input_val)
 
-    assert "Failed to parse date string: D:20239901023045" in caplog.messages
+        assert f"Failed to parse date string: {input_val}" in caplog.messages
 
 
 def test_parse_if_date_non_date():
