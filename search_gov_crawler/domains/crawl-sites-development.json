@@ -846,67 +846,67 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "fra.dot.gov",
+      "allowed_domains": "gis.myfwc.com",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "fra.dot.gov (fra.dot)",
+      "name": "gis.myfwc.com (gis.myfwc)",
       "output_target": "elasticsearch",
-      "schedule": "48 4 * * TUE",
+      "schedule": "24 14 * * TUE",
       "sitemap_url": null,
-      "starting_urls": "https://fra.dot.gov/"
+      "starting_urls": "https://gis.myfwc.com/FKNMS_WQPP/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "ca.water.usgs.gov",
+      "allowed_domains": "cg.usembassy.gov/fr",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "New depth 8 (ca.water.usgs.gov)",
+      "name": "New depth 8 (cg.usembassy.gov/fr)",
       "output_target": "elasticsearch",
-      "schedule": "47 17 * * SUN",
+      "schedule": "46 19 * * SUN",
       "sitemap_url": null,
-      "starting_urls": "https://ca.water.usgs.gov/"
+      "starting_urls": "https://cg.usembassy.gov/fr/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "ma.usembassy.gov/ar",
+      "allowed_domains": "ma.usembassy.gov/fr",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "New depth 8 (ma.usembassy.gov/ar)",
+      "name": "New depth 8 (ma.usembassy.gov/fr)",
       "output_target": "elasticsearch",
-      "schedule": "12 19 * * TUE",
+      "schedule": "11 21 * * TUE",
       "sitemap_url": null,
-      "starting_urls": "https://ma.usembassy.gov/ar/"
+      "starting_urls": "https://ma.usembassy.gov/fr/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "tj.usembassy.gov/ru",
+      "allowed_domains": "tn.usembassy.gov/ar",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "New depth 8 (tj.usembassy.gov/ru)",
+      "name": "New depth 8 (tn.usembassy.gov/ar)",
       "output_target": "elasticsearch",
-      "schedule": "37 20 * * THU",
+      "schedule": "35 22 * * THU",
       "sitemap_url": null,
-      "starting_urls": "https://tj.usembassy.gov/ru/"
+      "starting_urls": "https://tn.usembassy.gov/ar/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "yali.state.gov/pt",
+      "allowed_domains": "arf.srs.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "New depth 8 (yali.state.gov/pt)",
+      "name": "Administrative Record File/Information Repository File",
       "output_target": "elasticsearch",
-      "schedule": "1 22 * * SAT",
+      "schedule": "1 22 * * MON",
       "sitemap_url": null,
-      "starting_urls": "https://yali.state.gov/pt/"
+      "starting_urls": "https://arf.srs.gov/"
    }
 ]

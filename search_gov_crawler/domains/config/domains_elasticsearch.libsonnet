@@ -153,7 +153,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://gml.noaa.gov/',
                          schedule='05 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['gml.noaa.gov/grad/neubrewdata/']),
   },
   {
     name: 'NESDIS (nesdis)',
@@ -2599,6 +2600,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://ojjdp.ojp.gov/',
                          schedule='32 01 * * THU',
                          output_target=output_target,
+                         options=['allow_query_string'],
                          depth_limit=3),
   },
   {
@@ -8061,7 +8063,7 @@ local output_target = 'elasticsearch';
   {
     name: '8tharmy.korea.army.mil (8tharmy)',
     config: DomainConfig(allowed_domains='8tharmy.korea.army.mil',
-                         starting_urls='https://8tharmy.korea.army.mil/',
+                         starting_urls='https://8tharmy.korea.army.mil/site/',
                          schedule='2 21 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -8338,7 +8340,7 @@ local output_target = 'elasticsearch';
   {
     name: 'Savannah River Site (srs.gov)',
     config: DomainConfig(allowed_domains='srs.gov',
-                         starting_urls='https://www.srs.gov',
+                         starting_urls='https://www.srs.gov/general/srs-home.html',
                          schedule='04 13 * * SAT',
                          output_target=output_target,
                          depth_limit=3),
@@ -8346,7 +8348,7 @@ local output_target = 'elasticsearch';
   {
     name: 'Savannah River Site CAB (srs.gov)',
     config: DomainConfig(allowed_domains='cab.srs.gov',
-                         starting_urls='https://cab.srs.gov',
+                         starting_urls='https://cab.srs.gov/srs-cab.html',
                          schedule='06 15 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -9778,7 +9780,7 @@ local output_target = 'elasticsearch';
   {
     name: 'NSDUH (nsduh)',
     config: DomainConfig(allowed_domains='nsduhweb.rti.org',
-                         starting_urls='https://nsduhweb.rti.org',
+                         starting_urls='https://nsduhweb.rti.org/respweb/homepage.cfm',
                          schedule='56 10 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -9877,6 +9879,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://ebccp.cancercontrol.cancer.gov',
                          schedule='29 23 * * MON',
                          output_target=output_target,
+                         options=['allow_query_string'],
                          depth_limit=8),
   },
   {
@@ -11205,6 +11208,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://bja.ojp.gov',
                          schedule='23 10 * * FRI',
                          output_target=output_target,
+                         options=['allow_query_string'],
                          depth_limit=3),
   },
   {
@@ -11701,6 +11705,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://armi.usgs.gov',
                          schedule='32 06 * * WED',
                          output_target=output_target,
+                         options=['allow_query_string'],
                          depth_limit=8),
   },
   {
@@ -12226,9 +12231,9 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: 'dnfsb.gov (dnfsb)',
+    name: 'www.dnfsb.gov (dnfsb)',
     config: DomainConfig(allowed_domains='dnfsb.gov',
-                         starting_urls='https://dnfsb.gov/',
+                         starting_urls='https://www.dnfsb.gov/',
                          schedule='36 9 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -12258,17 +12263,9 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: 'fra.dot.gov (fra.dot)',
-    config: DomainConfig(allowed_domains='fra.dot.gov',
-                         starting_urls='https://fra.dot.gov/',
-                         schedule='48 4 * * TUE',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
     name: 'gis.myfwc.com (gis.myfwc)',
     config: DomainConfig(allowed_domains='gis.myfwc.com',
-                         starting_urls='https://gis.myfwc.com/',
+                         starting_urls='https://gis.myfwc.com/FKNMS_WQPP/',
                          schedule='24 14 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -13065,6 +13062,22 @@ local output_target = 'elasticsearch';
     config: DomainConfig(allowed_domains='yali.state.gov/pt',
                          starting_urls='https://yali.state.gov/pt/',
                          schedule='1 22 * * SAT',
+                         output_target=output_target,
+                         depth_limit=8),
+  },
+  {
+    name: 'Administrative Record File/Information Repository File',
+    config: DomainConfig(allowed_domains='arf.srs.gov',
+                         starting_urls='https://arf.srs.gov/',
+                         schedule='1 22 * * MON',
+                         output_target=output_target,
+                         depth_limit=8),
+  },
+  {
+    name: 'Federal Railroad Administration',
+    config: DomainConfig(allowed_domains='5nr.org',
+                         starting_urls='https://5nr.org/',
+                         schedule='10 23 * * MON',
                          output_target=output_target,
                          depth_limit=8),
   },

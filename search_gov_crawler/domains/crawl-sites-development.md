@@ -1,11 +1,11 @@
 # Development Schedule
  * [Sunday (9)](#sunday-9)
- * [Monday (8)](#monday-8)
+ * [Monday (9)](#monday-9)
  * [Tuesday (12)](#tuesday-12)
  * [Wednesday (9)](#wednesday-9)
  * [Thursday (11)](#thursday-11)
  * [Friday (11)](#friday-11)
- * [Saturday (10)](#saturday-10)
+ * [Saturday (9)](#saturday-9)
 
 
 ## Sunday (9)
@@ -18,11 +18,11 @@
 |tricare_charleston|10:00|nhc-charleston.tricare.mil|N|8||
 |www.epa.gov (usagov-replacement)|12:15|epa.gov|N|3||
 |174th Attack Wing (afpw_174aw)|13:57|174attackwing.ang.af.mil|N|8||
-|New depth 8 (ca.water.usgs.gov)|17:47|ca.water.usgs.gov|N|8||
 |US Consulate Curacao (dos_emb_wha_curacao)|18:40|cw.usconsulate.gov|N|8||
+|New depth 8 (cg.usembassy.gov/fr)|19:46|cg.usembassy.gov/fr|N|8||
 
 
-## Monday (8)
+## Monday (9)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Navy All Hands Magazine|06:00|allhands.navy.mil|Y|3||
@@ -33,6 +33,7 @@
 |VA Access To Care|09:30|accesstocare.va.gov|N|3||
 |Osan Air Base (osan)|14:46|osan.af.mil|N|8||
 |tricare_guam|18:00|guam.tricare.mil|N|8||
+|Administrative Record File/Information Repository File|22:01|arf.srs.gov|N|8||
 
 
 ## Tuesday (12)
@@ -41,15 +42,15 @@
 |NRO (dod_nro)|02:07|nro.gov|N|8||
 |NIH PubMed Central (usagov-replacement)|04:30|pmc.ncbi.nlm.nih.gov|N|3||
 |Vicksburg District (vicksburg_district)|04:31|mvk.usace.army.mil|N|3||
-|fra.dot.gov (fra.dot)|04:48|fra.dot.gov|N|8||
 |NIH Research Festival (nih-oir-research_festival)|06:00|researchfestival.nih.gov|N|3||
 |10th Air Force (afpw_10af)|07:04|10af.afrc.af.mil|N|8||
 |apps.irs.gov (usagov-replacement)|11:30|apps.irs.gov|N|3||
 |uscode.house.gov (usagov-replacement)|12:12|uscode.house.gov|N|3||
 |Justice NIC (justice-nic)|13:44|nicic.gov|N|3||
+|gis.myfwc.com (gis.myfwc)|14:24|gis.myfwc.com|N|8||
 |Joint Base San Antonio (jbsa)|15:42|jbsa.mil|N|8||
 |Fort Indiantown Gap (ng_ftig)|16:14|ftig.ng.mil|N|3||
-|New depth 8 (ma.usembassy.gov/ar)|19:12|ma.usembassy.gov/ar|N|8||
+|New depth 8 (ma.usembassy.gov/fr)|21:11|ma.usembassy.gov/fr|N|8||
 
 
 ## Wednesday (9)
@@ -78,8 +79,8 @@
 |173rd Fighter Wing, Oregon Air National Guard (afpw_173fw)|09:58|173fw.ang.af.mil|N|8||
 |US Embassy Cuba (dos_emb_wha_cuba)|14:44|cu.usembassy.gov|N|8||
 |Legacy Trade (trade.gov)|19:58|legacy.trade.gov|N|3||
-|New depth 8 (tj.usembassy.gov/ru)|20:37|tj.usembassy.gov/ru|N|8||
 |SWL (swl)|20:57|swl.usace.army.mil|N|3||
+|New depth 8 (tn.usembassy.gov/ar)|22:35|tn.usembassy.gov/ar|N|8||
 
 
 ## Friday (11)
@@ -98,7 +99,7 @@
 |NOAA Climate Program Office (cpo)|19:16|cpo.noaa.gov|N|3||
 
 
-## Saturday (10)
+## Saturday (9)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Office of Management Assessment (nih)|05:15|oma.od.nih.gov|N|8||
@@ -110,4 +111,3 @@
 |35th Medical Group - Misawa Air Base|18:00|misawa.tricare.mil|N|8||
 |www.sam.usace.army.mil (mobile_district)|20:03|sam.usace.army.mil|N|8||
 |Navy AIRLANT (navy_airlant)|21:27|airlant.usff.navy.mil|N|3||
-|New depth 8 (yali.state.gov/pt)|22:01|yali.state.gov/pt|N|8||
