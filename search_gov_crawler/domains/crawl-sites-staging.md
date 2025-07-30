@@ -1,7 +1,7 @@
 # Staging Schedule
  * [Sunday (229)](#sunday-229)
- * [Monday (214)](#monday-214)
- * [Tuesday (241)](#tuesday-241)
+ * [Monday (216)](#monday-216)
+ * [Tuesday (240)](#tuesday-240)
  * [Wednesday (236)](#wednesday-236)
  * [Thursday (243)](#thursday-243)
  * [Friday (250)](#friday-250)
@@ -242,7 +242,7 @@
 |1st Infantry Division (army_11d)|23:50|1id.army.mil|N|3||
 
 
-## Monday (214)
+## Monday (216)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |cgaux.org (cgaux)|00:00|cgaux.org|N|8||
@@ -360,7 +360,7 @@
 |DOD DANTES|09:30|dantes.mil|N|3||
 |www.eeoc.gov (usagov-replacement)|09:30|eeoc.gov|N|3||
 |it.usembassy.gov (dos_emb_eur_italy)|09:36|it.usembassy.gov|N|8||
-|dnfsb.gov (dnfsb)|09:36|dnfsb.gov|N|8||
+|www.dnfsb.gov (dnfsb)|09:36|dnfsb.gov|N|8||
 |New depth 8 (ee.usembassy.gov/et)|09:36|ee.usembassy.gov/et|N|8||
 |regulations.atf|09:45|regulations.atf.gov|N|3||
 |San Francisco District (sanfrancisco_district)|09:45|spn.usace.army.mil|N|3||
@@ -447,6 +447,7 @@
 |USGS Data (doi.gov_all_bureaus)|21:27|data.usgs.gov|N|3||
 |New depth 8 (ht.usembassy.gov/fr)|21:28|ht.usembassy.gov/fr|N|8||
 |Army 1st IO (army_1stio)|21:50|1stio.army.mil|N|3||
+|Administrative Record File/Information Repository File|22:01|arf.srs.gov|N|8||
 |Moody Air Force Base (moody)|22:09|moody.af.mil|N|8||
 |Army 173rd IBCT (army_173ibct)|22:10|skysoldiers.army.mil|N|3||
 |USACE IWR (usace_all)|22:13|iwr.usace.army.mil|N|3||
@@ -454,6 +455,7 @@
 |NG IR (ng_ir)|22:29|dc.ng.mil|N|3||
 |Trade Events (trade.gov)|23:02|events.trade.gov|N|3||
 |Misawa Air Base (misawa)|23:05|misawa.af.mil|N|8||
+|Federal Railroad Administration|23:10|5nr.org|N|8||
 |Army CCAD (army_ccad)|23:12|ccad.army.mil|N|3||
 |US Embassy Accra (dos_emb_afr_accra)|23:15|gh.usembassy.gov|N|8||
 |Team McChord (afpw_62aw)|23:24|mcchord.af.mil|N|8||
@@ -461,7 +463,7 @@
 |EBCCP Cancer Control (ebccp.cancercontrol.cancer.gov)|23:29|ebccp.cancercontrol.cancer.gov|N|8||
 
 
-## Tuesday (241)
+## Tuesday (240)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Minot Air Force Base (minot)|00:00|minot.af.mil|N|8||
@@ -511,7 +513,6 @@
 |Vicksburg District (vicksburg_district)|04:31|mvk.usace.army.mil|N|3||
 |MacDill Air Force Base (macdillairforcebase)|04:37|macdill.af.mil|N|8|/STEM/STEAM/igphoto/|
 |Army 409th CSB (army_409csb)|04:41|409csb.army.mil|N|3||
-|fra.dot.gov (fra.dot)|04:48|fra.dot.gov|N|8||
 |US Embassy Venezuela (dos_emb_wha_venezuela)|04:58|ve.usembassy.gov|N|8||
 |189th Airlift Wing (afpw_189aw)|04:59|189aw.ang.af.mil|N|8||
 |tricare_annapolis|05:00|annapolis.tricare.mil|N|8||
@@ -1371,7 +1372,7 @@
 |National Centers for Environmental Information (ncdc)|19:04|ncdc.noaa.gov|N|8||
 |National Hurricane Center (nhc)|19:05|nhc.noaa.gov|N|3||
 |National Data Buoy Center (ndbc)|19:05|ndbc.noaa.gov|N|3||
-|Global Monitoring Laboratory (gml)|19:05|gml.noaa.gov|N|8||
+|Global Monitoring Laboratory (gml)|19:05|gml.noaa.gov|N|8|gml.noaa.gov/grad/neubrewdata/|
 |NESDIS (nesdis)|19:06|nesdis.noaa.gov|N|3||
 |NOAA Tides and Currents (tidesandcurrents)|19:06|tidesandcurrents.noaa.gov|N|3||
 |NOAA Ocean Explorer (oceanexplorer)|19:06|oceanexplorer.noaa.gov|N|3||
