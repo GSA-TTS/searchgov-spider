@@ -221,7 +221,7 @@ def parse_if_date(value, apply_tz_offset: bool = False) -> Any:
         date_string = value.removeprefix("D:")
 
         proper_date_format = re.match(
-            r"^(\d{4})(\d{2})(\d{2})(\d{2})?(\d{2})?(\d{2})?([+-Z]{0,1})?(\d{2})?'?(\d{2})?'?$",
+            r"^(\d{4})(\d{2})(\d{2})(\d{2})?(\d{2})?(\d{2})?([+\-Z]{0,1})?(\d{2})?'?(\d{2})?'?$",
             date_string,
         )
         misformed_date_format = re.match(r"^[0-9zZ+\-']*$", date_string)
