@@ -759,7 +759,9 @@
       "allow_query_string": false,
       "allowed_domains": "gml.noaa.gov",
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "gml.noaa.gov/grad/neubrewdata/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Global Monitoring Laboratory (gml)",
@@ -4723,7 +4725,7 @@
       "starting_urls": "https://prologue.blogs.archives.gov/"
    },
    {
-      "allow_query_string": false,
+      "allow_query_string": true,
       "allowed_domains": "ojjdp.ojp.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -13563,7 +13565,7 @@
       "output_target": "elasticsearch",
       "schedule": "2 21 * * SAT",
       "sitemap_url": null,
-      "starting_urls": "https://8tharmy.korea.army.mil/"
+      "starting_urls": "https://8tharmy.korea.army.mil/site/"
    },
    {
       "allow_query_string": false,
@@ -14007,7 +14009,7 @@
       "output_target": "elasticsearch",
       "schedule": "04 13 * * SAT",
       "sitemap_url": null,
-      "starting_urls": "https://www.srs.gov"
+      "starting_urls": "https://www.srs.gov/general/srs-home.html"
    },
    {
       "allow_query_string": false,
@@ -14020,7 +14022,7 @@
       "output_target": "elasticsearch",
       "schedule": "06 15 * * MON",
       "sitemap_url": null,
-      "starting_urls": "https://cab.srs.gov"
+      "starting_urls": "https://cab.srs.gov/srs-cab.html"
    },
    {
       "allow_query_string": false,
@@ -16347,7 +16349,7 @@
       "output_target": "elasticsearch",
       "schedule": "56 10 * * TUE",
       "sitemap_url": null,
-      "starting_urls": "https://nsduhweb.rti.org"
+      "starting_urls": "https://nsduhweb.rti.org/respweb/homepage.cfm"
    },
    {
       "allow_query_string": false,
@@ -16493,7 +16495,7 @@
       "starting_urls": "https://tj.usembassy.gov"
    },
    {
-      "allow_query_string": false,
+      "allow_query_string": true,
       "allowed_domains": "ebccp.cancercontrol.cancer.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -18651,7 +18653,7 @@
       "starting_urls": "https://nij.ojp.gov"
    },
    {
-      "allow_query_string": false,
+      "allow_query_string": true,
       "allowed_domains": "bja.ojp.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -19457,7 +19459,7 @@
       "starting_urls": "https://www.virec.research.va.gov"
    },
    {
-      "allow_query_string": false,
+      "allow_query_string": true,
       "allowed_domains": "armi.usgs.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -20321,11 +20323,11 @@
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "dnfsb.gov (dnfsb)",
+      "name": "www.dnfsb.gov (dnfsb)",
       "output_target": "elasticsearch",
       "schedule": "36 9 * * MON",
       "sitemap_url": null,
-      "starting_urls": "https://dnfsb.gov/"
+      "starting_urls": "https://www.dnfsb.gov/"
    },
    {
       "allow_query_string": false,
@@ -20368,19 +20370,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "fra.dot.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "fra.dot.gov (fra.dot)",
-      "output_target": "elasticsearch",
-      "schedule": "48 4 * * TUE",
-      "sitemap_url": null,
-      "starting_urls": "https://fra.dot.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "gis.myfwc.com",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -20390,7 +20379,7 @@
       "output_target": "elasticsearch",
       "schedule": "24 14 * * TUE",
       "sitemap_url": null,
-      "starting_urls": "https://gis.myfwc.com/"
+      "starting_urls": "https://gis.myfwc.com/FKNMS_WQPP/"
    },
    {
       "allow_query_string": false,
@@ -21678,5 +21667,31 @@
       "schedule": "1 22 * * SAT",
       "sitemap_url": null,
       "starting_urls": "https://yali.state.gov/pt/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "arf.srs.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Administrative Record File/Information Repository File",
+      "output_target": "elasticsearch",
+      "schedule": "1 22 * * MON",
+      "sitemap_url": null,
+      "starting_urls": "https://arf.srs.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "5nr.org",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Federal Railroad Administration",
+      "output_target": "elasticsearch",
+      "schedule": "10 23 * * MON",
+      "sitemap_url": null,
+      "starting_urls": "https://5nr.org/"
    }
 ]
