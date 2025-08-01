@@ -13,26 +13,26 @@ from scrapy import Request, signals
 from scrapy.crawler import Crawler
 from scrapy.downloadermiddlewares.offsite import OffsiteMiddleware
 from scrapy.exceptions import IgnoreRequest
+from scrapy.spidermiddlewares.base import BaseSpiderMiddleware
 from scrapy.spiders import Spider
 from scrapy.utils.httpobj import urlparse_cached
 
 
-class MiddlewareBase:
+class SearchgovMiddlewareBase(BaseSpiderMiddleware):
     """Base middleware class that spider middlewares extend"""
 
     @classmethod
     def from_crawler(cls, crawler: Crawler) -> Self:
         """This method is used by Scrapy to create your spiders."""
-
-        s = cls()
-        crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
+        s = cls(crawler)
+        s.crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
         return s
 
     def spider_opened(self, spider):  # pylint: disable=unused-argument
-        """Required method in Middleware.  Called when spider starts."""
+        """Placeholde method in Middleware.  Called when spider starts. Override in subclass if needed."""
 
 
-class SearchGovSpidersSpiderMiddleware(MiddlewareBase):
+class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
     """
     Custom search gov spider middleare.  Not all methods need to be defined. If a method is not defined,
     scrapy acts as if the spider middleware does not modify the passed objects.
@@ -70,17 +70,17 @@ class SearchGovSpidersSpiderMiddleware(MiddlewareBase):
                 exception,
             )
 
-    def process_start_requests(self, start_requests, spider):
-        """
-        Called with the start requests of the spider, and works similarly to the
-        process_spider_output() method, except that it doesn’t have a response associated.
+    # def process_start(self, start_requests, spider):
+    #    """
+    #    Called with the start requests of the spider, and works similarly to the
+    #    process_spider_output() method, except that it doesn’t have a response associated.
+    #
+    #    Must return only requests (not items).
+    #    """
+    #    yield from start_requests
 
-        Must return only requests (not items).
-        """
-        yield from start_requests
 
-
-class SearchGovSpidersDownloaderMiddleware(MiddlewareBase):
+class SearchGovSpidersDownloaderMiddleware(SearchgovMiddlewareBase):
     """
     Custom search gov spider downloader middleare.  Not all methods need to be defined. If
     a method is not defined, scrapy acts as if the downloader middleware does not modify

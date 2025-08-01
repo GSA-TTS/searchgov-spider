@@ -4,6 +4,7 @@ import pytest
 from scrapy import Request, Spider
 from scrapy.exceptions import IgnoreRequest
 from scrapy.http.response import Response
+from scrapy.utils.reactor import install_reactor
 from scrapy.utils.test import get_crawler
 
 from search_gov_crawler.search_gov_spiders.middlewares import (
@@ -11,6 +12,12 @@ from search_gov_crawler.search_gov_spiders.middlewares import (
     SearchGovSpidersOffsiteMiddleware,
     SearchGovSpidersSpiderMiddleware,
 )
+
+
+@pytest.fixture(name="intsall_reactor", autouse=True)
+def fixture_install_reactor():
+    install_reactor("twisted.internet.asyncioreactor.AsyncioSelectorReactor")
+
 
 MIDDLEWARE_TEST_CASES = [
     (["example.com"], ["example.com"], "http://www.example.com/1", True),

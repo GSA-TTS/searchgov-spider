@@ -3,6 +3,7 @@ import scrapy.settings.default_settings as scrapy_defaults
 import scrapy_redis
 from scrapy.crawler import Crawler
 from scrapy.spiders import Spider
+from scrapy.utils.reactor import install_reactor
 from scrapy.utils.test import get_crawler
 
 from search_gov_crawler.search_gov_spiders.job_state.dupefilter import SearchGovSpiderRedisDupeFilter
@@ -12,6 +13,11 @@ from search_gov_crawler.search_gov_spiders.job_state.scheduler import (
     disable_redis_job_state,
 )
 from tests.scheduling.conftest import MockRedisClient
+
+
+@pytest.fixture(name="intsall_reactor", autouse=True)
+def fixture_install_reactor():
+    install_reactor("twisted.internet.asyncioreactor.AsyncioSelectorReactor")
 
 
 @pytest.fixture(name="spider_for_testing")
