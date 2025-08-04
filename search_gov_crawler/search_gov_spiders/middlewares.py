@@ -12,6 +12,7 @@ from urllib.parse import urlparse
 
 from scrapy import signals
 from scrapy.crawler import Crawler
+from scrapy.downloadermiddlewares.
 from scrapy.downloadermiddlewares.offsite import OffsiteMiddleware
 from scrapy.exceptions import IgnoreRequest
 from scrapy.http import Request, Response
@@ -31,7 +32,7 @@ class SearchgovMiddlewareBase(BaseSpiderMiddleware):
         return s
 
     def spider_opened(self, spider: Spider):  # pylint: disable=unused-argument
-        """Placeholde method in Middleware.  Called when spider starts. Override in subclass if needed."""
+        """Placeholder method in Middleware.  Called when spider starts. Override in subclass if needed."""
 
 
 class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
@@ -72,26 +73,48 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
                 exception,
             )
 
-    # def process_start(self, start_requests, spider):
-    #    """
-    #    Called with the start requests of the spider, and works similarly to the
-    #    process_spider_output() method, except that it doesn’t have a response associated.
-    #
-    #    Must return only requests (not items).
-    #    """
-    #    yield from start_requests
+    def get_processed_request(self, request: Request, response: Response | None) -> Request | None:
+        """Return a processed request from the spider output.
+        Logic should be placed here so that requests are prevented from going into the scheduler.
+
+        This method is called with a single request from the start seeds or the
+        spider output. It should return the same or a different request, or
+        ``None`` to ignore it.
+
+        :param request: the input request
+        :type request: :class:`~scrapy.Request` object
+
+        :param response: the response being processed
+        :type response: :class:`~scrapy.http.Response` object or ``None`` for
+            start seeds
+
+        :return: the processed request or ``None``
+        """
+
+        if getattr(self.crawler.spider, "allow_query_string", True) or request.dont_filter:
+            return request
+
+        if urlparse(request.url).query:
+            msg = f"Ignoring request with query string: {request.url}"
+            self.crawler.spider.logger.debug(msg)
+            return None
+
+        return request
 
 
-class SearchGovSpidersDownloaderMiddleware(SearchgovMiddlewareBase):
+class SearchGovSpidersDownloaderMiddleware:
     """
-    Custom search gov spider downloader middleare.  Not all methods need to be defined. If
-    a method is not defined, scrapy acts as if the downloader middleware does not modify
-    the passed objects.
+    Custom search gov spider downloader middleare.  Placeholder for now.
+    See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#downloader-middleware for
+    usage instructions.
+
+    Not all methods need to be defined. If a method is not defined, scrapy acts as if the downloader
+    middleware does not modify the passed objects.
     """
 
     # pylint: disable=unused-argument
     # disable unused arguments in this scrapy-generated class template
-    def process_request(self, request, spider):
+    def process_request(self, request: Request, spider: Spider) -> None:
         """
         Called for each request that goes through the downloader middleware.  Ignore
         requests that contain query params except if the spider specifically allows it.
@@ -103,15 +126,9 @@ class SearchGovSpidersDownloaderMiddleware(SearchgovMiddlewareBase):
           - or raise IgnoreRequest: process_exception() methods of installed
             downloader middleware will be called
         """
+        pass
 
-        if spider.allow_query_string:
-            return
-
-        if urlparse(request.url).query:
-            msg = f"Ignoring request with query string: {request.url}"
-            raise IgnoreRequest(msg)
-
-    def process_response(self, request, response, spider):
+    def process_response(self, request: Request, response: Response, spider: Spider) -> Response:
         """
         Called with the response returned from the downloader.
 
@@ -122,7 +139,7 @@ class SearchGovSpidersDownloaderMiddleware(SearchgovMiddlewareBase):
         """
         return response
 
-    def process_exception(self, request, exception, spider):
+    def process_exception(self, request: Request, exception, spider: Spider):
         """
         Called when a download handler or a process_request() (from other downloader middleware)
         raises an exception.
@@ -132,7 +149,7 @@ class SearchGovSpidersDownloaderMiddleware(SearchgovMiddlewareBase):
           - return a Response object: stops process_exception() chain
           - return a Request object: stops process_exception() chain
         """
-        return
+        pass
 
 
 class SearchGovSpidersOffsiteMiddleware(OffsiteMiddleware):
