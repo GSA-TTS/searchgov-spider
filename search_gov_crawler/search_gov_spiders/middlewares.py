@@ -6,13 +6,15 @@ https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 import re
 import warnings
-from typing import Self
+from collections.abc import Iterator
+from typing import Any, Self
 from urllib.parse import urlparse
 
-from scrapy import Request, signals
+from scrapy import signals
 from scrapy.crawler import Crawler
 from scrapy.downloadermiddlewares.offsite import OffsiteMiddleware
 from scrapy.exceptions import IgnoreRequest
+from scrapy.http import Request, Response
 from scrapy.spidermiddlewares.base import BaseSpiderMiddleware
 from scrapy.spiders import Spider
 from scrapy.utils.httpobj import urlparse_cached
@@ -28,7 +30,7 @@ class SearchgovMiddlewareBase(BaseSpiderMiddleware):
         s.crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
         return s
 
-    def spider_opened(self, spider):  # pylint: disable=unused-argument
+    def spider_opened(self, spider: Spider):  # pylint: disable=unused-argument
         """Placeholde method in Middleware.  Called when spider starts. Override in subclass if needed."""
 
 
@@ -41,7 +43,7 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
     # pylint: disable=unused-argument
     # disable unused arguments in this scrapy-generated class template
 
-    def process_spider_input(self, response, spider) -> None:
+    def process_spider_input(self, response: Response, spider: Spider) -> None:
         """
         Called for each response that goes through the spider middleware and into the spider.
 
@@ -49,20 +51,20 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
         """
         return
 
-    def process_spider_output(self, response, result, spider):
+    def process_spider_output(self, response: Response, result: Iterator[Any], spider: Spider):
         """Called with the results returned from the Spider, after it has processed the response.
 
         Must return an iterable of Request, or item objects.
         """
         yield from result
 
-    def process_spider_exception(self, response, exception, spider) -> None:
+    def process_spider_exception(self, response: Response, exception, spider: Spider) -> None:
         """Called when a spider or process_spider_input() method
         (from other spider middleware) raises an exception.
 
         Should return either None or an iterable of Request or item objects.
         """
-        if response.request.url in spider.start_urls:
+        if response.request.meta.get("is_start_request", False):
             spider.logger.exception(
                 "Error occured while accessing start url: %s: response: %s, %s",
                 response.request.url,
@@ -139,12 +141,12 @@ class SearchGovSpidersOffsiteMiddleware(OffsiteMiddleware):
     host_regex: re.Pattern
     host_path_regex: re.Pattern
 
-    def spider_opened(self, spider):
+    def spider_opened(self, spider: Spider) -> None:
         """Overridden to add assignment of host_path_regex"""
         self.host_regex = self.get_host_regex(spider)
         self.host_path_regex = self.get_host_path_regex(spider)
 
-    def should_follow(self, request, spider) -> bool:
+    def should_follow(self, request: Request, spider: Spider) -> bool:
         """Overridden to add boolean condition on matching path regex"""
         # hostname can be None for wrong urls (like javascript links)
         cahched_request = urlparse_cached(request)

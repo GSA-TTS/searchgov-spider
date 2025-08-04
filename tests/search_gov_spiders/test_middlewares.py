@@ -156,7 +156,11 @@ def test_spider_middleware_spider_exception_start_url(caplog):
     mw = SearchGovSpidersSpiderMiddleware.from_crawler(crawler)
 
     mw.spider_opened(spider)
-    response = Response(url="http://www.example.com", status=403, request=Request("http://www.example.com"))
+    response = Response(
+        url="http://www.example.com",
+        status=403,
+        request=Request("http://www.example.com", meta={"is_start_request": True}),
+    )
 
     with caplog.at_level("ERROR"):
         mw.process_spider_exception(
