@@ -12,7 +12,6 @@ from urllib.parse import urlparse
 
 from scrapy import signals
 from scrapy.crawler import Crawler
-from scrapy.downloadermiddlewares.
 from scrapy.downloadermiddlewares.offsite import OffsiteMiddleware
 from scrapy.exceptions import IgnoreRequest
 from scrapy.http import Request, Response
