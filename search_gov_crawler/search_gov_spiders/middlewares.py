@@ -19,6 +19,8 @@ from scrapy.spidermiddlewares.base import BaseSpiderMiddleware
 from scrapy.spiders import Spider
 from scrapy.utils.httpobj import urlparse_cached
 
+from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
+
 
 class SearchgovMiddlewareBase(BaseSpiderMiddleware):
     """Base middleware class that spider middlewares extend"""
@@ -39,6 +41,19 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
     Custom search gov spider middleare.  Not all methods need to be defined. If a method is not defined,
     scrapy acts as if the spider middleware does not modify the passed objects.
     """
+
+    def _filter_url_query_string(self, url: str | None) -> bool:
+        """Private helper function to filter urls by existence of query string (if applicable)"""
+
+        if getattr(self.crawler.spider, "allow_query_string", False):
+            return False
+
+        if urlparse(url).query:
+            msg = f"Filtering URL with query string: {url}"
+            self.crawler.spider.logger.debug(msg)
+            return True
+
+        return False
 
     # pylint: disable=unused-argument
     # disable unused arguments in this scrapy-generated class template
@@ -74,7 +89,6 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
 
     def get_processed_request(self, request: Request, response: Response | None) -> Request | None:
         """Return a processed request from the spider output.
-        Logic should be placed here so that requests are prevented from going into the scheduler.
 
         This method is called with a single request from the start seeds or the
         spider output. It should return the same or a different request, or
@@ -88,17 +102,43 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
             start seeds
 
         :return: the processed request or ``None``
-        """
 
-        if getattr(self.crawler.spider, "allow_query_string", True) or request.dont_filter:
+        Logic should be placed here so that requests are prevented from going into the scheduler.
+        """
+        if request.dont_filter:
             return request
 
-        if urlparse(request.url).query:
-            msg = f"Ignoring request with query string: {request.url}"
-            self.crawler.spider.logger.debug(msg)
+        if self._filter_url_query_string(url=request.url):
             return None
 
         return request
+
+    def get_processed_item(self, item: SearchGovSpidersItem, response: Response | None) -> Any:
+        """Return a processed item from the spider output.
+
+        This method is called with a single item from the start seeds or the
+        spider output. It should return the same or a different item, or
+        ``None`` to ignore it.
+
+        :param item: the input item
+        :type item: item object
+
+        :param response: the response being processed
+        :type response: :class:`~scrapy.http.Response` object or ``None`` for
+            start seeds
+
+        :return: the processed item or ``None``
+
+        Here we also have to check for URLs with query strings because the spider middleware
+        can return both items and requests.
+        """
+        if response and response.request.dont_filter:
+            return item
+
+        if self._filter_url_query_string(url=item.get("url", None)):
+            return None
+
+        return item
 
 
 class SearchGovSpidersDownloaderMiddleware:
@@ -125,7 +165,7 @@ class SearchGovSpidersDownloaderMiddleware:
           - or raise IgnoreRequest: process_exception() methods of installed
             downloader middleware will be called
         """
-        pass
+        return
 
     def process_response(self, request: Request, response: Response, spider: Spider) -> Response:
         """
@@ -148,7 +188,7 @@ class SearchGovSpidersDownloaderMiddleware:
           - return a Response object: stops process_exception() chain
           - return a Request object: stops process_exception() chain
         """
-        pass
+        return
 
 
 class SearchGovSpidersOffsiteMiddleware(OffsiteMiddleware):

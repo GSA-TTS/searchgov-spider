@@ -1,4 +1,4 @@
-import re
+import operator
 
 import pytest
 from scrapy import Request, Spider
@@ -7,6 +7,7 @@ from scrapy.http.response import Response
 from scrapy.utils.reactor import install_reactor
 from scrapy.utils.test import get_crawler
 
+from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 from search_gov_crawler.search_gov_spiders.middlewares import (
     SearchGovSpidersDownloaderMiddleware,
     SearchGovSpidersOffsiteMiddleware,
@@ -73,7 +74,7 @@ INVALID_DOMAIN_TEST_CASES = [
 @pytest.mark.parametrize(("allowed_domain", "allowed_domain_path", "warning_message"), INVALID_DOMAIN_TEST_CASES)
 def test_offsite_invalid_domain_paths(allowed_domain, allowed_domain_path, warning_message):
     crawler = get_crawler(Spider)
-    spider = Spider.from_crawler(
+    crawler.spider = Spider.from_crawler(
         crawler=crawler,
         name="offsite_test",
         allowed_domains=allowed_domain,
@@ -82,66 +83,101 @@ def test_offsite_invalid_domain_paths(allowed_domain, allowed_domain_path, warni
     mw = SearchGovSpidersOffsiteMiddleware.from_crawler(crawler)
 
     with pytest.warns(UserWarning, match=warning_message):
-        mw.spider_opened(spider)
+        mw.spider_opened(crawler.spider)
 
     request = Request("http://www.example.com")
-    assert mw.process_request(request, spider) is None
+    assert mw.process_request(request, crawler.spider) is None
 
 
 def test_offsite_invalid_domain_in_starting_urls(caplog):
     crawler = get_crawler(Spider)
-    spider = Spider.from_crawler(
+    crawler.spider = Spider.from_crawler(
         crawler=crawler,
         name="offsite_test",
         allowed_domains=["example.com"],
         start_urls=["http://www.not-an-example.com"],
     )
     mw = SearchGovSpidersOffsiteMiddleware.from_crawler(crawler)
-    mw.spider_opened(spider)
+    mw.spider_opened(crawler.spider)
 
     request = Request("http://www.not-an-example.com")
     with pytest.raises(IgnoreRequest), caplog.at_level("ERROR"):
-        mw.process_request(request=request, spider=spider)
+        mw.process_request(request=request, spider=crawler.spider)
 
     msg = (
         "IgnoreRequest raised for starting URL due to Offsite request: "
-        f"{request.url}, allowed_domains: {spider.allowed_domains}"
+        f"{request.url}, allowed_domains: {crawler.spider.allowed_domains}"
     )
     assert msg in caplog.messages
 
 
+@pytest.fixture(name="downloader_middleware")
 def test_spider_downloader_middleware():
     crawler = get_crawler(Spider)
-    spider = Spider.from_crawler(crawler=crawler, name="test", allow_query_string=False, allowed_domains="example.com")
-    mw = SearchGovSpidersDownloaderMiddleware.from_crawler(crawler)
-
-    mw.spider_opened(spider)
-    request = Request("http://www.example.com/test?parm=value")
-
-    with pytest.raises(IgnoreRequest):
-        mw.process_request(request=request, spider=spider)
+    crawler.spider = Spider.from_crawler(
+        crawler=crawler, name="test", allow_query_string=False, allowed_domains="example.com"
+    )
+    mw = SearchGovSpidersDownloaderMiddleware()
+    request = Request("http://www.example.com/test")
+    return (mw, request, crawler.spider)
 
 
-@pytest.mark.parametrize("allow_query_string", [True, False])
-def test_spider_downloader_middleware_allow_query_string(allow_query_string):
+def test_downloader_middleware_process_response(downloader_middleware):
+    mw, request, spider = downloader_middleware
+    response = Response("http://www.example.com/test")
+    assert mw.process_response(request, response, spider) == response
+
+
+def test_downloader_middleware_process_request(downloader_middleware):
+    mw, request, spider = downloader_middleware
+    assert mw.process_request(request, spider) is None
+
+
+def test_downloader_middleware_process_exception(downloader_middleware):
+    mw, request, spider = downloader_middleware
+    exception = Exception("This is just a test!")
+    assert mw.process_exception(request, exception, spider) is None
+
+
+@pytest.mark.parametrize(
+    ("dont_filter", "allow_query_string", "none_test"),
+    [(True, True, "is_not"), (True, False, "is_not"), (False, True, "is_not"), (False, False, "is_")],
+)
+def test_spider_middleware_allow_query_string_request(dont_filter, allow_query_string, none_test):
     crawler = get_crawler(Spider)
-    spider = Spider.from_crawler(
+    crawler.spider = Spider.from_crawler(
         crawler=crawler,
         name="test",
         allow_query_string=allow_query_string,
         allowed_domains="example.com",
     )
-    mw = SearchGovSpidersDownloaderMiddleware.from_crawler(crawler)
+    mw = SearchGovSpidersSpiderMiddleware.from_crawler(crawler)
+    request = Request("http://www.example.com/test?parm=value", dont_filter=dont_filter)
 
-    mw.spider_opened(spider)
+    assert getattr(operator, none_test)(mw.get_processed_request(request=request, response=None), None)
 
-    request = Request("http://www.example.com/test?parm=value")
-    error_msg = f"Ignoring request with query string: {request.url}"
-    if allow_query_string:
-        assert mw.process_request(request=request, spider=spider) is None
-    else:
-        with pytest.raises(IgnoreRequest, match=re.escape(error_msg)):
-            mw.process_request(request=request, spider=spider)
+
+@pytest.mark.parametrize(
+    ("dont_filter", "allow_query_string", "none_test"),
+    [(True, True, "is_not"), (True, False, "is_not"), (False, True, "is_not"), (False, False, "is_")],
+)
+def test_spider_middleware_allow_query_string_item(dont_filter, allow_query_string, none_test):
+    crawler = get_crawler(Spider)
+    crawler.spider = Spider.from_crawler(
+        crawler=crawler,
+        name="test",
+        allow_query_string=allow_query_string,
+        allowed_domains="example.com",
+    )
+    mw = SearchGovSpidersSpiderMiddleware.from_crawler(crawler)
+    item = SearchGovSpidersItem(url="http://www.example.com/test?parm=value")
+    response = Response(
+        url="http://www.example.com/test?parm=value",
+        status=200,
+        request=Request("http://www.example.com/test?parm=value", dont_filter=dont_filter),
+    )
+
+    assert getattr(operator, none_test)(mw.get_processed_item(item, response), None)
 
 
 def test_spider_middleware_spider_exception_start_url(caplog):
