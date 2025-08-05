@@ -17,10 +17,13 @@ from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import (
 @pytest.fixture(name="mock_scrapy_settings")
 def fixture_mock_scrapy_settings(project_settings):
     project_settings.set("SPIDER_MODULES", ["search_gov_crawler.search_gov_spiders.spiders"])
-    project_settings.set(
-        "SPIDER_MIDDLEWARES",
-        {f"search_gov_crawler.{k}": v for k, v in dict(project_settings.get("SPIDER_MIDDLEWARES").attributes).items()},
-    )
+    spider_mw_replacement = {}
+    for cls_name, priority in dict(project_settings.get("SPIDER_MIDDLEWARES")).items():
+        if str(cls_name).startswith("search_gov_spiders."):
+            spider_mw_replacement[f"search_gov_crawler.{cls_name}"] = priority
+
+    project_settings.set("SPIDER_MIDDLEWARES", spider_mw_replacement)
+
     project_settings.set(
         "DOWNLOADER_MIDDLEWARES",
         {
