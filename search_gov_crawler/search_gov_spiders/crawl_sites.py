@@ -26,7 +26,7 @@ class CrawlSite:
     job_id: str | None = field(default=None, init=False)
     deny_paths: list | None = None
     schedule: str | None = None
-    sitemap_url: str | None = None
+    sitemap_urls: list[str] | None = None
     check_sitemap_hours: int | None = None
 
     def __post_init__(self):
@@ -91,7 +91,7 @@ class CrawlSite:
 
         missing_field_names = []
         for field in fields(self):
-            if field.name in {"schedule", "deny_paths", "sitemap_url", "check_sitemap_hours", "job_id"}:
+            if field.name in {"schedule", "deny_paths", "sitemap_urls", "check_sitemap_hours", "job_id"}:
                 pass
             elif getattr(self, field.name) is None:
                 missing_field_names.append(field.name)
