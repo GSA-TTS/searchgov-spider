@@ -9,7 +9,7 @@
       "name": "Navy All Hands Magazine",
       "output_target": "endpoint",
       "schedule": "00 06 * * MON",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://allhands.navy.mil/"
    },
    {
@@ -22,7 +22,7 @@
       "name": "ED Office of Hearings and Appeals OHA",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://oha.ed.gov"
    },
    {
@@ -35,7 +35,7 @@
       "name": "USCOURTS CACB",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.cacb.uscourts.gov"
    },
    {
@@ -48,7 +48,7 @@
       "name": "VA Access To Care",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.accesstocare.va.gov"
    },
    {
@@ -61,7 +61,7 @@
       "name": "NIH Research Festival (nih-oir-research_festival)",
       "output_target": "elasticsearch",
       "schedule": "00 06 * * TUE",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://researchfestival.nih.gov/"
    },
    {
@@ -74,7 +74,7 @@
       "name": "National Operational Hydrologic Remote Sensing Center (nohrsc)",
       "output_target": "elasticsearch",
       "schedule": "08 19 * * FRI",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.nohrsc.noaa.gov/"
    },
    {
@@ -87,7 +87,7 @@
       "name": "NOAA Climate Program Office (cpo)",
       "output_target": "elasticsearch",
       "schedule": "16 19 * * FRI",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://cpo.noaa.gov/"
    },
    {
@@ -100,7 +100,7 @@
       "name": "NIH PubMed Central (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "30 04 * * TUE",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.ncbi.nlm.nih.gov/pmc/"
    },
    {
@@ -113,7 +113,7 @@
       "name": "www.epa.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "15 12 * * SUN",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.epa.gov/"
    },
    {
@@ -126,7 +126,7 @@
       "name": "uscode.house.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "12 12 * * TUE",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://uscode.house.gov/"
    },
    {
@@ -139,7 +139,7 @@
       "name": "apps.irs.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "30 11 * * TUE",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://apps.irs.gov/"
    },
    {
@@ -152,7 +152,7 @@
       "name": "uk.usembassy.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "00 12 * * SAT",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://uk.usembassy.gov/"
    },
    {
@@ -165,7 +165,7 @@
       "name": "www.usmint.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "16 16 * * WED",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.usmint.gov/"
    },
    {
@@ -178,7 +178,7 @@
       "name": "www.tsp.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "12 06 * * WED",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.tsp.gov/"
    },
    {
@@ -191,7 +191,7 @@
       "name": "acl.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "13 20 * * WED",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://acl.gov/"
    },
    {
@@ -204,7 +204,7 @@
       "name": "childcare.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "12 01 * * THU",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://childcare.gov/"
    },
    {
@@ -217,7 +217,7 @@
       "name": "ohss.dhs.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "22 02 * * THU",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://ohss.dhs.gov/"
    },
    {
@@ -230,7 +230,7 @@
       "name": "installations.militaryonesource.mil (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "32 03 * * THU",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://installations.militaryonesource.mil/"
    },
    {
@@ -243,7 +243,7 @@
       "name": "ods.od.nih.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "42 03 * * THU",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://ods.od.nih.gov/"
    },
    {
@@ -256,7 +256,7 @@
       "name": "tricare_charleston",
       "output_target": "elasticsearch",
       "schedule": "00 10 * * SUN",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://nhc-charleston.tricare.mil/"
    },
    {
@@ -269,7 +269,7 @@
       "name": "tricare_guam",
       "output_target": "elasticsearch",
       "schedule": "00 18 * * MON",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://guam.tricare.mil/"
    },
    {
@@ -282,7 +282,7 @@
       "name": "tricare_wach",
       "output_target": "elasticsearch",
       "schedule": "00 08 * * WED",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://winn.tricare.mil/"
    },
    {
@@ -295,7 +295,7 @@
       "name": "tricare_macdill",
       "output_target": "elasticsearch",
       "schedule": "00 15 * * FRI",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://macdill.tricare.mil/"
    },
    {
@@ -308,7 +308,7 @@
       "name": "boem",
       "output_target": "elasticsearch",
       "schedule": "15 10 * * FRI",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.boem.gov/"
    },
    {
@@ -321,7 +321,7 @@
       "name": "174th Attack Wing (afpw_174aw)",
       "output_target": "elasticsearch",
       "schedule": "57 13 * * SUN",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.174attackwing.ang.af.mil/"
    },
    {
@@ -334,7 +334,7 @@
       "name": "10th Air Force (afpw_10af)",
       "output_target": "elasticsearch",
       "schedule": "4 7 * * TUE",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.10af.afrc.af.mil/"
    },
    {
@@ -347,7 +347,7 @@
       "name": "Fairchild Air Force Base (afpw_fairchild)",
       "output_target": "elasticsearch",
       "schedule": "28 7 * * WED",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.fairchild.af.mil/"
    },
    {
@@ -360,7 +360,7 @@
       "name": "173rd Fighter Wing, Oregon Air National Guard (afpw_173fw)",
       "output_target": "elasticsearch",
       "schedule": "58 9 * * THU",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.173fw.ang.af.mil/"
    },
    {
@@ -373,7 +373,7 @@
       "name": "145th Airlift Wing, North Carolina ANG (afpw_145aw)",
       "output_target": "elasticsearch",
       "schedule": "58 8 * * FRI",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.145aw.ang.af.mil/"
    },
    {
@@ -386,7 +386,7 @@
       "name": "122nd Fighter Wing, Indiana ANG (afpw_122fw)",
       "output_target": "elasticsearch",
       "schedule": "22 9 * * SAT",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.122fw.ang.af.mil/"
    },
    {
@@ -399,7 +399,7 @@
       "name": "National Institute of General Medical Sciences (NIGMS) (www.nigms.nih.gov)",
       "output_target": "elasticsearch",
       "schedule": "28 18 * * WED",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.nigms.nih.gov/"
    },
    {
@@ -412,7 +412,7 @@
       "name": "35th Medical Group - Misawa Air Base",
       "output_target": "elasticsearch",
       "schedule": "00 18 * * SAT",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://misawa.tricare.mil/"
    },
    {
@@ -425,7 +425,7 @@
       "name": "United States Air Force Academy (usafacademy)",
       "output_target": "elasticsearch",
       "schedule": "23 7 * * SUN",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.usafa.af.mil/"
    },
    {
@@ -438,7 +438,7 @@
       "name": "Osan Air Base (osan)",
       "output_target": "elasticsearch",
       "schedule": "46 14 * * MON",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.osan.af.mil/"
    },
    {
@@ -451,7 +451,7 @@
       "name": "Joint Base San Antonio (jbsa)",
       "output_target": "elasticsearch",
       "schedule": "42 15 * * TUE",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.jbsa.mil/"
    },
    {
@@ -464,7 +464,7 @@
       "name": "Air Reserve Personnel Center (arpc)",
       "output_target": "elasticsearch",
       "schedule": "28 6 * * THU",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.arpc.afrc.af.mil/"
    },
    {
@@ -477,7 +477,7 @@
       "name": "5th Air Force (5af)",
       "output_target": "elasticsearch",
       "schedule": "9 10 * * FRI",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.5af.pacaf.af.mil/"
    },
    {
@@ -490,7 +490,7 @@
       "name": "165th Airlift Wing (165aw)",
       "output_target": "elasticsearch",
       "schedule": "42 15 * * SAT",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.165aw.ang.af.mil/"
    },
    {
@@ -503,7 +503,7 @@
       "name": "Office of Management Assessment (nih)",
       "output_target": "elasticsearch",
       "schedule": "15 05 * * SAT",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://oma.od.nih.gov/"
    },
    {
@@ -516,7 +516,7 @@
       "name": "FDC.NAL.USDA.gov (USDA NAL)",
       "output_target": "elasticsearch",
       "schedule": "15 07 * * SUN",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://fdc.nal.usda.gov"
    },
    {
@@ -529,7 +529,7 @@
       "name": "www.justthinktwice.gov (jtt)",
       "output_target": "elasticsearch",
       "schedule": "38 6 * * MON",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.justthinktwice.gov/"
    },
    {
@@ -542,7 +542,7 @@
       "name": "www.whs.mil (dod_whs)",
       "output_target": "elasticsearch",
       "schedule": "7 2 * * WED",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.whs.mil/"
    },
    {
@@ -555,7 +555,7 @@
       "name": "www.uscg.mil (uscg_all)",
       "output_target": "elasticsearch",
       "schedule": "49 3 * * THU",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.uscg.mil/"
    },
    {
@@ -568,7 +568,7 @@
       "name": "tt.usembassy.gov (dos_emb_wha_trinidad)",
       "output_target": "elasticsearch",
       "schedule": "27 10 * * FRI",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://tt.usembassy.gov/"
    },
    {
@@ -581,7 +581,7 @@
       "name": "www.sam.usace.army.mil (mobile_district)",
       "output_target": "elasticsearch",
       "schedule": "3 20 * * SAT",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.sam.usace.army.mil/"
    },
    {
@@ -594,7 +594,7 @@
       "name": "NRO (dod_nro)",
       "output_target": "elasticsearch",
       "schedule": "07 02 * * TUE",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.nro.gov"
    },
    {
@@ -607,7 +607,7 @@
       "name": "DoD Business Defense (dod-search)",
       "output_target": "elasticsearch",
       "schedule": "22 07 * * WED",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://business.defense.gov"
    },
    {
@@ -620,7 +620,7 @@
       "name": "Legacy Trade (trade.gov)",
       "output_target": "elasticsearch",
       "schedule": "58 19 * * THU",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://legacy.trade.gov"
    },
    {
@@ -633,7 +633,7 @@
       "name": "Vicksburg District (vicksburg_district)",
       "output_target": "elasticsearch",
       "schedule": "31 04 * * TUE",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.mvk.usace.army.mil"
    },
    {
@@ -646,7 +646,7 @@
       "name": "USACE North Atlantic Division (usace_nad)",
       "output_target": "elasticsearch",
       "schedule": "58 07 * * MON",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.nad.usace.army.mil"
    },
    {
@@ -659,7 +659,7 @@
       "name": "US Embassy Cuba (dos_emb_wha_cuba)",
       "output_target": "elasticsearch",
       "schedule": "44 14 * * THU",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://cu.usembassy.gov"
    },
    {
@@ -672,7 +672,7 @@
       "name": "Fort Indiantown Gap (ng_ftig)",
       "output_target": "elasticsearch",
       "schedule": "14 16 * * TUE",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.ftig.ng.mil"
    },
    {
@@ -685,7 +685,7 @@
       "name": "US Consulate Curacao (dos_emb_wha_curacao)",
       "output_target": "elasticsearch",
       "schedule": "40 18 * * SUN",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://cw.usconsulate.gov"
    },
    {
@@ -698,7 +698,7 @@
       "name": "Navy AIRLANT (navy_airlant)",
       "output_target": "elasticsearch",
       "schedule": "27 21 * * SAT",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.airlant.usff.navy.mil"
    },
    {
@@ -711,7 +711,7 @@
       "name": "Army JPEO (army_jpeo)",
       "output_target": "elasticsearch",
       "schedule": "56 02 * * SUN",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.jpeocbrnd.osd.mil"
    },
    {
@@ -724,7 +724,7 @@
       "name": "NASA Ladsweb (all)",
       "output_target": "elasticsearch",
       "schedule": "00 04 * * FRI",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://ladsweb.modaps.eosdis.nasa.gov"
    },
    {
@@ -737,7 +737,7 @@
       "name": "DoD OGC (dod_ogc)",
       "output_target": "elasticsearch",
       "schedule": "26 06 * * WED",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://ogc.osd.mil"
    },
    {
@@ -750,7 +750,7 @@
       "name": "AmeriCorps My (americorps)",
       "output_target": "elasticsearch",
       "schedule": "51 07 * * SUN",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://my.americorps.gov"
    },
    {
@@ -763,7 +763,7 @@
       "name": "Irregular Warfare Technical Support Directorate (iwtsd)",
       "output_target": "elasticsearch",
       "schedule": "22 10 * * SAT",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.iwtsd.gov"
    },
    {
@@ -776,7 +776,7 @@
       "name": "Navy PEO MLB (navy_peomlb)",
       "output_target": "elasticsearch",
       "schedule": "03 14 * * SAT",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.peomlb.navy.mil"
    },
    {
@@ -789,7 +789,7 @@
       "name": "Army T2 (army_t2)",
       "output_target": "elasticsearch",
       "schedule": "30 17 * * FRI",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.t2.army.mil"
    },
    {
@@ -802,7 +802,7 @@
       "name": "SWL (swl)",
       "output_target": "elasticsearch",
       "schedule": "57 20 * * THU",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.swl.usace.army.mil"
    },
    {
@@ -815,7 +815,7 @@
       "name": "DoD JTFN (dod_jtfn)",
       "output_target": "elasticsearch",
       "schedule": "54 01 * * FRI",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.jtfn.northcom.mil"
    },
    {
@@ -828,7 +828,7 @@
       "name": "Navy Ready (navy_ready)",
       "output_target": "elasticsearch",
       "schedule": "12 05 * * FRI",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.ready.navy.mil"
    },
    {
@@ -841,7 +841,7 @@
       "name": "Justice NIC (justice-nic)",
       "output_target": "elasticsearch",
       "schedule": "44 13 * * TUE",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://www.nicic.gov"
    },
    {
@@ -854,7 +854,7 @@
       "name": "gis.myfwc.com (gis.myfwc)",
       "output_target": "elasticsearch",
       "schedule": "24 14 * * TUE",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://gis.myfwc.com/FKNMS_WQPP/"
    },
    {
@@ -867,7 +867,7 @@
       "name": "New depth 8 (cg.usembassy.gov/fr)",
       "output_target": "elasticsearch",
       "schedule": "46 19 * * SUN",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://cg.usembassy.gov/fr/"
    },
    {
@@ -880,7 +880,7 @@
       "name": "New depth 8 (ma.usembassy.gov/fr)",
       "output_target": "elasticsearch",
       "schedule": "11 21 * * TUE",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://ma.usembassy.gov/fr/"
    },
    {
@@ -893,7 +893,7 @@
       "name": "New depth 8 (tn.usembassy.gov/ar)",
       "output_target": "elasticsearch",
       "schedule": "35 22 * * THU",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://tn.usembassy.gov/ar/"
    },
    {
@@ -906,7 +906,7 @@
       "name": "Administrative Record File/Information Repository File",
       "output_target": "elasticsearch",
       "schedule": "1 22 * * MON",
-      "sitemap_url": null,
+      "sitemap_urls": null,
       "starting_urls": "https://arf.srs.gov/"
    }
 ]
