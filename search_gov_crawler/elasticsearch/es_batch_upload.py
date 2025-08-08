@@ -1,5 +1,6 @@
 import logging
 import os
+import warnings
 from typing import Any, Dict, List, Optional, Union
 from urllib.parse import urlparse
 
@@ -9,6 +10,10 @@ from search_gov_crawler.elasticsearch.convert_html_i14y import convert_html
 from search_gov_crawler.elasticsearch.convert_pdf_i14y import convert_pdf
 from search_gov_crawler.elasticsearch.i14y_helper import update_dap_visits_to_document
 from search_gov_crawler.search_gov_spiders.spiders import SearchGovDomainSpider
+
+# Suppress warnings from urllib3 and Elasticsearch
+warnings.filterwarnings("ignore", category=Warning, module="urllib3")
+warnings.filterwarnings("ignore", category=Warning, module="elasticsearch")
 
 # limit excess INFO messages from elasticsearch that are not tied to a spider
 logging.getLogger("elastic_transport").setLevel(logging.ERROR)
