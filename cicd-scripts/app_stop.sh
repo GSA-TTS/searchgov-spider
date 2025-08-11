@@ -22,7 +22,6 @@ stop_sitemap_monitor() {
 # Remove virtual environment if it exists
 remove_venv() {
     echo "Removing Python virtual environment..."
-    local venv_path="venv"
 
     # Check if a virtual environment is active and deactivate it
     if [[ -n "$VIRTUAL_ENV" ]] && type deactivate >/dev/null 2>&1; then
