@@ -98,22 +98,37 @@ configure_permissions() {
 }
 
 # Manage cron jobs
-manage_cron_jobs() {
-    echo "Managing cron jobs..."
-    crontab -l | grep -v 'app_start.sh' > temp_cron || true
-    echo "@reboot $(pwd)/cicd-scripts/app_start.sh" >> temp_cron
-    crontab temp_cron
-    rm temp_cron
-    echo "Cron jobs updated."
+add_start_script_cron_job() {
+    echo "Adding app_start.sh cron job..."
+    local app_start_script="app_start.sh"
+    local start_script_path="$(pwd)/cicd-scripts/$app_start_script"
+
+    chmod +x "$start_script_path"
+    sudo chown -R $(whoami) "$start_script_path"
+
+    # Remove any existing app_start.sh cron jobs
+    if ! (crontab -l 2>/dev/null | grep -v -F "$app_start_script") | crontab -; then
+        echo "Warning: Could not remove existing $app_start_script cron jobs"
+    fi
+
+    # Add the new app_start.sh cron job
+    if (crontab -l 2>/dev/null; echo "@reboot $start_script_path") | crontab -; then
+        echo "Added $app_start_script cron job successfully:"
+        crontab -l | grep "$app_start_script" | sed 's/^/  /'
+    else
+        echo "Failed to add $app_start_script cron job for: $start_script_path"
+    fi
 }
 
 # Start monitoring agents
 start_agents() {
     echo "Starting AWS CloudWatch agent..."
     ensure_executable "./cicd-scripts/helpers/check_cloudwatch.sh"
+    setup_cloudwatch_cron
 
     echo "Starting AWS CodeDeploy agent..."
     ensure_executable "./cicd-scripts/helpers/check_codedeploy.sh"
+    setup_codedeploy_cron
 }
 
 ### SCRIPT EXECUTION ###
@@ -149,6 +164,6 @@ install_nltk
 start_agents
 
 # Manage cron jobs
-manage_cron_jobs
+add_start_script_cron_job
 
 echo "App installation completed successfully."
