@@ -2,7 +2,7 @@ import csv
 import logging
 import os
 import re
-from typing import Optional
+from typing import Optional, Set
 from urllib.parse import urljoin
 
 import requests
@@ -68,10 +68,10 @@ class SitemapFinder:
             return url.replace("http://", "https://")
         return url
 
-    def find(self, base_url) -> Optional[list[str]]:
+    def find(self, base_url) -> Set[str]:
         """
         Find sitemap URL using multiple methods.
-        Returns the first successful sitemap URL or None if not found.
+        Returns a set of all successful sitemap URLs found.
         """
         base_url = base_url if base_url.endswith("/") else f"{base_url}/"
         if not base_url.startswith(("http://", "https://")):
@@ -80,26 +80,18 @@ class SitemapFinder:
         sitemap_urls: list[str] = []
         
         # Method 1: Try common sitemap locations
-        sitemap_urls = sitemap_urls + self._check_common_locations(base_url)
+        sitemap_urls.extend(self._check_common_locations(base_url))
 
         # Method 2: Check robots.txt
-        robots_sitemap_urls = self._check_robots_txt(base_url)
-        if robots_sitemap_urls:
-            sitemap_urls = sitemap_urls + robots_sitemap_urls
+        sitemap_urls.extend(self._check_robots_txt(base_url))
 
         # Method 3: Check HTML source
-        html_sitemap_urls = self._check_html_source(base_url)
-        if html_sitemap_urls:
-            sitemap_urls = sitemap_urls + html_sitemap_urls
+        sitemap_urls.extend(self._check_html_source(base_url))
 
         # Method 4: Check XML sitemaps in root directory
-        html_root_sitemap_url = self._check_xml_files_in_root(base_url)
-        if html_root_sitemap_url:
-            sitemap_urls = sitemap_urls + html_root_sitemap_url
+        sitemap_urls.extend(self._check_xml_files_in_root(base_url))
 
-        # Remove duplicates
-        sitemap_urls = list(set(sitemap_urls))
-        return sitemap_urls
+        return set(sitemap_urls)
 
     def confirm_sitemap_url(self, url: Optional[str]) -> bool:
         """
@@ -130,14 +122,12 @@ class SitemapFinder:
             content_type = response.headers.get("Content-Type", "").lower()
             if "xml" not in content_type:
                 return False
-            return True
-
-        except requests.RequestException:
-            return False
         except Exception:
             return False
 
-    def _check_common_locations(self, base_url: str) -> Optional[list[str]]:
+        return True
+
+    def _check_common_locations(self, base_url: str) -> list[str]:
         """Try common sitemap locations"""
         log.info(f"Method 1: Checking common sitemap locations for: {base_url}")
         sitemap_urls: list[str] = []
@@ -148,11 +138,11 @@ class SitemapFinder:
                 sitemap_urls.append(potential_url)
         return sitemap_urls
 
-    def _check_robots_txt(self, base_url: str) -> Optional[list[str]]:
+    def _check_robots_txt(self, base_url: str) -> list[str]:
         """Check robots.txt for Sitemap directive."""
         log.info(f"Method 2: Checking robots.txt to find sitemaps for: {base_url}")
 
-        sitemap_urls = []
+        sitemap_urls: list[str] = []
 
         try:
             robots_url = urljoin(base_url, "robots.txt")
@@ -171,11 +161,11 @@ class SitemapFinder:
 
         return sitemap_urls
 
-    def _check_html_source(self, base_url: str) -> Optional[list[str]]:
+    def _check_html_source(self, base_url: str) -> list[str]:
         """Check HTML source for sitemap references."""
         log.info(f"Method 3: Checking HTML source to find sitemaps for: {base_url}")
 
-        sitemap_urls = []
+        sitemap_urls: list[str] = []
 
         try:
             response = requests.get(base_url, timeout=self.timeout_seconds)
@@ -205,14 +195,14 @@ class SitemapFinder:
 
         return sitemap_urls
 
-    def _check_xml_files_in_root(self, base_url: str) -> Optional[list[str]]:
+    def _check_xml_files_in_root(self, base_url: str) -> list[str]:
         """
         Last resort: Sometimes web servers allow directory listing.
         Check if we can find XML files that might be sitemaps.
         """
         log.info(f"Method 4: Checking for XML files in root directory to find sitemaps for: {base_url}")
 
-        sitemap_urls = []
+        sitemap_urls: list[str] = []
         try:
             response = requests.get(base_url, timeout=self.timeout_seconds)
             if response.status_code == 200:
@@ -262,7 +252,7 @@ def create_sitemaps_csv(csv_filename: str, batch_size: int = 10):
                     log.error(f"Failed to get existing sitemap_url: {sitemap_url} for: {starting_url}")        
         else:
             try:
-                record.sitemap_urls = sitemap_finder.find(starting_url)
+                record.sitemap_urls = list(sitemap_finder.find(starting_url))
                 if record.sitemap_urls and len(record.sitemap_urls) > 0:
                     log.info(f"Found sitemap_urls: {record.sitemap_urls} for starting_url: {starting_url}")
                 else:

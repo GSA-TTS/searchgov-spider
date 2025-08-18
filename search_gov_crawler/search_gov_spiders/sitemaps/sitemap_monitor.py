@@ -79,51 +79,72 @@ class SitemapMonitor:
         self.stored_sitemaps: Dict[str, Set[str]] = {}
         self.next_check_times: Dict[str, float] = {}
         self.is_first_run: Dict[str, bool] = {}
+    
+    def _process_record_sitemaps(self, record: CrawlSite, sitemap_finder: SitemapFinder) -> List[str]:
+        """
+        Validates predefined sitemaps, discovers new ones, and returns a combined list
+        of unique, valid sitemap URLs for the given record.
+        """
 
-    def setup(self):
-        """Setup and filter records based on depth and sitemap availability."""
-        # Filter records to only include those with depth_limit >= 8
-        records = [record for record in self.records if record.depth_limit >= 8]
-        sitemap_finder = SitemapFinder()
-        validated_sitemap_urls: List[str] = []
-        for record in records:
-            starting_url = record.starting_urls.split(",")[0]
-            record.check_sitemap_hours = (record.check_sitemap_hours or 48) * 3600
-            record_sitemap_urls = getattr(record, "sitemap_urls", None) or []
-            if record_sitemap_urls:
-                for sitemap_url in record_sitemap_urls:
-                    if not sitemap_finder.confirm_sitemap_url(sitemap_url):
-                        log.warning(f"Could not confirm predefined sitemap URL {sitemap_url} for {starting_url}")
+        starting_url = (record.starting_urls or "").split(",")[0]
+
+        # Step 1: Handle predefined sitemaps
+        predefined_sitemaps: Set[str] = set()
+        
+        for url in record.sitemap_urls or []:
+            if sitemap_finder.confirm_sitemap_url(url):
+                predefined_sitemaps.add(url)
             else:
-                try:
-                    found_sitemap_urls = sitemap_finder.find(starting_url)
-                    if found_sitemap_urls:
-                        record_sitemap_urls = found_sitemap_urls
-                        log.info(f"Found sitemap URLs: {found_sitemap_urls} for {starting_url}")
-                except Exception as e:
-                    log.warning(f"Failed to find sitemap_url for starting_url: {starting_url}. Reason: {e}")
+                log.warning(f"Could not confirm predefined sitemap URL '{url}' for {starting_url}")
 
-            validated_sitemap_urls = validated_sitemap_urls + record_sitemap_urls
-            record.sitemap_urls = record_sitemap_urls
+        # Step 2: Discover new sitemaps
+        found_sitemaps: Set[str] = set()
+        
+        try:
+            found_sitemaps = sitemap_finder.find(starting_url)
+            log.info(f"Discovered sitemap URLs: {found_sitemaps} for {starting_url}")
+        except Exception as e:
+            log.warning(f"Failed to discover sitemaps for {starting_url}. Reason: {e}")
 
-            for sitemap_url in record_sitemap_urls:
+        # Step 3: Combine and return both found_sitemaps and predefined_sitemaps
+        return list(predefined_sitemaps | found_sitemaps)
+    
+    def setup(self):
+        """Setup and filter records, then find and validate all sitemap URLs."""
+        sitemap_finder = SitemapFinder()
+        all_sitemaps_set: Set[str] = set()
+
+        # Step 1: Filter records and process sitemaps for each one
+        records_to_process = [r for r in self.records if r.depth_limit >= 8]
+
+        for record in records_to_process:
+            # Set check interval, defaulting to 48 hours (in seconds)
+            record.check_sitemap_hours = (record.check_sitemap_hours or 48) * 3600
+
+            # Find or validate sitemaps for the current record
+            valid_sitemaps_for_record = self._process_record_sitemaps(record, sitemap_finder)
+            record.sitemap_urls = valid_sitemaps_for_record
+
+            # Add the valid sitemaps to our master set and create a mapping
+            for sitemap_url in record.sitemap_urls:
+                all_sitemaps_set.add(sitemap_url)
                 self.records_map[sitemap_url] = record
-       
-        validated_sitemap_urls_set = set(validated_sitemap_urls)
-        self.all_sitemap_urls = list(validated_sitemap_urls_set)
-        self.all_sitemap_urls = [u for u in self.all_sitemap_urls if u]
+        
+        # Step 2: Finalize the list of unique, non-empty sitemap URLs
+        all_sitemaps_set.discard("")
+        all_sitemaps_set.discard(None)
+        self.all_sitemap_urls = list(all_sitemaps_set)
 
         if not self.all_sitemap_urls:
-            log.error("No valid sitemap URLs found; exiting.")
+            log.error("No valid sitemap URLs found after processing all records.")
             sys.exit(1)
-        
         # Create data directory if it doesn't exist
         create_directory(TARGET_DIR)
 
         # Load any previously stored sitemaps and set first run status
         self._load_stored_sitemaps()
 
-        # Initialize the next check times
+        # Initialize the next check times for all valid sitemaps
         current_time = time.time()
         for sitemap_url in self.all_sitemap_urls:
             self.next_check_times[sitemap_url] = current_time
