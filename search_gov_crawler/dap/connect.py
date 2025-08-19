@@ -48,7 +48,12 @@ def get_dap_data_by_date(session: requests.Session, dap_endpoint: str, query_dat
         try:
             response.raise_for_status()
         except requests.exceptions.HTTPError:
-            log.exception("Error during DAP request: %s", response.text)
+            log.exception(
+                "Error during DAP request: status_code=%s, reason=%s, url=%s",
+                response.status_code,
+                response.reason,
+                response.url,
+            )
             raise
 
         dap_page = response.json()
