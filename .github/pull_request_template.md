@@ -3,7 +3,7 @@
 - Any additional information or context which may help the reviewer
 
 ### Testing
-- List steps required to fully test change in fucntionalty
+- List steps required to fully test change in functionality
 - Provide any additional info needed to verify accuracy and validity of this change
 
 ### Checklist
