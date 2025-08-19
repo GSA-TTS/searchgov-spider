@@ -7,7 +7,7 @@ langdetect==1.0.9
 lxml-html-clean==0.4.1 # Required by newspaper4k, ignored by dependabot
 newspaper4k[all]==0.9.3.1 # This also installs the nltk library
 pylint==3.3.8
-pypdf==5.7.0
+pypdf==6.0.0
 pytest==8.4.1
 pytest-asyncio==1.1.0
 pytest-console-scripts==1.4.1
@@ -15,10 +15,10 @@ pytest-mock==3.14.1
 python-dateutil==2.9.0.post0
 python-dotenv==1.1.1
 python-json-logger==3.3.0
-redis==5.2.1,<6.0.0 # 6.0.0 is not compatible with redis 6
+redis==5.3.1 # 6.0.0 is not compatible with redis 6
 rich==14.1.0
-scrapy==2.13.2
-scrapy-playwright==0.0.43
+scrapy==2.13.3
+scrapy-playwright==0.0.44
 scrapy-redis==0.9.1
 spidermon[monitoring]==1.24.0
 typing-extensions==4.12.2 # Required by newspaper4k, ignored by dependabot
