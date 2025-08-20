@@ -51,7 +51,7 @@ DOWNLOAD_MAXSIZE = 15728640
 
 # settings for broad crawling
 SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
-# set to True for BFO
+# This setting is deprecated
 AJAXCRAWL_ENABLED = True
 
 # default setting for how deep we want to go
@@ -82,6 +82,7 @@ SCHEDULER_KEY_ORPHAN_AGE = 604800  # one week in seconds
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 SPIDER_MIDDLEWARES = {
+    "scrapy.spidermiddlewares.start.StartSpiderMiddleware": 0,
     "search_gov_spiders.middlewares.SearchGovSpidersSpiderMiddleware": 543,
 }
 
@@ -120,7 +121,7 @@ HTTPCACHE_DIR = "httpcache"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 
 # SPIDERMON SETTINGS
-SPIDERMON_ENABLED = os.environ.get("SPIDER_SPIDERMON_ENABLED", "True")
+SPIDERMON_ENABLED = os.environ.get("SPIDER_SPIDERMON_ENABLED", "False")
 SPIDERMON_EXPECTED_FINISH_REASONS = ["finished"]
 SPIDERMON_MIN_ITEMS = 1
 SPIDERMON_MAX_EXECUTION_TIME = 172800  # 48 hours in seconds
