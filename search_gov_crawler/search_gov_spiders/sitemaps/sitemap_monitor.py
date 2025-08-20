@@ -102,7 +102,9 @@ class SitemapMonitor:
         
         try:
             found_sitemaps = sitemap_finder.find(starting_url)
-            log.info(f"Discovered sitemap URLs: {found_sitemaps} for {starting_url}")
+            if not found_sitemaps:
+                raise Exception("no sitemap URLs found")
+            log.info(f"Discovered sitemap URLs: {list(found_sitemaps)} for {starting_url}")
         except Exception as e:
             log.warning(f"Failed to discover sitemaps for {starting_url}. Reason: {e}")
 

@@ -26,7 +26,7 @@ class CrawlSite:
     job_id: str | None = field(default=None, init=False)
     deny_paths: list | None = None
     schedule: str | None = None
-    sitemap_urls: list[str] | None = None
+    sitemap_urls: list | None = None
     check_sitemap_hours: int | None = None
 
     def __post_init__(self):
