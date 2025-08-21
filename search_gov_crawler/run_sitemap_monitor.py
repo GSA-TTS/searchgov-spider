@@ -18,5 +18,5 @@ log = logging.getLogger("search_gov_crawler.run_sitemap_monitor")
 if __name__ == "__main__":
     log.info("Starting Sitemap Monitor...")
     records = CrawlSites.from_file(file=CRAWL_SITES_FILE)
-    monitor = SitemapMonitor(records)
+    monitor = SitemapMonitor(records.root)
     monitor.run()
