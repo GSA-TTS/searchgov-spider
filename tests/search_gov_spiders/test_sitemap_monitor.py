@@ -1,209 +1,260 @@
-import unittest
-import tempfile
-import shutil
+import pytest
 import hashlib
 import requests
 from pathlib import Path
 from unittest.mock import patch, MagicMock
+
 from search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor import (
     SitemapMonitor,
-    create_directory
+    create_directory,
 )
 
 
 class MockCrawlSite:
-    def __init__(self, starting_urls, sitemap_url=None, depth_limit=8, check_sitemap_hours=48, **kwargs):
+    """A mock CrawlSite class for testing purposes."""
+
+    def __init__(self, starting_urls, sitemap_urls=None, depth_limit=8, check_sitemap_hours=None, **kwargs):
         self.starting_urls = starting_urls
-        self.sitemap_url = sitemap_url
+        self.sitemap_urls = sitemap_urls or []
         self.depth_limit = depth_limit
         self.check_sitemap_hours = check_sitemap_hours
+        self.handle_javascript = kwargs.get("handle_javascript", False)
+        self.allow_query_string = kwargs.get("allow_query_string", False)
+        self.allowed_domains = kwargs.get("allowed_domains", [])
+        self.deny_paths = kwargs.get("deny_paths", [])
+        self.output_target = kwargs.get("output_target", "default")
 
 
-class BaseTestCase(unittest.TestCase):
-    def setUp(self):
-        self.temp_dir = tempfile.mkdtemp()
-        p = patch(
-            "search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor.TARGET_DIR",
-            Path(self.temp_dir)
-        )
-        p.start()
-        self.addCleanup(p.stop)
-
-    def tearDown(self):
-        shutil.rmtree(self.temp_dir)
+@pytest.fixture
+def temp_dir(tmp_path):
+    """Provide a temporary directory patched into TARGET_DIR."""
+    with patch(
+        "search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor.TARGET_DIR",
+        tmp_path,
+    ):
+        yield tmp_path
 
 
-class TestCreateDirectory(unittest.TestCase):
-    def setUp(self):
-        self.base_dir = Path(tempfile.mkdtemp())
-        self.addCleanup(shutil.rmtree, str(self.base_dir))
-
-    def test_create_new(self):
-        target = self.base_dir / "foo"
-        create_directory(target)
-        self.assertTrue(target.is_dir())
-
-    def test_idempotent(self):
-        target = self.base_dir / "bar"
-        target.mkdir()
-        create_directory(target)
-        self.assertTrue(target.is_dir())
+def md5_name(url: str) -> str:
+    """Helper: hashed filename for a sitemap URL."""
+    return hashlib.md5(url.encode()).hexdigest() + ".txt"
 
 
-class TestSitemapMonitor(BaseTestCase):
-    def make_records(self, depths):
-        return [
-            MockCrawlSite(starting_urls=f"http://example{i}.com",
-                          sitemap_url="http://example.com/sitemap.xml",
-                          depth_limit=d)
-            for i, d in enumerate(depths)
-        ]
+# -------------------------------
+# create_directory tests
+# -------------------------------
 
-    @patch("search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor.SitemapFinder")
-    def test_filter_records(self, MockSitemapFinder):
-        MockSitemapFinder.return_value.find.return_value = "sitemap.xml"
-        MockSitemapFinder.return_value.confirm_sitemap_url.return_value = True
+def test_create_new_directory(tmp_path):
+    target = tmp_path / "foo"
+    create_directory(target)
+    assert target.is_dir()
 
-        # depths 7,8,9 should keep only >=8
-        records = self.make_records([7, 8, 9])
-        monitor = SitemapMonitor(records)
-        monitor.setup()
 
-        self.assertEqual(len(monitor.records), 2)
-        self.assertEqual(
-            [r.starting_urls for r in monitor.records],
-            ["http://example1.com", "http://example2.com"]
-        )
+def test_create_directory_idempotent(tmp_path):
+    target = tmp_path / "bar"
+    target.mkdir()
+    create_directory(target)
+    assert target.is_dir()
 
-    @patch("search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor.SitemapFinder")
-    def test_save_sitemap(self, MockSitemapFinder):
-        MockSitemapFinder.return_value.confirm_sitemap_url.return_value = True
-        monitor = SitemapMonitor([
-            MockCrawlSite("http://example.com", sitemap_url="http://example.com/sitemap.xml")
-        ])
 
-        urls = {"http://example.com/a", "http://example.com/b"}
-        monitor._save_sitemap("http://example.com/sitemap.xml", urls)
+# -------------------------------
+# SitemapMonitor setup / processing
+# -------------------------------
 
-        # verify file contents
-        h = hashlib.md5(b"http://example.com/sitemap.xml").hexdigest()
-        path = Path(self.temp_dir) / f"{h}.txt"
-        with open(path) as f:
-            saved = {l.strip() for l in f}
-        self.assertSetEqual(saved, urls)
+@patch("search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor.SitemapFinder")
+def test_setup_filters_records_by_depth(MockSitemapFinder):
+    mock_finder = MockSitemapFinder.return_value
+    mock_finder.confirm_sitemap_url.return_value = True
+    mock_finder.find.side_effect = lambda url: {f"{url}/sitemap.xml"}
 
-    @patch("requests.Session")
-    def test_fetch_sitemap_success(self, MockSession):
-        xml = b"""<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-                    <url><loc>http://ex.com/1</loc></url>
-                    <url><loc>http://ex.com/2</loc></url>
-                 </urlset>"""
-        sess = MagicMock()
-        resp = MagicMock(status_code=200, content=xml)
-        sess.get.return_value = resp
-        MockSession.return_value.__enter__.return_value = sess
+    records = [
+        MockCrawlSite(starting_urls="https://example0.com", depth_limit=7),
+        MockCrawlSite(starting_urls="https://example1.com", depth_limit=8),
+        MockCrawlSite(starting_urls="https://example2.com", depth_limit=9),
+    ]
+    monitor = SitemapMonitor(records)
+    monitor.setup()
 
-        monitor = SitemapMonitor([])
-        result = monitor._fetch_sitemap("http://ex.com/sitemap.xml")
+    assert len(monitor.all_sitemap_urls) == 2
+    assert "https://example1.com/sitemap.xml" in monitor.all_sitemap_urls
+    assert "https://example2.com/sitemap.xml" in monitor.all_sitemap_urls
+    assert "https://example0.com/sitemap.xml" not in monitor.all_sitemap_urls
 
-        MockSession.assert_called_once()
-        sess.headers.update.assert_called_once_with({"Cache-Control": "no-cache"})
-        self.assertTrue(sess.cache_disabled)
-        sess.get.assert_called_once_with("http://ex.com/sitemap.xml", timeout=30)
-        self.assertSetEqual(result, {"http://ex.com/1", "http://ex.com/2"})
 
-    @patch("requests.Session")
-    def test_fetch_sitemap_error(self, MockSession):
-        sess = MockSession.return_value
-        sess.get.side_effect = requests.exceptions.RequestException
-        monitor = SitemapMonitor([])
-        self.assertSetEqual(
-            monitor._fetch_sitemap("http://fake"), 
-            set(),
-            "Should return empty set on request errors"
-        )
+@patch("search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor.SitemapFinder")
+def test_process_record_sitemaps_combines_predefined_and_found(MockSitemapFinder):
+    mock_finder = MockSitemapFinder.return_value
+    mock_finder.confirm_sitemap_url.side_effect = lambda url: url.startswith("https://valid-")
+    mock_finder.find.return_value = {"https://discovered.com/sitemap.xml"}
 
-    @patch("search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor.SitemapFinder")
-    def test_check_for_changes_first_run(self, MockSitemapFinder):
-        MockSitemapFinder.return_value.confirm_sitemap_url.return_value = True
+    record = MockCrawlSite(
+        starting_urls="https://example.com",
+        sitemap_urls=[
+            "https://valid-predefined.com/sitemap.xml",
+            "https://invalid-predefined.com/sitemap.xml",
+        ],
+    )
+    monitor = SitemapMonitor([])
+    result = monitor._process_record_sitemaps(record, mock_finder)
 
-        monitor = SitemapMonitor([
-            MockCrawlSite("http://ex.com", sitemap_url="http://ex.com/sitemap.xml")
-        ])
-        # simulate first run toggle
-        monitor.is_first_run["http://ex.com/sitemap.xml"] = False
+    assert "https://valid-predefined.com/sitemap.xml" in result
+    assert "https://discovered.com/sitemap.xml" in result
+    assert "https://invalid-predefined.com/sitemap.xml" not in result
+    assert len(result) == 2
 
-        with patch.object(monitor, "_fetch_sitemap", return_value={"u1", "u2"}):
-            new_urls, total = monitor._check_for_changes("http://ex.com/sitemap.xml")
 
-        self.assertSetEqual(new_urls, {"u1", "u2"})
-        self.assertEqual(total, 2)
-        self.assertFalse(monitor.is_first_run["http://ex.com/sitemap.xml"])
+# -------------------------------
+# Stored sitemap load/save
+# -------------------------------
 
-    @patch("search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor.SitemapFinder")
-    def test_check_for_changes_no_new(self, MockSitemapFinder):
-        MockSitemapFinder.return_value.confirm_sitemap_url.return_value = True
+def test_load_stored_sitemaps(temp_dir):
+    sitemap_url_existing = "https://example.com/existing.xml"
+    sitemap_url_new = "https://example.com/new.xml"
 
-        monitor = SitemapMonitor([
-            MockCrawlSite("http://ex.com", sitemap_url="http://ex.com/sitemap.xml")
-        ])
-        key = "http://ex.com/sitemap.xml"
-        monitor.stored_sitemaps[key] = {"u1"}
-        monitor.is_first_run[key] = False
+    file_path = temp_dir / md5_name(sitemap_url_existing)
+    file_path.write_text("https://example.com/url1\nhttps://example.com/url2\n")
 
-        with patch.object(monitor, "_fetch_sitemap", return_value={"u1"}):
-            new_urls, total = monitor._check_for_changes(key)
+    monitor = SitemapMonitor([])
+    monitor.all_sitemap_urls = [sitemap_url_existing, sitemap_url_new]
+    monitor._load_stored_sitemaps()
 
-        self.assertSetEqual(new_urls, set())
-        self.assertEqual(total, 1)
+    assert monitor.stored_sitemaps[sitemap_url_existing] == {"https://example.com/url1", "https://example.com/url2"}
+    assert monitor.is_first_run[sitemap_url_existing] is False
+    assert monitor.stored_sitemaps[sitemap_url_new] == set()
+    assert monitor.is_first_run[sitemap_url_new] is True
 
-    @patch("search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor.SitemapFinder")
-    def test_check_for_changes_with_new(self, MockSitemapFinder):
-        MockSitemapFinder.return_value.confirm_sitemap_url.return_value = True
 
-        monitor = SitemapMonitor([
-            MockCrawlSite("http://ex.com", sitemap_url="http://ex.com/sitemap.xml")
-        ])
-        key = "http://ex.com/sitemap.xml"
-        monitor.stored_sitemaps[key] = {"u1"}
-        monitor.is_first_run[key] = False
+def test_save_sitemap(temp_dir):
+    monitor = SitemapMonitor([])
+    sitemap_url = "https://example.com/sitemap.xml"
+    urls = {"https://example.com/b", "https://example.com/a"}
+    monitor._save_sitemap(sitemap_url, urls)
 
-        with patch.object(monitor, "_fetch_sitemap", return_value={"u1", "u2"}):
-            new_urls, total = monitor._check_for_changes(key)
+    path = temp_dir / md5_name(sitemap_url)
+    saved = path.read_text().splitlines()
+    assert saved == ["https://example.com/a", "https://example.com/b"]
 
-        self.assertSetEqual(new_urls, {"u2"})
-        self.assertEqual(total, 2)
 
-    @patch("search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor.SitemapFinder")
-    def test_get_check_interval(self, MockSitemapFinder):
-        MockSitemapFinder.return_value.confirm_sitemap_url.return_value = True
+# -------------------------------
+# _fetch_sitemap tests
+# -------------------------------
 
-        rec = MockCrawlSite(
-            "http://ex.com",
-            sitemap_url="http://ex.com/sitemap.xml",
-            check_sitemap_hours=12
-        )
-        monitor = SitemapMonitor([rec])
-        self.assertEqual(
-            monitor._get_check_interval(rec.sitemap_url),
-            12
-        )
- 
-    def test_load_stored_sitemaps(self):
-        monitor = SitemapMonitor([
-            MockCrawlSite("http://example.com", sitemap_url="http://example.com/sitemap.xml"),
-        ])
-        url_hash = hashlib.md5("http://example.com/sitemap.xml".encode()).hexdigest()
-        file_path = Path(self.temp_dir) / f"{url_hash}.txt"
-        with open(file_path, "w") as f:
-            f.write("http://example.com/url1\n")
-            f.write("http://example.com/url2\n")
-        monitor._load_stored_sitemaps()
-        self.assertEqual(len(monitor.stored_sitemaps), 1)
-        self.assertEqual(monitor.stored_sitemaps["http://example.com/sitemap.xml"], {"http://example.com/url1", "http://example.com/url2"})
+@patch("requests.Session")
+def test_fetch_sitemap_urlset_success(MockSession):
+    xml = b"""<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+                <url><loc>https://ex.com/1</loc></url>
+                <url><loc>https://ex.com/2</loc></url>
+             </urlset>"""
+    mock_response = MagicMock(status_code=200, content=xml)
+    mock_response.raise_for_status.return_value = None
+    mock_session = MockSession.return_value.__enter__.return_value
+    mock_session.get.return_value = mock_response
 
-    def test_get_check_interval(self):
-        monitor = SitemapMonitor([
-            MockCrawlSite("http://example.com", sitemap_url="http://example.com/sitemap.xml", check_sitemap_hours=12),
-        ])
-        self.assertEqual(monitor._get_check_interval("http://example.com/sitemap.xml"), 12)
+    monitor = SitemapMonitor([])
+    result = monitor._fetch_sitemap("https://ex.com/sitemap.xml")
+
+    mock_session.get.assert_called_once_with("https://ex.com/sitemap.xml", timeout=30)
+    assert result == {"https://ex.com/1", "https://ex.com/2"}
+
+
+@patch("requests.Session")
+def test_fetch_sitemap_index_recursive(MockSession):
+    sitemap_index = b"""<sitemapindex xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+                         <sitemap><loc>https://ex.com/sitemap1.xml</loc></sitemap>
+                         <sitemap><loc>https://ex.com/sitemap2.xml</loc></sitemap>
+                       </sitemapindex>"""
+    sitemap1 = b"<urlset><url><loc>https://ex.com/1</loc></url></urlset>"
+    sitemap2 = b"<urlset><url><loc>https://ex.com/2</loc></url></urlset>"
+
+    def mock_get(url, timeout):
+        content = {
+            "https://ex.com/sitemap.xml": sitemap_index,
+            "https://ex.com/sitemap1.xml": sitemap1,
+            "https://ex.com/sitemap2.xml": sitemap2,
+        }.get(url)
+        resp = MagicMock(status_code=200, content=content)
+        resp.raise_for_status.return_value = None
+        return resp
+
+    mock_session = MockSession.return_value.__enter__.return_value
+    mock_session.get.side_effect = mock_get
+
+    monitor = SitemapMonitor([])
+    result = monitor._fetch_sitemap("https://ex.com/sitemap.xml")
+
+    assert mock_session.get.call_count == 3
+    assert result == {"https://ex.com/1", "https://ex.com/2"}
+
+
+@patch("requests.Session")
+def test_fetch_sitemap_error_returns_empty(MockSession):
+    mock_session = MockSession.return_value.__enter__.return_value
+    mock_session.get.side_effect = requests.exceptions.RequestException
+    monitor = SitemapMonitor([])
+    result = monitor._fetch_sitemap("https://fake.url/sitemap.xml")
+    assert result == set()
+
+
+@patch("search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor.log")
+def test_fetch_sitemap_max_depth(mock_log):
+    monitor = SitemapMonitor([])
+    monitor._fetch_sitemap("https://fake.url/sitemap.xml", depth=11, max_depth=10)
+    mock_log.error.assert_called_with(
+        "Maximum recursion depth (10) exceeded for sitemap https://fake.url/sitemap.xml"
+    )
+
+
+# -------------------------------
+# _check_for_changes tests
+# -------------------------------
+
+@pytest.mark.parametrize(
+    "first_run,stored,fetched,expected_new,expected_total",
+    [
+        (True, set(), {"url1", "url2"}, set(), 2),
+        (False, {"url1"}, {"url1", "url2"}, {"url2"}, 2),
+        (False, {"url1", "url2"}, {"url1", "url2"}, set(), 2),
+    ],
+)
+def test_check_for_changes(temp_dir, first_run, stored, fetched, expected_new, expected_total, monkeypatch):
+    sitemap_url = "https://ex.com/sitemap.xml"
+    monitor = SitemapMonitor([])
+    monitor.is_first_run[sitemap_url] = first_run
+    monitor.stored_sitemaps[sitemap_url] = stored
+
+    monkeypatch.setattr(monitor, "_fetch_sitemap", lambda url: fetched)
+    monkeypatch.setattr(monitor, "_save_sitemap", lambda url, urls: None)
+
+    new_urls, total = monitor._check_for_changes(sitemap_url)
+
+    assert new_urls == expected_new
+    assert total == expected_total
+    assert monitor.is_first_run[sitemap_url] is False
+    assert monitor.stored_sitemaps[sitemap_url] == fetched
+
+
+# -------------------------------
+# _get_check_interval tests
+# -------------------------------
+
+@patch("search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor.SitemapFinder")
+def test_get_check_interval(MockSitemapFinder):
+    mock_finder = MockSitemapFinder.return_value
+    mock_finder.confirm_sitemap_url.return_value = True
+    mock_finder.find.return_value = set()
+
+    rec1 = MockCrawlSite(
+        "https://ex.com",
+        sitemap_urls=["https://ex.com/sitemap.xml"],
+        check_sitemap_hours=12,
+    )
+    rec2 = MockCrawlSite(
+        "https://default.com",
+        sitemap_urls=["https://default.com/sitemap.xml"],
+        check_sitemap_hours=None,
+    )
+    monitor = SitemapMonitor([rec1, rec2])
+    monitor.setup()
+
+    assert monitor._get_check_interval("https://ex.com/sitemap.xml") == 12 * 3600
+    assert monitor._get_check_interval("https://default.com/sitemap.xml") == 48 * 3600

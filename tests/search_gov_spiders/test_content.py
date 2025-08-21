@@ -48,7 +48,7 @@ def test_sanitize_text_with_mixed_whitespace():
 
 def test_sanitize_text_with_only_whitespace_lines():
     text = "   \n\t\r\n   "
-    assert sanitize_text(text) is ""
+    assert sanitize_text(text) == ""
 
 def test_sanitize_text_with_punctuation_and_newlines():
     text = "Test sentence.\nAnother sentence!\n\"Quoted sentence.\"\n(Parenthetical sentence).\n[Bracketed sentence].\n{Braced sentence}.\n<Angle bracketed sentence>.\n'Apostrophe sentence'."

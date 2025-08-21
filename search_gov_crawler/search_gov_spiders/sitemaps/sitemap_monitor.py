@@ -74,82 +74,104 @@ class SitemapMonitor:
     def __init__(self, records: List[CrawlSite]):
         """Initialize the SitemapMonitor with crawl site records."""
         self.records = records
+        self.all_sitemap_urls: List[str] = []
+        self.records_map: Dict[str, CrawlSite] = {}
         self.stored_sitemaps: Dict[str, Set[str]] = {}
         self.next_check_times: Dict[str, float] = {}
         self.is_first_run: Dict[str, bool] = {}
+    
+    def _process_record_sitemaps(self, record: CrawlSite, sitemap_finder: SitemapFinder) -> List[str]:
+        """
+        Validates predefined sitemaps, discovers new ones, and returns a combined list
+        of unique, valid sitemap URLs for the given record.
+        """
 
+        starting_url = (record.starting_urls or "").split(",")[0]
+
+        # Step 1: Handle predefined sitemaps
+        predefined_sitemaps: Set[str] = set()
+        
+        for url in record.sitemap_urls or []:
+            if sitemap_finder.confirm_sitemap_url(url):
+                log.info(f"Confirmed predefined sitemap URL {url} for {starting_url}")
+                predefined_sitemaps.add(url)
+            else:
+                log.warning(f"Could not confirm predefined sitemap URL {url} for {starting_url}")
+
+        # Step 2: Discover new sitemaps
+        found_sitemaps: Set[str] = set()
+        
+        try:
+            found_sitemaps = sitemap_finder.find(starting_url)
+            if not found_sitemaps:
+                raise Exception("no sitemap URLs found")
+            log.info(f"Discovered sitemap URLs: {list(found_sitemaps)} for {starting_url}")
+        except Exception as e:
+            log.warning(f"Failed to discover sitemaps for {starting_url}. Reason: {e}")
+
+        # Step 3: Combine and return both found_sitemaps and predefined_sitemaps
+        return list(predefined_sitemaps | found_sitemaps)
+    
     def setup(self):
-        """Setup and filter records based on depth and sitemap availability."""
-        # Filter records to only include those with depth_limit >= 8
-        records = self.records
-        records = [record for record in records if record.depth_limit >= 8]
-
+        """Setup and filter records, then find and validate all sitemap URLs."""
         sitemap_finder = SitemapFinder()
-        records_len = len(records)
-        records_count = 0
-        for record in records:
-            starting_url = record.starting_urls.split(",")[0]
-            records_count += 1
-            log.info(f"({records_count} of {records_len}) Checking sitemap for: {starting_url}")
+        all_sitemaps_set: Set[str] = set()
 
-            # Default check interval is 48 hours if not specified
+        # Step 1: Filter records and process sitemaps for each one
+        records_to_process = [r for r in self.records if r.depth_limit >= 8]
+
+        for record in records_to_process:
+            # Set check interval, defaulting to 48 hours (in seconds)
             record.check_sitemap_hours = (record.check_sitemap_hours or 48) * 3600
 
-            if not sitemap_finder.confirm_sitemap_url(record.sitemap_url):
-                if record.sitemap_url:
-                    record.sitemap_url = None
-                    log.error(f"Failed to get existing record.sitemap_url: {record.sitemap_url} for: {starting_url}")
-                log.info(f"Attempting to retrieve sitemap_url for: {starting_url}")
-                try:
-                    record.sitemap_url = sitemap_finder.find(starting_url)
-                    if record.sitemap_url:
-                        log.info(f"Found sitemap_url: {record.sitemap_url} for starting_url: {starting_url}")
-                    else:
-                        log.warning(f"Failed to find sitemap_url for starting_url: {starting_url}")
-                except Exception as e:
-                    log.warning(f"Failed to find sitemap_url for starting_url: {starting_url}. Reason: {e}")
-        records = [record for record in records if record is not None and record.sitemap_url]
+            # Find or validate sitemaps for the current record
+            valid_sitemaps_for_record = self._process_record_sitemaps(record, sitemap_finder)
+            record.sitemap_urls = valid_sitemaps_for_record
 
-        for i, record in enumerate(records):
-            if not hasattr(record, "sitemap_url"):
-                log.error(f"Record at index {i} is not a valid object: {record} (type: {type(record)})")
+            # Add the valid sitemaps to our master set and create a mapping
+            for sitemap_url in record.sitemap_urls:
+                all_sitemaps_set.add(sitemap_url)
+                self.records_map[sitemap_url] = record
+        
+        # Step 2: Finalize the list of unique, non-empty sitemap URLs
+        all_sitemaps_set.discard("")
+        all_sitemaps_set.discard(None)
+        self.all_sitemap_urls = list(all_sitemaps_set)
 
-        self.records_map = {record.sitemap_url: record for record in records}
-        self.records = records
-
+        if not self.all_sitemap_urls:
+            log.error("No valid sitemap URLs found after processing all records.")
+            sys.exit(1)
         # Create data directory if it doesn't exist
         create_directory(TARGET_DIR)
 
         # Load any previously stored sitemaps and set first run status
         self._load_stored_sitemaps()
 
-        # Initialize the next check times
+        # Initialize the next check times for all valid sitemaps
         current_time = time.time()
-        for record in self.records:
-            self.next_check_times[record.sitemap_url] = current_time
+        for sitemap_url in self.all_sitemap_urls:
+            self.next_check_times[sitemap_url] = current_time
 
     def _load_stored_sitemaps(self) -> None:
         """Load previously stored sitemaps from disk if they exist and set first run status."""
-        for record in self.records:
-            url_hash = hashlib.md5(record.sitemap_url.encode()).hexdigest()
+        for sitemap_url in self.all_sitemap_urls:
+            url_hash = hashlib.md5(sitemap_url.encode()).hexdigest()
             file_path = TARGET_DIR / f"{url_hash}.txt"
-
-            if os.path.exists(file_path):
-                try:
-                    with open(file_path, "r") as f:
-                        urls = set(line.strip() for line in f.readlines())
-                        self.stored_sitemaps[record.sitemap_url] = urls
-                        log.info(f"Loaded {len(urls)} URLs from stored sitemap for {record.sitemap_url}")
-                except Exception as e:
-                    log.error(f"Error loading stored sitemap for {record.sitemap_url}: {e}")
-                    self.stored_sitemaps[record.sitemap_url] = set()
-                self.is_first_run[record.sitemap_url] = False
+            if file_path.exists():
+                with open(file_path) as f:
+                    lines = {ln.strip() for ln in f}
+                self.stored_sitemaps[sitemap_url] = lines
+                self.is_first_run[sitemap_url] = False
+                log.info(f"Loaded {len(lines)} URLs from {sitemap_url}")
             else:
-                self.stored_sitemaps[record.sitemap_url] = set()
-                self.is_first_run[record.sitemap_url] = True
+                self.stored_sitemaps[sitemap_url] = set()
+                self.is_first_run[sitemap_url] = True
 
     def _save_sitemap(self, sitemap_url: str, urls: Set[str]) -> None:
         """Save sitemap URLs to disk."""
+        if not urls:
+            return
+
         url_hash = hashlib.md5(sitemap_url.encode()).hexdigest()
         file_path = TARGET_DIR / f"{url_hash}.txt"
 
@@ -254,31 +276,22 @@ class SitemapMonitor:
             return set(), 0
 
     def _get_check_interval(self, url: str) -> int:
-        """Get the check interval for a specific URL in seconds."""
-        for record in self.records:
-            if record.sitemap_url == url:
-                return record.check_sitemap_hours
-        return 86400  # Default to 24 hours
+        """Get the check interval for a specific sitemap URL."""
+        record = self.records_map.get(url)
+        return getattr(record, "check_sitemap_hours", 24 * 3600)
 
     def run(self) -> None:
         """Run the sitemap monitor continuously."""
         self.setup()
         log.info(f"Starting Sitemap Monitor for {len(self.records)} sitemaps")
 
-        for record in self.records:
-            hours = record.check_sitemap_hours / 3600
-            log.info(f"Check interval for {record.sitemap_url}: {hours:.1f} hours")
-
-        check_queue = []
-        for record in self.records:
-            heapq.heappush(check_queue, (self.next_check_times[record.sitemap_url], record.sitemap_url))
+        check_queue: List[Tuple[float, str]] = []
+        for sitemap_url in self.all_sitemap_urls:
+            log.info(f"Check interval for {sitemap_url}: {self._get_check_interval(sitemap_url)/3600:.1f}h")
+            heapq.heappush(check_queue, (self.next_check_times[sitemap_url], sitemap_url))
 
         try:
             while True:
-                if not check_queue:
-                    log.error("Check queue is empty. This shouldn't happen.")
-                    break
-
                 next_check_time, sitemap_url = heapq.heappop(check_queue)
                 current_time = time.time()
                 sleep_time = max(0, next_check_time - current_time)
@@ -292,41 +305,32 @@ class SitemapMonitor:
 
                 log.info(f"Processing sitemap: {sitemap_url}")
                 new_urls, total_count = self._check_for_changes(sitemap_url)
-
                 if new_urls:
-                    new_urls = list(filter(None, new_urls))  # Remove any None or empty strings
-                    if new_urls:
-                        log.info(f"Found {len(new_urls)} new URLs in {sitemap_url}")
-                        new_urls_msg_lines = ["New URLs:"]
-                        new_urls_msg_lines.extend([f"  - {url}" for url in sorted(new_urls)])
-                        log.info("\n".join(new_urls_msg_lines))
-
-                        record = self.records_map[sitemap_url]
-                        spider_cls = DomainSpiderJs if record.handle_javascript else DomainSpider
-
-                        for i, url_batch in enumerate(itertools.batched(new_urls, 20)):
-                            spider_args = {
-                                "allow_query_string": record.allow_query_string,
-                                "allowed_domains": record.allowed_domains,
-                                "deny_paths": record.deny_paths,
-                                "start_urls": ",".join(url_batch),
-                                "output_target": record.output_target,
-                                "prevent_follow": True,
-                                "depth_limit": 1,
-                            }
-                            crawl_process = Process(
-                                target=run_crawl_in_dedicated_process,
-                                args=(spider_cls, spider_args),
-                            )
-                            crawl_process.start()
-                            crawl_process.join()  # Wait for the crawl process to complete before continuing, forces blocking
-
-                            if i < (len(new_urls) - 1) // 20:  # Don't sleep after the last batch
-                                time.sleep(3)
-                    else:
-                        log.info(f"No valid new URLs found in {sitemap_url}")
+                    log.info(f"Found {len(new_urls)} new URLs in {sitemap_url}")
+                    new_urls_msg_lines = ["New URLs:"]
+                    new_urls_msg_lines.extend([f"  - {url}" for url in sorted(new_urls)])
+                    log.info("\n".join(new_urls_msg_lines))
+                    record = self.records_map[sitemap_url]
+                    spider_cls = DomainSpiderJs if record.handle_javascript else DomainSpider
+                    for url_batch in itertools.batched(sorted(new_urls), 20):
+                        spider_args = {
+                            "allow_query_string": record.allow_query_string,
+                            "allowed_domains": record.allowed_domains,
+                            "deny_paths": record.deny_paths,
+                            "start_urls": ",".join(url_batch),
+                            "output_target": record.output_target,
+                            "prevent_follow": True,
+                            "depth_limit": 1,
+                        }
+                        crawl_process = Process(
+                            target=run_crawl_in_dedicated_process,
+                            args=(spider_cls, spider_args),
+                        )
+                        crawl_process.start()
+                        crawl_process.join()  # Wait for the crawl process to complete before continuing, forces blocking
+                        time.sleep(3)
                 else:
-                    log.info(f"No new URLs found in {sitemap_url}")
+                    log.info(f"No changes in {sitemap_url}")
 
                 log.info(f"Total URLs in sitemap: {total_count}")
 

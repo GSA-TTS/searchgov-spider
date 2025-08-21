@@ -1,63 +1,60 @@
 from unittest.mock import patch, mock_open, MagicMock
 from search_gov_crawler.search_gov_spiders.sitemaps.sitemap_finder import (
     SitemapFinder,
-    write_dict_to_csv
+    write_dict_to_csv,
 )
 
 class TestWriteDictToCsv:
+    @patch("os.path.exists", return_value=True)
     @patch("builtins.open", new_callable=mock_open)
-    @patch("os.path.exists")
-    def test_write_dict_to_csv_overwrite(self, mock_exists, mock_file):
+    @patch("csv.writer")
+    def test_write_dict_to_csv_overwrite(self, mock_csv_writer, mock_file, mock_exists):
         """Test overwriting a CSV file with the dictionary data"""
-        mock_exists.return_value = True
-        data = {"https://example.com": "https://example.com/sitemap.xml"}
+        mock_writer = mock_csv_writer.return_value
+        data = {"https://example.com": ["https://example.com/sitemap.xml"]}
         
         write_dict_to_csv(data, "test_file.csv", overwrite=True)
         
         mock_file.assert_called_once_with("test_file.csv", mode="w", newline="", encoding="utf-8")
-        handle = mock_file()
-        calls = handle.write.call_args_list
-        assert "starting_urls,sitemap_url\r\n" in calls[0][0][0]  # Header
-        assert "https://example.com,https://example.com/sitemap.xml\r\n" in calls[1][0][0]  # Data
+        mock_writer.writerow.assert_any_call(["starting_urls", "sitemap_urls"])
+        mock_writer.writerow.assert_any_call(["https://example.com", ["https://example.com/sitemap.xml"]])
 
+    @patch("os.path.exists", return_value=True)
     @patch("builtins.open", new_callable=mock_open)
-    @patch("os.path.exists")
-    def test_write_dict_to_csv_append_existing(self, mock_exists, mock_file):
+    @patch("csv.writer")
+    def test_write_dict_to_csv_append_existing(self, mock_csv_writer, mock_file, mock_exists):
         """Test appending data to an existing CSV file without header"""
-        mock_exists.return_value = True
-        data = {"https://example.com": "https://example.com/sitemap.xml"}
+        mock_writer = mock_csv_writer.return_value
+        data = {"https://example.com": ["https://example.com/sitemap.xml"]}
         
         write_dict_to_csv(data, "test_file.csv", overwrite=False)
         
         mock_file.assert_called_once_with("test_file.csv", mode="a", newline="", encoding="utf-8")
-        handle = mock_file()
-        calls = handle.write.call_args_list
-        # No header should be written when appending to existing file
-        assert len(calls) == 1
-        assert "https://example.com,https://example.com/sitemap.xml\r\n" in calls[0][0][0]
+        # Header should not be written
+        for call in mock_writer.writerow.call_args_list:
+            assert call.args[0] != ["starting_urls", "sitemap_urls"]
+        mock_writer.writerow.assert_called_once_with(["https://example.com", ["https://example.com/sitemap.xml"]])
 
+    @patch("os.path.exists", return_value=False)
     @patch("builtins.open", new_callable=mock_open)
-    @patch("os.path.exists")
-    def test_write_dict_to_csv_append_new(self, mock_exists, mock_file):
+    @patch("csv.writer")
+    def test_write_dict_to_csv_append_new(self, mock_csv_writer, mock_file, mock_exists):
         """Test appending data to a new CSV file with header"""
-        mock_exists.return_value = False
-        data = {"https://example.com": "https://example.com/sitemap.xml"}
+        mock_writer = mock_csv_writer.return_value
+        data = {"https://example.com": ["https://example.com/sitemap.xml"]}
         
         write_dict_to_csv(data, "test_file.csv", overwrite=False)
         
         mock_file.assert_called_once_with("test_file.csv", mode="a", newline="", encoding="utf-8")
-        handle = mock_file()
-        calls = handle.write.call_args_list
-        # Header should be written when appending to non-existing file
-        assert "starting_urls,sitemap_url\r\n" in calls[0][0][0]
-        assert "https://example.com,https://example.com/sitemap.xml\r\n" in calls[1][0][0]
+        mock_writer.writerow.assert_any_call(["starting_urls", "sitemap_urls"])
+        mock_writer.writerow.assert_any_call(["https://example.com", ["https://example.com/sitemap.xml"]])
 
+    @patch("os.path.exists", return_value=True)
     @patch("builtins.open", new_callable=mock_open)
-    @patch("os.path.exists")
-    def test_write_dict_to_csv_adds_extension(self, mock_exists, mock_file):
+    @patch("csv.writer")
+    def test_write_dict_to_csv_adds_extension(self, mock_csv_writer, mock_file, mock_exists):
         """Test that .csv extension is added if not provided"""
-        mock_exists.return_value = True
-        data = {"https://example.com": "https://example.com/sitemap.xml"}
+        data = {"https://example.com": ["https://example.com/sitemap.xml"]}
         
         write_dict_to_csv(data, "test_file", overwrite=True)
         
@@ -71,7 +68,6 @@ class TestSitemapFinder:
     def test_init(self):
         """Test initialization of SitemapFinder"""
         assert self.finder.timeout_seconds == 5
-        assert len(self.finder.common_sitemap_names) > 0
         assert "sitemap.xml" in self.finder.common_sitemap_names
     
     def test_join_base_with_relative_path(self):
@@ -94,18 +90,25 @@ class TestSitemapFinder:
     @patch.object(SitemapFinder, "confirm_sitemap_url")
     def test_check_common_locations_found(self, mock_confirm):
         """Test finding sitemap in common locations"""
-        mock_confirm.return_value = True
-        result = self.finder._check_common_locations(self.base_url)
-        assert result == f"{self.base_url}/sitemap.xml"  # First in the list
-        mock_confirm.assert_called_once()
+        mock_confirm.side_effect = lambda url: "sitemap.xml" in url
+        result = self.finder._check_common_locations(f"{self.base_url}/")
+        expected_result = [
+            "https://example.com/sitemap.xml", 
+            "https://example.com/wp-sitemap.xml", 
+            "https://example.com/page-sitemap.xml", 
+            "https://example.com/tag-sitemap.xml", 
+            "https://example.com/category-sitemap.xml", 
+            "https://example.com/post-sitemap.xml",
+        ]
+        assert sorted(result) == sorted(expected_result)
+        assert mock_confirm.call_count == len(self.finder.common_sitemap_names)
 
     @patch.object(SitemapFinder, "confirm_sitemap_url")
     def test_check_common_locations_not_found(self, mock_confirm):
         """Test when sitemap is not found in common locations"""
         mock_confirm.return_value = False
-        result = self.finder._check_common_locations(self.base_url)
-        assert result is None
-        # Should be called for each common sitemap name
+        result = self.finder._check_common_locations(f"{self.base_url}/")
+        assert result == []
         assert mock_confirm.call_count == len(self.finder.common_sitemap_names)
 
     @patch("requests.get")
@@ -113,11 +116,11 @@ class TestSitemapFinder:
         """Test finding sitemap in robots.txt"""
         mock_response = MagicMock()
         mock_response.status_code = 200
-        mock_response.text = "User-agent: *\nDisallow: /admin\nSitemap: https://example.com/custom-sitemap.xml"
+        mock_response.text = "User-agent: *\nSitemap: https://example.com/custom-sitemap.xml"
         mock_get.return_value = mock_response
         
-        result = self.finder._check_robots_txt(self.base_url)
-        assert result == "https://example.com/custom-sitemap.xml"
+        result = self.finder._check_robots_txt(f"{self.base_url}/")
+        assert result == ["https://example.com/custom-sitemap.xml"]
         mock_get.assert_called_once_with(f"{self.base_url}/robots.txt", timeout=self.finder.timeout_seconds)
 
     @patch("requests.get")
@@ -125,87 +128,76 @@ class TestSitemapFinder:
         """Test when sitemap is not found in robots.txt"""
         mock_response = MagicMock()
         mock_response.status_code = 200
-        mock_response.text = "User-agent: *\nDisallow: /admin"  # No Sitemap: directive
+        mock_response.text = "User-agent: *"  # No Sitemap directive
         mock_get.return_value = mock_response
         
-        result = self.finder._check_robots_txt(self.base_url)
-        assert result is None
+        result = self.finder._check_robots_txt(f"{self.base_url}/")
+        assert result == []
         mock_get.assert_called_once_with(f"{self.base_url}/robots.txt", timeout=self.finder.timeout_seconds)
 
     @patch("requests.get")
     def test_check_robots_txt_exception(self, mock_get):
         """Test handling exception when checking robots.txt"""
         mock_get.side_effect = Exception("Connection error")
-        
-        result = self.finder._check_robots_txt(self.base_url)
-        assert result is None
+        result = self.finder._check_robots_txt(f"{self.base_url}/")
+        assert result == []
         mock_get.assert_called_once()
 
     @patch("requests.get")
-    def test_check_html_source_link_tag(self, mock_get):
-        """Test finding sitemap in HTML link tag"""
+    @patch.object(SitemapFinder, "confirm_sitemap_url", return_value=True)
+    def test_check_html_source_found(self, mock_confirm, mock_get):
+        """Test finding sitemaps in HTML source"""
         mock_response = MagicMock()
         mock_response.status_code = 200
-        mock_response.text = '<html><head><link rel="sitemap" href="/sitemap.xml"></head></html>'
+        mock_response.text = """
+            <html><head><link rel="sitemap" href="/sitemap1.xml"></head>
+            <body><a href="https://example.com/sitemap2.xml">Sitemap</a></body></html>
+        """
         mock_get.return_value = mock_response
         
-        result = self.finder._check_html_source(self.base_url)
-        assert result == f"{self.base_url}/sitemap.xml"
-        mock_get.assert_called_once_with(self.base_url, timeout=self.finder.timeout_seconds)
-
-    @patch("requests.get")
-    def test_check_html_source_href(self, mock_get):
-        """Test finding sitemap reference in HTML href"""
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.text = '<html><body><a href="sitemap.xml">Sitemap</a></body></html>'
-        mock_get.return_value = mock_response
-        
-        result = self.finder._check_html_source(self.base_url)
-        assert result == "https://example.com/sitemap.xml"
-        mock_get.assert_called_once_with(self.base_url, timeout=self.finder.timeout_seconds)
+        result = self.finder._check_html_source(f"{self.base_url}/")
+        assert set(result) == {f"{self.base_url}/sitemap1.xml", f"{self.base_url}/sitemap2.xml"}
+        mock_get.assert_called_once_with(f"{self.base_url}/", timeout=self.finder.timeout_seconds)
+        assert mock_confirm.call_count == 3
 
     @patch("requests.get")
     def test_check_html_source_not_found(self, mock_get):
         """Test when sitemap is not found in HTML source"""
         mock_response = MagicMock()
         mock_response.status_code = 200
-        mock_response.text = '<html><body>No sitemap references here</body></html>'
+        mock_response.text = "<html><body>No sitemap references here</body></html>"
         mock_get.return_value = mock_response
         
-        result = self.finder._check_html_source(self.base_url)
-        assert result is None
-        mock_get.assert_called_once_with(self.base_url, timeout=self.finder.timeout_seconds)
+        result = self.finder._check_html_source(f"{self.base_url}/")
+        assert result == []
+        mock_get.assert_called_once_with(f"{self.base_url}/", timeout=self.finder.timeout_seconds)
 
     @patch("requests.get")
-    @patch.object(SitemapFinder, "confirm_sitemap_url")
-    def test_check_xml_files_in_root(self, mock_confirm, mock_get):
+    @patch.object(SitemapFinder, "confirm_sitemap_url", return_value=True)
+    def test_check_xml_files_in_root_found(self, mock_confirm, mock_get):
         """Test finding XML files in root directory"""
         mock_response = MagicMock()
         mock_response.status_code = 200
-        mock_response.text = '<html><body><a href="sitemap-index.xml">Sitemap</a></body></html>'
+        mock_response.text = "<html><body><a href=\"sitemap-index.xml\">Sitemap</a></body></html>"
         mock_get.return_value = mock_response
-        mock_confirm.return_value = True
         
-        result = self.finder._check_xml_files_in_root(self.base_url)
-        assert result == f"{self.base_url}/sitemap-index.xml"
-        mock_get.assert_called_once_with(self.base_url, timeout=self.finder.timeout_seconds)
-        mock_confirm.assert_called_once()
+        result = self.finder._check_xml_files_in_root(f"{self.base_url}/")
+        assert result == [f"{self.base_url}/sitemap-index.xml"]
+        mock_get.assert_called_once_with(f"{self.base_url}/", timeout=self.finder.timeout_seconds)
+        mock_confirm.assert_called_once_with(f"{self.base_url}/sitemap-index.xml")
 
     @patch("requests.get")
     @patch.object(SitemapFinder, "confirm_sitemap_url")
     def test_check_xml_files_in_root_not_found(self, mock_confirm, mock_get):
-        """Test when XML files are not found in root directory"""
+        """Test when no suitable XML files are found in root directory"""
         mock_response = MagicMock()
         mock_response.status_code = 200
-        mock_response.text = '<html><body><a href="page.html">Not sitemap</a></body></html>'
+        mock_response.text = "<html><body><a href=\"data.xml\">Other XML</a></body></html>"
         mock_get.return_value = mock_response
-        mock_confirm.return_value = True
         
-        result = self.finder._check_xml_files_in_root(self.base_url)
-        assert result is None
-        mock_get.assert_called_once_with(self.base_url, timeout=self.finder.timeout_seconds)
-        # Confirm should not be called since no sitemap-like XML files were found
+        result = self.finder._check_xml_files_in_root(f"{self.base_url}/")
+        assert result == []
+        mock_get.assert_called_once_with(f"{self.base_url}/", timeout=self.finder.timeout_seconds)
         mock_confirm.assert_not_called()
 
     @patch("requests.head")
@@ -213,15 +205,27 @@ class TestSitemapFinder:
         """Test successful confirmation of sitemap URL"""
         mock_response = MagicMock()
         mock_response.status_code = 200
+        mock_response.headers.get.return_value = "application/xml"
         mock_head.return_value = mock_response
         
-        result = self.finder.confirm_sitemap_url("https://example.com/sitemap.xml")
+        result = self.finder.confirm_sitemap_url(f"{self.base_url}/sitemap.xml")
         assert result is True
         mock_head.assert_called_once_with(
-            "https://example.com/sitemap.xml", 
+            f"{self.base_url}/sitemap.xml", 
             timeout=self.finder.timeout_seconds,
             allow_redirects=True
         )
+
+    @patch("requests.head")
+    def test_confirm_sitemap_url_wrong_content_type(self, mock_head):
+        """Test confirmation fails with incorrect Content-Type"""
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.headers.get.return_value = "text/html"
+        mock_head.return_value = mock_response
+        
+        result = self.finder.confirm_sitemap_url(f"{self.base_url}/sitemap.xml")
+        assert result is False
 
     @patch("requests.head")
     def test_confirm_sitemap_url_not_found(self, mock_head):
@@ -230,7 +234,7 @@ class TestSitemapFinder:
         mock_response.status_code = 404
         mock_head.return_value = mock_response
         
-        result = self.finder.confirm_sitemap_url("https://example.com/sitemap.xml")
+        result = self.finder.confirm_sitemap_url(f"{self.base_url}/sitemap.xml")
         assert result is False
         mock_head.assert_called_once()
 
@@ -239,7 +243,7 @@ class TestSitemapFinder:
         """Test handling exception when confirming sitemap URL"""
         mock_head.side_effect = Exception("Connection error")
         
-        result = self.finder.confirm_sitemap_url("https://example.com/sitemap.xml")
+        result = self.finder.confirm_sitemap_url(f"{self.base_url}/sitemap.xml")
         assert result is False
         mock_head.assert_called_once()
 
@@ -252,78 +256,51 @@ class TestSitemapFinder:
     @patch.object(SitemapFinder, "_check_robots_txt")
     @patch.object(SitemapFinder, "_check_html_source")
     @patch.object(SitemapFinder, "_check_xml_files_in_root")
-    @patch.object(SitemapFinder, "_fix_http")
-    def test_find_found_in_common_locations(
-        self, mock_fix, mock_xml, mock_html, mock_robots, mock_common
-    ):
-        """Test finding sitemap using common locations method"""
-        mock_common.return_value = "https://example.com/sitemap.xml"
-        mock_fix.return_value = "https://example.com/sitemap.xml"
+    def test_find_aggregates_unique_urls(self, mock_xml, mock_html, mock_robots, mock_common):
+        """Test find() aggregates unique URLs from all methods"""
+        mock_common.return_value = ["https://example.com/sitemap.xml"]
+        mock_robots.return_value = ["https://example.com/robots.xml", "https://example.com/sitemap.xml"]
+        mock_html.return_value = []
+        mock_xml.return_value = ["https://example.com/root.xml"]
         
         result = self.finder.find(self.base_url)
         
-        assert result == "https://example.com/sitemap.xml"
-        mock_common.assert_called_once()
-        mock_fix.assert_called_once_with("https://example.com/sitemap.xml")
-        # Other methods should not be called
-        mock_robots.assert_not_called()
-        mock_html.assert_not_called()
-        mock_xml.assert_not_called()
-
-    @patch.object(SitemapFinder, "_check_common_locations")
-    @patch.object(SitemapFinder, "_check_robots_txt")
-    @patch.object(SitemapFinder, "_check_html_source")
-    @patch.object(SitemapFinder, "_check_xml_files_in_root")
-    @patch.object(SitemapFinder, "_fix_http")
-    def test_find_found_in_robots(
-        self, mock_fix, mock_xml, mock_html, mock_robots, mock_common
-    ):
-        """Test finding sitemap using robots.txt method"""
-        mock_common.return_value = None
-        mock_robots.return_value = "https://example.com/sitemap-from-robots.xml"
-        mock_fix.return_value = "https://example.com/sitemap-from-robots.xml"
-        
-        result = self.finder.find(self.base_url)
-        
-        assert result == "https://example.com/sitemap-from-robots.xml"
-        mock_common.assert_called_once()
-        mock_robots.assert_called_once()
-        mock_fix.assert_called_once_with("https://example.com/sitemap-from-robots.xml")
-        # Later methods should not be called
-        mock_html.assert_not_called()
-        mock_xml.assert_not_called()
-
-    @patch.object(SitemapFinder, "_check_common_locations")
-    @patch.object(SitemapFinder, "_check_robots_txt")
-    @patch.object(SitemapFinder, "_check_html_source")
-    @patch.object(SitemapFinder, "_check_xml_files_in_root")
-    def test_find_not_found(self, mock_xml, mock_html, mock_robots, mock_common):
-        """Test when sitemap is not found using any method"""
-        mock_common.return_value = None
-        mock_robots.return_value = None
-        mock_html.return_value = None
-        mock_xml.return_value = None
-        
-        result = self.finder.find(self.base_url)
-        
-        assert result is None
+        expected = {
+            "https://example.com/sitemap.xml",
+            "https://example.com/robots.xml",
+            "https://example.com/root.xml"
+        }
+        assert result == expected
         mock_common.assert_called_once()
         mock_robots.assert_called_once()
         mock_html.assert_called_once()
         mock_xml.assert_called_once()
 
-    def test_find_normalizes_url(self):
+    @patch.object(SitemapFinder, "_check_common_locations", return_value=[])
+    @patch.object(SitemapFinder, "_check_robots_txt", return_value=[])
+    @patch.object(SitemapFinder, "_check_html_source", return_value=[])
+    @patch.object(SitemapFinder, "_check_xml_files_in_root", return_value=[])
+    def test_find_not_found(self, mock_xml, mock_html, mock_robots, mock_common):
+        """Test when sitemap is not found using any method"""
+        result = self.finder.find(self.base_url)
+        assert result == set()
+        mock_common.assert_called_once()
+        mock_robots.assert_called_once()
+        mock_html.assert_called_once()
+        mock_xml.assert_called_once()
+
+    @patch.object(SitemapFinder, "_check_common_locations", return_value=[])
+    @patch.object(SitemapFinder, "_check_robots_txt", return_value=[])
+    @patch.object(SitemapFinder, "_check_html_source", return_value=[])
+    @patch.object(SitemapFinder, "_check_xml_files_in_root", return_value=[])
+    def test_find_normalizes_url(self, mock_xml, mock_html, mock_robots, mock_common):
         """Test that URLs are normalized before processing"""
-        with patch.object(SitemapFinder, "_check_common_locations", return_value=None) as mock_common, \
-             patch.object(SitemapFinder, "_check_robots_txt", return_value=None) as mock_robots, \
-             patch.object(SitemapFinder, "_check_html_source", return_value=None) as mock_html, \
-             patch.object(SitemapFinder, "_check_xml_files_in_root", return_value=None) as mock_xml:
-            
-            # Test without protocol
-            self.finder.find("example.com")
-            mock_common.assert_called_with("https://example.com/")
-            
-            # Test without trailing slash
-            mock_common.reset_mock()
-            self.finder.find("https://example.com")
-            mock_common.assert_called_with("https://example.com/")
+        # Test without protocol and without trailing slash
+        self.finder.find("example.com")
+        
+        # All methods should be called with a normalized URL
+        normalized_url = "https://example.com/"
+        mock_common.assert_called_with(normalized_url)
+        mock_robots.assert_called_with(normalized_url)
+        mock_html.assert_called_with(normalized_url)
+        mock_xml.assert_called_with(normalized_url)
