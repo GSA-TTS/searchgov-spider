@@ -93,9 +93,10 @@ class SitemapMonitor:
         
         for url in record.sitemap_urls or []:
             if sitemap_finder.confirm_sitemap_url(url):
+                log.info(f"Confirmed predefined sitemap URL {url} for {starting_url}")
                 predefined_sitemaps.add(url)
             else:
-                log.warning(f"Could not confirm predefined sitemap URL '{url}' for {starting_url}")
+                log.warning(f"Could not confirm predefined sitemap URL {url} for {starting_url}")
 
         # Step 2: Discover new sitemaps
         found_sitemaps: Set[str] = set()
