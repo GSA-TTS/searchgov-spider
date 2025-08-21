@@ -5,7 +5,7 @@ from io import BytesIO
 from typing import Any
 
 from pypdf import PageObject, PdfReader
-from pypdf.errors import PdfReadError
+from pypdf.errors import FileNotDecryptedError, PdfReadError
 from pypdf.generic import IndirectObject
 
 from search_gov_crawler.elasticsearch.i14y_helper import (
@@ -95,15 +95,15 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str | None =
         log.warning("Could not download PDF file at %s: %s", url, err)
         return None
 
-    if reader.is_encrypted:
-        log.warning("PDF is encrypted, cannot parse: %s", url)
+    try:
+        meta_values = get_pdf_meta(reader)
+        main_content, pages = get_pdf_text(reader)
+    except FileNotDecryptedError as err:
+        log.warning("Could not decrypt PDF file at %s: %s", url, err)
         return None
-
-    meta_values = get_pdf_meta(reader)
 
     basename, extension = get_base_extension(url)
     title = meta_values.get("Title") or separate_file_name(f"{basename}.{extension}")
-    main_content, pages = get_pdf_text(reader)
     main_content = main_content or title
 
     sha_id = generate_url_sha256(url)

@@ -129,7 +129,7 @@ def benchmark_from_file(input_file: Path, runtime_offset_seconds: int):
     for crawl_site in crawl_sites:
         apscheduler_job = create_apscheduler_job(
             runtime_offset_seconds=runtime_offset_seconds,
-            **crawl_site.to_dict(exclude=("schedule", "sitemap_url", "check_sitemap_hours")),
+            **crawl_site.to_dict(exclude=("schedule", "sitemap_urls", "check_sitemap_hours")),
         )
         scheduler.add_job(**apscheduler_job, jobstore="memory")
     scheduler.start()

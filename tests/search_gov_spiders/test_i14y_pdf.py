@@ -1,7 +1,7 @@
-from datetime import datetime, timedelta, timezone, UTC
+from datetime import datetime, timedelta, timezone
 
 import pytest
-from pypdf.errors import PdfReadError
+from pypdf.errors import FileNotDecryptedError, PdfReadError
 from pypdf.generic import ByteStringObject, DictionaryObject, IndirectObject, TextStringObject
 
 from search_gov_crawler.elasticsearch import convert_pdf_i14y
@@ -221,9 +221,14 @@ def test_convert_pdf_normal(monkeypatch):
 
 
 def test_convert_pdf_encrypted(monkeypatch):
-    """Test convert_pdf when the PDF is encrypted (should return None)."""
+    """Test convert_pdf when the PDF is actually encrypted (should return None)."""
+
+    def raise_encrypted_error(*args, **kwargs):
+        raise FileNotDecryptedError("PDF is encrypted and cannot be read.")
+
     fake_reader = FakePdfReader(None, is_encrypted=True)
     monkeypatch.setattr(convert_pdf_i14y, "PdfReader", lambda stream: fake_reader)
+    monkeypatch.setattr(convert_pdf_i14y, "get_pdf_meta", raise_encrypted_error)
     response_bytes = b"dummy bytes representing pdf"
     url = "http://example.com/encrypted.pdf"
     result = convert_pdf_i14y.convert_pdf(response_bytes, url)

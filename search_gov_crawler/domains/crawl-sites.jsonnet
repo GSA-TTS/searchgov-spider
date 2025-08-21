@@ -14,7 +14,7 @@ local CrawlSite(domain) = {
   starting_urls: domain.config.starting_urls,
   depth_limit: domain.config.depth_limit,
   deny_paths: domain.config.deny_paths,
-  sitemap_url: domain.config.sitemap_url,
+  sitemap_urls: domain.config.sitemap_urls,
   check_sitemap_hours: domain.config.check_sitemap_hours,
 };
 
