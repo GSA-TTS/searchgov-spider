@@ -5,7 +5,7 @@ from io import BytesIO
 from typing import Any
 
 from pypdf import PageObject, PdfReader
-from pypdf.errors import PdfReadError, FileNotDecryptedError
+from pypdf.errors import FileNotDecryptedError, PdfReadError
 from pypdf.generic import IndirectObject
 
 from search_gov_crawler.elasticsearch.i14y_helper import (
