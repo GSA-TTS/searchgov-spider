@@ -25,7 +25,7 @@
 ## Monday (9)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|Navy All Hands Magazine|06:00|allhands.navy.mil|Y|3||
+|Navy All Hands Magazine|06:00|allhands.navy.mil|Y|8||
 |www.justthinktwice.gov (jtt)|06:38|justthinktwice.gov|N|8||
 |USACE North Atlantic Division (usace_nad)|07:58|nad.usace.army.mil|N|3||
 |ED Office of Hearings and Appeals OHA|09:30|oha.ed.gov|N|3||
@@ -73,7 +73,7 @@
 |childcare.gov (usagov-replacement)|01:12|childcare.gov|N|3||
 |ohss.dhs.gov (usagov-replacement)|02:22|ohss.dhs.gov|N|3||
 |installations.militaryonesource.mil (usagov-replacement)|03:32|installations.militaryonesource.mil|N|3||
-|ods.od.nih.gov (usagov-replacement)|03:42|ods.od.nih.gov|N|3||
+|ods.od.nih.gov (usagov-replacement)|03:42|ods.od.nih.gov|N|8||
 |www.uscg.mil (uscg_all)|03:49|uscg.mil|N|8||
 |Air Reserve Personnel Center (arpc)|06:28|arpc.afrc.af.mil|N|8||
 |173rd Fighter Wing, Oregon Air National Guard (afpw_173fw)|09:58|173fw.ang.af.mil|N|8||
