@@ -534,19 +534,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "search.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Search.gov (usasearch)",
-      "output_target": "elasticsearch",
-      "schedule": "15 06 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.search.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "bep.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -4300,7 +4287,7 @@
       "allowed_domains": "digital.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
-      "depth_limit": 3,
+      "depth_limit": 8,
       "handle_javascript": false,
       "name": "digital.gov (usagov-replacement)",
       "output_target": "elasticsearch",

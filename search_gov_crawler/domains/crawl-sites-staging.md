@@ -1,7 +1,7 @@
 # Staging Schedule
  * [Sunday (229)](#sunday-229)
  * [Monday (216)](#monday-216)
- * [Tuesday (240)](#tuesday-240)
+ * [Tuesday (239)](#tuesday-239)
  * [Wednesday (236)](#wednesday-236)
  * [Thursday (243)](#thursday-243)
  * [Friday (250)](#friday-250)
@@ -463,7 +463,7 @@
 |EBCCP Cancer Control (ebccp.cancercontrol.cancer.gov)|23:29|ebccp.cancercontrol.cancer.gov|N|8||
 
 
-## Tuesday (240)
+## Tuesday (239)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Minot Air Force Base (minot)|00:00|minot.af.mil|N|8||
@@ -529,7 +529,6 @@
 |Founders Online (usagov-replacement)|06:00|founders.archives.gov|N|3||
 |fiscaldata.treasury.gov (usagov-replacement)|06:00|fiscaldata.treasury.gov|N|3||
 |www.fema.gov (usagov-replacement)|06:12|fema.gov|N|3||
-|Search.gov (usasearch)|06:15|search.gov|N|3||
 |Bureau of Engraving and Printing (bep)|06:15|bep.gov|N|3||
 |Department of Energy - Hydrogen (doe-h2)|06:15|hydrogen.energy.gov|N|3||
 |Eisenhower Presidential Library (eisenhower)|06:15|eisenhowerlibrary.gov|N|8||
@@ -1118,7 +1117,7 @@
 |snaped.fns.usda.gov (snap-edconnection)|15:40|snaped.fns.usda.gov|N|8||
 |Headquarters RIO (airforce_hqrio)|15:42|hqrio.afrc.af.mil|N|8||
 |Navy CNFK (navy_cnfk)|15:46|cnrk.cnic.navy.mil|N|3||
-|digital.gov (usagov-replacement)|16:12|digital.gov|N|3||
+|digital.gov (usagov-replacement)|16:12|digital.gov|N|8||
 |182nd Airlift Wing, Illinois Air National Guard (afpw_182aw)|16:14|182aw.ang.af.mil|N|8||
 |law.lis.virginia.gov (usagov-replacement)|16:22|law.lis.virginia.gov|N|3||
 |Navy C3F (navy_c3f)|16:29|c3f.navy.mil|N|3||

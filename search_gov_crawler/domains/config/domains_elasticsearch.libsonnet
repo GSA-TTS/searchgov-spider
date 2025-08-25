@@ -13,13 +13,6 @@ local output_target = 'elasticsearch';
 
   },
   {
-    name: 'Search.gov (usasearch)',
-    config: DomainConfig(allowed_domains='search.gov',
-                         starting_urls='https://www.search.gov/',
-                         schedule='15 06 * * TUE',
-                         output_target=output_target),
-  },
-  {
     name: 'Bureau of Engraving and Printing (bep)',
     config: DomainConfig(allowed_domains='bep.gov',
                          starting_urls='https://www.bep.gov/',
@@ -2332,7 +2325,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://digital.gov/',
                          schedule='12 16 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'democrats-appropriations.house.gov (usagov-replacement)',
