@@ -158,6 +158,33 @@ def test_spider_middleware_allow_query_string_request(dont_filter, allow_query_s
 
 
 @pytest.mark.parametrize(
+    ("url_in", "url_out"),
+    [
+        ("https://www.example.com/test", "https://www.example.com/test"),
+        ("http://www.example.com/test;jsessionid=12345", "http://www.example.com/test"),
+        ("http://www.example.com/test;JSESSIONID=12345", "http://www.example.com/test"),
+        (
+            "https://www.example.com/test/1/more;jsessionid=67890",
+            "https://www.example.com/test/1/more",
+        ),
+        ("http://www.example.com/test;jsessionid=12345?query=string", "http://www.example.com/test?query=string"),
+    ],
+)
+def test_spider_middleware_jsessionid_removal_request(url_in, url_out):
+    crawler = get_crawler(Spider)
+    crawler.spider = Spider.from_crawler(
+        crawler=crawler,
+        name="test",
+        allow_query_string=True,
+        allowed_domains="example.com",
+    )
+    mw = SearchGovSpidersSpiderMiddleware.from_crawler(crawler)
+    request = Request(url_in)
+    processed_request = mw.get_processed_request(request=request, response=None)
+    assert processed_request.url == url_out
+
+
+@pytest.mark.parametrize(
     ("dont_filter", "allow_query_string", "none_test"),
     [(True, True, "is_not"), (True, False, "is_not"), (False, True, "is_not"), (False, False, "is_")],
 )
@@ -178,6 +205,34 @@ def test_spider_middleware_allow_query_string_item(dont_filter, allow_query_stri
     )
 
     assert getattr(operator, none_test)(mw.get_processed_item(item, response), None)
+
+
+@pytest.mark.parametrize(
+    ("url_in", "url_out"),
+    [
+        ("https://www.example.com/test", "https://www.example.com/test"),
+        ("http://www.example.com/test;jsessionid=12345", "http://www.example.com/test"),
+        ("http://www.example.com/test;JSESSIONID=12345", "http://www.example.com/test"),
+        (
+            "https://www.example.com/test/1/more;jsessionid=67890",
+            "https://www.example.com/test/1/more",
+        ),
+        ("http://www.example.com/test;jsessionid=12345?query=string", "http://www.example.com/test?query=string"),
+    ],
+)
+def test_spider_middleware_jsessionid_removal_item(url_in, url_out):
+    crawler = get_crawler(Spider)
+    crawler.spider = Spider.from_crawler(
+        crawler=crawler,
+        name="test",
+        allow_query_string=True,
+        allowed_domains="example.com",
+    )
+    mw = SearchGovSpidersSpiderMiddleware.from_crawler(crawler)
+    item = SearchGovSpidersItem(url=url_in)
+    response = Response(url=url_in, status=200, request=Request(url_in))
+
+    assert mw.get_processed_item(item, response).get("url") == url_out
 
 
 def test_spider_middleware_spider_exception_start_url(caplog):
