@@ -274,7 +274,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.glerl.noaa.gov/',
                          schedule='11 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['/res/recon/data/']),
   },
   {
     name: 'NOAA Research (research)',
