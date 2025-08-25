@@ -1389,7 +1389,7 @@
 |California Nevada River Forecast Center (cnrfc)|19:10|cnrfc.noaa.gov|N|3||
 |Science On a Sphere (sos)|19:10|sos.noaa.gov|N|3||
 |Forms Warehouse (formswarehouse)|19:10|forms.cgaux.org|N|3||
-|Great Lakes Environmental Research Laboratory (glerl)|19:11|glerl.noaa.gov|N|8||
+|Great Lakes Environmental Research Laboratory (glerl)|19:11|glerl.noaa.gov|N|8|/res/recon/data/|
 |NOAA Research (research)|19:11|research.noaa.gov|N|3||
 |Pacific Marine Environmental Laboratory (pmel)|19:11|pmel.noaa.gov|N|3||
 |National Marine Sanctuaries (sanctuaries)|19:12|sanctuaries.noaa.gov|N|3||

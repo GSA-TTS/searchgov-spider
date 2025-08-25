@@ -956,7 +956,9 @@
       "allow_query_string": false,
       "allowed_domains": "glerl.noaa.gov",
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "/res/recon/data/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Great Lakes Environmental Research Laboratory (glerl)",
