@@ -995,7 +995,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.usgs.gov/',
                          schedule='11 11 * * TUE',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['pubs.usgs.gov/metrics/']),
   },
   {
     name: 'uscode.house.gov (usagov-replacement)',
@@ -9074,7 +9075,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://pubs.usgs.gov',
                          schedule='19 13 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=3,
+                         deny_paths=['/metrics/']),
   },
   {
     name: 'BOEM Data Center (doi.gov_all_bureaus)',

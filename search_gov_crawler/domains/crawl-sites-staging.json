@@ -2128,7 +2128,9 @@
       "allow_query_string": false,
       "allowed_domains": "usgs.gov",
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "pubs.usgs.gov/metrics/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.usgs.gov (usagov-replacement)",
@@ -15239,7 +15241,9 @@
       "allow_query_string": false,
       "allowed_domains": "pubs.usgs.gov",
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "/metrics/"
+      ],
       "depth_limit": 3,
       "handle_javascript": false,
       "name": "USGS Publications Warehouse (doi.gov_all_bureaus)",

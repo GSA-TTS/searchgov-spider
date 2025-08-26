@@ -161,7 +161,7 @@
 |Joint UNC (joint_unc)|13:09|unc.mil|N|3||
 |125th Fighter Wing (afpw_125fw and afpw_flang)|13:15|125fw.ang.af.mil|N|8||
 |ArchivesSpace.NAL.USDA.gov (USDA NAL)|13:15|archivesspace.nal.usda.gov|N|3||
-|USGS Publications Warehouse (doi.gov_all_bureaus)|13:19|pubs.usgs.gov|N|3||
+|USGS Publications Warehouse (doi.gov_all_bureaus)|13:19|pubs.usgs.gov|N|3|/metrics/|
 |Justice COPS Portal (justice-cops)|13:42|portal.cops.usdoj.gov|N|3||
 |New depth 8 (br.usembassy.gov/pt)|13:50|br.usembassy.gov/pt|N|8||
 |Air Force Nuclear Weapons Center (usaf_afnwc)|13:51|afnwc.af.mil|N|8||
@@ -583,7 +583,7 @@
 |NSDUH (nsduh)|10:56|nsduhweb.rti.org|N|8||
 |tricare_nhr|11:00|rota.tricare.mil|N|8||
 |Kunsan Air Base (kunsan)|11:05|kunsan.af.mil|N|8||
-|www.usgs.gov (usagov-replacement)|11:11|usgs.gov|N|8||
+|www.usgs.gov (usagov-replacement)|11:11|usgs.gov|N|8|pubs.usgs.gov/metrics/|
 |102nd Intelligence Wing (afpw_102iw)|11:15|102iw.ang.af.mil|N|8||
 |New depth 8 (kz.usembassy.gov/ru)|11:18|kz.usembassy.gov/ru|N|8||
 |apps.irs.gov (usagov-replacement)|11:30|apps.irs.gov|N|3||
