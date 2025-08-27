@@ -45,7 +45,7 @@ def test_crawl_site_to_dict(base_crawl_site_args, exclude):
         "schedule": None,
         "deny_paths": None,
         "check_sitemap_hours": None,
-        "sitemap_url": None,
+        "sitemap_urls": None,
         "job_id": cs.job_id,
     }
 
