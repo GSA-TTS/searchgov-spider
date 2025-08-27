@@ -10151,7 +10151,7 @@
       "allowed_domains": "macdill.af.mil",
       "check_sitemap_hours": null,
       "deny_paths": [
-         "/STEM/STEAM/igphoto/"
+         "/igphoto/"
       ],
       "depth_limit": 8,
       "handle_javascript": false,
