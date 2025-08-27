@@ -1,8 +1,9 @@
 // elasticsearch domain config for export
 local DomainConfig = import 'domain_config.libsonnet';
 local output_target = 'elasticsearch';
+
+// list of domains
 [
-  // start long running domains first
   {
     name: 'NIH Research Festival (nih-oir-research_festival)',
     config: DomainConfig(allowed_domains='researchfestival.nih.gov',
@@ -10,15 +11,6 @@ local output_target = 'elasticsearch';
                          schedule='00 06 * * TUE',
                          output_target=output_target),
 
-  },
-
-  // run the rest a few minutes later
-  {
-    name: 'Search.gov (usasearch)',
-    config: DomainConfig(allowed_domains='search.gov',
-                         starting_urls='https://www.search.gov/',
-                         schedule='15 06 * * TUE',
-                         output_target=output_target),
   },
   {
     name: 'Bureau of Engraving and Printing (bep)',
@@ -39,7 +31,8 @@ local output_target = 'elasticsearch';
     config: DomainConfig(allowed_domains='eisenhowerlibrary.gov',
                          starting_urls='https://www.eisenhowerlibrary.gov/',
                          schedule='15 06 * * TUE',
-                         output_target=output_target),
+                         output_target=output_target,
+                         depth_limit=8),
   },
   {
     name: 'CDFI Fund (cdfifund)',
@@ -48,8 +41,6 @@ local output_target = 'elasticsearch';
                          schedule='15 06 * * TUE',
                          output_target=output_target),
   },
-
-  // Batch 4 - NOAA domains:
   {
     name: 'NOAA (noaa)',
     config: DomainConfig(allowed_domains='noaa.gov',
@@ -178,7 +169,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://oceanexplorer.noaa.gov/',
                          schedule='06 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA Library Repository (repository.library)',
@@ -234,7 +225,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://coast.noaa.gov/',
                          schedule='09 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Atlantic Oceanographic and Meteorological Laboratory (aoml)',
@@ -250,7 +241,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://psl.noaa.gov/',
                          schedule='10 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'California Nevada River Forecast Center (cnrfc)',
@@ -266,7 +257,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://sos.noaa.gov/',
                          schedule='10 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Great Lakes Environmental Research Laboratory (glerl)',
@@ -274,7 +265,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.glerl.noaa.gov/',
                          schedule='11 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['/res/recon/data/']),
   },
   {
     name: 'NOAA Research (research)',
@@ -298,7 +290,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://sanctuaries.noaa.gov/',
                          schedule='12 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Geostationary Operational Environmental Satellites (goes)',
@@ -362,7 +354,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://oceantoday.noaa.gov/',
                          schedule='14 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA Library (library)',
@@ -564,8 +556,6 @@ local output_target = 'elasticsearch';
                          output_target=output_target,
                          depth_limit=3),
   },
-
-  // usagov replacement domains
   {
     name: 'USA.gov (usagov-replacement)',
     config: DomainConfig(allowed_domains='usa.gov',
@@ -653,7 +643,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://consumer.ftc.gov/',
                          schedule='15 00 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'National Park Service (usagov-replacement)',
@@ -725,7 +715,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.dol.gov/',
                          schedule='30 06 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Dept of Treasury (usagov-replacement)',
@@ -733,7 +723,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://home.treasury.gov/',
                          schedule='45 06 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'SSA Blog (usagov-replacement)',
@@ -917,7 +907,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.treasurydirect.gov/',
                          schedule='44 21 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.cms.gov (usagov-replacement)',
@@ -981,7 +971,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.usda.gov/',
                          schedule='34 08 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.fns.usda.gov (usagov-replacement)',
@@ -1005,7 +995,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.usgs.gov/',
                          schedule='11 11 * * TUE',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['pubs.usgs.gov/metrics/']),
   },
   {
     name: 'uscode.house.gov (usagov-replacement)',
@@ -1133,7 +1124,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.login.gov/',
                          schedule='30 01 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.nasa.gov (usagov-replacement)',
@@ -1157,7 +1148,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://2021-2025.state.gov/',
                          schedule='30 04 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.atf.gov (usagov-replacement)',
@@ -1349,7 +1340,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://fiscal.treasury.gov/',
                          schedule='00 04 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.nhtsa.gov (usagov-replacement)',
@@ -1389,7 +1380,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://nces.ed.gov/',
                          schedule='00 09 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.reginfo.gov (usagov-replacement)',
@@ -1589,7 +1580,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://nida.nih.gov/',
                          schedule='13 13 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.acquisition.gov (usagov-replacement)',
@@ -1661,7 +1652,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://oig.hhs.gov/',
                          schedule='22 22 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.cancer.gov (usagov-replacement)',
@@ -1693,7 +1684,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://ofac.treasury.gov/',
                          schedule='42 21 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'bjs.ojp.gov (usagov-replacement)',
@@ -1765,7 +1756,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://science.nasa.gov/',
                          schedule='24 12 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'mx.usembassy.gov (usagov-replacement)',
@@ -1773,7 +1764,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://mx.usembassy.gov/',
                          schedule='22 11 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'forecast.weather.gov (usagov-replacement)',
@@ -1861,7 +1852,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://ml.usembassy.gov/',
                          schedule='59 01 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.ers.usda.gov (usagov-replacement)',
@@ -2088,7 +2079,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.disasterassistance.gov/',
                          schedule='00 12 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'bean.house.gov (usagov-replacement)',
@@ -2112,7 +2103,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.grants.gov/',
                          schedule='30 06 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'oversightdemocrats.house.gov (usagov-replacement)',
@@ -2192,7 +2183,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://share.america.gov/',
                          schedule='00 20 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'wwwnc.cdc.gov (usagov-replacement)',
@@ -2264,7 +2255,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://oig.ssa.gov/',
                          schedule='12 07 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'data.gov (usagov-replacement)',
@@ -2336,7 +2327,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://digital.gov/',
                          schedule='12 16 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'democrats-appropriations.house.gov (usagov-replacement)',
@@ -2448,7 +2439,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.treasury.gov/',
                          schedule='22 06 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'dfpi.ca.gov (usagov-replacement)',
@@ -2625,7 +2616,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://careers.state.gov/',
                          schedule='32 04 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'americanenglish.state.gov (usagov-replacement)',
@@ -2697,7 +2688,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://2017-2021.state.gov/',
                          schedule='32 13 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.msha.gov (usagov-replacement)',
@@ -2705,7 +2696,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.msha.gov/',
                          schedule='32 13 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'mikejohnson.house.gov (usagov-replacement)',
@@ -2817,7 +2808,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://ods.od.nih.gov/',
                          schedule='42 03 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'ies.ed.gov (usagov-replacement)',
@@ -2825,7 +2816,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://ies.ed.gov/',
                          schedule='42 04 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NASA Earth Observatory (usagov-replacement)',
@@ -2833,7 +2824,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://earthobservatory.nasa.gov/',
                          schedule='42 05 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy (usa.gov-replacement)',
@@ -2913,7 +2904,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://ca.usembassy.gov/',
                          schedule='42 20 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'FEMA Training (usagov-replacement)',
@@ -2940,8 +2931,6 @@ local output_target = 'elasticsearch';
                          output_target=output_target,
                          depth_limit=3),
   },
-
-  //Batch 6 TriCare
   {
     name: 'tricare_newsroom',
     config: DomainConfig(allowed_domains='newsroom.tricare.mil',
@@ -3814,8 +3803,6 @@ local output_target = 'elasticsearch';
                          output_target=output_target,
                          depth_limit=8),
   },
-
-  //Batch 3
   {
     name: 'boem',
     config: DomainConfig(allowed_domains='boem.gov',
@@ -3904,8 +3891,6 @@ local output_target = 'elasticsearch';
                          output_target=output_target,
                          depth_limit=3),
   },
-
-  // Batch 7 - Air force:
   {
     name: 'Air Force Learning Professionals (aflearningprofessionals)',
     config: DomainConfig(allowed_domains='learningprofessionals.af.mil',
@@ -5157,8 +5142,6 @@ local output_target = 'elasticsearch';
                          output_target=output_target,
                          depth_limit=8),
   },
-
-  // Batch 5 - NIH
   {
     name: 'National Eye Institute (www.nei.nih.gov)',
     config: DomainConfig(allowed_domains='nei.nih.gov',
@@ -5568,9 +5551,6 @@ local output_target = 'elasticsearch';
                          output_target=output_target,
                          depth_limit=8),
   },
-
-  // Batch 14 new Air Force
-
   {
     name: 'Youngstown Air Reserve Station (youngstown)',
     config: DomainConfig(allowed_domains='youngstown.afrc.af.mil',
@@ -5955,7 +5935,7 @@ local output_target = 'elasticsearch';
                          schedule='37 4 * * TUE',
                          output_target=output_target,
                          depth_limit=8,
-                         deny_paths=['/STEM/STEAM/igphoto/']),
+                         deny_paths=['/igphoto/']),
   },
   {
     name: 'Luke Air Force Base (luke)',
@@ -6741,8 +6721,6 @@ local output_target = 'elasticsearch';
                          output_target=output_target,
                          depth_limit=3),
   },
-
-  // Batch 8 (fixed)
   {
     name: 'radar.weather.gov (nws.noaa.gov)',
     config: DomainConfig(allowed_domains='radar.weather.gov',
@@ -6775,15 +6753,13 @@ local output_target = 'elasticsearch';
                          output_target=output_target,
                          depth_limit=3),
   },
-
-  // Batch 9 (fixed)
   {
     name: 'seedfund.nsf.gov (nsf)',
     config: DomainConfig(allowed_domains='seedfund.nsf.gov',
                          starting_urls='https://seedfund.nsf.gov/',
                          schedule='0 8 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'iucrc.nsf.gov (nsf)',
@@ -6791,10 +6767,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://iucrc.nsf.gov/',
                          schedule='0 12 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
-
-  // batch 15
   {
     name: 'Office of Research Facilities (nih)',
     config: DomainConfig(allowed_domains='orf.od.nih.gov',
@@ -6900,8 +6874,6 @@ local output_target = 'elasticsearch';
                          output_target=output_target,
                          depth_limit=8),
   },
-
-  // batch 16 & 17
   {
     name: 'DCSA.mil (dod_dcsa)',
     config: DomainConfig(allowed_domains='dcsa.mil',
@@ -7108,10 +7080,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.invasivespeciesinfo.gov',
                          schedule='15 17 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
-
-  // Batch 18
   {
     name: 'www.healthit.gov (www.healthit.gov)',
     config: DomainConfig(allowed_domains='healthit.gov',
@@ -7321,8 +7291,6 @@ local output_target = 'elasticsearch';
                          output_target=output_target,
                          depth_limit=8),
   },
-
-  // Batch 20
   {
     name: 'origin.cpc.ncep.noaa.gov (ncep.noaa.gov)',
     config: DomainConfig(allowed_domains='origin.cpc.ncep.noaa.gov',
@@ -8084,8 +8052,6 @@ local output_target = 'elasticsearch';
                          output_target=output_target,
                          depth_limit=8),
   },
-
-  // batch 19
   {
     name: 'StudentAid.gov (usagov_en_az)',
     config: DomainConfig(allowed_domains='studentaid.gov',
@@ -8239,8 +8205,6 @@ local output_target = 'elasticsearch';
                          output_target=output_target,
                          depth_limit=8),
   },
-
-  // batch 21
   {
     name: 'NDBC NOAA (ndbc.noaa.gov)',
     config: DomainConfig(allowed_domains='dods.ndbc.noaa.gov',
@@ -8319,7 +8283,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://ug.usembassy.gov',
                          schedule='00 09 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Sri Lanka (dos_emb_csa_srilanka)',
@@ -8727,7 +8691,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://broadbandusa.ntia.gov',
                          schedule='12 09 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NTIA Grants (bbusa)',
@@ -9087,7 +9051,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://cascom.army.mil',
                          schedule='16 10 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE New York District (usace_all)',
@@ -9111,7 +9075,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://pubs.usgs.gov',
                          schedule='19 13 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=3,
+                         deny_paths=['/metrics/']),
   },
   {
     name: 'BOEM Data Center (doi.gov_all_bureaus)',
@@ -9319,7 +9284,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.ntia.gov',
                          schedule='52 22 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'PPMS (ppms)',
@@ -9559,7 +9524,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://millionhearts.hhs.gov',
                          schedule='26 04 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy USN History (navy_usnhistory)',
@@ -9751,7 +9716,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://resources.data.gov',
                          schedule='52 06 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD DHRA (dod_dhra)',
@@ -10304,7 +10269,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.nfc.usda.gov',
                          schedule='05 09 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy Atlantic NAVFAC (navy_atlanticnavfac)',
@@ -10600,7 +10565,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://stellwagen.noaa.gov',
                          schedule='43 23 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD ManTech (dod_mantech)',
@@ -10792,7 +10757,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://montereybay.noaa.gov',
                          schedule='13 01 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Marine Protected Areas (mpa.gov)',
@@ -11056,7 +11021,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://annualreport.nichd.nih.gov',
                          schedule='01 12 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy PEO MLB (navy_peomlb)',
@@ -11449,7 +11414,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://smartpay.gsa.gov',
                          schedule='54 17 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy CLWP (navy_clwp)',
@@ -11826,7 +11791,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.coralreef.gov',
                          schedule='05 22 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Coral Reef NOAA (coralreef.gov)',
@@ -11834,7 +11799,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://coralreef.noaa.gov',
                          schedule='06 23 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'EPACT SFP Fleets (epact-sfp-fleets)',
@@ -11906,7 +11871,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://fosterscholars.noaa.gov',
                          schedule='18 11 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA GSL (gsl)',
@@ -12010,7 +11975,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://railroads.dot.gov',
                          schedule='34 03 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NIH DTB Main Search Box (dtb-main-search-box)',
@@ -12202,10 +12167,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.osha.gov',
                          schedule='04 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
-
-  // Move to SearchElastic engine
   {
     name: 'adviserinfo.sec.gov (adviserinfo.sec)',
     config: DomainConfig(allowed_domains='adviserinfo.sec.gov',
@@ -12383,8 +12346,6 @@ local output_target = 'elasticsearch';
                          output_target=output_target,
                          depth_limit=8),
   },
-
-  // New depth 8 domains
   {
     name: 'New depth 8 (abudhabi.mepi.state.gov)',
     config: DomainConfig(allowed_domains='abudhabi.mepi.state.gov',

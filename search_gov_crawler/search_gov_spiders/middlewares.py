@@ -55,6 +55,15 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
 
         return False
 
+    def _remove_url_jsession_id(self, url: str | None) -> str | None:
+        """Private helper function to filter urls by existence of JSESSIONID (if applicable)"""
+
+        parse_result = urlparse(url)
+        if "jsessionid" in parse_result.params.lower():
+            url = parse_result._replace(params="").geturl()
+
+        return url
+
     # pylint: disable=unused-argument
     # disable unused arguments in this scrapy-generated class template
 
@@ -111,6 +120,9 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
         if self._filter_url_query_string(url=request.url):
             return None
 
+        if "jsessionid" in request.url.lower():
+            request = request.replace(url=self._remove_url_jsession_id(url=request.url))
+
         return request
 
     def get_processed_item(self, item: SearchGovSpidersItem, response: Response | None) -> Any:
@@ -135,8 +147,12 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
         if response and response.request.dont_filter:
             return item
 
-        if self._filter_url_query_string(url=item.get("url", None)):
+        item_url = item.get("url", "")
+        if self._filter_url_query_string(url=item_url):
             return None
+
+        if "jsessionid" in item_url.lower():
+            item["url"] = self._remove_url_jsession_id(url=item_url)
 
         return item
 
