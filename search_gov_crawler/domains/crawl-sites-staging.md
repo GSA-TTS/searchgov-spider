@@ -511,7 +511,7 @@
 |NIH PubMed Central (usagov-replacement)|04:30|pmc.ncbi.nlm.nih.gov|N|3||
 |2021-2025.state.gov (usagov-replacement)|04:30|2021-2025.state.gov|N|8||
 |Vicksburg District (vicksburg_district)|04:31|mvk.usace.army.mil|N|3||
-|MacDill Air Force Base (macdillairforcebase)|04:37|macdill.af.mil|N|8|/STEM/STEAM/igphoto/|
+|MacDill Air Force Base (macdillairforcebase)|04:37|macdill.af.mil|N|8|/igphoto/|
 |Army 409th CSB (army_409csb)|04:41|409csb.army.mil|N|3||
 |US Embassy Venezuela (dos_emb_wha_venezuela)|04:58|ve.usembassy.gov|N|8||
 |189th Airlift Wing (afpw_189aw)|04:59|189aw.ang.af.mil|N|8||

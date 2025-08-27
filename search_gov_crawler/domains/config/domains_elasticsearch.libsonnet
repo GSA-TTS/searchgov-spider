@@ -5935,7 +5935,7 @@ local output_target = 'elasticsearch';
                          schedule='37 4 * * TUE',
                          output_target=output_target,
                          depth_limit=8,
-                         deny_paths=['/STEM/STEAM/igphoto/']),
+                         deny_paths=['/igphoto/']),
   },
   {
     name: 'Luke Air Force Base (luke)',
