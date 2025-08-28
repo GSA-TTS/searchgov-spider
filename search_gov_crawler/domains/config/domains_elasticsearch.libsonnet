@@ -63,7 +63,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.ncei.noaa.gov/',
                          schedule='01 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3,
+                         depth_limit=8,
                          deny_paths=['/pub/']),
   },
   {
@@ -579,7 +579,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.ssa.gov/',
                          schedule='30 17 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Founders Online (usagov-replacement)',
@@ -627,7 +627,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.justice.gov/',
                          schedule='30 21 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'OPM (usagov-replacement)',
@@ -811,7 +811,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.ed.gov/',
                          schedule='30 12 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.ncbi.nlm.nih.gov (usagov-replacement)',
@@ -883,7 +883,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.ftc.gov/',
                          schedule='48 12 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.house.gov (usagov-replacement)',
@@ -955,7 +955,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.fema.gov/',
                          schedule='12 06 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.sba.gov (usagov-replacement)',
@@ -1132,7 +1132,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.nasa.gov/',
                          schedule='30 02 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'guides.loc.gov (usagov-replacement)',
@@ -1260,7 +1260,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.samhsa.gov/',
                          schedule='30 18 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.commerce.gov (usagov-replacement)',
@@ -1436,7 +1436,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.nimh.nih.gov/',
                          schedule='00 16 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'home.army.mil (usagov-replacement)',
@@ -1492,7 +1492,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.nih.gov/',
                          schedule='00 23 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.donotcall.gov (usagov-replacement)',
@@ -1572,7 +1572,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.eia.gov/',
                          schedule='12 12 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'nida.nih.gov (usagov-replacement)',
@@ -1628,7 +1628,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.nia.nih.gov/',
                          schedule='19 19 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.hiv.gov (usagov-replacement)',
@@ -1660,7 +1660,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.cancer.gov/',
                          schedule='23 23 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.ada.gov (usagov-replacement)',
@@ -1668,7 +1668,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.ada.gov/',
                          schedule='46 23 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.cga.ct.gov (usagov-replacement)',
@@ -1804,7 +1804,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.tsp.gov/',
                          schedule='12 06 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.nutrition.gov (usagov-replacement)',
@@ -1924,7 +1924,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.nhlbi.nih.gov/',
                          schedule='50 10 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.dcpas.osd.mil (usagov-replacement)',
@@ -1964,10 +1964,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.energystar.gov/',
                          schedule='45 15 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
-
-
   {
     name: 'www.cftc.gov (usagov-replacement)',
     config: DomainConfig(allowed_domains='cftc.gov',
@@ -2135,7 +2133,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.trumanlibrary.gov/',
                          schedule='00 08 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.nlrb.gov (usagov-replacement)',
@@ -2367,7 +2365,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.armyupress.army.mil/',
                          schedule='12 21 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'health.mil (usagov-replacement)',
@@ -2463,7 +2461,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.ready.gov/',
                          schedule='22 09 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.navy.mil (usagov-replacement)',
@@ -2792,7 +2790,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.niehs.nih.gov/',
                          schedule='42 01 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Common Access Card (usagov-replacement)',
@@ -2864,7 +2862,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.nlm.nih.gov/',
                          schedule='42 10 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Sen Cruz (usagov-replacement)',
@@ -6687,7 +6685,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.drought.gov',
                          schedule='15 08 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'apps.bea',
