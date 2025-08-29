@@ -115,14 +115,6 @@ local output_target = 'elasticsearch';
                          depth_limit=3),
   },
   {
-    name: 'National Centers for Environmental Information (ncdc)',
-    config: DomainConfig(allowed_domains='ncdc.noaa.gov',
-                         starting_urls='https://www.ncdc.noaa.gov/',
-                         schedule='04 19 * * FRI',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
     name: 'National Hurricane Center (nhc)',
     config: DomainConfig(allowed_domains='nhc.noaa.gov',
                          starting_urls='https://www.nhc.noaa.gov/',
@@ -186,14 +178,6 @@ local output_target = 'elasticsearch';
                          schedule='07 19 * * FRI',
                          output_target=output_target,
                          depth_limit=3),
-  },
-  {
-    name: 'National Geophysical Data Center (ngdc)',
-    config: DomainConfig(allowed_domains='ngdc.noaa.gov',
-                         starting_urls='https://www.ngdc.noaa.gov/',
-                         schedule='07 19 * * FRI',
-                         output_target=output_target,
-                         depth_limit=8),
   },
   {
     name: 'National Operational Hydrologic Remote Sensing Center (nohrsc)',
@@ -12088,12 +12072,12 @@ local output_target = 'elasticsearch';
                          depth_limit=3),
   },
   {
-    name: 'DOT FHWA (dot-fhwa)',
-    config: DomainConfig(allowed_domains='fhwa.dot.gov',
-                         starting_urls='https://www.fhwa.dot.gov',
+    name: 'DOT Highways (dot-fhwa)',
+    config: DomainConfig(allowed_domains='highways.dot.gov',
+                         starting_urls='https://highways.dot.gov',
                          schedule='55 00 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DOT PHMSA (dot-phmsa)',
