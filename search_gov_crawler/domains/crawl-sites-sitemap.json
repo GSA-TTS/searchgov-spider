@@ -1,0 +1,15 @@
+[
+   {
+      "allow_query_string": false,
+      "allowed_domains": "cms.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "VA test",
+      "output_target": "elasticsearch",
+      "schedule": "15 00 * * SUN",
+      "sitemap_urls": ["https://qpp.cms.gov/content-management/qpp_sitemap.xml"],
+      "starting_urls": "https://www.cms.gov/"
+   }
+]
