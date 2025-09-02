@@ -6,8 +6,9 @@ IFS=$'\n\t'
 MAX_WAIT=120
 
 set_defaults_env() {
-    export SEARCHELASTIC_INDEX="development-i14y-documents-searchgov"
-    export ES_HOSTS="http://localhost:9200"
+    # Set default values only if they are not already defined
+    export SEARCHOPENSEARCH_INDEX="${SEARCHOPENSEARCH_INDEX:-\"development-i14y-documents-opensearch\"}"
+    export OPENSEARCH_HOSTS="${ES_HOSTS:-\"http://localhost:9200\"}"
 }
 
 wait_for_elasticsearch_health() {
@@ -63,6 +64,13 @@ restart_elasticsearch() {
 }
 
 main() {
+    # Load environment variables from .env
+    if [ -f .env ]; then
+        set -o allexport
+        source .env
+        set +o allexport
+    fi
+
     set_defaults_env
 
     if ! wait_for_elasticsearch_health; then

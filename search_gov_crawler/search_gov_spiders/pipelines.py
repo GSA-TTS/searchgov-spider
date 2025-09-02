@@ -5,12 +5,14 @@ See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 
 import os
 from pathlib import Path
+from typing import Any
 
 import requests
 from scrapy.exceptions import DropItem
 from scrapy.spiders import Spider
 
 from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
+from search_gov_crawler.elasticsearch.opensearch_batch_upload import SearchGovOpensearch
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 
@@ -42,6 +44,7 @@ class SearchGovSpidersPipeline:
         self.current_file = None
         self.file_open = False
         self._es = None
+        self._opensearch = None
 
     def process_item(self, item: SearchGovSpidersItem, spider: Spider) -> SearchGovSpidersItem:
         """Handle each item by writing to file or batching URLs for an API POST."""
@@ -57,7 +60,9 @@ class SearchGovSpidersPipeline:
             raise DropItem(msg)
 
         if output_target == "elasticsearch":
-            self._process_es_item(item, spider)
+            doc = self._process_es_item(item, spider)
+            if doc and SearchGovOpensearch.ENABLED:
+                self._process_opensearch_item(doc, spider)
         elif output_target == "endpoint":
             if not self.api_url:
                 msg = "Item 'endpoint' not resolved, env.SPIDER_URLS_API is not set"
@@ -78,19 +83,26 @@ class SearchGovSpidersPipeline:
             return self._es
         self._es = SearchGovElasticsearch()
         return self._es
+    
+    def _get_opensearch_client(self) -> SearchGovOpensearch:
+        if self._opensearch:
+            return self._opensearch
+        self._opensearch = SearchGovOpensearch()
+        return self._opensearch
 
-    def _process_es_item(self, item: SearchGovSpidersItem, spider: Spider):
+    def _process_es_item(self, item: SearchGovSpidersItem, spider: Spider) -> dict[str, Any] | None:
         url = item.get("url", None)
         response_bytes = item.get("response_bytes", None)
         response_language = item.get("response_language", None)
         content_type = item.get("content_type", None)
+        doc = None
 
         if not response_bytes:
             err = f"Missing 'response_bytes' for url: {url}"
             spider.logger.error(err)
             raise DropItem(err)
         try:
-            self._get_elasticsearch_client().add_to_batch(
+            doc = self._get_elasticsearch_client().add_to_batch(
                 response_bytes=response_bytes,
                 url=url,
                 spider=spider,
@@ -99,6 +111,19 @@ class SearchGovSpidersPipeline:
             )
         except Exception:
             msg = "Failed to add item to Elasticsearch batch"
+            spider.logger.exception(msg)
+            raise DropItem(msg) from None
+
+        return doc
+
+    def _process_opensearch_item(self, doc: dict[str, Any], spider: Spider):
+        try:
+            self._get_opensearch_client().add_to_batch(
+                doc=doc,
+                spider=spider,
+            )
+        except Exception:
+            msg = "Failed to add item to Opensearch batch"
             spider.logger.exception(msg)
             raise DropItem(msg) from None
 
@@ -161,6 +186,13 @@ class SearchGovSpidersPipeline:
                 self._get_elasticsearch_client().batch_upload(spider)
         except Exception:  # pylint: disable=broad-except
             msg = "Failed to upload Elasticsearch batch"
+            spider.logger.exception(msg)
+        
+        try:
+            if self._opensearch:
+                self._get_opensearch_client().batch_upload(spider)
+        except Exception:  # pylint: disable=broad-except
+            msg = "Failed to upload Opensearch batch"
             spider.logger.exception(msg)
 
         if self.urls_batch:
