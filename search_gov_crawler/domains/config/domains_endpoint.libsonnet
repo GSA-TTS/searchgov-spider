@@ -10,7 +10,7 @@ local output_target = 'endpoint';
                          schedule='00 06 * * MON',
                          output_target=output_target,
                          options=['handle_javascript'],
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USDA NFC Help Documentation',
