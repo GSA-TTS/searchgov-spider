@@ -1,113 +1,117 @@
 # Development Schedule
- * [Sunday (9)](#sunday-9)
- * [Monday (10)](#monday-10)
- * [Tuesday (11)](#tuesday-11)
+ * [Sunday (8)](#sunday-8)
+ * [Monday (13)](#monday-13)
+ * [Tuesday (12)](#tuesday-12)
  * [Wednesday (9)](#wednesday-9)
  * [Thursday (11)](#thursday-11)
- * [Friday (10)](#friday-10)
- * [Saturday (10)](#saturday-10)
+ * [Friday (13)](#friday-13)
+ * [Saturday (8)](#saturday-8)
 
 
-## Sunday (9)
+## Sunday (8)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|Tesseract AF (HAF/A4L) (usaf_tesseract)|08:18|tesseract.af.mil|N|8||
-|tricare_guantanamo|11:00|guantanamo.tricare.mil|N|8||
-|LOD.NAL.USDA.gov (USDA NAL)|11:15|lod.nal.usda.gov|N|8||
-|Navy BRAC PMO (navy_bracpmo)|11:23|bracpmo.navy.mil|N|3||
-|www.ed.gov (usagov-replacement)|12:30|ed.gov|N|3||
-|Air Force Test Center (afpw_aftc)|14:38|aftc.af.mil|N|8||
-|Army PEO GCS (army_peogcs)|15:04|peogcs.army.mil|N|3||
-|New depth 8 (ch.usembassy.gov/de/sitemap-de)|21:44|ch.usembassy.gov/de/sitemap-de|N|8||
-|US Embassy Tajikistan (dos_emb_csa_tajikistan)|22:28|tj.usembassy.gov|N|8||
+|Telehealth.HHS.gov|07:12|telehealth.hhs.gov|N|8||
+|Air Force Research Laboratory (usaf_afrl)|12:55|afrl.af.mil|N|8||
+|tricare_eisenhower|13:00|eisenhower.tricare.mil|N|8||
+|ArchivesSpace.NAL.USDA.gov (USDA NAL)|13:15|archivesspace.nal.usda.gov|N|3||
+|www.senate.gov (usagov-replacement)|16:00|senate.gov|N|3||
+|413th Flight Test Group (afpw_413ftg)|16:02|413ftg.afrc.af.mil|N|8||
+|Navy NIWC Atlantic (navy_niwcatlantic)|17:47|niwcatlantic.navy.mil|N|3||
+|HRSA Injury Compensation (hrsaics)|23:28|injurycompensation.hrsa.gov|N|3||
 
 
-## Monday (10)
+## Monday (13)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|ILRS (ilrs)|03:57|ilrs.cddis.eosdis.nasa.gov|N|3||
+|New depth 8 (ch.usembassy.gov/it/sitemap-it)|01:42|ch.usembassy.gov/it/sitemap-it|N|8||
+|transportation|04:00|transportation.gov|N|8||
+|NMIO (nmio)|04:30|nmio.ise.gov|N|3||
 |Navy All Hands Magazine|06:00|allhands.navy.mil|Y|8||
-|dodcio.defense.gov (osd_cio_nii)|07:37|dodcio.defense.gov|N|8||
-|Maine National Guard (ng_maine)|08:52|me.ng.mil|N|3||
+|Army USAFMCOM (army_usafmcom)|07:03|usafmcom.army.mil|N|3||
+|Army 12th CAB (army_12cab)|08:15|12cab.army.mil|N|3||
 |ED Office of Hearings and Appeals OHA|09:30|oha.ed.gov|N|3||
 |USCOURTS CACB|09:30|cacb.uscourts.gov|N|3||
 |VA Access To Care|09:30|accesstocare.va.gov|N|3||
-|Niagara Falls Air Reserve Station (niagarafalls)|15:42|niagara.afrc.af.mil|N|8||
-|Trade Events (trade.gov)|23:02|events.trade.gov|N|3||
-|Federal Railroad Administration|23:10|5nr.org|N|8||
+|ais.usvisa-info.com (dos_emb_eur_italy)|10:35|ais.usvisa-info.com|N|8||
+|Access Board|13:00|access-board.gov|N|8||
+|Air Force NETCENTS (netcents)|17:32|netcents.af.mil|N|8||
+|Southwestern Division (swd)|20:33|swd.usace.army.mil|N|3||
 
 
-## Tuesday (11)
+## Tuesday (12)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|tricare_nhcc|01:00|charleston.tricare.mil|N|8||
+|Alabama National Guard (ng_alabama)|00:30|al.ng.mil|N|3||
+|tricare_lemoore|03:00|lemoore.tricare.mil|N|8||
+|www.faa.gov (usagov-replacement)|03:06|faa.gov|N|8||
 |NIH Research Festival (nih-oir-research_festival)|06:00|researchfestival.nih.gov|N|3||
-|109th Airlift Wing, New York ANG (afpw_109aw)|07:46|109aw.ang.af.mil|N|8||
-|USACE New England District (usace_all)|08:59|nae.usace.army.mil|N|3||
-|odphp.health.gov (usagov-replacement)|12:30|odphp.health.gov|N|3||
-|trumpwhitehouse.archives.gov (usagov-replacement)|13:13|trumpwhitehouse.archives.gov|N|3||
-|Whitehouse (usagov-replacement)|13:30|whitehouse.gov|N|3||
-|Incirlik Air Base (incirlik)|16:37|incirlik.af.mil|N|8||
-|NIH OBSSR (obssr)|20:42|obssr.od.nih.gov|N|3||
-|goes-r.gov (goes-r)|21:36|goes-r.gov|N|8||
-|New depth 8 (md.usembassy.gov/ro)|23:09|md.usembassy.gov/ro|N|8||
+|104th Fighter Wing (afpw_104fw)|09:10|104fw.ang.af.mil|N|8||
+|Drug Enforcement Administration|13:00|dea.gov|N|8||
+|VA Developer Portal (developer.va.gov)|13:25|developer.va.gov|N|8||
+|www.dfas.mil (usagov-replacement)|14:30|dfas.mil|N|3||
+|www.fincen.gov (usagov-replacement)|15:15|fincen.gov|N|3||
+|Defense Data (data)|17:06|data.defense.gov|N|3||
+|Homestead Air Reserve Base, Fla. (homestead)|19:23|homestead.afrc.af.mil|N|8||
+|Justice Dept (usagov-replacement)|21:30|justice.gov|N|8||
 
 
 ## Wednesday (9)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|cic.ndu.edu (nduedu)|03:06|cic.ndu.edu|N|8||
-|CLU-IN Triad Central (clu-in)|03:06|triadcentral.clu-in.org|N|3||
-|www.nutrition.gov (usagov-replacement)|05:10|nutrition.gov|N|8||
-|Space Operations Command (dod_spoc)|05:32|spoc.spaceforce.mil|N|3||
-|Air Force Compliance Division (afpw_foia)|08:10|compliance.af.mil|N|8||
-|tricare_dusahc|09:00|dunham.tricare.mil|N|8||
-|US Embassy Botswana (dos_emb_afr_botswana)|17:15|bw.usembassy.gov|N|8||
-|www.usaid.gov (usagov-replacement)|17:17|usaid.gov|N|3||
-|www.redcross.org (usagov-replacement)|21:05|redcross.org|N|3||
+|New depth 8 (me.usembassy.gov/me)|03:06|me.usembassy.gov/me|N|8||
+|www.ndu.edu (nduedu)|05:05|ndu.edu|N|8||
+|Financial Aid Toolkit (financialaidtoolkit)|05:59|financialaidtoolkit.ed.gov|N|8||
+|Air Force Retirees Services (afpw_afro)|09:34|retirees.af.mil|N|8||
+|South Pacific Division (south_pacific_division)|10:54|spd.usace.army.mil|N|3||
+|tricare_omc|11:00|oakharbor.tricare.mil|N|8||
+|lhncbc.nlm.nih.gov/newbornscreeningcodes/ (lhncbc.nlm.nih)|14:24|lhncbc.nlm.nih.gov/newbornscreeningcodes/|N|8||
+|www.nia.nih.gov (usagov-replacement)|19:19|nia.nih.gov|N|8||
+|www.recreation.gov (usagov-replacement)|23:33|recreation.gov|N|3||
 
 
 ## Thursday (11)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|www.ic3.gov (usagov-replacement)|02:12|ic3.gov|N|3||
-|www.hsgac.senate.gov (usagov-replacement)|03:22|hsgac.senate.gov|N|3||
-|careers.state.gov (usagov-replacement)|04:32|careers.state.gov|N|8||
-|ies.ed.gov (usagov-replacement)|04:42|ies.ed.gov|N|8||
-|www.mycg.uscg.mil (uscg_all)|04:48|mycg.uscg.mil|N|8||
-|National Institute on Minority Health and Health Disparities (NIMHD) (www.nimhd.nih.gov)|07:23|nimhd.nih.gov|N|8||
-|Arnold Air Force Base (arnold)|07:23|arnold.af.mil|N|8||
-|OCIO (ocio)|07:27|ocio.nih.gov|N|3||
-|NIH Common Fund (commonfund)|08:23|commonfund.nih.gov|N|3||
-|175th Wing, Maryland Air National Guard (afpw_175wg)|10:39|175wg.ang.af.mil|N|8||
-|Navy CNFK (navy_cnfk)|15:46|cnrk.cnic.navy.mil|N|3||
+|corp.commissaries.com (usagov-replacement)|04:12|corp.commissaries.com|N|3||
+|jp.usembassy.gov (usagov-replacement)|05:22|jp.usembassy.gov|N|3||
+|www.spaceforce.mil (usagov-replacement)|06:32|spaceforce.mil|N|3||
+|US Embassy (usa.gov-replacement)|06:42|usembassy.gov|N|8||
+|Federal Highway Administration|06:47|highways.dot.gov|N|8||
+|www.pacificarea.uscg.mil (uscg_all)|07:46|pacificarea.uscg.mil|N|8||
+|Gulfport Combat Readiness Training Center (ang_gulfportcrtc)|10:09|gulfportcrtc.ang.af.mil|N|8||
+|Combined Arms Support Command (cas)|10:16|cascom.army.mil|N|8||
+|177th Fighter Wing, New Jersey ANG (afpw_177fw)|12:03|177fw.ang.af.mil|N|8||
+|National Institute of Nursing Research (NINR) (www.ninr.nih.gov)|20:18|ninr.nih.gov|N|8||
+|Arkansas National Guard (ang_akng)|22:44|arkansas.nationalguard.mil|N|3||
 
 
-## Friday (10)
+## Friday (13)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|New depth 8 (tn.usembassy.gov/fr)|00:34|tn.usembassy.gov/fr|N|8||
-|ccac.gov|01:15|ccac.gov|N|3||
-|146th Airlift Wing, California ANG (afpw_146aw)|09:40|146aw.ang.af.mil|N|8||
-|ffr.cnic.navy.mil (navy_ffr)|11:26|ffr.cnic.navy.mil|N|8||
-|552nd Air Control Wing (552acw)|12:00|552acw.acc.af.mil|N|8||
-|United States Forces Japan (usfj)|15:45|usfj.mil|N|3||
-|tricare_luke|16:00|luke.tricare.mil|N|8||
-|Northwest River Forecast Center (nwrfc)|19:08|nwrfc.noaa.gov|N|3||
-|Marine Navigation (marinenavigation)|19:17|marinenavigation.noaa.gov|N|3||
-|DOS Embassy Ukraine (dos_emb_eur_ukraine_uk)|21:58|ua.usembassy.gov|N|8||
+|US Space Command (dod_ussc)|03:06|spacecom.mil|N|8||
+|New depth 8 (ua.usembassy.gov/ru)|04:31|ua.usembassy.gov/ru|N|8||
+|Navy NCIS (navy_ncis)|05:04|ncis.navy.mil|N|3||
+|US Embassy Madagascar (dos_emb_afr_madagascar)|07:34|mg.usembassy.gov|N|3||
+|tva|11:15|tva.com|N|3||
+|149th Fighter Wing, Texas ANG (afpw_149fw)|11:45|149fw.ang.af.mil|N|8||
+|cl.usembassy.gov (dos_emb_wha_chile_es)|13:25|cl.usembassy.gov|N|8||
+|512th Airlift Wing (512aw)|13:51|512aw.afrc.af.mil|N|8||
+|USDA Nutrition Evidence Systematic Review|16:06|nesr.usda.gov|N|8||
+|tricare_grandforks|18:00|grandforks.tricare.mil|N|8||
+|NOAA Coast (coast)|19:09|coast.noaa.gov|N|8||
+|USACE Portland District (usace_all)|19:17|nwp.usace.army.mil|N|3||
+|CSL (csl)|19:18|csl.noaa.gov|N|3||
 
 
-## Saturday (10)
+## Saturday (8)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|DOS Embassy Sample2 (dos_emb_wha_sample2)|02:55|sample2.usembassy.gov|N|3||
-|Navy FCC (navy_fcc)|05:01|fcc.navy.mil|N|3||
-|NITAM (nitam)|06:13|securityawareness.usalearning.gov|N|3||
-|Policy Manual (nih)|07:17|policymanual.nih.gov|N|8||
-|123rd Airlift Wing, Kentucky ANG (afpw_123aw)|10:03|123aw.ang.af.mil|N|8||
-|www.bea.gov (usagov-replacement)|13:00|bea.gov|N|3||
-|164th Airlift Wing, Tennessee ANG (164aw)|16:37|164aw.ang.af.mil|N|8||
-|DoS 2009-2017 FPC (dos_2009_2017_fpc)|18:31|2009-2017-fpc.state.gov|N|3||
-|355th Medical Group - Davis-Monthan Air Force Base|19:00|davismonthan.tricare.mil|N|8||
-|8tharmy.korea.army.mil (8tharmy)|21:02|8tharmy.korea.army.mil|N|8||
+|Vermont National Guard (ng_vt)|09:29|vt.public.ng.mil|N|3||
+|DEA Diversion Control Division (justice-odc)|10:25|deadiversion.usdoj.gov|N|3||
+|NIH Security (nih)|11:21|security.nih.gov|N|8||
+|127th Wing, Michigan Air National Guard (afpw_127wg)|11:27|127wg.ang.af.mil|N|8|/media/photos/igphoto/|
+|www.helpwithmybank.gov (usagov-replacement)|15:00|helpwithmybank.gov|N|3||
+|NG Virgin Islands (ng_virginislands)|17:48|vi.ng.mil|N|3||
+|341st Medical Group - Malmstrom Air Force Base|21:00|malmstrom.tricare.mil|N|8||
+|training.smartpay.gsa.gov (gsa_smartpay_training)|23:01|training.smartpay.gsa.gov|N|8||
