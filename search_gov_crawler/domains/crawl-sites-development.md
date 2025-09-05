@@ -1,6 +1,6 @@
 # Development Schedule
  * [Sunday (10)](#sunday-10)
- * [Monday (9)](#monday-9)
+ * [Monday (8)](#monday-8)
  * [Tuesday (13)](#tuesday-13)
  * [Wednesday (11)](#wednesday-11)
  * [Thursday (11)](#thursday-11)
@@ -23,15 +23,14 @@
 |OSM AMLIS (osm)|18:49|amlis.osmre.gov|N|3||
 
 
-## Monday (9)
+## Monday (8)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |FloodSmart Agents Portal|03:30|agents.floodsmart.gov|N|8||
 |rosap.ntl.bts|04:30|rosap.ntl.bts.gov|N|8||
 |New depth 8 (chengdu.usembassy-china.org.cn)|05:39|chengdu.usembassy-china.org.cn|N|8||
-|Navy All Hands Magazine|06:00|allhands.navy.mil|Y|8||
-|ED Office of Hearings and Appeals OHA|09:30|oha.ed.gov|N|3||
-|USCOURTS CACB|09:30|cacb.uscourts.gov|N|3||
+|DOD Army MWR|08:30|armymwr.com|N|3||
+|NOAA CoastWatch West Coast|09:30|coastwatch.pfeg.noaa.gov|N|3||
 |VA Access To Care|09:30|accesstocare.va.gov|N|3||
 |militarypay.defense.gov (dod_milpay)|11:35|militarypay.defense.gov|N|8||
 |Nellis Air Force Base (nellis)|18:28|nellis.af.mil|N|8||
