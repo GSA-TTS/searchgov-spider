@@ -1039,14 +1039,6 @@ local output_target = 'elasticsearch';
                          depth_limit=3),
   },
   {
-    name: 'www.uscourts.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='uscourts.gov',
-                         starting_urls='https://www.uscourts.gov/',
-                         schedule='20 20 * * TUE',
-                         output_target=output_target,
-                         depth_limit=3),
-  },
-  {
     name: 'www.supremecourt.gov (usagov-replacement)',
     config: DomainConfig(allowed_domains='supremecourt.gov',
                          starting_urls='https://www.supremecourt.gov/',

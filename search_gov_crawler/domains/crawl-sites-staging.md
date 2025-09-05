@@ -1,7 +1,7 @@
 # Staging Schedule
  * [Sunday (250)](#sunday-250)
  * [Monday (240)](#monday-240)
- * [Tuesday (255)](#tuesday-255)
+ * [Tuesday (254)](#tuesday-254)
  * [Wednesday (252)](#wednesday-252)
  * [Thursday (258)](#thursday-258)
  * [Friday (265)](#friday-265)
@@ -508,7 +508,7 @@
 |EBCCP Cancer Control (ebccp.cancercontrol.cancer.gov)|23:29|ebccp.cancercontrol.cancer.gov|N|8||
 
 
-## Tuesday (255)
+## Tuesday (254)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Minot Air Force Base (minot)|00:00|minot.af.mil|N|8||
@@ -729,7 +729,6 @@
 |www.ait.org.tw (dos_emb_eap_ait)|20:11|ait.org.tw|N|8||
 |Holloman Air Force Base (holloman)|20:18|holloman.af.mil|N|8||
 |Volk Field (afpw_volk)|20:19|volkfield.ang.af.mil|N|8||
-|www.uscourts.gov (usagov-replacement)|20:20|uscourts.gov|N|3||
 |IRS (usagov-replacement)|20:30|irs.gov|N|3||
 |www.fws.gov (usagov-replacement)|20:30|fws.gov|N|8||
 |USACE LRN-WC (usace_all)|20:35|lrn-wc.usace.army.mil|N|3||
