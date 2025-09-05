@@ -12072,14 +12072,6 @@ local output_target = 'elasticsearch';
                          depth_limit=3),
   },
   {
-    name: 'DOT Highways (dot-fhwa)',
-    config: DomainConfig(allowed_domains='highways.dot.gov',
-                         starting_urls='https://highways.dot.gov',
-                         schedule='55 00 * * SAT',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
     name: 'DOT PHMSA (dot-phmsa)',
     config: DomainConfig(allowed_domains='phmsa.dot.gov',
                          starting_urls='https://www.phmsa.dot.gov',

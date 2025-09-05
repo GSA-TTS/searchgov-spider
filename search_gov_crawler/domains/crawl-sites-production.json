@@ -20116,19 +20116,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "highways.dot.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "DOT Highways (dot-fhwa)",
-      "output_target": "elasticsearch",
-      "schedule": "55 00 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://highways.dot.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "phmsa.dot.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,

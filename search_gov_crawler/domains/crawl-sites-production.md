@@ -5,7 +5,7 @@
  * [Wednesday (252)](#wednesday-252)
  * [Thursday (258)](#thursday-258)
  * [Friday (265)](#friday-265)
- * [Saturday (270)](#saturday-270)
+ * [Saturday (269)](#saturday-269)
 
 
 ## Sunday (250)
@@ -1558,7 +1558,7 @@
 |DOS Embassy Comoros (dos_emb_afr_comoros)|23:54|km.usembassy.gov|N|3||
 
 
-## Saturday (270)
+## Saturday (269)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |www.fec.gov (usagov-replacement)|00:00|fec.gov|N|3||
@@ -1568,7 +1568,6 @@
 |USACE Levees SEC (usace_all)|00:39|levees.sec.usace.army.mil|N|3||
 |Navy CSP (navy_csp)|00:46|csp.navy.mil|N|3||
 |403rd Wing (403wg)|00:55|403wg.afrc.af.mil|N|8||
-|DOT Highways (dot-fhwa)|00:55|highways.dot.gov|N|8||
 |tricare.mil (usagov-replacement)|01:00|tricare.mil|N|3||
 |tricare_fewarren|01:00|fewarren.tricare.mil|N|8||
 |92nd Medical Group - Fairchild Air Force Base|01:00|fairchild.tricare.mil|N|8||
