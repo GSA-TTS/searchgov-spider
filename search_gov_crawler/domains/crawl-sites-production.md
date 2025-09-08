@@ -1490,7 +1490,7 @@
 |National Severe Storms Laboratory (nssl)|19:08|nssl.noaa.gov|N|3||
 |NOAA Coast (coast)|19:09|coast.noaa.gov|N|8||
 |Atlantic Oceanographic and Meteorological Laboratory (aoml)|19:09|aoml.noaa.gov|N|3||
-|Physical Sciences Laboratory (psl)|19:10|psl.noaa.gov|N|8||
+|Physical Sciences Laboratory (psl)|19:10|psl.noaa.gov|N|8|downloads.psl.noaa.gov|
 |California Nevada River Forecast Center (cnrfc)|19:10|cnrfc.noaa.gov|N|3||
 |Science On a Sphere (sos)|19:10|sos.noaa.gov|N|8||
 |Forms Warehouse (formswarehouse)|19:10|forms.cgaux.org|N|3||
