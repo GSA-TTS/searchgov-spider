@@ -318,8 +318,8 @@
 |New depth 8 (chengdu.usembassy-china.org.cn)|05:39|chengdu.usembassy-china.org.cn|N|8||
 |ASPR TRACIE|05:45|asprtracie.hhs.gov|N|8||
 |NAVSUP (navy_navsup)|05:55|navsup.navy.mil|N|8||
-|Navy All Hands Magazine|06:00|allhands.navy.mil|Y|8||
 |tricare_blanchfield|06:00|blanchfield.tricare.mil|N|8||
+|Navy All Hands Magazine|06:00|allhands.navy.mil|Y|8||
 |US Embassy Armenia (dos_emb_eur_armenia)|06:09|am.usembassy.gov|N|3||
 |myaccessreg.faa|06:15|myaccessreg.faa.gov|N|3||
 |DoD CERT PMO (dod_certpmo)|06:19|dodcertpmo.defense.gov|N|3||
@@ -346,49 +346,49 @@
 |Air Force Installations, Environment & Logistics (safie)|08:18|safie.hq.af.mil|N|8||
 |US Embassy Ethiopia (dos_emb_afr_ethiopia)|08:27|et.usembassy.gov|N|8||
 |DOD Army MWR|08:30|armymwr.com|N|3||
-|NOAA CoastWatch|08:30|coastwatch.noaa.gov|N|3||
 |NOAA CoastWatch East Coast Node|08:30|eastcoast.coastwatch.noaa.gov|N|3||
 |VA Benefits.va.gov|08:30|benefits.va.gov|N|3||
+|NOAA CoastWatch|08:30|coastwatch.noaa.gov|N|3||
 |VA Research & Development|08:30|research.va.gov|N|3||
 |apps.bea|08:45|apps.bea.gov|N|3||
 |Maine National Guard (ng_maine)|08:52|me.ng.mil|N|3||
 |tricare_kenner|09:00|kenner.tricare.mil|N|8||
 |OSHA (osha)|09:04|osha.gov|N|8||
 |Air Force Financial Management & Comptroller (saffm)|09:14|saffm.hq.af.mil|N|8||
-|DOD Defense Travel Management Office|09:30|travel.dod.mil|N|3||
 |DOS AIS USVISA INFO|09:30|ais.usvisa-info.com|N|3||
-|Drought - Toolkit.climate.gov|09:30|toolkit.climate.gov|N|3||
+|toolkit.climate.gov - endpoint|09:30|toolkit.climate.gov|N|3||
 |ED Office of Hearings and Appeals OHA|09:30|oha.ed.gov|N|3||
 |FDA Import Alerts|09:30|accessdata.fda.gov|N|3||
 |Navy MyNavyHR|09:30|mynavyhr.navy.mil|N|3||
-|NIH LRP|09:30|lrp.nih.gov|N|3||
-|NIH ORWH|09:30|orwh.od.nih.gov|N|3||
 |NIH National Institute of General Medical Sciences|09:30|nigms.nih.gov|N|3||
 |NOAA Coastwatch Great Lakes|09:30|coastwatch.glerl.noaa.gov|N|3||
 |NOAA CoastWatch West Coast|09:30|coastwatch.pfeg.noaa.gov|N|3||
 |NOAA GOES-R|09:30|goes-r.gov|N|3||
 |TREAS - FinCEN|09:30|fincen.gov|N|3||
-|USCOURTS CACB|09:30|cacb.uscourts.gov|N|3||
 |USCOURTS ARE|09:30|are.uscourts.gov|N|3||
 |USCOURTS CAEP|09:30|caep.uscourts.gov|N|3||
-|USCOURTS JPML|09:30|jpml.uscourts.gov|N|3||
-|USCOURTS MSND|09:30|msnd.uscourts.gov|N|3||
-|USCOURTS MSSD|09:30|mssd.uscourts.gov|N|3||
-|USCOURTS NCWBA|09:30|ncwba.uscourts.gov|N|3||
-|USCOURTS PAWD|09:30|pawd.uscourts.gov|N|3||
-|USCOURTS UTB|09:30|utb.uscourts.gov|N|3||
-|USDA FPAC Business Center|09:30|fpacbc.usda.gov|N|3||
-|VA Access To Care|09:30|accesstocare.va.gov|N|3||
-|VA CFM Technical Information Library TIL|09:30|cfm.va.gov/til/|N|3||
-|VA CIDER Research|09:30|cider.research.va.gov|N|3||
-|VA HERC Research|09:30|herc.research.va.gov|N|3||
-|VA HSRD Research|09:30|hsrd.research.va.gov|N|3||
-|VA My Health|09:30|myhealth.va.gov|N|3||
 |VA Office of Accountability and Whistleblower Protection|09:30|va.gov/accountability/|N|3||
-|VA QUERI Research|09:30|queri.research.va.gov|N|3||
 |VA Resources|09:30|va.gov/resources/|N|3||
 |DOD DANTES|09:30|dantes.mil|N|3||
 |www.eeoc.gov (usagov-replacement)|09:30|eeoc.gov|N|3||
+|VA Access To Care|09:30|accesstocare.va.gov|N|3||
+|USCOURTS CACB|09:30|cacb.uscourts.gov|N|3||
+|VA CIDER Research|09:30|cider.research.va.gov|N|3||
+|USDA FPAC Business Center|09:30|fpacbc.usda.gov|N|3||
+|VA HERC Research|09:30|herc.research.va.gov|N|3||
+|VA HSRD Research|09:30|hsrd.research.va.gov|N|3||
+|USCOURTS JPML|09:30|jpml.uscourts.gov|N|3||
+|NIH LRP|09:30|lrp.nih.gov|N|3||
+|USCOURTS MSND|09:30|msnd.uscourts.gov|N|3||
+|USCOURTS MSSD|09:30|mssd.uscourts.gov|N|3||
+|USCOURTS NCWBA|09:30|ncwba.uscourts.gov|N|3||
+|NIH ORWH|09:30|orwh.od.nih.gov|N|3||
+|USCOURTS PAWD|09:30|pawd.uscourts.gov|N|3||
+|VA QUERI Research|09:30|queri.research.va.gov|N|3||
+|DOD Defense Travel Management Office|09:30|travel.dod.mil|N|3||
+|USCOURTS UTB|09:30|utb.uscourts.gov|N|3||
+|VA CFM Technical Information Library TIL|09:30|cfm.va.gov/til/|N|3||
+|toolkit.climate.gov - elasticsearch|09:30|toolkit.climate.gov|N|3||
 |it.usembassy.gov (dos_emb_eur_italy)|09:36|it.usembassy.gov|N|8||
 |www.dnfsb.gov (dnfsb)|09:36|dnfsb.gov|N|8||
 |New depth 8 (ee.usembassy.gov/et)|09:36|ee.usembassy.gov/et|N|8||

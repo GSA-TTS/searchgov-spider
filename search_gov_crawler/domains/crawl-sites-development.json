@@ -1,55 +1,29 @@
 [
    {
       "allow_query_string": false,
-      "allowed_domains": "allhands.navy.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": true,
-      "name": "Navy All Hands Magazine",
-      "output_target": "endpoint",
-      "schedule": "00 06 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://allhands.navy.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "oha.ed.gov",
+      "allowed_domains": "armymwr.com",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 3,
       "handle_javascript": false,
-      "name": "ED Office of Hearings and Appeals OHA",
+      "name": "DOD Army MWR",
       "output_target": "endpoint",
-      "schedule": "30 09 * * MON",
+      "schedule": "30 08 * * MON",
       "sitemap_urls": null,
-      "starting_urls": "https://oha.ed.gov"
+      "starting_urls": "https://www.armymwr.com/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "cacb.uscourts.gov",
+      "allowed_domains": "coastwatch.pfeg.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 3,
       "handle_javascript": false,
-      "name": "USCOURTS CACB",
+      "name": "NOAA CoastWatch West Coast",
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
       "sitemap_urls": null,
-      "starting_urls": "https://www.cacb.uscourts.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "accesstocare.va.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "VA Access To Care",
-      "output_target": "endpoint",
-      "schedule": "30 09 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.accesstocare.va.gov"
+      "starting_urls": "https://coastwatch.pfeg.noaa.gov/"
    },
    {
       "allow_query_string": false,
@@ -962,5 +936,18 @@
       "schedule": "42 09 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://thunderbay.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "accesstocare.va.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "VA Access To Care",
+      "output_target": "elasticsearch",
+      "schedule": "30 09 * * MON",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.accesstocare.va.gov"
    }
 ]
