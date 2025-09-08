@@ -878,7 +878,9 @@
       "allow_query_string": false,
       "allowed_domains": "psl.noaa.gov",
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "downloads.psl.noaa.gov"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Physical Sciences Laboratory (psl)",

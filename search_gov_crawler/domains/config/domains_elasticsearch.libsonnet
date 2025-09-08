@@ -225,7 +225,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://psl.noaa.gov/',
                          schedule='10 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['downloads.psl.noaa.gov']),
   },
   {
     name: 'California Nevada River Forecast Center (cnrfc)',
