@@ -7,8 +7,8 @@ MAX_WAIT=120
 
 set_defaults_env() {
     # Set default values only if they are not already defined
-    export SEARCHOPENSEARCH_INDEX="${SEARCHOPENSEARCH_INDEX:-\"development-i14y-documents-opensearch\"}"
-    export OPENSEARCH_HOSTS="${ES_HOSTS:-\"http://localhost:9200\"}"
+    export SEARCHELASTIC_INDEX="${SEARCHELASTIC_INDEX:-development-i14y-documents-searchgov}"
+    export ES_HOSTS="${ES_HOSTS:-http://localhost:9200}"
 }
 
 wait_for_elasticsearch_health() {

@@ -47,10 +47,10 @@ class SearchGovOpensearch:
         self._batch_size = batch_size
         self._current_batch: List[Dict[str, Any]] = []
 
-        self._env_opensearch_hosts = opensearch_hosts or os.getenv("OPENSEARCH_HOSTS", "http://localhost:9200")
-        self._env_opensearch_index = opensearch_index or os.getenv("OPENSEARCH_INDEX", "development-i14y-documents-searchgov")
-        self._env_opensearch_user = opensearch_user or os.getenv("OPENSEARCH_USER", "")
-        self._env_opensearch_password = opensearch_password or os.getenv("OPENSEARCH_PASSWORD", "")
+        self._env_opensearch_hosts = opensearch_hosts or os.getenv("OPENSEARCH_SEARCH_DOMAIN", "http://localhost:9300")
+        self._env_opensearch_index = opensearch_index or os.getenv("SEARCHOPENSEARCH_INDEX", "development-i14y-documents-searchgov")
+        self._env_opensearch_user = opensearch_user or os.getenv("OPENSEARCH_ADMIN_USER", "")
+        self._env_opensearch_password = opensearch_password or os.getenv("OPENSEARCH_ADMIN_PASS", "")
         self._timeout = timeout
         self._max_retries = max_retries
         self._opensearch_client: Optional[OpenSearch] = None
@@ -58,7 +58,7 @@ class SearchGovOpensearch:
         try:
             self._parsed_hosts = self._parse_opensearch_urls(self._env_opensearch_hosts)
         except ValueError:
-            log.exception("Environment variable OPENSEARCH_HOSTS is malformed")
+            log.exception("Environment variable OPENSEARCH_SEARCH_DOMAIN is malformed")
             raise
 
     @property
