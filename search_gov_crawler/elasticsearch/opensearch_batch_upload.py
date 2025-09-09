@@ -1,3 +1,4 @@
+import time
 import logging
 import os
 import warnings
@@ -122,6 +123,12 @@ class SearchGovOpensearch:
 
     def batch_upload(self, spider: SearchGovDomainSpider) -> None:
         """Send batch of documents to Opensearch via bulk API."""
+
+        # TODO: Remove this delay once Elasticsearch is removed.
+        # Opensearch has a 5 second delay before it sends its batch 
+        # to not compete with elasticsearch batches for resources when sent simultaneously
+        time.sleep(5)
+
         if not self._current_batch or not self.ENABLED:
             return
 
