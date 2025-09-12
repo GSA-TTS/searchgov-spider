@@ -39,13 +39,10 @@ class SpiderRedisJobStore(RedisJobStore):
         )
         log.debug("Added %s to pending jobs key %s", job_id, self.pending_jobs_key)
 
-    def get_all_pending_jobs(self, rerun_prefix: str) -> list:
+    def get_all_pending_jobs(self) -> list:
         """Get all pending jobs with their states from the jobstore"""
 
-        pending_job_ids = [
-            job_id.decode("utf8").removeprefix(rerun_prefix)
-            for job_id in self.redis.zrange(self.pending_jobs_key, 0, -1)
-        ]
+        pending_job_ids = [job_id.decode("utf8") for job_id in self.redis.zrange(self.pending_jobs_key, 0, -1)]
         pending_jobs = []
         for pending_job_id in pending_job_ids:
             job = self.lookup_job(job_id=pending_job_id)
