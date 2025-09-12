@@ -5,18 +5,23 @@ import warnings
 from typing import Any, Dict, List, Optional, Union
 from urllib.parse import urlparse
 
-from opensearchpy import OpenSearch, helpers  # pylint: disable=wrong-import-order
+from opensearchpy import OpenSearch, helpers
 
 from search_gov_crawler.search_gov_spiders.spiders import SearchGovDomainSpider
 
-# Suppress warnings from urllib3 and Opensearch
+from search_gov_crawler.search_engines.i14y_helper import generate_url_sha256
+
+
+# Suppress warnings from urllib3 and OpenSearch client. Already doing this in es_batch_upload,
+# but we want keep it here for when we remove Elasticsearch
 warnings.filterwarnings("ignore", category=Warning, module="urllib3")
 warnings.filterwarnings("ignore", category=Warning, module="opensearchpy")
 
-# limit excess INFO messages from opensearch that are not tied to a spider
-logging.getLogger("opensearch").setLevel(logging.ERROR)
+# limit excess INFO messages from the OpenSearch transport
+# opensearch-py exposes transport internals under opensearchpy.transport
+logging.getLogger("opensearchpy.transport").setLevel(logging.ERROR)
 
-log = logging.getLogger("search_gov_crawler.opensearch")
+log = logging.getLogger("search_gov_crawler.search_engines")
 
 
 class SearchGovOpensearch:
@@ -49,7 +54,7 @@ class SearchGovOpensearch:
         self._current_batch: List[Dict[str, Any]] = []
 
         self._env_opensearch_hosts = opensearch_hosts or os.getenv("OPENSEARCH_SEARCH_DOMAIN", "http://localhost:9300")
-        self._env_opensearch_index = opensearch_index or os.getenv("SEARCHOPENSEARCH_INDEX", "development-i14y-documents-searchgov")
+        self._env_opensearch_index = opensearch_index or os.getenv("OPENSEARCH_SEARCH_INDEX", "development-i14y-documents-searchgov")
         self._env_opensearch_user = opensearch_user or os.getenv("OPENSEARCH_ADMIN_USER", "")
         self._env_opensearch_password = opensearch_password or os.getenv("OPENSEARCH_ADMIN_PASS", "")
         self._timeout = timeout
@@ -90,7 +95,7 @@ class SearchGovOpensearch:
         doc: dict[str, Any] | None,
         spider: SearchGovDomainSpider,
     ) -> None:
-        """Add a already converted i14y document to the Opensearch batch.
+        """Add an already converted i14y document to the Opensearch batch.
         
         NOTE: The creation of the i14y document "doc" is done in es_batch_upload.py > add_to_batch() method.
               We are not calling convert_html(), convert_pdf(), and etc. in this method, and they will need
@@ -112,10 +117,10 @@ class SearchGovOpensearch:
         actions: List[Dict[str, Any]] = []
         for doc in docs:
             action: Dict[str, Any] = {"_index": self._env_opensearch_index}
-            if "_id" in doc:
-                action["_id"] = doc.pop("_id")
+            if "path" in doc:
+                action["_id"] = generate_url_sha256(doc["path"])
             else:
-                spider.logger.error("Missing _id property in document: %s", doc)
+                spider.logger.error("Missing required 'path' property in document: %s", doc)
                 continue
             action["_source"] = doc
             actions.append(action)

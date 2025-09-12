@@ -98,7 +98,7 @@ class MockScheduler:
 
 def test_benchmark_from_args(caplog, monkeypatch, mock_es_client):
     with patch(
-        "search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch.client",
+        "search_gov_crawler.search_engines.es_batch_upload.SearchGovElasticsearch.client",
         return_value=mock_es_client,
     ):
         monkeypatch.setattr(time, "sleep", lambda x: True)
@@ -126,7 +126,7 @@ def test_benchmark_from_args(caplog, monkeypatch, mock_es_client):
 
 def test_benchmark_from_file(caplog, monkeypatch, mock_es_client):
     with patch(
-        "search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch.client",
+        "search_gov_crawler.search_engines.es_batch_upload.SearchGovElasticsearch.client",
         return_value=mock_es_client,
     ):
         monkeypatch.setattr(time, "sleep", lambda x: True)

@@ -11,8 +11,8 @@ import requests
 from scrapy.exceptions import DropItem
 from scrapy.spiders import Spider
 
-from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
-from search_gov_crawler.elasticsearch.opensearch_batch_upload import SearchGovOpensearch
+from search_gov_crawler.search_engines.es_batch_upload import SearchGovElasticsearch
+from search_gov_crawler.search_engines.opensearch_batch_upload import SearchGovOpensearch
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 

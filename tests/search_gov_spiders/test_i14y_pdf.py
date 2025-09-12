@@ -4,7 +4,7 @@ import pytest
 from pypdf.errors import FileNotDecryptedError, PdfReadError
 from pypdf.generic import ByteStringObject, DictionaryObject, IndirectObject, TextStringObject
 
-from search_gov_crawler.elasticsearch import convert_pdf_i14y
+from search_gov_crawler.search_engines import convert_pdf_i14y
 
 
 class FakePage:

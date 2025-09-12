@@ -7,7 +7,7 @@ MAX_WAIT=300
 
 set_defaults_env() {
     # Set default values only if they are not already defined
-    export SEARCHOPENSEARCH_INDEX="${SEARCHOPENSEARCH_INDEX:-development-i14y-documents-searchgov}"
+    export OPENSEARCH_SEARCH_INDEX="${OPENSEARCH_SEARCH_INDEX:-development-i14y-documents-searchgov}"
     export OPENSEARCH_SEARCH_DOMAIN="${OPENSEARCH_SEARCH_DOMAIN:-http://localhost:9300}"
 }
 
