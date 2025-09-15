@@ -13,7 +13,7 @@ from search_gov_crawler.search_gov_spiders.spiders import SearchGovDomainSpider
 # fmt: off
 FILTER_EXTENSIONS = [
     # archives
-    "7z", "7zip", "bz2", "rar", "tar", "tar.gz", "xz", "zip", "gz",
+    "7z", "7zip", "bz2", "rar", "tar", "tar.gz", "xz", "zip", "gz", "tgz", "sfx",
     # images
     "mng", "pct", "bmp", "gif", "jpg", "jpeg", "png", "pst", "psp", "image",
     "tif", "tiff", "ai", "drw", "dxf", "eps", "ps", "svg", "cdr", "ico",
@@ -21,13 +21,29 @@ FILTER_EXTENSIONS = [
     "mp3", "wma", "ogg", "wav", "ra", "aac", "mid", "au", "aiff", "media",
     # video
     "3gp", "asf", "asx", "avi", "mov", "mp4", "mpg", "qt", "rm", "swf",
-    "wmv", "m4a", "m4v", "flv", "webm",
+    "wmv", "m4a", "m4v", "flv", "webm", "vtt", "xhr",
     # office suites
-    "ppt", "pptx", "pps", "odt", "ods", "odg", "odp",
+    "ppt", "pptx", "pps", "odt", "ods", "odg", "odp", "odc", "odb", "odf",
+    # executables / binaries / protocols
+    "exe", "bin", "dmg", "iso", "apk", "msi", "dll", "deb", "rpm", "eventsource",
+    "fetch", "websocket",
+    # non-processed text
+    "json", "md", "rtf", "csv", "yaml", "yml", "tsv", "log", "geojson", "manifest",
+    "dtd", "ini", "toml",
+    # code
+    "c", "class", "cpp", "cs", "db", "dbf", "err", "h", "java", "font",
+    "hdf", "lock", "md5", "pl", "py", "rev", "style", "sh", "swift", "vb",
+    "css",  "rss",  "js", "xml", "stylesheet",
+    # drawing
+    "gxf", "spx", "sxd", "sxi", "sxm",
+    # mapping
+    "atx", "cpg", "e00", "gdbindexes", "gdbtable", "gdbtablx", "gdb", "gpkg",
+    "kmz", "mxd", "sbx", "sbn", "shp", "shx", "tfw",
+    # math
+    "cdf", "nb", "ps", "m", "tex",
     # other
-    "css", "exe", "bin", "rss", "dmg", "iso", "apk", "js", "xml", "ibooks",
-    "ics", "nc", "nc4", "prj", "sfx", "eventsource", "fetch", "stylesheet",
-    "websocket", "xhr", "font", "manifest", "hdf", "geojson",
+    "ibooks", "ics", "nc", "nc4", "prj", "freelist", "met", "nit", "qix", "sgy",
+    "segy", "pro",
 ]
 # fmt: on
 
