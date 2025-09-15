@@ -38,7 +38,7 @@ FILTER_EXTENSIONS = [
     "gxf", "spx", "sxd", "sxi", "sxm",
     # mapping
     "atx", "cpg", "e00", "gdbindexes", "gdbtable", "gdbtablx", "gdb", "gpkg",
-    "kmz", "mxd", "sbx", "sbn", "shp", "shx", "tfw",
+    "kmz", "mxd", "sbx", "sbn", "shp", "shx", "tfw", "las", "laz",
     # math
     "cdf", "nb", "ps", "m", "tex",
     # other
