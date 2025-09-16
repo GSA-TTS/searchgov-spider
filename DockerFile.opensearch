@@ -1,0 +1,6 @@
+# Install plugins for OpenSearch
+FROM docker.io/opensearchproject/opensearch:2.15.0
+
+RUN opensearch-plugin install analysis-kuromoji
+RUN opensearch-plugin install analysis-icu
+RUN opensearch-plugin install analysis-smartcn
