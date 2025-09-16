@@ -25,14 +25,14 @@ create_es_index() {
 
 create_opensearch_index() {
     # Check if the index already exists
-    if curl -sS --fail "${OPENSEARCH_SEARCH_DOMAIN}/${OPENSEARCH_INDEX}" > /dev/null 2>&1; then
-        echo "Opensearch Index ${OPENSEARCH_INDEX} already exists, skipping creation."
+    if curl -sS --fail "${OPENSEARCH_SEARCH_DOMAIN}/${OPENSEARCH_SEARCH_INDEX}" > /dev/null 2>&1; then
+        echo "Opensearch Index ${OPENSEARCH_SEARCH_INDEX} already exists, skipping creation."
     else
-        echo "Creating index '${OPENSEARCH_INDEX}' on host ${OPENSEARCH_SEARCH_DOMAIN}"
-        curl -XPUT "${OPENSEARCH_SEARCH_DOMAIN}/${OPENSEARCH_INDEX}" \
+        echo "Creating index '${OPENSEARCH_SEARCH_INDEX}' on host ${OPENSEARCH_SEARCH_DOMAIN}"
+        curl -XPUT "${OPENSEARCH_SEARCH_DOMAIN}/${OPENSEARCH_SEARCH_INDEX}" \
              -H "Content-Type: application/json" \
              -d "@opensearch_index_settings.json"
-        echo -e "\nOpensearch Index '${OPENSEARCH_INDEX}' created successfully."
+        echo -e "\nOpensearch Index '${OPENSEARCH_SEARCH_INDEX}' created successfully."
     fi
     return 0
 }
