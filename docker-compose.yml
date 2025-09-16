@@ -1,6 +1,8 @@
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.20
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.28
+    env_file:
+      - .env
     container_name: elasticsearch
     restart: on-failure
     tty: true
@@ -15,6 +17,7 @@ services:
     volumes:
       - es-data:/usr/share/elasticsearch/data
       - ./setup_docker_es.sh:/setup_docker_es.sh
+      - ./.env:/.env # make sure the .env file exists and is in your project root
     post_start:
       - command: bash -i /setup_docker_es.sh
         user: root
@@ -34,7 +37,7 @@ services:
     depends_on:
       elasticsearch:
         condition: service_healthy
-    image: docker.elastic.co/kibana/kibana:7.17.20
+    image: docker.elastic.co/kibana/kibana:7.17.28
     environment:
       - ELASTICSEARCH_URL="http://elasticsearch:9200"
       - DISABLE_SECURITY_DASHBOARDS_PLUGIN="true"

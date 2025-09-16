@@ -1,6 +1,6 @@
 from scrapy import Selector
 from pathlib import Path
-from search_gov_crawler.elasticsearch.parse_html_scrapy import convert_html_scrapy, extract_article_content, get_meta_values
+from search_gov_crawler.search_engines.parse_html_scrapy import convert_html_scrapy, extract_article_content, get_meta_values
 
 def load_file_with_pathlib(filename):
     script_dir = Path(__file__).resolve().parent
