@@ -10,7 +10,7 @@ services:
       - xpack.license.self_generated.type=trial
       - xpack.monitoring.enabled=false
       - xpack.security.enabled=false
-      - 'ES_JAVA_OPTS=-Xms256m -Xmx256m'
+      - 'ES_JAVA_OPTS=-Xms1g -Xmx1g'
     ulimits:
       memlock:
         soft: -1
@@ -30,7 +30,7 @@ services:
       - spider
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.17.7
+    image: docker.elastic.co/kibana/kibana:7.17.28
     depends_on:
       - elasticsearch
     ports:
@@ -49,7 +49,7 @@ services:
     environment:
       - discovery.type=single-node
       - DISABLE_SECURITY_PLUGIN=true
-      - 'OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m'
+      - 'OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g'
     ulimits:
       memlock:
         soft: -1
@@ -69,7 +69,7 @@ services:
       - spider
 
   opensearch-dashboards:
-    image: opensearchproject/opensearch-dashboards:2.15.0
+    image: opensearchproject/opensearch-dashboards:2.19.0
     depends_on:
       - opensearch
     ports:
