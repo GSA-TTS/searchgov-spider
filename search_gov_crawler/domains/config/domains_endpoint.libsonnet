@@ -126,8 +126,8 @@ local output_target = 'endpoint';
   },
   {
     name: 'VA Office of Accountability and Whistleblower Protection',
-    config: DomainConfig(allowed_domains='www.va.gov/accountability/',
-                         starting_urls='https://www.va.gov/accountability/',
+    config: DomainConfig(allowed_domains='department.va.gov/accountability/',
+                         starting_urls='https://department.va.gov/accountability/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
                          depth_limit=3),

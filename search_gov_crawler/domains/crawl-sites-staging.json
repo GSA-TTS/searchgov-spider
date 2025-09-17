@@ -196,7 +196,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.va.gov/accountability/",
+      "allowed_domains": "department.va.gov/accountability/",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 3,
@@ -205,7 +205,7 @@
       "output_target": "endpoint",
       "schedule": "30 09 * * MON",
       "sitemap_urls": null,
-      "starting_urls": "https://www.va.gov/accountability/"
+      "starting_urls": "https://department.va.gov/accountability/"
    },
    {
       "allow_query_string": false,
@@ -2637,7 +2637,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.chcoc.gov",
+      "allowed_domains": "chcoc.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 3,
@@ -4131,19 +4131,6 @@
       "schedule": "22 05 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://jp.usembassy.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.treasury.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "www.treasury.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "22 06 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.treasury.gov/"
    },
    {
       "allow_query_string": false,
@@ -8705,16 +8692,16 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.cit.nih.gov",
+      "allowed_domains": "cit.nih.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "Center for Information Technology (CIT) (www.cit.nih.gov)",
+      "name": "Center for Information Technology (CIT) (cit.nih.gov)",
       "output_target": "elasticsearch",
       "schedule": "42 15 * * FRI",
       "sitemap_urls": null,
-      "starting_urls": "https://www.cit.nih.gov/"
+      "starting_urls": "https://cit.nih.gov/"
    },
    {
       "allow_query_string": false,
@@ -11127,7 +11114,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.aviationweather.gov",
+      "allowed_domains": "aviationweather.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 3,
@@ -11136,7 +11123,7 @@
       "output_target": "elasticsearch",
       "schedule": "0 12 * * WED",
       "sitemap_urls": null,
-      "starting_urls": "https://www.aviationweather.gov/"
+      "starting_urls": "https://aviationweather.gov/"
    },
    {
       "allow_query_string": false,
@@ -19676,7 +19663,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.usau.usmission.gov",
+      "allowed_domains": "usau.usmission.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -19685,11 +19672,11 @@
       "output_target": "elasticsearch",
       "schedule": "43 12 * * MON",
       "sitemap_urls": null,
-      "starting_urls": "https://www.usau.usmission.gov"
+      "starting_urls": "https://usau.usmission.gov"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.nicic.gov",
+      "allowed_domains": "nicic.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 3,
@@ -19698,7 +19685,7 @@
       "output_target": "elasticsearch",
       "schedule": "44 13 * * TUE",
       "sitemap_urls": null,
-      "starting_urls": "https://www.nicic.gov"
+      "starting_urls": "https://nicic.gov"
    },
    {
       "allow_query_string": false,

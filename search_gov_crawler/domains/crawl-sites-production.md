@@ -3,7 +3,7 @@
  * [Monday (240)](#monday-240)
  * [Tuesday (254)](#tuesday-254)
  * [Wednesday (251)](#wednesday-251)
- * [Thursday (258)](#thursday-258)
+ * [Thursday (257)](#thursday-257)
  * [Friday (264)](#friday-264)
  * [Saturday (269)](#saturday-269)
 
@@ -367,7 +367,7 @@
 |TREAS - FinCEN|09:30|www.fincen.gov|N|3||
 |USCOURTS ARE|09:30|www.are.uscourts.gov|N|3||
 |USCOURTS CAEP|09:30|www.caep.uscourts.gov|N|3||
-|VA Office of Accountability and Whistleblower Protection|09:30|www.va.gov/accountability/|N|3||
+|VA Office of Accountability and Whistleblower Protection|09:30|department.va.gov/accountability/|N|3||
 |VA Resources|09:30|www.va.gov/resources/|N|3||
 |DOD DANTES|09:30|www.dantes.mil|N|3||
 |www.eeoc.gov (usagov-replacement)|09:30|www.eeoc.gov|N|3||
@@ -418,7 +418,7 @@
 |US Bureau of Labor Statistics|12:00|www.bls.gov|N|8||
 |Army Nevada National Guard (army_nang)|12:24|nv.ng.mil|N|3||
 |NIH Office of AIDS Research (oar)|12:34|oar.nih.gov|N|3||
-|DOS Embassy USAU (dos_emb_afr_usau)|12:43|www.usau.usmission.gov|N|8||
+|DOS Embassy USAU (dos_emb_afr_usau)|12:43|usau.usmission.gov|N|8||
 |Pittsburgh IAP Air Reserve Station (pittsburgh)|12:55|www.pittsburgh.afrc.af.mil|N|8||
 |tricare_yokosuka|13:00|yokosuka.tricare.mil|N|8||
 |Access Board|13:00|www.access-board.gov|N|8||
@@ -667,7 +667,7 @@
 |Whitehouse (usagov-replacement)|13:30|www.whitehouse.gov|N|3||
 |www.annualcreditreport.com (usagov-replacement)|13:30|www.annualcreditreport.com|N|3||
 |US Embassy Sarajevo (dos_emb_eur_sarajevo)|13:35|ba.usembassy.gov|N|3||
-|Justice NIC (justice-nic)|13:44|www.nicic.gov|N|3||
+|Justice NIC (justice-nic)|13:44|nicic.gov|N|3||
 |Kadena Air Base (kadena)|13:51|www.kadena.af.mil|N|8||
 |tricare_irwin|14:00|irwin.tricare.mil|N|8||
 |US Web Design System|14:00|designsystem.digital.gov|N|8||
@@ -776,7 +776,7 @@
 |Navy ONI (navy_oni)|00:22|www.oni.navy.mil|N|3||
 |Joint Base McGuire-Dix-Lakehurst (afpw_mcguire)|00:30|www.jbmdl.jb.mil|N|8||
 |tricare_nhcq|01:00|quantico.tricare.mil|N|8||
-|www.chcoc.gov (usagov-replacement)|01:01|www.chcoc.gov|N|3||
+|www.chcoc.gov (usagov-replacement)|01:01|chcoc.gov|N|3||
 |www.rrb.gov (usagov-replacement)|01:02|www.rrb.gov|N|3||
 |cnrse.cnic.navy.mil (navy_cnrse)|01:08|cnrse.cnic.navy.mil|N|8||
 |New depth 8 (md.usembassy.gov/ru)|01:08|md.usembassy.gov/ru|N|8||
@@ -901,7 +901,7 @@
 |www.disasterassistance.gov (usagov-replacement)|12:00|disasterassistance.gov|N|8||
 |tricare_ahcbw|12:00|bassett-wainwright.tricare.mil|N|8||
 |Dobbins Air Reserve Base, Ga. (dobbins)|12:00|www.dobbins.afrc.af.mil|N|8||
-|www.aviationweather.gov (nws.noaa.gov)|12:00|www.aviationweather.gov|N|3||
+|www.aviationweather.gov (nws.noaa.gov)|12:00|aviationweather.gov|N|3||
 |iucrc.nsf.gov (nsf)|12:00|iucrc.nsf.gov|N|8||
 |rcnsc.ndu.edu (nduedu)|12:00|rcnsc.ndu.edu|N|8||
 |USDA Food Buying Guide|12:05|foodbuyingguide.fns.usda.gov|N|8||
@@ -1023,7 +1023,7 @@
 |Army 2nd Signal Brigade (army_2sigbde)|23:52|www.2sigbde.army.mil|N|3||
 
 
-## Thursday (258)
+## Thursday (257)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |niccs.cisa.gov (niccs.cisa)|00:00|niccs.cisa.gov|N|8||
@@ -1095,7 +1095,6 @@
 |www.atlanticarea.uscg.mil (uscg_all)|05:47|www.atlanticarea.uscg.mil|N|8||
 |Office of Surface Mining (osm)|05:51|www.osmre.gov|N|8||
 |www.secretservice.gov (usagov-replacement)|06:12|www.secretservice.gov|N|3||
-|www.treasury.gov (usagov-replacement)|06:22|www.treasury.gov|N|8||
 |Air Force Historical Research Agency (afpw_afhra)|06:28|www.dafhistory.af.mil|N|8||
 |Air Reserve Personnel Center (arpc)|06:28|www.arpc.afrc.af.mil|N|8||
 |VA (usagov-replacement)|06:30|www.va.gov|N|3||
@@ -1438,7 +1437,7 @@
 |hn.usembassy.gov (dos_emb_wha_honduras_es)|15:23|hn.usembassy.gov|N|8||
 |USNIC Domain (usnic-domain)|15:35|usicecenter.gov|N|3||
 |DoD ADLI (dod_adli)|15:41|www.adlnet.gov|N|3||
-|Center for Information Technology (CIT) (www.cit.nih.gov)|15:42|www.cit.nih.gov|N|8||
+|Center for Information Technology (CIT) (cit.nih.gov)|15:42|cit.nih.gov|N|8||
 |United States Forces Japan (usfj)|15:45|www.usfj.mil|N|3||
 |NSF NCSES Data|15:52|ncsesdata.nsf.gov|N|8||
 |157th ARW, New Hampshire ANG (afpw_157arw)|15:56|www.157arw.ang.af.mil|N|8||
