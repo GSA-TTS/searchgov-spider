@@ -92,6 +92,7 @@ def test_trigger_pending_jobs(caplog, monkeypatch, spider_scheduler, mock_redis_
             kwargs={},
         )
 
+    monkeypatch.setattr(spider_scheduler, "modify_job", lambda *_args, **_kwargs: True)
     monkeypatch.setattr(mock_redis_jobstore, "lookup_job", mock_lookup_job)
     monkeypatch.setattr(mock_redis_jobstore.redis, "zrange", lambda *_args, **_kwargs: [b"test::job1", b"test::job2"])
 

@@ -40,8 +40,8 @@ GET_ALL_PENDING_JOB_TEST_CASES = [
         None,
         (
             "Found and retrieved 0 pending jobs from key test_pending_jobs",
-            "Job job1 not found in job store",
-            "Job job2 not found in job store",
+            "Job test::job1 not found in job store",
+            "Job test::job2 not found in job store",
         ),
     ),
 ]
@@ -67,6 +67,6 @@ def test_get_all_pending_jobs(
     monkeypatch.setattr(mock_redis_jobstore.redis, "zrange", lambda *_args, **_kwargs: pending_job_ids)
 
     with caplog.at_level("DEBUG"):
-        mock_redis_jobstore.get_all_pending_jobs(rerun_prefix="test::")
+        mock_redis_jobstore.get_all_pending_jobs()
 
     assert all(expected_message in caplog.messages for expected_message in expected_messages)

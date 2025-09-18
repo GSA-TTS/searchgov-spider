@@ -78,22 +78,10 @@ class SpiderBackgroundScheduler(BackgroundScheduler):
         job store.
         """
 
-        rerun_prefix = "Rerun::"
-
         jobstore = self._get_pending_jobstore()
         if jobstore:
-            jobs = jobstore.get_all_pending_jobs(rerun_prefix=rerun_prefix)
+            jobs = jobstore.get_all_pending_jobs()
 
             for job in jobs:
-                self.add_job(
-                    id=f"{rerun_prefix}{job.id}",
-                    name=job.name,
-                    func=job.func,
-                    args=job.args,
-                    kwargs=job.kwargs,
-                    next_run_time=datetime.now(tz=UTC) + timedelta(seconds=offset_seconds),
-                    replace_existing=True,
-                    jobstore=jobstore.alias,
-                )
-
+                self.modify_job(job.id, next_run_time=datetime.now(tz=UTC) + timedelta(seconds=offset_seconds))
                 self.remove_pending_job_by_id(job.id)
