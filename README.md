@@ -55,7 +55,12 @@ playwright install --with-deps
 playwright install chrome --force
 ```
 
-3. Run A Spider:
+3. Start Required Infrastructure Using Docker
+```bash
+docker compose up redis
+```
+
+4. Run A Spider:
 ```bash
 cd search_gov_crawler
 
@@ -66,11 +71,11 @@ scrapy crawl domain_spider -a allowed_domains=quotes.toscrape.com -a start_urls=
 scrapy crawl domain_spider_js -a allowed_domains=quotes.toscrape.com -a start_urls=https://quotes.toscrape.com/js -a output_target=csv
 ```
 
-4. Check Output:
+5. Check Output:
 
 The output of this scrape is one or more csv files containing URLs in the [output directory](search_gov_crawler/output).
 
-5. Learn More:
+6. Learn More:
 
 For more advanced usage, see the [Advanced Setup and Use Page](docs/advanced_setup_and_use.md)
 
