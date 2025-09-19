@@ -14,21 +14,21 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Bureau of Engraving and Printing (bep)',
-    config: DomainConfig(allowed_domains='bep.gov',
+    config: DomainConfig(allowed_domains='www.bep.gov',
                          starting_urls='https://www.bep.gov/',
                          schedule='15 06 * * TUE',
                          output_target=output_target),
   },
   {
     name: 'Department of Energy - Hydrogen (doe-h2)',
-    config: DomainConfig(allowed_domains='hydrogen.energy.gov',
+    config: DomainConfig(allowed_domains='www.hydrogen.energy.gov',
                          starting_urls='https://www.hydrogen.energy.gov/',
                          schedule='15 06 * * TUE',
                          output_target=output_target),
   },
   {
     name: 'Eisenhower Presidential Library (eisenhower)',
-    config: DomainConfig(allowed_domains='eisenhowerlibrary.gov',
+    config: DomainConfig(allowed_domains='www.eisenhowerlibrary.gov',
                          starting_urls='https://www.eisenhowerlibrary.gov/',
                          schedule='15 06 * * TUE',
                          output_target=output_target,
@@ -36,30 +36,22 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'CDFI Fund (cdfifund)',
-    config: DomainConfig(allowed_domains='cdfifund.gov',
+    config: DomainConfig(allowed_domains='www.cdfifund.gov',
                          starting_urls='https://www.cdfifund.gov/',
                          schedule='15 06 * * TUE',
                          output_target=output_target),
   },
   {
     name: 'NOAA (noaa)',
-    config: DomainConfig(allowed_domains='noaa.gov',
+    config: DomainConfig(allowed_domains='www.noaa.gov',
                          starting_urls='https://www.noaa.gov/',
                          schedule='01 19 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
   },
   {
-    name: 'National Weather Service (nws)',
-    config: DomainConfig(allowed_domains='nws.noaa.gov',
-                         starting_urls='https://www.nws.noaa.gov/',
-                         schedule='01 19 * * FRI',
-                         output_target=output_target,
-                         depth_limit=3),
-  },
-  {
     name: 'National Centers for Environmental Information (ncei)',
-    config: DomainConfig(allowed_domains='ncei.noaa.gov',
+    config: DomainConfig(allowed_domains='www.ncei.noaa.gov',
                          starting_urls='https://www.ncei.noaa.gov/',
                          schedule='01 19 * * FRI',
                          output_target=output_target,
@@ -68,7 +60,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NOAA Fisheries (fisheries)',
-    config: DomainConfig(allowed_domains='fisheries.noaa.gov',
+    config: DomainConfig(allowed_domains='www.fisheries.noaa.gov',
                          starting_urls='https://www.fisheries.noaa.gov/',
                          schedule='02 19 * * FRI',
                          output_target=output_target,
@@ -84,7 +76,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Weather Prediction Center (wpc)',
-    config: DomainConfig(allowed_domains='wpc.ncep.noaa.gov',
+    config: DomainConfig(allowed_domains='www.wpc.ncep.noaa.gov',
                          starting_urls='https://www.wpc.ncep.noaa.gov/',
                          schedule='03 19 * * FRI',
                          output_target=output_target,
@@ -100,7 +92,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Space Weather Prediction Center (swpc)',
-    config: DomainConfig(allowed_domains='swpc.noaa.gov',
+    config: DomainConfig(allowed_domains='www.swpc.noaa.gov',
                          starting_urls='https://www.swpc.noaa.gov/',
                          schedule='04 19 * * FRI',
                          output_target=output_target,
@@ -108,7 +100,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Climate Prediction Center (cpc)',
-    config: DomainConfig(allowed_domains='cpc.ncep.noaa.gov',
+    config: DomainConfig(allowed_domains='www.cpc.ncep.noaa.gov',
                          starting_urls='https://www.cpc.ncep.noaa.gov/',
                          schedule='04 19 * * FRI',
                          output_target=output_target,
@@ -116,7 +108,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Hurricane Center (nhc)',
-    config: DomainConfig(allowed_domains='nhc.noaa.gov',
+    config: DomainConfig(allowed_domains='www.nhc.noaa.gov',
                          starting_urls='https://www.nhc.noaa.gov/',
                          schedule='05 19 * * FRI',
                          output_target=output_target,
@@ -124,7 +116,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Data Buoy Center (ndbc)',
-    config: DomainConfig(allowed_domains='ndbc.noaa.gov',
+    config: DomainConfig(allowed_domains='www.ndbc.noaa.gov',
                          starting_urls='https://www.ndbc.noaa.gov/',
                          schedule='05 19 * * FRI',
                          output_target=output_target,
@@ -141,7 +133,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NESDIS (nesdis)',
-    config: DomainConfig(allowed_domains='nesdis.noaa.gov',
+    config: DomainConfig(allowed_domains='www.nesdis.noaa.gov',
                          starting_urls='https://www.nesdis.noaa.gov/',
                          schedule='06 19 * * FRI',
                          output_target=output_target,
@@ -173,7 +165,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'STAR NESDIS (star)',
-    config: DomainConfig(allowed_domains='star.nesdis.noaa.gov',
+    config: DomainConfig(allowed_domains='www.star.nesdis.noaa.gov',
                          starting_urls='https://www.star.nesdis.noaa.gov/',
                          schedule='07 19 * * FRI',
                          output_target=output_target,
@@ -181,7 +173,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Operational Hydrologic Remote Sensing Center (nohrsc)',
-    config: DomainConfig(allowed_domains='nohrsc.noaa.gov',
+    config: DomainConfig(allowed_domains='www.nohrsc.noaa.gov',
                          starting_urls='https://www.nohrsc.noaa.gov/',
                          schedule='08 19 * * FRI',
                          output_target=output_target,
@@ -189,7 +181,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Northwest River Forecast Center (nwrfc)',
-    config: DomainConfig(allowed_domains='nwrfc.noaa.gov',
+    config: DomainConfig(allowed_domains='www.nwrfc.noaa.gov',
                          starting_urls='https://www.nwrfc.noaa.gov/',
                          schedule='08 19 * * FRI',
                          output_target=output_target,
@@ -197,7 +189,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Severe Storms Laboratory (nssl)',
-    config: DomainConfig(allowed_domains='nssl.noaa.gov',
+    config: DomainConfig(allowed_domains='www.nssl.noaa.gov',
                          starting_urls='https://www.nssl.noaa.gov/',
                          schedule='08 19 * * FRI',
                          output_target=output_target,
@@ -213,7 +205,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Atlantic Oceanographic and Meteorological Laboratory (aoml)',
-    config: DomainConfig(allowed_domains='aoml.noaa.gov',
+    config: DomainConfig(allowed_domains='www.aoml.noaa.gov',
                          starting_urls='https://www.aoml.noaa.gov/',
                          schedule='09 19 * * FRI',
                          output_target=output_target,
@@ -230,7 +222,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'California Nevada River Forecast Center (cnrfc)',
-    config: DomainConfig(allowed_domains='cnrfc.noaa.gov',
+    config: DomainConfig(allowed_domains='www.cnrfc.noaa.gov',
                          starting_urls='https://www.cnrfc.noaa.gov/',
                          schedule='10 19 * * FRI',
                          output_target=output_target,
@@ -246,7 +238,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Great Lakes Environmental Research Laboratory (glerl)',
-    config: DomainConfig(allowed_domains='glerl.noaa.gov',
+    config: DomainConfig(allowed_domains='www.glerl.noaa.gov',
                          starting_urls='https://www.glerl.noaa.gov/',
                          schedule='11 19 * * FRI',
                          output_target=output_target,
@@ -263,7 +255,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Pacific Marine Environmental Laboratory (pmel)',
-    config: DomainConfig(allowed_domains='pmel.noaa.gov',
+    config: DomainConfig(allowed_domains='www.pmel.noaa.gov',
                          starting_urls='https://www.pmel.noaa.gov/',
                          schedule='11 19 * * FRI',
                          output_target=output_target,
@@ -279,7 +271,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Geostationary Operational Environmental Satellites (goes)',
-    config: DomainConfig(allowed_domains='goes.noaa.gov',
+    config: DomainConfig(allowed_domains='www.goes.noaa.gov',
                          starting_urls='https://www.goes.noaa.gov/',
                          schedule='12 19 * * FRI',
                          output_target=output_target,
@@ -287,7 +279,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Geodetic Survey (ngs)',
-    config: DomainConfig(allowed_domains='ngs.noaa.gov',
+    config: DomainConfig(allowed_domains='www.ngs.noaa.gov',
                          starting_urls='https://www.ngs.noaa.gov/',
                          schedule='12 19 * * FRI',
                          output_target=output_target,
@@ -319,7 +311,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NOAA Ready (ready)',
-    config: DomainConfig(allowed_domains='ready.noaa.gov',
+    config: DomainConfig(allowed_domains='www.ready.noaa.gov',
                          starting_urls='https://www.ready.noaa.gov/',
                          schedule='14 19 * * FRI',
                          output_target=output_target,
@@ -351,7 +343,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Tsunami Warning Center (tsunami)',
-    config: DomainConfig(allowed_domains='tsunami.noaa.gov',
+    config: DomainConfig(allowed_domains='www.tsunami.noaa.gov',
                          starting_urls='https://www.tsunami.noaa.gov/',
                          schedule='15 19 * * FRI',
                          output_target=output_target,
@@ -367,7 +359,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NOAA Charts (charts)',
-    config: DomainConfig(allowed_domains='charts.noaa.gov',
+    config: DomainConfig(allowed_domains='www.charts.noaa.gov',
                          starting_urls='https://www.charts.noaa.gov/',
                          schedule='16 19 * * FRI',
                          output_target=output_target,
@@ -415,7 +407,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'OSPO (ospo)',
-    config: DomainConfig(allowed_domains='ospo.noaa.gov',
+    config: DomainConfig(allowed_domains='www.ospo.noaa.gov',
                          starting_urls='https://www.ospo.noaa.gov/',
                          schedule='18 19 * * FRI',
                          output_target=output_target,
@@ -423,7 +415,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'OMAO (omao)',
-    config: DomainConfig(allowed_domains='omao.noaa.gov',
+    config: DomainConfig(allowed_domains='www.omao.noaa.gov',
                          starting_urls='https://www.omao.noaa.gov/',
                          schedule='19 19 * * FRI',
                          output_target=output_target,
@@ -471,7 +463,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Geophysical Fluid Dynamics Laboratory (gfdl)',
-    config: DomainConfig(allowed_domains='gfdl.noaa.gov',
+    config: DomainConfig(allowed_domains='www.gfdl.noaa.gov',
                          starting_urls='https://www.gfdl.noaa.gov/',
                          schedule='21 19 * * FRI',
                          output_target=output_target,
@@ -503,7 +495,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'SARSAT (sarsat)',
-    config: DomainConfig(allowed_domains='sarsat.noaa.gov',
+    config: DomainConfig(allowed_domains='www.sarsat.noaa.gov',
                          starting_urls='https://www.sarsat.noaa.gov/',
                          schedule='22 19 * * FRI',
                          output_target=output_target,
@@ -511,7 +503,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'CORIS (coris)',
-    config: DomainConfig(allowed_domains='coris.noaa.gov',
+    config: DomainConfig(allowed_domains='www.coris.noaa.gov',
                          starting_urls='https://www.coris.noaa.gov/',
                          schedule='23 19 * * FRI',
                          output_target=output_target,
@@ -543,7 +535,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USA.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='usa.gov',
+    config: DomainConfig(allowed_domains='www.usa.gov',
                          starting_urls='https://www.usa.gov/',
                          schedule='30 06 * * TUE',
                          output_target=output_target,
@@ -552,7 +544,7 @@ local output_target = 'elasticsearch';
 
   {
     name: 'IRS (usagov-replacement)',
-    config: DomainConfig(allowed_domains='irs.gov',
+    config: DomainConfig(allowed_domains='www.irs.gov',
                          starting_urls='https://www.irs.gov/',
                          schedule='30 20 * * TUE',
                          output_target=output_target,
@@ -560,7 +552,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'SSA (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ssa.gov',
+    config: DomainConfig(allowed_domains='www.ssa.gov',
                          starting_urls='https://www.ssa.gov/',
                          schedule='30 17 * * TUE',
                          output_target=output_target,
@@ -585,14 +577,14 @@ local output_target = 'elasticsearch';
   {
     name: 'NIH PubMed Central (usagov-replacement)',
     config: DomainConfig(allowed_domains='pmc.ncbi.nlm.nih.gov',
-                         starting_urls='https://www.ncbi.nlm.nih.gov/pmc/',
+                         starting_urls='https://pmc.ncbi.nlm.nih.gov/',
                          schedule='30 04 * * TUE',
                          output_target=output_target,
                          depth_limit=3),
   },
   {
     name: 'Whitehouse (usagov-replacement)',
-    config: DomainConfig(allowed_domains='whitehouse.gov',
+    config: DomainConfig(allowed_domains='www.whitehouse.gov',
                          starting_urls='https://www.whitehouse.gov/',
                          schedule='30 13 * * TUE',
                          output_target=output_target,
@@ -600,7 +592,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USCIS (usagov-replacement)',
-    config: DomainConfig(allowed_domains='uscis.gov',
+    config: DomainConfig(allowed_domains='www.uscis.gov',
                          starting_urls='https://www.uscis.gov/',
                          schedule='30 22 * * TUE',
                          output_target=output_target,
@@ -608,7 +600,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Justice Dept (usagov-replacement)',
-    config: DomainConfig(allowed_domains='justice.gov',
+    config: DomainConfig(allowed_domains='www.justice.gov',
                          starting_urls='https://www.justice.gov/',
                          schedule='30 21 * * TUE',
                          output_target=output_target,
@@ -616,7 +608,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'OPM (usagov-replacement)',
-    config: DomainConfig(allowed_domains='opm.gov',
+    config: DomainConfig(allowed_domains='www.opm.gov',
                          starting_urls='https://www.opm.gov/',
                          schedule='19 19 * * TUE',
                          output_target=output_target,
@@ -632,7 +624,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Park Service (usagov-replacement)',
-    config: DomainConfig(allowed_domains='nps.gov',
+    config: DomainConfig(allowed_domains='www.nps.gov',
                          starting_urls='https://www.nps.gov/',
                          schedule='30 00 * * SUN',
                          output_target=output_target,
@@ -648,7 +640,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Customs and Border Protection (usagov-replacement)',
-    config: DomainConfig(allowed_domains='cbp.gov',
+    config: DomainConfig(allowed_domains='www.cbp.gov',
                          starting_urls='https://www.cbp.gov/',
                          schedule='00 02 * * SUN',
                          output_target=output_target,
@@ -656,7 +648,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Centers for Disease Control and Prevention (usagov-replacement)',
-    config: DomainConfig(allowed_domains='cdc.gov',
+    config: DomainConfig(allowed_domains='www.cdc.gov',
                          starting_urls='https://www.cdc.gov/',
                          schedule='15 02 * * SUN',
                          output_target=output_target,
@@ -664,7 +656,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'State Dept (usagov-replacement)',
-    config: DomainConfig(allowed_domains='state.gov',
+    config: DomainConfig(allowed_domains='www.state.gov',
                          starting_urls='https://www.state.gov/',
                          schedule='30 02 * * SUN',
                          output_target=output_target,
@@ -672,7 +664,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Housing and Urban Development (usagov-replacement)',
-    config: DomainConfig(allowed_domains='hud.gov',
+    config: DomainConfig(allowed_domains='www.hud.gov',
                          starting_urls='https://www.hud.gov/',
                          schedule='45 02 * * SUN',
                          output_target=output_target,
@@ -688,7 +680,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'FDA (usagov-replacement)',
-    config: DomainConfig(allowed_domains='fda.gov',
+    config: DomainConfig(allowed_domains='www.fda.gov',
                          starting_urls='https://www.fda.gov/',
                          schedule='15 06 * * SUN',
                          output_target=output_target,
@@ -696,7 +688,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Dept of Labor (usagov-replacement)',
-    config: DomainConfig(allowed_domains='dol.gov',
+    config: DomainConfig(allowed_domains='www.dol.gov',
                          starting_urls='https://www.dol.gov/',
                          schedule='30 06 * * SUN',
                          output_target=output_target,
@@ -720,7 +712,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'CFPB (usagov-replacement)',
-    config: DomainConfig(allowed_domains='consumerfinance.gov',
+    config: DomainConfig(allowed_domains='www.consumerfinance.gov',
                          starting_urls='https://www.consumerfinance.gov/',
                          schedule='15 07 * * SUN',
                          output_target=output_target,
@@ -728,7 +720,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'CIA (usagov-replacement)',
-    config: DomainConfig(allowed_domains='cia.gov',
+    config: DomainConfig(allowed_domains='www.cia.gov',
                          starting_urls='https://www.cia.gov/',
                          schedule='30 07 * * SUN',
                          output_target=output_target,
@@ -744,7 +736,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.census.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='census.gov',
+    config: DomainConfig(allowed_domains='www.census.gov',
                          starting_urls='https://www.census.gov/',
                          schedule='00 11 * * SUN',
                          output_target=output_target,
@@ -752,7 +744,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'doge.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='doge.gov',
+    config: DomainConfig(allowed_domains='www.doge.gov',
                          starting_urls='https://www.doge.gov/',
                          schedule='15 11 * * SUN',
                          output_target=output_target,
@@ -760,7 +752,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.federalregister.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='federalregister.gov',
+    config: DomainConfig(allowed_domains='www.federalregister.gov',
                          starting_urls='https://www.federalregister.gov/',
                          schedule='30 11 * * SUN',
                          output_target=output_target,
@@ -768,23 +760,23 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.loc.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='loc.gov',
+    config: DomainConfig(allowed_domains='www.loc.gov',
                          starting_urls='https://www.loc.gov/',
                          schedule='45 11 * * SUN',
                          output_target=output_target,
                          depth_limit=3),
   },
   {
-    name: 'www.defense.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='defense.gov',
-                         starting_urls='https://www.defense.gov/',
+    name: 'www.war.gov (usagov-replacement)',
+    config: DomainConfig(allowed_domains='www.war.gov',
+                         starting_urls='https://www.war.gov/',
                          schedule='00 12 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
   },
   {
     name: 'www.epa.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='epa.gov',
+    config: DomainConfig(allowed_domains='www.epa.gov',
                          starting_urls='https://www.epa.gov/',
                          schedule='15 12 * * SUN',
                          output_target=output_target,
@@ -792,7 +784,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ed.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ed.gov',
+    config: DomainConfig(allowed_domains='www.ed.gov',
                          starting_urls='https://www.ed.gov/',
                          schedule='30 12 * * SUN',
                          output_target=output_target,
@@ -800,7 +792,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ncbi.nlm.nih.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ncbi.nlm.nih.gov',
+    config: DomainConfig(allowed_domains='www.ncbi.nlm.nih.gov',
                          starting_urls='https://www.ncbi.nlm.nih.gov/',
                          schedule='45 12 * * SUN',
                          output_target=output_target,
@@ -808,7 +800,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.senate.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='senate.gov',
+    config: DomainConfig(allowed_domains='www.senate.gov',
                          starting_urls='https://www.senate.gov/',
                          schedule='00 16 * * SUN',
                          output_target=output_target,
@@ -816,7 +808,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.gsa.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='gsa.gov',
+    config: DomainConfig(allowed_domains='www.gsa.gov',
                          starting_urls='https://www.gsa.gov/',
                          schedule='15 16 * * SUN',
                          output_target=output_target,
@@ -840,7 +832,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.dhs.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='dhs.gov',
+    config: DomainConfig(allowed_domains='www.dhs.gov',
                          starting_urls='https://www.dhs.gov/',
                          schedule='19 03 * * TUE',
                          output_target=output_target,
@@ -848,7 +840,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.fbi.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='fbi.gov',
+    config: DomainConfig(allowed_domains='www.fbi.gov',
                          starting_urls='https://www.fbi.gov/',
                          schedule='28 06 * * TUE',
                          output_target=output_target,
@@ -856,7 +848,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.medicare.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='medicare.gov',
+    config: DomainConfig(allowed_domains='www.medicare.gov',
                          starting_urls='https://www.medicare.gov/',
                          schedule='37 09 * * TUE',
                          output_target=output_target,
@@ -864,7 +856,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ftc.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ftc.gov',
+    config: DomainConfig(allowed_domains='www.ftc.gov',
                          starting_urls='https://www.ftc.gov/',
                          schedule='48 12 * * TUE',
                          output_target=output_target,
@@ -872,7 +864,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.house.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='house.gov',
+    config: DomainConfig(allowed_domains='www.house.gov',
                          starting_urls='https://www.house.gov/',
                          schedule='57 15 * * TUE',
                          output_target=output_target,
@@ -880,7 +872,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.tsa.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='tsa.gov',
+    config: DomainConfig(allowed_domains='www.tsa.gov',
                          starting_urls='https://www.tsa.gov/',
                          schedule='00 18 * * TUE',
                          output_target=output_target,
@@ -888,7 +880,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.treasurydirect.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='treasurydirect.gov',
+    config: DomainConfig(allowed_domains='www.treasurydirect.gov',
                          starting_urls='https://www.treasurydirect.gov/',
                          schedule='44 21 * * TUE',
                          output_target=output_target,
@@ -896,7 +888,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.cms.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='cms.gov',
+    config: DomainConfig(allowed_domains='www.cms.gov',
                          starting_urls='https://www.cms.gov/',
                          schedule='54 00 * * TUE',
                          output_target=output_target,
@@ -904,7 +896,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.energy.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='energy.gov',
+    config: DomainConfig(allowed_domains='www.energy.gov',
                          starting_urls='https://www.energy.gov/',
                          schedule='32 02 * * TUE',
                          output_target=output_target,
@@ -912,7 +904,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.gao.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='gao.gov',
+    config: DomainConfig(allowed_domains='www.gao.gov',
                          starting_urls='https://www.gao.gov/',
                          schedule='21 03 * * TUE',
                          output_target=output_target,
@@ -920,7 +912,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ice.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ice.gov',
+    config: DomainConfig(allowed_domains='www.ice.gov',
                          starting_urls='https://www.ice.gov/',
                          schedule='10 04 * * TUE',
                          output_target=output_target,
@@ -928,7 +920,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ecfr.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ecfr.gov',
+    config: DomainConfig(allowed_domains='www.ecfr.gov',
                          starting_urls='https://www.ecfr.gov/',
                          schedule='01 05 * * TUE',
                          output_target=output_target,
@@ -936,7 +928,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.fema.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='fema.gov',
+    config: DomainConfig(allowed_domains='www.fema.gov',
                          starting_urls='https://www.fema.gov/',
                          schedule='12 06 * * TUE',
                          output_target=output_target,
@@ -944,7 +936,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.sba.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='sba.gov',
+    config: DomainConfig(allowed_domains='www.sba.gov',
                          starting_urls='https://www.sba.gov/',
                          schedule='23 07 * * TUE',
                          output_target=output_target,
@@ -952,7 +944,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.usda.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='usda.gov',
+    config: DomainConfig(allowed_domains='www.usda.gov',
                          starting_urls='https://www.usda.gov/',
                          schedule='34 08 * * TUE',
                          output_target=output_target,
@@ -960,7 +952,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.fns.usda.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='fns.usda.gov',
+    config: DomainConfig(allowed_domains='www.fns.usda.gov',
                          starting_urls='https://www.fns.usda.gov/',
                          schedule='45 09 * * TUE',
                          output_target=output_target,
@@ -968,7 +960,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ojp.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ojp.gov',
+    config: DomainConfig(allowed_domains='www.ojp.gov',
                          starting_urls='https://www.ojp.gov/',
                          schedule='56 10 * * TUE',
                          output_target=output_target,
@@ -976,7 +968,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.usgs.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='usgs.gov',
+    config: DomainConfig(allowed_domains='www.usgs.gov',
                          starting_urls='https://www.usgs.gov/',
                          schedule='11 11 * * TUE',
                          output_target=output_target,
@@ -1001,7 +993,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.healthcare.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='healthcare.gov',
+    config: DomainConfig(allowed_domains='www.healthcare.gov',
                          starting_urls='https://www.healthcare.gov/',
                          schedule='14 14 * * TUE',
                          output_target=output_target,
@@ -1009,7 +1001,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.fincen.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='fincen.gov',
+    config: DomainConfig(allowed_domains='www.fincen.gov',
                          starting_urls='https://www.fincen.gov/',
                          schedule='15 15 * * TUE',
                          output_target=output_target,
@@ -1017,7 +1009,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.trade.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='trade.gov',
+    config: DomainConfig(allowed_domains='www.trade.gov',
                          starting_urls='https://www.trade.gov/',
                          schedule='16 16 * * TUE',
                          output_target=output_target,
@@ -1033,7 +1025,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.fcc.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='fcc.gov',
+    config: DomainConfig(allowed_domains='www.fcc.gov',
                          starting_urls='https://www.fcc.gov/',
                          schedule='18 18 * * TUE',
                          output_target=output_target,
@@ -1041,7 +1033,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.supremecourt.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='supremecourt.gov',
+    config: DomainConfig(allowed_domains='www.supremecourt.gov',
                          starting_urls='https://www.supremecourt.gov/',
                          schedule='21 21 * * TUE',
                          output_target=output_target,
@@ -1057,7 +1049,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.weather.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='weather.gov',
+    config: DomainConfig(allowed_domains='www.weather.gov',
                          starting_urls='https://www.weather.gov/',
                          schedule='23 23 * * TUE',
                          output_target=output_target,
@@ -1065,7 +1057,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.federalreserve.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='federalreserve.gov',
+    config: DomainConfig(allowed_domains='www.federalreserve.gov',
                          starting_urls='https://www.federalreserve.gov/',
                          schedule='30 06 * * MON',
                          output_target=output_target,
@@ -1073,7 +1065,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.eeoc.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='eeoc.gov',
+    config: DomainConfig(allowed_domains='www.eeoc.gov',
                          starting_urls='https://www.eeoc.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -1081,7 +1073,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.army.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='army.mil',
+    config: DomainConfig(allowed_domains='www.army.mil',
                          starting_urls='https://www.army.mil/',
                          schedule='22 06 * * TUE',
                          output_target=output_target,
@@ -1097,7 +1089,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'login.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='login.gov',
+    config: DomainConfig(allowed_domains='www.login.gov',
                          starting_urls='https://www.login.gov/',
                          schedule='30 01 * * TUE',
                          output_target=output_target,
@@ -1105,7 +1097,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nasa.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='nasa.gov',
+    config: DomainConfig(allowed_domains='www.nasa.gov',
                          starting_urls='https://www.nasa.gov/',
                          schedule='30 02 * * TUE',
                          output_target=output_target,
@@ -1129,7 +1121,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.atf.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='atf.gov',
+    config: DomainConfig(allowed_domains='www.atf.gov',
                          starting_urls='https://www.atf.gov/',
                          schedule='30 05 * * TUE',
                          output_target=output_target,
@@ -1145,7 +1137,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.fdic.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='fdic.gov',
+    config: DomainConfig(allowed_domains='www.fdic.gov',
                          starting_urls='https://www.fdic.gov/',
                          schedule='30 07 * * TUE',
                          output_target=output_target,
@@ -1153,7 +1145,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.myhealth.va.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='myhealth.va.gov',
+    config: DomainConfig(allowed_domains='www.myhealth.va.gov',
                          starting_urls='https://www.myhealth.va.gov/',
                          schedule='30 08 * * TUE',
                          output_target=output_target,
@@ -1161,7 +1153,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.doi.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='doi.gov',
+    config: DomainConfig(allowed_domains='www.doi.gov',
                          starting_urls='https://www.doi.gov/',
                          schedule='30 09 * * TUE',
                          output_target=output_target,
@@ -1169,7 +1161,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.uspto.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='uspto.gov',
+    config: DomainConfig(allowed_domains='www.uspto.gov',
                          starting_urls='https://www.uspto.gov/',
                          schedule='30 10 * * TUE',
                          output_target=output_target,
@@ -1193,7 +1185,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.annualcreditreport.com (usagov-replacement)',
-    config: DomainConfig(allowed_domains='annualcreditreport.com',
+    config: DomainConfig(allowed_domains='www.annualcreditreport.com',
                          starting_urls='https://www.annualcreditreport.com/',
                          schedule='30 13 * * TUE',
                          output_target=output_target,
@@ -1201,7 +1193,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.dfas.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='dfas.mil',
+    config: DomainConfig(allowed_domains='www.dfas.mil',
                          starting_urls='https://www.dfas.mil/',
                          schedule='30 14 * * TUE',
                          output_target=output_target,
@@ -1209,7 +1201,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.medicaid.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='medicaid.gov',
+    config: DomainConfig(allowed_domains='www.medicaid.gov',
                          starting_urls='https://www.medicaid.gov/',
                          schedule='30 15 * * TUE',
                          output_target=output_target,
@@ -1217,8 +1209,8 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'medlineplus.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='medlineplus.gov',
-                         starting_urls='https://medlineplus.gov/',
+    config: DomainConfig(allowed_domains='www.medlineplus.gov',
+                         starting_urls='https://www.medlineplus.gov/',
                          schedule='30 16 * * TUE',
                          output_target=output_target,
                          depth_limit=3),
@@ -1233,7 +1225,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.samhsa.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='samhsa.gov',
+    config: DomainConfig(allowed_domains='www.samhsa.gov',
                          starting_urls='https://www.samhsa.gov/',
                          schedule='30 18 * * TUE',
                          output_target=output_target,
@@ -1241,7 +1233,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.commerce.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='commerce.gov',
+    config: DomainConfig(allowed_domains='www.commerce.gov',
                          starting_urls='https://www.commerce.gov/',
                          schedule='30 19 * * TUE',
                          output_target=output_target,
@@ -1249,7 +1241,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.fws.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='fws.gov',
+    config: DomainConfig(allowed_domains='www.fws.gov',
                          starting_urls='https://www.fws.gov/',
                          schedule='30 20 * * TUE',
                          output_target=output_target,
@@ -1281,7 +1273,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.fec.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='fec.gov',
+    config: DomainConfig(allowed_domains='www.fec.gov',
                          starting_urls='https://www.fec.gov/',
                          schedule='00 00 * * SAT',
                          output_target=output_target,
@@ -1289,8 +1281,8 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'tricare.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='tricare.mil',
-                         starting_urls='https://tricare.mil/',
+    config: DomainConfig(allowed_domains='www.tricare.mil',
+                         starting_urls='https://www.tricare.mil/',
                          schedule='00 01 * * SAT',
                          output_target=output_target,
                          depth_limit=3),
@@ -1321,7 +1313,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nhtsa.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='nhtsa.gov',
+    config: DomainConfig(allowed_domains='www.nhtsa.gov',
                          starting_urls='https://www.nhtsa.gov/',
                          schedule='00 05 * * SAT',
                          output_target=output_target,
@@ -1329,7 +1321,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.esd.whs.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='esd.whs.mil',
+    config: DomainConfig(allowed_domains='www.esd.whs.mil',
                          starting_urls='https://www.esd.whs.mil/',
                          schedule='00 06 * * SAT',
                          output_target=output_target,
@@ -1337,7 +1329,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.bop.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='bop.gov',
+    config: DomainConfig(allowed_domains='www.bop.gov',
                          starting_urls='https://www.bop.gov/',
                          schedule='00 07 * * SAT',
                          output_target=output_target,
@@ -1361,7 +1353,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.reginfo.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='reginfo.gov',
+    config: DomainConfig(allowed_domains='www.reginfo.gov',
                          starting_urls='https://www.reginfo.gov/',
                          schedule='00 10 * * SAT',
                          output_target=output_target,
@@ -1385,7 +1377,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.bea.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='bea.gov',
+    config: DomainConfig(allowed_domains='www.bea.gov',
                          starting_urls='https://www.bea.gov/',
                          schedule='00 13 * * SAT',
                          output_target=output_target,
@@ -1393,7 +1385,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nist.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='nist.gov',
+    config: DomainConfig(allowed_domains='www.nist.gov',
                          starting_urls='https://www.nist.gov/',
                          schedule='00 14 * * SAT',
                          output_target=output_target,
@@ -1401,7 +1393,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.helpwithmybank.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='helpwithmybank.gov',
+    config: DomainConfig(allowed_domains='www.helpwithmybank.gov',
                          starting_urls='https://www.helpwithmybank.gov/',
                          schedule='00 15 * * SAT',
                          output_target=output_target,
@@ -1409,7 +1401,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nimh.nih.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='nimh.nih.gov',
+    config: DomainConfig(allowed_domains='www.nimh.nih.gov',
                          starting_urls='https://www.nimh.nih.gov/',
                          schedule='00 16 * * SAT',
                          output_target=output_target,
@@ -1433,7 +1425,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.copyright.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='copyright.gov',
+    config: DomainConfig(allowed_domains='www.copyright.gov',
                          starting_urls='https://www.copyright.gov/',
                          schedule='00 19 * * SAT',
                          output_target=output_target,
@@ -1449,8 +1441,8 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'ustr.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ustr.gov',
-                         starting_urls='https://ustr.gov/',
+    config: DomainConfig(allowed_domains='www.ustr.gov',
+                         starting_urls='https://www.ustr.gov/',
                          schedule='00 21 * * SAT',
                          output_target=output_target,
                          depth_limit=3),
@@ -1465,7 +1457,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nih.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='nih.gov',
+    config: DomainConfig(allowed_domains='www.nih.gov',
                          starting_urls='https://www.nih.gov/',
                          schedule='00 23 * * SAT',
                          output_target=output_target,
@@ -1473,7 +1465,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.donotcall.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='donotcall.gov',
+    config: DomainConfig(allowed_domains='www.donotcall.gov',
                          starting_urls='https://www.donotcall.gov/',
                          schedule='02 02 * * WED',
                          output_target=output_target,
@@ -1481,7 +1473,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.cdph.ca.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='cdph.ca.gov',
+    config: DomainConfig(allowed_domains='www.cdph.ca.gov',
                          starting_urls='https://www.cdph.ca.gov/',
                          schedule='03 03 * * WED',
                          output_target=output_target,
@@ -1497,7 +1489,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.patientcare.va.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='patientcare.va.gov',
+    config: DomainConfig(allowed_domains='www.patientcare.va.gov',
                          starting_urls='https://www.patientcare.va.gov/',
                          schedule='05 05 * * WED',
                          output_target=output_target,
@@ -1505,7 +1497,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.dla.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='dla.mil',
+    config: DomainConfig(allowed_domains='www.dla.mil',
                          starting_urls='https://www.dla.mil/',
                          schedule='06 06 * * WED',
                          output_target=output_target,
@@ -1513,7 +1505,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.cbo.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='cbo.gov',
+    config: DomainConfig(allowed_domains='www.cbo.gov',
                          starting_urls='https://www.cbo.gov/',
                          schedule='08 08 * * WED',
                          output_target=output_target,
@@ -1521,7 +1513,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.militaryonesource.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='militaryonesource.mil',
+    config: DomainConfig(allowed_domains='www.militaryonesource.mil',
                          starting_urls='https://www.militaryonesource.mil/',
                          schedule='09 09 * * WED',
                          output_target=output_target,
@@ -1545,7 +1537,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.eia.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='eia.gov',
+    config: DomainConfig(allowed_domains='www.eia.gov',
                          starting_urls='https://www.eia.gov/',
                          schedule='12 12 * * WED',
                          output_target=output_target,
@@ -1561,7 +1553,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.acquisition.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='acquisition.gov',
+    config: DomainConfig(allowed_domains='www.acquisition.gov',
                          starting_urls='https://www.acquisition.gov/',
                          schedule='14 14 * * WED',
                          output_target=output_target,
@@ -1577,7 +1569,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.usmint.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='usmint.gov',
+    config: DomainConfig(allowed_domains='www.usmint.gov',
                          starting_urls='https://www.usmint.gov/',
                          schedule='16 16 * * WED',
                          output_target=output_target,
@@ -1585,7 +1577,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.usaid.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='usaid.gov',
+    config: DomainConfig(allowed_domains='www.usaid.gov',
                          starting_urls='https://www.usaid.gov/',
                          schedule='17 17 * * WED',
                          output_target=output_target,
@@ -1593,7 +1585,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.osti.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='osti.gov',
+    config: DomainConfig(allowed_domains='www.osti.gov',
                          starting_urls='https://www.osti.gov/',
                          schedule='18 18 * * WED',
                          output_target=output_target,
@@ -1601,7 +1593,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nia.nih.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='nia.nih.gov',
+    config: DomainConfig(allowed_domains='www.nia.nih.gov',
                          starting_urls='https://www.nia.nih.gov/',
                          schedule='19 19 * * WED',
                          output_target=output_target,
@@ -1609,7 +1601,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.hiv.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='hiv.gov',
+    config: DomainConfig(allowed_domains='www.hiv.gov',
                          starting_urls='https://www.hiv.gov/',
                          schedule='20 20 * * WED',
                          output_target=output_target,
@@ -1617,7 +1609,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.govinfo.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='govinfo.gov',
+    config: DomainConfig(allowed_domains='www.govinfo.gov',
                          starting_urls='https://www.govinfo.gov/',
                          schedule='21 21 * * WED',
                          output_target=output_target,
@@ -1633,7 +1625,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.cancer.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='cancer.gov',
+    config: DomainConfig(allowed_domains='www.cancer.gov',
                          starting_urls='https://www.cancer.gov/',
                          schedule='23 23 * * WED',
                          output_target=output_target,
@@ -1641,7 +1633,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ada.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ada.gov',
+    config: DomainConfig(allowed_domains='www.ada.gov',
                          starting_urls='https://www.ada.gov/',
                          schedule='46 23 * * WED',
                          output_target=output_target,
@@ -1649,7 +1641,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.cga.ct.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='cga.ct.gov',
+    config: DomainConfig(allowed_domains='www.cga.ct.gov',
                          starting_urls='https://www.cga.ct.gov/',
                          schedule='44 22 * * WED',
                          output_target=output_target,
@@ -1673,7 +1665,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.uspsoig.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='uspsoig.gov',
+    config: DomainConfig(allowed_domains='www.uspsoig.gov',
                          starting_urls='https://www.uspsoig.gov/',
                          schedule='38 19 * * WED',
                          output_target=output_target,
@@ -1689,7 +1681,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nrc.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='nrc.gov',
+    config: DomainConfig(allowed_domains='www.nrc.gov',
                          starting_urls='https://www.nrc.gov/',
                          schedule='34 17 * * WED',
                          output_target=output_target,
@@ -1713,7 +1705,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.flsenate.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='flsenate.gov',
+    config: DomainConfig(allowed_domains='www.flsenate.gov',
                          starting_urls='https://www.flsenate.gov/',
                          schedule='28 14 * * WED',
                          output_target=output_target,
@@ -1721,7 +1713,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.eac.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='eac.gov',
+    config: DomainConfig(allowed_domains='www.eac.gov',
                          starting_urls='https://www.eac.gov/',
                          schedule='26 13 * * WED',
                          output_target=output_target,
@@ -1753,7 +1745,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.usmarshals.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='usmarshals.gov',
+    config: DomainConfig(allowed_domains='www.usmarshals.gov',
                          starting_urls='https://www.usmarshals.gov/',
                          schedule='18 09 * * WED',
                          output_target=output_target,
@@ -1761,7 +1753,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.af.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='af.mil',
+    config: DomainConfig(allowed_domains='www.af.mil',
                          starting_urls='https://www.af.mil/',
                          schedule='16 08 * * WED',
                          output_target=output_target,
@@ -1777,7 +1769,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.tsp.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='tsp.gov',
+    config: DomainConfig(allowed_domains='www.tsp.gov',
                          starting_urls='https://www.tsp.gov/',
                          schedule='12 06 * * WED',
                          output_target=output_target,
@@ -1785,7 +1777,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nutrition.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='nutrition.gov',
+    config: DomainConfig(allowed_domains='www.nutrition.gov',
                          starting_urls='https://www.nutrition.gov/',
                          schedule='10 05 * * WED',
                          output_target=output_target,
@@ -1801,7 +1793,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.faa.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='faa.gov',
+    config: DomainConfig(allowed_domains='www.faa.gov',
                          starting_urls='https://www.faa.gov/',
                          schedule='06 03 * * TUE',
                          output_target=output_target,
@@ -1809,7 +1801,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.sss.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='sss.gov',
+    config: DomainConfig(allowed_domains='www.sss.gov',
                          starting_urls='https://www.sss.gov/',
                          schedule='04 02 * * WED',
                          output_target=output_target,
@@ -1817,7 +1809,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.rrb.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='rrb.gov',
+    config: DomainConfig(allowed_domains='www.rrb.gov',
                          starting_urls='https://www.rrb.gov/',
                          schedule='02 01 * * WED',
                          output_target=output_target,
@@ -1833,7 +1825,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ers.usda.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ers.usda.gov',
+    config: DomainConfig(allowed_domains='www.ers.usda.gov',
                          starting_urls='https://www.ers.usda.gov/',
                          schedule='58 02 * * WED',
                          output_target=output_target,
@@ -1841,7 +1833,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.e-verify.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='e-verify.gov',
+    config: DomainConfig(allowed_domains='www.e-verify.gov',
                          starting_urls='https://www.e-verify.gov/',
                          schedule='57 03 * * WED',
                          output_target=output_target,
@@ -1865,7 +1857,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.flhsmv.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='flhsmv.gov',
+    config: DomainConfig(allowed_domains='www.flhsmv.gov',
                          starting_urls='https://www.flhsmv.gov/',
                          schedule='54 06 * * WED',
                          output_target=output_target,
@@ -1881,7 +1873,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ncdhhs.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ncdhhs.gov',
+    config: DomainConfig(allowed_domains='www.ncdhhs.gov',
                          starting_urls='https://www.ncdhhs.gov/',
                          schedule='52 08 * * WED',
                          output_target=output_target,
@@ -1889,7 +1881,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.climate.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='climate.gov',
+    config: DomainConfig(allowed_domains='www.climate.gov',
                          starting_urls='https://www.climate.gov/',
                          schedule='51 09 * * WED',
                          output_target=output_target,
@@ -1897,7 +1889,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nhlbi.nih.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='nhlbi.nih.gov',
+    config: DomainConfig(allowed_domains='www.nhlbi.nih.gov',
                          starting_urls='https://www.nhlbi.nih.gov/',
                          schedule='50 10 * * WED',
                          output_target=output_target,
@@ -1905,7 +1897,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.dcpas.osd.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='dcpas.osd.mil',
+    config: DomainConfig(allowed_domains='www.dcpas.osd.mil',
                          starting_urls='https://www.dcpas.osd.mil/',
                          schedule='49 11 * * WED',
                          output_target=output_target,
@@ -1913,7 +1905,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.bia.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='bia.gov',
+    config: DomainConfig(allowed_domains='www.bia.gov',
                          starting_urls='https://www.bia.gov/',
                          schedule='48 12 * * WED',
                          output_target=output_target,
@@ -1937,7 +1929,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.energystar.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='energystar.gov',
+    config: DomainConfig(allowed_domains='www.energystar.gov',
                          starting_urls='https://www.energystar.gov/',
                          schedule='45 15 * * WED',
                          output_target=output_target,
@@ -1945,7 +1937,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.cftc.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='cftc.gov',
+    config: DomainConfig(allowed_domains='www.cftc.gov',
                          starting_urls='https://www.cftc.gov/',
                          schedule='44 16 * * WED',
                          output_target=output_target,
@@ -1953,7 +1945,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.blm.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='blm.gov',
+    config: DomainConfig(allowed_domains='www.blm.gov',
                          starting_urls='https://www.blm.gov/',
                          schedule='43 17 * * WED',
                          output_target=output_target,
@@ -1985,7 +1977,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.redcross.org (usagov-replacement)',
-    config: DomainConfig(allowed_domains='redcross.org',
+    config: DomainConfig(allowed_domains='www.redcross.org',
                          starting_urls='https://www.redcross.org/',
                          schedule='05 21 * * WED',
                          output_target=output_target,
@@ -2001,7 +1993,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.recreation.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='recreation.gov',
+    config: DomainConfig(allowed_domains='www.recreation.gov',
                          starting_urls='https://www.recreation.gov/',
                          schedule='33 23 * * WED',
                          output_target=output_target,
@@ -2009,7 +2001,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.voanews.com (usagov-replacement)',
-    config: DomainConfig(allowed_domains='voanews.com',
+    config: DomainConfig(allowed_domains='www.voanews.com',
                          starting_urls='https://www.voanews.com/',
                          schedule='30 06 * * WED',
                          output_target=output_target,
@@ -2017,7 +2009,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.pbgc.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='pbgc.gov',
+    config: DomainConfig(allowed_domains='www.pbgc.gov',
                          starting_urls='https://www.pbgc.gov/',
                          schedule='00 15 * * SUN',
                          output_target=output_target,
@@ -2025,7 +2017,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nga.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='nga.gov',
+    config: DomainConfig(allowed_domains='www.nga.gov',
                          starting_urls='https://www.nga.gov/',
                          schedule='00 06 * * SUN',
                          output_target=output_target,
@@ -2041,7 +2033,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nsf.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='nsf.gov',
+    config: DomainConfig(allowed_domains='www.nsf.gov',
                          starting_urls='https://www.nsf.gov/',
                          schedule='00 09 * * WED',
                          output_target=output_target,
@@ -2066,7 +2058,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Smithsonian Magazine (usagov-replacement)',
-    config: DomainConfig(allowed_domains='smithsonianmag.com',
+    config: DomainConfig(allowed_domains='www.smithsonianmag.com',
                          starting_urls='https://www.smithsonianmag.com/',
                          schedule='30 06 * * WED',
                          output_target=output_target,
@@ -2074,7 +2066,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Grants.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='grants.gov',
+    config: DomainConfig(allowed_domains='www.grants.gov',
                          starting_urls='https://www.grants.gov/',
                          schedule='30 06 * * WED',
                          output_target=output_target,
@@ -2090,7 +2082,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.uspis.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='uspis.gov',
+    config: DomainConfig(allowed_domains='www.uspis.gov',
                          starting_urls='https://www.uspis.gov/',
                          schedule='00 04 * * SAT',
                          output_target=output_target,
@@ -2098,7 +2090,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ukraineoversight.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ukraineoversight.gov',
+    config: DomainConfig(allowed_domains='www.ukraineoversight.gov',
                          starting_urls='https://www.ukraineoversight.gov/',
                          schedule='00 06 * * SAT',
                          output_target=output_target,
@@ -2106,7 +2098,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.trumanlibrary.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='trumanlibrary.gov',
+    config: DomainConfig(allowed_domains='www.trumanlibrary.gov',
                          starting_urls='https://www.trumanlibrary.gov/',
                          schedule='00 08 * * SAT',
                          output_target=output_target,
@@ -2114,7 +2106,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nlrb.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='nlrb.gov',
+    config: DomainConfig(allowed_domains='www.nlrb.gov',
                          starting_urls='https://www.nlrb.gov/',
                          schedule='00 10 * * SAT',
                          output_target=output_target,
@@ -2130,7 +2122,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.navsea.navy.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='navsea.navy.mil',
+    config: DomainConfig(allowed_domains='www.navsea.navy.mil',
                          starting_urls='https://www.navsea.navy.mil/',
                          schedule='00 14 * * SAT',
                          output_target=output_target,
@@ -2138,7 +2130,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.marines.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='marines.mil',
+    config: DomainConfig(allowed_domains='www.marines.mil',
                          starting_urls='https://www.marines.mil/',
                          schedule='00 16 * * SAT',
                          output_target=output_target,
@@ -2146,7 +2138,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.foia.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='foia.gov',
+    config: DomainConfig(allowed_domains='www.foia.gov',
                          starting_urls='https://www.foia.gov/',
                          schedule='00 18 * * SAT',
                          output_target=output_target,
@@ -2178,15 +2170,15 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'childcare.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='childcare.gov',
-                         starting_urls='https://childcare.gov/',
+    config: DomainConfig(allowed_domains='www.childcare.gov',
+                         starting_urls='https://www.childcare.gov/',
                          schedule='12 01 * * THU',
                          output_target=output_target,
                          depth_limit=3),
   },
   {
     name: 'www.ic3.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ic3.gov',
+    config: DomainConfig(allowed_domains='www.ic3.gov',
                          starting_urls='https://www.ic3.gov/',
                          schedule='12 02 * * THU',
                          output_target=output_target,
@@ -2218,7 +2210,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.secretservice.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='secretservice.gov',
+    config: DomainConfig(allowed_domains='www.secretservice.gov',
                          starting_urls='https://www.secretservice.gov/',
                          schedule='12 06 * * THU',
                          output_target=output_target,
@@ -2242,7 +2234,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.usich.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='usich.gov',
+    config: DomainConfig(allowed_domains='www.usich.gov',
                          starting_urls='https://www.usich.gov/',
                          schedule='12 09 * * THU',
                          output_target=output_target,
@@ -2250,7 +2242,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.blackburn.senate.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='blackburn.senate.gov',
+    config: DomainConfig(allowed_domains='www.blackburn.senate.gov',
                          starting_urls='https://www.blackburn.senate.gov/',
                          schedule='12 10 * * THU',
                          output_target=output_target,
@@ -2266,7 +2258,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.phila.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='phila.gov',
+    config: DomainConfig(allowed_domains='www.phila.gov',
                          starting_urls='https://www.phila.gov/',
                          schedule='12 12 * * THU',
                          output_target=output_target,
@@ -2274,7 +2266,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.occ.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='occ.gov',
+    config: DomainConfig(allowed_domains='www.occ.gov',
                          starting_urls='https://www.occ.gov/',
                          schedule='12 13 * * THU',
                          output_target=output_target,
@@ -2282,7 +2274,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.goarmy.com (usagov-replacement)',
-    config: DomainConfig(allowed_domains='goarmy.com',
+    config: DomainConfig(allowed_domains='www.goarmy.com',
                          starting_urls='https://www.goarmy.com/',
                          schedule='12 14 * * THU',
                          output_target=output_target,
@@ -2322,7 +2314,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.judiciary.senate.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='judiciary.senate.gov',
+    config: DomainConfig(allowed_domains='www.judiciary.senate.gov',
                          starting_urls='https://www.judiciary.senate.gov/',
                          schedule='12 19 * * THU',
                          output_target=output_target,
@@ -2330,7 +2322,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.iowacourts.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='iowacourts.gov',
+    config: DomainConfig(allowed_domains='www.iowacourts.gov',
                          starting_urls='https://www.iowacourts.gov/',
                          schedule='12 20 * * THU',
                          output_target=output_target,
@@ -2338,7 +2330,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.armyupress.army.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='armyupress.army.mil',
+    config: DomainConfig(allowed_domains='www.armyupress.army.mil',
                          starting_urls='https://www.armyupress.army.mil/',
                          schedule='12 21 * * THU',
                          output_target=output_target,
@@ -2346,8 +2338,8 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'health.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='health.mil',
-                         starting_urls='https://health.mil/',
+    config: DomainConfig(allowed_domains='www.health.mil',
+                         starting_urls='https://www.health.mil/',
                          schedule='12 22 * * THU',
                          output_target=output_target,
                          depth_limit=3),
@@ -2362,7 +2354,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nifc.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='nifc.gov',
+    config: DomainConfig(allowed_domains='www.nifc.gov',
                          starting_urls='https://www.nifc.gov/',
                          schedule='22 00 * * THU',
                          output_target=output_target,
@@ -2370,7 +2362,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.fueleconomy.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='fueleconomy.gov',
+    config: DomainConfig(allowed_domains='www.fueleconomy.gov',
                          starting_urls='https://www.fueleconomy.gov/',
                          schedule='22 01 * * THU',
                          output_target=output_target,
@@ -2386,7 +2378,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.hsgac.senate.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='hsgac.senate.gov',
+    config: DomainConfig(allowed_domains='www.hsgac.senate.gov',
                          starting_urls='https://www.hsgac.senate.gov/',
                          schedule='22 03 * * THU',
                          output_target=output_target,
@@ -2394,7 +2386,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ams.usda.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ams.usda.gov',
+    config: DomainConfig(allowed_domains='www.ams.usda.gov',
                          starting_urls='https://www.ams.usda.gov/',
                          schedule='22 04 * * THU',
                          output_target=output_target,
@@ -2409,14 +2401,6 @@ local output_target = 'elasticsearch';
                          depth_limit=3),
   },
   {
-    name: 'www.treasury.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='treasury.gov',
-                         starting_urls='https://www.treasury.gov/',
-                         schedule='22 06 * * THU',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
     name: 'dfpi.ca.gov (usagov-replacement)',
     config: DomainConfig(allowed_domains='dfpi.ca.gov',
                          starting_urls='https://dfpi.ca.gov/',
@@ -2426,7 +2410,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ussc.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ussc.gov',
+    config: DomainConfig(allowed_domains='www.ussc.gov',
                          starting_urls='https://www.ussc.gov/',
                          schedule='22 08 * * THU',
                          output_target=output_target,
@@ -2434,7 +2418,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ready.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ready.gov',
+    config: DomainConfig(allowed_domains='www.ready.gov',
                          starting_urls='https://www.ready.gov/',
                          schedule='22 09 * * THU',
                          output_target=output_target,
@@ -2442,7 +2426,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.navy.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='navy.mil',
+    config: DomainConfig(allowed_domains='www.navy.mil',
                          starting_urls='https://www.navy.mil/',
                          schedule='22 10 * * THU',
                          output_target=output_target,
@@ -2450,7 +2434,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ihs.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ihs.gov',
+    config: DomainConfig(allowed_domains='www.ihs.gov',
                          starting_urls='https://www.ihs.gov/',
                          schedule='22 11 * * THU',
                          output_target=output_target,
@@ -2458,7 +2442,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.airforce.com (usagov-replacement)',
-    config: DomainConfig(allowed_domains='airforce.com',
+    config: DomainConfig(allowed_domains='www.airforce.com',
                          starting_urls='https://www.airforce.com/',
                          schedule='22 12 * * THU',
                          output_target=output_target,
@@ -2498,7 +2482,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.fsa.usda.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='fsa.usda.gov',
+    config: DomainConfig(allowed_domains='www.fsa.usda.gov',
                          starting_urls='https://www.fsa.usda.gov/',
                          schedule='22 17 * * THU',
                          output_target=output_target,
@@ -2514,7 +2498,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ffiec.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ffiec.gov',
+    config: DomainConfig(allowed_domains='www.ffiec.gov',
                          starting_urls='https://www.ffiec.gov/',
                          schedule='22 19 * * THU',
                          output_target=output_target,
@@ -2522,7 +2506,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ars.usda.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ars.usda.gov',
+    config: DomainConfig(allowed_domains='www.ars.usda.gov',
                          starting_urls='https://www.ars.usda.gov/',
                          schedule='22 20 * * THU',
                          output_target=output_target,
@@ -2530,7 +2514,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.stopbullying.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='stopbullying.gov',
+    config: DomainConfig(allowed_domains='www.stopbullying.gov',
                          starting_urls='https://www.stopbullying.gov/',
                          schedule='22 21 * * THU',
                          output_target=output_target,
@@ -2538,7 +2522,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.pandemicoversight.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='pandemicoversight.gov',
+    config: DomainConfig(allowed_domains='www.pandemicoversight.gov',
                          starting_urls='https://www.pandemicoversight.gov/',
                          schedule='22 22 * * THU',
                          output_target=output_target,
@@ -2603,7 +2587,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.spaceforce.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='spaceforce.mil',
+    config: DomainConfig(allowed_domains='www.spaceforce.mil',
                          starting_urls='https://www.spaceforce.mil/',
                          schedule='32 06 * * THU',
                          output_target=output_target,
@@ -2611,7 +2595,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.mda.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='mda.mil',
+    config: DomainConfig(allowed_domains='www.mda.mil',
                          starting_urls='https://www.mda.mil/',
                          schedule='32 07 * * THU',
                          output_target=output_target,
@@ -2619,7 +2603,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.genome.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='genome.gov',
+    config: DomainConfig(allowed_domains='www.genome.gov',
                          starting_urls='https://www.genome.gov/',
                          schedule='32 08 * * THU',
                          output_target=output_target,
@@ -2667,7 +2651,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.msha.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='msha.gov',
+    config: DomainConfig(allowed_domains='www.msha.gov',
                          starting_urls='https://www.msha.gov/',
                          schedule='32 13 * * THU',
                          output_target=output_target,
@@ -2691,7 +2675,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.shaw.af.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='shaw.af.mil',
+    config: DomainConfig(allowed_domains='www.shaw.af.mil',
                          starting_urls='https://www.shaw.af.mil/',
                          schedule='32 16 * * THU',
                          output_target=output_target,
@@ -2699,7 +2683,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.mynavyhr.navy.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='mynavyhr.navy.mil',
+    config: DomainConfig(allowed_domains='www.mynavyhr.navy.mil',
                          starting_urls='https://www.mynavyhr.navy.mil/',
                          schedule='32 17 * * THU',
                          output_target=output_target,
@@ -2707,7 +2691,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ferc.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ferc.gov',
+    config: DomainConfig(allowed_domains='www.ferc.gov',
                          starting_urls='https://www.ferc.gov/',
                          schedule='32 18 * * THU',
                          output_target=output_target,
@@ -2715,7 +2699,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.dote.osd.mil (usagov-replacement)',
-    config: DomainConfig(allowed_domains='dote.osd.mil',
+    config: DomainConfig(allowed_domains='www.dote.osd.mil',
                          starting_urls='https://www.dote.osd.mil/',
                          schedule='32 19 * * THU',
                          output_target=output_target,
@@ -2739,7 +2723,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.arts.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='arts.gov',
+    config: DomainConfig(allowed_domains='www.arts.gov',
                          starting_urls='https://www.arts.gov/',
                          schedule='32 22 * * THU',
                          output_target=output_target,
@@ -2763,7 +2747,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NIH NIEHS (usagov-replacement)',
-    config: DomainConfig(allowed_domains='niehs.nih.gov',
+    config: DomainConfig(allowed_domains='www.niehs.nih.gov',
                          starting_urls='https://www.niehs.nih.gov/',
                          schedule='42 01 * * THU',
                          output_target=output_target,
@@ -2803,7 +2787,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'US Embassy (usa.gov-replacement)',
-    config: DomainConfig(allowed_domains='usembassy.gov',
+    config: DomainConfig(allowed_domains='www.usembassy.gov',
                          starting_urls='https://www.usembassy.gov/',
                          schedule='42 06 * * THU',
                          output_target=output_target,
@@ -2811,7 +2795,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'US Direct Express (usagov-replacement)',
-    config: DomainConfig(allowed_domains='usdirectexpress.com',
+    config: DomainConfig(allowed_domains='www.usdirectexpress.com',
                          starting_urls='https://www.usdirectexpress.com/',
                          schedule='42 07 * * THU',
                          output_target=output_target,
@@ -2819,7 +2803,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'US Army Reserves (usagov-replacement)',
-    config: DomainConfig(allowed_domains='usar.army.mil',
+    config: DomainConfig(allowed_domains='www.usar.army.mil',
                          starting_urls='https://www.usar.army.mil/',
                          schedule='42 08 * * THU',
                          output_target=output_target,
@@ -2827,7 +2811,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NTSB (usagov-replacement)',
-    config: DomainConfig(allowed_domains='ntsb.gov',
+    config: DomainConfig(allowed_domains='www.ntsb.gov',
                          starting_urls='https://www.ntsb.gov/',
                          schedule='42 09 * * THU',
                          output_target=output_target,
@@ -2835,7 +2819,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NIH NLM (usagov-replacement)',
-    config: DomainConfig(allowed_domains='nlm.nih.gov',
+    config: DomainConfig(allowed_domains='www.nlm.nih.gov',
                          starting_urls='https://www.nlm.nih.gov/',
                          schedule='42 10 * * THU',
                          output_target=output_target,
@@ -2892,7 +2876,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'VA (usagov-replacement)',
-    config: DomainConfig(allowed_domains='va.gov',
+    config: DomainConfig(allowed_domains='www.va.gov',
                          starting_urls='https://www.va.gov/',
                          schedule='30 06 * * THU',
                          output_target=output_target,
@@ -3780,7 +3764,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'boem',
-    config: DomainConfig(allowed_domains='boem.gov',
+    config: DomainConfig(allowed_domains='www.boem.gov',
                          starting_urls='https://www.boem.gov/',
                          schedule='15 10 * * FRI',
                          output_target=output_target,
@@ -3788,7 +3772,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'ccac.gov',
-    config: DomainConfig(allowed_domains='ccac.gov',
+    config: DomainConfig(allowed_domains='www.ccac.gov',
                          starting_urls='https://www.ccac.gov',
                          schedule='15 01 * * FRI',
                          output_target=output_target,
@@ -3804,7 +3788,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'tva',
-    config: DomainConfig(allowed_domains='tva.com',
+    config: DomainConfig(allowed_domains='www.tva.com',
                          starting_urls='https://www.tva.com/',
                          schedule='15 11 * * FRI',
                          output_target=output_target,
@@ -3820,7 +3804,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'cdo_gov',
-    config: DomainConfig(allowed_domains='cdo.gov',
+    config: DomainConfig(allowed_domains='www.cdo.gov',
                          starting_urls='https://www.cdo.gov',
                          schedule='15 02 * * FRI',
                          output_target=output_target,
@@ -3844,7 +3828,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'mmc',
-    config: DomainConfig(allowed_domains='mmc.gov',
+    config: DomainConfig(allowed_domains='www.mmc.gov',
                          starting_urls='https://www.mmc.gov/',
                          schedule='15 07 * * FRI',
                          output_target=output_target,
@@ -3860,15 +3844,15 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'firstnet',
-    config: DomainConfig(allowed_domains='firstnet.gov',
-                         starting_urls='https://firstnet.gov/',
+    config: DomainConfig(allowed_domains='www.firstnet.gov',
+                         starting_urls='https://www.firstnet.gov/',
                          schedule='15 09 * * FRI',
                          output_target=output_target,
                          depth_limit=3),
   },
   {
     name: 'Air Force Learning Professionals (aflearningprofessionals)',
-    config: DomainConfig(allowed_domains='learningprofessionals.af.mil',
+    config: DomainConfig(allowed_domains='www.learningprofessionals.af.mil',
                          starting_urls='https://www.learningprofessionals.af.mil/',
                          schedule='0 0 * * SUN',
                          output_target=output_target,
@@ -3876,7 +3860,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'MIT-AF AI Accelerator (af_aiaccelerator)',
-    config: DomainConfig(allowed_domains='aiaccelerator.af.mil',
+    config: DomainConfig(allowed_domains='www.aiaccelerator.af.mil',
                          starting_urls='https://www.aiaccelerator.af.mil/',
                          schedule='24 1 * * SUN',
                          output_target=output_target,
@@ -3884,7 +3868,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Wavelength Detachment 1, 850th Spectrum Warfare Group (af_wavelength)',
-    config: DomainConfig(allowed_domains='wavelength.af.mil',
+    config: DomainConfig(allowed_domains='www.wavelength.af.mil',
                          starting_urls='https://www.wavelength.af.mil/',
                          schedule='47 2 * * SUN',
                          output_target=output_target,
@@ -3892,7 +3876,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '521st Air Mobility Operations Wing (af_521amow)',
-    config: DomainConfig(allowed_domains='521amow.af.mil',
+    config: DomainConfig(allowed_domains='www.521amow.af.mil',
                          starting_urls='https://www.521amow.af.mil/',
                          schedule='11 4 * * SUN',
                          output_target=output_target,
@@ -3900,7 +3884,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Resilience (afpw_resil)',
-    config: DomainConfig(allowed_domains='resilience.af.mil',
+    config: DomainConfig(allowed_domains='www.resilience.af.mil',
                          starting_urls='https://www.resilience.af.mil/',
                          schedule='35 5 * * SUN',
                          output_target=output_target,
@@ -3916,7 +3900,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Special Warfare Training Wing (afpw_swtw)',
-    config: DomainConfig(allowed_domains='specialwarfaretw.af.mil',
+    config: DomainConfig(allowed_domains='www.specialwarfaretw.af.mil',
                          starting_urls='https://www.specialwarfaretw.af.mil/',
                          schedule='58 6 * * SUN',
                          output_target=output_target,
@@ -3924,7 +3908,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Inspector General (afpw_afinspectorgeneral)',
-    config: DomainConfig(allowed_domains='afinspectorgeneral.af.mil',
+    config: DomainConfig(allowed_domains='www.afinspectorgeneral.af.mil',
                          starting_urls='https://www.afinspectorgeneral.af.mil/',
                          schedule='40 7 * * SUN',
                          output_target=output_target,
@@ -3932,7 +3916,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '12th Flying Training Wing (afpw_12ftw)',
-    config: DomainConfig(allowed_domains='12ftw.af.mil',
+    config: DomainConfig(allowed_domains='www.12ftw.af.mil',
                          starting_urls='https://www.12ftw.af.mil/',
                          schedule='4 9 * * SUN',
                          output_target=output_target,
@@ -3940,7 +3924,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Small Business (afpw_afsb)',
-    config: DomainConfig(allowed_domains='airforcesmallbiz.af.mil',
+    config: DomainConfig(allowed_domains='www.airforcesmallbiz.af.mil',
                          starting_urls='https://www.airforcesmallbiz.af.mil/',
                          schedule='46 9 * * SUN',
                          output_target=output_target,
@@ -3948,7 +3932,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Curtis E. Lemay Center for Doctrine Development and Education (afpw_lemay)',
-    config: DomainConfig(allowed_domains='doctrine.af.mil',
+    config: DomainConfig(allowed_domains='www.doctrine.af.mil',
                          starting_urls='https://www.doctrine.af.mil/',
                          schedule='27 10 * * SUN',
                          output_target=output_target,
@@ -3956,7 +3940,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '2nd Air Force (afpw_2af)',
-    config: DomainConfig(allowed_domains='2af.aetc.af.mil',
+    config: DomainConfig(allowed_domains='www.2af.aetc.af.mil',
                          starting_urls='https://www.2af.aetc.af.mil/',
                          schedule='51 11 * * SUN',
                          output_target=output_target,
@@ -3972,7 +3956,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '125th Fighter Wing (afpw_125fw and afpw_flang)',
-    config: DomainConfig(allowed_domains='125fw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.125fw.ang.af.mil',
                          starting_urls='https://www.125fw.ang.af.mil/',
                          schedule='15 13 * * SUN',
                          output_target=output_target,
@@ -3980,7 +3964,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '174th Attack Wing (afpw_174aw)',
-    config: DomainConfig(allowed_domains='174attackwing.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.174attackwing.ang.af.mil',
                          starting_urls='https://www.174attackwing.ang.af.mil/',
                          schedule='57 13 * * SUN',
                          output_target=output_target,
@@ -3988,7 +3972,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Test Center (afpw_aftc)',
-    config: DomainConfig(allowed_domains='aftc.af.mil',
+    config: DomainConfig(allowed_domains='www.aftc.af.mil',
                          starting_urls='https://www.aftc.af.mil/',
                          schedule='38 14 * * SUN',
                          output_target=output_target,
@@ -3996,7 +3980,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force BES (afpw_gunter)',
-    config: DomainConfig(allowed_domains='airforcebes.af.mil',
+    config: DomainConfig(allowed_domains='www.airforcebes.af.mil',
                          starting_urls='https://www.airforcebes.af.mil/',
                          schedule='20 15 * * SUN',
                          output_target=output_target,
@@ -4004,7 +3988,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '413th Flight Test Group (afpw_413ftg)',
-    config: DomainConfig(allowed_domains='413ftg.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.413ftg.afrc.af.mil',
                          starting_urls='https://www.413ftg.afrc.af.mil/',
                          schedule='2 16 * * SUN',
                          output_target=output_target,
@@ -4012,7 +3996,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '195th Wing (afpw_195wg)',
-    config: DomainConfig(allowed_domains='195wg.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.195wg.ang.af.mil',
                          starting_urls='https://www.195wg.ang.af.mil/',
                          schedule='44 16 * * SUN',
                          output_target=output_target,
@@ -4020,7 +4004,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '150th Special Operations Wing (afpw_150sow)',
-    config: DomainConfig(allowed_domains='150sow.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.150sow.ang.af.mil',
                          starting_urls='https://www.150sow.ang.af.mil/',
                          schedule='7 18 * * SUN',
                          output_target=output_target,
@@ -4028,7 +4012,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Historical Support Division (afpw-afhm)',
-    config: DomainConfig(allowed_domains='afhistory.af.mil',
+    config: DomainConfig(allowed_domains='www.afhistory.af.mil',
                          starting_urls='https://www.afhistory.af.mil/',
                          schedule='49 18 * * SUN',
                          output_target=output_target,
@@ -4036,7 +4020,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force History and Museums (afhm)',
-    config: DomainConfig(allowed_domains='afhistoryandmuseums.af.mil',
+    config: DomainConfig(allowed_domains='www.afhistoryandmuseums.af.mil',
                          starting_urls='https://www.afhistoryandmuseums.af.mil/',
                          schedule='31 19 * * SUN',
                          output_target=output_target,
@@ -4044,7 +4028,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air University (afpw_au)',
-    config: DomainConfig(allowed_domains='airuniversity.af.edu',
+    config: DomainConfig(allowed_domains='www.airuniversity.af.edu',
                          starting_urls='https://www.airuniversity.af.edu/',
                          schedule='13 20 * * SUN',
                          output_target=output_target,
@@ -4052,7 +4036,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Veterans in Blue (afpw_vib)',
-    config: DomainConfig(allowed_domains='veterans-in-blue.af.mil',
+    config: DomainConfig(allowed_domains='www.veterans-in-blue.af.mil',
                          starting_urls='https://www.veterans-in-blue.af.mil/',
                          schedule='18 22 * * SUN',
                          output_target=output_target,
@@ -4060,7 +4044,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '15th Air Force (afpw_ninth)',
-    config: DomainConfig(allowed_domains='15af.acc.af.mil',
+    config: DomainConfig(allowed_domains='www.15af.acc.af.mil',
                          starting_urls='https://www.15af.acc.af.mil/',
                          schedule='24 0 * * MON',
                          output_target=output_target,
@@ -4068,7 +4052,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Recruiting Service (afpw_rs)',
-    config: DomainConfig(allowed_domains='afaccessionscenter.af.mil',
+    config: DomainConfig(allowed_domains='www.afaccessionscenter.af.mil',
                          starting_urls='https://www.afaccessionscenter.af.mil/',
                          schedule='48 1 * * MON',
                          output_target=output_target,
@@ -4076,7 +4060,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '15th Wing (afpw_15wing)',
-    config: DomainConfig(allowed_domains='15wing.af.mil',
+    config: DomainConfig(allowed_domains='www.15wing.af.mil',
                          starting_urls='https://www.15wing.af.mil/',
                          schedule='35 4 * * MON',
                          output_target=output_target,
@@ -4084,7 +4068,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Professional Development Guide (afpw_pdg)',
-    config: DomainConfig(allowed_domains='studyguides.af.mil',
+    config: DomainConfig(allowed_domains='www.studyguides.af.mil',
                          starting_urls='https://www.studyguides.af.mil/',
                          schedule='40 6 * * MON',
                          output_target=output_target,
@@ -4092,7 +4076,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'U.S. Air Force Expeditionary Center (afpw_usafec)',
-    config: DomainConfig(allowed_domains='expeditionarycenter.af.mil',
+    config: DomainConfig(allowed_domains='www.expeditionarycenter.af.mil',
                          starting_urls='https://www.expeditionarycenter.af.mil/',
                          schedule='26 16 * * MON',
                          output_target=output_target,
@@ -4100,7 +4084,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Scott Air Force Base (afpw_scott)',
-    config: DomainConfig(allowed_domains='scott.af.mil',
+    config: DomainConfig(allowed_domains='www.scott.af.mil',
                          starting_urls='https://www.scott.af.mil/',
                          schedule='31 18 * * MON',
                          output_target=output_target,
@@ -4108,7 +4092,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Team McChord (afpw_62aw)',
-    config: DomainConfig(allowed_domains='mcchord.af.mil',
+    config: DomainConfig(allowed_domains='www.mcchord.af.mil',
                          starting_urls='https://www.mcchord.af.mil/',
                          schedule='24 23 * * MON',
                          output_target=output_target,
@@ -4116,7 +4100,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '166th Airlift Wing, Delaware Air National Guard (afpw_166aw)',
-    config: DomainConfig(allowed_domains='166aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.166aw.ang.af.mil',
                          starting_urls='https://www.166aw.ang.af.mil/',
                          schedule='6 0 * * TUE',
                          output_target=output_target,
@@ -4124,7 +4108,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '307th Bomb Wing (afpw_307bw)',
-    config: DomainConfig(allowed_domains='307bw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.307bw.afrc.af.mil',
                          starting_urls='https://www.307bw.afrc.af.mil/',
                          schedule='48 0 * * TUE',
                          output_target=output_target,
@@ -4132,7 +4116,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '124th Fighter Wing, Idaho ANG (afpw_idaho)',
-    config: DomainConfig(allowed_domains='124thfighterwing.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.124thfighterwing.ang.af.mil',
                          starting_urls='https://www.124thfighterwing.ang.af.mil/',
                          schedule='30 1 * * TUE',
                          output_target=output_target,
@@ -4140,7 +4124,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '113th Wing, Air National Guard (afpw_113wg)',
-    config: DomainConfig(allowed_domains='113wg.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.113wg.ang.af.mil',
                          starting_urls='https://www.113wg.ang.af.mil/',
                          schedule='11 2 * * TUE',
                          output_target=output_target,
@@ -4148,7 +4132,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '106th Rescue Wing (afpw_106rqw)',
-    config: DomainConfig(allowed_domains='106rqw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.106rqw.ang.af.mil',
                          starting_urls='https://www.106rqw.ang.af.mil/',
                          schedule='53 2 * * TUE',
                          output_target=output_target,
@@ -4156,7 +4140,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Civil Engineer Center (afpw_afcec)',
-    config: DomainConfig(allowed_domains='afcec.af.mil',
+    config: DomainConfig(allowed_domains='www.afcec.af.mil',
                          starting_urls='https://www.afcec.af.mil/',
                          schedule='17 4 * * TUE',
                          output_target=output_target,
@@ -4164,7 +4148,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '189th Airlift Wing (afpw_189aw)',
-    config: DomainConfig(allowed_domains='189aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.189aw.ang.af.mil',
                          starting_urls='https://www.189aw.ang.af.mil/',
                          schedule='59 4 * * TUE',
                          output_target=output_target,
@@ -4172,7 +4156,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Sustainment Center (afpw_sustainment)',
-    config: DomainConfig(allowed_domains='afsc.af.mil',
+    config: DomainConfig(allowed_domains='www.afsc.af.mil',
                          starting_urls='https://www.afsc.af.mil/',
                          schedule='41 5 * * TUE',
                          output_target=output_target,
@@ -4180,7 +4164,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '10th Air Force (afpw_10af)',
-    config: DomainConfig(allowed_domains='10af.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.10af.afrc.af.mil',
                          starting_urls='https://www.10af.afrc.af.mil/',
                          schedule='4 7 * * TUE',
                          output_target=output_target,
@@ -4188,7 +4172,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '109th Airlift Wing, New York ANG (afpw_109aw)',
-    config: DomainConfig(allowed_domains='109aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.109aw.ang.af.mil',
                          starting_urls='https://www.109aw.ang.af.mil/',
                          schedule='46 7 * * TUE',
                          output_target=output_target,
@@ -4196,7 +4180,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '105th Airlift Wing (afpw_105aw)',
-    config: DomainConfig(allowed_domains='105aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.105aw.ang.af.mil',
                          starting_urls='https://www.105aw.ang.af.mil/',
                          schedule='28 8 * * TUE',
                          output_target=output_target,
@@ -4204,7 +4188,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '104th Fighter Wing (afpw_104fw)',
-    config: DomainConfig(allowed_domains='104fw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.104fw.ang.af.mil',
                          starting_urls='https://www.104fw.ang.af.mil/',
                          schedule='10 9 * * TUE',
                          output_target=output_target,
@@ -4212,7 +4196,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '103rd Airlift Wing (afpw_103aw)',
-    config: DomainConfig(allowed_domains='103aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.103aw.ang.af.mil',
                          starting_urls='https://www.103aw.ang.af.mil/',
                          schedule='52 9 * * TUE',
                          output_target=output_target,
@@ -4220,7 +4204,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '101st Air Refueling Wing (afpw_101arw)',
-    config: DomainConfig(allowed_domains='101arw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.101arw.ang.af.mil',
                          starting_urls='https://www.101arw.ang.af.mil/',
                          schedule='33 10 * * TUE',
                          output_target=output_target,
@@ -4228,7 +4212,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '102nd Intelligence Wing (afpw_102iw)',
-    config: DomainConfig(allowed_domains='102iw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.102iw.ang.af.mil',
                          starting_urls='https://www.102iw.ang.af.mil/',
                          schedule='15 11 * * TUE',
                          output_target=output_target,
@@ -4236,7 +4220,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Reserve Command (afrc)',
-    config: DomainConfig(allowed_domains='afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.afrc.af.mil',
                          starting_urls='https://www.afrc.af.mil/',
                          schedule='57 11 * * TUE',
                          output_target=output_target,
@@ -4244,7 +4228,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Special Operations Command (afsoc)',
-    config: DomainConfig(allowed_domains='afsoc.af.mil',
+    config: DomainConfig(allowed_domains='www.afsoc.af.mil',
                          starting_urls='https://www.afsoc.af.mil/',
                          schedule='39 12 * * TUE',
                          output_target=output_target,
@@ -4252,7 +4236,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Privacy Act (afpw_privacyact)',
-    config: DomainConfig(allowed_domains='privacy.af.mil',
+    config: DomainConfig(allowed_domains='www.privacy.af.mil',
                          starting_urls='https://www.privacy.af.mil/',
                          schedule='26 15 * * TUE',
                          output_target=output_target,
@@ -4268,7 +4252,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force General Counsel (afpw_safgc)',
-    config: DomainConfig(allowed_domains='safgc.hq.af.mil',
+    config: DomainConfig(allowed_domains='www.safgc.hq.af.mil',
                          starting_urls='https://www.safgc.hq.af.mil/',
                          schedule='50 16 * * TUE',
                          output_target=output_target,
@@ -4276,7 +4260,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force International Affairs (afpw_safia)',
-    config: DomainConfig(allowed_domains='safia.hq.af.mil',
+    config: DomainConfig(allowed_domains='www.safia.hq.af.mil',
                          starting_urls='https://www.safia.hq.af.mil/',
                          schedule='32 17 * * TUE',
                          output_target=output_target,
@@ -4284,7 +4268,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Trademark and Licensing Program (afpw_trademark)',
-    config: DomainConfig(allowed_domains='trademark.af.mil',
+    config: DomainConfig(allowed_domains='www.trademark.af.mil',
                          starting_urls='https://www.trademark.af.mil/',
                          schedule='55 18 * * TUE',
                          output_target=output_target,
@@ -4292,7 +4276,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Travis Air Force Base (afpw_travis)',
-    config: DomainConfig(allowed_domains='travis.af.mil',
+    config: DomainConfig(allowed_domains='www.travis.af.mil',
                          starting_urls='https://www.travis.af.mil/',
                          schedule='37 19 * * TUE',
                          output_target=output_target,
@@ -4300,7 +4284,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Volk Field (afpw_volk)',
-    config: DomainConfig(allowed_domains='volkfield.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.volkfield.ang.af.mil',
                          starting_urls='https://www.volkfield.ang.af.mil/',
                          schedule='19 20 * * TUE',
                          output_target=output_target,
@@ -4308,7 +4292,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Wounded Warrior (afpw_wounded)',
-    config: DomainConfig(allowed_domains='woundedwarrior.af.mil',
+    config: DomainConfig(allowed_domains='www.woundedwarrior.af.mil',
                          starting_urls='https://www.woundedwarrior.af.mil/',
                          schedule='1 21 * * TUE',
                          output_target=output_target,
@@ -4316,7 +4300,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'JTF-Bravo, Soto Cano Air Base (afpw_jtfb)',
-    config: DomainConfig(allowed_domains='jtfb.southcom.mil',
+    config: DomainConfig(allowed_domains='www.jtfb.southcom.mil',
                          starting_urls='https://www.jtfb.southcom.mil/',
                          schedule='43 21 * * TUE',
                          output_target=output_target,
@@ -4324,7 +4308,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Maxwell Air Force Base (afpw_maxwell)',
-    config: DomainConfig(allowed_domains='maxwell.af.mil',
+    config: DomainConfig(allowed_domains='www.maxwell.af.mil',
                          starting_urls='https://www.maxwell.af.mil/',
                          schedule='24 22 * * TUE',
                          output_target=output_target,
@@ -4332,7 +4316,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'McConnell Air Force Base (afpw_mcconnell)',
-    config: DomainConfig(allowed_domains='mcconnell.af.mil',
+    config: DomainConfig(allowed_domains='www.mcconnell.af.mil',
                          starting_urls='https://www.mcconnell.af.mil/',
                          schedule='48 23 * * TUE',
                          output_target=output_target,
@@ -4340,7 +4324,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Joint Base McGuire-Dix-Lakehurst (afpw_mcguire)',
-    config: DomainConfig(allowed_domains='jbmdl.jb.mil',
+    config: DomainConfig(allowed_domains='www.jbmdl.jb.mil',
                          starting_urls='https://www.jbmdl.jb.mil/',
                          schedule='30 0 * * WED',
                          output_target=output_target,
@@ -4348,7 +4332,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Mortuary Affairs Operations (afpw_mortuary)',
-    config: DomainConfig(allowed_domains='mortuary.af.mil',
+    config: DomainConfig(allowed_domains='www.mortuary.af.mil',
                          starting_urls='https://www.mortuary.af.mil/',
                          schedule='12 1 * * WED',
                          output_target=output_target,
@@ -4356,7 +4340,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Offutt Air Force Base (afpw_offutt)',
-    config: DomainConfig(allowed_domains='offutt.af.mil',
+    config: DomainConfig(allowed_domains='www.offutt.af.mil',
                          starting_urls='https://www.offutt.af.mil/',
                          schedule='54 1 * * WED',
                          output_target=output_target,
@@ -4364,7 +4348,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Pope Field (afpw_pope)',
-    config: DomainConfig(allowed_domains='pope.af.mil',
+    config: DomainConfig(allowed_domains='www.pope.af.mil',
                          starting_urls='https://www.pope.af.mil/',
                          schedule='17 3 * * WED',
                          output_target=output_target,
@@ -4372,7 +4356,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'United States Air Force Honor Guard (afpw_honor)',
-    config: DomainConfig(allowed_domains='honorguard.af.mil',
+    config: DomainConfig(allowed_domains='www.honorguard.af.mil',
                          starting_urls='https://www.honorguard.af.mil/',
                          schedule='4 6 * * WED',
                          output_target=output_target,
@@ -4380,7 +4364,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Fairchild Air Force Base (afpw_fairchild)',
-    config: DomainConfig(allowed_domains='fairchild.af.mil',
+    config: DomainConfig(allowed_domains='www.fairchild.af.mil',
                          starting_urls='https://www.fairchild.af.mil/',
                          schedule='28 7 * * WED',
                          output_target=output_target,
@@ -4388,7 +4372,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Compliance Division (afpw_foia)',
-    config: DomainConfig(allowed_domains='compliance.af.mil',
+    config: DomainConfig(allowed_domains='www.compliance.af.mil',
                          starting_urls='https://www.compliance.af.mil/',
                          schedule='10 8 * * WED',
                          output_target=output_target,
@@ -4396,7 +4380,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Grand Forks Air Force Base (afpw_grandforks)',
-    config: DomainConfig(allowed_domains='grandforks.af.mil',
+    config: DomainConfig(allowed_domains='www.grandforks.af.mil',
                          starting_urls='https://www.grandforks.af.mil/',
                          schedule='52 8 * * WED',
                          output_target=output_target,
@@ -4405,7 +4389,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Retirees Services (afpw_afro)',
-    config: DomainConfig(allowed_domains='retirees.af.mil',
+    config: DomainConfig(allowed_domains='www.retirees.af.mil',
                          starting_urls='https://www.retirees.af.mil/',
                          schedule='34 9 * * WED',
                          output_target=output_target,
@@ -4413,7 +4397,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Security Forces Center (afpw_afsfc)',
-    config: DomainConfig(allowed_domains='afsfc.af.mil',
+    config: DomainConfig(allowed_domains='www.afsfc.af.mil',
                          starting_urls='https://www.afsfc.af.mil/',
                          schedule='57 10 * * WED',
                          output_target=output_target,
@@ -4421,7 +4405,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Altus Air Force Base (afpw_altus)',
-    config: DomainConfig(allowed_domains='altus.af.mil',
+    config: DomainConfig(allowed_domains='www.altus.af.mil',
                          starting_urls='https://www.altus.af.mil/',
                          schedule='21 12 * * WED',
                          output_target=output_target,
@@ -4429,7 +4413,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Joint Base Andrews (afpw_andrews)',
-    config: DomainConfig(allowed_domains='jba.af.mil',
+    config: DomainConfig(allowed_domains='www.jba.af.mil',
                          starting_urls='https://www.jba.af.mil/',
                          schedule='3 13 * * WED',
                          output_target=output_target,
@@ -4445,7 +4429,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Creech Air Force Base (afpw_creech)',
-    config: DomainConfig(allowed_domains='creech.af.mil',
+    config: DomainConfig(allowed_domains='www.creech.af.mil',
                          starting_urls='https://www.creech.af.mil/',
                          schedule='37 18 * * WED',
                          output_target=output_target,
@@ -4453,7 +4437,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'AF Declassification (afpw_dclass)',
-    config: DomainConfig(allowed_domains='secretsdeclassified.af.mil',
+    config: DomainConfig(allowed_domains='www.secretsdeclassified.af.mil',
                          starting_urls='https://www.secretsdeclassified.af.mil/',
                          schedule='19 19 * * WED',
                          output_target=output_target,
@@ -4461,7 +4445,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Dover Air Force Base (afpw_dover)',
-    config: DomainConfig(allowed_domains='dover.af.mil',
+    config: DomainConfig(allowed_domains='www.dover.af.mil',
                          starting_urls='https://www.dover.af.mil/',
                          schedule='43 20 * * WED',
                          output_target=output_target,
@@ -4469,7 +4453,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Eastern Air Defense Sector (afpw_eads)',
-    config: DomainConfig(allowed_domains='eads.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.eads.ang.af.mil',
                          starting_urls='https://www.eads.ang.af.mil/',
                          schedule='25 21 * * WED',
                          output_target=output_target,
@@ -4477,7 +4461,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Department of the Air Force - E-Publishing (afpw_epubs)',
-    config: DomainConfig(allowed_domains='e-publishing.af.mil',
+    config: DomainConfig(allowed_domains='www.e-publishing.af.mil',
                          starting_urls='https://www.e-publishing.af.mil/',
                          schedule='6 22 * * WED',
                          output_target=output_target,
@@ -4485,7 +4469,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '477th Fighter Group (afpw_477fg)',
-    config: DomainConfig(allowed_domains='477fg.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.477fg.afrc.af.mil',
                          starting_urls='https://www.477fg.afrc.af.mil/',
                          schedule='30 23 * * WED',
                          output_target=output_target,
@@ -4493,7 +4477,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '505th Command and Control Wing (afpw_505ccw)',
-    config: DomainConfig(allowed_domains='505ccw.acc.af.mil',
+    config: DomainConfig(allowed_domains='www.505ccw.acc.af.mil',
                          starting_urls='https://www.505ccw.acc.af.mil/',
                          schedule='12 0 * * THU',
                          output_target=output_target,
@@ -4501,7 +4485,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '624th Regional Support Group (afpw_624rsg)',
-    config: DomainConfig(allowed_domains='624rsg.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.624rsg.afrc.af.mil',
                          starting_urls='https://www.624rsg.afrc.af.mil/',
                          schedule='36 1 * * THU',
                          output_target=output_target,
@@ -4509,7 +4493,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '8th Air Force (afpw_8af)',
-    config: DomainConfig(allowed_domains='8af.af.mil',
+    config: DomainConfig(allowed_domains='www.8af.af.mil',
                          starting_urls='https://www.8af.af.mil/',
                          schedule='17 2 * * THU',
                          output_target=output_target,
@@ -4517,7 +4501,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '926th Group (afpw_926gp)',
-    config: DomainConfig(allowed_domains='926wing.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.926wing.afrc.af.mil',
                          starting_urls='https://www.926wing.afrc.af.mil/',
                          schedule='59 2 * * THU',
                          output_target=output_target,
@@ -4525,7 +4509,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'ANG AFRC Command Test Center (afpw_aatc)',
-    config: DomainConfig(allowed_domains='aatc.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.aatc.ang.af.mil',
                          starting_urls='https://www.aatc.ang.af.mil/',
                          schedule='41 3 * * THU',
                          output_target=output_target,
@@ -4533,7 +4517,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Alternative Dispute Resolution (afpw_adr)',
-    config: DomainConfig(allowed_domains='adr.af.mil',
+    config: DomainConfig(allowed_domains='www.adr.af.mil',
                          starting_urls='https://www.adr.af.mil/',
                          schedule='23 4 * * THU',
                          output_target=output_target,
@@ -4541,7 +4525,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Be Ready (afpw_afbr)',
-    config: DomainConfig(allowed_domains='beready.af.mil',
+    config: DomainConfig(allowed_domains='www.beready.af.mil',
                          starting_urls='https://www.beready.af.mil/',
                          schedule='5 5 * * THU',
                          output_target=output_target,
@@ -4549,7 +4533,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Global Strike Command (afpw_afgsc)',
-    config: DomainConfig(allowed_domains='afgsc.af.mil',
+    config: DomainConfig(allowed_domains='www.afgsc.af.mil',
                          starting_urls='https://www.afgsc.af.mil/',
                          schedule='47 5 * * THU',
                          output_target=output_target,
@@ -4557,7 +4541,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Historical Research Agency (afpw_afhra)',
-    config: DomainConfig(allowed_domains='dafhistory.af.mil',
+    config: DomainConfig(allowed_domains='www.dafhistory.af.mil',
                          starting_urls='https://www.dafhistory.af.mil/',
                          schedule='28 6 * * THU',
                          output_target=output_target,
@@ -4565,7 +4549,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: "Air Force Judge Advocate General's Corps (afpw_afjag)",
-    config: DomainConfig(allowed_domains='afjag.af.mil',
+    config: DomainConfig(allowed_domains='www.afjag.af.mil',
                          starting_urls='https://www.afjag.af.mil/',
                          schedule='34 8 * * THU',
                          output_target=output_target,
@@ -4573,7 +4557,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '172nd Airlift Wing, Mississippi Air National Guard (afpw_172aw)',
-    config: DomainConfig(allowed_domains='172aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.172aw.ang.af.mil',
                          starting_urls='https://www.172aw.ang.af.mil/',
                          schedule='16 9 * * THU',
                          output_target=output_target,
@@ -4581,7 +4565,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '173rd Fighter Wing, Oregon Air National Guard (afpw_173fw)',
-    config: DomainConfig(allowed_domains='173fw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.173fw.ang.af.mil',
                          starting_urls='https://www.173fw.ang.af.mil/',
                          schedule='58 9 * * THU',
                          output_target=output_target,
@@ -4589,7 +4573,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '175th Wing, Maryland Air National Guard (afpw_175wg)',
-    config: DomainConfig(allowed_domains='175wg.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.175wg.ang.af.mil',
                          starting_urls='https://www.175wg.ang.af.mil/',
                          schedule='39 10 * * THU',
                          output_target=output_target,
@@ -4597,7 +4581,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '176th Wing, Alaska Air National Guard (afpw_176wg)',
-    config: DomainConfig(allowed_domains='176wg.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.176wg.ang.af.mil',
                          starting_urls='https://www.176wg.ang.af.mil/',
                          schedule='21 11 * * THU',
                          output_target=output_target,
@@ -4605,7 +4589,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '177th Fighter Wing, New Jersey ANG (afpw_177fw)',
-    config: DomainConfig(allowed_domains='177fw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.177fw.ang.af.mil',
                          starting_urls='https://www.177fw.ang.af.mil/',
                          schedule='3 12 * * THU',
                          output_target=output_target,
@@ -4613,7 +4597,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '178th Wing, Ohio Air National Guard (afpw_178fw)',
-    config: DomainConfig(allowed_domains='178wing.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.178wing.ang.af.mil',
                          starting_urls='https://www.178wing.ang.af.mil/',
                          schedule='45 12 * * THU',
                          output_target=output_target,
@@ -4621,7 +4605,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '180th Fighter Wing, Ohio Air National Guard (afpw_180fw)',
-    config: DomainConfig(allowed_domains='180fw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.180fw.ang.af.mil',
                          starting_urls='https://www.180fw.ang.af.mil/',
                          schedule='50 14 * * THU',
                          output_target=output_target,
@@ -4629,7 +4613,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '181st Intelligence Wing, Indiana ANG (afpw_181iw)',
-    config: DomainConfig(allowed_domains='181iw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.181iw.ang.af.mil',
                          starting_urls='https://www.181iw.ang.af.mil/',
                          schedule='32 15 * * THU',
                          output_target=output_target,
@@ -4637,7 +4621,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '182nd Airlift Wing, Illinois Air National Guard (afpw_182aw)',
-    config: DomainConfig(allowed_domains='182aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.182aw.ang.af.mil',
                          starting_urls='https://www.182aw.ang.af.mil/',
                          schedule='14 16 * * THU',
                          output_target=output_target,
@@ -4645,7 +4629,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '184th Intelligence Wing, Kansas Air National Guard (afpw_184iw)',
-    config: DomainConfig(allowed_domains='184iw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.184iw.ang.af.mil',
                          starting_urls='https://www.184iw.ang.af.mil/',
                          schedule='56 16 * * THU',
                          output_target=output_target,
@@ -4653,7 +4637,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '185th Air Refueling Wing, Iowa ANG (afpw_185arw)',
-    config: DomainConfig(allowed_domains='185arw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.185arw.ang.af.mil',
                          starting_urls='https://www.185arw.ang.af.mil/',
                          schedule='38 17 * * THU',
                          output_target=output_target,
@@ -4661,7 +4645,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '186th Air Refueling Wing, Mississippi Air National Guard (afpw_186arw)',
-    config: DomainConfig(allowed_domains='186arw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.186arw.ang.af.mil',
                          starting_urls='https://www.186arw.ang.af.mil/',
                          schedule='19 18 * * THU',
                          output_target=output_target,
@@ -4669,7 +4653,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '188th WG, Arkansas ANG (afpw_188fw)',
-    config: DomainConfig(allowed_domains='188wg.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.188wg.ang.af.mil',
                          starting_urls='https://www.188wg.ang.af.mil/',
                          schedule='43 19 * * THU',
                          output_target=output_target,
@@ -4677,7 +4661,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '18th Air Force (afpw_18af)',
-    config: DomainConfig(allowed_domains='18af.amc.af.mil',
+    config: DomainConfig(allowed_domains='www.18af.amc.af.mil',
                          starting_urls='https://www.18af.amc.af.mil/',
                          schedule='25 20 * * THU',
                          output_target=output_target,
@@ -4685,7 +4669,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '190th Air Refueling Wing, Kansas Air National Guard (afpw_190arw)',
-    config: DomainConfig(allowed_domains='190arw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.190arw.ang.af.mil',
                          starting_urls='https://www.190arw.ang.af.mil/',
                          schedule='7 21 * * THU',
                          output_target=output_target,
@@ -4693,7 +4677,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '192D WG (afpw_192fw)',
-    config: DomainConfig(allowed_domains='192wg.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.192wg.ang.af.mil',
                          starting_urls='https://www.192wg.ang.af.mil/',
                          schedule='30 22 * * THU',
                          output_target=output_target,
@@ -4701,7 +4685,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '193rd SOW, Pa. ANG (afpw_193sow)',
-    config: DomainConfig(allowed_domains='193sow.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.193sow.ang.af.mil',
                          starting_urls='https://www.193sow.ang.af.mil/',
                          schedule='12 23 * * THU',
                          output_target=output_target,
@@ -4709,7 +4693,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '134th ARW, Tennessee Air National Guard (afpw_134arw)',
-    config: DomainConfig(allowed_domains='134arw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.134arw.ang.af.mil',
                          starting_urls='https://www.134arw.ang.af.mil/',
                          schedule='0 2 * * FRI',
                          output_target=output_target,
@@ -4717,7 +4701,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '136th Airlift Wing, Texas Air National Guard (afpw_136aw)',
-    config: DomainConfig(allowed_domains='136aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.136aw.ang.af.mil',
                          starting_urls='https://www.136aw.ang.af.mil/',
                          schedule='41 2 * * FRI',
                          output_target=output_target,
@@ -4725,7 +4709,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '137th Air Refueling Wing, Oklahoma ANG (afpw_137arw)',
-    config: DomainConfig(allowed_domains='137sow.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.137sow.ang.af.mil',
                          starting_urls='https://www.137sow.ang.af.mil/',
                          schedule='23 3 * * FRI',
                          output_target=output_target,
@@ -4733,7 +4717,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '138th Fighter Wing, Oklahoma ANG (afpw_138fw)',
-    config: DomainConfig(allowed_domains='138fw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.138fw.ang.af.mil',
                          starting_urls='https://www.138fw.ang.af.mil/',
                          schedule='5 4 * * FRI',
                          output_target=output_target,
@@ -4741,7 +4725,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '139th Airlift Wing, Missouri Air National Guard (afpw_139aw)',
-    config: DomainConfig(allowed_domains='139aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.139aw.ang.af.mil',
                          starting_urls='https://www.139aw.ang.af.mil/',
                          schedule='47 4 * * FRI',
                          output_target=output_target,
@@ -4749,7 +4733,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '140th Wing, Colorado Air National Guard (afpw_140wg)',
-    config: DomainConfig(allowed_domains='140wg.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.140wg.ang.af.mil',
                          starting_urls='https://www.140wg.ang.af.mil/',
                          schedule='29 5 * * FRI',
                          output_target=output_target,
@@ -4757,7 +4741,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '141st Air Refueling Wing, Washington ANG (afpw_141arw)',
-    config: DomainConfig(allowed_domains='141arw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.141arw.ang.af.mil',
                          starting_urls='https://www.141arw.ang.af.mil/',
                          schedule='10 6 * * FRI',
                          output_target=output_target,
@@ -4765,7 +4749,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '143rd Airlift Wing, Rhode Island ANG (afpw_143aw)',
-    config: DomainConfig(allowed_domains='143aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.143aw.ang.af.mil',
                          starting_urls='https://www.143aw.ang.af.mil/',
                          schedule='34 7 * * FRI',
                          output_target=output_target,
@@ -4773,7 +4757,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '144th Fighter Wing, California Air National Guard (afpw_144fw)',
-    config: DomainConfig(allowed_domains='144fw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.144fw.ang.af.mil',
                          starting_urls='https://www.144fw.ang.af.mil/',
                          schedule='16 8 * * FRI',
                          output_target=output_target,
@@ -4781,7 +4765,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '145th Airlift Wing, North Carolina ANG (afpw_145aw)',
-    config: DomainConfig(allowed_domains='145aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.145aw.ang.af.mil',
                          starting_urls='https://www.145aw.ang.af.mil/',
                          schedule='58 8 * * FRI',
                          output_target=output_target,
@@ -4789,7 +4773,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '146th Airlift Wing, California ANG (afpw_146aw)',
-    config: DomainConfig(allowed_domains='146aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.146aw.ang.af.mil',
                          starting_urls='https://www.146aw.ang.af.mil/',
                          schedule='40 9 * * FRI',
                          output_target=output_target,
@@ -4797,7 +4781,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '148th Fighter Wing, Minnesota ANG (afpw_148fw)',
-    config: DomainConfig(allowed_domains='148fw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.148fw.ang.af.mil',
                          starting_urls='https://www.148fw.ang.af.mil/',
                          schedule='3 11 * * FRI',
                          output_target=output_target,
@@ -4805,7 +4789,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '149th Fighter Wing, Texas ANG (afpw_149fw)',
-    config: DomainConfig(allowed_domains='149fw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.149fw.ang.af.mil',
                          starting_urls='https://www.149fw.ang.af.mil/',
                          schedule='45 11 * * FRI',
                          output_target=output_target,
@@ -4813,7 +4797,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '152nd Airlift Wing, NV ANG (afpw_152aw)',
-    config: DomainConfig(allowed_domains='152aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.152aw.ang.af.mil',
                          starting_urls='https://www.152aw.ang.af.mil/',
                          schedule='9 13 * * FRI',
                          output_target=output_target,
@@ -4821,7 +4805,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '153rd Airlift Wing, Wyoming ANG (afpw_153aw)',
-    config: DomainConfig(allowed_domains='153aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.153aw.ang.af.mil',
                          starting_urls='https://www.153aw.ang.af.mil/',
                          schedule='51 13 * * FRI',
                          output_target=output_target,
@@ -4829,7 +4813,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '154th Wing, Hawaii Air National Guard (afpw_154wg)',
-    config: DomainConfig(allowed_domains='154wg.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.154wg.ang.af.mil',
                          starting_urls='https://www.154wg.ang.af.mil/',
                          schedule='32 14 * * FRI',
                          output_target=output_target,
@@ -4837,7 +4821,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '155th Air Refueling Wing (afpw_155arw)',
-    config: DomainConfig(allowed_domains='155arw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.155arw.ang.af.mil',
                          starting_urls='https://www.155arw.ang.af.mil/',
                          schedule='14 15 * * FRI',
                          output_target=output_target,
@@ -4845,7 +4829,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '157th ARW, New Hampshire ANG (afpw_157arw)',
-    config: DomainConfig(allowed_domains='157arw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.157arw.ang.af.mil',
                          starting_urls='https://www.157arw.ang.af.mil/',
                          schedule='56 15 * * FRI',
                          output_target=output_target,
@@ -4853,7 +4837,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '158th Fighter Wing, Vermont ANG (afpw_158fw)',
-    config: DomainConfig(allowed_domains='158fw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.158fw.ang.af.mil',
                          starting_urls='https://www.158fw.ang.af.mil/',
                          schedule='38 16 * * FRI',
                          output_target=output_target,
@@ -4861,7 +4845,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '161st Air Refueling Wing (afpw_161arw)',
-    config: DomainConfig(allowed_domains='161arw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.161arw.ang.af.mil',
                          starting_urls='https://www.161arw.ang.af.mil/',
                          schedule='20 17 * * FRI',
                          output_target=output_target,
@@ -4869,7 +4853,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '162nd Wing, Arizona ANG (afpw_162fw)',
-    config: DomainConfig(allowed_domains='162wing.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.162wing.ang.af.mil',
                          starting_urls='https://www.162wing.ang.af.mil/',
                          schedule='43 18 * * FRI',
                          output_target=output_target,
@@ -4877,7 +4861,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '163rd ATKW, California Air National Guard (afpw_163rw)',
-    config: DomainConfig(allowed_domains='163atkw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.163atkw.ang.af.mil',
                          starting_urls='https://www.163atkw.ang.af.mil/',
                          schedule='49 20 * * FRI',
                          output_target=output_target,
@@ -4885,7 +4869,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '167th Airlift Wing, West Virginia Air National Guard (afpw_167aw)',
-    config: DomainConfig(allowed_domains='167aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.167aw.ang.af.mil',
                          starting_urls='https://www.167aw.ang.af.mil/',
                          schedule='31 21 * * FRI',
                          output_target=output_target,
@@ -4893,7 +4877,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '169th Fighter Wing (afpw_169fw)',
-    config: DomainConfig(allowed_domains='169fw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.169fw.ang.af.mil',
                          starting_urls='https://www.169fw.ang.af.mil/',
                          schedule='54 22 * * FRI',
                          output_target=output_target,
@@ -4901,7 +4885,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '171st ARW, Pennsylvania ANG (afpw_171arw)',
-    config: DomainConfig(allowed_domains='171arw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.171arw.ang.af.mil',
                          starting_urls='https://www.171arw.ang.af.mil/',
                          schedule='36 23 * * FRI',
                          output_target=output_target,
@@ -4910,7 +4894,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '110th Wing (afpw_110aw)',
-    config: DomainConfig(allowed_domains='110wg.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.110wg.ang.af.mil',
                          starting_urls='https://www.110wg.ang.af.mil/',
                          schedule='42 1 * * SAT',
                          output_target=output_target,
@@ -4918,7 +4902,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '111th Attack Wing (afpw_111fw)',
-    config: DomainConfig(allowed_domains='111attackwing.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.111attackwing.ang.af.mil',
                          starting_urls='https://www.111attackwing.ang.af.mil/',
                          schedule='5 3 * * SAT',
                          output_target=output_target,
@@ -4926,7 +4910,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '114th Fighter Wing (afpw_114fw)',
-    config: DomainConfig(allowed_domains='114fw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.114fw.ang.af.mil',
                          starting_urls='https://www.114fw.ang.af.mil/',
                          schedule='47 3 * * SAT',
                          output_target=output_target,
@@ -4934,7 +4918,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '115th Fighter Wing (afpw_115fw)',
-    config: DomainConfig(allowed_domains='115fw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.115fw.ang.af.mil',
                          starting_urls='https://www.115fw.ang.af.mil/',
                          schedule='29 4 * * SAT',
                          output_target=output_target,
@@ -4942,7 +4926,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '117th Air Refueling Wing (afpw_117arw)',
-    config: DomainConfig(allowed_domains='117arw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.117arw.ang.af.mil',
                          starting_urls='https://www.117arw.ang.af.mil/',
                          schedule='11 5 * * SAT',
                          output_target=output_target,
@@ -4950,7 +4934,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '118th Wing (afpw_118aw)',
-    config: DomainConfig(allowed_domains='118wg.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.118wg.ang.af.mil',
                          starting_urls='https://www.118wg.ang.af.mil/',
                          schedule='53 5 * * SAT',
                          output_target=output_target,
@@ -4958,7 +4942,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '119th Wing, North Dakota Air National Guard (afpw_119wg)',
-    config: DomainConfig(allowed_domains='119wg.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.119wg.ang.af.mil',
                          starting_urls='https://www.119wg.ang.af.mil/',
                          schedule='34 6 * * SAT',
                          output_target=output_target,
@@ -4966,7 +4950,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '120th Airlift Wing (afpw_120fw)',
-    config: DomainConfig(allowed_domains='120thairliftwing.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.120thairliftwing.ang.af.mil',
                          starting_urls='https://www.120thairliftwing.ang.af.mil/',
                          schedule='16 7 * * SAT',
                          output_target=output_target,
@@ -4974,7 +4958,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '121st ARW, Ohio Air National Guard (afpw_121arw)',
-    config: DomainConfig(allowed_domains='121arw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.121arw.ang.af.mil',
                          starting_urls='https://www.121arw.ang.af.mil/',
                          schedule='40 8 * * SAT',
                          output_target=output_target,
@@ -4982,7 +4966,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '122nd Fighter Wing, Indiana ANG (afpw_122fw)',
-    config: DomainConfig(allowed_domains='122fw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.122fw.ang.af.mil',
                          starting_urls='https://www.122fw.ang.af.mil/',
                          schedule='22 9 * * SAT',
                          output_target=output_target,
@@ -4990,7 +4974,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '123rd Airlift Wing, Kentucky ANG (afpw_123aw)',
-    config: DomainConfig(allowed_domains='123aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.123aw.ang.af.mil',
                          starting_urls='https://www.123aw.ang.af.mil/',
                          schedule='3 10 * * SAT',
                          output_target=output_target,
@@ -4998,7 +4982,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '126th Air Refueling Wing, Illinois Air National Guard (afpw_126arw)',
-    config: DomainConfig(allowed_domains='126arw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.126arw.ang.af.mil',
                          starting_urls='https://www.126arw.ang.af.mil/',
                          schedule='45 10 * * SAT',
                          output_target=output_target,
@@ -5006,7 +4990,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '127th Wing, Michigan Air National Guard (afpw_127wg)',
-    config: DomainConfig(allowed_domains='127wg.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.127wg.ang.af.mil',
                          starting_urls='https://www.127wg.ang.af.mil/',
                          schedule='27 11 * * SAT',
                          output_target=output_target,
@@ -5015,7 +4999,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '128th Air Refueling Wing, Wisconsin ANG (afpw_128arw)',
-    config: DomainConfig(allowed_domains='128arw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.128arw.ang.af.mil',
                          starting_urls='https://www.128arw.ang.af.mil/',
                          schedule='9 12 * * SAT',
                          output_target=output_target,
@@ -5023,7 +5007,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '129th Rescue Wing, California ANG (afpw_129rqw)',
-    config: DomainConfig(allowed_domains='129rqw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.129rqw.ang.af.mil',
                          starting_urls='https://www.129rqw.ang.af.mil/',
                          schedule='51 12 * * SAT',
                          output_target=output_target,
@@ -5031,7 +5015,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '130th Airlift Wing, West Virginia Air National Guard (afpw_130aw)',
-    config: DomainConfig(allowed_domains='130aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.130aw.ang.af.mil',
                          starting_urls='https://www.130aw.ang.af.mil/',
                          schedule='33 13 * * SAT',
                          output_target=output_target,
@@ -5039,7 +5023,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '131st Bomb Wing, Missouri ANG (afpw_131bw)',
-    config: DomainConfig(allowed_domains='131bw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.131bw.ang.af.mil',
                          starting_urls='https://www.131bw.ang.af.mil/',
                          schedule='14 14 * * SAT',
                          output_target=output_target,
@@ -5047,7 +5031,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '132nd DWing, Iowa ANG (afpw_132fw)',
-    config: DomainConfig(allowed_domains='132dwing.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.132dwing.ang.af.mil',
                          starting_urls='https://www.132dwing.ang.af.mil/',
                          schedule='38 15 * * SAT',
                          output_target=output_target,
@@ -5055,7 +5039,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '133rd Airlift Wing, Minnesota Air National Guard (afpw_133aw)',
-    config: DomainConfig(allowed_domains='133aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.133aw.ang.af.mil',
                          starting_urls='https://www.133aw.ang.af.mil/',
                          schedule='20 16 * * SAT',
                          output_target=output_target,
@@ -5063,7 +5047,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Audit Agency (afaa)',
-    config: DomainConfig(allowed_domains='afaa.af.mil',
+    config: DomainConfig(allowed_domains='www.afaa.af.mil',
                          starting_urls='https://www.afaa.af.mil/',
                          schedule='2 17 * * SAT',
                          output_target=output_target,
@@ -5071,7 +5055,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Agency for Modeling and Simulation (afams)',
-    config: DomainConfig(allowed_domains='afams.af.mil',
+    config: DomainConfig(allowed_domains='www.afams.af.mil',
                          starting_urls='https://www.afams.af.mil/',
                          schedule='44 17 * * SAT',
                          output_target=output_target,
@@ -5079,7 +5063,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Basic Military Training (afbmt)',
-    config: DomainConfig(allowed_domains='basictraining.af.mil',
+    config: DomainConfig(allowed_domains='www.basictraining.af.mil',
                          starting_urls='https://www.basictraining.af.mil/',
                          schedule='25 18 * * SAT',
                          output_target=output_target,
@@ -5087,7 +5071,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force District of Washington (afdw)',
-    config: DomainConfig(allowed_domains='afdw.af.mil',
+    config: DomainConfig(allowed_domains='www.afdw.af.mil',
                          starting_urls='https://www.afdw.af.mil/',
                          schedule='7 19 * * SAT',
                          output_target=output_target,
@@ -5095,7 +5079,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Materiel Command (afmc)',
-    config: DomainConfig(allowed_domains='afmc.af.mil',
+    config: DomainConfig(allowed_domains='www.afmc.af.mil',
                          starting_urls='https://www.afmc.af.mil/',
                          schedule='31 20 * * SAT',
                          output_target=output_target,
@@ -5103,7 +5087,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Office of Special Investigations (afosi)',
-    config: DomainConfig(allowed_domains='osi.af.mil',
+    config: DomainConfig(allowed_domains='www.osi.af.mil',
                          starting_urls='https://www.osi.af.mil/',
                          schedule='13 21 * * SAT',
                          output_target=output_target,
@@ -5111,7 +5095,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Operational Test and Evaluation Center (afotec)',
-    config: DomainConfig(allowed_domains='afotec.af.mil',
+    config: DomainConfig(allowed_domains='www.afotec.af.mil',
                          starting_urls='https://www.afotec.af.mil/',
                          schedule='36 22 * * SAT',
                          output_target=output_target,
@@ -5119,7 +5103,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Eye Institute (www.nei.nih.gov)',
-    config: DomainConfig(allowed_domains='nei.nih.gov',
+    config: DomainConfig(allowed_domains='www.nei.nih.gov',
                          starting_urls='https://www.nei.nih.gov/',
                          schedule='28 6 * * SUN',
                          output_target=output_target,
@@ -5128,7 +5112,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Institute on Alcohol Abuse and Alcoholism (NIAAA) (www.niaaa.nih.gov)',
-    config: DomainConfig(allowed_domains='niaaa.nih.gov',
+    config: DomainConfig(allowed_domains='www.niaaa.nih.gov',
                          starting_urls='https://www.niaaa.nih.gov/',
                          schedule='18 8 * * MON',
                          output_target=output_target,
@@ -5136,7 +5120,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Institute of Allergy and Infectious Diseases (NIAID) (www.niaid.nih.gov)',
-    config: DomainConfig(allowed_domains='niaid.nih.gov',
+    config: DomainConfig(allowed_domains='www.niaid.nih.gov',
                          starting_urls='https://www.niaid.nih.gov/',
                          schedule='46 14 * * MON',
                          output_target=output_target,
@@ -5144,7 +5128,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Institute of Arthritis and Musculoskeletal and Skin Diseases (NIAMS) (www.niams.nih.gov)',
-    config: DomainConfig(allowed_domains='niams.nih.gov',
+    config: DomainConfig(allowed_domains='www.niams.nih.gov',
                          starting_urls='https://www.niams.nih.gov/',
                          schedule='14 21 * * MON',
                          output_target=output_target,
@@ -5152,7 +5136,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Institute of Biomedical Imaging and Bioengineering (NIBIB) (www.nibib.nih.gov)',
-    config: DomainConfig(allowed_domains='nibib.nih.gov',
+    config: DomainConfig(allowed_domains='www.nibib.nih.gov',
                          starting_urls='https://www.nibib.nih.gov/',
                          schedule='42 3 * * TUE',
                          output_target=output_target,
@@ -5160,7 +5144,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Eunice Kennedy Shriver National Institute of Child Health and Human Development (NICHD) (www.nichd.nih.gov)',
-    config: DomainConfig(allowed_domains='nichd.nih.gov',
+    config: DomainConfig(allowed_domains='www.nichd.nih.gov',
                          starting_urls='https://www.nichd.nih.gov/',
                          schedule='9 10 * * TUE',
                          output_target=output_target,
@@ -5168,7 +5152,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Institute of Dental and Craniofacial Research (NIDCR) (www.nidcr.nih.gov)',
-    config: DomainConfig(allowed_domains='nidcr.nih.gov',
+    config: DomainConfig(allowed_domains='www.nidcr.nih.gov',
                          starting_urls='https://www.nidcr.nih.gov/',
                          schedule='37 16 * * TUE',
                          output_target=output_target,
@@ -5176,7 +5160,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK) (www.niddk.nih.gov)',
-    config: DomainConfig(allowed_domains='niddk.nih.gov',
+    config: DomainConfig(allowed_domains='www.niddk.nih.gov',
                          starting_urls='https://www.niddk.nih.gov/',
                          schedule='5 23 * * TUE',
                          output_target=output_target,
@@ -5184,7 +5168,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Institute of General Medical Sciences (NIGMS) (www.nigms.nih.gov)',
-    config: DomainConfig(allowed_domains='nigms.nih.gov',
+    config: DomainConfig(allowed_domains='www.nigms.nih.gov',
                          starting_urls='https://www.nigms.nih.gov/',
                          schedule='28 18 * * WED',
                          output_target=output_target,
@@ -5192,7 +5176,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Institute on Minority Health and Health Disparities (NIMHD) (www.nimhd.nih.gov)',
-    config: DomainConfig(allowed_domains='nimhd.nih.gov',
+    config: DomainConfig(allowed_domains='www.nimhd.nih.gov',
                          starting_urls='https://www.nimhd.nih.gov/',
                          schedule='23 7 * * THU',
                          output_target=output_target,
@@ -5200,7 +5184,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Institute of Neurological Disorders and Stroke (NINDS) (www.ninds.nih.gov)',
-    config: DomainConfig(allowed_domains='ninds.nih.gov',
+    config: DomainConfig(allowed_domains='www.ninds.nih.gov',
                          starting_urls='https://www.ninds.nih.gov/',
                          schedule='51 13 * * THU',
                          output_target=output_target,
@@ -5208,7 +5192,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Institute of Nursing Research (NINR) (www.ninr.nih.gov)',
-    config: DomainConfig(allowed_domains='ninr.nih.gov',
+    config: DomainConfig(allowed_domains='www.ninr.nih.gov',
                          starting_urls='https://www.ninr.nih.gov/',
                          schedule='18 20 * * THU',
                          output_target=output_target,
@@ -5216,16 +5200,16 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NIH Clinical Center (CC) (www.cc.nih.gov)',
-    config: DomainConfig(allowed_domains='cc.nih.gov',
+    config: DomainConfig(allowed_domains='www.cc.nih.gov',
                          starting_urls='https://www.cc.nih.gov/',
                          schedule='14 9 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
   },
   {
-    name: 'Center for Information Technology (CIT) (www.cit.nih.gov)',
+    name: 'Center for Information Technology (CIT) (cit.nih.gov)',
     config: DomainConfig(allowed_domains='cit.nih.gov',
-                         starting_urls='https://www.cit.nih.gov/',
+                         starting_urls='https://cit.nih.gov/',
                          schedule='42 15 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -5240,7 +5224,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Fogarty International Center (FIC) (www.fic.nih.gov)',
-    config: DomainConfig(allowed_domains='fic.nih.gov',
+    config: DomainConfig(allowed_domains='www.fic.nih.gov',
                          starting_urls='https://www.fic.nih.gov/',
                          schedule='37 4 * * SAT',
                          output_target=output_target,
@@ -5248,7 +5232,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Center for Complementary and Integrative Health (NCCIH) (www.nccih.nih.gov)',
-    config: DomainConfig(allowed_domains='nccih.nih.gov',
+    config: DomainConfig(allowed_domains='www.nccih.nih.gov',
                          starting_urls='https://www.nccih.nih.gov/',
                          schedule='32 17 * * SAT',
                          output_target=output_target,
@@ -5528,7 +5512,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Youngstown Air Reserve Station (youngstown)',
-    config: DomainConfig(allowed_domains='youngstown.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.youngstown.afrc.af.mil',
                          starting_urls='https://www.youngstown.afrc.af.mil/',
                          schedule='0 0 * * SUN',
                          output_target=output_target,
@@ -5536,7 +5520,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Yokota Air Base (yokota)',
-    config: DomainConfig(allowed_domains='yokota.af.mil',
+    config: DomainConfig(allowed_domains='www.yokota.af.mil',
                          starting_urls='https://www.yokota.af.mil/',
                          schedule='55 0 * * SUN',
                          output_target=output_target,
@@ -5544,7 +5528,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Wright-Patterson Air Force Base (wrightpatt)',
-    config: DomainConfig(allowed_domains='wpafb.af.mil',
+    config: DomainConfig(allowed_domains='www.wpafb.af.mil',
                          starting_urls='https://www.wpafb.af.mil/',
                          schedule='51 1 * * SUN',
                          output_target=output_target,
@@ -5552,7 +5536,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Whiteman Air Force Base (whiteman)',
-    config: DomainConfig(allowed_domains='whiteman.af.mil',
+    config: DomainConfig(allowed_domains='www.whiteman.af.mil',
                          starting_urls='https://www.whiteman.af.mil/',
                          schedule='46 2 * * SUN',
                          output_target=output_target,
@@ -5561,7 +5545,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Westover Air Reserve Base, Mass (westover)',
-    config: DomainConfig(allowed_domains='westover.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.westover.afrc.af.mil',
                          starting_urls='https://www.westover.afrc.af.mil/',
                          schedule='42 3 * * SUN',
                          output_target=output_target,
@@ -5569,7 +5553,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Vance Air Force Base (vance)',
-    config: DomainConfig(allowed_domains='vance.af.mil',
+    config: DomainConfig(allowed_domains='www.vance.af.mil',
                          starting_urls='https://www.vance.af.mil/',
                          schedule='32 5 * * SUN',
                          output_target=output_target,
@@ -5577,7 +5561,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'US Air Forces in Europe Air Forces Africa (usafe)',
-    config: DomainConfig(allowed_domains='usafe.af.mil',
+    config: DomainConfig(allowed_domains='www.usafe.af.mil',
                          starting_urls='https://www.usafe.af.mil/',
                          schedule='28 6 * * SUN',
                          output_target=output_target,
@@ -5585,7 +5569,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'United States Air Force Academy (usafacademy)',
-    config: DomainConfig(allowed_domains='usafa.af.mil',
+    config: DomainConfig(allowed_domains='www.usafa.af.mil',
                          starting_urls='https://www.usafa.af.mil/',
                          schedule='23 7 * * SUN',
                          output_target=output_target,
@@ -5593,7 +5577,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Tesseract AF (HAF/A4L) (usaf_tesseract)',
-    config: DomainConfig(allowed_domains='tesseract.af.mil',
+    config: DomainConfig(allowed_domains='www.tesseract.af.mil',
                          starting_urls='https://www.tesseract.af.mil/',
                          schedule='18 8 * * SUN',
                          output_target=output_target,
@@ -5601,7 +5585,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Technology Transfer and Transition Program (usaf_aft3)',
-    config: DomainConfig(allowed_domains='aft3.af.mil',
+    config: DomainConfig(allowed_domains='www.aft3.af.mil',
                          starting_urls='https://www.aft3.af.mil/',
                          schedule='0 12 * * SUN',
                          output_target=output_target,
@@ -5609,7 +5593,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Research Laboratory (usaf_afrl)',
-    config: DomainConfig(allowed_domains='afrl.af.mil',
+    config: DomainConfig(allowed_domains='www.afrl.af.mil',
                          starting_urls='https://www.afrl.af.mil/',
                          schedule='55 12 * * SUN',
                          output_target=output_target,
@@ -5617,7 +5601,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Nuclear Weapons Center (usaf_afnwc)',
-    config: DomainConfig(allowed_domains='afnwc.af.mil',
+    config: DomainConfig(allowed_domains='www.afnwc.af.mil',
                          starting_urls='https://www.afnwc.af.mil/',
                          schedule='51 13 * * SUN',
                          output_target=output_target,
@@ -5625,7 +5609,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Manpower Analysis Agency (usaf_afmaa)',
-    config: DomainConfig(allowed_domains='afmaa.af.mil',
+    config: DomainConfig(allowed_domains='www.afmaa.af.mil',
                          starting_urls='https://www.afmaa.af.mil/',
                          schedule='46 14 * * SUN',
                          output_target=output_target,
@@ -5633,7 +5617,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Life Cycle Management Center (usaf_aflcmc)',
-    config: DomainConfig(allowed_domains='aflcmc.af.mil',
+    config: DomainConfig(allowed_domains='www.aflcmc.af.mil',
                          starting_urls='https://www.aflcmc.af.mil/',
                          schedule='37 16 * * SUN',
                          output_target=output_target,
@@ -5649,7 +5633,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '53rd Wing (usaf_53wing)',
-    config: DomainConfig(allowed_domains='53rdwing.af.mil',
+    config: DomainConfig(allowed_domains='www.53rdwing.af.mil',
                          starting_urls='https://www.53rdwing.af.mil/',
                          schedule='23 19 * * SUN',
                          output_target=output_target,
@@ -5657,7 +5641,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '492nd Special Operations Wing (usaf_492sow)',
-    config: DomainConfig(allowed_domains='492sow.af.mil',
+    config: DomainConfig(allowed_domains='www.492sow.af.mil',
                          starting_urls='https://www.492sow.af.mil/',
                          schedule='18 20 * * SUN',
                          output_target=output_target,
@@ -5665,7 +5649,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '350th Spectrum Warfare Wing (usaf_350thsww)',
-    config: DomainConfig(allowed_domains='350sww.af.mil',
+    config: DomainConfig(allowed_domains='www.350sww.af.mil',
                          starting_urls='https://www.350sww.af.mil/',
                          schedule='14 21 * * SUN',
                          output_target=output_target,
@@ -5673,7 +5657,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '16th Air Force (usaf_16af)',
-    config: DomainConfig(allowed_domains='16af.af.mil',
+    config: DomainConfig(allowed_domains='www.16af.af.mil',
                          starting_urls='https://www.16af.af.mil/',
                          schedule='9 22 * * SUN',
                          output_target=output_target,
@@ -5681,7 +5665,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Tyndall Air Force Base (tyndall)',
-    config: DomainConfig(allowed_domains='tyndall.af.mil',
+    config: DomainConfig(allowed_domains='www.tyndall.af.mil',
                          starting_urls='https://www.tyndall.af.mil/',
                          schedule='5 23 * * SUN',
                          output_target=output_target,
@@ -5689,7 +5673,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Torch Magazine (torch)',
-    config: DomainConfig(allowed_domains='torch.aetc.af.mil',
+    config: DomainConfig(allowed_domains='www.torch.aetc.af.mil',
                          starting_urls='https://www.torch.aetc.af.mil/',
                          schedule='55 0 * * MON',
                          output_target=output_target,
@@ -5697,7 +5681,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Tinker Air Force Base (tinker)',
-    config: DomainConfig(allowed_domains='tinker.af.mil',
+    config: DomainConfig(allowed_domains='www.tinker.af.mil',
                          starting_urls='https://www.tinker.af.mil/',
                          schedule='51 1 * * MON',
                          output_target=output_target,
@@ -5705,7 +5689,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Spangdahlem Air Base (spangdahlem)',
-    config: DomainConfig(allowed_domains='spangdahlem.af.mil',
+    config: DomainConfig(allowed_domains='www.spangdahlem.af.mil',
                          starting_urls='https://www.spangdahlem.af.mil/',
                          schedule='46 2 * * MON',
                          output_target=output_target,
@@ -5713,7 +5697,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Sheppard Air Force Base (sheppard)',
-    config: DomainConfig(allowed_domains='sheppard.af.mil',
+    config: DomainConfig(allowed_domains='www.sheppard.af.mil',
                          starting_urls='https://www.sheppard.af.mil/',
                          schedule='42 3 * * MON',
                          output_target=output_target,
@@ -5721,7 +5705,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Seymour Johnson AFB (seymourjohnson)',
-    config: DomainConfig(allowed_domains='seymourjohnson.af.mil',
+    config: DomainConfig(allowed_domains='www.seymourjohnson.af.mil',
                          starting_urls='https://www.seymourjohnson.af.mil/',
                          schedule='32 5 * * MON',
                          output_target=output_target,
@@ -5729,7 +5713,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Installations, Environment & Logistics (safie)',
-    config: DomainConfig(allowed_domains='safie.hq.af.mil',
+    config: DomainConfig(allowed_domains='www.safie.hq.af.mil',
                          starting_urls='https://www.safie.hq.af.mil/',
                          schedule='18 8 * * MON',
                          output_target=output_target,
@@ -5737,7 +5721,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Financial Management & Comptroller (saffm)',
-    config: DomainConfig(allowed_domains='saffm.hq.af.mil',
+    config: DomainConfig(allowed_domains='www.saffm.hq.af.mil',
                          starting_urls='https://www.saffm.hq.af.mil/',
                          schedule='14 9 * * MON',
                          output_target=output_target,
@@ -5745,7 +5729,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Scientific Advisory Board (sab)',
-    config: DomainConfig(allowed_domains='scientificadvisoryboard.af.mil',
+    config: DomainConfig(allowed_domains='www.scientificadvisoryboard.af.mil',
                          starting_urls='https://www.scientificadvisoryboard.af.mil/',
                          schedule='9 10 * * MON',
                          output_target=output_target,
@@ -5753,7 +5737,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Robins Air Force Base (robins)',
-    config: DomainConfig(allowed_domains='robins.af.mil',
+    config: DomainConfig(allowed_domains='www.robins.af.mil',
                          starting_urls='https://www.robins.af.mil/',
                          schedule='5 11 * * MON',
                          output_target=output_target,
@@ -5761,7 +5745,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Ramstein Air Base (ramstein)',
-    config: DomainConfig(allowed_domains='ramstein.af.mil',
+    config: DomainConfig(allowed_domains='www.ramstein.af.mil',
                          starting_urls='https://www.ramstein.af.mil/',
                          schedule='0 12 * * MON',
                          output_target=output_target,
@@ -5769,7 +5753,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Pittsburgh IAP Air Reserve Station (pittsburgh)',
-    config: DomainConfig(allowed_domains='pittsburgh.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.pittsburgh.afrc.af.mil',
                          starting_urls='https://www.pittsburgh.afrc.af.mil/',
                          schedule='55 12 * * MON',
                          output_target=output_target,
@@ -5777,7 +5761,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Pacific Air Forces (pacaf)',
-    config: DomainConfig(allowed_domains='pacaf.af.mil',
+    config: DomainConfig(allowed_domains='www.pacaf.af.mil',
                          starting_urls='https://www.pacaf.af.mil/',
                          schedule='51 13 * * MON',
                          output_target=output_target,
@@ -5785,7 +5769,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Osan Air Base (osan)',
-    config: DomainConfig(allowed_domains='osan.af.mil',
+    config: DomainConfig(allowed_domains='www.osan.af.mil',
                          starting_urls='https://www.osan.af.mil/',
                          schedule='46 14 * * MON',
                          output_target=output_target,
@@ -5793,7 +5777,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Niagara Falls Air Reserve Station (niagarafalls)',
-    config: DomainConfig(allowed_domains='niagara.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.niagara.afrc.af.mil',
                          starting_urls='https://www.niagara.afrc.af.mil/',
                          schedule='42 15 * * MON',
                          output_target=output_target,
@@ -5801,7 +5785,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'New Jersey Air National Guard (ng_njang)',
-    config: DomainConfig(allowed_domains='njang.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.njang.ang.af.mil',
                          starting_urls='https://www.njang.ang.af.mil/',
                          schedule='37 16 * * MON',
                          output_target=output_target,
@@ -5809,7 +5793,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force NETCENTS (netcents)',
-    config: DomainConfig(allowed_domains='netcents.af.mil',
+    config: DomainConfig(allowed_domains='www.netcents.af.mil',
                          starting_urls='https://www.netcents.af.mil/',
                          schedule='32 17 * * MON',
                          output_target=output_target,
@@ -5817,7 +5801,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Nellis Air Force Base (nellis)',
-    config: DomainConfig(allowed_domains='nellis.af.mil',
+    config: DomainConfig(allowed_domains='www.nellis.af.mil',
                          starting_urls='https://www.nellis.af.mil/',
                          schedule='28 18 * * MON',
                          output_target=output_target,
@@ -5825,7 +5809,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'U.S. Air Force Recordings (music)',
-    config: DomainConfig(allowed_domains='music.af.mil',
+    config: DomainConfig(allowed_domains='www.music.af.mil',
                          starting_urls='https://www.music.af.mil/',
                          schedule='23 19 * * MON',
                          output_target=output_target,
@@ -5833,7 +5817,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Museum of the USAF (museum)',
-    config: DomainConfig(allowed_domains='nationalmuseum.af.mil',
+    config: DomainConfig(allowed_domains='www.nationalmuseum.af.mil',
                          starting_urls='https://www.nationalmuseum.af.mil/',
                          schedule='18 20 * * MON',
                          output_target=output_target,
@@ -5841,7 +5825,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Mountain Home Air Force Base (mountainhome)',
-    config: DomainConfig(allowed_domains='mountainhome.af.mil',
+    config: DomainConfig(allowed_domains='www.mountainhome.af.mil',
                          starting_urls='https://www.mountainhome.af.mil/',
                          schedule='14 21 * * MON',
                          output_target=output_target,
@@ -5849,7 +5833,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Moody Air Force Base (moody)',
-    config: DomainConfig(allowed_domains='moody.af.mil',
+    config: DomainConfig(allowed_domains='www.moody.af.mil',
                          starting_urls='https://www.moody.af.mil/',
                          schedule='9 22 * * MON',
                          output_target=output_target,
@@ -5857,7 +5841,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Misawa Air Base (misawa)',
-    config: DomainConfig(allowed_domains='misawa.af.mil',
+    config: DomainConfig(allowed_domains='www.misawa.af.mil',
                          starting_urls='https://www.misawa.af.mil/',
                          schedule='5 23 * * MON',
                          output_target=output_target,
@@ -5865,7 +5849,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Minot Air Force Base (minot)',
-    config: DomainConfig(allowed_domains='minot.af.mil',
+    config: DomainConfig(allowed_domains='www.minot.af.mil',
                          starting_urls='https://www.minot.af.mil/',
                          schedule='0 0 * * TUE',
                          output_target=output_target,
@@ -5873,7 +5857,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Minneapolis-St Paul Air Reserve Station (minneapolis)',
-    config: DomainConfig(allowed_domains='minneapolis.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.minneapolis.afrc.af.mil',
                          starting_urls='https://www.minneapolis.afrc.af.mil/',
                          schedule='55 0 * * TUE',
                          output_target=output_target,
@@ -5881,7 +5865,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'RAF Mildenhall (mildenhall)',
-    config: DomainConfig(allowed_domains='mildenhall.af.mil',
+    config: DomainConfig(allowed_domains='www.mildenhall.af.mil',
                          starting_urls='https://www.mildenhall.af.mil/',
                          schedule='51 1 * * TUE',
                          output_target=output_target,
@@ -5889,7 +5873,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'March Air Reserve Base, Calif. (march)',
-    config: DomainConfig(allowed_domains='march.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.march.afrc.af.mil',
                          starting_urls='https://www.march.afrc.af.mil/',
                          schedule='46 2 * * TUE',
                          output_target=output_target,
@@ -5905,7 +5889,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'MacDill Air Force Base (macdillairforcebase)',
-    config: DomainConfig(allowed_domains='macdill.af.mil',
+    config: DomainConfig(allowed_domains='www.macdill.af.mil',
                          starting_urls='https://www.macdill.af.mil/',
                          schedule='37 4 * * TUE',
                          output_target=output_target,
@@ -5914,7 +5898,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Luke Air Force Base (luke)',
-    config: DomainConfig(allowed_domains='luke.af.mil',
+    config: DomainConfig(allowed_domains='www.luke.af.mil',
                          starting_urls='https://www.luke.af.mil/',
                          schedule='32 5 * * TUE',
                          output_target=output_target,
@@ -5922,7 +5906,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Laughlin Air Force Base (laughlin)',
-    config: DomainConfig(allowed_domains='laughlin.af.mil',
+    config: DomainConfig(allowed_domains='www.laughlin.af.mil',
                          starting_urls='https://www.laughlin.af.mil/',
                          schedule='28 6 * * TUE',
                          output_target=output_target,
@@ -5930,7 +5914,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Joint Base Langley-Eustis (langley)',
-    config: DomainConfig(allowed_domains='jble.af.mil',
+    config: DomainConfig(allowed_domains='www.jble.af.mil',
                          starting_urls='https://www.jble.af.mil/',
                          schedule='23 7 * * TUE',
                          output_target=output_target,
@@ -5938,7 +5922,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'RAF Lakenheath (lakenheath)',
-    config: DomainConfig(allowed_domains='lakenheath.af.mil',
+    config: DomainConfig(allowed_domains='www.lakenheath.af.mil',
                          starting_urls='https://www.lakenheath.af.mil/',
                          schedule='18 8 * * TUE',
                          output_target=output_target,
@@ -5946,7 +5930,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Louisiana Air National Guard (laang)',
-    config: DomainConfig(allowed_domains='159fw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.159fw.ang.af.mil',
                          starting_urls='https://www.159fw.ang.af.mil/',
                          schedule='9 10 * * TUE',
                          output_target=output_target,
@@ -5954,7 +5938,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Kunsan Air Base (kunsan)',
-    config: DomainConfig(allowed_domains='kunsan.af.mil',
+    config: DomainConfig(allowed_domains='www.kunsan.af.mil',
                          starting_urls='https://www.kunsan.af.mil/',
                          schedule='5 11 * * TUE',
                          output_target=output_target,
@@ -5962,7 +5946,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Kirtland Air Force Base (kirtland)',
-    config: DomainConfig(allowed_domains='kirtland.af.mil',
+    config: DomainConfig(allowed_domains='www.kirtland.af.mil',
                          starting_urls='https://www.kirtland.af.mil/',
                          schedule='0 12 * * TUE',
                          output_target=output_target,
@@ -5970,7 +5954,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Keesler Air Force Base (keesler)',
-    config: DomainConfig(allowed_domains='keesler.af.mil',
+    config: DomainConfig(allowed_domains='www.keesler.af.mil',
                          starting_urls='https://www.keesler.af.mil/',
                          schedule='55 12 * * TUE',
                          output_target=output_target,
@@ -5978,7 +5962,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Kadena Air Base (kadena)',
-    config: DomainConfig(allowed_domains='kadena.af.mil',
+    config: DomainConfig(allowed_domains='www.kadena.af.mil',
                          starting_urls='https://www.kadena.af.mil/',
                          schedule='51 13 * * TUE',
                          output_target=output_target,
@@ -5986,7 +5970,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Joint Base San Antonio (jbsa)',
-    config: DomainConfig(allowed_domains='jbsa.mil',
+    config: DomainConfig(allowed_domains='www.jbsa.mil',
                          starting_urls='https://www.jbsa.mil/',
                          schedule='42 15 * * TUE',
                          output_target=output_target,
@@ -5994,7 +5978,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Incirlik Air Base (incirlik)',
-    config: DomainConfig(allowed_domains='incirlik.af.mil',
+    config: DomainConfig(allowed_domains='www.incirlik.af.mil',
                          starting_urls='https://www.incirlik.af.mil/',
                          schedule='37 16 * * TUE',
                          output_target=output_target,
@@ -6002,7 +5986,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Hurlburt Field (hurlburt)',
-    config: DomainConfig(allowed_domains='hurlburt.af.mil',
+    config: DomainConfig(allowed_domains='www.hurlburt.af.mil',
                          starting_urls='https://www.hurlburt.af.mil/',
                          schedule='32 17 * * TUE',
                          output_target=output_target,
@@ -6010,7 +5994,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Homestead Air Reserve Base, Fla. (homestead)',
-    config: DomainConfig(allowed_domains='homestead.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.homestead.afrc.af.mil',
                          starting_urls='https://www.homestead.afrc.af.mil/',
                          schedule='23 19 * * TUE',
                          output_target=output_target,
@@ -6018,7 +6002,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Holloman Air Force Base (holloman)',
-    config: DomainConfig(allowed_domains='holloman.af.mil',
+    config: DomainConfig(allowed_domains='www.holloman.af.mil',
                          starting_urls='https://www.holloman.af.mil/',
                          schedule='18 20 * * TUE',
                          output_target=output_target,
@@ -6026,7 +6010,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Hill Air Force Base (hill)',
-    config: DomainConfig(allowed_domains='hill.af.mil',
+    config: DomainConfig(allowed_domains='www.hill.af.mil',
                          starting_urls='https://www.hill.af.mil/',
                          schedule='14 21 * * TUE',
                          output_target=output_target,
@@ -6034,7 +6018,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Hanscom Air Force Base (hanscom)',
-    config: DomainConfig(allowed_domains='hanscom.af.mil',
+    config: DomainConfig(allowed_domains='www.hanscom.af.mil',
                          starting_urls='https://www.hanscom.af.mil/',
                          schedule='5 23 * * TUE',
                          output_target=output_target,
@@ -6042,7 +6026,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Grissom Air Reserve Base, Ind. (grissom)',
-    config: DomainConfig(allowed_domains='grissom.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.grissom.afrc.af.mil',
                          starting_urls='https://www.grissom.afrc.af.mil/',
                          schedule='51 1 * * WED',
                          output_target=output_target,
@@ -6050,7 +6034,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Goodfellow Air Force Base (goodfellow)',
-    config: DomainConfig(allowed_domains='goodfellow.af.mil',
+    config: DomainConfig(allowed_domains='www.goodfellow.af.mil',
                          starting_urls='https://www.goodfellow.af.mil/',
                          schedule='46 2 * * WED',
                          output_target=output_target,
@@ -6058,7 +6042,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'F.E. Warren Air Force Base (fewarren)',
-    config: DomainConfig(allowed_domains='warren.af.mil',
+    config: DomainConfig(allowed_domains='www.warren.af.mil',
                          starting_urls='https://www.warren.af.mil/',
                          schedule='42 3 * * WED',
                          output_target=output_target,
@@ -6066,7 +6050,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Ellsworth Air Force Base (ellsworth)',
-    config: DomainConfig(allowed_domains='ellsworth.af.mil',
+    config: DomainConfig(allowed_domains='www.ellsworth.af.mil',
                          starting_urls='https://www.ellsworth.af.mil/',
                          schedule='28 6 * * WED',
                          output_target=output_target,
@@ -6074,7 +6058,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Eielson Air Force Base (eielson)',
-    config: DomainConfig(allowed_domains='eielson.af.mil',
+    config: DomainConfig(allowed_domains='www.eielson.af.mil',
                          starting_urls='https://www.eielson.af.mil/',
                          schedule='23 7 * * WED',
                          output_target=output_target,
@@ -6082,7 +6066,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Eglin Air Force Base (eglin)',
-    config: DomainConfig(allowed_domains='eglin.af.mil',
+    config: DomainConfig(allowed_domains='www.eglin.af.mil',
                          starting_urls='https://www.eglin.af.mil/',
                          schedule='18 8 * * WED',
                          output_target=output_target,
@@ -6090,7 +6074,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Edwards Air Force Base (edwards)',
-    config: DomainConfig(allowed_domains='edwards.af.mil',
+    config: DomainConfig(allowed_domains='www.edwards.af.mil',
                          starting_urls='https://www.edwards.af.mil/',
                          schedule='14 9 * * WED',
                          output_target=output_target,
@@ -6098,7 +6082,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Dyess Air Force Base (dyess)',
-    config: DomainConfig(allowed_domains='dyess.af.mil',
+    config: DomainConfig(allowed_domains='www.dyess.af.mil',
                          starting_urls='https://www.dyess.af.mil/',
                          schedule='9 10 * * WED',
                          output_target=output_target,
@@ -6106,7 +6090,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Airman Magazine (dodlive_amnmag)',
-    config: DomainConfig(allowed_domains='airmanmagazine.af.mil',
+    config: DomainConfig(allowed_domains='www.airmanmagazine.af.mil',
                          starting_urls='https://www.airmanmagazine.af.mil/',
                          schedule='5 11 * * WED',
                          output_target=output_target,
@@ -6114,7 +6098,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Dobbins Air Reserve Base, Ga. (dobbins)',
-    config: DomainConfig(allowed_domains='dobbins.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.dobbins.afrc.af.mil',
                          starting_urls='https://www.dobbins.afrc.af.mil/',
                          schedule='0 12 * * WED',
                          output_target=output_target,
@@ -6122,7 +6106,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Davis-Monthan Air Force Base (davismonthan)',
-    config: DomainConfig(allowed_domains='dm.af.mil',
+    config: DomainConfig(allowed_domains='www.dm.af.mil',
                          starting_urls='https://www.dm.af.mil/',
                          schedule='55 12 * * WED',
                          output_target=output_target,
@@ -6130,7 +6114,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Columbus Air Force Base (columbus)',
-    config: DomainConfig(allowed_domains='columbus.af.mil',
+    config: DomainConfig(allowed_domains='www.columbus.af.mil',
                          starting_urls='https://www.columbus.af.mil/',
                          schedule='51 13 * * WED',
                          output_target=output_target,
@@ -6138,7 +6122,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Cannon Air Force Base (cannon)',
-    config: DomainConfig(allowed_domains='cannon.af.mil',
+    config: DomainConfig(allowed_domains='www.cannon.af.mil',
                          starting_urls='https://www.cannon.af.mil/',
                          schedule='42 15 * * WED',
                          output_target=output_target,
@@ -6154,7 +6138,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USAF BMT Flight Photos (bmtflightphotos)',
-    config: DomainConfig(allowed_domains='bmtflightphotos.af.mil',
+    config: DomainConfig(allowed_domains='www.bmtflightphotos.af.mil',
                          starting_urls='https://www.bmtflightphotos.af.mil/',
                          schedule='32 17 * * WED',
                          output_target=output_target,
@@ -6162,7 +6146,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Beale Air Force Base (beale)',
-    config: DomainConfig(allowed_domains='beale.af.mil',
+    config: DomainConfig(allowed_domains='www.beale.af.mil',
                          starting_urls='https://www.beale.af.mil/',
                          schedule='28 18 * * WED',
                          output_target=output_target,
@@ -6170,7 +6154,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Barksdale Air Force Base (barksdale)',
-    config: DomainConfig(allowed_domains='barksdale.af.mil',
+    config: DomainConfig(allowed_domains='www.barksdale.af.mil',
                          starting_urls='https://www.barksdale.af.mil/',
                          schedule='23 19 * * WED',
                          output_target=output_target,
@@ -6178,7 +6162,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Aviano Air Base (aviano)',
-    config: DomainConfig(allowed_domains='aviano.af.mil',
+    config: DomainConfig(allowed_domains='www.aviano.af.mil',
                          starting_urls='https://www.aviano.af.mil/',
                          schedule='32 5 * * THU',
                          output_target=output_target,
@@ -6186,7 +6170,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Reserve Personnel Center (arpc)',
-    config: DomainConfig(allowed_domains='arpc.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.arpc.afrc.af.mil',
                          starting_urls='https://www.arpc.afrc.af.mil/',
                          schedule='28 6 * * THU',
                          output_target=output_target,
@@ -6194,7 +6178,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Arnold Air Force Base (arnold)',
-    config: DomainConfig(allowed_domains='arnold.af.mil',
+    config: DomainConfig(allowed_domains='www.arnold.af.mil',
                          starting_urls='https://www.arnold.af.mil/',
                          schedule='23 7 * * THU',
                          output_target=output_target,
@@ -6202,7 +6186,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'ANG Training and Education Center (angtec)',
-    config: DomainConfig(allowed_domains='angtec.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.angtec.ang.af.mil',
                          starting_urls='https://www.angtec.ang.af.mil/',
                          schedule='18 8 * * THU',
                          output_target=output_target,
@@ -6210,7 +6194,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Gulfport Combat Readiness Training Center (ang_gulfportcrtc)',
-    config: DomainConfig(allowed_domains='gulfportcrtc.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.gulfportcrtc.ang.af.mil',
                          starting_urls='https://www.gulfportcrtc.ang.af.mil/',
                          schedule='9 10 * * THU',
                          output_target=output_target,
@@ -6218,7 +6202,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Andersen Air Force Base (andersen)',
-    config: DomainConfig(allowed_domains='andersen.af.mil',
+    config: DomainConfig(allowed_domains='www.andersen.af.mil',
                          starting_urls='https://www.andersen.af.mil/',
                          schedule='5 11 * * THU',
                          output_target=output_target,
@@ -6226,7 +6210,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Mobility Command (amc)',
-    config: DomainConfig(allowed_domains='amc.af.mil',
+    config: DomainConfig(allowed_domains='www.amc.af.mil',
                          starting_urls='https://www.amc.af.mil/',
                          schedule='0 12 * * THU',
                          output_target=output_target,
@@ -6234,7 +6218,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Force Chief Modeling And Simulation Office (airforce_modsim)',
-    config: DomainConfig(allowed_domains='modsim.af.mil',
+    config: DomainConfig(allowed_domains='www.modsim.af.mil',
                          starting_urls='https://www.modsim.af.mil/',
                          schedule='55 12 * * THU',
                          output_target=output_target,
@@ -6242,7 +6226,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Copy of Little Rock Air Force Base (airforce_littlerock)',
-    config: DomainConfig(allowed_domains='littlerock.af.mil',
+    config: DomainConfig(allowed_domains='www.littlerock.af.mil',
                          starting_urls='https://www.littlerock.af.mil/',
                          schedule='51 13 * * THU',
                          output_target=output_target,
@@ -6250,7 +6234,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'JAG Reporter (airforce_jagreporter)',
-    config: DomainConfig(allowed_domains='jagreporter.af.mil',
+    config: DomainConfig(allowed_domains='www.jagreporter.af.mil',
                          starting_urls='https://www.jagreporter.af.mil/',
                          schedule='46 14 * * THU',
                          output_target=output_target,
@@ -6258,7 +6242,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Headquarters RIO (airforce_hqrio)',
-    config: DomainConfig(allowed_domains='hqrio.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.hqrio.afrc.af.mil',
                          starting_urls='https://www.hqrio.afrc.af.mil/',
                          schedule='42 15 * * THU',
                          output_target=output_target,
@@ -6266,7 +6250,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Department of the Air Force Open Data Program (airforce_data)',
-    config: DomainConfig(allowed_domains='data.af.mil',
+    config: DomainConfig(allowed_domains='www.data.af.mil',
                          starting_urls='https://www.data.af.mil/',
                          schedule='37 16 * * THU',
                          output_target=output_target,
@@ -6274,7 +6258,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '913th Airlift Group (airforce_913ag)',
-    config: DomainConfig(allowed_domains='913ag.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.913ag.afrc.af.mil',
                          starting_urls='https://www.913ag.afrc.af.mil/',
                          schedule='23 19 * * THU',
                          output_target=output_target,
@@ -6282,7 +6266,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Education and Training Command (aetc)',
-    config: DomainConfig(allowed_domains='aetc.af.mil',
+    config: DomainConfig(allowed_domains='www.aetc.af.mil',
                          starting_urls='https://www.aetc.af.mil/',
                          schedule='18 20 * * THU',
                          output_target=output_target,
@@ -6290,7 +6274,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Alpena Combat Readiness Training Center (acrtc)',
-    config: DomainConfig(allowed_domains='alpenacrtc.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.alpenacrtc.ang.af.mil',
                          starting_urls='https://www.alpenacrtc.ang.af.mil/',
                          schedule='14 21 * * THU',
                          output_target=output_target,
@@ -6298,7 +6282,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Air Combat Command (acc)',
-    config: DomainConfig(allowed_domains='acc.af.mil',
+    config: DomainConfig(allowed_domains='www.acc.af.mil',
                          starting_urls='https://www.acc.af.mil/',
                          schedule='9 22 * * THU',
                          output_target=output_target,
@@ -6306,7 +6290,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'U.S. Air Forces Central Command (9af)',
-    config: DomainConfig(allowed_domains='afcent.af.mil',
+    config: DomainConfig(allowed_domains='www.afcent.af.mil',
                          starting_urls='https://www.afcent.af.mil/',
                          schedule='5 23 * * THU',
                          output_target=output_target,
@@ -6314,7 +6298,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '944th Fighter Wing (944fw)',
-    config: DomainConfig(allowed_domains='944fw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.944fw.afrc.af.mil',
                          starting_urls='https://www.944fw.afrc.af.mil/',
                          schedule='0 0 * * FRI',
                          output_target=output_target,
@@ -6322,7 +6306,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '940th Wing (940wg)',
-    config: DomainConfig(allowed_domains='940arw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.940arw.afrc.af.mil',
                          starting_urls='https://www.940arw.afrc.af.mil/',
                          schedule='51 1 * * FRI',
                          output_target=output_target,
@@ -6330,7 +6314,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '932nd Airlift Wing (932aw)',
-    config: DomainConfig(allowed_domains='932aw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.932aw.afrc.af.mil',
                          starting_urls='https://www.932aw.afrc.af.mil/',
                          schedule='46 2 * * FRI',
                          output_target=output_target,
@@ -6338,7 +6322,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '931st Air Refueling Group (931arg)',
-    config: DomainConfig(allowed_domains='931arw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.931arw.afrc.af.mil',
                          starting_urls='https://www.931arw.afrc.af.mil/',
                          schedule='42 3 * * FRI',
                          output_target=output_target,
@@ -6346,7 +6330,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '927th Air Refueling Wing (927arw)',
-    config: DomainConfig(allowed_domains='927arw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.927arw.afrc.af.mil',
                          starting_urls='https://www.927arw.afrc.af.mil/',
                          schedule='37 4 * * FRI',
                          output_target=output_target,
@@ -6354,7 +6338,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '920th Rescue Wing (920rqw)',
-    config: DomainConfig(allowed_domains='920rqw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.920rqw.afrc.af.mil',
                          starting_urls='https://www.920rqw.afrc.af.mil/',
                          schedule='32 5 * * FRI',
                          output_target=output_target,
@@ -6362,7 +6346,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '919th Special Operations Wing (919sow)',
-    config: DomainConfig(allowed_domains='919sow.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.919sow.afrc.af.mil',
                          starting_urls='https://www.919sow.afrc.af.mil/',
                          schedule='28 6 * * FRI',
                          output_target=output_target,
@@ -6370,7 +6354,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '916th Air Refueling Wing (916arw)',
-    config: DomainConfig(allowed_domains='916arw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.916arw.afrc.af.mil',
                          starting_urls='https://www.916arw.afrc.af.mil/',
                          schedule='23 7 * * FRI',
                          output_target=output_target,
@@ -6378,7 +6362,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '7th Air Force (7af)',
-    config: DomainConfig(allowed_domains='7af.pacaf.af.mil',
+    config: DomainConfig(allowed_domains='www.7af.pacaf.af.mil',
                          starting_urls='https://www.7af.pacaf.af.mil/',
                          schedule='14 9 * * FRI',
                          output_target=output_target,
@@ -6386,7 +6370,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '5th Air Force (5af)',
-    config: DomainConfig(allowed_domains='5af.pacaf.af.mil',
+    config: DomainConfig(allowed_domains='www.5af.pacaf.af.mil',
                          starting_urls='https://www.5af.pacaf.af.mil/',
                          schedule='9 10 * * FRI',
                          output_target=output_target,
@@ -6394,7 +6378,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '552nd Air Control Wing (552acw)',
-    config: DomainConfig(allowed_domains='552acw.acc.af.mil',
+    config: DomainConfig(allowed_domains='www.552acw.acc.af.mil',
                          starting_urls='https://www.552acw.acc.af.mil/',
                          schedule='0 12 * * FRI',
                          output_target=output_target,
@@ -6402,7 +6386,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '514th Air Mobility Wing (514amw)',
-    config: DomainConfig(allowed_domains='514amw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.514amw.afrc.af.mil',
                          starting_urls='https://www.514amw.afrc.af.mil/',
                          schedule='55 12 * * FRI',
                          output_target=output_target,
@@ -6410,7 +6394,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '512th Airlift Wing (512aw)',
-    config: DomainConfig(allowed_domains='512aw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.512aw.afrc.af.mil',
                          starting_urls='https://www.512aw.afrc.af.mil/',
                          schedule='51 13 * * FRI',
                          output_target=output_target,
@@ -6418,7 +6402,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '507th Air Refueling Wing (507arw)',
-    config: DomainConfig(allowed_domains='507arw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.507arw.afrc.af.mil',
                          starting_urls='https://www.507arw.afrc.af.mil/',
                          schedule='46 14 * * FRI',
                          output_target=output_target,
@@ -6426,7 +6410,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '501st Combat Support Wing (501csw)',
-    config: DomainConfig(allowed_domains='501csw.usafe.af.mil',
+    config: DomainConfig(allowed_domains='www.501csw.usafe.af.mil',
                          starting_urls='https://www.501csw.usafe.af.mil/',
                          schedule='37 16 * * FRI',
                          output_target=output_target,
@@ -6434,7 +6418,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '4th Air Force (4af)',
-    config: DomainConfig(allowed_domains='4af.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.4af.afrc.af.mil',
                          starting_urls='https://www.4af.afrc.af.mil/',
                          schedule='32 17 * * FRI',
                          output_target=output_target,
@@ -6442,7 +6426,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '459th Air Refueling Wing (459arw)',
-    config: DomainConfig(allowed_domains='459arw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.459arw.afrc.af.mil',
                          starting_urls='https://www.459arw.afrc.af.mil/',
                          schedule='28 18 * * FRI',
                          output_target=output_target,
@@ -6450,7 +6434,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '446th Airlift Wing (446aw)',
-    config: DomainConfig(allowed_domains='446aw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.446aw.afrc.af.mil',
                          starting_urls='https://www.446aw.afrc.af.mil/',
                          schedule='23 19 * * FRI',
                          output_target=output_target,
@@ -6458,7 +6442,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '445th Airlift Wing (445aw)',
-    config: DomainConfig(allowed_domains='445aw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.445aw.afrc.af.mil',
                          starting_urls='https://www.445aw.afrc.af.mil/',
                          schedule='18 20 * * FRI',
                          output_target=output_target,
@@ -6466,7 +6450,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '433rd Airlift Wing (433aw)',
-    config: DomainConfig(allowed_domains='433aw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.433aw.afrc.af.mil',
                          starting_urls='https://www.433aw.afrc.af.mil/',
                          schedule='5 23 * * FRI',
                          output_target=output_target,
@@ -6474,7 +6458,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '419th Fighter Wing (419fw)',
-    config: DomainConfig(allowed_domains='419fw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.419fw.afrc.af.mil',
                          starting_urls='https://www.419fw.afrc.af.mil/',
                          schedule='0 0 * * SAT',
                          output_target=output_target,
@@ -6482,7 +6466,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '403rd Wing (403wg)',
-    config: DomainConfig(allowed_domains='403wg.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.403wg.afrc.af.mil',
                          starting_urls='https://www.403wg.afrc.af.mil/',
                          schedule='55 0 * * SAT',
                          output_target=output_target,
@@ -6490,7 +6474,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '388th Fighter Wing (388fw)',
-    config: DomainConfig(allowed_domains='388fw.acc.af.mil',
+    config: DomainConfig(allowed_domains='www.388fw.acc.af.mil',
                          starting_urls='https://www.388fw.acc.af.mil/',
                          schedule='51 1 * * SAT',
                          output_target=output_target,
@@ -6498,7 +6482,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '37th Training Wing (37trw)',
-    config: DomainConfig(allowed_domains='37trw.af.mil',
+    config: DomainConfig(allowed_domains='www.37trw.af.mil',
                          starting_urls='https://www.37trw.af.mil/',
                          schedule='46 2 * * SAT',
                          output_target=output_target,
@@ -6506,7 +6490,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '349th Air Mobility Wing (349amw)',
-    config: DomainConfig(allowed_domains='349amw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.349amw.afrc.af.mil',
                          starting_urls='https://www.349amw.afrc.af.mil/',
                          schedule='37 4 * * SAT',
                          output_target=output_target,
@@ -6514,7 +6498,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '340th Flying Training Wing (340ftg)',
-    config: DomainConfig(allowed_domains='340ftg.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.340ftg.afrc.af.mil',
                          starting_urls='https://www.340ftg.afrc.af.mil/',
                          schedule='32 5 * * SAT',
                          output_target=output_target,
@@ -6522,7 +6506,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '33rd Fighter Wing (33fw)',
-    config: DomainConfig(allowed_domains='33fw.af.mil',
+    config: DomainConfig(allowed_domains='www.33fw.af.mil',
                          starting_urls='https://www.33fw.af.mil/',
                          schedule='28 6 * * SAT',
                          output_target=output_target,
@@ -6530,7 +6514,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '315th Airlift Wing (315aw)',
-    config: DomainConfig(allowed_domains='315aw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.315aw.afrc.af.mil',
                          starting_urls='https://www.315aw.afrc.af.mil/',
                          schedule='23 7 * * SAT',
                          output_target=output_target,
@@ -6538,7 +6522,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '302nd Airlift Wing (302aw)',
-    config: DomainConfig(allowed_domains='302aw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.302aw.afrc.af.mil',
                          starting_urls='https://www.302aw.afrc.af.mil/',
                          schedule='18 8 * * SAT',
                          output_target=output_target,
@@ -6546,7 +6530,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '301st Fighter Wing (301fw)',
-    config: DomainConfig(allowed_domains='301fw.afrc.af.mil',
+    config: DomainConfig(allowed_domains='www.301fw.afrc.af.mil',
                          starting_urls='https://www.301fw.afrc.af.mil/',
                          schedule='14 9 * * SAT',
                          output_target=output_target,
@@ -6554,7 +6538,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '20th Air Force (20af)',
-    config: DomainConfig(allowed_domains='20af.af.mil',
+    config: DomainConfig(allowed_domains='www.20af.af.mil',
                          starting_urls='https://www.20af.af.mil/',
                          schedule='0 12 * * SAT',
                          output_target=output_target,
@@ -6562,7 +6546,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '1st Air Force (1af)',
-    config: DomainConfig(allowed_domains='1af.acc.af.mil',
+    config: DomainConfig(allowed_domains='www.1af.acc.af.mil',
                          starting_urls='https://www.1af.acc.af.mil/',
                          schedule='55 12 * * SAT',
                          output_target=output_target,
@@ -6570,7 +6554,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '187th Fighter Wing, Alabama ANG (187fw)',
-    config: DomainConfig(allowed_domains='187fw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.187fw.ang.af.mil',
                          starting_urls='https://www.187fw.ang.af.mil/',
                          schedule='51 13 * * SAT',
                          output_target=output_target,
@@ -6578,7 +6562,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '183rd Fighter Wing, Illinois ANG (183fw)',
-    config: DomainConfig(allowed_domains='183wg.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.183wg.ang.af.mil',
                          starting_urls='https://www.183wg.ang.af.mil/',
                          schedule='46 14 * * SAT',
                          output_target=output_target,
@@ -6586,7 +6570,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '165th Airlift Wing (165aw)',
-    config: DomainConfig(allowed_domains='165aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.165aw.ang.af.mil',
                          starting_urls='https://www.165aw.ang.af.mil/',
                          schedule='42 15 * * SAT',
                          output_target=output_target,
@@ -6594,7 +6578,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '164th Airlift Wing, Tennessee ANG (164aw)',
-    config: DomainConfig(allowed_domains='164aw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.164aw.ang.af.mil',
                          starting_urls='https://www.164aw.ang.af.mil/',
                          schedule='37 16 * * SAT',
                          output_target=output_target,
@@ -6602,7 +6586,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '116th Air Control Wing (116acw)',
-    config: DomainConfig(allowed_domains='116acw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.116acw.ang.af.mil',
                          starting_urls='https://www.116acw.ang.af.mil/',
                          schedule='18 20 * * SAT',
                          output_target=output_target,
@@ -6610,7 +6594,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'transportation',
-    config: DomainConfig(allowed_domains='transportation.gov',
+    config: DomainConfig(allowed_domains='www.transportation.gov',
                          starting_urls='https://www.transportation.gov',
                          schedule='00 04 * * MON',
                          output_target=output_target,
@@ -6626,7 +6610,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'bts',
-    config: DomainConfig(allowed_domains='bts.gov',
+    config: DomainConfig(allowed_domains='www.bts.gov',
                          starting_urls='https://www.bts.gov',
                          schedule='45 04 * * MON',
                          output_target=output_target,
@@ -6658,7 +6642,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'drought',
-    config: DomainConfig(allowed_domains='drought.gov',
+    config: DomainConfig(allowed_domains='www.drought.gov',
                          starting_urls='https://www.drought.gov',
                          schedule='15 08 * * MON',
                          output_target=output_target,
@@ -6690,8 +6674,8 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'clu-in',
-    config: DomainConfig(allowed_domains='clu-in.org',
-                         starting_urls='https://clu-in.org',
+    config: DomainConfig(allowed_domains='www.clu-in.org',
+                         starting_urls='https://www.clu-in.org',
                          schedule='30 10 * * MON',
                          output_target=output_target,
                          depth_limit=3),
@@ -6715,14 +6699,14 @@ local output_target = 'elasticsearch';
   {
     name: 'www.aviationweather.gov (nws.noaa.gov)',
     config: DomainConfig(allowed_domains='aviationweather.gov',
-                         starting_urls='https://www.aviationweather.gov/',
+                         starting_urls='https://aviationweather.gov/',
                          schedule='0 12 * * WED',
                          output_target=output_target,
                          depth_limit=3),
   },
   {
     name: 'www.roc.noaa.gov (nws.noaa.gov)',
-    config: DomainConfig(allowed_domains='roc.noaa.gov',
+    config: DomainConfig(allowed_domains='www.roc.noaa.gov',
                          starting_urls='https://www.roc.noaa.gov/',
                          schedule='0 6 * * FRI',
                          output_target=output_target,
@@ -6747,7 +6731,7 @@ local output_target = 'elasticsearch';
   {
     name: 'Office of Research Facilities (nih)',
     config: DomainConfig(allowed_domains='orf.od.nih.gov',
-                         starting_urls='https://www.orf.od.nih.gov/',
+                         starting_urls='https://orf.od.nih.gov/',
                          schedule='03 18 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -6755,7 +6739,7 @@ local output_target = 'elasticsearch';
   {
     name: 'Office of Research Services (nih)',
     config: DomainConfig(allowed_domains='ors.od.nih.gov',
-                         starting_urls='https://www.ors.od.nih.gov/',
+                         starting_urls='https://ors.od.nih.gov/',
                          schedule='05 20 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -6819,14 +6803,14 @@ local output_target = 'elasticsearch';
   {
     name: 'NIH Security (nih)',
     config: DomainConfig(allowed_domains='security.nih.gov',
-                         starting_urls='https://www.security.nih.gov/',
+                         starting_urls='https://security.nih.gov/',
                          schedule='21 11 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
   },
   {
     name: 'NIH Library (nih)',
-    config: DomainConfig(allowed_domains='nihlibrary.nih.gov',
+    config: DomainConfig(allowed_domains='www.nihlibrary.nih.gov',
                          starting_urls='https://www.nihlibrary.nih.gov/',
                          schedule='23 13 * * SAT',
                          output_target=output_target,
@@ -6836,7 +6820,7 @@ local output_target = 'elasticsearch';
   {
     name: 'NIH Traffic (nih)',
     config: DomainConfig(allowed_domains='traffic.nih.gov',
-                         starting_urls='https://www.traffic.nih.gov/',
+                         starting_urls='https://traffic.nih.gov/',
                          schedule='25 15 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
@@ -6844,14 +6828,14 @@ local output_target = 'elasticsearch';
   {
     name: 'Office of Human Resources (nih)',
     config: DomainConfig(allowed_domains='hr.nih.gov',
-                         starting_urls='https://www.hr.nih.gov/',
+                         starting_urls='https://hr.nih.gov/',
                          schedule='27 17 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
   },
   {
     name: 'DCSA.mil (dod_dcsa)',
-    config: DomainConfig(allowed_domains='dcsa.mil',
+    config: DomainConfig(allowed_domains='www.dcsa.mil',
                          starting_urls='https://www.dcsa.mil',
                          schedule='15 02 * * SAT',
                          output_target=output_target,
@@ -6859,7 +6843,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NWCG.gov (nwcg)',
-    config: DomainConfig(allowed_domains='nwcg.gov',
+    config: DomainConfig(allowed_domains='www.nwcg.gov',
                          starting_urls='https://www.nwcg.gov',
                          schedule='15 03 * * SAT',
                          output_target=output_target,
@@ -6867,15 +6851,15 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NAFRI.gov (nwcg)',
-    config: DomainConfig(allowed_domains='nafri.gov',
-                         starting_urls='https://nafri.gov',
+    config: DomainConfig(allowed_domains='www.nafri.gov',
+                         starting_urls='https://www.nafri.gov',
                          schedule='15 04 * * SAT',
                          output_target=output_target,
                          depth_limit=3),
   },
   {
     name: 'RMA.USDA.gov (risk-management-agency_sandbox)',
-    config: DomainConfig(allowed_domains='rma.usda.gov',
+    config: DomainConfig(allowed_domains='www.rma.usda.gov',
                          starting_urls='https://www.rma.usda.gov',
                          schedule='15 08 * * SAT',
                          output_target=output_target,
@@ -6899,7 +6883,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'ERA.NIH.gov (NIH grants)',
-    config: DomainConfig(allowed_domains='era.nih.gov',
+    config: DomainConfig(allowed_domains='www.era.nih.gov',
                          starting_urls='https://www.era.nih.gov',
                          schedule='15 16 * * SAT',
                          output_target=output_target,
@@ -6915,7 +6899,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'JCS.mil (jointchiefsofstaff)',
-    config: DomainConfig(allowed_domains='jcs.mil',
+    config: DomainConfig(allowed_domains='www.jcs.mil',
                          starting_urls='https://www.jcs.mil',
                          schedule='15 18 * * SAT',
                          output_target=output_target,
@@ -6923,7 +6907,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DAIP.JCS.mil (jointchiefsofstaff)',
-    config: DomainConfig(allowed_domains='daip.jcs.mil',
+    config: DomainConfig(allowed_domains='www.daip.jcs.mil',
                          starting_urls='https://www.daip.jcs.mil',
                          schedule='15 19 * * SAT',
                          output_target=output_target,
@@ -6931,7 +6915,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USITC.gov (USITC)',
-    config: DomainConfig(allowed_domains='usitc.gov',
+    config: DomainConfig(allowed_domains='www.usitc.gov',
                          starting_urls='https://www.usitc.gov',
                          schedule='15 21 * * SAT',
                          output_target=output_target,
@@ -6947,7 +6931,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE.Army.mil (u.s.armycorpsofengineersheadquart)',
-    config: DomainConfig(allowed_domains='usace.army.mil',
+    config: DomainConfig(allowed_domains='www.usace.army.mil',
                          starting_urls='https://www.usace.army.mil',
                          schedule='15 00 * * SUN',
                          output_target=output_target,
@@ -6979,7 +6963,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NAL.USDA.gov (USDA NAL)',
-    config: DomainConfig(allowed_domains='nal.usda.gov',
+    config: DomainConfig(allowed_domains='www.nal.usda.gov',
                          starting_urls='https://www.nal.usda.gov',
                          schedule='15 05 * * SUN',
                          output_target=output_target,
@@ -7051,7 +7035,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'InvasiveSpeciesInfo.gov (USDA NAL)',
-    config: DomainConfig(allowed_domains='invasivespeciesinfo.gov',
+    config: DomainConfig(allowed_domains='www.invasivespeciesinfo.gov',
                          starting_urls='https://www.invasivespeciesinfo.gov',
                          schedule='15 17 * * SUN',
                          output_target=output_target,
@@ -7059,7 +7043,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.healthit.gov (www.healthit.gov)',
-    config: DomainConfig(allowed_domains='healthit.gov',
+    config: DomainConfig(allowed_domains='www.healthit.gov',
                          starting_urls='https://www.healthit.gov/',
                          schedule='59 1 * * SUN',
                          output_target=output_target,
@@ -7075,7 +7059,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.peacecorps.gov (peacecorps)',
-    config: DomainConfig(allowed_domains='peacecorps.gov',
+    config: DomainConfig(allowed_domains='www.peacecorps.gov',
                          starting_urls='https://www.peacecorps.gov/',
                          schedule='01 22 * * TUE',
                          output_target=output_target,
@@ -7084,7 +7068,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.dsca.mil (dod_dsca)',
-    config: DomainConfig(allowed_domains='dsca.mil',
+    config: DomainConfig(allowed_domains='www.dsca.mil',
                          starting_urls='https://www.dsca.mil/',
                          schedule='53 9 * * SUN',
                          output_target=output_target,
@@ -7108,7 +7092,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.911.gov (911)',
-    config: DomainConfig(allowed_domains='911.gov',
+    config: DomainConfig(allowed_domains='www.911.gov',
                          starting_urls='https://www.911.gov/',
                          schedule='51 12 * * SUN',
                          output_target=output_target,
@@ -7116,7 +7100,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.dia.mil (defenseintelligenceagency)',
-    config: DomainConfig(allowed_domains='dia.mil',
+    config: DomainConfig(allowed_domains='www.dia.mil',
                          starting_urls='https://www.dia.mil/',
                          schedule='48 16 * * SUN',
                          output_target=output_target,
@@ -7124,8 +7108,8 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www1.grc.nasa.gov (nasa-glenn)',
-    config: DomainConfig(allowed_domains='www1.grc.nasa.gov',
-                         starting_urls='https://www1.grc.nasa.gov/',
+    config: DomainConfig(allowed_domains='www.nasa.gov/glenn/',
+                         starting_urls='https://www.nasa.gov/glenn/',
                          schedule='47 18 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -7156,7 +7140,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.acq.osd.mil (www.acq.osd.mil)',
-    config: DomainConfig(allowed_domains='acq.osd.mil',
+    config: DomainConfig(allowed_domains='www.acq.osd.mil',
                          starting_urls='https://www.acq.osd.mil/',
                          schedule='42 0 * * MON',
                          output_target=output_target,
@@ -7164,7 +7148,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.dodcui.mil (dod_cui)',
-    config: DomainConfig(allowed_domains='dodcui.mil',
+    config: DomainConfig(allowed_domains='www.dodcui.mil',
                          starting_urls='https://www.dodcui.mil/',
                          schedule='41 2 * * MON',
                          output_target=output_target,
@@ -7172,7 +7156,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nationalguard.mil (nationalguard)',
-    config: DomainConfig(allowed_domains='nationalguard.mil',
+    config: DomainConfig(allowed_domains='www.nationalguard.mil',
                          starting_urls='https://www.nationalguard.mil/',
                          schedule='40 3 * * MON',
                          output_target=output_target,
@@ -7180,7 +7164,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ngbpmc.ng.mil (dod_ngbpmc)',
-    config: DomainConfig(allowed_domains='ngbpmc.ng.mil',
+    config: DomainConfig(allowed_domains='www.ngbpmc.ng.mil',
                          starting_urls='https://www.ngbpmc.ng.mil/',
                          schedule='40 4 * * MON',
                          output_target=output_target,
@@ -7196,7 +7180,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.justthinktwice.gov (jtt)',
-    config: DomainConfig(allowed_domains='justthinktwice.gov',
+    config: DomainConfig(allowed_domains='www.justthinktwice.gov',
                          starting_urls='https://www.justthinktwice.gov/',
                          schedule='38 6 * * MON',
                          output_target=output_target,
@@ -7236,7 +7220,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.fmc.gov (www.fmc.gov)',
-    config: DomainConfig(allowed_domains='fmc.gov',
+    config: DomainConfig(allowed_domains='www.fmc.gov',
                          starting_urls='https://www.fmc.gov/',
                          schedule='31 16 * * MON',
                          output_target=output_target,
@@ -7276,7 +7260,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nco.ncep.noaa.gov (ncep.noaa.gov)',
-    config: DomainConfig(allowed_domains='nco.ncep.noaa.gov',
+    config: DomainConfig(allowed_domains='www.nco.ncep.noaa.gov',
                          starting_urls='https://www.nco.ncep.noaa.gov/',
                          schedule='22 5 * * TUE',
                          output_target=output_target,
@@ -7324,7 +7308,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.asbca.mil (dod_asbca)',
-    config: DomainConfig(allowed_domains='asbca.mil',
+    config: DomainConfig(allowed_domains='www.asbca.mil',
                          starting_urls='https://www.asbca.mil/',
                          schedule='14 16 * * TUE',
                          output_target=output_target,
@@ -7348,7 +7332,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ait.org.tw (dos_emb_eap_ait)',
-    config: DomainConfig(allowed_domains='ait.org.tw',
+    config: DomainConfig(allowed_domains='www.ait.org.tw',
                          starting_urls='https://www.ait.org.tw/',
                          schedule='11 20 * * TUE',
                          output_target=output_target,
@@ -7380,7 +7364,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.armyresilience.army.mil (armyresilience.army)',
-    config: DomainConfig(allowed_domains='armyresilience.army.mil',
+    config: DomainConfig(allowed_domains='www.armyresilience.army.mil',
                          starting_urls='https://www.armyresilience.army.mil/',
                          schedule='8 0 * * WED',
                          output_target=output_target,
@@ -7396,7 +7380,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.whs.mil (dod_whs)',
-    config: DomainConfig(allowed_domains='whs.mil',
+    config: DomainConfig(allowed_domains='www.whs.mil',
                          starting_urls='https://www.whs.mil/',
                          schedule='7 2 * * WED',
                          output_target=output_target,
@@ -7420,7 +7404,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ndu.edu (nduedu)',
-    config: DomainConfig(allowed_domains='ndu.edu',
+    config: DomainConfig(allowed_domains='www.ndu.edu',
                          starting_urls='https://www.ndu.edu/',
                          schedule='5 5 * * WED',
                          output_target=output_target,
@@ -7540,7 +7524,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.publications.usace.army.mil (usace_pubs)',
-    config: DomainConfig(allowed_domains='publications.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.publications.usace.army.mil',
                          starting_urls='https://www.publications.usace.army.mil/',
                          schedule='54 19 * * WED',
                          output_target=output_target,
@@ -7556,7 +7540,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.dodig.mil (dodig)',
-    config: DomainConfig(allowed_domains='dodig.mil',
+    config: DomainConfig(allowed_domains='www.dodig.mil',
                          starting_urls='https://www.dodig.mil/',
                          schedule='52 22 * * WED',
                          output_target=output_target,
@@ -7572,7 +7556,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.news.uscg.mil (uscg_news)',
-    config: DomainConfig(allowed_domains='news.uscg.mil',
+    config: DomainConfig(allowed_domains='www.news.uscg.mil',
                          starting_urls='https://www.news.uscg.mil/',
                          schedule='51 0 * * THU',
                          output_target=output_target,
@@ -7580,7 +7564,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.dcms.uscg.mil (uscg_all)',
-    config: DomainConfig(allowed_domains='dcms.uscg.mil',
+    config: DomainConfig(allowed_domains='www.dcms.uscg.mil',
                          starting_urls='https://www.dcms.uscg.mil/',
                          schedule='50 1 * * THU',
                          output_target=output_target,
@@ -7588,7 +7572,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.dco.uscg.mil (uscg_all)',
-    config: DomainConfig(allowed_domains='dco.uscg.mil',
+    config: DomainConfig(allowed_domains='www.dco.uscg.mil',
                          starting_urls='https://www.dco.uscg.mil/',
                          schedule='49 2 * * THU',
                          output_target=output_target,
@@ -7596,7 +7580,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.uscg.mil (uscg_all)',
-    config: DomainConfig(allowed_domains='uscg.mil',
+    config: DomainConfig(allowed_domains='www.uscg.mil',
                          starting_urls='https://www.uscg.mil/',
                          schedule='49 3 * * THU',
                          output_target=output_target,
@@ -7604,7 +7588,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.mycg.uscg.mil (uscg_all)',
-    config: DomainConfig(allowed_domains='mycg.uscg.mil',
+    config: DomainConfig(allowed_domains='www.mycg.uscg.mil',
                          starting_urls='https://www.mycg.uscg.mil/',
                          schedule='48 4 * * THU',
                          output_target=output_target,
@@ -7612,7 +7596,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.atlanticarea.uscg.mil (uscg_all)',
-    config: DomainConfig(allowed_domains='atlanticarea.uscg.mil',
+    config: DomainConfig(allowed_domains='www.atlanticarea.uscg.mil',
                          starting_urls='https://www.atlanticarea.uscg.mil/',
                          schedule='47 5 * * THU',
                          output_target=output_target,
@@ -7620,7 +7604,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.pacificarea.uscg.mil (uscg_all)',
-    config: DomainConfig(allowed_domains='pacificarea.uscg.mil',
+    config: DomainConfig(allowed_domains='www.pacificarea.uscg.mil',
                          starting_urls='https://www.pacificarea.uscg.mil/',
                          schedule='46 7 * * THU',
                          output_target=output_target,
@@ -7628,7 +7612,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.forcecom.uscg.mil (uscg_all)',
-    config: DomainConfig(allowed_domains='forcecom.uscg.mil',
+    config: DomainConfig(allowed_domains='www.forcecom.uscg.mil',
                          starting_urls='https://www.forcecom.uscg.mil/',
                          schedule='45 8 * * THU',
                          output_target=output_target,
@@ -7636,7 +7620,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.history.uscg.mil (uscg_all)',
-    config: DomainConfig(allowed_domains='history.uscg.mil',
+    config: DomainConfig(allowed_domains='www.history.uscg.mil',
                          starting_urls='https://www.history.uscg.mil/',
                          schedule='44 9 * * THU',
                          output_target=output_target,
@@ -7652,7 +7636,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.reserve.uscg.mil (uscg_all)',
-    config: DomainConfig(allowed_domains='reserve.uscg.mil',
+    config: DomainConfig(allowed_domains='www.reserve.uscg.mil',
                          starting_urls='https://www.reserve.uscg.mil/',
                          schedule='41 14 * * THU',
                          output_target=output_target,
@@ -7668,7 +7652,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.southcom.mil (dod_southcom)',
-    config: DomainConfig(allowed_domains='southcom.mil',
+    config: DomainConfig(allowed_domains='www.southcom.mil',
                          starting_urls='https://www.southcom.mil/',
                          schedule='40 16 * * THU',
                          output_target=output_target,
@@ -7676,7 +7660,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.itl.nist.gov (nist-search)',
-    config: DomainConfig(allowed_domains='itl.nist.gov',
+    config: DomainConfig(allowed_domains='www.itl.nist.gov',
                          starting_urls='https://www.itl.nist.gov/',
                          schedule='39 17 * * THU',
                          output_target=output_target,
@@ -7708,7 +7692,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.imls.gov (imlsgov)',
-    config: DomainConfig(allowed_domains='imls.gov',
+    config: DomainConfig(allowed_domains='www.imls.gov',
                          starting_urls='https://www.imls.gov/',
                          schedule='35 22 * * THU',
                          output_target=output_target,
@@ -7716,7 +7700,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nyeb.uscourts.gov (nyeb_uscourts)',
-    config: DomainConfig(allowed_domains='nyeb.uscourts.gov',
+    config: DomainConfig(allowed_domains='www.nyeb.uscourts.gov',
                          starting_urls='https://www.nyeb.uscourts.gov/',
                          schedule='35 23 * * THU',
                          output_target=output_target,
@@ -7732,7 +7716,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.jber.jb.mil (elmendorf)',
-    config: DomainConfig(allowed_domains='jber.jb.mil',
+    config: DomainConfig(allowed_domains='www.jber.jb.mil',
                          starting_urls='https://www.jber.jb.mil/',
                          schedule='32 2 * * FRI',
                          output_target=output_target,
@@ -7740,7 +7724,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.asafm.army.mil (army_afmc)',
-    config: DomainConfig(allowed_domains='asafm.army.mil',
+    config: DomainConfig(allowed_domains='www.asafm.army.mil',
                          starting_urls='https://www.asafm.army.mil/',
                          schedule='32 3 * * FRI',
                          output_target=output_target,
@@ -7764,7 +7748,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.hec.usace.army.mil (ceiwr-hec)',
-    config: DomainConfig(allowed_domains='hec.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.hec.usace.army.mil',
                          starting_urls='https://www.hec.usace.army.mil/',
                          schedule='30 6 * * FRI',
                          output_target=output_target,
@@ -7772,7 +7756,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.ctd.uscourts.gov (ctd_uscourts)',
-    config: DomainConfig(allowed_domains='ctd.uscourts.gov',
+    config: DomainConfig(allowed_domains='www.ctd.uscourts.gov',
                          starting_urls='https://www.ctd.uscourts.gov/',
                          schedule='29 7 * * FRI',
                          output_target=output_target,
@@ -7780,7 +7764,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.achp.gov (achp.gov)',
-    config: DomainConfig(allowed_domains='achp.gov',
+    config: DomainConfig(allowed_domains='www.achp.gov',
                          starting_urls='https://www.achp.gov/',
                          schedule='28 8 * * FRI',
                          output_target=output_target,
@@ -7788,7 +7772,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.bootcamp.navy.mil (nect_boot)',
-    config: DomainConfig(allowed_domains='bootcamp.navy.mil',
+    config: DomainConfig(allowed_domains='www.bootcamp.navy.mil',
                          starting_urls='https://www.bootcamp.navy.mil/',
                          schedule='28 9 * * FRI',
                          output_target=output_target,
@@ -7812,7 +7796,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.saj.usace.army.mil (saj)',
-    config: DomainConfig(allowed_domains='saj.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.saj.usace.army.mil',
                          starting_urls='https://www.saj.usace.army.mil/',
                          schedule='25 12 * * FRI',
                          output_target=output_target,
@@ -7828,7 +7812,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.surfpac.navy.mil (navy_surfpac)',
-    config: DomainConfig(allowed_domains='surfpac.navy.mil',
+    config: DomainConfig(allowed_domains='www.surfpac.navy.mil',
                          starting_urls='https://www.surfpac.navy.mil/',
                          schedule='24 14 * * FRI',
                          output_target=output_target,
@@ -7884,7 +7868,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.nrl.navy.mil (nav_nrl)',
-    config: DomainConfig(allowed_domains='nrl.navy.mil',
+    config: DomainConfig(allowed_domains='www.nrl.navy.mil',
                          starting_urls='https://www.nrl.navy.mil/',
                          schedule='13 6 * * SAT',
                          output_target=output_target,
@@ -7893,7 +7877,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.dtra.mil (dtra)',
-    config: DomainConfig(allowed_domains='dtra.mil',
+    config: DomainConfig(allowed_domains='www.dtra.mil',
                          starting_urls='https://www.dtra.mil/',
                          schedule='12 7 * * SAT',
                          output_target=output_target,
@@ -7901,7 +7885,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.cnic.navy.mil (navy_cnic)',
-    config: DomainConfig(allowed_domains='cnic.navy.mil',
+    config: DomainConfig(allowed_domains='www.cnic.navy.mil',
                          starting_urls='https://www.cnic.navy.mil/',
                          schedule='11 8 * * SAT',
                          output_target=output_target,
@@ -7917,7 +7901,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.cpf.navy.mil (compacflt)',
-    config: DomainConfig(allowed_domains='cpf.navy.mil',
+    config: DomainConfig(allowed_domains='www.cpf.navy.mil',
                          starting_urls='https://www.cpf.navy.mil/',
                          schedule='10 10 * * SAT',
                          output_target=output_target,
@@ -7925,7 +7909,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.navyreserve.navy.mil (navy_mynrh)',
-    config: DomainConfig(allowed_domains='navyreserve.navy.mil',
+    config: DomainConfig(allowed_domains='www.navyreserve.navy.mil',
                          starting_urls='https://www.navyreserve.navy.mil/',
                          schedule='9 11 * * SAT',
                          output_target=output_target,
@@ -7941,7 +7925,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.navfac.navy.mil (navy_navfac)',
-    config: DomainConfig(allowed_domains='navfac.navy.mil',
+    config: DomainConfig(allowed_domains='www.navfac.navy.mil',
                          starting_urls='https://www.navfac.navy.mil/',
                          schedule='8 13 * * SAT',
                          output_target=output_target,
@@ -7949,7 +7933,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.erdc.usace.army.mil (engineer_research)',
-    config: DomainConfig(allowed_domains='erdc.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.erdc.usace.army.mil',
                          starting_urls='https://www.erdc.usace.army.mil/',
                          schedule='7 14 * * SAT',
                          output_target=output_target,
@@ -7957,7 +7941,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.swg.usace.army.mil (galveston_district)',
-    config: DomainConfig(allowed_domains='swg.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.swg.usace.army.mil',
                          starting_urls='https://www.swg.usace.army.mil/',
                          schedule='6 15 * * SAT',
                          output_target=output_target,
@@ -7997,7 +7981,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.sam.usace.army.mil (mobile_district)',
-    config: DomainConfig(allowed_domains='sam.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.sam.usace.army.mil',
                          starting_urls='https://www.sam.usace.army.mil/',
                          schedule='3 20 * * SAT',
                          output_target=output_target,
@@ -8013,7 +7997,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.mvn.usace.army.mil (neworleans_district)',
-    config: DomainConfig(allowed_domains='mvn.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.mvn.usace.army.mil',
                          starting_urls='https://www.mvn.usace.army.mil/',
                          schedule='1 22 * * SAT',
                          output_target=output_target,
@@ -8037,7 +8021,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'AMA (usagov_en_az)',
-    config: DomainConfig(allowed_domains='ama-assn.org',
+    config: DomainConfig(allowed_domains='www.ama-assn.org',
                          starting_urls='https://www.ama-assn.org',
                          schedule='33 03 * * MON',
                          output_target=output_target,
@@ -8045,7 +8029,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USFK (usfk)',
-    config: DomainConfig(allowed_domains='usfk.mil',
+    config: DomainConfig(allowed_domains='www.usfk.mil',
                          starting_urls='https://www.usfk.mil',
                          schedule='44 04 * * SUN',
                          output_target=output_target,
@@ -8053,7 +8037,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NAVSUP (navy_navsup)',
-    config: DomainConfig(allowed_domains='navsup.navy.mil',
+    config: DomainConfig(allowed_domains='www.navsup.navy.mil',
                          starting_urls='https://www.navsup.navy.mil',
                          schedule='55 05 * * MON',
                          output_target=output_target,
@@ -8061,7 +8045,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'PACOM (dod_pacom)',
-    config: DomainConfig(allowed_domains='pacom.mil',
+    config: DomainConfig(allowed_domains='www.pacom.mil',
                          starting_urls='https://www.pacom.mil',
                          schedule='18 07 * * SUN',
                          output_target=output_target,
@@ -8077,7 +8061,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DCAA (dod_dcaa)',
-    config: DomainConfig(allowed_domains='dcaa.mil',
+    config: DomainConfig(allowed_domains='www.dcaa.mil',
                          starting_urls='https://www.dcaa.mil',
                          schedule='36 10 * * SUN',
                          output_target=output_target,
@@ -8085,7 +8069,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'CENTCOM (centcom)',
-    config: DomainConfig(allowed_domains='centcom.mil',
+    config: DomainConfig(allowed_domains='www.centcom.mil',
                          starting_urls='https://www.centcom.mil',
                          schedule='45 11 * * MON',
                          output_target=output_target,
@@ -8117,7 +8101,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Great Lakes Division (greatlakes_div)',
-    config: DomainConfig(allowed_domains='lrd.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.lrd.usace.army.mil',
                          starting_urls='https://www.lrd.usace.army.mil',
                          schedule='36 16 * * SUN',
                          output_target=output_target,
@@ -8126,7 +8110,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DPAA (dpaa)',
-    config: DomainConfig(allowed_domains='dpaa.mil',
+    config: DomainConfig(allowed_domains='www.dpaa.mil',
                          starting_urls='https://www.dpaa.mil',
                          schedule='47 17 * * MON',
                          output_target=output_target,
@@ -8142,7 +8126,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'FCA (fca)',
-    config: DomainConfig(allowed_domains='fca.gov',
+    config: DomainConfig(allowed_domains='www.fca.gov',
                          starting_urls='https://www.fca.gov',
                          schedule='58 19 * * MON',
                          output_target=output_target,
@@ -8150,7 +8134,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'GPS.gov (gps.gov)',
-    config: DomainConfig(allowed_domains='gps.gov',
+    config: DomainConfig(allowed_domains='www.gps.gov',
                          starting_urls='https://www.gps.gov',
                          schedule='15 20 * * SUN',
                          output_target=output_target,
@@ -8198,7 +8182,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NRO (dod_nro)',
-    config: DomainConfig(allowed_domains='nro.gov',
+    config: DomainConfig(allowed_domains='www.nro.gov',
                          starting_urls='https://www.nro.gov',
                          schedule='07 02 * * TUE',
                          output_target=output_target,
@@ -8222,7 +8206,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy NCIS (navy_ncis)',
-    config: DomainConfig(allowed_domains='ncis.navy.mil',
+    config: DomainConfig(allowed_domains='www.ncis.navy.mil',
                          starting_urls='https://www.ncis.navy.mil',
                          schedule='04 05 * * FRI',
                          output_target=output_target,
@@ -8230,7 +8214,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy AirPac (navy_airpac)',
-    config: DomainConfig(allowed_domains='airpac.navy.mil',
+    config: DomainConfig(allowed_domains='www.airpac.navy.mil',
                          starting_urls='https://www.airpac.navy.mil',
                          schedule='03 06 * * SAT',
                          output_target=output_target,
@@ -8238,7 +8222,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'EMS (ems)',
-    config: DomainConfig(allowed_domains='ems.gov',
+    config: DomainConfig(allowed_domains='www.ems.gov',
                          starting_urls='https://www.ems.gov',
                          schedule='02 07 * * SUN',
                          output_target=output_target,
@@ -8246,7 +8230,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Get Smart About Drugs (gsad)',
-    config: DomainConfig(allowed_domains='getsmartaboutdrugs.gov',
+    config: DomainConfig(allowed_domains='www.getsmartaboutdrugs.gov',
                          starting_urls='https://www.getsmartaboutdrugs.gov',
                          schedule='01 08 * * MON',
                          output_target=output_target,
@@ -8278,7 +8262,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Savannah River Site (srs.gov)',
-    config: DomainConfig(allowed_domains='srs.gov',
+    config: DomainConfig(allowed_domains='www.srs.gov',
                          starting_urls='https://www.srs.gov/general/srs-home.html',
                          schedule='04 13 * * SAT',
                          output_target=output_target,
@@ -8302,7 +8286,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'FAC Transition Site (fac-transition-site)',
-    config: DomainConfig(allowed_domains='fac.gov',
+    config: DomainConfig(allowed_domains='www.fac.gov',
                          starting_urls='https://www.fac.gov',
                          schedule='09 18 * * THU',
                          output_target=output_target,
@@ -8326,7 +8310,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE IWR (usace_all)',
-    config: DomainConfig(allowed_domains='iwr.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.iwr.usace.army.mil',
                          starting_urls='https://www.iwr.usace.army.mil',
                          schedule='13 22 * * MON',
                          output_target=output_target,
@@ -8334,7 +8318,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE MVD (usace_all)',
-    config: DomainConfig(allowed_domains='mvd.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.mvd.usace.army.mil',
                          starting_urls='https://www.mvd.usace.army.mil',
                          schedule='14 23 * * TUE',
                          output_target=output_target,
@@ -8342,7 +8326,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE MVP (usace_all)',
-    config: DomainConfig(allowed_domains='mvp.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.mvp.usace.army.mil',
                          starting_urls='https://www.mvp.usace.army.mil',
                          schedule='15 00 * * WED',
                          output_target=output_target,
@@ -8350,7 +8334,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE SWL-WC (usace_all)',
-    config: DomainConfig(allowed_domains='swl-wc.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.swl-wc.usace.army.mil',
                          starting_urls='https://www.swl-wc.usace.army.mil',
                          schedule='16 01 * * THU',
                          output_target=output_target,
@@ -8358,7 +8342,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE MVR (usace_all)',
-    config: DomainConfig(allowed_domains='mvr.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.mvr.usace.army.mil',
                          starting_urls='https://www.mvr.usace.army.mil',
                          schedule='17 02 * * FRI',
                          output_target=output_target,
@@ -8366,7 +8350,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE SWT (usace_all)',
-    config: DomainConfig(allowed_domains='swt.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.swt.usace.army.mil',
                          starting_urls='https://www.swt.usace.army.mil',
                          schedule='18 03 * * SAT',
                          output_target=output_target,
@@ -8382,7 +8366,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE MVS-WC (usace_all)',
-    config: DomainConfig(allowed_domains='mvs-wc.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.mvs-wc.usace.army.mil',
                          starting_urls='https://www.mvs-wc.usace.army.mil',
                          schedule='20 05 * * MON',
                          output_target=output_target,
@@ -8390,7 +8374,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Bureau of Safety and Environmental Enforcement (doi.gov_all_bureaus)',
-    config: DomainConfig(allowed_domains='bsee.gov',
+    config: DomainConfig(allowed_domains='www.bsee.gov',
                          starting_urls='https://www.bsee.gov',
                          schedule='21 06 * * TUE',
                          output_target=output_target,
@@ -8414,7 +8398,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'BSEE Data Center (bsee)',
-    config: DomainConfig(allowed_domains='data.bsee.gov',
+    config: DomainConfig(allowed_domains='www.data.bsee.gov',
                          starting_urls='https://www.data.bsee.gov',
                          schedule='24 09 * * FRI',
                          output_target=output_target,
@@ -8446,7 +8430,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NOAA ESRL (noaa_esrl)',
-    config: DomainConfig(allowed_domains='esrl.noaa.gov',
+    config: DomainConfig(allowed_domains='www.esrl.noaa.gov',
                          starting_urls='https://www.esrl.noaa.gov',
                          schedule='30 15 * * THU',
                          output_target=output_target,
@@ -8454,7 +8438,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE LRH-WC (usace_all)',
-    config: DomainConfig(allowed_domains='lrh-wc.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.lrh-wc.usace.army.mil',
                          starting_urls='https://www.lrh-wc.usace.army.mil',
                          schedule='34 19 * * MON',
                          output_target=output_target,
@@ -8462,7 +8446,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE LRN-WC (usace_all)',
-    config: DomainConfig(allowed_domains='lrn-wc.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.lrn-wc.usace.army.mil',
                          starting_urls='https://www.lrn-wc.usace.army.mil',
                          schedule='35 20 * * TUE',
                          output_target=output_target,
@@ -8470,7 +8454,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USDA Forest Service (nrs.fs.fed.us)',
-    config: DomainConfig(allowed_domains='fs.usda.gov',
+    config: DomainConfig(allowed_domains='www.fs.usda.gov',
                          starting_urls='https://www.fs.usda.gov',
                          schedule='36 21 * * WED',
                          output_target=output_target,
@@ -8502,7 +8486,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE LRL-WC (usace_all)',
-    config: DomainConfig(allowed_domains='lrl-wc.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.lrl-wc.usace.army.mil',
                          starting_urls='https://www.lrl-wc.usace.army.mil',
                          schedule='44 05 * * THU',
                          output_target=output_target,
@@ -8510,7 +8494,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Inter-American Foundation (iaf)',
-    config: DomainConfig(allowed_domains='iaf.gov',
+    config: DomainConfig(allowed_domains='www.iaf.gov',
                          starting_urls='https://www.iaf.gov',
                          schedule='45 06 * * FRI',
                          output_target=output_target,
@@ -8518,7 +8502,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE MVP-WC (usace_all)',
-    config: DomainConfig(allowed_domains='mvp-wc.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.mvp-wc.usace.army.mil',
                          starting_urls='https://www.mvp-wc.usace.army.mil',
                          schedule='46 07 * * SAT',
                          output_target=output_target,
@@ -8542,7 +8526,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'MEPCOM (mepcom)',
-    config: DomainConfig(allowed_domains='mepcom.army.mil',
+    config: DomainConfig(allowed_domains='www.mepcom.army.mil',
                          starting_urls='https://www.mepcom.army.mil',
                          schedule='49 10 * * TUE',
                          output_target=output_target,
@@ -8550,7 +8534,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Office of Financial Research (ofr)',
-    config: DomainConfig(allowed_domains='financialresearch.gov',
+    config: DomainConfig(allowed_domains='www.financialresearch.gov',
                          starting_urls='https://www.financialresearch.gov',
                          schedule='50 11 * * WED',
                          output_target=output_target,
@@ -8558,7 +8542,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army CID (army_cid)',
-    config: DomainConfig(allowed_domains='cid.army.mil',
+    config: DomainConfig(allowed_domains='www.cid.army.mil',
                          starting_urls='https://www.cid.army.mil',
                          schedule='52 13 * * FRI',
                          output_target=output_target,
@@ -8582,7 +8566,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Federal Mine Safety and Health Review Commission (fmshrc)',
-    config: DomainConfig(allowed_domains='fmshrc.gov',
+    config: DomainConfig(allowed_domains='www.fmshrc.gov',
                          starting_urls='https://www.fmshrc.gov',
                          schedule='56 17 * * TUE',
                          output_target=output_target,
@@ -8614,7 +8598,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Stop Fakes (trade.gov)',
-    config: DomainConfig(allowed_domains='stopfakes.gov',
+    config: DomainConfig(allowed_domains='www.stopfakes.gov',
                          starting_urls='https://www.stopfakes.gov',
                          schedule='05 02 * * THU',
                          output_target=output_target,
@@ -8622,7 +8606,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'US Space Command (dod_ussc)',
-    config: DomainConfig(allowed_domains='spacecom.mil',
+    config: DomainConfig(allowed_domains='www.spacecom.mil',
                          starting_urls='https://www.spacecom.mil',
                          schedule='06 03 * * FRI',
                          output_target=output_target,
@@ -8630,7 +8614,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Defense Standardization Program (dod_dsp)',
-    config: DomainConfig(allowed_domains='dsp.dla.mil',
+    config: DomainConfig(allowed_domains='www.dsp.dla.mil',
                          starting_urls='https://www.dsp.dla.mil',
                          schedule='07 04 * * SAT',
                          output_target=output_target,
@@ -8654,7 +8638,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Peterson-Schriever Space Force Base (peterson)',
-    config: DomainConfig(allowed_domains='petersonschriever.spaceforce.mil',
+    config: DomainConfig(allowed_domains='www.petersonschriever.spaceforce.mil',
                          starting_urls='https://www.petersonschriever.spaceforce.mil',
                          schedule='10 07 * * TUE',
                          output_target=output_target,
@@ -8694,7 +8678,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'GSA Fleet (gsafleet.gov)',
-    config: DomainConfig(allowed_domains='gsafleet.gov',
+    config: DomainConfig(allowed_domains='www.gsafleet.gov',
                          starting_urls='https://www.gsafleet.gov',
                          schedule='16 13 * * MON',
                          output_target=output_target,
@@ -8710,7 +8694,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Patrick Space Force Base (patrick)',
-    config: DomainConfig(allowed_domains='patrick.spaceforce.mil',
+    config: DomainConfig(allowed_domains='www.patrick.spaceforce.mil',
                          starting_urls='https://www.patrick.spaceforce.mil',
                          schedule='20 17 * * FRI',
                          output_target=output_target,
@@ -8734,7 +8718,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'US Northern Command (northcom)',
-    config: DomainConfig(allowed_domains='northcom.mil',
+    config: DomainConfig(allowed_domains='www.northcom.mil',
                          starting_urls='https://www.northcom.mil',
                          schedule='23 20 * * MON',
                          output_target=output_target,
@@ -8750,7 +8734,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'US Strategic Command (stratcom)',
-    config: DomainConfig(allowed_domains='stratcom.mil',
+    config: DomainConfig(allowed_domains='www.stratcom.mil',
                          starting_urls='https://www.stratcom.mil',
                          schedule='25 22 * * WED',
                          output_target=output_target,
@@ -8766,7 +8750,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Buckley Space Force Base (buckley)',
-    config: DomainConfig(allowed_domains='buckley.spaceforce.mil',
+    config: DomainConfig(allowed_domains='www.buckley.spaceforce.mil',
                          starting_urls='https://www.buckley.spaceforce.mil',
                          schedule='27 00 * * FRI',
                          output_target=output_target,
@@ -8798,7 +8782,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Vicksburg District (vicksburg_district)',
-    config: DomainConfig(allowed_domains='mvk.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.mvk.usace.army.mil',
                          starting_urls='https://www.mvk.usace.army.mil',
                          schedule='31 04 * * TUE',
                          output_target=output_target,
@@ -8806,7 +8790,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Space Operations Command (dod_spoc)',
-    config: DomainConfig(allowed_domains='spoc.spaceforce.mil',
+    config: DomainConfig(allowed_domains='www.spoc.spaceforce.mil',
                          starting_urls='https://www.spoc.spaceforce.mil',
                          schedule='32 05 * * WED',
                          output_target=output_target,
@@ -8814,7 +8798,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy C7F (navy_c7f)',
-    config: DomainConfig(allowed_domains='c7f.navy.mil',
+    config: DomainConfig(allowed_domains='www.c7f.navy.mil',
                          starting_urls='https://www.c7f.navy.mil',
                          schedule='33 06 * * THU',
                          output_target=output_target,
@@ -8830,7 +8814,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Chief Technologist (chieftechnologist)',
-    config: DomainConfig(allowed_domains='cto.mil',
+    config: DomainConfig(allowed_domains='www.cto.mil',
                          starting_urls='https://www.cto.mil',
                          schedule='35 08 * * SAT',
                          output_target=output_target,
@@ -8846,7 +8830,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DARPA (chieftechnologist)',
-    config: DomainConfig(allowed_domains='darpa.mil',
+    config: DomainConfig(allowed_domains='www.darpa.mil',
                          starting_urls='https://www.darpa.mil',
                          schedule='37 10 * * MON',
                          output_target=output_target,
@@ -8870,7 +8854,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Memphis District (memphis_district)',
-    config: DomainConfig(allowed_domains='mvm.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.mvm.usace.army.mil',
                          starting_urls='https://www.mvm.usace.army.mil',
                          schedule='40 13 * * THU',
                          output_target=output_target,
@@ -8878,7 +8862,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DoD STEM (chieftechnologist)',
-    config: DomainConfig(allowed_domains='dodstem.us',
+    config: DomainConfig(allowed_domains='www.dodstem.us',
                          starting_urls='https://www.dodstem.us',
                          schedule='41 14 * * FRI',
                          output_target=output_target,
@@ -8886,7 +8870,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'CTO Innovation (chieftechnologist)',
-    config: DomainConfig(allowed_domains='ctoinnovation.mil',
+    config: DomainConfig(allowed_domains='www.ctoinnovation.mil',
                          starting_urls='https://www.ctoinnovation.mil',
                          schedule='42 15 * * SAT',
                          output_target=output_target,
@@ -8894,7 +8878,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'All-domain Anomaly Resolution Office (dod_aaro)',
-    config: DomainConfig(allowed_domains='aaro.mil',
+    config: DomainConfig(allowed_domains='www.aaro.mil',
                          starting_urls='https://www.aaro.mil',
                          schedule='43 16 * * SUN',
                          output_target=output_target,
@@ -8910,7 +8894,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Joint Base Anacostia-Bolling (joint_jbab)',
-    config: DomainConfig(allowed_domains='jbab.jb.mil',
+    config: DomainConfig(allowed_domains='www.jbab.jb.mil',
                          starting_urls='https://www.jbab.jb.mil',
                          schedule='45 18 * * TUE',
                          output_target=output_target,
@@ -8926,7 +8910,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'PEO Soldier (army_peos)',
-    config: DomainConfig(allowed_domains='peosoldier.army.mil',
+    config: DomainConfig(allowed_domains='www.peosoldier.army.mil',
                          starting_urls='https://www.peosoldier.army.mil',
                          schedule='47 20 * * THU',
                          output_target=output_target,
@@ -8934,7 +8918,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'St. Louis District (stlouis_district)',
-    config: DomainConfig(allowed_domains='mvs.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.mvs.usace.army.mil',
                          starting_urls='https://www.mvs.usace.army.mil',
                          schedule='48 21 * * FRI',
                          output_target=output_target,
@@ -8942,7 +8926,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: '1st Infantry Division (army_11d)',
-    config: DomainConfig(allowed_domains='1id.army.mil',
+    config: DomainConfig(allowed_domains='www.1id.army.mil',
                          starting_urls='https://www.1id.army.mil',
                          schedule='50 23 * * SUN',
                          output_target=output_target,
@@ -8950,7 +8934,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army Medical Logistics Command (army_amlc)',
-    config: DomainConfig(allowed_domains='amlc.army.mil',
+    config: DomainConfig(allowed_domains='www.amlc.army.mil',
                          starting_urls='https://www.amlc.army.mil',
                          schedule='51 00 * * MON',
                          output_target=output_target,
@@ -8966,7 +8950,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Baltimore District (baltimore_district)',
-    config: DomainConfig(allowed_domains='nab.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.nab.usace.army.mil',
                          starting_urls='https://www.nab.usace.army.mil',
                          schedule='54 03 * * THU',
                          output_target=output_target,
@@ -8974,7 +8958,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'PEO STRI (peostri)',
-    config: DomainConfig(allowed_domains='peostri.army.mil',
+    config: DomainConfig(allowed_domains='www.peostri.army.mil',
                          starting_urls='https://www.peostri.army.mil',
                          schedule='55 04 * * FRI',
                          output_target=output_target,
@@ -8982,7 +8966,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Defense Equal Opportunity Management Institute (dod_deomi)',
-    config: DomainConfig(allowed_domains='deomi.mil',
+    config: DomainConfig(allowed_domains='www.deomi.mil',
                          starting_urls='https://www.deomi.mil',
                          schedule='56 05 * * SAT',
                          output_target=output_target,
@@ -8990,7 +8974,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Pentagon Force Protection Agency (dod_pfpa)',
-    config: DomainConfig(allowed_domains='pfpa.mil',
+    config: DomainConfig(allowed_domains='www.pfpa.mil',
                          starting_urls='https://www.pfpa.mil',
                          schedule='57 06 * * SUN',
                          output_target=output_target,
@@ -8998,7 +8982,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE North Atlantic Division (usace_nad)',
-    config: DomainConfig(allowed_domains='nad.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.nad.usace.army.mil',
                          starting_urls='https://www.nad.usace.army.mil',
                          schedule='58 07 * * MON',
                          output_target=output_target,
@@ -9006,7 +8990,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE New England District (usace_all)',
-    config: DomainConfig(allowed_domains='nae.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.nae.usace.army.mil',
                          starting_urls='https://www.nae.usace.army.mil',
                          schedule='59 08 * * TUE',
                          output_target=output_target,
@@ -9014,7 +8998,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army Materiel Command (army_amc)',
-    config: DomainConfig(allowed_domains='amc.army.mil',
+    config: DomainConfig(allowed_domains='www.amc.army.mil',
                          starting_urls='https://www.amc.army.mil',
                          schedule='15 09 * * WED',
                          output_target=output_target,
@@ -9030,7 +9014,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE New York District (usace_all)',
-    config: DomainConfig(allowed_domains='nan.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.nan.usace.army.mil',
                          starting_urls='https://www.nan.usace.army.mil',
                          schedule='17 11 * * FRI',
                          output_target=output_target,
@@ -9055,7 +9039,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'BOEM Data Center (doi.gov_all_bureaus)',
-    config: DomainConfig(allowed_domains='data.boem.gov',
+    config: DomainConfig(allowed_domains='www.data.boem.gov',
                          starting_urls='https://www.data.boem.gov',
                          schedule='20 14 * * MON',
                          output_target=output_target,
@@ -9079,7 +9063,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Bureau of Indian Education (doi.gov_all_bureaus)',
-    config: DomainConfig(allowed_domains='bie.edu',
+    config: DomainConfig(allowed_domains='www.bie.edu',
                          starting_urls='https://www.bie.edu',
                          schedule='24 18 * * FRI',
                          output_target=output_target,
@@ -9087,7 +9071,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE Norfolk District (usace_all)',
-    config: DomainConfig(allowed_domains='nao.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.nao.usace.army.mil',
                          starting_urls='https://www.nao.usace.army.mil',
                          schedule='25 19 * * SAT',
                          output_target=output_target,
@@ -9119,7 +9103,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE Philadelphia District (usace_all)',
-    config: DomainConfig(allowed_domains='nap.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.nap.usace.army.mil',
                          starting_urls='https://www.nap.usace.army.mil',
                          schedule='32 02 * * SAT',
                          output_target=output_target,
@@ -9159,7 +9143,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'GSA FACA Database (gsa_faca)',
-    config: DomainConfig(allowed_domains='facadatabase.gov',
+    config: DomainConfig(allowed_domains='www.facadatabase.gov',
                          starting_urls='https://www.facadatabase.gov',
                          schedule='37 07 * * THU',
                          output_target=output_target,
@@ -9207,7 +9191,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'United States Forces Japan (usfj)',
-    config: DomainConfig(allowed_domains='usfj.mil',
+    config: DomainConfig(allowed_domains='www.usfj.mil',
                          starting_urls='https://www.usfj.mil',
                          schedule='45 15 * * FRI',
                          output_target=output_target,
@@ -9215,7 +9199,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Los Angeles Space Force Base (losangeles)',
-    config: DomainConfig(allowed_domains='losangeles.spaceforce.mil',
+    config: DomainConfig(allowed_domains='www.losangeles.spaceforce.mil',
                          starting_urls='https://www.losangeles.spaceforce.mil',
                          schedule='46 16 * * SAT',
                          output_target=output_target,
@@ -9223,7 +9207,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy NIWC Atlantic (navy_niwcatlantic)',
-    config: DomainConfig(allowed_domains='niwcatlantic.navy.mil',
+    config: DomainConfig(allowed_domains='www.niwcatlantic.navy.mil',
                          starting_urls='https://www.niwcatlantic.navy.mil',
                          schedule='47 17 * * SUN',
                          output_target=output_target,
@@ -9231,7 +9215,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Department of Labor OIG (oig)',
-    config: DomainConfig(allowed_domains='oig.dol.gov',
+    config: DomainConfig(allowed_domains='www.oig.dol.gov',
                          starting_urls='https://www.oig.dol.gov',
                          schedule='49 19 * * TUE',
                          output_target=output_target,
@@ -9239,7 +9223,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Space Systems Command (dod_ssc)',
-    config: DomainConfig(allowed_domains='ssc.spaceforce.mil',
+    config: DomainConfig(allowed_domains='www.ssc.spaceforce.mil',
                          starting_urls='https://www.ssc.spaceforce.mil',
                          schedule='50 20 * * WED',
                          output_target=output_target,
@@ -9247,7 +9231,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Department of Commerce OIG (oig.doc.gov)',
-    config: DomainConfig(allowed_domains='oig.doc.gov',
+    config: DomainConfig(allowed_domains='www.oig.doc.gov',
                          starting_urls='https://www.oig.doc.gov',
                          schedule='51 21 * * THU',
                          output_target=output_target,
@@ -9255,7 +9239,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NTIA (bbusa)',
-    config: DomainConfig(allowed_domains='ntia.gov',
+    config: DomainConfig(allowed_domains='www.ntia.gov',
                          starting_urls='https://www.ntia.gov',
                          schedule='52 22 * * FRI',
                          output_target=output_target,
@@ -9263,7 +9247,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'PPMS (ppms)',
-    config: DomainConfig(allowed_domains='ppms.gov',
+    config: DomainConfig(allowed_domains='www.ppms.gov',
                          starting_urls='https://www.ppms.gov',
                          schedule='53 23 * * SAT',
                          output_target=output_target,
@@ -9271,7 +9255,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army Pacific (army_pac)',
-    config: DomainConfig(allowed_domains='usarpac.army.mil',
+    config: DomainConfig(allowed_domains='www.usarpac.army.mil',
                          starting_urls='https://www.usarpac.army.mil',
                          schedule='54 00 * * SUN',
                          output_target=output_target,
@@ -9279,7 +9263,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE Northwestern Division (usace_all)',
-    config: DomainConfig(allowed_domains='nwd.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.nwd.usace.army.mil',
                          starting_urls='https://www.nwd.usace.army.mil',
                          schedule='55 01 * * MON',
                          output_target=output_target,
@@ -9319,7 +9303,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army AMCOM (army_amcom)',
-    config: DomainConfig(allowed_domains='amcom.army.mil',
+    config: DomainConfig(allowed_domains='www.amcom.army.mil',
                          starting_urls='https://www.amcom.army.mil',
                          schedule='04 06 * * SAT',
                          output_target=output_target,
@@ -9351,7 +9335,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE Kansas City District (usace_all)',
-    config: DomainConfig(allowed_domains='nwk.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.nwk.usace.army.mil',
                          starting_urls='https://www.nwk.usace.army.mil',
                          schedule='08 10 * * WED',
                          output_target=output_target,
@@ -9367,7 +9351,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE Omaha District (usace_all)',
-    config: DomainConfig(allowed_domains='nwo.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.nwo.usace.army.mil',
                          starting_urls='https://www.nwo.usace.army.mil',
                          schedule='10 12 * * FRI',
                          output_target=output_target,
@@ -9375,7 +9359,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy CNRC (navy_cnrc)',
-    config: DomainConfig(allowed_domains='cnrc.navy.mil',
+    config: DomainConfig(allowed_domains='www.cnrc.navy.mil',
                          starting_urls='https://www.cnrc.navy.mil',
                          schedule='11 13 * * SAT',
                          output_target=output_target,
@@ -9383,7 +9367,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NORAD (norad)',
-    config: DomainConfig(allowed_domains='norad.mil',
+    config: DomainConfig(allowed_domains='www.norad.mil',
                          starting_urls='https://www.norad.mil',
                          schedule='12 14 * * SUN',
                          output_target=output_target,
@@ -9391,7 +9375,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'South Carolina National Guard (usng_scng)',
-    config: DomainConfig(allowed_domains='scguard.ng.mil',
+    config: DomainConfig(allowed_domains='www.scguard.ng.mil',
                          starting_urls='https://www.scguard.ng.mil',
                          schedule='13 15 * * MON',
                          output_target=output_target,
@@ -9399,7 +9383,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Fort Indiantown Gap (ng_ftig)',
-    config: DomainConfig(allowed_domains='ftig.ng.mil',
+    config: DomainConfig(allowed_domains='www.ftig.ng.mil',
                          starting_urls='https://www.ftig.ng.mil',
                          schedule='14 16 * * TUE',
                          output_target=output_target,
@@ -9415,7 +9399,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy NAVIFOR (navy_navifor)',
-    config: DomainConfig(allowed_domains='navifor.usff.navy.mil',
+    config: DomainConfig(allowed_domains='www.navifor.usff.navy.mil',
                          starting_urls='https://www.navifor.usff.navy.mil',
                          schedule='16 18 * * THU',
                          output_target=output_target,
@@ -9423,7 +9407,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE Portland District (usace_all)',
-    config: DomainConfig(allowed_domains='nwp.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.nwp.usace.army.mil',
                          starting_urls='https://www.nwp.usace.army.mil',
                          schedule='17 19 * * FRI',
                          output_target=output_target,
@@ -9431,7 +9415,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE Seattle District (usace_all)',
-    config: DomainConfig(allowed_domains='nws.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.nws.usace.army.mil',
                          starting_urls='https://www.nws.usace.army.mil',
                          schedule='18 20 * * SAT',
                          output_target=output_target,
@@ -9463,7 +9447,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy ONI (navy_oni)',
-    config: DomainConfig(allowed_domains='oni.navy.mil',
+    config: DomainConfig(allowed_domains='www.oni.navy.mil',
                          starting_urls='https://www.oni.navy.mil',
                          schedule='22 00 * * WED',
                          output_target=output_target,
@@ -9479,7 +9463,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE Walla Walla District (usace_all)',
-    config: DomainConfig(allowed_domains='nww.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.nww.usace.army.mil',
                          starting_urls='https://www.nww.usace.army.mil',
                          schedule='24 02 * * FRI',
                          output_target=output_target,
@@ -9519,7 +9503,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Federal Remediation Technologies Roundtable (frtr)',
-    config: DomainConfig(allowed_domains='frtr.gov',
+    config: DomainConfig(allowed_domains='www.frtr.gov',
                          starting_urls='https://www.frtr.gov',
                          schedule='30 08 * * THU',
                          output_target=output_target,
@@ -9527,7 +9511,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy USFF (navy_usff)',
-    config: DomainConfig(allowed_domains='usff.navy.mil',
+    config: DomainConfig(allowed_domains='www.usff.navy.mil',
                          starting_urls='https://www.usff.navy.mil',
                          schedule='31 09 * * FRI',
                          output_target=output_target,
@@ -9535,7 +9519,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DoD Chief Digital and AI Office (dod_cdaio)',
-    config: DomainConfig(allowed_domains='ai.mil',
+    config: DomainConfig(allowed_domains='www.ai.mil',
                          starting_urls='https://www.ai.mil',
                          schedule='32 10 * * SAT',
                          output_target=output_target,
@@ -9583,7 +9567,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'SIGAR (sigar)',
-    config: DomainConfig(allowed_domains='sigar.mil',
+    config: DomainConfig(allowed_domains='www.sigar.mil',
                          starting_urls='https://www.sigar.mil',
                          schedule='38 16 * * FRI',
                          output_target=output_target,
@@ -9591,7 +9575,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army SWCS (army_swcs)',
-    config: DomainConfig(allowed_domains='swcs.mil',
+    config: DomainConfig(allowed_domains='www.swcs.mil',
                          starting_urls='https://www.swcs.mil',
                          schedule='39 17 * * SAT',
                          output_target=output_target,
@@ -9615,7 +9599,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DoD DC3 (dod_dc3)',
-    config: DomainConfig(allowed_domains='dc3.mil',
+    config: DomainConfig(allowed_domains='www.dc3.mil',
                          starting_urls='https://www.dc3.mil',
                          schedule='43 21 * * WED',
                          output_target=output_target,
@@ -9639,7 +9623,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy CSP (navy_csp)',
-    config: DomainConfig(allowed_domains='csp.navy.mil',
+    config: DomainConfig(allowed_domains='www.csp.navy.mil',
                          starting_urls='https://www.csp.navy.mil',
                          schedule='46 00 * * SAT',
                          output_target=output_target,
@@ -9647,7 +9631,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Joint METC (joint_metc)',
-    config: DomainConfig(allowed_domains='metc.mil',
+    config: DomainConfig(allowed_domains='www.metc.mil',
                          starting_urls='https://www.metc.mil',
                          schedule='47 01 * * SUN',
                          output_target=output_target,
@@ -9655,7 +9639,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy CUSNC (navy_cusnc)',
-    config: DomainConfig(allowed_domains='cusnc.navy.mil',
+    config: DomainConfig(allowed_domains='www.cusnc.navy.mil',
                          starting_urls='https://www.cusnc.navy.mil',
                          schedule='48 02 * * MON',
                          output_target=output_target,
@@ -9663,7 +9647,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Armed Forces Court (armfor)',
-    config: DomainConfig(allowed_domains='armfor.uscourts.gov',
+    config: DomainConfig(allowed_domains='www.armfor.uscourts.gov',
                          starting_urls='https://www.armfor.uscourts.gov',
                          schedule='49 03 * * TUE',
                          output_target=output_target,
@@ -9671,7 +9655,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Illinois National Guard (army_ilngb)',
-    config: DomainConfig(allowed_domains='il.ngb.army.mil',
+    config: DomainConfig(allowed_domains='www.il.ngb.army.mil',
                          starting_urls='https://www.il.ngb.army.mil',
                          schedule='50 04 * * WED',
                          output_target=output_target,
@@ -9679,7 +9663,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Office of Surface Mining (osm)',
-    config: DomainConfig(allowed_domains='osmre.gov',
+    config: DomainConfig(allowed_domains='www.osmre.gov',
                          starting_urls='https://www.osmre.gov',
                          schedule='51 05 * * THU',
                          output_target=output_target,
@@ -9695,7 +9679,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DoD DHRA (dod_dhra)',
-    config: DomainConfig(allowed_domains='dhra.mil',
+    config: DomainConfig(allowed_domains='www.dhra.mil',
                          starting_urls='https://www.dhra.mil',
                          schedule='53 07 * * SAT',
                          output_target=output_target,
@@ -9727,7 +9711,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'US Army ARCENT (arcent)',
-    config: DomainConfig(allowed_domains='usarcent.army.mil',
+    config: DomainConfig(allowed_domains='www.usarcent.army.mil',
                          starting_urls='https://www.usarcent.army.mil',
                          schedule='57 11 * * WED',
                          output_target=output_target,
@@ -9735,7 +9719,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Missouri National Guard (ng_moguard)',
-    config: DomainConfig(allowed_domains='moguard.ngb.mil',
+    config: DomainConfig(allowed_domains='www.moguard.ngb.mil',
                          starting_urls='https://www.moguard.ngb.mil',
                          schedule='58 12 * * THU',
                          output_target=output_target,
@@ -9743,7 +9727,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army SMDC (army_smdc)',
-    config: DomainConfig(allowed_domains='smdc.army.mil',
+    config: DomainConfig(allowed_domains='www.smdc.army.mil',
                          starting_urls='https://www.smdc.army.mil',
                          schedule='59 13 * * FRI',
                          output_target=output_target,
@@ -9759,7 +9743,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy 6th Fleet (navy_us6fleet)',
-    config: DomainConfig(allowed_domains='c6f.navy.mil',
+    config: DomainConfig(allowed_domains='www.c6f.navy.mil',
                          starting_urls='https://www.c6f.navy.mil',
                          schedule='21 15 * * SUN',
                          output_target=output_target,
@@ -9767,7 +9751,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army Cyber Command (army_cybercom)',
-    config: DomainConfig(allowed_domains='arcyber.army.mil',
+    config: DomainConfig(allowed_domains='www.arcyber.army.mil',
                          starting_urls='https://www.arcyber.army.mil',
                          schedule='22 16 * * MON',
                          output_target=output_target,
@@ -9799,7 +9783,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy AIRLANT (navy_airlant)',
-    config: DomainConfig(allowed_domains='airlant.usff.navy.mil',
+    config: DomainConfig(allowed_domains='www.airlant.usff.navy.mil',
                          starting_urls='https://www.airlant.usff.navy.mil',
                          schedule='27 21 * * SAT',
                          output_target=output_target,
@@ -9840,7 +9824,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army Japan (army_japan)',
-    config: DomainConfig(allowed_domains='usarj.army.mil',
+    config: DomainConfig(allowed_domains='www.usarj.army.mil',
                          starting_urls='https://www.usarj.army.mil',
                          schedule='32 02 * * THU',
                          output_target=output_target,
@@ -9848,7 +9832,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Medical Countermeasures (mcmbarda)',
-    config: DomainConfig(allowed_domains='medicalcountermeasures.gov',
+    config: DomainConfig(allowed_domains='www.medicalcountermeasures.gov',
                          starting_urls='https://www.medicalcountermeasures.gov',
                          schedule='33 03 * * FRI',
                          output_target=output_target,
@@ -9856,7 +9840,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy NIWC Pacific (navy_niwcpacific)',
-    config: DomainConfig(allowed_domains='niwcpacific.navy.mil',
+    config: DomainConfig(allowed_domains='www.niwcpacific.navy.mil',
                          starting_urls='https://www.niwcpacific.navy.mil',
                          schedule='34 04 * * SAT',
                          output_target=output_target,
@@ -9864,7 +9848,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Pennsylvania National Guard (ng_pang)',
-    config: DomainConfig(allowed_domains='pa.ng.mil',
+    config: DomainConfig(allowed_domains='www.pa.ng.mil',
                          starting_urls='https://www.pa.ng.mil',
                          schedule='35 05 * * SUN',
                          output_target=output_target,
@@ -9880,7 +9864,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army Combat Capabilities Development (army_comcapdev)',
-    config: DomainConfig(allowed_domains='avmc.army.mil',
+    config: DomainConfig(allowed_domains='www.avmc.army.mil',
                          starting_urls='https://www.avmc.army.mil',
                          schedule='39 09 * * THU',
                          output_target=output_target,
@@ -9904,7 +9888,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'FHFA OIG (fhfa_oig)',
-    config: DomainConfig(allowed_domains='fhfaoig.gov',
+    config: DomainConfig(allowed_domains='www.fhfaoig.gov',
                          starting_urls='https://www.fhfaoig.gov',
                          schedule='42 12 * * SUN',
                          output_target=output_target,
@@ -9912,7 +9896,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army Geospatial Center (agc)',
-    config: DomainConfig(allowed_domains='agc.army.mil',
+    config: DomainConfig(allowed_domains='www.agc.army.mil',
                          starting_urls='https://www.agc.army.mil',
                          schedule='43 13 * * MON',
                          output_target=output_target,
@@ -9936,7 +9920,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'West Virginia National Guard (joint_wvng)',
-    config: DomainConfig(allowed_domains='wv.ng.mil',
+    config: DomainConfig(allowed_domains='www.wv.ng.mil',
                          starting_urls='https://www.wv.ng.mil',
                          schedule='48 18 * * SAT',
                          output_target=output_target,
@@ -9952,7 +9936,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Defense SBIR/STTR (dod_defensesbirsttr)',
-    config: DomainConfig(allowed_domains='defensesbirsttr.mil',
+    config: DomainConfig(allowed_domains='www.defensesbirsttr.mil',
                          starting_urls='https://www.defensesbirsttr.mil',
                          schedule='50 20 * * MON',
                          output_target=output_target,
@@ -9960,19 +9944,11 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Campus Drug Prevention (cdp)',
-    config: DomainConfig(allowed_domains='campusdrugprevention.gov',
+    config: DomainConfig(allowed_domains='www.campusdrugprevention.gov',
                          starting_urls='https://www.campusdrugprevention.gov',
                          schedule='51 21 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
-  },
-  {
-    name: 'NOAA GLERL Blog (noaa-glerl)',
-    config: DomainConfig(allowed_domains='noaaglerl.blog',
-                         starting_urls='https://noaaglerl.blog',
-                         schedule='52 22 * * WED',
-                         output_target=output_target,
-                         depth_limit=3),
   },
   {
     name: 'WRAIR (wrair)',
@@ -9992,7 +9968,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy PEO Digital (navy_tpeod)',
-    config: DomainConfig(allowed_domains='peodigital.navy.mil',
+    config: DomainConfig(allowed_domains='www.peodigital.navy.mil',
                          starting_urls='https://www.peodigital.navy.mil',
                          schedule='55 01 * * SAT',
                          output_target=output_target,
@@ -10000,7 +9976,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army JPEO (army_jpeo)',
-    config: DomainConfig(allowed_domains='jpeocbrnd.osd.mil',
+    config: DomainConfig(allowed_domains='www.jpeocbrnd.osd.mil',
                          starting_urls='https://www.jpeocbrnd.osd.mil',
                          schedule='56 02 * * SUN',
                          output_target=output_target,
@@ -10032,7 +10008,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy NSW (navy_nswc)',
-    config: DomainConfig(allowed_domains='nsw.navy.mil',
+    config: DomainConfig(allowed_domains='www.nsw.navy.mil',
                          starting_urls='https://www.nsw.navy.mil',
                          schedule='47 06 * * THU',
                          output_target=output_target,
@@ -10048,7 +10024,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Alaska District (alaska_district)',
-    config: DomainConfig(allowed_domains='poa.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.poa.usace.army.mil',
                          starting_urls='https://www.poa.usace.army.mil',
                          schedule='49 08 * * SAT',
                          output_target=output_target,
@@ -10072,7 +10048,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Honolulu District (honolulu_district)',
-    config: DomainConfig(allowed_domains='poh.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.poh.usace.army.mil',
                          starting_urls='https://www.poh.usace.army.mil',
                          schedule='53 12 * * WED',
                          output_target=output_target,
@@ -10080,7 +10056,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army Tobyhanna (army_tad)',
-    config: DomainConfig(allowed_domains='tobyhanna.army.mil',
+    config: DomainConfig(allowed_domains='www.tobyhanna.army.mil',
                          starting_urls='https://www.tobyhanna.army.mil',
                          schedule='54 13 * * THU',
                          output_target=output_target,
@@ -10096,7 +10072,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DoD STARCOM (dod_starcom)',
-    config: DomainConfig(allowed_domains='starcom.spaceforce.mil',
+    config: DomainConfig(allowed_domains='www.starcom.spaceforce.mil',
                          starting_urls='https://www.starcom.spaceforce.mil',
                          schedule='00 15 * * SAT',
                          output_target=output_target,
@@ -10104,7 +10080,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army ASC (army_asc)',
-    config: DomainConfig(allowed_domains='aschq.army.mil',
+    config: DomainConfig(allowed_domains='www.aschq.army.mil',
                          starting_urls='https://www.aschq.army.mil',
                          schedule='01 16 * * SUN',
                          output_target=output_target,
@@ -10112,7 +10088,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army ATEC (atec)',
-    config: DomainConfig(allowed_domains='atec.army.mil',
+    config: DomainConfig(allowed_domains='www.atec.army.mil',
                          starting_urls='https://www.atec.army.mil',
                          schedule='02 17 * * MON',
                          output_target=output_target,
@@ -10120,7 +10096,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NOAA Corps CPC (corpscpc.noaa.gov)',
-    config: DomainConfig(allowed_domains='corpscpc.noaa.gov',
+    config: DomainConfig(allowed_domains='www.corpscpc.noaa.gov',
                          starting_urls='https://www.corpscpc.noaa.gov',
                          schedule='03 18 * * TUE',
                          output_target=output_target,
@@ -10128,7 +10104,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'PRS (prs)',
-    config: DomainConfig(allowed_domains='prs.mil',
+    config: DomainConfig(allowed_domains='www.prs.mil',
                          starting_urls='https://www.prs.mil',
                          schedule='04 19 * * WED',
                          output_target=output_target,
@@ -10144,7 +10120,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army FORSCOM (army_forscom)',
-    config: DomainConfig(allowed_domains='forscom.army.mil',
+    config: DomainConfig(allowed_domains='www.forscom.army.mil',
                          starting_urls='https://www.forscom.army.mil',
                          schedule='06 21 * * FRI',
                          output_target=output_target,
@@ -10152,7 +10128,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy SSP (navy_ssp)',
-    config: DomainConfig(allowed_domains='ssp.navy.mil',
+    config: DomainConfig(allowed_domains='www.ssp.navy.mil',
                          starting_urls='https://www.ssp.navy.mil',
                          schedule='07 22 * * SAT',
                          output_target=output_target,
@@ -10160,7 +10136,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army 21st TSC (army_21tsc)',
-    config: DomainConfig(allowed_domains='21tsc.army.mil',
+    config: DomainConfig(allowed_domains='www.21tsc.army.mil',
                          starting_urls='https://www.21tsc.army.mil',
                          schedule='08 23 * * SUN',
                          output_target=output_target,
@@ -10192,7 +10168,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NASA Earthdata (all)',
-    config: DomainConfig(allowed_domains='earthdata.nasa.gov',
+    config: DomainConfig(allowed_domains='www.earthdata.nasa.gov',
                          starting_urls='https://www.earthdata.nasa.gov',
                          schedule='12 03 * * THU',
                          output_target=output_target,
@@ -10208,7 +10184,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy FCC (navy_fcc)',
-    config: DomainConfig(allowed_domains='fcc.navy.mil',
+    config: DomainConfig(allowed_domains='www.fcc.navy.mil',
                          starting_urls='https://www.fcc.navy.mil',
                          schedule='01 05 * * SAT',
                          output_target=output_target,
@@ -10224,7 +10200,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army USAFMCOM (army_usafmcom)',
-    config: DomainConfig(allowed_domains='usafmcom.army.mil',
+    config: DomainConfig(allowed_domains='www.usafmcom.army.mil',
                          starting_urls='https://www.usafmcom.army.mil',
                          schedule='03 07 * * MON',
                          output_target=output_target,
@@ -10232,7 +10208,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'CJTF OIR (cjtf_oir)',
-    config: DomainConfig(allowed_domains='inherentresolve.mil',
+    config: DomainConfig(allowed_domains='www.inherentresolve.mil',
                          starting_urls='https://www.inherentresolve.mil',
                          schedule='04 08 * * TUE',
                          output_target=output_target,
@@ -10240,7 +10216,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USDA FMS (usda-fms)',
-    config: DomainConfig(allowed_domains='nfc.usda.gov',
+    config: DomainConfig(allowed_domains='www.nfc.usda.gov',
                          starting_urls='https://www.nfc.usda.gov',
                          schedule='05 09 * * WED',
                          output_target=output_target,
@@ -10264,7 +10240,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Joint UNC (joint_unc)',
-    config: DomainConfig(allowed_domains='unc.mil',
+    config: DomainConfig(allowed_domains='www.unc.mil',
                          starting_urls='https://www.unc.mil',
                          schedule='09 13 * * SUN',
                          output_target=output_target,
@@ -10272,7 +10248,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy NAVWAR (navy_navwar)',
-    config: DomainConfig(allowed_domains='navwar.navy.mil',
+    config: DomainConfig(allowed_domains='www.navwar.navy.mil',
                          starting_urls='https://www.navwar.navy.mil',
                          schedule='10 14 * * MON',
                          output_target=output_target,
@@ -10280,7 +10256,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy NECC (navy_necc)',
-    config: DomainConfig(allowed_domains='necc.usff.navy.mil',
+    config: DomainConfig(allowed_domains='www.necc.usff.navy.mil',
                          starting_urls='https://www.necc.usff.navy.mil',
                          schedule='11 15 * * TUE',
                          output_target=output_target,
@@ -10296,7 +10272,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army FIRST (army_first)',
-    config: DomainConfig(allowed_domains='first.army.mil',
+    config: DomainConfig(allowed_domains='www.first.army.mil',
                          starting_urls='https://www.first.army.mil',
                          schedule='13 17 * * THU',
                          output_target=output_target,
@@ -10304,7 +10280,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Charleston District (charleston_district)',
-    config: DomainConfig(allowed_domains='sac.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.sac.usace.army.mil',
                          starting_urls='https://www.sac.usace.army.mil',
                          schedule='14 18 * * FRI',
                          output_target=output_target,
@@ -10312,7 +10288,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy SUBLANT (navy_sublant)',
-    config: DomainConfig(allowed_domains='sublant.usff.navy.mil',
+    config: DomainConfig(allowed_domains='www.sublant.usff.navy.mil',
                          starting_urls='https://www.sublant.usff.navy.mil',
                          schedule='15 19 * * SAT',
                          output_target=output_target,
@@ -10336,7 +10312,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'South Atlantic Division (south_atlantic_div)',
-    config: DomainConfig(allowed_domains='sad.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.sad.usace.army.mil',
                          starting_urls='https://www.sad.usace.army.mil',
                          schedule='18 22 * * TUE',
                          output_target=output_target,
@@ -10352,7 +10328,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NEHRP (nehrp_gov)',
-    config: DomainConfig(allowed_domains='nehrp.gov',
+    config: DomainConfig(allowed_domains='www.nehrp.gov',
                          starting_urls='https://www.nehrp.gov',
                          schedule='20 00 * * THU',
                          output_target=output_target,
@@ -10360,7 +10336,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Savannah District (savannah_district)',
-    config: DomainConfig(allowed_domains='sas.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.sas.usace.army.mil',
                          starting_urls='https://www.sas.usace.army.mil',
                          schedule='21 01 * * FRI',
                          output_target=output_target,
@@ -10376,7 +10352,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army Letterkenny (army_letterkenny)',
-    config: DomainConfig(allowed_domains='letterkenny.army.mil',
+    config: DomainConfig(allowed_domains='www.letterkenny.army.mil',
                          starting_urls='https://www.letterkenny.army.mil',
                          schedule='23 03 * * SUN',
                          output_target=output_target,
@@ -10384,7 +10360,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Wilmington District (wilmington_district)',
-    config: DomainConfig(allowed_domains='saw.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.saw.usace.army.mil',
                          starting_urls='https://www.saw.usace.army.mil',
                          schedule='24 04 * * MON',
                          output_target=output_target,
@@ -10392,7 +10368,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Joint JPRA (joint_jpra)',
-    config: DomainConfig(allowed_domains='jpra.mil',
+    config: DomainConfig(allowed_domains='www.jpra.mil',
                          starting_urls='https://www.jpra.mil',
                          schedule='25 05 * * TUE',
                          output_target=output_target,
@@ -10448,7 +10424,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Delaware National Guard (ng_deng)',
-    config: DomainConfig(allowed_domains='de.ng.mil',
+    config: DomainConfig(allowed_domains='www.de.ng.mil',
                          starting_urls='https://www.de.ng.mil',
                          schedule='32 12 * * TUE',
                          output_target=output_target,
@@ -10456,7 +10432,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Albuquerque District (albuquerque_district)',
-    config: DomainConfig(allowed_domains='spa.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.spa.usace.army.mil',
                          starting_urls='https://www.spa.usace.army.mil',
                          schedule='33 13 * * WED',
                          output_target=output_target,
@@ -10496,7 +10472,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army 2ID Korea (army_2idkorea)',
-    config: DomainConfig(allowed_domains='2id.korea.army.mil',
+    config: DomainConfig(allowed_domains='www.2id.korea.army.mil',
                          starting_urls='https://www.2id.korea.army.mil',
                          schedule='38 18 * * MON',
                          output_target=output_target,
@@ -10512,7 +10488,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Far East District (far_east_district)',
-    config: DomainConfig(allowed_domains='pof.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.pof.usace.army.mil',
                          starting_urls='https://www.pof.usace.army.mil',
                          schedule='40 20 * * WED',
                          output_target=output_target,
@@ -10544,7 +10520,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DoD ManTech (dod_mantech)',
-    config: DomainConfig(allowed_domains='dodmantech.mil',
+    config: DomainConfig(allowed_domains='www.dodmantech.mil',
                          starting_urls='https://www.dodmantech.mil',
                          schedule='44 00 * * SUN',
                          output_target=output_target,
@@ -10552,7 +10528,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Enterprise Search (enterprise_search)',
-    config: DomainConfig(allowed_domains='nrel.gov',
+    config: DomainConfig(allowed_domains='www.nrel.gov',
                          starting_urls='https://www.nrel.gov',
                          schedule='45 01 * * MON',
                          output_target=output_target,
@@ -10560,7 +10536,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy OWA (navy_owa)',
-    config: DomainConfig(allowed_domains='owa.navy.mil',
+    config: DomainConfig(allowed_domains='www.owa.navy.mil',
                          starting_urls='https://www.owa.navy.mil',
                          schedule='46 02 * * TUE',
                          output_target=output_target,
@@ -10592,7 +10568,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'AmeriCorps (americorps)',
-    config: DomainConfig(allowed_domains='americorps.gov',
+    config: DomainConfig(allowed_domains='www.americorps.gov',
                          starting_urls='https://www.americorps.gov',
                          schedule='50 06 * * SAT',
                          output_target=output_target,
@@ -10608,7 +10584,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Maine National Guard (ng_maine)',
-    config: DomainConfig(allowed_domains='me.ng.mil',
+    config: DomainConfig(allowed_domains='www.me.ng.mil',
                          starting_urls='https://www.me.ng.mil',
                          schedule='52 08 * * MON',
                          output_target=output_target,
@@ -10616,7 +10592,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army JBLM Design Standards (army_jblmdesignstandars)',
-    config: DomainConfig(allowed_domains='jblmdesignstandards.army.mil',
+    config: DomainConfig(allowed_domains='www.jblmdesignstandards.army.mil',
                          starting_urls='https://www.jblmdesignstandards.army.mil',
                          schedule='53 09 * * TUE',
                          output_target=output_target,
@@ -10624,7 +10600,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'South Pacific Division (south_pacific_division)',
-    config: DomainConfig(allowed_domains='spd.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.spd.usace.army.mil',
                          starting_urls='https://www.spd.usace.army.mil',
                          schedule='54 10 * * WED',
                          output_target=output_target,
@@ -10632,7 +10608,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'SPK-WC (spk-wc)',
-    config: DomainConfig(allowed_domains='spk-wc.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.spk-wc.usace.army.mil',
                          starting_urls='https://www.spk-wc.usace.army.mil',
                          schedule='55 11 * * THU',
                          output_target=output_target,
@@ -10648,7 +10624,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Middle East District (middle_east_district)',
-    config: DomainConfig(allowed_domains='tam.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.tam.usace.army.mil',
                          starting_urls='https://www.tam.usace.army.mil',
                          schedule='01 13 * * SAT',
                          output_target=output_target,
@@ -10656,7 +10632,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy NWDC (navu_nwdc)',
-    config: DomainConfig(allowed_domains='nwdc.usff.navy.mil',
+    config: DomainConfig(allowed_domains='www.nwdc.usff.navy.mil',
                          starting_urls='https://www.nwdc.usff.navy.mil',
                          schedule='02 14 * * SUN',
                          output_target=output_target,
@@ -10664,7 +10640,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy CNMOC (navy_cnmoc)',
-    config: DomainConfig(allowed_domains='surflant.usff.navy.mil',
+    config: DomainConfig(allowed_domains='www.surflant.usff.navy.mil',
                          starting_urls='https://www.surflant.usff.navy.mil',
                          schedule='03 15 * * MON',
                          output_target=output_target,
@@ -10672,7 +10648,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Space Force USSFS (spaceforce_ussfs)',
-    config: DomainConfig(allowed_domains='spaceforces-space.mil',
+    config: DomainConfig(allowed_domains='www.spaceforces-space.mil',
                          starting_urls='https://www.spaceforces-space.mil',
                          schedule='04 16 * * TUE',
                          output_target=output_target,
@@ -10688,7 +10664,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Papahānaumokuākea Marine National Monument (papahnaumokukeamarinenationalmonu)',
-    config: DomainConfig(allowed_domains='papahanaumokuakea.gov',
+    config: DomainConfig(allowed_domains='www.papahanaumokuakea.gov',
                          starting_urls='https://www.papahanaumokuakea.gov',
                          schedule='06 18 * * THU',
                          output_target=output_target,
@@ -10712,7 +10688,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army 173rd IBCT (army_173ibct)',
-    config: DomainConfig(allowed_domains='skysoldiers.army.mil',
+    config: DomainConfig(allowed_domains='www.skysoldiers.army.mil',
                          starting_urls='https://www.skysoldiers.army.mil',
                          schedule='10 22 * * MON',
                          output_target=output_target,
@@ -10760,7 +10736,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army South (army_south)',
-    config: DomainConfig(allowed_domains='arsouth.army.mil',
+    config: DomainConfig(allowed_domains='www.arsouth.army.mil',
                          starting_urls='https://www.arsouth.army.mil',
                          schedule='17 05 * * MON',
                          output_target=output_target,
@@ -10776,7 +10752,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Sacramento District (sacramento_district)',
-    config: DomainConfig(allowed_domains='spk.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.spk.usace.army.mil',
                          starting_urls='https://www.spk.usace.army.mil',
                          schedule='19 07 * * WED',
                          output_target=output_target,
@@ -10784,7 +10760,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Surface Transportation Board (www.stb.gov)',
-    config: DomainConfig(allowed_domains='stb.gov',
+    config: DomainConfig(allowed_domains='www.stb.gov',
                          starting_urls='https://www.stb.gov',
                          schedule='20 08 * * THU',
                          output_target=output_target,
@@ -10792,7 +10768,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army North (army_usarmynorth)',
-    config: DomainConfig(allowed_domains='arnorth.army.mil',
+    config: DomainConfig(allowed_domains='www.arnorth.army.mil',
                          starting_urls='https://www.arnorth.army.mil',
                          schedule='21 09 * * FRI',
                          output_target=output_target,
@@ -10800,7 +10776,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Irregular Warfare Technical Support Directorate (iwtsd)',
-    config: DomainConfig(allowed_domains='iwtsd.gov',
+    config: DomainConfig(allowed_domains='www.iwtsd.gov',
                          starting_urls='https://www.iwtsd.gov',
                          schedule='22 10 * * SAT',
                          output_target=output_target,
@@ -10808,7 +10784,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy BRAC PMO (navy_bracpmo)',
-    config: DomainConfig(allowed_domains='bracpmo.navy.mil',
+    config: DomainConfig(allowed_domains='www.bracpmo.navy.mil',
                          starting_urls='https://www.bracpmo.navy.mil',
                          schedule='23 11 * * SUN',
                          output_target=output_target,
@@ -10832,7 +10808,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy PEO C4I (navy_peoc4)',
-    config: DomainConfig(allowed_domains='peoc4i.navy.mil',
+    config: DomainConfig(allowed_domains='www.peoc4i.navy.mil',
                          starting_urls='https://www.peoc4i.navy.mil',
                          schedule='26 14 * * WED',
                          output_target=output_target,
@@ -10856,7 +10832,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army SORB (army_sorb)',
-    config: DomainConfig(allowed_domains='goarmysof.army.mil',
+    config: DomainConfig(allowed_domains='www.goarmysof.army.mil',
                          starting_urls='https://www.goarmysof.army.mil',
                          schedule='29 17 * * SAT',
                          output_target=output_target,
@@ -10865,7 +10841,7 @@ local output_target = 'elasticsearch';
   {
     name: 'DoD HACC Hybrid Cloud(dod_hacc)',
     config: DomainConfig(allowed_domains='hybridcloud.disa.mil',
-                         starting_urls=' https://hybridcloud.disa.mil/ ',
+                         starting_urls='https://hybridcloud.disa.mil/',
                          schedule='30 18 * * SUN',
                          output_target=output_target,
                          depth_limit=3),
@@ -10880,7 +10856,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army ARCP (army_arcp)',
-    config: DomainConfig(allowed_domains='arcp.army.mil',
+    config: DomainConfig(allowed_domains='www.arcp.army.mil',
                          starting_urls='https://www.arcp.army.mil',
                          schedule='33 21 * * WED',
                          output_target=output_target,
@@ -10888,7 +10864,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Los Angeles District (los_angeles_district)',
-    config: DomainConfig(allowed_domains='spl.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.spl.usace.army.mil',
                          starting_urls='https://www.spl.usace.army.mil',
                          schedule='34 22 * * THU',
                          output_target=output_target,
@@ -10896,7 +10872,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DoD JTNC (dod_jtnc)',
-    config: DomainConfig(allowed_domains='jtnc.mil',
+    config: DomainConfig(allowed_domains='www.jtnc.mil',
                          starting_urls='https://www.jtnc.mil',
                          schedule='35 23 * * FRI',
                          output_target=output_target,
@@ -10912,7 +10888,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army 2CR (army_2cr)',
-    config: DomainConfig(allowed_domains='2cr.army.mil',
+    config: DomainConfig(allowed_domains='www.2cr.army.mil',
                          starting_urls='https://www.2cr.army.mil',
                          schedule='37 01 * * SUN',
                          output_target=output_target,
@@ -10960,7 +10936,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NOAA Satellite Information System (noaasis.noaa.gov)',
-    config: DomainConfig(allowed_domains='noaasis.noaa.gov',
+    config: DomainConfig(allowed_domains='www.noaasis.noaa.gov',
                          starting_urls='https://www.noaasis.noaa.gov',
                          schedule='44 08 * * SUN',
                          output_target=output_target,
@@ -10968,7 +10944,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'San Francisco District (sanfrancisco_district)',
-    config: DomainConfig(allowed_domains='spn.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.spn.usace.army.mil',
                          starting_urls='https://www.spn.usace.army.mil',
                          schedule='45 09 * * MON',
                          output_target=output_target,
@@ -10984,7 +10960,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Europe District (europe_district)',
-    config: DomainConfig(allowed_domains='nau.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.nau.usace.army.mil',
                          starting_urls='https://www.nau.usace.army.mil',
                          schedule='00 11 * * WED',
                          output_target=output_target,
@@ -11000,7 +10976,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy PEO MLB (navy_peomlb)',
-    config: DomainConfig(allowed_domains='peomlb.navy.mil',
+    config: DomainConfig(allowed_domains='www.peomlb.navy.mil',
                          starting_urls='https://www.peomlb.navy.mil',
                          schedule='03 14 * * SAT',
                          output_target=output_target,
@@ -11008,7 +10984,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army PEO GCS (army_peogcs)',
-    config: DomainConfig(allowed_domains='peogcs.army.mil',
+    config: DomainConfig(allowed_domains='www.peogcs.army.mil',
                          starting_urls='https://www.peogcs.army.mil',
                          schedule='04 15 * * SUN',
                          output_target=output_target,
@@ -11032,7 +11008,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army 405th AFSB (army_405afsb)',
-    config: DomainConfig(allowed_domains='afsbeurope.army.mil',
+    config: DomainConfig(allowed_domains='www.afsbeurope.army.mil',
                          starting_urls='https://www.afsbeurope.army.mil',
                          schedule='07 18 * * WED',
                          output_target=output_target,
@@ -11056,7 +11032,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army CCAD (army_ccad)',
-    config: DomainConfig(allowed_domains='ccad.army.mil',
+    config: DomainConfig(allowed_domains='www.ccad.army.mil',
                          starting_urls='https://www.ccad.army.mil',
                          schedule='12 23 * * MON',
                          output_target=output_target,
@@ -11064,7 +11040,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'REPI (repi)',
-    config: DomainConfig(allowed_domains='repi.mil',
+    config: DomainConfig(allowed_domains='www.repi.mil',
                          starting_urls='https://www.repi.mil',
                          schedule='13 00 * * TUE',
                          output_target=output_target,
@@ -11072,7 +11048,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USACE Transatlantic Division (usace_transatlanticdiv)',
-    config: DomainConfig(allowed_domains='tad.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.tad.usace.army.mil',
                          starting_urls='https://www.tad.usace.army.mil',
                          schedule='14 01 * * WED',
                          output_target=output_target,
@@ -11088,7 +11064,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'FedCenter (fedcenter.gov)',
-    config: DomainConfig(allowed_domains='fedcenter.gov',
+    config: DomainConfig(allowed_domains='www.fedcenter.gov',
                          starting_urls='https://www.fedcenter.gov',
                          schedule='16 03 * * FRI',
                          output_target=output_target,
@@ -11104,7 +11080,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army 1st TSC (army_1tsc)',
-    config: DomainConfig(allowed_domains='1tsc.army.mil',
+    config: DomainConfig(allowed_domains='www.1tsc.army.mil',
                          starting_urls='https://www.1tsc.army.mil',
                          schedule='18 05 * * SUN',
                          output_target=output_target,
@@ -11120,7 +11096,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'FEHRM (fehrm)',
-    config: DomainConfig(allowed_domains='fehrm.gov',
+    config: DomainConfig(allowed_domains='www.fehrm.gov',
                          starting_urls='https://www.fehrm.gov',
                          schedule='20 07 * * TUE',
                          output_target=output_target,
@@ -11128,7 +11104,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Japan District (japan_district)',
-    config: DomainConfig(allowed_domains='poj.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.poj.usace.army.mil',
                          starting_urls='https://www.poj.usace.army.mil',
                          schedule='21 08 * * WED',
                          output_target=output_target,
@@ -11153,7 +11129,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army 41st FAB (army_41fsb)',
-    config: DomainConfig(allowed_domains='41fab.army.mil',
+    config: DomainConfig(allowed_domains='www.41fab.army.mil',
                          starting_urls='https://www.41fab.army.mil',
                          schedule='24 11 * * SAT',
                          output_target=output_target,
@@ -11161,7 +11137,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army RMC (army_rmc)',
-    config: DomainConfig(allowed_domains='rmc.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.rmc.usace.army.mil',
                          starting_urls='https://www.rmc.usace.army.mil',
                          schedule='25 12 * * SUN',
                          output_target=output_target,
@@ -11169,7 +11145,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army V Corps (army_vcorps)',
-    config: DomainConfig(allowed_domains='vcorps.army.mil',
+    config: DomainConfig(allowed_domains='www.vcorps.army.mil',
                          starting_urls='https://www.vcorps.army.mil',
                          schedule='26 13 * * MON',
                          output_target=output_target,
@@ -11193,7 +11169,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy C3F (navy_c3f)',
-    config: DomainConfig(allowed_domains='c3f.navy.mil',
+    config: DomainConfig(allowed_domains='www.c3f.navy.mil',
                          starting_urls='https://www.c3f.navy.mil',
                          schedule='29 16 * * THU',
                          output_target=output_target,
@@ -11225,7 +11201,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Southwestern Division (swd)',
-    config: DomainConfig(allowed_domains='swd.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.swd.usace.army.mil',
                          starting_urls='https://www.swd.usace.army.mil',
                          schedule='33 20 * * MON',
                          output_target=output_target,
@@ -11233,7 +11209,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USDA REE (ree)',
-    config: DomainConfig(allowed_domains='ree.usda.gov',
+    config: DomainConfig(allowed_domains='www.ree.usda.gov',
                          starting_urls='https://www.ree.usda.gov',
                          schedule='34 21 * * TUE',
                          output_target=output_target,
@@ -11265,7 +11241,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy NAVCO (navy_navco)',
-    config: DomainConfig(allowed_domains='outreach.navy.mil',
+    config: DomainConfig(allowed_domains='www.outreach.navy.mil',
                          starting_urls='https://www.outreach.navy.mil',
                          schedule='38 01 * * SAT',
                          output_target=output_target,
@@ -11273,7 +11249,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy NEPA (navy_nepa)',
-    config: DomainConfig(allowed_domains='nepa.navy.mil',
+    config: DomainConfig(allowed_domains='www.nepa.navy.mil',
                          starting_urls='https://www.nepa.navy.mil',
                          schedule='39 02 * * SUN',
                          output_target=output_target,
@@ -11281,7 +11257,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USDA RD (usda-rd-es)',
-    config: DomainConfig(allowed_domains='rd.usda.gov',
+    config: DomainConfig(allowed_domains='www.rd.usda.gov',
                          starting_urls='https://www.rd.usda.gov',
                          schedule='40 03 * * MON',
                          output_target=output_target,
@@ -11289,7 +11265,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army 409th CSB (army_409csb)',
-    config: DomainConfig(allowed_domains='409csb.army.mil',
+    config: DomainConfig(allowed_domains='www.409csb.army.mil',
                          starting_urls='https://www.409csb.army.mil',
                          schedule='41 04 * * TUE',
                          output_target=output_target,
@@ -11297,7 +11273,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DCP US Courts (dcp_uscourts)',
-    config: DomainConfig(allowed_domains='dcp.uscourts.gov',
+    config: DomainConfig(allowed_domains='www.dcp.uscourts.gov',
                          starting_urls='https://www.dcp.uscourts.gov',
                          schedule='42 05 * * WED',
                          output_target=output_target,
@@ -11313,7 +11289,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'SWF-WC (swf-wc)',
-    config: DomainConfig(allowed_domains='swf-wc.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.swf-wc.usace.army.mil',
                          starting_urls='https://www.swf-wc.usace.army.mil',
                          schedule='44 07 * * FRI',
                          output_target=output_target,
@@ -11329,7 +11305,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army 10th AAMDC (army_10aamdc)',
-    config: DomainConfig(allowed_domains='10thaamdc.army.mil',
+    config: DomainConfig(allowed_domains='www.10thaamdc.army.mil',
                          starting_urls='https://www.10thaamdc.army.mil',
                          schedule='46 09 * * SUN',
                          output_target=output_target,
@@ -11393,7 +11369,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy CLWP (navy_clwp)',
-    config: DomainConfig(allowed_domains='clwp.navy.mil',
+    config: DomainConfig(allowed_domains='www.clwp.navy.mil',
                          starting_urls='https://www.clwp.navy.mil',
                          schedule='56 19 * * WED',
                          output_target=output_target,
@@ -11401,7 +11377,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'SWL (swl)',
-    config: DomainConfig(allowed_domains='swl.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.swl.usace.army.mil',
                          starting_urls='https://www.swl.usace.army.mil',
                          schedule='57 20 * * THU',
                          output_target=output_target,
@@ -11417,7 +11393,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army EDIS (army_edis)',
-    config: DomainConfig(allowed_domains='edis.army.mil',
+    config: DomainConfig(allowed_domains='www.edis.army.mil',
                          starting_urls='https://www.edis.army.mil',
                          schedule='59 22 * * SAT',
                          output_target=output_target,
@@ -11441,7 +11417,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy OTEV (navy_otev)',
-    config: DomainConfig(allowed_domains='optevfor.navy.mil',
+    config: DomainConfig(allowed_domains='www.optevfor.navy.mil',
                          starting_urls='https://www.optevfor.navy.mil',
                          schedule='32 03 * * THU',
                          output_target=output_target,
@@ -11457,7 +11433,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DoD Clearinghouse (dod_chp)',
-    config: DomainConfig(allowed_domains='dodclearinghouse.osd.mil',
+    config: DomainConfig(allowed_domains='www.dodclearinghouse.osd.mil',
                          starting_urls='https://www.dodclearinghouse.osd.mil',
                          schedule='34 05 * * SAT',
                          output_target=output_target,
@@ -11465,7 +11441,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy TTGP (navy_ttgp)',
-    config: DomainConfig(allowed_domains='ttgp.navy.mil',
+    config: DomainConfig(allowed_domains='www.ttgp.navy.mil',
                          starting_urls='https://www.ttgp.navy.mil',
                          schedule='35 06 * * SUN',
                          output_target=output_target,
@@ -11481,7 +11457,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army NATO (army_nato)',
-    config: DomainConfig(allowed_domains='usanato.army.mil',
+    config: DomainConfig(allowed_domains='www.usanato.army.mil',
                          starting_urls='https://www.usanato.army.mil',
                          schedule='39 10 * * THU',
                          output_target=output_target,
@@ -11489,7 +11465,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Joint Warfare Analysis Center (joint_wac)',
-    config: DomainConfig(allowed_domains='jwac.mil',
+    config: DomainConfig(allowed_domains='www.jwac.mil',
                          starting_urls='https://www.jwac.mil',
                          schedule='40 11 * * FRI',
                          output_target=output_target,
@@ -11529,7 +11505,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Reclamation Newsroom (reclamationnewsroom)',
-    config: DomainConfig(allowed_domains='usbr.gov',
+    config: DomainConfig(allowed_domains='www.usbr.gov',
                          starting_urls='https://www.usbr.gov',
                          schedule='45 16 * * WED',
                          output_target=output_target,
@@ -11537,8 +11513,8 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Computers for Learning (computersforlearning)',
-    config: DomainConfig(allowed_domains='computersforlearning.gov',
-                         starting_urls='https://computersforlearning.gov',
+    config: DomainConfig(allowed_domains='www.computersforlearning.gov',
+                         starting_urls='https://www.computersforlearning.gov',
                          schedule='46 17 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -11553,7 +11529,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'FCSIC (fcsic_staging)',
-    config: DomainConfig(allowed_domains='fcsic.gov',
+    config: DomainConfig(allowed_domains='www.fcsic.gov',
                          starting_urls='https://www.fcsic.gov',
                          schedule='48 19 * * SAT',
                          output_target=output_target,
@@ -11561,7 +11537,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy CSG4 (navy_csg4)',
-    config: DomainConfig(allowed_domains='csg4.usff.navy.mil',
+    config: DomainConfig(allowed_domains='www.csg4.usff.navy.mil',
                          starting_urls='https://www.csg4.usff.navy.mil',
                          schedule='49 20 * * SUN',
                          output_target=output_target,
@@ -11569,7 +11545,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army 1st IO (army_1stio)',
-    config: DomainConfig(allowed_domains='1stio.army.mil',
+    config: DomainConfig(allowed_domains='www.1stio.army.mil',
                          starting_urls='https://www.1stio.army.mil',
                          schedule='50 21 * * MON',
                          output_target=output_target,
@@ -11577,7 +11553,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army 20th CBRNE (army_20cbrne)',
-    config: DomainConfig(allowed_domains='20cbrne.army.mil',
+    config: DomainConfig(allowed_domains='www.20cbrne.army.mil',
                          starting_urls='https://www.20cbrne.army.mil',
                          schedule='51 22 * * TUE',
                          output_target=output_target,
@@ -11585,7 +11561,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army 2nd Signal Brigade (army_2sigbde)',
-    config: DomainConfig(allowed_domains='2sigbde.army.mil',
+    config: DomainConfig(allowed_domains='www.2sigbde.army.mil',
                          starting_urls='https://www.2sigbde.army.mil',
                          schedule='52 23 * * WED',
                          output_target=output_target,
@@ -11601,7 +11577,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DoD JTFN (dod_jtfn)',
-    config: DomainConfig(allowed_domains='jtfn.northcom.mil',
+    config: DomainConfig(allowed_domains='www.jtfn.northcom.mil',
                          starting_urls='https://www.jtfn.northcom.mil',
                          schedule='54 01 * * FRI',
                          output_target=output_target,
@@ -11633,7 +11609,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'VIREC (virec)',
-    config: DomainConfig(allowed_domains='virec.research.va.gov',
+    config: DomainConfig(allowed_domains='www.virec.research.va.gov',
                          starting_urls='https://www.virec.research.va.gov',
                          schedule='31 05 * * TUE',
                          output_target=output_target,
@@ -11658,7 +11634,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DoD JTF GTMO (dod_jtfgtmo)',
-    config: DomainConfig(allowed_domains='jtfgtmo.southcom.mil',
+    config: DomainConfig(allowed_domains='www.jtfgtmo.southcom.mil',
                          starting_urls='https://www.jtfgtmo.southcom.mil',
                          schedule='34 08 * * FRI',
                          output_target=output_target,
@@ -11674,7 +11650,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy INSURV (navy_insurv)',
-    config: DomainConfig(allowed_domains='insurv.usff.navy.mil',
+    config: DomainConfig(allowed_domains='www.insurv.usff.navy.mil',
                          starting_urls='https://www.insurv.usff.navy.mil',
                          schedule='36 10 * * SUN',
                          output_target=output_target,
@@ -11682,7 +11658,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'GeoNetCast Americas (www.geonetcastamericas.gov)',
-    config: DomainConfig(allowed_domains='geonetcastamericas.noaa.gov',
+    config: DomainConfig(allowed_domains='www.geonetcastamericas.noaa.gov',
                          starting_urls='https://www.geonetcastamericas.noaa.gov',
                          schedule='37 11 * * MON',
                          output_target=output_target,
@@ -11690,7 +11666,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army PSCC (army_pscc)',
-    config: DomainConfig(allowed_domains='pscc.army.mil',
+    config: DomainConfig(allowed_domains='www.pscc.army.mil',
                          starting_urls='https://www.pscc.army.mil',
                          schedule='38 12 * * TUE',
                          output_target=output_target,
@@ -11698,7 +11674,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army USANCA (army_usanca)',
-    config: DomainConfig(allowed_domains='usanca.army.mil',
+    config: DomainConfig(allowed_domains='www.usanca.army.mil',
                          starting_urls='https://www.usanca.army.mil',
                          schedule='39 13 * * WED',
                          output_target=output_target,
@@ -11706,7 +11682,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DoD 90th COS (dod_90thcos)',
-    config: DomainConfig(allowed_domains='shadowsedge.mil',
+    config: DomainConfig(allowed_domains='www.shadowsedge.mil',
                          starting_urls='https://www.shadowsedge.mil',
                          schedule='40 14 * * THU',
                          output_target=output_target,
@@ -11714,7 +11690,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DoD ADLI (dod_adli)',
-    config: DomainConfig(allowed_domains='adlnet.gov',
+    config: DomainConfig(allowed_domains='www.adlnet.gov',
                          starting_urls='https://www.adlnet.gov',
                          schedule='41 15 * * FRI',
                          output_target=output_target,
@@ -11754,7 +11730,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'US Courts CAEPT (caept_uscourts)',
-    config: DomainConfig(allowed_domains='caept.uscourts.gov',
+    config: DomainConfig(allowed_domains='www.caept.uscourts.gov',
                          starting_urls='https://www.caept.uscourts.gov',
                          schedule='04 21 * * THU',
                          output_target=output_target,
@@ -11762,8 +11738,8 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Coral Reef (coralreef.gov)',
-    config: DomainConfig(allowed_domains='coralreef.gov',
-                         starting_urls='https://www.coralreef.gov',
+    config: DomainConfig(allowed_domains='taskforce.coralreef.noaa.gov',
+                         starting_urls='https://taskforce.coralreef.noaa.gov',
                          schedule='05 22 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -11794,7 +11770,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy EWTGPAC (navy_ewtgpac)',
-    config: DomainConfig(allowed_domains='ewtgpac.navy.mil',
+    config: DomainConfig(allowed_domains='www.ewtgpac.navy.mil',
                          starting_urls='https://www.ewtgpac.navy.mil',
                          schedule='11 04 * * THU',
                          output_target=output_target,
@@ -11802,7 +11778,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy Ready (navy_ready)',
-    config: DomainConfig(allowed_domains='ready.navy.mil',
+    config: DomainConfig(allowed_domains='www.ready.navy.mil',
                          starting_urls='https://www.ready.navy.mil',
                          schedule='12 05 * * FRI',
                          output_target=output_target,
@@ -11826,7 +11802,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army 12th CAB (army_12cab)',
-    config: DomainConfig(allowed_domains='12cab.army.mil',
+    config: DomainConfig(allowed_domains='www.12cab.army.mil',
                          starting_urls='https://www.12cab.army.mil',
                          schedule='15 08 * * MON',
                          output_target=output_target,
@@ -11866,7 +11842,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'JECC (jecc)',
-    config: DomainConfig(allowed_domains='jecc.ustranscom.mil',
+    config: DomainConfig(allowed_domains='www.jecc.ustranscom.mil',
                          starting_urls='https://www.jecc.ustranscom.mil',
                          schedule='22 15 * * MON',
                          output_target=output_target,
@@ -11874,7 +11850,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Pacific Ocean Division (pacific_ocean_division)',
-    config: DomainConfig(allowed_domains='pod.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.pod.usace.army.mil',
                          starting_urls='https://www.pod.usace.army.mil',
                          schedule='24 17 * * WED',
                          output_target=output_target,
@@ -11922,7 +11898,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NG VNGFP (ng_vngfp)',
-    config: DomainConfig(allowed_domains='ngfamily.vt.gov',
+    config: DomainConfig(allowed_domains='www.ngfamily.vt.gov',
                          starting_urls='https://www.ngfamily.vt.gov',
                          schedule='30 23 * * TUE',
                          output_target=output_target,
@@ -11938,7 +11914,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DoD JEDI Cloud (dod_jedicloud)',
-    config: DomainConfig(allowed_domains='cloud.mil',
+    config: DomainConfig(allowed_domains='www.cloud.mil',
                          starting_urls='https://www.cloud.mil',
                          schedule='33 02 * * FRI',
                          output_target=output_target,
@@ -11962,7 +11938,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy Amphibious 7th Fleet (navy_amphib7)',
-    config: DomainConfig(allowed_domains='amphib7flt.navy.mil',
+    config: DomainConfig(allowed_domains='www.amphib7flt.navy.mil',
                          starting_urls='https://www.amphib7flt.navy.mil',
                          schedule='38 07 * * WED',
                          output_target=output_target,
@@ -11970,7 +11946,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy NIA (navy_nia)',
-    config: DomainConfig(allowed_domains='nia.navy.mil',
+    config: DomainConfig(allowed_domains='www.nia.navy.mil',
                          starting_urls='https://www.nia.navy.mil',
                          schedule='39 08 * * THU',
                          output_target=output_target,
@@ -11995,7 +11971,7 @@ local output_target = 'elasticsearch';
   {
     name: 'DOS Embassy USAU (dos_emb_afr_usau)',
     config: DomainConfig(allowed_domains='usau.usmission.gov',
-                         starting_urls='https://www.usau.usmission.gov',
+                         starting_urls='https://usau.usmission.gov',
                          schedule='43 12 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -12003,7 +11979,7 @@ local output_target = 'elasticsearch';
   {
     name: 'Justice NIC (justice-nic)',
     config: DomainConfig(allowed_domains='nicic.gov',
-                         starting_urls='https://www.nicic.gov',
+                         starting_urls='https://nicic.gov',
                          schedule='44 13 * * TUE',
                          output_target=output_target,
                          depth_limit=3),
@@ -12018,7 +11994,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy NCTF Red Hill (navy_nctf-redhill)',
-    config: DomainConfig(allowed_domains='navyclosuretaskforce.navy.mil',
+    config: DomainConfig(allowed_domains='www.navyclosuretaskforce.navy.mil',
                          starting_urls='https://www.navyclosuretaskforce.navy.mil',
                          schedule='47 16 * * FRI',
                          output_target=output_target,
@@ -12042,7 +12018,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army UCD (army_ucd)',
-    config: DomainConfig(allowed_domains='saa.usace.army.mil',
+    config: DomainConfig(allowed_domains='www.saa.usace.army.mil',
                          starting_urls='https://www.saa.usace.army.mil',
                          schedule='51 20 * * TUE',
                          output_target=output_target,
@@ -12050,7 +12026,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DNI Gov Test 1 (dni-gov-test1)',
-    config: DomainConfig(allowed_domains='dni.gov',
+    config: DomainConfig(allowed_domains='www.dni.gov',
                          starting_urls='https://www.dni.gov',
                          schedule='53 22 * * THU',
                          output_target=output_target,
@@ -12066,7 +12042,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DOT PHMSA (dot-phmsa)',
-    config: DomainConfig(allowed_domains='phmsa.dot.gov',
+    config: DomainConfig(allowed_domains='www.phmsa.dot.gov',
                          starting_urls='https://www.phmsa.dot.gov',
                          schedule='56 01 * * SUN',
                          output_target=output_target,
@@ -12074,7 +12050,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DSS MIL (dssmil)',
-    config: DomainConfig(allowed_domains='cdse.edu',
+    config: DomainConfig(allowed_domains='www.cdse.edu',
                          starting_urls='https://www.cdse.edu',
                          schedule='57 02 * * MON',
                          output_target=output_target,
@@ -12082,7 +12058,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'GSFC SEWP (gsfc210)',
-    config: DomainConfig(allowed_domains='sewp.nasa.gov',
+    config: DomainConfig(allowed_domains='www.sewp.nasa.gov',
                          starting_urls='https://www.sewp.nasa.gov',
                          schedule='58 03 * * TUE',
                          output_target=output_target,
@@ -12106,7 +12082,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Navy CPRW1 (navy_cprw1)',
-    config: DomainConfig(allowed_domains='cprw1.navy.mil',
+    config: DomainConfig(allowed_domains='www.cprw1.navy.mil',
                          starting_urls='https://www.cprw1.navy.mil',
                          schedule='01 06 * * FRI',
                          output_target=output_target,
@@ -12130,7 +12106,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'OSHA (osha)',
-    config: DomainConfig(allowed_domains='osha.gov',
+    config: DomainConfig(allowed_domains='www.osha.gov',
                          starting_urls='https://www.osha.gov',
                          schedule='04 09 * * MON',
                          output_target=output_target,
@@ -12154,15 +12130,15 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'cgaux.org (cgaux)',
-    config: DomainConfig(allowed_domains='cgaux.org',
-                         starting_urls='https://cgaux.org/',
+    config: DomainConfig(allowed_domains='www.cgaux.org',
+                         starting_urls='https://www.cgaux.org/',
                          schedule='0 0 * * MON',
                          output_target=output_target,
                          depth_limit=8),
   },
   {
     name: 'www.dnfsb.gov (dnfsb)',
-    config: DomainConfig(allowed_domains='dnfsb.gov',
+    config: DomainConfig(allowed_domains='www.dnfsb.gov',
                          starting_urls='https://www.dnfsb.gov/',
                          schedule='36 9 * * MON',
                          output_target=output_target,
@@ -12178,16 +12154,16 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'doioig.gov (doioig)',
-    config: DomainConfig(allowed_domains='doioig.gov',
-                         starting_urls='https://doioig.gov/',
+    config: DomainConfig(allowed_domains='www.doioig.gov',
+                         starting_urls='https://www.doioig.gov/',
                          schedule='48 16 * * MON',
                          output_target=output_target,
                          depth_limit=8),
   },
   {
     name: 'fletc.gov (fletc)',
-    config: DomainConfig(allowed_domains='fletc.gov',
-                         starting_urls='https://fletc.gov/',
+    config: DomainConfig(allowed_domains='www.fletc.gov',
+                         starting_urls='https://www.fletc.gov/',
                          schedule='0 0 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -12202,8 +12178,8 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'goes-r.gov (goes-r)',
-    config: DomainConfig(allowed_domains='goes-r.gov',
-                         starting_urls='https://goes-r.gov/',
+    config: DomainConfig(allowed_domains='www.goes-r.gov',
+                         starting_urls='https://www.goes-r.gov/',
                          schedule='36 21 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -12242,8 +12218,8 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'uscga-district-7.org (uscga-district-7)',
-    config: DomainConfig(allowed_domains='uscga-district-7.org',
-                         starting_urls='https://uscga-district-7.org/',
+    config: DomainConfig(allowed_domains='www.uscga-district-7.org',
+                         starting_urls='https://www.uscga-district-7.org/',
                          schedule='48 4 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
@@ -12259,7 +12235,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.aev.class.noaa.gov (www.aev.class.noaa)',
-    config: DomainConfig(allowed_domains='aev.class.noaa.gov',
+    config: DomainConfig(allowed_domains='www.aev.class.noaa.gov',
                          starting_urls='https://www.aev.class.noaa.gov/',
                          schedule='0 12 * * FRI',
                          output_target=output_target,
@@ -12267,7 +12243,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.cisa.gov (www.cisa)',
-    config: DomainConfig(allowed_domains='cisa.gov',
+    config: DomainConfig(allowed_domains='www.cisa.gov',
                          starting_urls='https://www.cisa.gov/',
                          schedule='48 16 * * FRI',
                          output_target=output_target,
@@ -12275,7 +12251,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.glerl.noaa.gov/blog/ (www.glerl.noaa)',
-    config: DomainConfig(allowed_domains='glerl.noaa.gov/blog/',
+    config: DomainConfig(allowed_domains='www.glerl.noaa.gov/blog/',
                          starting_urls='https://www.glerl.noaa.gov/blog/',
                          schedule='24 2 * * SAT',
                          output_target=output_target,
@@ -12283,7 +12259,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.investor.gov (www.investor)',
-    config: DomainConfig(allowed_domains='investor.gov',
+    config: DomainConfig(allowed_domains='www.investor.gov',
                          starting_urls='https://www.investor.gov/',
                          schedule='48 4 * * SAT',
                          output_target=output_target,
@@ -12291,7 +12267,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.myplate.gov (www.myplate)',
-    config: DomainConfig(allowed_domains='myplate.gov',
+    config: DomainConfig(allowed_domains='www.myplate.gov',
                          starting_urls='https://www.myplate.gov/',
                          schedule='12 7 * * SAT',
                          output_target=output_target,
@@ -12307,7 +12283,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'www.stlouisfed.org (www.stlouisfed)',
-    config: DomainConfig(allowed_domains='stlouisfed.org',
+    config: DomainConfig(allowed_domains='www.stlouisfed.org',
                          starting_urls='https://www.stlouisfed.org/',
                          schedule='48 16 * * SAT',
                          output_target=output_target,
@@ -12883,7 +12859,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'New depth 8 (142wg.ang.af.mil)',
-    config: DomainConfig(allowed_domains='142wg.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.142wg.ang.af.mil',
                          starting_urls='https://www.142wg.ang.af.mil/',
                          schedule='20 20 * * FRI',
                          output_target=output_target,
@@ -12891,7 +12867,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'New depth 8 (147atkw.ang.af.mil)',
-    config: DomainConfig(allowed_domains='147atkw.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.147atkw.ang.af.mil',
                          starting_urls='https://www.147atkw.ang.af.mil/',
                          schedule='18 22 * * FRI',
                          output_target=output_target,
@@ -12899,7 +12875,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'New depth 8 (151wg.af.mil)',
-    config: DomainConfig(allowed_domains='151wg.af.mil',
+    config: DomainConfig(allowed_domains='www.151wg.af.mil',
                          starting_urls='https://www.151wg.af.mil/',
                          schedule='17 0 * * SAT',
                          output_target=output_target,
@@ -12907,7 +12883,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'New depth 8 (168wg.ang.af.mil)',
-    config: DomainConfig(allowed_domains='168wg.ang.af.mil',
+    config: DomainConfig(allowed_domains='www.168wg.ang.af.mil',
                          starting_urls='https://www.168wg.ang.af.mil/',
                          schedule='16 2 * * SAT',
                          output_target=output_target,
@@ -12915,7 +12891,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'New depth 8 (353sow.af.mil)',
-    config: DomainConfig(allowed_domains='353sow.af.mil',
+    config: DomainConfig(allowed_domains='www.353sow.af.mil',
                          starting_urls='https://www.353sow.af.mil/',
                          schedule='14 4 * * SAT',
                          output_target=output_target,
@@ -12923,7 +12899,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'New depth 8 (afsouth.af.mil)',
-    config: DomainConfig(allowed_domains='afsouth.af.mil',
+    config: DomainConfig(allowed_domains='www.afsouth.af.mil',
                          starting_urls='https://www.afsouth.af.mil/',
                          schedule='13 6 * * SAT',
                          output_target=output_target,
@@ -12931,7 +12907,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'New depth 8 (airforcespecialtactics.af.mil)',
-    config: DomainConfig(allowed_domains='airforcespecialtactics.af.mil',
+    config: DomainConfig(allowed_domains='www.airforcespecialtactics.af.mil',
                          starting_urls='https://www.airforcespecialtactics.af.mil/',
                          schedule='11 8 * * SAT',
                          output_target=output_target,
@@ -12939,7 +12915,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'New depth 8 (dantes.mil)',
-    config: DomainConfig(allowed_domains='dantes.mil',
+    config: DomainConfig(allowed_domains='www.dantes.mil',
                          starting_urls='https://www.dantes.mil/',
                          schedule='10 10 * * SAT',
                          output_target=output_target,
@@ -12947,7 +12923,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'New depth 8 (ncolcoe.army.mil)',
-    config: DomainConfig(allowed_domains='ncolcoe.army.mil',
+    config: DomainConfig(allowed_domains='www.ncolcoe.army.mil',
                          starting_urls='https://www.ncolcoe.army.mil/',
                          schedule='8 12 * * SAT',
                          output_target=output_target,
@@ -12955,7 +12931,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'New depth 8 (ncoworldwide.army.mil)',
-    config: DomainConfig(allowed_domains='ncoworldwide.army.mil',
+    config: DomainConfig(allowed_domains='www.ncoworldwide.army.mil',
                          starting_urls='https://www.ncoworldwide.army.mil/',
                          schedule='7 14 * * SAT',
                          output_target=output_target,
@@ -13019,7 +12995,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Access Board',
-    config: DomainConfig(allowed_domains='access-board.gov',
+    config: DomainConfig(allowed_domains='www.access-board.gov',
                          starting_urls='https://www.access-board.gov/',
                          schedule='00 13 * * MON',
                          output_target=output_target,
@@ -13027,7 +13003,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USDA Census Archive',
-    config: DomainConfig(allowed_domains='agcensus.mannlib.cornell.edu',
+    config: DomainConfig(allowed_domains='agcensus.library.cornell.edu',
                          starting_urls='https://agcensus.library.cornell.edu',
                          schedule='15 13 * * MON',
                          output_target=output_target,
@@ -13067,7 +13043,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Apprenticeship USA',
-    config: DomainConfig(allowed_domains='apprenticeship.gov',
+    config: DomainConfig(allowed_domains='www.apprenticeship.gov',
                          starting_urls='https://www.apprenticeship.gov/',
                          schedule='30 14 * * MON',
                          output_target=output_target,
@@ -13083,7 +13059,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Archives',
-    config: DomainConfig(allowed_domains='archives.gov',
+    config: DomainConfig(allowed_domains='www.archives.gov',
                          starting_urls='https://www.archives.gov/',
                          schedule='00 05 * * MON',
                          output_target=output_target,
@@ -13179,7 +13155,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Clinton Presidential Library',
-    config: DomainConfig(allowed_domains='clintonlibrary.gov',
+    config: DomainConfig(allowed_domains='www.clintonlibrary.gov',
                          starting_urls='https://www.clintonlibrary.gov/',
                          schedule='00 08 * * TUE',
                          output_target=output_target,
@@ -13219,7 +13195,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Drug Enforcement Administration',
-    config: DomainConfig(allowed_domains='dea.gov',
+    config: DomainConfig(allowed_domains='www.dea.gov',
                          starting_urls='https://www.dea.gov',
                          schedule='00 13 * * TUE',
                          output_target=output_target,
@@ -13235,7 +13211,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Dietary Guidelines',
-    config: DomainConfig(allowed_domains='dietaryguidelines.gov',
+    config: DomainConfig(allowed_domains='www.dietaryguidelines.gov',
                          starting_urls='https://www.dietaryguidelines.gov/',
                          schedule='00 15 * * TUE',
                          output_target=output_target,
@@ -13243,7 +13219,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Defense Media Activity',
-    config: DomainConfig(allowed_domains='dma.mil',
+    config: DomainConfig(allowed_domains='www.dma.mil',
                          starting_urls='https://www.dma.mil/',
                          schedule='00 16 * * TUE',
                          output_target=output_target,
@@ -13267,7 +13243,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'FDA Recalls & Safety Alerts',
-    config: DomainConfig(allowed_domains='fda.gov/safety/recalls-market-withdrawals-safety-alerts',
+    config: DomainConfig(allowed_domains='www.fda.gov/safety/recalls-market-withdrawals-safety-alerts',
                          starting_urls='https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts',
                          schedule='45 03 * * WED',
                          output_target=output_target,
@@ -13275,7 +13251,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'FDA Tobacco Products',
-    config: DomainConfig(allowed_domains='fda.gov/tobacco-products',
+    config: DomainConfig(allowed_domains='www.fda.gov/tobacco-products',
                          starting_urls='https://www.fda.gov/tobacco-products',
                          schedule='10 04 * * WED',
                          output_target=output_target,
@@ -13283,7 +13259,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'FDR Presidential Library',
-    config: DomainConfig(allowed_domains='fdrlibrary.org',
+    config: DomainConfig(allowed_domains='www.fdrlibrary.org',
                          starting_urls='https://www.fdrlibrary.org/',
                          schedule='25 05 * * WED',
                          output_target=output_target,
@@ -13299,7 +13275,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'SAMHSA Treatment Locator',
-    config: DomainConfig(allowed_domains='findtreatment.gov',
+    config: DomainConfig(allowed_domains='www.findtreatment.gov',
                          starting_urls='https://www.findtreatment.gov/',
                          schedule='55 07 * * WED',
                          output_target=output_target,
@@ -13307,7 +13283,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'National Flood Insurance Program',
-    config: DomainConfig(allowed_domains='floodsmart.gov',
+    config: DomainConfig(allowed_domains='www.floodsmart.gov',
                          starting_urls='https://www.floodsmart.gov/',
                          schedule='05 08 * * WED',
                          output_target=output_target,
@@ -13331,7 +13307,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Federal Motor Carrier Safety Administration',
-    config: DomainConfig(allowed_domains='fmcsa.dot.gov',
+    config: DomainConfig(allowed_domains='www.fmcsa.dot.gov',
                          starting_urls='https://www.fmcsa.dot.gov/',
                          schedule='50 11 * * WED',
                          output_target=output_target,
@@ -13347,7 +13323,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'FoodSafety.gov',
-    config: DomainConfig(allowed_domains='foodsafety.gov',
+    config: DomainConfig(allowed_domains='www.foodsafety.gov',
                          starting_urls='https://www.foodsafety.gov/',
                          schedule='20 13 * * WED',
                          output_target=output_target,
@@ -13355,7 +13331,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Gerald R. Ford Presidential Library and Museum',
-    config: DomainConfig(allowed_domains='fordlibrarymuseum.gov',
+    config: DomainConfig(allowed_domains='www.fordlibrarymuseum.gov',
                          starting_urls='https://www.fordlibrarymuseum.gov/',
                          schedule='35 14 * * WED',
                          output_target=output_target,
@@ -13363,7 +13339,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'George W. Bush Presidential Library',
-    config: DomainConfig(allowed_domains='georgewbushlibrary.gov',
+    config: DomainConfig(allowed_domains='www.georgewbushlibrary.gov',
                          starting_urls='https://www.georgewbushlibrary.gov/',
                          schedule='50 15 * * WED',
                          output_target=output_target,
@@ -13411,7 +13387,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Department of Health and Human Services',
-    config: DomainConfig(allowed_domains='hhs.gov',
+    config: DomainConfig(allowed_domains='www.hhs.gov',
                          starting_urls='https://www.hhs.gov/',
                          schedule='33 05 * * THU',
                          output_target=output_target,
@@ -13427,16 +13403,16 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'HIRE Vets Medallion Program',
-    config: DomainConfig(allowed_domains='hirevets.gov',
+    config: DomainConfig(allowed_domains='www.hirevets.gov',
                          starting_urls='https://www.hirevets.gov/',
                          schedule='15 07 * * THU',
                          output_target=output_target,
                          depth_limit=8),
   },
   {
-    name: 'History.gov',
-    config: DomainConfig(allowed_domains='history.gov',
-                         starting_urls='https://www.history.gov',
+    name: 'History Hub',
+    config: DomainConfig(allowed_domains='historyhub.history.gov',
+                         starting_urls='https://historyhub.history.gov',
                          schedule='31 08 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -13499,7 +13475,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'JFK Presidential Library',
-    config: DomainConfig(allowed_domains='jfklibrary.org',
+    config: DomainConfig(allowed_domains='www.jfklibrary.org',
                          starting_urls='https://www.jfklibrary.org/',
                          schedule='17 01 * * FRI',
                          output_target=output_target,
@@ -13507,7 +13483,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Jimmy Carter Presidential Library',
-    config: DomainConfig(allowed_domains='jimmycarterlibrary.gov',
+    config: DomainConfig(allowed_domains='www.jimmycarterlibrary.gov',
                          starting_urls='https://www.jimmycarterlibrary.gov/',
                          schedule='32 02 * * FRI',
                          output_target=output_target,
@@ -13515,7 +13491,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Job Corps',
-    config: DomainConfig(allowed_domains='jobcorps.gov',
+    config: DomainConfig(allowed_domains='www.jobcorps.gov',
                          starting_urls='https://www.jobcorps.gov/',
                          schedule='48 03 * * FRI',
                          output_target=output_target,
@@ -13523,7 +13499,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NASA Jet Propulsion Laboratory',
-    config: DomainConfig(allowed_domains='jpl.nasa.gov',
+    config: DomainConfig(allowed_domains='www.jpl.nasa.gov',
                          starting_urls='https://www.jpl.nasa.gov/',
                          schedule='13 04 * * FRI',
                          output_target=output_target,
@@ -13531,7 +13507,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'LBJ Presidential Library',
-    config: DomainConfig(allowed_domains='lbjlibrary.org',
+    config: DomainConfig(allowed_domains='www.lbjlibrary.org',
                          starting_urls='https://www.lbjlibrary.org/',
                          schedule='27 05 * * FRI',
                          output_target=output_target,
@@ -13547,7 +13523,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Army Line of Departure',
-    config: DomainConfig(allowed_domains='lineofdeparture.army.mil',
+    config: DomainConfig(allowed_domains='www.lineofdeparture.army.mil',
                          starting_urls='https://www.lineofdeparture.army.mil/',
                          schedule='56 07 * * FRI',
                          output_target=output_target,
@@ -13555,7 +13531,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Maritime Administration',
-    config: DomainConfig(allowed_domains='maritime.dot.gov',
+    config: DomainConfig(allowed_domains='www.maritime.dot.gov',
                          starting_urls='https://www.maritime.dot.gov/',
                          schedule='11 08 * * FRI',
                          output_target=output_target,
@@ -13595,7 +13571,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USDA National Agricultural Statistics Service',
-    config: DomainConfig(allowed_domains='nass.usda.gov',
+    config: DomainConfig(allowed_domains='www.nass.usda.gov',
                          starting_urls='https://www.nass.usda.gov/',
                          schedule='23 13 * * FRI',
                          output_target=output_target,
@@ -13651,7 +13627,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Nixon Presidential Library',
-    config: DomainConfig(allowed_domains='nixonlibrary.gov',
+    config: DomainConfig(allowed_domains='www.nixonlibrary.gov',
                          starting_urls='https://www.nixonlibrary.gov/',
                          schedule='42 03 * * SAT',
                          output_target=output_target,
@@ -13659,7 +13635,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Network of the National Library of Medicine',
-    config: DomainConfig(allowed_domains='nnlm.gov',
+    config: DomainConfig(allowed_domains='www.nnlm.gov',
                          starting_urls='https://www.nnlm.gov/',
                          schedule='17 04 * * SAT',
                          output_target=output_target,
@@ -13699,7 +13675,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'PhenX Toolkit',
-    config: DomainConfig(allowed_domains='phenxtoolkit.org',
+    config: DomainConfig(allowed_domains='www.phenxtoolkit.org',
                          starting_urls='https://www.phenxtoolkit.org/',
                          schedule='42 09 * * SAT',
                          output_target=output_target,
@@ -13715,7 +13691,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DOT Planning',
-    config: DomainConfig(allowed_domains='planning.dot.gov',
+    config: DomainConfig(allowed_domains='www.planning.dot.gov',
                          starting_urls='https://www.planning.dot.gov/',
                          schedule='32 11 * * SAT',
                          output_target=output_target,
@@ -13763,7 +13739,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Reagan Presidential Library',
-    config: DomainConfig(allowed_domains='reaganlibrary.gov',
+    config: DomainConfig(allowed_domains='www.reaganlibrary.gov',
                          starting_urls='https://www.reaganlibrary.gov/',
                          schedule='32 17 * * SAT',
                          output_target=output_target,
@@ -13795,7 +13771,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Securities and Exchange Commission',
-    config: DomainConfig(allowed_domains='sec.gov',
+    config: DomainConfig(allowed_domains='www.sec.gov',
                          starting_urls='https://www.sec.gov/',
                          schedule='17 04 * * SUN',
                          output_target=output_target,
@@ -13827,7 +13803,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'TFTC Istehdaf',
-    config: DomainConfig(allowed_domains='tftc-istehdaf.org',
+    config: DomainConfig(allowed_domains='www.tftc-istehdaf.org',
                          starting_urls='https://www.tftc-istehdaf.org/',
                          schedule='27 08 * * SUN',
                          output_target=output_target,
@@ -13851,7 +13827,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'US Courts',
-    config: DomainConfig(allowed_domains='uscourts.gov',
+    config: DomainConfig(allowed_domains='www.uscourts.gov',
                          starting_urls='https://www.uscourts.gov/',
                          schedule='32 11 * * SUN',
                          output_target=output_target,
@@ -13867,7 +13843,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'US EU OSH',
-    config: DomainConfig(allowed_domains='useuosh.org',
+    config: DomainConfig(allowed_domains='www.useuosh.org',
                          starting_urls='https://www.useuosh.org/',
                          schedule='12 13 * * SUN',
                          output_target=output_target,
@@ -13875,7 +13851,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'US Fire Administration',
-    config: DomainConfig(allowed_domains='usfa.fema.gov',
+    config: DomainConfig(allowed_domains='www.usfa.fema.gov',
                          starting_urls='https://www.usfa.fema.gov/',
                          schedule='27 14 * * SUN',
                          output_target=output_target,
@@ -13891,7 +13867,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Whistleblowers',
-    config: DomainConfig(allowed_domains='whistleblowers.gov',
+    config: DomainConfig(allowed_domains='www.whistleblowers.gov',
                          starting_urls='https://www.whistleblowers.gov/',
                          schedule='17 16 * * SUN',
                          output_target=output_target,
@@ -13923,7 +13899,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Worker.gov',
-    config: DomainConfig(allowed_domains='worker.gov',
+    config: DomainConfig(allowed_domains='www.worker.gov',
                          starting_urls='https://www.worker.gov/',
                          schedule='27 20 * * SUN',
                          output_target=output_target,
@@ -13939,7 +13915,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NASA Blogs',
-    config: DomainConfig(allowed_domains='nasa.gov/blogs/',
+    config: DomainConfig(allowed_domains='www.nasa.gov/blogs/',
                          starting_urls='https://www.nasa.gov/blogs/',
                          schedule='27 20 * * MON',
                          output_target=output_target,
@@ -13947,7 +13923,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'US Bureau of Labor Statistics',
-    config: DomainConfig(allowed_domains='bls.gov',
+    config: DomainConfig(allowed_domains='www.bls.gov',
                          starting_urls='https://www.bls.gov/',
                          schedule='00 12 * * MON',
                          output_target=output_target,
@@ -13955,7 +13931,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'George HW Bush Presidential Library',
-    config: DomainConfig(allowed_domains='bush41.org',
+    config: DomainConfig(allowed_domains='www.bush41.org',
                          starting_urls='https://www.bush41.org/',
                          schedule='16 10 * * MON',
                          output_target=output_target,
@@ -13971,7 +13947,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Employer.gov',
-    config: DomainConfig(allowed_domains='employer.gov',
+    config: DomainConfig(allowed_domains='www.employer.gov',
                          starting_urls='https://www.employer.gov/',
                          schedule='20 20 * * MON',
                          output_target=output_target,
@@ -13987,7 +13963,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Export-Import Bank of the United States',
-    config: DomainConfig(allowed_domains='exim.gov',
+    config: DomainConfig(allowed_domains='www.exim.gov',
                          starting_urls='https://www.exim.gov/',
                          schedule='11 04 * * MON',
                          output_target=output_target,
@@ -14011,7 +13987,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Milestone Documents',
-    config: DomainConfig(allowed_domains='archives.gov/milestone-documents/',
+    config: DomainConfig(allowed_domains='www.archives.gov/milestone-documents/',
                          starting_urls='https://www.archives.gov/milestone-documents/',
                          schedule='19 19 * * MON',
                          output_target=output_target,
@@ -14038,7 +14014,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'VA Access To Care',
-    config: DomainConfig(allowed_domains='accesstocare.va.gov',
+    config: DomainConfig(allowed_domains='www.accesstocare.va.gov',
                          starting_urls='https://www.accesstocare.va.gov',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -14046,7 +14022,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USCOURTS CACB',
-    config: DomainConfig(allowed_domains='cacb.uscourts.gov',
+    config: DomainConfig(allowed_domains='www.cacb.uscourts.gov',
                          starting_urls='https://www.cacb.uscourts.gov',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -14054,7 +14030,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'VA CIDER Research',
-    config: DomainConfig(allowed_domains='cider.research.va.gov',
+    config: DomainConfig(allowed_domains='www.cider.research.va.gov',
                          starting_urls='https://www.cider.research.va.gov',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -14070,7 +14046,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USDA FPAC Business Center',
-    config: DomainConfig(allowed_domains='fpacbc.usda.gov',
+    config: DomainConfig(allowed_domains='www.fpacbc.usda.gov',
                          starting_urls='https://www.fpacbc.usda.gov/index.html',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -14078,7 +14054,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'VA HERC Research',
-    config: DomainConfig(allowed_domains='herc.research.va.gov',
+    config: DomainConfig(allowed_domains='www.herc.research.va.gov',
                          starting_urls='https://www.herc.research.va.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -14087,7 +14063,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'VA HSRD Research',
-    config: DomainConfig(allowed_domains='hsrd.research.va.gov',
+    config: DomainConfig(allowed_domains='www.hsrd.research.va.gov',
                          starting_urls='https://www.hsrd.research.va.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -14095,7 +14071,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USCOURTS JPML',
-    config: DomainConfig(allowed_domains='jpml.uscourts.gov',
+    config: DomainConfig(allowed_domains='www.jpml.uscourts.gov',
                          starting_urls='https://www.jpml.uscourts.gov',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -14103,7 +14079,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'NIH LRP',
-    config: DomainConfig(allowed_domains='lrp.nih.gov',
+    config: DomainConfig(allowed_domains='www.lrp.nih.gov',
                          starting_urls='https://www.lrp.nih.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -14111,7 +14087,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USCOURTS MSND',
-    config: DomainConfig(allowed_domains='msnd.uscourts.gov',
+    config: DomainConfig(allowed_domains='www.msnd.uscourts.gov',
                          starting_urls='https://www.msnd.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -14119,7 +14095,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USCOURTS MSSD',
-    config: DomainConfig(allowed_domains='mssd.uscourts.gov',
+    config: DomainConfig(allowed_domains='www.mssd.uscourts.gov',
                          starting_urls='https://www.mssd.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -14127,7 +14103,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USCOURTS NCWBA',
-    config: DomainConfig(allowed_domains='ncwba.uscourts.gov',
+    config: DomainConfig(allowed_domains='www.ncwba.uscourts.gov',
                          starting_urls='https://www.ncwba.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -14143,7 +14119,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USCOURTS PAWD',
-    config: DomainConfig(allowed_domains='pawd.uscourts.gov',
+    config: DomainConfig(allowed_domains='www.pawd.uscourts.gov',
                          starting_urls='https://www.pawd.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -14151,7 +14127,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'VA QUERI Research',
-    config: DomainConfig(allowed_domains='queri.research.va.gov',
+    config: DomainConfig(allowed_domains='www.queri.research.va.gov',
                          starting_urls='https://www.queri.research.va.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -14159,7 +14135,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'VA Research & Development',
-    config: DomainConfig(allowed_domains='research.va.gov',
+    config: DomainConfig(allowed_domains='www.research.va.gov',
                          starting_urls='https://www.research.va.gov/',
                          schedule='30 08 * * MON',
                          output_target=output_target,
@@ -14167,7 +14143,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'DOD Defense Travel Management Office',
-    config: DomainConfig(allowed_domains='travel.dod.mil',
+    config: DomainConfig(allowed_domains='www.travel.dod.mil',
                          starting_urls='https://www.travel.dod.mil/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -14175,7 +14151,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'USCOURTS UTB',
-    config: DomainConfig(allowed_domains='utb.uscourts.gov',
+    config: DomainConfig(allowed_domains='www.utb.uscourts.gov',
                          starting_urls='https://www.utb.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -14183,7 +14159,7 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'VA CFM Technical Information Library TIL',
-    config: DomainConfig(allowed_domains='cfm.va.gov/til/',
+    config: DomainConfig(allowed_domains='www.cfm.va.gov/til/',
                          starting_urls='https://www.cfm.va.gov/til/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
