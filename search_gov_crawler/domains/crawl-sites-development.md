@@ -1,116 +1,116 @@
 # Development Schedule
- * [Sunday (10)](#sunday-10)
- * [Monday (8)](#monday-8)
- * [Tuesday (13)](#tuesday-13)
- * [Wednesday (11)](#wednesday-11)
- * [Thursday (11)](#thursday-11)
- * [Friday (10)](#friday-10)
- * [Saturday (10)](#saturday-10)
+ * [Sunday (13)](#sunday-13)
+ * [Monday (14)](#monday-14)
+ * [Tuesday (7)](#tuesday-7)
+ * [Wednesday (8)](#wednesday-8)
+ * [Thursday (10)](#thursday-10)
+ * [Friday (13)](#friday-13)
+ * [Saturday (8)](#saturday-8)
 
 
-## Sunday (10)
+## Sunday (13)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|StudentAid.gov (usagov_en_az)|02:22|studentaid.gov|N|8||
-|Thunder Bay National Marine Sanctuary|09:42|thunderbay.noaa.gov|N|8||
-|Wisconsin National Guard (army_wi.ng)|10:30|wi.ng.mil|N|3||
-|USACE SWT-WC (usace_all)|11:26|swt-wc.usace.army.mil|N|3||
-|Air Force Nuclear Weapons Center (usaf_afnwc)|13:51|afnwc.af.mil|N|8||
-|tricare_raymondbliss|14:00|raymond-bliss.tricare.mil|N|8||
-|I5K.NAL.USDA.gov (USDA NAL)|14:15|i5k.nal.usda.gov|N|3||
-|www.senate.gov (usagov-replacement)|16:00|senate.gov|N|3||
-|195th Wing (afpw_195wg)|16:44|195wg.ang.af.mil|N|8||
-|OSM AMLIS (osm)|18:49|amlis.osmre.gov|N|3||
+|22d Medical Group - McConnell Air Force Base|01:00|mcconnell.tricare.mil|N|8||
+|Joint METC (joint_metc)|01:47|www.metc.mil|N|3||
+|USFK (usfk)|04:44|www.usfk.mil|N|8||
+|USDA Library Cornell|12:47|usda.library.cornell.edu|N|8||
+|USGS Publications Warehouse (doi.gov_all_bureaus)|13:19|pubs.usgs.gov|N|3|/metrics/|
+|Navy NWDC (navu_nwdc)|14:02|www.nwdc.usff.navy.mil|N|3||
+|NOAA GSL Publications (gsl)|14:21|publications.gsl.noaa.gov|N|3||
+|www.pbgc.gov (usagov-replacement)|15:00|www.pbgc.gov|N|3||
+|tricare_leonardwood|16:00|leonard-wood.tricare.mil|N|8||
+|www.gsa.gov (usagov-replacement)|16:15|www.gsa.gov|N|3||
+|IWGSC.NAL.USDA.gov (USDA NAL)|16:15|iwgsc.nal.usda.gov|N|3||
+|Air Force Life Cycle Management Center (usaf_aflcmc)|16:37|www.aflcmc.af.mil|N|8||
+|Air Force Historical Support Division (afpw-afhm)|18:49|www.afhistory.af.mil|N|8||
 
 
-## Monday (8)
+## Monday (14)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|FloodSmart Agents Portal|03:30|agents.floodsmart.gov|N|8||
-|rosap.ntl.bts|04:30|rosap.ntl.bts.gov|N|8||
-|New depth 8 (chengdu.usembassy-china.org.cn)|05:39|chengdu.usembassy-china.org.cn|N|8||
+|data.transportation|05:00|data.transportation.gov|N|3||
+|US Embassy Armenia (dos_emb_eur_armenia)|06:09|am.usembassy.gov|N|3||
+|Get Smart About Drugs (gsad)|08:01|www.getsmartaboutdrugs.gov|N|8||
 |DOD Army MWR|08:30|armymwr.com|N|3||
+|NOAA CoastWatch|08:30|coastwatch.noaa.gov|N|3||
 |NOAA CoastWatch West Coast|09:30|coastwatch.pfeg.noaa.gov|N|3||
-|VA Access To Care|09:30|accesstocare.va.gov|N|3||
-|militarypay.defense.gov (dod_milpay)|11:35|militarypay.defense.gov|N|8||
-|Nellis Air Force Base (nellis)|18:28|nellis.af.mil|N|8||
+|DARPA (chieftechnologist)|10:37|www.darpa.mil|N|3||
+|NIH Data Science (data_science)|10:51|datascience.nih.gov|N|3||
+|New depth 8 (ee.usembassy.gov/ru)|11:35|ee.usembassy.gov/ru|N|8||
+|NASA Astronomy Picture of the Day|14:15|apod.nasa.gov|N|8||
+|servcon.fmc.gov (www.fmc.gov)|17:30|servcon.fmc.gov|N|8||
+|National Museum of the USAF (museum)|20:18|www.nationalmuseum.af.mil|N|8||
+|US Embassy Djibouti (dos_emb_afr_djibouti)|22:20|dj.usembassy.gov|N|3||
+|Army CCAD (army_ccad)|23:12|www.ccad.army.mil|N|3||
 
 
-## Tuesday (13)
+## Tuesday (7)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|ULC (ulc)|01:30|ulc.usace.army.mil|N|3||
-|tricare_beaufort|04:00|beaufort.tricare.mil|N|8||
-|VIREC (virec)|05:31|virec.research.va.gov|N|3||
 |NIH Research Festival (nih-oir-research_festival)|06:00|researchfestival.nih.gov|N|3||
-|CJTF OIR (cjtf_oir)|08:04|inherentresolve.mil|N|3||
-|103rd Airlift Wing (afpw_103aw)|09:52|103aw.ang.af.mil|N|8||
-|Dietary Guidelines|15:00|dietaryguidelines.gov|N|8||
-|www.fincen.gov (usagov-replacement)|15:15|fincen.gov|N|3||
-|www.medicaid.gov (usagov-replacement)|15:30|medicaid.gov|N|3||
-|Department of Labor OIG (oig)|19:49|oig.dol.gov|N|8||
-|Holloman Air Force Base (holloman)|20:18|holloman.af.mil|N|8||
-|Justice Dept (usagov-replacement)|21:30|justice.gov|N|8||
-|USDA REE (ree)|21:34|ree.usda.gov|N|3||
+|tricare_sigonella|07:00|sigonella.tricare.mil|N|8||
+|102nd Intelligence Wing (afpw_102iw)|11:15|www.102iw.ang.af.mil|N|8||
+|www.trade.gov (usagov-replacement)|16:16|www.trade.gov|N|8||
+|medlineplus.gov (usagov-replacement)|16:30|www.medlineplus.gov|N|3||
+|OPM (usagov-replacement)|19:19|www.opm.gov|N|3||
+|Hanscom Air Force Base (hanscom)|23:05|www.hanscom.af.mil|N|8||
 
 
-## Wednesday (11)
+## Wednesday (8)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|NIST Metaschema (metaschema)|01:31|pages.nist.gov|N|3||
-|www.sss.gov (usagov-replacement)|02:04|sss.gov|N|3||
-|jfsc.ndu.edu (nduedu)|06:04|jfsc.ndu.edu|N|8||
-|www.voanews.com (usagov-replacement)|06:30|voanews.com|N|3||
-|New depth 8 (mepi.state.gov/ar)|07:04|mepi.state.gov/ar|N|8||
-|DOS Embassy San Marino (dos_emb_eur_sanmarino)|10:17|sm.usmission.gov|N|3||
-|Air Force Security Forces Center (afpw_afsfc)|10:57|afsfc.af.mil|N|8||
-|tricare_ahcbw|12:00|bassett-wainwright.tricare.mil|N|8||
-|Navy PEO C4I (navy_peoc4)|14:26|peoc4i.navy.mil|N|3||
-|Army 405th AFSB (army_405afsb)|18:07|afsbeurope.army.mil|N|3||
-|www.hiv.gov (usagov-replacement)|20:20|hiv.gov|N|3||
+|www.rrb.gov (usagov-replacement)|01:02|www.rrb.gov|N|3||
+|USDA Farm to School Census|02:30|farmtoschoolcensus.fns.usda.gov|N|8||
+|inss.ndu.edu (nduedu)|08:03|inss.ndu.edu|N|8||
+|New depth 8 (mk.usembassy.gov/sq)|12:59|mk.usembassy.gov/sq|N|8||
+|Joint Base Andrews (afpw_andrews)|13:03|www.jba.af.mil|N|8||
+|Albuquerque District (albuquerque_district)|13:33|www.spa.usace.army.mil|N|3||
+|tricare_lyster|14:00|lyster.tricare.mil|N|8||
+|www.govinfo.gov (usagov-replacement)|21:21|www.govinfo.gov|N|3||
 
 
-## Thursday (11)
+## Thursday (10)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|niccs.cisa.gov (niccs.cisa)|00:00|niccs.cisa.gov|N|8||
-|banks.data.fdic.gov (usagov-replacement)|05:12|banks.data.fdic.gov|N|3||
-|www.treasury.gov (usagov-replacement)|06:22|treasury.gov|N|8||
-|Navy NSW (navy_nswc)|06:47|nsw.navy.mil|N|3||
-|www.mda.mil (usagov-replacement)|07:32|mda.mil|N|3||
-|US Direct Express (usagov-replacement)|07:42|usdirectexpress.com|N|3||
-|History.gov|08:31|history.gov|N|8||
-|www.forcecom.uscg.mil (uscg_all)|08:45|forcecom.uscg.mil|N|8||
-|Andersen Air Force Base (andersen)|11:05|andersen.af.mil|N|8||
-|SPK-WC (spk-wc)|11:55|spk-wc.usace.army.mil|N|3||
-|178th Wing, Ohio Air National Guard (afpw_178fw)|12:45|178wing.ang.af.mil|N|8||
+|www.secretservice.gov (usagov-replacement)|06:12|www.secretservice.gov|N|3||
+|www.ussc.gov (usagov-replacement)|08:22|www.ussc.gov|N|3||
+|public.cyber.mil (usagov-replacement)|09:32|public.cyber.mil|N|3||
+|NTSB (usagov-replacement)|09:42|www.ntsb.gov|N|3||
+|cgmix.uscg.mil (uscg_all)|10:44|cgmix.uscg.mil|N|8||
+|NASA Images|11:38|images.nasa.gov|N|8||
+|Air Force Chief Modeling And Simulation Office (airforce_modsim)|12:55|www.modsim.af.mil|N|8||
+|NOAA ESRL (noaa_esrl)|15:30|www.esrl.noaa.gov|N|8||
+|181st Intelligence Wing, Indiana ANG (afpw_181iw)|15:32|www.181iw.ang.af.mil|N|8||
+|Department of Commerce OIG (oig.doc.gov)|21:51|www.oig.doc.gov|N|8||
 
 
-## Friday (10)
+## Friday (13)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|affoa|03:15|affoa.org|N|3||
-|New depth 8 (ustraveldocs.com/ve)|08:28|ustraveldocs.com/ve|N|8||
-|NIH Clinical Center (CC) (www.cc.nih.gov)|09:14|cc.nih.gov|N|8||
-|USACE New York District (usace_all)|11:17|nan.usace.army.mil|N|3||
-|152nd Airlift Wing, NV ANG (afpw_152aw)|13:09|152aw.ang.af.mil|N|8||
-|www.surfpac.navy.mil (navy_surfpac)|14:24|surfpac.navy.mil|N|8||
-|507th Air Refueling Wing (507arw)|14:46|507arw.afrc.af.mil|N|8||
-|NOAA Coast (coast)|19:09|coast.noaa.gov|N|8||
-|CSL (csl)|19:18|csl.noaa.gov|N|3||
-|NIH ORIP (orip)|23:45|orip.nih.gov|N|8||
+|IRT (irt)|00:37|irt.defense.gov|N|3||
+|Medical Countermeasures (mcmbarda)|03:33|www.medicalcountermeasures.gov|N|8||
+|dc_zerowaste|05:15|zerowaste.dc.gov|N|3||
+|DoD JTF GTMO (dod_jtfgtmo)|08:34|www.jtfgtmo.southcom.mil|N|3||
+|www.aev.class.noaa.gov (www.aev.class.noaa)|12:00|www.aev.class.noaa.gov|N|8||
+|New depth 8 (vote.gov/tl)|14:24|vote.gov/tl|N|8||
+|154th Wing, Hawaii Air National Guard (afpw_154wg)|14:32|www.154wg.ang.af.mil|N|8||
+|kh.usembassy.gov (dos_emb_eap_cambodia)|16:23|kh.usembassy.gov|N|8||
+|4th Air Force (4af)|17:32|www.4af.afrc.af.mil|N|8||
+|Atlantic Oceanographic and Meteorological Laboratory (aoml)|19:09|www.aoml.noaa.gov|N|3||
+|OSPO (ospo)|19:18|www.ospo.noaa.gov|N|3||
+|Center for Scientific Review (CSR) (public.csr.nih.gov)|22:09|public.csr.nih.gov|N|8||
+|DOS Embassy Comoros (dos_emb_afr_comoros)|23:54|km.usembassy.gov|N|3||
 
 
-## Saturday (10)
+## Saturday (8)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|tricare_fewarren|01:00|fewarren.tricare.mil|N|8||
-|Natural Gas Vehicle Buyer Cooperative|01:12|ngvbcc.org|N|8||
-|Defense Standardization Program (dod_dsp)|04:07|dsp.dla.mil|N|3||
-|Navy AirPac (navy_airpac)|06:03|airpac.navy.mil|N|3||
-|Chief Technologist (chieftechnologist)|08:35|cto.mil|N|3||
-|128th Air Refueling Wing, Wisconsin ANG (afpw_128arw)|12:09|128arw.ang.af.mil|N|8||
-|NIH Library (nih)|13:23|nihlibrary.nih.gov|N|8|/about-us/news/|
-|www.nimh.nih.gov (usagov-replacement)|16:00|nimh.nih.gov|N|8||
-|USACE Seattle District (usace_all)|20:18|nws.usace.army.mil|N|3||
-|28th Medical Group - Ellsworth Air Force Base|22:00|ellsworth.tricare.mil|N|8||
+|tricare_beale|03:00|beale.tricare.mil|N|8||
+|Network of the National Library of Medicine|04:17|www.nnlm.gov|N|8||
+|DoD Clearinghouse (dod_chp)|05:34|www.dodclearinghouse.osd.mil|N|3||
+|Army JPEO AA (army_jpeoaa)|12:08|jpeoaa.army.mil|N|3||
+|130th Airlift Wing, West Virginia Air National Guard (afpw_130aw)|13:33|www.130aw.ang.af.mil|N|8||
+|home.army.mil (usagov-replacement)|17:00|home.army.mil|N|3||
+|Office of Human Resources (nih)|17:27|hr.nih.gov|N|8||
+|Army SORB (army_sorb)|17:29|www.goarmysof.army.mil|N|3||

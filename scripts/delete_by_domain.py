@@ -8,7 +8,7 @@ import argparse
 
 from elasticsearch import Elasticsearch
 
-from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
+from search_gov_crawler.search_engines.es_batch_upload import SearchGovElasticsearch
 
 
 def initialize_elasticsearch() -> tuple[Elasticsearch, str]:

@@ -6,9 +6,9 @@ from urllib.parse import urlparse
 
 from elasticsearch import Elasticsearch, helpers  # pylint: disable=wrong-import-order
 
-from search_gov_crawler.elasticsearch.convert_html_i14y import convert_html
-from search_gov_crawler.elasticsearch.convert_pdf_i14y import convert_pdf
-from search_gov_crawler.elasticsearch.i14y_helper import update_dap_visits_to_document
+from search_gov_crawler.search_engines.convert_html_i14y import convert_html
+from search_gov_crawler.search_engines.convert_pdf_i14y import convert_pdf
+from search_gov_crawler.search_engines.i14y_helper import update_dap_visits_to_document
 from search_gov_crawler.search_gov_spiders.spiders import SearchGovDomainSpider
 
 # Suppress warnings from urllib3 and Elasticsearch
@@ -18,7 +18,7 @@ warnings.filterwarnings("ignore", category=Warning, module="elasticsearch")
 # limit excess INFO messages from elasticsearch that are not tied to a spider
 logging.getLogger("elastic_transport").setLevel(logging.ERROR)
 
-log = logging.getLogger("search_gov_crawler.elasticsearch")
+log = logging.getLogger("search_gov_crawler.search_engines")
 
 
 class SearchGovElasticsearch:
@@ -90,9 +90,9 @@ class SearchGovElasticsearch:
         spider: SearchGovDomainSpider,
         response_language: str,
         content_type: str,
-    ) -> None:
+    ) -> dict[str, Any] | None:
         """
-        Convert a response into an i14y document and add to the batch.
+        Convert a response into an i14y document, adds it to the batch, and returns the converted i14y document.
         """
         try:
             if content_type == "text/html":
@@ -120,6 +120,8 @@ class SearchGovElasticsearch:
         self._current_batch.append(doc)
         if len(self._current_batch) >= self._batch_size:
             self.batch_upload(spider)
+
+        return doc
 
     def _create_actions(self, docs: List[Dict[str, Any]], spider: SearchGovDomainSpider) -> List[Dict[str, Any]]:
         """Build bulk actions, popping out any explicit _id fields."""

@@ -4,7 +4,7 @@ This page gives a more detailed description and further instructions on running 
 #### Table of contents
 * [Environment Variables](#environment-variables)
 * [Output Targets](#output-targets)
-* [Elasticsearch](#elasticsearch)
+* [Search Engines](#search-engines)
 * [Starting Spider Jobs](#starting-spider-jobs)
   * [Option 1: command-line](#option-1-scrapy-crawl-with-different-output)
   * [Option 2: benchmark](#option-2-benchmark-command-line)
@@ -43,18 +43,24 @@ DAP_VISITS_MAX_AGE=14
 DATA_GOV_API_KEY="NOT-A-REAL-API-KEY"
 ```
 
-## Elasticsearch
+## Search Engines
 Before setting the output target to `elastcisearch` for any domains:
 1. Install required nltk modules (only required for output target of elasticsearch):
 ```bash
 # make sure the virtual environment is activate
-python ./search_gov_crawler/elasticsearch/install_nltk.py
+python ./search_gov_crawler/search_engines/install_nltk.py
 ```
 
-2. Start elasticsearch using the docker compose file at the project root:
+2. Ensure elasticsearch/opensearch is running by using the docker compose file at the project root:
 ```bash
 # ensure current working directory is the project root
 docker compose up
+```
+
+3. Create index in elasticsearch/opensearch using a template.  Documents will still load without this
+step but it is necessary to enable full searchgov functionality.
+```bash
+/bin/bash docker_create_index.sh
 ```
 
 ## Starting Spider Jobs

@@ -1,7 +1,7 @@
 import pytest
 from elasticsearch import Elasticsearch
 
-from search_gov_crawler.elasticsearch.es_batch_upload import SearchGovElasticsearch
+from search_gov_crawler.search_engines.es_batch_upload import SearchGovElasticsearch
 
 HTML_CONTENT = """
     <html lang="en">
@@ -59,13 +59,13 @@ def fixture_mock_es_client(mocker):
 # Mock convert_html function
 @pytest.fixture(name="mock_convert_html")
 def fixture_mock_convert_html(mocker):
-    return mocker.patch("search_gov_crawler.elasticsearch.es_batch_upload.convert_html")
+    return mocker.patch("search_gov_crawler.search_engines.es_batch_upload.convert_html")
 
 
 def test_add_to_batch(mocker, mock_convert_html, sample_spider):
     test_document = {"_id": "1", "title": "Test Document"}
     mock_update_dap_visits = mocker.patch(
-        "search_gov_crawler.elasticsearch.es_batch_upload.update_dap_visits_to_document",
+        "search_gov_crawler.search_engines.es_batch_upload.update_dap_visits_to_document",
     )
     mock_update_dap_visits.return_value = test_document
     mock_convert_html.return_value = test_document
@@ -122,7 +122,7 @@ def test_parse_es_urls_valid_urls():
 
 
 def test_client_property(mocker, search_gov_es, mock_es_client):
-    mock_es = mocker.patch("search_gov_crawler.elasticsearch.es_batch_upload.Elasticsearch")
+    mock_es = mocker.patch("search_gov_crawler.search_engines.es_batch_upload.Elasticsearch")
     mock_es.return_value = mock_es_client
 
     client = search_gov_es.client
@@ -131,7 +131,7 @@ def test_client_property(mocker, search_gov_es, mock_es_client):
 
 
 def test_client_property_exception(mocker, search_gov_es):
-    mock_es = mocker.patch("search_gov_crawler.elasticsearch.es_batch_upload.Elasticsearch")
+    mock_es = mocker.patch("search_gov_crawler.search_engines.es_batch_upload.Elasticsearch")
     mock_es.side_effect = Exception("Test Exception")
 
     with pytest.raises(Exception, match="Test Exception"):
@@ -148,7 +148,7 @@ def test_create_actions(search_gov_es, sample_spider):
 
 
 def test_batch_upload_with_errors(mocker, search_gov_es, sample_spider):
-    mock_bulk = mocker.patch("search_gov_crawler.elasticsearch.es_batch_upload.helpers.parallel_bulk")
+    mock_bulk = mocker.patch("search_gov_crawler.search_engines.es_batch_upload.helpers.parallel_bulk")
     mock_bulk.return_value = iter([(False, {"error": "Test Error"}), (True, None)])
 
     search_gov_es._current_batch = [{"_id": "1", "title": "Test Document"}, {"_id": "2", "title": "Test Document"}]
@@ -159,7 +159,7 @@ def test_batch_upload_with_errors(mocker, search_gov_es, sample_spider):
 
 
 def test_batch_upload_exception(mocker, search_gov_es, sample_spider):
-    mock_bulk = mocker.patch("search_gov_crawler.elasticsearch.es_batch_upload.helpers.parallel_bulk")
+    mock_bulk = mocker.patch("search_gov_crawler.search_engines.es_batch_upload.helpers.parallel_bulk")
     mock_bulk.side_effect = Exception("Bulk upload failed")
 
     search_gov_es._current_batch = [{"_id": "1", "title": "Test Document"}]

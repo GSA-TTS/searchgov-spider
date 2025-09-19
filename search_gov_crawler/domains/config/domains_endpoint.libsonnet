@@ -54,7 +54,7 @@ local output_target = 'endpoint';
   },
   {
     name: 'FDA Import Alerts',
-    config: DomainConfig(allowed_domains='accessdata.fda.gov',
+    config: DomainConfig(allowed_domains='www.accessdata.fda.gov',
                          starting_urls='https://www.accessdata.fda.gov/CMS_IA/default.html',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -62,7 +62,7 @@ local output_target = 'endpoint';
   },
   {
     name: 'Navy MyNavyHR',
-    config: DomainConfig(allowed_domains='mynavyhr.navy.mil',
+    config: DomainConfig(allowed_domains='www.mynavyhr.navy.mil',
                          starting_urls='https://www.mynavyhr.navy.mil/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -70,7 +70,7 @@ local output_target = 'endpoint';
   },
   {
     name: 'NIH National Institute of General Medical Sciences',
-    config: DomainConfig(allowed_domains='nigms.nih.gov',
+    config: DomainConfig(allowed_domains='www.nigms.nih.gov',
                          starting_urls='https://www.nigms.nih.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -94,7 +94,7 @@ local output_target = 'endpoint';
   },
   {
     name: 'NOAA GOES-R',
-    config: DomainConfig(allowed_domains='goes-r.gov',
+    config: DomainConfig(allowed_domains='www.goes-r.gov',
                          starting_urls='https://www.goes-r.gov',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -102,7 +102,7 @@ local output_target = 'endpoint';
   },
   {
     name: 'TREAS - FinCEN',
-    config: DomainConfig(allowed_domains='fincen.gov',
+    config: DomainConfig(allowed_domains='www.fincen.gov',
                          starting_urls='https://www.fincen.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -110,7 +110,7 @@ local output_target = 'endpoint';
   },
   {
     name: 'USCOURTS ARE',
-    config: DomainConfig(allowed_domains='are.uscourts.gov',
+    config: DomainConfig(allowed_domains='www.are.uscourts.gov',
                          starting_urls='https://www.are.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -118,7 +118,7 @@ local output_target = 'endpoint';
   },
   {
     name: 'USCOURTS CAEP',
-    config: DomainConfig(allowed_domains='caep.uscourts.gov',
+    config: DomainConfig(allowed_domains='www.caep.uscourts.gov',
                          starting_urls='https://www.caep.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -126,15 +126,15 @@ local output_target = 'endpoint';
   },
   {
     name: 'VA Office of Accountability and Whistleblower Protection',
-    config: DomainConfig(allowed_domains='va.gov/accountability/',
-                         starting_urls='https://www.va.gov/accountability/',
+    config: DomainConfig(allowed_domains='department.va.gov/accountability/',
+                         starting_urls='https://department.va.gov/accountability/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
                          depth_limit=3),
   },
   {
     name: 'VA Resources',
-    config: DomainConfig(allowed_domains='va.gov/resources/',
+    config: DomainConfig(allowed_domains='www.va.gov/resources/',
                          starting_urls='https://www.va.gov/resources/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
@@ -142,7 +142,7 @@ local output_target = 'endpoint';
   },
   {
     name: 'DOD DANTES',
-    config: DomainConfig(allowed_domains='dantes.mil',
+    config: DomainConfig(allowed_domains='www.dantes.mil',
                          starting_urls='https://www.dantes.mil/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
