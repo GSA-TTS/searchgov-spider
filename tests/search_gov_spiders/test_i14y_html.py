@@ -1,4 +1,4 @@
-from search_gov_crawler.elasticsearch import convert_html_i14y
+from search_gov_crawler.search_engines import convert_html_i14y
 from search_gov_crawler.search_gov_spiders.helpers import content
 
 

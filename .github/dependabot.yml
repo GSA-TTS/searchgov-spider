@@ -14,6 +14,7 @@ updates:
           - "spidermon*"
           - "apscheduler"
           - "elasticsearch"
+          - "opensearch-py"
           - "redis"
           - "newspaper4k*"
           - "cchardet"

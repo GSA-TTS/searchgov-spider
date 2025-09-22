@@ -157,7 +157,7 @@ def test_start_scrapy_scheduler(caplog, monkeypatch, crawl_sites_test_file, mock
     with (
         caplog.at_level("INFO"),
         patch(
-            "search_gov_crawler.elasticsearch.es_batch_upload.SearchGovElasticsearch.client",
+            "search_gov_crawler.search_engines.es_batch_upload.SearchGovElasticsearch.client",
             return_value=mock_es_client,
         ),
         patch("search_gov_crawler.scrapy_scheduler.SpiderRedisJobStore", return_value=mock_jobstore),
