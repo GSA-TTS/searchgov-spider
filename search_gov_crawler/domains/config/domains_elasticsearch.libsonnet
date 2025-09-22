@@ -209,7 +209,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.aoml.noaa.gov/',
                          schedule='09 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Physical Sciences Laboratory (psl)',
@@ -644,7 +644,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.cbp.gov/',
                          schedule='00 02 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Centers for Disease Control and Prevention (usagov-replacement)',
@@ -684,7 +684,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.fda.gov/',
                          schedule='15 06 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Dept of Labor (usagov-replacement)',
@@ -716,7 +716,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.consumerfinance.gov/',
                          schedule='15 07 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'CIA (usagov-replacement)',
@@ -724,7 +724,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.cia.gov/',
                          schedule='30 07 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'passportstatus.state.gov (usagov-replacement)',
@@ -812,7 +812,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.gsa.gov/',
                          schedule='15 16 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'bidenwhitehouse.archives.gov (usagov-replacement)',
@@ -876,7 +876,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.tsa.gov/',
                          schedule='00 18 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.treasurydirect.gov (usagov-replacement)',
@@ -916,7 +916,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.ice.gov/',
                          schedule='10 04 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.ecfr.gov (usagov-replacement)',
@@ -997,7 +997,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.healthcare.gov/',
                          schedule='14 14 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.fincen.gov (usagov-replacement)',
@@ -1005,7 +1005,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.fincen.gov/',
                          schedule='15 15 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.trade.gov (usagov-replacement)',
@@ -1077,7 +1077,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.army.mil/',
                          schedule='22 06 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'oversight.house.gov (usagov-replacement)',
@@ -1125,7 +1125,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.atf.gov/',
                          schedule='30 05 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'fred.stlouisfed.org (usagov-replacement)',
@@ -1165,7 +1165,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.uspto.gov/',
                          schedule='30 10 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'apps.irs.gov (usagov-replacement)',
@@ -1237,7 +1237,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.commerce.gov/',
                          schedule='30 19 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.fws.gov (usagov-replacement)',
@@ -1253,7 +1253,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://news.va.gov/',
                          schedule='30 21 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'history.state.gov (usagov-replacement)',
@@ -1277,7 +1277,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.fec.gov/',
                          schedule='00 00 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'tricare.mil (usagov-replacement)',
@@ -1325,7 +1325,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.esd.whs.mil/',
                          schedule='00 06 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.bop.gov (usagov-replacement)',
@@ -1333,7 +1333,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.bop.gov/',
                          schedule='00 07 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'safer.fmcsa.dot.gov (usagov-replacement)',
@@ -1429,7 +1429,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.copyright.gov/',
                          schedule='00 19 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'department.va.gov (usagov-replacement)',
@@ -1437,7 +1437,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://department.va.gov/',
                          schedule='00 20 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'ustr.gov (usagov-replacement)',
@@ -1749,7 +1749,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.usmarshals.gov/',
                          schedule='18 09 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.af.mil (usagov-replacement)',
@@ -1805,7 +1805,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.sss.gov/',
                          schedule='04 02 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.rrb.gov (usagov-replacement)',
@@ -1829,7 +1829,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.ers.usda.gov/',
                          schedule='58 02 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.e-verify.gov (usagov-replacement)',
@@ -2430,7 +2430,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.navy.mil/',
                          schedule='22 10 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.ihs.gov (usagov-replacement)',
@@ -2518,7 +2518,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.stopbullying.gov/',
                          schedule='22 21 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.pandemicoversight.gov (usagov-replacement)',
@@ -2687,7 +2687,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.mynavyhr.navy.mil/',
                          schedule='32 17 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.ferc.gov (usagov-replacement)',
@@ -3776,7 +3776,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.ccac.gov',
                          schedule='15 01 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'chemicalhazardsemergencymedicalma',
@@ -3808,7 +3808,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.cdo.gov',
                          schedule='15 02 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'dc_zerowaste',
@@ -8874,7 +8874,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.ctoinnovation.mil',
                          schedule='42 15 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'All-domain Anomaly Resolution Office (dod_aaro)',
@@ -11662,7 +11662,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.geonetcastamericas.noaa.gov',
                          schedule='37 11 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army PSCC (army_pscc)',
@@ -12054,7 +12054,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.cdse.edu',
                          schedule='57 02 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'GSFC SEWP (gsfc210)',
@@ -12062,7 +12062,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.sewp.nasa.gov',
                          schedule='58 03 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'IOCM NOAA (iocm)',
@@ -12515,8 +12515,8 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'New depth 8 (kg.usembassy.gov/ky)',
-    config: DomainConfig(allowed_domains='kg.usembassy.gov/ky',
-                         starting_urls='https://kg.usembassy.gov/ky/',
+    config: DomainConfig(allowed_domains='kg.usembassy.gov',
+                         starting_urls='https://kg.usembassy.gov/',
                          schedule='20 7 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
@@ -14050,7 +14050,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.fpacbc.usda.gov/index.html',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'VA HERC Research',
@@ -14075,7 +14075,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.jpml.uscourts.gov',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NIH LRP',
@@ -14083,7 +14083,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.lrp.nih.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USCOURTS MSND',
@@ -14091,7 +14091,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.msnd.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USCOURTS MSSD',
@@ -14123,7 +14123,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.pawd.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'VA QUERI Research',
@@ -14147,7 +14147,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.travel.dod.mil/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USCOURTS UTB',
@@ -14155,7 +14155,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.utb.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'VA CFM Technical Information Library TIL',
