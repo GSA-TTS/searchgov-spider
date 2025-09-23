@@ -122,6 +122,7 @@ remove_nohup_jobs
 # Remove specific cron jobs
 remove_cron_entry "check_cloudwatch.sh"
 remove_cron_entry "check_codedeploy.sh"
+remove_cron_entry "check_ssm.sh"
 remove_cron_entry "app_start.sh"
 
 echo "App stop completed successfully."
