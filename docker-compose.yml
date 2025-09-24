@@ -99,28 +99,28 @@ services:
   spider:
     &spider
     build:
-      context: ./
+      context: ../searchgov-spider
       dockerfile: DockerFile.dev
+    env_file:
+      - ../searchgov-spider/.env.development
     environment:
       PYTHONPATH: /usr/src/searchgov-spider
-      SPIDER_CRAWL_SITES_FILE_NAME: "crawl-sites-development.json"
-      OPENSEARCH_ENABLED: "True"
     depends_on:
       redis:
         condition: service_healthy
       opensearch:
         condition: service_healthy
-      elasticsearch:
+      elasticsearch7:
         condition: service_healthy
     network_mode: host
     profiles:
-      - spider
+      - search-gov
 
-  scrapy-scheduler:
+  spider-scheduler:
     <<: *spider
     command: python search_gov_crawler/scrapy_scheduler.py
 
-  sitemap-monitor:
+  spider-sitemap:
     <<: *spider
     command: python search_gov_crawler/run_sitemap_monitor.py
 
