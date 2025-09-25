@@ -8,7 +8,7 @@ RUN apt-get update
 
 # Copy project files and set up virtual environment
 COPY . .
-COPY scripts/docker/spider /usr/local/bin/spider
+COPY scripts/docker/spider.sh /usr/local/bin/spider
 RUN chmod +x /usr/local/bin/spider
 
 # Install dependencies

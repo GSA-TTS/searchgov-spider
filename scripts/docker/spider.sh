@@ -1,9 +1,9 @@
 #!/bin/sh
-# A script to allow for simple spider usage in docker by users of the search-services repo.
+# A script to allow for simple spider usage in docker.
 
 DOCKER_WORK_DIR=/usr/src/searchgov-spider
 
-show_help() {
+_show_help() {
     echo "crawl - A simple interface allowing for ad hoc spider runs."
     echo ""
     echo "Usage: crawl <domain> <starting-url> [OPTIONS]"
@@ -24,7 +24,7 @@ _has_args() {
     if [ "$#" -lt 2 ]; then
         echo "ERROR: Not Enough Arguments!"
         echo ""
-        show_help
+        _show_help
         return 1
     fi
 }

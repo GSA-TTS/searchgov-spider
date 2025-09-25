@@ -3,7 +3,8 @@ The home for the spider that supports [Search.gov](https://www.search.gov).
 
 #### Table of contents
 * [About](#about)
-* [Quick Start](#quick-start)
+* [Quick Start (Docker)](#quick-start---docker)
+* [Quick Start (Local)](#quick-start---local-development)
 * [Entry Points](#entrypoints)
 * [Helpful Links](#helpful-links)
 
@@ -38,7 +39,32 @@ We currently run python 3.12.  The spider is based on the open source [scrapy](h
 │   ├── scrapy.cfg
 ```
 
-## Quick Start
+## Quick Start - Docker
+Docker can be used to run spider from this repo or from [search-services](https://www.github.com/GSA/search-services).  If you want to run other SearchGov services besides spider and its dependencies, you should use the search services repo..
+
+1. Start docker:
+
+The spider profile must be used to start the spider and its dependencies.
+```bash
+docker compose --profile spider up
+```
+
+2. Watch Logs and Check Output:
+
+The default behavior is that the `spider-scheduler` and `spider-sitemap` containers start running based on our development schedule.  It may be that no jobs are scheduled for a while so nothing will run.  Likewise, the sitemap process may not detect changes and index any documents.
+
+If a crawl does start watch the logs for information about records loaded to Elasticsearch and Opensearch.  Then, visit [Kibana](http://localhost:5601) and/or [Opensearch Dashboards](http://localhost:5602) to view indexed documents.
+
+3. Run an on-demand crawl
+To direct documents from a specific domain, use the helper script to trigger an on-demand crawl.  Here the `spider crawl` command can be used as a shortcut to trigger a non-js crawl starting at `https://www.gsa.gov` and limited to pages in the `www.gsa.gov` domain.
+
+```bash
+docker exec searchgov-spider-scheduler-1 /bin/bash -c "spider crawl www.gsa.gov https://www.gsa.gov"
+```
+If using search-services, you will need to adjust the container name to match its docker configuration.
+
+
+## Quick Start - Local Development
 
 1. Insall and activate virtual environment:
 ```bash
@@ -46,7 +72,7 @@ python -m venv venv
 source venv/bin/activate
 ```
 
-2. Install required python modules:
+2. Add required python modules:
 ```bash
 pip install -r requirements.txt
 
@@ -55,7 +81,7 @@ playwright install --with-deps
 playwright install chrome --force
 ```
 
-3. Start Required Infrastructure Using Docker
+3. Start Required Infrastructure Using Docker:
 ```bash
 docker compose up redis
 ```
