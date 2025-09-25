@@ -1,5 +1,5 @@
 # Install plugins for OpenSearch
-FROM docker.io/opensearchproject/opensearch:3.1
+FROM docker.io/opensearchproject/opensearch:3.1.0
 
 RUN opensearch-plugin install analysis-kuromoji
 RUN opensearch-plugin install analysis-icu

@@ -36,7 +36,6 @@ crawl() {
     STARTING_URLS=$2
 
     cd $DOCKER_WORK_DIR/search_gov_crawler
-    echo $ALLOWED_DOMAINS $STARTING_URLS
     python benchmark.py -d $ALLOWED_DOMAINS -u $STARTING_URLS
 }
 
