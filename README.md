@@ -59,9 +59,8 @@ If a crawl does start watch the logs for information about records loaded to Ela
 To direct documents from a specific domain, use the helper script to trigger an on-demand crawl.  Here the `spider crawl` command can be used as a shortcut to trigger a non-js crawl starting at `https://www.gsa.gov` and limited to pages in the `www.gsa.gov` domain.
 
 ```bash
-docker exec searchgov-spider-scheduler-1 /bin/bash -c "spider crawl www.gsa.gov https://www.gsa.gov"
+docker compose run spider /bin/bash -c "spider crawl www.gsa.gov https://www.gsa.gov"
 ```
-If using search-services, you will need to adjust the container name to match its docker configuration.
 
 
 ## Quick Start - Local Development
