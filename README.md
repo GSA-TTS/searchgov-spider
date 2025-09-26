@@ -40,7 +40,7 @@ We currently run python 3.12.  The spider is based on the open source [scrapy](h
 ```
 
 ## Quick Start - Docker
-Docker can be used to run spider from this repo or from [search-services](https://www.github.com/GSA/search-services).  If you want to run other SearchGov services besides spider and its dependencies, you should use the search services repo..
+Docker can be used to run spider from this repo or from [search-services](https://www.github.com/GSA/search-services).  If you want to run other SearchGov services besides spider and its dependencies, you should use the search services repo.
 
 1. Start docker:
 

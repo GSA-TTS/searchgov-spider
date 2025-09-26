@@ -15,7 +15,7 @@ This page gives a more detailed description and further instructions on running 
 * [Running DAP Extractor](#running-dap-extractor)
 
 ## Environment Variables
-If running a scheduler or benchmark, we support the use of a `.env` file in the project root to read keys and values.  Othewise these must be exported through other means.   We also provide a `.env.development` for use with dock as well as a example for some of these values.
+If running a scheduler or benchmark, we support the use of a `.env` file in the project root to read keys and values.  Otherwise these must be exported through other means.   We also provide a `.env.development` for use with dock as well as a example for some of these values.
 
 ```bash
 # Optional variables for process control and info
