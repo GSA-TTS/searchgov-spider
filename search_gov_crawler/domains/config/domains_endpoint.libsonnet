@@ -58,7 +58,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.accessdata.fda.gov/CMS_IA/default.html',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy MyNavyHR',
