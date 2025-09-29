@@ -1,19 +1,6 @@
 [
    {
       "allow_query_string": false,
-      "allowed_domains": "armymwr.com",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "DOD Army MWR",
-      "output_target": "endpoint",
-      "schedule": "30 08 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.armymwr.com/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "eastcoast.coastwatch.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -170,32 +157,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.are.uscourts.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USCOURTS ARE",
-      "output_target": "endpoint",
-      "schedule": "30 09 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.are.uscourts.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.caep.uscourts.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USCOURTS CAEP",
-      "output_target": "endpoint",
-      "schedule": "30 09 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.caep.uscourts.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "department.va.gov/accountability/",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -307,7 +268,7 @@
       "handle_javascript": false,
       "name": "NOAA (noaa)",
       "output_target": "elasticsearch",
-      "schedule": "01 19 * * FRI",
+      "schedule": "01 19 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.noaa.gov/"
    },
@@ -322,7 +283,7 @@
       "handle_javascript": false,
       "name": "National Centers for Environmental Information (ncei)",
       "output_target": "elasticsearch",
-      "schedule": "01 19 * * FRI",
+      "schedule": "01 19 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.ncei.noaa.gov/"
    },
@@ -335,7 +296,7 @@
       "handle_javascript": false,
       "name": "NOAA Fisheries (fisheries)",
       "output_target": "elasticsearch",
-      "schedule": "02 19 * * FRI",
+      "schedule": "02 19 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.fisheries.noaa.gov/"
    },
@@ -348,7 +309,7 @@
       "handle_javascript": false,
       "name": "NOAA Water (water)",
       "output_target": "elasticsearch",
-      "schedule": "02 19 * * FRI",
+      "schedule": "02 19 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://water.noaa.gov/"
    },
@@ -361,7 +322,7 @@
       "handle_javascript": false,
       "name": "Weather Prediction Center (wpc)",
       "output_target": "elasticsearch",
-      "schedule": "03 19 * * FRI",
+      "schedule": "03 19 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.wpc.ncep.noaa.gov/"
    },
@@ -374,7 +335,7 @@
       "handle_javascript": false,
       "name": "NOAA Ocean Service (oceanservice)",
       "output_target": "elasticsearch",
-      "schedule": "03 19 * * FRI",
+      "schedule": "03 19 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://oceanservice.noaa.gov/"
    },
@@ -1140,45 +1101,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "founders.archives.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Founders Online (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 06 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://founders.archives.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "travel.state.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "travel.state.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "19 02 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://travel.state.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "pmc.ncbi.nlm.nih.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "NIH PubMed Central (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "30 04 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://pmc.ncbi.nlm.nih.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.whitehouse.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -1218,19 +1140,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.opm.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "OPM (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "19 19 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.opm.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "consumer.ftc.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -1254,19 +1163,6 @@
       "schedule": "30 00 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://www.nps.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "eforms.state.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "State Dept Forms (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "45 00 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://eforms.state.gov/"
    },
    {
       "allow_query_string": false,
@@ -1374,19 +1270,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "blog.ssa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "SSA Blog (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 07 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://blog.ssa.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.consumerfinance.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -1413,19 +1296,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "passportstatus.state.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "passportstatus.state.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "45 07 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://passportstatus.state.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.census.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -1449,19 +1319,6 @@
       "schedule": "15 11 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://www.doge.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.federalregister.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.federalregister.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "30 11 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.federalregister.gov/"
    },
    {
       "allow_query_string": false,
@@ -1517,32 +1374,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.ncbi.nlm.nih.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.ncbi.nlm.nih.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "45 12 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.ncbi.nlm.nih.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.senate.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.senate.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 16 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.senate.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.gsa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -1553,45 +1384,6 @@
       "schedule": "15 16 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://www.gsa.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "bidenwhitehouse.archives.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "bidenwhitehouse.archives.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "30 16 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://bidenwhitehouse.archives.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "secure.login.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "secure.login.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "45 16 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://secure.login.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.dhs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.dhs.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "19 03 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.dhs.gov/"
    },
    {
       "allow_query_string": false,
@@ -1725,19 +1517,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.ecfr.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.ecfr.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "01 05 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.ecfr.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.fema.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -1818,32 +1597,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "uscode.house.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "uscode.house.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 12 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://uscode.house.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "trumpwhitehouse.archives.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "trumpwhitehouse.archives.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "13 13 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://trumpwhitehouse.archives.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.healthcare.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -1867,19 +1620,6 @@
       "schedule": "15 15 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.fincen.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.trade.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "www.trade.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "16 16 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.trade.gov/"
    },
    {
       "allow_query_string": false,
@@ -1919,19 +1659,6 @@
       "schedule": "21 21 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.supremecourt.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "budget.house.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "budget.house.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "22 22 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://budget.house.gov/"
    },
    {
       "allow_query_string": false,
@@ -1987,19 +1714,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "oversight.house.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "oversight.house.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "44 06 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://oversight.house.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.login.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -2026,19 +1740,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "guides.loc.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "guides.loc.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "30 03 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://guides.loc.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "2021-2025.state.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -2062,32 +1763,6 @@
       "schedule": "30 05 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.atf.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "fred.stlouisfed.org",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "fred.stlouisfed.org (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "30 06 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://fred.stlouisfed.org/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.fdic.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.fdic.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "30 07 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.fdic.gov/"
    },
    {
       "allow_query_string": false,
@@ -2130,45 +1805,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "apps.irs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "apps.irs.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "30 11 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://apps.irs.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "odphp.health.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "odphp.health.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "30 12 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://odphp.health.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.annualcreditreport.com",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.annualcreditreport.com (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "30 13 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.annualcreditreport.com/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.dfas.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -2205,19 +1841,6 @@
       "schedule": "30 16 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.medlineplus.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "eric.ed.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "eric.ed.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "30 17 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://eric.ed.gov/"
    },
    {
       "allow_query_string": false,
@@ -2286,19 +1909,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "fiscaldata.treasury.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "fiscaldata.treasury.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 06 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://fiscaldata.treasury.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.fec.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -2306,35 +1916,9 @@
       "handle_javascript": false,
       "name": "www.fec.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 00 * * SAT",
+      "schedule": "00 00 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.fec.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.tricare.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "tricare.mil (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 01 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.tricare.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "taxpayeradvocate.irs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.taxpayeradvocate.irs.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 02 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.taxpayeradvocate.irs.gov/"
    },
    {
       "allow_query_string": false,
@@ -2345,7 +1929,7 @@
       "handle_javascript": false,
       "name": "sam.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 03 * * SAT",
+      "schedule": "00 03 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://sam.gov/"
    },
@@ -2358,7 +1942,7 @@
       "handle_javascript": false,
       "name": "fiscal.treasury.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 04 * * SAT",
+      "schedule": "00 04 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://fiscal.treasury.gov/"
    },
@@ -2371,7 +1955,7 @@
       "handle_javascript": false,
       "name": "www.nhtsa.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 05 * * SAT",
+      "schedule": "00 05 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.nhtsa.gov/"
    },
@@ -2384,7 +1968,7 @@
       "handle_javascript": false,
       "name": "www.esd.whs.mil (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 06 * * SAT",
+      "schedule": "00 06 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.esd.whs.mil/"
    },
@@ -2397,7 +1981,7 @@
       "handle_javascript": false,
       "name": "www.bop.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 07 * * SAT",
+      "schedule": "00 07 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.bop.gov/"
    },
@@ -2410,7 +1994,7 @@
       "handle_javascript": false,
       "name": "safer.fmcsa.dot.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 08 * * SAT",
+      "schedule": "00 08 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://safer.fmcsa.dot.gov/"
    },
@@ -2423,35 +2007,9 @@
       "handle_javascript": false,
       "name": "nces.ed.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 09 * * SAT",
+      "schedule": "00 09 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://nces.ed.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.reginfo.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.reginfo.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 10 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.reginfo.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "waysandmeans.house.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "waysandmeans.house.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 11 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://waysandmeans.house.gov/"
    },
    {
       "allow_query_string": false,
@@ -2462,7 +2020,7 @@
       "handle_javascript": false,
       "name": "uk.usembassy.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 12 * * SAT",
+      "schedule": "00 12 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://uk.usembassy.gov/"
    },
@@ -2475,7 +2033,7 @@
       "handle_javascript": false,
       "name": "www.bea.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "00 13 * * SAT",
+      "schedule": "00 13 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.bea.gov/"
    },
@@ -2559,45 +2117,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "department.va.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "department.va.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 20 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://department.va.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.ustr.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "ustr.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 21 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.ustr.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "encyclopedia.ushmm.org",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "encyclopedia.ushmm.org (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 22 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://encyclopedia.ushmm.org/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.nih.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -2608,58 +2127,6 @@
       "schedule": "00 23 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.nih.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.donotcall.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.donotcall.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "02 02 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.donotcall.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.cdph.ca.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.cdph.ca.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "03 03 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.cdph.ca.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "chcoc.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.chcoc.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "01 01 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.chcoc.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.patientcare.va.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.patientcare.va.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "05 05 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.patientcare.va.gov/"
    },
    {
       "allow_query_string": false,
@@ -2676,19 +2143,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.cbo.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.cbo.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "08 08 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.cbo.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.militaryonesource.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -2699,32 +2153,6 @@
       "schedule": "09 09 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.militaryonesource.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "benefits.va.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "benefits.va.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "10 10 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://benefits.va.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "aspe.hhs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "aspe.hhs.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "11 11 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://aspe.hhs.gov/"
    },
    {
       "allow_query_string": false,
@@ -2767,19 +2195,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "docs.house.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "docs.house.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "15 15 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://docs.house.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.usmint.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -2806,19 +2221,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.osti.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "www.osti.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "18 18 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.osti.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.nia.nih.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -2842,19 +2244,6 @@
       "schedule": "20 20 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.hiv.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.govinfo.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.govinfo.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "21 21 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.govinfo.gov/"
    },
    {
       "allow_query_string": false,
@@ -2897,19 +2286,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.cga.ct.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.cga.ct.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "44 22 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.cga.ct.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "ofac.treasury.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -2920,19 +2296,6 @@
       "schedule": "42 21 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://ofac.treasury.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "bjs.ojp.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "bjs.ojp.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "40 20 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://bjs.ojp.gov/"
    },
    {
       "allow_query_string": false,
@@ -2949,19 +2312,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "oig.usaid.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "oig.usaid.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "36 18 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://oig.usaid.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.nrc.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -2972,58 +2322,6 @@
       "schedule": "34 17 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.nrc.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "mhvidp-prod.myhealth.va.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "mhvidp-prod.myhealth.va.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "32 16 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://mhvidp-prod.myhealth.va.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "blogs.loc.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "blogs.loc.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "30 15 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://blogs.loc.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.flsenate.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.flsenate.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "28 14 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.flsenate.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.eac.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.eac.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "26 13 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.eac.gov/"
    },
    {
       "allow_query_string": false,
@@ -3092,19 +2390,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "acf.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "acf.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "14 07 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://acf.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.tsp.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -3131,19 +2416,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "tsaenrollmentbyidemia.tsa.dhs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "tsaenrollmentbyidemia.tsa.dhs.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "08 04 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://tsaenrollmentbyidemia.tsa.dhs.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.faa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -3151,7 +2423,7 @@
       "handle_javascript": false,
       "name": "www.faa.gov (usagov-replacement)",
       "output_target": "elasticsearch",
-      "schedule": "06 03 * * TUE",
+      "schedule": "06 03 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.faa.gov/"
    },
@@ -3167,19 +2439,6 @@
       "schedule": "04 02 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.sss.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.rrb.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.rrb.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "02 01 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.rrb.gov/"
    },
    {
       "allow_query_string": false,
@@ -3209,58 +2468,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.e-verify.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.e-verify.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "57 03 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.e-verify.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "stacks.cdc.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "stacks.cdc.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "56 04 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://stacks.cdc.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "dailymed.nlm.nih.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "dailymed.nlm.nih.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "55 05 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://dailymed.nlm.nih.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.flhsmv.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.flhsmv.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "54 06 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.flhsmv.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "georgewbush-whitehouse.archives.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -3271,19 +2478,6 @@
       "schedule": "53 07 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://georgewbush-whitehouse.archives.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.ncdhhs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.ncdhhs.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "52 08 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.ncdhhs.gov/"
    },
    {
       "allow_query_string": false,
@@ -3352,19 +2546,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "2001-2009.state.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "2001-2009.state.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "46 14 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://2001-2009.state.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.energystar.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -3375,19 +2556,6 @@
       "schedule": "45 15 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.energystar.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.cftc.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.cftc.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "44 16 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.cftc.gov/"
    },
    {
       "allow_query_string": false,
@@ -3404,58 +2572,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "ncblpc.org",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "ncblpc.org (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "37 18 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://ncblpc.org/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "my.uscis.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "my.uscis.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "29 19 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://my.uscis.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "acl.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "acl.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "13 20 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://acl.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.redcross.org",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.redcross.org (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "05 21 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.redcross.org/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "milconnect.dmdc.osd.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -3469,32 +2585,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.recreation.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.recreation.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "33 23 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.recreation.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.voanews.com",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.voanews.com (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "30 06 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.voanews.com/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.pbgc.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -3505,32 +2595,6 @@
       "schedule": "00 15 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://www.pbgc.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.nga.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.nga.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 06 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.nga.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "seasonaljobs.dol.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "seasonaljobs.dol.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 09 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://seasonaljobs.dol.gov/"
    },
    {
       "allow_query_string": false,
@@ -3562,32 +2626,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "bean.house.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "bean.house.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 06 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://bean.house.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.smithsonianmag.com",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Smithsonian Magazine (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "30 06 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.smithsonianmag.com/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.grants.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -3598,32 +2636,6 @@
       "schedule": "30 06 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.grants.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "oversightdemocrats.house.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "oversightdemocrats.house.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 02 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://oversightdemocrats.house.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.uspis.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.uspis.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 04 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.uspis.gov/"
    },
    {
       "allow_query_string": false,
@@ -3653,32 +2665,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.nlrb.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.nlrb.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 10 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.nlrb.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "catalog.data.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "catalog.data.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 12 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://catalog.data.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.navsea.navy.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -3705,19 +2691,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.foia.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.foia.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 18 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.foia.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "share.america.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -3731,19 +2704,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "wwwnc.cdc.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "wwwnc.cdc.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "00 22 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://wwwnc.cdc.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "j1visa.state.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -3754,71 +2714,6 @@
       "schedule": "12 00 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://j1visa.state.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.childcare.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "childcare.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 01 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.childcare.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.ic3.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.ic3.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 02 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.ic3.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "earthquake.usgs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "earthquake.usgs.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 03 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://earthquake.usgs.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "corp.commissaries.com",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "corp.commissaries.com (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 04 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://corp.commissaries.com/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "banks.data.fdic.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "banks.data.fdic.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 05 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://banks.data.fdic.gov/"
    },
    {
       "allow_query_string": false,
@@ -3848,84 +2743,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "data.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "data.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 08 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://data.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.usich.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.usich.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 09 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.usich.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.blackburn.senate.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.blackburn.senate.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 10 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.blackburn.senate.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "help.usajobs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "help.usajobs.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 11 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://help.usajobs.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.phila.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.phila.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 12 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.phila.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.occ.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.occ.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 13 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.occ.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.goarmy.com",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -3936,19 +2753,6 @@
       "schedule": "12 14 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.goarmy.com/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "foreignaffairs.house.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "foreignaffairs.house.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 15 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://foreignaffairs.house.gov/"
    },
    {
       "allow_query_string": false,
@@ -3965,58 +2769,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "democrats-appropriations.house.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "democrats-appropriations.house.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 17 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://democrats-appropriations.house.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "careers.cbp.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "careers.cbp.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 18 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://careers.cbp.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.judiciary.senate.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.judiciary.senate.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 19 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.judiciary.senate.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.iowacourts.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.iowacourts.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 20 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.iowacourts.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.armyupress.army.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -4027,84 +2779,6 @@
       "schedule": "12 21 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.armyupress.army.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.health.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "health.mil (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 22 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.health.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "bensguide.gpo.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "bensguide.gpo.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "12 23 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://bensguide.gpo.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.nifc.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.nifc.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "22 00 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.nifc.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.fueleconomy.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.fueleconomy.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "22 01 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.fueleconomy.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "ohss.dhs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "ohss.dhs.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "22 02 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://ohss.dhs.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.hsgac.senate.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.hsgac.senate.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "22 03 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.hsgac.senate.gov/"
    },
    {
       "allow_query_string": false,
@@ -4131,32 +2805,6 @@
       "schedule": "22 05 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://jp.usembassy.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "dfpi.ca.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "dfpi.ca.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "22 07 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://dfpi.ca.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.ussc.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.ussc.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "22 08 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.ussc.gov/"
    },
    {
       "allow_query_string": false,
@@ -4199,45 +2847,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.airforce.com",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.airforce.com (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "22 12 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.airforce.com/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "planthardiness.ars.usda.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "planthardiness.ars.usda.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "22 13 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://planthardiness.ars.usda.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "ovc.ojp.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "ovc.ojp.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "22 14 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://ovc.ojp.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "oig.justice.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -4251,19 +2860,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "law.lis.virginia.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "law.lis.virginia.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "22 16 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://law.lis.virginia.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.fsa.usda.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -4274,32 +2870,6 @@
       "schedule": "22 17 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.fsa.usda.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "vault.fbi.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "vault.fbi.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "22 18 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://vault.fbi.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.ffiec.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.ffiec.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "22 19 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.ffiec.gov/"
    },
    {
       "allow_query_string": false,
@@ -4326,84 +2896,6 @@
       "schedule": "22 21 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.stopbullying.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.pandemicoversight.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.pandemicoversight.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "22 22 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.pandemicoversight.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "vacareers.va.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "vacareers.va.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "22 23 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://vacareers.va.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "prologue.blogs.archives.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "prologue.blogs.archives.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "32 00 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://prologue.blogs.archives.gov/"
-   },
-   {
-      "allow_query_string": true,
-      "allowed_domains": "ojjdp.ojp.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "ojjdp.ojp.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "32 01 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://ojjdp.ojp.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "lostandfound.dol.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "lostandfound.dol.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "32 02 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://lostandfound.dol.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "installations.militaryonesource.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "installations.militaryonesource.mil (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "32 03 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://installations.militaryonesource.mil/"
    },
    {
       "allow_query_string": false,
@@ -4472,19 +2964,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "public.cyber.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "public.cyber.mil (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "32 09 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://public.cyber.mil/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "eg.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -4495,32 +2974,6 @@
       "schedule": "32 10 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://eg.usembassy.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "consumer.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "consumer.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "32 11 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://consumer.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "clerk.house.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "clerk.house.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "32 12 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://clerk.house.gov/"
    },
    {
       "allow_query_string": false,
@@ -4547,32 +3000,6 @@
       "schedule": "32 13 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.msha.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "mikejohnson.house.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "mikejohnson.house.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "32 14 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://mikejohnson.house.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "democrats-judiciary.house.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "democrats-judiciary.house.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "32 15 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://democrats-judiciary.house.gov/"
    },
    {
       "allow_query_string": false,
@@ -4628,45 +3055,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "learningenglish.voanews.com",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "learningenglish.voanews.com (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "32 20 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://learningenglish.voanews.com/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "appropriations.house.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "appropriations.house.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "32 21 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://appropriations.house.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.arts.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.arts.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "32 22 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.arts.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "ncua.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -4677,19 +3065,6 @@
       "schedule": "32 23 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://ncua.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "fam.state.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "State Dept Foreign Affairs Manual (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "42 00 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://fam.state.gov/"
    },
    {
       "allow_query_string": false,
@@ -4771,19 +3146,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.usdirectexpress.com",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "US Direct Express (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "42 07 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.usdirectexpress.com/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.usar.army.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -4820,45 +3182,6 @@
       "schedule": "42 10 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.nlm.nih.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "cruz.senate.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Sen Cruz (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "42 11 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://cruz.senate.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "larson.house.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Rep Larson (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "42 23 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://larson.house.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "jobs.tsa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "TSA Jobs (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "42 22 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://jobs.tsa.gov/"
    },
    {
       "allow_query_string": false,
@@ -4911,19 +3234,6 @@
       "schedule": "30 06 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.va.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "ntrs.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "NATA Technical Reports Server (usagov-replacement)",
-      "output_target": "elasticsearch",
-      "schedule": "30 06 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://ntrs.nasa.gov/"
    },
    {
       "allow_query_string": false,
@@ -5389,7 +3699,7 @@
       "handle_javascript": false,
       "name": "tricare_nhcc",
       "output_target": "elasticsearch",
-      "schedule": "00 01 * * TUE",
+      "schedule": "00 01 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://charleston.tricare.mil/"
    },
@@ -5402,7 +3712,7 @@
       "handle_javascript": false,
       "name": "tricare_camplejeune",
       "output_target": "elasticsearch",
-      "schedule": "00 02 * * TUE",
+      "schedule": "00 02 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://camp-lejeune.tricare.mil/"
    },
@@ -5415,7 +3725,7 @@
       "handle_javascript": false,
       "name": "tricare_lemoore",
       "output_target": "elasticsearch",
-      "schedule": "00 03 * * TUE",
+      "schedule": "00 03 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://lemoore.tricare.mil/"
    },
@@ -5428,7 +3738,7 @@
       "handle_javascript": false,
       "name": "tricare_beaufort",
       "output_target": "elasticsearch",
-      "schedule": "00 04 * * TUE",
+      "schedule": "00 04 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://beaufort.tricare.mil/"
    },
@@ -5441,7 +3751,7 @@
       "handle_javascript": false,
       "name": "tricare_annapolis",
       "output_target": "elasticsearch",
-      "schedule": "00 05 * * TUE",
+      "schedule": "00 05 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://annapolis.tricare.mil/"
    },
@@ -6383,32 +4693,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.tva.com",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "tva",
-      "output_target": "elasticsearch",
-      "schedule": "15 11 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.tva.com/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "affoa.org",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "affoa",
-      "output_target": "elasticsearch",
-      "schedule": "15 03 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://affoa.org/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.cdo.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -6419,19 +4703,6 @@
       "schedule": "15 02 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://www.cdo.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "zerowaste.dc.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "dc_zerowaste",
-      "output_target": "elasticsearch",
-      "schedule": "15 05 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://zerowaste.dc.gov/"
    },
    {
       "allow_query_string": false,
@@ -10958,19 +9229,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "rosap.ntl.bts.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "rosap.ntl.bts",
-      "output_target": "elasticsearch",
-      "schedule": "30 04 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://rosap.ntl.bts.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.bts.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -10981,45 +9239,6 @@
       "schedule": "45 04 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.bts.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "data.transportation.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "data.transportation",
-      "output_target": "elasticsearch",
-      "schedule": "00 05 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://data.transportation.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "myaccessreg.faa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "myaccessreg.faa",
-      "output_target": "elasticsearch",
-      "schedule": "15 06 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://myaccessreg.faa.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "corpweb1.dfas.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "corpweb1.dfas",
-      "output_target": "elasticsearch",
-      "schedule": "45 06 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://corpweb1.dfas.mil"
    },
    {
       "allow_query_string": false,
@@ -11036,45 +9255,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "apps.bea.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "apps.bea",
-      "output_target": "elasticsearch",
-      "schedule": "45 08 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://apps.bea.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "regulations.atf.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "regulations.atf",
-      "output_target": "elasticsearch",
-      "schedule": "45 09 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://regulations.atf.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "fflezcheck.atf.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "fflezcheck.atf",
-      "output_target": "elasticsearch",
-      "schedule": "00 10 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://fflezcheck.atf.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.clu-in.org",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -11088,19 +9268,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "radar.weather.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "radar.weather.gov (nws.noaa.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "0 0 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://radar.weather.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "mag.ncep.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -11111,19 +9278,6 @@
       "schedule": "0 18 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://mag.ncep.noaa.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "aviationweather.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.aviationweather.gov (nws.noaa.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "0 12 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://aviationweather.gov/"
    },
    {
       "allow_query_string": false,
@@ -11441,19 +9595,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.daip.jcs.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "DAIP.JCS.mil (jointchiefsofstaff)",
-      "output_target": "elasticsearch",
-      "schedule": "15 19 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.daip.jcs.mil"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.usitc.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -11545,19 +9686,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "agdatacommons.nal.usda.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "AgDataCommons.NAL.USDA.gov (USDA NAL)",
-      "output_target": "elasticsearch",
-      "schedule": "15 06 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://agdatacommons.nal.usda.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "fdc.nal.usda.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -11568,71 +9696,6 @@
       "schedule": "15 07 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://fdc.nal.usda.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "lod.nal.usda.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "LOD.NAL.USDA.gov (USDA NAL)",
-      "output_target": "elasticsearch",
-      "schedule": "15 11 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://lod.nal.usda.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "phytochem.nal.usda.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Phytochem.NAL.USDA.gov (USDA NAL)",
-      "output_target": "elasticsearch",
-      "schedule": "15 12 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://phytochem.nal.usda.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "archivesspace.nal.usda.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "ArchivesSpace.NAL.USDA.gov (USDA NAL)",
-      "output_target": "elasticsearch",
-      "schedule": "15 13 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://archivesspace.nal.usda.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "i5k.nal.usda.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "I5K.NAL.USDA.gov (USDA NAL)",
-      "output_target": "elasticsearch",
-      "schedule": "15 14 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://i5k.nal.usda.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "geodata.nal.usda.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "GeoData.NAL.USDA.gov (USDA NAL)",
-      "output_target": "elasticsearch",
-      "schedule": "15 15 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://geodata.nal.usda.gov"
    },
    {
       "allow_query_string": false,
@@ -11727,19 +9790,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "waterwatch.usgs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "waterwatch.usgs.gov (usgs)",
-      "output_target": "elasticsearch",
-      "schedule": "52 11 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://waterwatch.usgs.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.911.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -11776,45 +9826,6 @@
       "schedule": "47 18 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://www.nasa.gov/glenn/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "aircrafticing.grc.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "aircrafticing.grc.nasa.gov (nasa-glenn)",
-      "output_target": "elasticsearch",
-      "schedule": "45 20 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://aircrafticing.grc.nasa.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "cearun.grc.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "cearun.grc.nasa.gov (nasa-glenn)",
-      "output_target": "elasticsearch",
-      "schedule": "44 21 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://cearun.grc.nasa.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "gipoc.grc.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "gipoc.grc.nasa.gov (nasa-glenn)",
-      "output_target": "elasticsearch",
-      "schedule": "44 22 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://gipoc.grc.nasa.gov/"
    },
    {
       "allow_query_string": false,
@@ -11922,19 +9933,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "ais.usvisa-info.com",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "ais.usvisa-info.com (dos_emb_eur_italy)",
-      "output_target": "elasticsearch",
-      "schedule": "35 10 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://ais.usvisa-info.com/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "militarypay.defense.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -11958,45 +9956,6 @@
       "schedule": "31 16 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.fmc.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "servcon.fmc.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "servcon.fmc.gov (www.fmc.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "30 17 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://servcon.fmc.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "ebonds.fmc.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "ebonds.fmc.gov (www.fmc.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "30 18 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://ebonds.fmc.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "servconadmin.fmc.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "servconadmin.fmc.gov (www.fmc.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "29 19 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://servconadmin.fmc.gov/"
    },
    {
       "allow_query_string": false,
@@ -12049,19 +10008,6 @@
       "schedule": "20 7 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://polar.ncep.noaa.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "testbed.aviationweather.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "testbed.aviationweather.gov (ncep.noaa.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "19 9 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://testbed.aviationweather.gov/"
    },
    {
       "allow_query_string": false,
@@ -12140,32 +10086,6 @@
       "schedule": "11 20 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.ait.org.tw/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "web-archive-2017.ait.org.tw",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "web-archive-2017.ait.org.tw (dos_emb_eap_ait)",
-      "output_target": "elasticsearch",
-      "schedule": "11 21 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://web-archive-2017.ait.org.tw/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "web-archive-2022.ait.org.tw",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "web-archive-2022.ait.org.tw (dos_emb_eap_ait)",
-      "output_target": "elasticsearch",
-      "schedule": "10 22 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://web-archive-2022.ait.org.tw/"
    },
    {
       "allow_query_string": false,
@@ -12374,19 +10294,6 @@
       "schedule": "59 13 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://capstone.ndu.edu/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "digitalcommons.ndu.edu",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "digitalcommons.ndu.edu (nduedu)",
-      "output_target": "elasticsearch",
-      "schedule": "58 14 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://digitalcommons.ndu.edu/"
    },
    {
       "allow_query_string": false,
@@ -12611,19 +10518,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "cgmix.uscg.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "cgmix.uscg.mil (uscg_all)",
-      "output_target": "elasticsearch",
-      "schedule": "44 10 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://cgmix.uscg.mil/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.reserve.uscg.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -12673,45 +10567,6 @@
       "schedule": "39 17 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.itl.nist.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "csrc.nist.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "csrc.nist.gov (nist-search)",
-      "output_target": "elasticsearch",
-      "schedule": "38 18 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://csrc.nist.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "nvlpubs.nist.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "nvlpubs.nist.gov (nist-search)",
-      "output_target": "elasticsearch",
-      "schedule": "37 20 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://nvlpubs.nist.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "tac.nist.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "tac.nist.gov (nist-search)",
-      "output_target": "elasticsearch",
-      "schedule": "36 21 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://tac.nist.gov/"
    },
    {
       "allow_query_string": false,
@@ -12829,19 +10684,6 @@
       "schedule": "29 7 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://www.ctd.uscourts.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.achp.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "www.achp.gov (achp.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "28 8 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.achp.gov/"
    },
    {
       "allow_query_string": false,
@@ -13250,19 +11092,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.ama-assn.org",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "AMA (usagov_en_az)",
-      "output_target": "elasticsearch",
-      "schedule": "33 03 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.ama-assn.org"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.usfk.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -13538,19 +11367,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "rtdf.clu-in.org",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "CLU-IN RTDF (clu-in)",
-      "output_target": "elasticsearch",
-      "schedule": "05 04 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://rtdf.clu-in.org"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.ncis.navy.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -13655,32 +11471,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "cab.srs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Savannah River Site CAB (srs.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "06 15 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://cab.srs.gov/srs-cab.html"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "ra.srs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Savannah River Site RA (srs.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "08 17 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://ra.srs.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.fac.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -13704,19 +11494,6 @@
       "schedule": "10 19 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://forms.cgaux.org"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "rivergages.mvr.usace.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USACE Rivergages (usace_all)",
-      "output_target": "elasticsearch",
-      "schedule": "12 21 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://rivergages.mvr.usace.army.mil"
    },
    {
       "allow_query_string": false,
@@ -13811,19 +11588,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.mvs-wc.usace.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USACE MVS-WC (usace_all)",
-      "output_target": "elasticsearch",
-      "schedule": "20 05 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.mvs-wc.usace.army.mil"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.bsee.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -13863,19 +11627,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.data.bsee.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "BSEE Data Center (bsee)",
-      "output_target": "elasticsearch",
-      "schedule": "24 09 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.data.bsee.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "deadiversion.usdoj.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -13886,32 +11637,6 @@
       "schedule": "25 10 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.deadiversion.usdoj.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "swt-wc.usace.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USACE SWT-WC (usace_all)",
-      "output_target": "elasticsearch",
-      "schedule": "26 11 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.swt-wc.usace.army.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "water.sam.usace.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USACE Water SAM (usace_all)",
-      "output_target": "elasticsearch",
-      "schedule": "29 14 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://water.sam.usace.army.mil"
    },
    {
       "allow_query_string": false,
@@ -13928,97 +11653,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.lrh-wc.usace.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USACE LRH-WC (usace_all)",
-      "output_target": "elasticsearch",
-      "schedule": "34 19 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.lrh-wc.usace.army.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.lrn-wc.usace.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USACE LRN-WC (usace_all)",
-      "output_target": "elasticsearch",
-      "schedule": "35 20 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.lrn-wc.usace.army.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.fs.usda.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "USDA Forest Service (nrs.fs.fed.us)",
-      "output_target": "elasticsearch",
-      "schedule": "36 21 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.fs.usda.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "levees.sec.usace.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USACE Levees SEC (usace_all)",
-      "output_target": "elasticsearch",
-      "schedule": "39 00 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://levees.sec.usace.army.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "rms.usace.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USACE RMS (usace_all)",
-      "output_target": "elasticsearch",
-      "schedule": "41 02 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://rms.usace.army.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "wetland-plants.usace.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USACE Wetland Plants (usace_all)",
-      "output_target": "elasticsearch",
-      "schedule": "43 04 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://wetland-plants.usace.army.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.lrl-wc.usace.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USACE LRL-WC (usace_all)",
-      "output_target": "elasticsearch",
-      "schedule": "44 05 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.lrl-wc.usace.army.mil"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.iaf.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -14029,19 +11663,6 @@
       "schedule": "45 06 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://www.iaf.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.mvp-wc.usace.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USACE MVP-WC (usace_all)",
-      "output_target": "elasticsearch",
-      "schedule": "46 07 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.mvp-wc.usace.army.mil"
    },
    {
       "allow_query_string": false,
@@ -14162,32 +11783,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "legacy.trade.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Legacy Trade (trade.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "58 19 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://legacy.trade.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "events.trade.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Trade Events (trade.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "02 23 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://events.trade.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.stopfakes.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -14279,32 +11874,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "grants.ntia.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "NTIA Grants (bbusa)",
-      "output_target": "elasticsearch",
-      "schedule": "13 10 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://grants.ntia.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "elcidonline.ntia.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "NTIA ELCID Online (bbusa)",
-      "output_target": "elasticsearch",
-      "schedule": "14 11 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://elcidonline.ntia.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "tz.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -14328,19 +11897,6 @@
       "schedule": "16 13 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.gsafleet.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "catalog.gsafleet.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "GSA Fleet Catalog (gsafleet.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "18 15 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://catalog.gsafleet.gov"
    },
    {
       "allow_query_string": false,
@@ -14552,45 +12108,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "ac.cto.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Chief Technologist AC (chieftechnologist)",
-      "output_target": "elasticsearch",
-      "schedule": "36 09 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://ac.cto.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.darpa.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "DARPA (chieftechnologist)",
-      "output_target": "elasticsearch",
-      "schedule": "37 10 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.darpa.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "rt.cto.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Chief Technologist RT (chieftechnologist)",
-      "output_target": "elasticsearch",
-      "schedule": "38 11 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://rt.cto.mil"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "dsb.cto.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -14614,19 +12131,6 @@
       "schedule": "40 13 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.mvm.usace.army.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.dodstem.us",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "DoD STEM (chieftechnologist)",
-      "output_target": "elasticsearch",
-      "schedule": "41 14 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.dodstem.us"
    },
    {
       "allow_query_string": false,
@@ -14877,86 +12381,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "eplanning.blm.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "BLM ePlanning (doi.gov_all_bureaus)",
-      "output_target": "elasticsearch",
-      "schedule": "18 12 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://eplanning.blm.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "pubs.usgs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": [
-         "/metrics/"
-      ],
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USGS Publications Warehouse (doi.gov_all_bureaus)",
-      "output_target": "elasticsearch",
-      "schedule": "19 13 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://pubs.usgs.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.data.boem.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "BOEM Data Center (doi.gov_all_bureaus)",
-      "output_target": "elasticsearch",
-      "schedule": "20 14 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.data.boem.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "ibc.doi.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "DOI Interior Business Center (doi.gov_all_bureaus)",
-      "output_target": "elasticsearch",
-      "schedule": "21 15 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://ibc.doi.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "careers.doi.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "DOI Careers (doi.gov_all_bureaus)",
-      "output_target": "elasticsearch",
-      "schedule": "22 16 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://careers.doi.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.bie.edu",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Bureau of Indian Education (doi.gov_all_bureaus)",
-      "output_target": "elasticsearch",
-      "schedule": "24 18 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.bie.edu"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.nao.usace.army.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -14967,45 +12391,6 @@
       "schedule": "25 19 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.nao.usace.army.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "data.usgs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USGS Data (doi.gov_all_bureaus)",
-      "output_target": "elasticsearch",
-      "schedule": "27 21 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://data.usgs.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "edit.doi.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "DOI Edit (doi.gov_all_bureaus)",
-      "output_target": "elasticsearch",
-      "schedule": "28 22 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://edit.doi.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "store.usgs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USGS Store (doi.gov_all_bureaus)",
-      "output_target": "elasticsearch",
-      "schedule": "31 01 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://store.usgs.gov"
    },
    {
       "allow_query_string": false,
@@ -16322,19 +13707,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "leb.fbi.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "FBI LEB (justice-fbi)",
-      "output_target": "elasticsearch",
-      "schedule": "47 17 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://leb.fbi.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.wv.ng.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -16530,19 +13902,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "pubmed.ncbi.nlm.nih.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "PubMed (data_science)",
-      "output_target": "elasticsearch",
-      "schedule": "52 11 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://pubmed.ncbi.nlm.nih.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.poh.usace.army.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -16735,32 +14094,6 @@
       "schedule": "11 02 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://ro.usembassy.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.earthdata.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "NASA Earthdata (all)",
-      "output_target": "elasticsearch",
-      "schedule": "12 03 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.earthdata.nasa.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "ladsweb.modaps.eosdis.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "NASA Ladsweb (all)",
-      "output_target": "elasticsearch",
-      "schedule": "00 04 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://ladsweb.modaps.eosdis.nasa.gov"
    },
    {
       "allow_query_string": false,
@@ -17323,19 +14656,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.nrel.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Enterprise Search (enterprise_search)",
-      "output_target": "elasticsearch",
-      "schedule": "45 01 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.nrel.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.owa.navy.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -17385,32 +14705,6 @@
       "schedule": "49 05 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://ee.usembassy.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.americorps.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "AmeriCorps (americorps)",
-      "output_target": "elasticsearch",
-      "schedule": "50 06 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.americorps.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "my.americorps.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "AmeriCorps My (americorps)",
-      "output_target": "elasticsearch",
-      "schedule": "51 07 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://my.americorps.gov"
    },
    {
       "allow_query_string": false,
@@ -17830,19 +15124,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "hybridcloud.disa.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "DoD HACC Hybrid Cloud(dod_hacc)",
-      "output_target": "elasticsearch",
-      "schedule": "30 18 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://hybridcloud.disa.mil/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "techfarhub.usds.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -18009,19 +15290,6 @@
       "schedule": "45 09 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.spn.usace.army.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "useu.usmission.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "US Mission to EU (dos_emb_eur_useu)",
-      "output_target": "elasticsearch",
-      "schedule": "46 10 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://useu.usmission.gov"
    },
    {
       "allow_query_string": false,
@@ -18207,19 +15475,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "vinrcl.safercar.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "SaferCar VINRCL (safercar)",
-      "output_target": "elasticsearch",
-      "schedule": "17 04 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://vinrcl.safercar.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.1tsc.army.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -18269,32 +15524,6 @@
       "schedule": "21 08 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.poj.usace.army.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "nij.ojp.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Justice OJP NIJ (justice-ojp)",
-      "output_target": "elasticsearch",
-      "schedule": "22 09 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://nij.ojp.gov"
-   },
-   {
-      "allow_query_string": true,
-      "allowed_domains": "bja.ojp.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Justice OJP BJA (justice-ojp)",
-      "output_target": "elasticsearch",
-      "schedule": "23 10 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://bja.ojp.gov"
    },
    {
       "allow_query_string": false,
@@ -18662,19 +15891,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "buy.gsa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "GSA Buy (gsa)",
-      "output_target": "elasticsearch",
-      "schedule": "52 15 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://buy.gsa.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "smartpay.gsa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -18867,19 +16083,6 @@
       "schedule": "41 12 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://cops.usdoj.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "portal.cops.usdoj.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Justice COPS Portal (justice-cops)",
-      "output_target": "elasticsearch",
-      "schedule": "42 13 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://portal.cops.usdoj.gov"
    },
    {
       "allow_query_string": false,
@@ -19403,19 +16606,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "sm.usmission.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "DOS Embassy San Marino (dos_emb_eur_sanmarino)",
-      "output_target": "elasticsearch",
-      "schedule": "17 10 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://sm.usmission.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "fosterscholars.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -19572,19 +16762,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.cloud.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "DoD JEDI Cloud (dod_jedicloud)",
-      "output_target": "elasticsearch",
-      "schedule": "33 02 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.cloud.mil"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "railroads.dot.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -19634,19 +16811,6 @@
       "schedule": "39 08 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.nia.navy.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "studyinthestates.dhs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Study in the States (sits)",
-      "output_target": "elasticsearch",
-      "schedule": "40 09 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://studyinthestates.dhs.gov"
    },
    {
       "allow_query_string": false,
@@ -19725,19 +16889,6 @@
       "schedule": "48 17 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://vi.ng.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "amlis.osmre.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "OSM AMLIS (osm)",
-      "output_target": "elasticsearch",
-      "schedule": "49 18 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://amlis.osmre.gov"
    },
    {
       "allow_query_string": false,
@@ -19858,19 +17009,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "digitalmedia.fws.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "NCTC FWS (nctc.fws.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "02 07 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://digitalmedia.fws.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "nosc.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -19894,32 +17032,6 @@
       "schedule": "04 09 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.osha.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "adviserinfo.sec.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "adviserinfo.sec.gov (adviserinfo.sec)",
-      "output_target": "elasticsearch",
-      "schedule": "0 0 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://adviserinfo.sec.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "ceac.state.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "ceac.state.gov (ceac.state)",
-      "output_target": "elasticsearch",
-      "schedule": "36 21 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://ceac.state.gov/"
    },
    {
       "allow_query_string": false,
@@ -19959,19 +17071,6 @@
       "schedule": "0 12 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://do.usembassy.gov/es/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.doioig.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "doioig.gov (doioig)",
-      "output_target": "elasticsearch",
-      "schedule": "48 16 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.doioig.gov/"
    },
    {
       "allow_query_string": false,
@@ -20066,32 +17165,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.uscga-district-7.org",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "uscga-district-7.org (uscga-district-7)",
-      "output_target": "elasticsearch",
-      "schedule": "48 4 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.uscga-district-7.org/"
-   },
-   {
-      "allow_query_string": true,
-      "allowed_domains": "wow.uscgaux.info",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "wow.uscgaux.info (wow.uscgaux)",
-      "output_target": "elasticsearch",
-      "schedule": "36 9 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://wow.uscgaux.info/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.aev.class.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -20170,32 +17243,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.stlouisfed.org",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "www.stlouisfed.org (www.stlouisfed)",
-      "output_target": "elasticsearch",
-      "schedule": "48 16 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.stlouisfed.org/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "abudhabi.mepi.state.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (abudhabi.mepi.state.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "0 0 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://abudhabi.mepi.state.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "ait.org.tw/zhtw",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -20206,32 +17253,6 @@
       "schedule": "59 1 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://ait.org.tw/zhtw/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "arabianpeninsula.mepi.state.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (arabianpeninsula.mepi.state.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "57 3 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://arabianpeninsula.mepi.state.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "asbca.dod.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (asbca.dod.mil)",
-      "output_target": "elasticsearch",
-      "schedule": "56 5 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://asbca.dod.mil/"
    },
    {
       "allow_query_string": false,
@@ -20365,32 +17386,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "chengdu-ch.usembassy-china.org.cn",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (chengdu-ch.usembassy-china.org.cn)",
-      "output_target": "elasticsearch",
-      "schedule": "40 3 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://chengdu-ch.usembassy-china.org.cn/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "chengdu.usembassy-china.org.cn",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (chengdu.usembassy-china.org.cn)",
-      "output_target": "elasticsearch",
-      "schedule": "39 5 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://chengdu.usembassy-china.org.cn/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "dk.usembassy.gov/da",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -20440,32 +17435,6 @@
       "schedule": "33 13 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://ga.usembassy.gov/fr/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "guangzhou-ch.usembassy-china.org.cn",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (guangzhou-ch.usembassy-china.org.cn)",
-      "output_target": "elasticsearch",
-      "schedule": "32 15 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://guangzhou-ch.usembassy-china.org.cn/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "guangzhou.usembassy-china.org.cn",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (guangzhou.usembassy-china.org.cn)",
-      "output_target": "elasticsearch",
-      "schedule": "30 17 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://guangzhou.usembassy-china.org.cn/"
    },
    {
       "allow_query_string": false,
@@ -20846,58 +17815,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "shanghai-ch.usembassy-china.org.cn",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (shanghai-ch.usembassy-china.org.cn)",
-      "output_target": "elasticsearch",
-      "schedule": "48 4 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://shanghai-ch.usembassy-china.org.cn/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "shanghai.usembassy-china.org.cn",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (shanghai.usembassy-china.org.cn)",
-      "output_target": "elasticsearch",
-      "schedule": "47 6 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://shanghai.usembassy-china.org.cn/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "shenyang.embassyusa.cn",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (shenyang.embassyusa.cn)",
-      "output_target": "elasticsearch",
-      "schedule": "45 8 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://shenyang.embassyusa.cn/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "shenyang.usconsulate.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (shenyang.usconsulate.gov)",
-      "output_target": "elasticsearch",
-      "schedule": "44 10 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://shenyang.usconsulate.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "stpetersburg.usconsulate.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -21077,32 +17994,6 @@
       "schedule": "24 14 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://vote.gov/tl/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "wuhan-ch.usembassy-china.org.cn",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (wuhan-ch.usembassy-china.org.cn)",
-      "output_target": "elasticsearch",
-      "schedule": "23 16 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://wuhan-ch.usembassy-china.org.cn/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "wuhan.usembassy-china.org.cn",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (wuhan.usembassy-china.org.cn)",
-      "output_target": "elasticsearch",
-      "schedule": "21 18 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://wuhan.usembassy-china.org.cn/"
    },
    {
       "allow_query_string": false,
@@ -21288,45 +18179,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "arf.srs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Administrative Record File/Information Repository File",
-      "output_target": "elasticsearch",
-      "schedule": "1 22 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://arf.srs.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "5nr.org",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Federal Railroad Administration",
-      "output_target": "elasticsearch",
-      "schedule": "10 23 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://5nr.org/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "govinfo.library.unt.edu/911/",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "9-11 Commision",
-      "output_target": "elasticsearch",
-      "schedule": "00 08 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://govinfo.library.unt.edu/911/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.access-board.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -21337,19 +18189,6 @@
       "schedule": "00 13 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.access-board.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "agcensus.library.cornell.edu",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "USDA Census Archive",
-      "output_target": "elasticsearch",
-      "schedule": "15 13 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://agcensus.library.cornell.edu"
    },
    {
       "allow_query_string": false,
@@ -22000,19 +18839,6 @@
       "schedule": "15 07 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.hirevets.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "historyhub.history.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "History Hub",
-      "output_target": "elasticsearch",
-      "schedule": "31 08 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://historyhub.history.gov"
    },
    {
       "allow_query_string": false,
@@ -22848,19 +19674,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.bush41.org",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "George HW Bush Presidential Library",
-      "output_target": "elasticsearch",
-      "schedule": "16 10 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.bush41.org/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "eld.fmcsa.dot.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -22965,19 +19778,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "help.nfc.usda.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": true,
-      "name": "USDA NFC Help Documentation",
-      "output_target": "elasticsearch",
-      "schedule": "30 07 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://help.nfc.usda.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.accesstocare.va.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -23001,19 +19801,6 @@
       "schedule": "30 09 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.cacb.uscourts.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.cider.research.va.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "VA CIDER Research",
-      "output_target": "elasticsearch",
-      "schedule": "30 09 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.cider.research.va.gov"
    },
    {
       "allow_query_string": false,
@@ -23222,19 +20009,6 @@
       "schedule": "30 09 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.cfm.va.gov/til/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "toolkit.climate.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "toolkit.climate.gov - elasticsearch",
-      "output_target": "elasticsearch",
-      "schedule": "30 09 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://toolkit.climate.gov"
    },
    {
       "allow_query_string": false,
@@ -24662,7 +21436,7 @@
       "handle_javascript": false,
       "name": "Million Veteran Program",
       "output_target": "elasticsearch",
-      "schedule": "00 07 * * FRI",
+      "schedule": "00 07 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.mvp.va.gov/"
    },
@@ -24675,7 +21449,7 @@
       "handle_javascript": false,
       "name": "MyMoney.gov",
       "output_target": "elasticsearch",
-      "schedule": "15 07 * * FRI",
+      "schedule": "15 07 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.mymoney.gov/"
    },
@@ -24688,7 +21462,7 @@
       "handle_javascript": false,
       "name": "Office of Financial Innovation and Access",
       "output_target": "elasticsearch",
-      "schedule": "30 07 * * FRI",
+      "schedule": "30 07 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.ofia.gov/"
    },
@@ -24701,7 +21475,7 @@
       "handle_javascript": false,
       "name": "Office of Government Ethics",
       "output_target": "elasticsearch",
-      "schedule": "45 07 * * FRI",
+      "schedule": "45 07 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.oge.gov/"
    },
@@ -24714,7 +21488,7 @@
       "handle_javascript": false,
       "name": "DHS Office of Inspector General",
       "output_target": "elasticsearch",
-      "schedule": "00 08 * * FRI",
+      "schedule": "00 08 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.oig.dhs.gov/"
    },
@@ -24727,7 +21501,7 @@
       "handle_javascript": false,
       "name": "Treasury Office of Inspector General",
       "output_target": "elasticsearch",
-      "schedule": "15 08 * * FRI",
+      "schedule": "15 08 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://oig.treasury.gov/"
    },
@@ -24740,7 +21514,7 @@
       "handle_javascript": false,
       "name": "NIH Office of Intramural Research",
       "output_target": "elasticsearch",
-      "schedule": "30 08 * * FRI",
+      "schedule": "30 08 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://oir.nih.gov/"
    },
@@ -24753,7 +21527,7 @@
       "handle_javascript": false,
       "name": "US Bankruptcy Court Northern District of Oklahoma",
       "output_target": "elasticsearch",
-      "schedule": "45 08 * * FRI",
+      "schedule": "45 08 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.oknb.uscourts.gov/"
    },
@@ -24766,7 +21540,7 @@
       "handle_javascript": false,
       "name": "DOT Volpe National Transportation Systems Center",
       "output_target": "elasticsearch",
-      "schedule": "00 09 * * FRI",
+      "schedule": "00 09 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.volpe.dot.gov/"
    },
@@ -24779,7 +21553,7 @@
       "handle_javascript": false,
       "name": "US Bankruptcy Court Western District of Wisconsin",
       "output_target": "elasticsearch",
-      "schedule": "15 09 * * FRI",
+      "schedule": "15 09 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.wiwb.uscourts.gov/"
    },
@@ -24792,7 +21566,7 @@
       "handle_javascript": false,
       "name": "US Embassy Samoa",
       "output_target": "elasticsearch",
-      "schedule": "30 09 * * FRI",
+      "schedule": "30 09 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://ws.usembassy.gov/"
    },
@@ -24805,7 +21579,7 @@
       "handle_javascript": false,
       "name": "US District Court Southern District of West Virginia",
       "output_target": "elasticsearch",
-      "schedule": "45 09 * * FRI",
+      "schedule": "45 09 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.wvsd.uscourts.gov/"
    },
@@ -24818,7 +21592,7 @@
       "handle_javascript": false,
       "name": "World Wine Trade Group",
       "output_target": "elasticsearch",
-      "schedule": "00 10 * * FRI",
+      "schedule": "00 10 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.wwtg.gov/"
    },
@@ -25117,7 +21891,7 @@
       "handle_javascript": false,
       "name": "Statistical Policy",
       "output_target": "elasticsearch",
-      "schedule": "30 10 * * FRI",
+      "schedule": "30 10 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.statspolicy.gov/"
    },
