@@ -4,14 +4,6 @@ local output_target = 'endpoint';
 [
   // long running domains, start these early
   {
-    name: 'DOD Army MWR',
-    config: DomainConfig(allowed_domains='armymwr.com',
-                         starting_urls='https://www.armymwr.com/',
-                         output_target=output_target,
-                         schedule='30 08 * * MON',
-                         depth_limit=3),
-  },
-  {
     name: 'NOAA CoastWatch East Coast Node',
     config: DomainConfig(allowed_domains='eastcoast.coastwatch.noaa.gov',
                          starting_urls='https://eastcoast.coastwatch.noaa.gov/',
@@ -58,7 +50,7 @@ local output_target = 'endpoint';
                          starting_urls='https://www.accessdata.fda.gov/CMS_IA/default.html',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy MyNavyHR',
@@ -104,22 +96,6 @@ local output_target = 'endpoint';
     name: 'TREAS - FinCEN',
     config: DomainConfig(allowed_domains='www.fincen.gov',
                          starting_urls='https://www.fincen.gov/',
-                         schedule='30 09 * * MON',
-                         output_target=output_target,
-                         depth_limit=3),
-  },
-  {
-    name: 'USCOURTS ARE',
-    config: DomainConfig(allowed_domains='www.are.uscourts.gov',
-                         starting_urls='https://www.are.uscourts.gov/',
-                         schedule='30 09 * * MON',
-                         output_target=output_target,
-                         depth_limit=3),
-  },
-  {
-    name: 'USCOURTS CAEP',
-    config: DomainConfig(allowed_domains='www.caep.uscourts.gov',
-                         starting_urls='https://www.caep.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
                          depth_limit=3),

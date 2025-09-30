@@ -1,0 +1,18 @@
+# This is a Dockerfile for development use of the searchgov-spider project
+FROM python:3.12-slim
+WORKDIR /usr/src/searchgov-spider
+SHELL ["/bin/bash", "-c"]
+
+# Ensure latest apt packages
+RUN apt-get update
+
+# Copy project files and set up virtual environment
+COPY . .
+COPY scripts/docker/spider.sh /usr/local/bin/spider
+RUN chmod +x /usr/local/bin/spider
+
+# Install dependencies
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+RUN playwright install chromium --with-deps --force
+RUN python search_gov_crawler/search_engines/install_nltk.py
