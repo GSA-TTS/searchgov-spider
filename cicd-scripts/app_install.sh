@@ -129,6 +129,10 @@ start_agents() {
     echo "Starting AWS CodeDeploy agent..."
     ensure_executable "./cicd-scripts/helpers/check_codedeploy.sh"
     setup_codedeploy_cron
+
+    echo "Starting AWS SSM agent..."
+    ensure_executable "./cicd-scripts/helpers/check_ssm.sh"
+    setup_ssm_cron
 }
 
 ### SCRIPT EXECUTION ###

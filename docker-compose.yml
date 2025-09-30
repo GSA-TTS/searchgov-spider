@@ -32,7 +32,8 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:7.17.28
     depends_on:
-      - elasticsearch
+      elasticsearch:
+        condition: service_healthy
     ports:
       - 5601:5601
     expose:
@@ -69,9 +70,10 @@ services:
       - spider
 
   opensearch-dashboards:
-    image: opensearchproject/opensearch-dashboards:2.19.0
+    image: opensearchproject/opensearch-dashboards:3.1.0
     depends_on:
-      - opensearch
+      opensearch:
+        condition: service_healthy
     ports:
       - 5602:5601
     expose:
@@ -84,15 +86,47 @@ services:
   redis:
     image: redis:6.2.6
     container_name: redis
+    healthcheck:
+      test: redis-cli ping >/dev/null || exit 1
+      interval: 1s
+      timeout: 3s
+      retries: 30
     ports:
       - 6379:6379
     networks:
       - spider
 
+  spider:
+    &spider
+    build:
+      context: .
+      dockerfile: DockerFile.dev
+    env_file:
+      - .env.development
+    environment:
+      PYTHONPATH: /usr/src/searchgov-spider
+    depends_on:
+      redis:
+        condition: service_healthy
+      opensearch:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    network_mode: host
+    profiles:
+      - spider
+
+  scheduler:
+    <<: *spider
+    command: python search_gov_crawler/scrapy_scheduler.py
+
+  sitemap:
+    <<: *spider
+    command: python search_gov_crawler/run_sitemap_monitor.py
+
 volumes:
   elasticsearch_data:
   opensearch_data:
-
 
 networks:
   spider:
