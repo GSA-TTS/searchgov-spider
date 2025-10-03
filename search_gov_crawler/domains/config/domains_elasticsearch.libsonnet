@@ -576,7 +576,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.uscis.gov/',
                          schedule='30 22 * * TUE',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         sitemap_urls=['https://www.uscis.gov/sites/default/files/err/sitemap_index_aao_npd.xml']),
   },
   {
     name: 'Justice Dept (usagov-replacement)',
@@ -1875,7 +1876,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.va.gov/',
                          schedule='30 06 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8,
+                         sitemap_urls=['https://www.va.gov/oig/apps/info/sitemap.aspx', 'https://www.va.gov/sitemap_bva.xml']),
   },
   {
     name: 'tricare_newsroom',

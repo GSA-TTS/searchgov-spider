@@ -1122,7 +1122,9 @@
       "name": "USCIS (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "30 22 * * TUE",
-      "sitemap_urls": null,
+      "sitemap_urls": [
+         "https://www.uscis.gov/sites/default/files/err/sitemap_index_aao_npd.xml"
+      ],
       "starting_urls": "https://www.uscis.gov/"
    },
    {
@@ -3227,12 +3229,15 @@
       "allowed_domains": "www.va.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
-      "depth_limit": 3,
+      "depth_limit": 8,
       "handle_javascript": false,
       "name": "VA (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "30 06 * * THU",
-      "sitemap_urls": null,
+      "sitemap_urls": [
+         "https://www.va.gov/oig/apps/info/sitemap.aspx",
+         "https://www.va.gov/sitemap_bva.xml"
+      ],
       "starting_urls": "https://www.va.gov/"
    },
    {

@@ -1059,7 +1059,7 @@
 |www.secretservice.gov (usagov-replacement)|06:12|www.secretservice.gov|N|3||
 |Air Force Historical Research Agency (afpw_afhra)|06:28|www.dafhistory.af.mil|N|8||
 |Air Reserve Personnel Center (arpc)|06:28|www.arpc.afrc.af.mil|N|8||
-|VA (usagov-replacement)|06:30|www.va.gov|N|3||
+|VA (usagov-replacement)|06:30|www.va.gov|N|8||
 |www.spaceforce.mil (usagov-replacement)|06:32|www.spaceforce.mil|N|3||
 |Navy C7F (navy_c7f)|06:33|www.c7f.navy.mil|N|3||
 |US Embassy (usa.gov-replacement)|06:42|www.usembassy.gov|N|8||
