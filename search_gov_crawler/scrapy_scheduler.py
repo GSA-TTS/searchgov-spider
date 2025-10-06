@@ -23,7 +23,7 @@ from pythonjsonlogger.json import JsonFormatter
 from search_gov_crawler.scheduling.jobstores import SpiderRedisJobStore
 from search_gov_crawler.scheduling.redis import get_redis_connection_args
 from search_gov_crawler.scheduling.schedulers import SpiderBackgroundScheduler
-from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSites
+from search_gov_crawler.search_gov_app.crawl_config import CrawlConfigs
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 
 load_dotenv()
@@ -77,35 +77,35 @@ def run_scrapy_crawl(
     log.info(msg, spider, allow_query_string, allowed_domains, start_urls, output_target, depth_limit, deny_paths)
 
 
-def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
+def transform_crawl_configs(crawl_configs: CrawlConfigs) -> list[dict]:
     """
     Transform crawl sites records into a format that can be used to create apscheduler jobs.  Only
     scheduler jobs that have a value for the `schedule` field.
     """
 
-    transformed_crawl_sites = []
+    transformed_crawl_configs = []
 
-    for crawl_site in crawl_sites.scheduled():
-        job_name = crawl_site.name
-        transformed_crawl_sites.append(
+    for crawl_config in crawl_configs.scheduled():
+        job_name = crawl_config.name
+        transformed_crawl_configs.append(
             {
                 "func": run_scrapy_crawl,
-                "id": crawl_site.job_id,
+                "id": crawl_config.job_id,
                 "name": job_name,
-                "trigger": CronTrigger.from_crontab(expr=crawl_site.schedule, timezone="UTC"),
+                "trigger": CronTrigger.from_crontab(expr=crawl_config.schedule, timezone="UTC"),
                 "args": [
-                    ("domain_spider" if not crawl_site.handle_javascript else "domain_spider_js"),
-                    crawl_site.allow_query_string,
-                    crawl_site.allowed_domains,
-                    crawl_site.starting_urls,
-                    crawl_site.output_target,
-                    crawl_site.depth_limit,
-                    crawl_site.deny_paths if crawl_site.deny_paths else [],
+                    ("domain_spider" if not crawl_config.handle_javascript else "domain_spider_js"),
+                    crawl_config.allow_query_string,
+                    crawl_config.allowed_domains,
+                    crawl_config.starting_urls,
+                    crawl_config.output_target,
+                    crawl_config.depth_limit,
+                    crawl_config.deny_paths if crawl_config.deny_paths else [],
                 ],
             },
         )
 
-    return transformed_crawl_sites
+    return transformed_crawl_configs
 
 
 def init_scheduler() -> SpiderBackgroundScheduler:
@@ -153,8 +153,8 @@ def start_scrapy_scheduler(input_file: Path) -> None:
         raise ValueError(msg)
 
     # Load and transform crawl sites
-    crawl_sites = CrawlSites.from_file(file=input_file)
-    apscheduler_jobs = transform_crawl_sites(crawl_sites)
+    crawl_configs = CrawlConfigs.from_file(file=input_file)
+    apscheduler_jobs = transform_crawl_configs(crawl_configs)
 
     # Initialize Scheduler and add listeners
     scheduler = init_scheduler()

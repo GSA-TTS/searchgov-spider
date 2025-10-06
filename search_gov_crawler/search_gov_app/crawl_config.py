@@ -5,13 +5,14 @@ from typing import Self
 
 from apscheduler.triggers.cron import CronTrigger
 
+from search_gov_crawler.search_gov_app.database import get_database_connection, select_active_crawl_configs
 from search_gov_crawler.search_gov_spiders.helpers.domain_spider import ALLOWED_CONTENT_TYPE_OUTPUT_MAP
 
 
 @dataclass
-class CrawlSite:
+class CrawlConfig:
     """
-    Represents a single crawl site record.  All fields required except schedule and depth_limit.
+    Represents a single crawl config record.  All fields required except schedule and depth_limit.
     In normal operations, When schedule is blank, a job will not be scheduled.  When running
     a benchmark, schedule is ignored.
     """
@@ -97,26 +98,26 @@ class CrawlSite:
                 missing_field_names.append(field.name)
 
         if missing_field_names:
-            msg = f"All CrawlSite fields are required!  Add values for {','.join(missing_field_names)}"
+            msg = f"All CrawlConfig fields are required!  Add values for {','.join(missing_field_names)}"
             raise TypeError(msg)
 
     def to_dict(self, *, exclude: tuple = ()) -> dict:
         """Helper method to return dataclass as dictionary.  Exclude fields listed in exclude arg."""
-        crawl_site = asdict(self)
+        crawl_config = asdict(self)
         for field in exclude:
-            crawl_site.pop(field, None)
+            crawl_config.pop(field, None)
 
-        return crawl_site
+        return crawl_config
 
 
 @dataclass
-class CrawlSites:
-    """Represents a single crawl site record"""
+class CrawlConfigs:
+    """Represents a list of crawl config records"""
 
-    root: list[CrawlSite]
+    root: list[CrawlConfig]
 
     def __iter__(self):
-        """Iterate directly from CrawlSites instance instead of calling root."""
+        """Iterate directly from CrawlConfigs instance instead of calling root."""
         yield from self.root
 
     def __post_init__(self):
@@ -141,13 +142,22 @@ class CrawlSites:
             unique_domains_by_target.add(site_key)
 
     @classmethod
+    def from_database(cls) -> Self:
+        """Create CrawlConfigs instance from the searchgov database"""
+        with get_database_connection() as connection:
+            records = select_active_crawl_configs(connection)
+
+        crawl_configs = [CrawlConfig(**record) for record in records]
+        return cls(crawl_configs)
+
+    @classmethod
     def from_file(cls, file: Path) -> Self:
-        """Create CrawlSites instance from file path to json input file"""
+        """Create CrawlConfigs instance from file path to json input file"""
 
         records = json.loads(file.read_text(encoding="UTF-8"))
-        crawl_sites = [CrawlSite(**record) for record in records]
-        return cls(crawl_sites)
+        crawl_configs = [CrawlConfig(**record) for record in records]
+        return cls(crawl_configs)
 
     def scheduled(self):
         """Yield only records that have a schedule"""
-        yield from (crawl_site for crawl_site in self if crawl_site.schedule)
+        yield from (crawl_config for crawl_config in self if crawl_config.schedule)

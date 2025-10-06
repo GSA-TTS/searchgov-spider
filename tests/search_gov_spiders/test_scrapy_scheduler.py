@@ -12,7 +12,7 @@ from search_gov_crawler.scrapy_scheduler import (
     init_scheduler,
     run_scrapy_crawl,
     start_scrapy_scheduler,
-    transform_crawl_sites,
+    transform_crawl_configs,
 )
 
 
@@ -51,11 +51,11 @@ def test_run_scrapy_crawl(caplog, monkeypatch, run_args):
     ) in caplog.messages
 
 
-def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
-    transformed_crawl_sites = transform_crawl_sites(crawl_sites_test_file_dataclass)
+def test_transform_crawl_configs(crawl_configs_from_test_file):
+    transformed_crawl_configs = transform_crawl_configs(crawl_configs_from_test_file)
 
     # CronTrigger class does not implement __eq__
-    triggers = [str(site.pop("trigger")) for site in transformed_crawl_sites]
+    triggers = [str(site.pop("trigger")) for site in transformed_crawl_configs]
     for trigger in triggers:
         assert trigger == str(
             CronTrigger(
@@ -68,7 +68,7 @@ def test_transform_crawl_sites(crawl_sites_test_file_dataclass):
             ),
         )
 
-    assert transformed_crawl_sites == [
+    assert transformed_crawl_configs == [
         {
             "func": run_scrapy_crawl,
             "id": "quotes-1",

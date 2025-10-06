@@ -8,7 +8,7 @@ from urllib.parse import urljoin
 import requests
 
 from search_gov_crawler.scrapy_scheduler import CRAWL_SITES_FILE
-from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSites
+from search_gov_crawler.search_gov_app.crawl_config import CrawlConfigs
 
 log = logging.getLogger(__name__)
 
@@ -78,7 +78,7 @@ class SitemapFinder:
             base_url = f"https://{base_url}"
 
         sitemap_urls: list[str] = []
-        
+
         # Method 1: Try common sitemap locations
         sitemap_urls.extend(self._check_common_locations(base_url))
 
@@ -111,11 +111,7 @@ class SitemapFinder:
             return False
         try:
             # A HEAD request gets headers without downloading the full content.
-            response = requests.head(
-                url,
-                timeout=self.timeout_seconds,
-                allow_redirects=True
-            )
+            response = requests.head(url, timeout=self.timeout_seconds, allow_redirects=True)
             if response.status_code != 200:
                 return False
 
@@ -185,7 +181,7 @@ class SitemapFinder:
                 if matches:
                     sitemap_urls = sitemap_urls + matches
                     log.info(f"Method 3: Found {len(matches)} sitemaps reference in raw HTML")
-                
+
                 sitemap_urls = [self._fix_http(self._join_base(base_url, sitemap)) for sitemap in sitemap_urls]
                 sitemap_urls = [sitemap for sitemap in sitemap_urls if self.confirm_sitemap_url(sitemap)]
 
@@ -236,7 +232,7 @@ def create_sitemaps_csv(csv_filename: str, batch_size: int = 10):
         batch_size (int): (internal) Batch size to stream save the URLs
     """
     log.info(f"Creating CSV file: {csv_filename} sorced from CRAWL_SITES_FILE: {CRAWL_SITES_FILE}")
-    records = CrawlSites.from_file(file=CRAWL_SITES_FILE)
+    records = CrawlConfigs.from_file(file=CRAWL_SITES_FILE)
     sitemap_finder = SitemapFinder()
 
     sitemap_dict = {}
@@ -249,7 +245,7 @@ def create_sitemaps_csv(csv_filename: str, batch_size: int = 10):
         if record.sitemap_urls and len(record.sitemap_urls) > 0:
             for sitemap_url in record.sitemap_urls:
                 if not sitemap_finder.confirm_sitemap_url(sitemap_url):
-                    log.error(f"Failed to get existing sitemap_url: {sitemap_url} for: {starting_url}")        
+                    log.error(f"Failed to get existing sitemap_url: {sitemap_url} for: {starting_url}")
         else:
             try:
                 record.sitemap_urls = list(sitemap_finder.find(starting_url))
