@@ -53,10 +53,13 @@ class SearchGovOpensearch:
         self._batch_size = batch_size
         self._current_batch: List[Dict[str, Any]] = []
 
-        self._env_opensearch_hosts = opensearch_hosts or os.getenv("OPENSEARCH_SEARCH_DOMAIN", "http://localhost:9300")
-        self._env_opensearch_index = opensearch_index or os.getenv("OPENSEARCH_SEARCH_INDEX", "development-i14y-documents-searchgov")
-        self._env_opensearch_user = opensearch_user or os.getenv("OPENSEARCH_ADMIN_USER", "")
-        self._env_opensearch_password = opensearch_password or os.getenv("OPENSEARCH_ADMIN_PASS", "")
+        self._env_opensearch_hosts = opensearch_hosts or os.getenv("OPENSEARCH_SEARCH_HOST", "http://localhost:9300")
+        self._env_opensearch_index = opensearch_index or os.getenv(
+            "OPENSEARCH_SEARCH_INDEX",
+            "development-i14y-documents-searchgov",
+        )
+        self._env_opensearch_user = opensearch_user or os.getenv("OPENSEARCH_SEARCH_USER", "")
+        self._env_opensearch_password = opensearch_password or os.getenv("OPENSEARCH_SEARCH_PASSWORD", "")
         self._timeout = timeout
         self._max_retries = max_retries
         self._opensearch_client: Optional[OpenSearch] = None
@@ -96,7 +99,7 @@ class SearchGovOpensearch:
         spider: SearchGovDomainSpider,
     ) -> None:
         """Add an already converted i14y document to the Opensearch batch.
-        
+
         NOTE: The creation of the i14y document "doc" is done in es_batch_upload.py > add_to_batch() method.
               We are not calling convert_html(), convert_pdf(), and etc. in this method, and they will need
               to be added once we completely migrate to Opensearch and disable Elasticsearch
@@ -130,7 +133,7 @@ class SearchGovOpensearch:
         """Send batch of documents to Opensearch via bulk API."""
 
         # TODO: Remove this delay once Elasticsearch is removed.
-        # Opensearch has a 5 second delay before it sends its batch 
+        # Opensearch has a 5 second delay before it sends its batch
         # to not compete with elasticsearch batches for resources when sent simultaneously
         time.sleep(5)
 
