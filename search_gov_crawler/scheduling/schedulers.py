@@ -3,6 +3,7 @@ from datetime import UTC, datetime, timedelta
 from typing import ClassVar
 
 from apscheduler.events import JobExecutionEvent, JobSubmissionEvent
+from apscheduler.jobstores.base import ConflictingIdError, JobLookupError
 from apscheduler.schedulers.background import BackgroundScheduler
 
 from search_gov_crawler.scheduling.jobstores import SpiderRedisJobStore
@@ -85,3 +86,32 @@ class SpiderBackgroundScheduler(BackgroundScheduler):
             for job in jobs:
                 self.modify_job(job.id, next_run_time=datetime.now(tz=UTC) + timedelta(seconds=offset_seconds))
                 self.remove_pending_job_by_id(job.id)
+
+    def add_jobs(self, jobs: list[dict], jobstore: str, *, update_existing: bool = False) -> None:
+        """
+        Add multiple jobs to the scheduler. If job already exists, update and reschedule.
+        Log any other errors encountered.
+        """
+
+        for job in jobs:
+            try:
+                self.add_job(**job, jobstore=jobstore)
+            except ConflictingIdError:
+                if update_existing:
+                    job_id = job.pop("id")
+                    self.modify_job(job_id=job_id, **job)
+                    job_trigger = job.pop("trigger")
+                    self.reschedule_job(job_id, trigger=job_trigger)
+                else:
+                    log.exception("Error adding job %s", job.get("id"))
+            except Exception:
+                log.exception("Error adding job %s", job.get("id"))
+
+    def remove_jobs(self, jobs_ids: list[str], jobstore: str) -> None:
+        """Remove multiple jobs from the scheduler."""
+
+        for job_id in jobs_ids:
+            try:
+                self.remove_job(job_id, jobstore=jobstore)
+            except JobLookupError:
+                log.exception("Job %s not found in scheduler, cannot remove", job_id)
