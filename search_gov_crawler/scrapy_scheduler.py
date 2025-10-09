@@ -1,7 +1,5 @@
 """
-Starts scrapy scheduler.  Takes job details from the crawl-sites-production.json file referenced below as
-CRAWL_SITES_FILE. Schedule is fully contained in-memory but current cron expression is stored in the input file
-so that on each deploy the schedule can pickup where it left off.
+Starts scrapy scheduler.  Takes job details from the crawl_configs table in the searchgov database.
 
 Use the env var SPIDER_SCRAPY_MAX_WORKERS to control how many jobs can run at once.  If the max number of
 jobs are running when other jobs are supposed to run, those jobs will queue until one or more of the running
@@ -32,9 +30,7 @@ logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
 logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 log = logging.getLogger("search_gov_crawler.scrapy_scheduler")
 
-CRAWL_SITES_FILE = (
-    Path(__file__).parent / "domains" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
-)
+CRAWL_CONFIGS_INTERVAL = int(os.environ.get("SPIDER_CRAWL_CONFIGS_CHECK_INTERVAL", "300"))  # in seconds
 
 
 def run_scrapy_crawl(
@@ -137,24 +133,16 @@ def init_scheduler() -> SpiderBackgroundScheduler:
     )
 
 
-def keep_scheduler_alive() -> None:
+def wait_for_next_interval(interval: int) -> None:
     """
-    Keeps the scheduler alive by sleeping in an infinite loop
+    Sleeps for the specified interval in seconds
 
     """
-    while True:
-        time.sleep(5)
+    time.sleep(interval)
 
 
-def start_scrapy_scheduler(input_file: Path) -> None:
-    """Initializes schedule from input file, schedules jobs and runs scheduler"""
-    if not input_file.exists():
-        msg = f"Cannot start scheduler! Input file {input_file} does not exist."
-        raise ValueError(msg)
-
-    # Load and transform crawl sites
-    crawl_configs = CrawlConfigs.from_file(file=input_file)
-    apscheduler_jobs = transform_crawl_configs(crawl_configs)
+def start_scrapy_scheduler():
+    """Initializes schedule from database, schedules jobs and runs scheduler"""
 
     # Initialize Scheduler and add listeners
     scheduler = init_scheduler()
@@ -162,18 +150,39 @@ def start_scrapy_scheduler(input_file: Path) -> None:
     scheduler.add_listener(scheduler.remove_pending_job, EVENT_JOB_EXECUTED | EVENT_JOB_ERROR)
     scheduler.start(paused=True)
 
-    # Remove all jobs from scheduler, and add new version of jobs from config
     scheduler.remove_all_jobs(jobstore="redis", include_pending_jobs=False)
-    for apscheduler_job in apscheduler_jobs:
-        scheduler.add_job(**apscheduler_job, jobstore="redis")
+
+    # Load and transform crawl configs
+    crawl_configs = CrawlConfigs.from_database()
+    if not crawl_configs.scheduled():
+        msg = "No crawl configs with a schedule found in database! No jobs scheduled."
+        log.error(msg)
+    else:
+        crawl_jobs = transform_crawl_configs(crawl_configs)
+        scheduler.add_jobs(jobs=crawl_jobs, jobstore="redis")
 
     # Set any pending jobs to run immeidately and clear the pending jobs queue
     scheduler.trigger_pending_jobs()
 
-    # Resume Scheduler and start infinite loop to keep the scheduler process open
+    # Resume Scheduler and start infinite loop while checking for updates
     scheduler.resume()
-    keep_scheduler_alive()
+
+    while True:
+        wait_for_next_interval(interval=CRAWL_CONFIGS_INTERVAL)
+
+        # check for updates to crawl configs
+        crawl_configs = CrawlConfigs.from_database()
+        crawl_jobs = transform_crawl_configs(crawl_configs)
+
+        # Remove jobs that no longer exist in the database
+        crawl_job_ids = (crawl_job["id"] for crawl_job in crawl_jobs)
+        job_ids_to_remove = [job for job in scheduler.get_jobs(jobstore="redis") if job.id not in crawl_job_ids]
+
+        scheduler.remove_jobs(job_ids_to_remove, jobstore="redis")
+
+        # Add new jobs and update existing jobs
+        scheduler.add_jobs(crawl_jobs, jobstore="redis", update_existing=True)
 
 
 if __name__ == "__main__":
-    start_scrapy_scheduler(input_file=CRAWL_SITES_FILE)
+    start_scrapy_scheduler()
