@@ -5,7 +5,7 @@ set_defaults_env() {
     export SEARCHELASTIC_INDEX="${SEARCHELASTIC_INDEX:-development-i14y-documents-searchgov}"
     export ES_HOSTS="${ES_HOSTS:-http://localhost:9200}"
     export OPENSEARCH_SEARCH_INDEX="${OPENSEARCH_SEARCH_INDEX:-development-i14y-documents-searchgov}"
-    export OPENSEARCH_SEARCH_DOMAIN="${OPENSEARCH_SEARCH_DOMAIN:-http://localhost:9300}"
+    export OPENSEARCH_SEARCH_HOST="${OPENSEARCH_SEARCH_HOST:-http://localhost:9300}"
 }
 
 
@@ -25,11 +25,11 @@ create_es_index() {
 
 create_opensearch_index() {
     # Check if the index already exists
-    if curl -sS --fail "${OPENSEARCH_SEARCH_DOMAIN}/${OPENSEARCH_SEARCH_INDEX}" > /dev/null 2>&1; then
+    if curl -sS --fail "${OPENSEARCH_SEARCH_HOST}/${OPENSEARCH_SEARCH_INDEX}" > /dev/null 2>&1; then
         echo "Opensearch Index ${OPENSEARCH_SEARCH_INDEX} already exists, skipping creation."
     else
-        echo "Creating index '${OPENSEARCH_SEARCH_INDEX}' on host ${OPENSEARCH_SEARCH_DOMAIN}"
-        curl -XPUT "${OPENSEARCH_SEARCH_DOMAIN}/${OPENSEARCH_SEARCH_INDEX}" \
+        echo "Creating index '${OPENSEARCH_SEARCH_INDEX}' on host ${OPENSEARCH_SEARCH_HOST}"
+        curl -XPUT "${OPENSEARCH_SEARCH_HOST}/${OPENSEARCH_SEARCH_INDEX}" \
              -H "Content-Type: application/json" \
              -d "@opensearch_index_settings.json"
         echo -e "\nOpensearch Index '${OPENSEARCH_SEARCH_INDEX}' created successfully."
