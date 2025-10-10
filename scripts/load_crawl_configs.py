@@ -58,7 +58,10 @@ def load_crawl_config(input_file: str | None, *, truncate_table: bool = False) -
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Load crawl config data into the database")
-    parser.add_argument("--input_file", help="Path to JSON file with crawl config data")
+    parser.add_argument(
+        "--input_file",
+        help="Path to JSON file with crawl config data, default is SPIDER_CRAWL_SITES_FILE_NAME env var",
+    )
     parser.add_argument("--truncate_table", action="store_true", help="Truncate the crawl_configs table before loading")
     args = parser.parse_args()
 
