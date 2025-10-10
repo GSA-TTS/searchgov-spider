@@ -83,6 +83,7 @@ services:
       - DISABLE_SECURITY_DASHBOARDS_PLUGIN=true
     networks:
       - spider
+
   redis:
     image: redis:6.2.6
     container_name: redis
@@ -93,6 +94,23 @@ services:
       retries: 30
     ports:
       - 6379:6379
+    networks:
+      - spider
+
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    healthcheck:
+      test: mysql --user=root --password="" --execute="SHOW DATABASES;"
+      interval: 10s
+      timeout: 5s
+      retries: 10
     networks:
       - spider
 
@@ -112,6 +130,8 @@ services:
         condition: service_healthy
       elasticsearch:
         condition: service_healthy
+      mysql:
+        condition: service_healthy
     network_mode: host
     profiles:
       - spider
@@ -126,6 +146,7 @@ services:
 
 volumes:
   elasticsearch_data:
+  mysql_data:
   opensearch_data:
 
 networks:
