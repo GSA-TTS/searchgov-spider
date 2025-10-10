@@ -2,15 +2,26 @@ import csv
 import logging
 import os
 import re
-from typing import Optional, Set
+from pathlib import Path
+from typing import Optional
 from urllib.parse import urljoin
 
 import requests
+from dotenv import load_dotenv
+from pythonjsonlogger.json import JsonFormatter
 
-from search_gov_crawler.scrapy_scheduler import CRAWL_SITES_FILE
 from search_gov_crawler.search_gov_app.crawl_config import CrawlConfigs
+from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
+
+load_dotenv()
 
 log = logging.getLogger(__name__)
+
+CRAWL_SITES_FILE = (
+    Path(__file__).parent.parent.parent
+    / "domains"
+    / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
+)
 
 
 def write_dict_to_csv(data: dict, filename: str, overwrite: bool = False):
@@ -68,7 +79,7 @@ class SitemapFinder:
             return url.replace("http://", "https://")
         return url
 
-    def find(self, base_url) -> Set[str]:
+    def find(self, base_url) -> set[str]:
         """
         Find sitemap URL using multiple methods.
         Returns a set of all successful sitemap URLs found.
@@ -268,4 +279,7 @@ def create_sitemaps_csv(csv_filename: str, batch_size: int = 10):
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
+    logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
+
     create_sitemaps_csv("all_production_sitemaps.csv")
