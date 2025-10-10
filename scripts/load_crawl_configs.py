@@ -10,7 +10,9 @@ from search_gov_crawler.search_gov_app.database import get_database_connection
 load_dotenv()
 
 CRAWL_SITES_FILE = (
-    Path(__file__).parent / "domains" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
+    Path(__file__).parent.parent
+    / "search_gov_crawler/domains"
+    / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
 )
 
 
