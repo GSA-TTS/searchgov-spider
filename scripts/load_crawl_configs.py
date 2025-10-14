@@ -21,8 +21,19 @@ def load_crawl_config(input_file: str | None, *, truncate_table: bool = False) -
 
     crawl_sites_file = Path(input_file).resolve() if input_file else CRAWL_SITES_FILE
 
-    with crawl_sites_file.open(encoding="UTF-8") as f:
-        records = json.load(f)
+    try:
+        with crawl_sites_file.open(encoding="UTF-8") as f:
+            records = json.load(f)
+    except FileNotFoundError:
+        print(f"Error: File not found: {crawl_sites_file}")
+        raise
+    except json.JSONDecodeError as e:
+        print(f"Error: Invalid JSON in {crawl_sites_file}: {e}")
+        raise
+
+    if not isinstance(records, list):
+        msg = f"Error: Expected a list of records, got {type(records).__name__}"
+        raise TypeError(msg)
 
     for record in records:
         record["output_target"] = (
@@ -37,25 +48,30 @@ def load_crawl_config(input_file: str | None, *, truncate_table: bool = False) -
 
     print(f"Found {len(records)} records in {crawl_sites_file}")
 
-    with get_database_connection() as connection, connection.cursor() as cursor:
-        if truncate_table:
-            cursor.execute("TRUNCATE TABLE crawl_configs")
-            print("Truncated crawl_configs table")
+    try:
+        with get_database_connection() as connection, connection.cursor() as cursor:
+            if truncate_table:
+                cursor.execute("TRUNCATE TABLE crawl_configs")
+                print("Truncated crawl_configs table")
 
-        cursor.executemany(
-            """INSERT INTO crawl_configs
-                      (name, allowed_domains, starting_urls, sitemap_urls, deny_paths, depth_limit, sitemap_check_hours,
-                       allow_query_string, handle_javascript, schedule, output_target, created_at, updated_at
-                      )
-               VALUES (%(name)s, %(allowed_domains)s, %(starting_urls)s, %(sitemap_urls)s, %(deny_paths)s,
-                       %(depth_limit)s, %(check_sitemap_hours)s, %(allow_query_string)s, %(handle_javascript)s,
-                       %(schedule)s, %(output_target)s, NOW(), NOW()
-                     )""",
-            records,
-        )
+            cursor.executemany(
+                """INSERT INTO crawl_configs
+                        (name, allowed_domains, starting_urls, sitemap_urls, deny_paths, depth_limit,
+                         sitemap_check_hours,allow_query_string, handle_javascript, schedule, output_target,
+                         created_at, updated_at
+                        )
+                VALUES (%(name)s, %(allowed_domains)s, %(starting_urls)s, %(sitemap_urls)s, %(deny_paths)s,
+                        %(depth_limit)s, %(check_sitemap_hours)s, %(allow_query_string)s, %(handle_javascript)s,
+                        %(schedule)s, %(output_target)s, NOW(), NOW()
+                        )""",
+                records,
+            )
 
-        connection.commit()
-        print(f"Inserted {len(records)} records into crawl_configs table")
+            connection.commit()
+            print(f"Inserted {len(records)} records into crawl_configs table")
+    except Exception as e:
+        print(f"Database error: {e}")
+        raise
 
 
 if __name__ == "__main__":

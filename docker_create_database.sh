@@ -1,8 +1,8 @@
-#! /bin/bash
+#!/bin/bash
 
 set_defaults_env() {
     # Set default values only if they are not already defined
-    export CRAWL_CONFIG_TABLE="crawl_configs"
+    export CRAWL_CONFIG_TABLE="${CRAWL_CONFIG_TABLE:-crawl_configs}"
     export DB_USER="${DB_USER:-root}"
     export DB_PASSWORD="${DB_PASSWORD:-""}"
     export DB_HOST="${DB_HOST:-127.0.0.1}"
@@ -11,7 +11,7 @@ set_defaults_env() {
 }
 
 _run_sql() {
-    mysql -vvv -u $DB_USER --password=$DB_PASSWORD -h $DB_HOST -P $DB_PORT -e "$@"
+    mysql -vvv -u "$DB_USER" --password="$DB_PASSWORD" -h "$DB_HOST" -P "$DB_PORT" -e "$@"
 }
 
 
