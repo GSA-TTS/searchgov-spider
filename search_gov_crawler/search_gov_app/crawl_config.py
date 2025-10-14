@@ -1,4 +1,5 @@
 import json
+import logging
 from dataclasses import asdict, dataclass, field, fields
 from pathlib import Path
 from typing import Self
@@ -8,9 +9,15 @@ from apscheduler.triggers.cron import CronTrigger
 from search_gov_crawler.search_gov_app.database import get_database_connection, select_active_crawl_configs
 from search_gov_crawler.search_gov_spiders.helpers.domain_spider import ALLOWED_CONTENT_TYPE_OUTPUT_MAP
 
+log = logging.getLogger(__name__)
+
 
 class CrawlConfigValidationError(Exception):
     """Custom exception for crawl config validation errors."""
+
+
+class CrawlConfigsValidationError(Exception):
+    """Custom exception for crawl configs validation errors."""
 
 
 @dataclass
@@ -132,7 +139,7 @@ class CrawlConfigs:
             job_id = site.job_id
             if job_id in unique_job_ids:
                 msg = f"Duplicate job_id found: {job_id} in site:\n{site}"
-                raise CrawlConfigValidationError(msg)
+                raise CrawlConfigsValidationError(msg)
 
             unique_job_ids.add(job_id)
 
@@ -142,7 +149,7 @@ class CrawlConfigs:
                     "The combination of allowed_domain and output_target must be unique in file. "
                     f"Duplicate site domain:\n{site}"
                 )
-                raise CrawlConfigValidationError(msg)
+                raise CrawlConfigsValidationError(msg)
             unique_domains_by_target.add(site_key)
 
     @classmethod
@@ -165,8 +172,21 @@ class CrawlConfigs:
                 json.loads(record["allowed_domains"]) if record["allowed_domains"] else []
             )
 
-        crawl_configs = [CrawlConfig(**record) for record in records]
-        return cls(crawl_configs)
+        crawl_configs = []
+        for record in records:
+            try:
+                crawl_config = CrawlConfig(**record)
+                crawl_configs.append(crawl_config)
+            except CrawlConfigValidationError:
+                msg = f"Invalid CrawlConfig record with name: {record.get('name', 'missing')}.  Skipping creation."
+                log.exception(msg)
+
+        try:
+            return cls(crawl_configs)
+        except CrawlConfigsValidationError:
+            msg = "Could not create CrawlConfigs instance due to errors! No scheduler jobs will be created."
+            log.exception(msg)
+            return cls([])
 
     @classmethod
     def from_file(cls, file: Path) -> Self:
