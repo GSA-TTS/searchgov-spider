@@ -1,20 +1,36 @@
 import os
+from collections.abc import Generator
+from contextlib import contextmanager
+from typing import Any
 
 from pymysql import connect
 from pymysql.connections import Connection
 from pymysql.cursors import DictCursor
 
 
-def get_database_connection() -> Connection:
+@contextmanager
+def get_database_connection() -> Generator[Connection, Any, None]:
     """Returns a pymysql Connection to the given database."""
-    return connect(
-        host=os.getenv("DB_HOST", "localhost"),
-        port=int(os.getenv("DB_PORT", "3306")),
-        database=os.getenv("DB_NAME", "usasearch_development"),
-        user=os.getenv("DB_USER", "root"),
-        password=os.getenv("DB_PASSWORD", ""),
-        cursorclass=DictCursor,
-    )
+
+    try:
+        connection_args = {
+            "host": os.getenv("DB_HOST", "localhost"),
+            "port": int(os.getenv("DB_PORT", "3306")),
+            "database": os.getenv("DB_NAME", "usasearch_development"),
+            "user": os.getenv("DB_USER", "root"),
+            "password": os.environ["DB_PASSWORD"],
+            "cursorclass": DictCursor,
+            "charset": "utf8mb4",
+        }
+    except KeyError as e:
+        msg = "DB_PASSWORD environment variable must be set"
+        raise ValueError(msg) from e
+
+    connection = connect(**connection_args)
+    try:
+        yield connection
+    finally:
+        connection.close()
 
 
 def select_active_crawl_configs(connection: Connection) -> list[dict]:

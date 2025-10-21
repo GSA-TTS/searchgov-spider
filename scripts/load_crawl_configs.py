@@ -10,7 +10,9 @@ from search_gov_crawler.search_gov_app.database import get_database_connection
 load_dotenv()
 
 CRAWL_SITES_FILE = (
-    Path(__file__).parent / "domains" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
+    Path(__file__).parent.parent
+    / "search_gov_crawler/domains"
+    / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
 )
 
 
@@ -19,8 +21,19 @@ def load_crawl_config(input_file: str | None, *, truncate_table: bool = False) -
 
     crawl_sites_file = Path(input_file).resolve() if input_file else CRAWL_SITES_FILE
 
-    with crawl_sites_file.open(encoding="UTF-8") as f:
-        records = json.load(f)
+    try:
+        with crawl_sites_file.open(encoding="UTF-8") as f:
+            records = json.load(f)
+    except FileNotFoundError:
+        print(f"Error: File not found: {crawl_sites_file}")
+        raise
+    except json.JSONDecodeError as e:
+        print(f"Error: Invalid JSON in {crawl_sites_file}: {e}")
+        raise
+
+    if not isinstance(records, list):
+        msg = f"Error: Expected a list of records, got {type(records).__name__}"
+        raise TypeError(msg)
 
     for record in records:
         record["output_target"] = (
@@ -35,30 +48,38 @@ def load_crawl_config(input_file: str | None, *, truncate_table: bool = False) -
 
     print(f"Found {len(records)} records in {crawl_sites_file}")
 
-    with get_database_connection() as connection, connection.cursor() as cursor:
-        if truncate_table:
-            cursor.execute("TRUNCATE TABLE crawl_configs")
-            print("Truncated crawl_configs table")
+    try:
+        with get_database_connection() as connection, connection.cursor() as cursor:
+            if truncate_table:
+                cursor.execute("TRUNCATE TABLE crawl_configs")
+                print("Truncated crawl_configs table")
 
-        cursor.executemany(
-            """INSERT INTO crawl_configs
-                      (name, allowed_domains, starting_urls, sitemap_urls, deny_paths, depth_limit, sitemap_check_hours,
-                       allow_query_string, handle_javascript, schedule, output_target, created_at, updated_at
-                      )
-               VALUES (%(name)s, %(allowed_domains)s, %(starting_urls)s, %(sitemap_urls)s, %(deny_paths)s,
-                       %(depth_limit)s, %(check_sitemap_hours)s, %(allow_query_string)s, %(handle_javascript)s,
-                       %(schedule)s, %(output_target)s, NOW(), NOW()
-                     )""",
-            records,
-        )
+            cursor.executemany(
+                """INSERT INTO crawl_configs
+                        (name, allowed_domains, starting_urls, sitemap_urls, deny_paths, depth_limit,
+                         sitemap_check_hours,allow_query_string, handle_javascript, schedule, output_target,
+                         created_at, updated_at
+                        )
+                VALUES (%(name)s, %(allowed_domains)s, %(starting_urls)s, %(sitemap_urls)s, %(deny_paths)s,
+                        %(depth_limit)s, %(check_sitemap_hours)s, %(allow_query_string)s, %(handle_javascript)s,
+                        %(schedule)s, %(output_target)s, NOW(), NOW()
+                        )""",
+                records,
+            )
 
-        connection.commit()
-        print(f"Inserted {len(records)} records into crawl_configs table")
+            connection.commit()
+            print(f"Inserted {len(records)} records into crawl_configs table")
+    except Exception as e:
+        print(f"Database error: {e}")
+        raise
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Load crawl config data into the database")
-    parser.add_argument("--input_file", help="Path to JSON file with crawl config data")
+    parser.add_argument(
+        "--input_file",
+        help="Path to JSON file with crawl config data, default is SPIDER_CRAWL_SITES_FILE_NAME env var",
+    )
     parser.add_argument("--truncate_table", action="store_true", help="Truncate the crawl_configs table before loading")
     args = parser.parse_args()
 
