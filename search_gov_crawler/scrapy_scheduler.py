@@ -150,38 +150,43 @@ def start_scrapy_scheduler():
     scheduler.add_listener(scheduler.remove_pending_job, EVENT_JOB_EXECUTED | EVENT_JOB_ERROR)
     scheduler.start(paused=True)
 
-    scheduler.remove_all_jobs(jobstore="redis", include_pending_jobs=False)
+    try:
+        # Load and transform crawl configs
+        crawl_configs = CrawlConfigs.from_database()
+        if not crawl_configs.scheduled():
+            msg = "No crawl configs with a schedule found in database! No jobs scheduled."
+            log.error(msg)
+        else:
+            scheduler.remove_all_jobs(jobstore="redis", include_pending_jobs=False)
+            crawl_jobs = transform_crawl_configs(crawl_configs)
+            scheduler.add_jobs(jobs=crawl_jobs, jobstore="redis")
 
-    # Load and transform crawl configs
-    crawl_configs = CrawlConfigs.from_database()
-    if not crawl_configs.scheduled():
-        msg = "No crawl configs with a schedule found in database! No jobs scheduled."
-        log.error(msg)
-    else:
-        crawl_jobs = transform_crawl_configs(crawl_configs)
-        scheduler.add_jobs(jobs=crawl_jobs, jobstore="redis")
+        # Set any pending jobs to run immeidately and clear the pending jobs queue
+        scheduler.trigger_pending_jobs()
 
-    # Set any pending jobs to run immeidately and clear the pending jobs queue
-    scheduler.trigger_pending_jobs()
-
-    # Resume Scheduler and start infinite loop while checking for updates
-    scheduler.resume()
+        # Resume Scheduler and start infinite loop while checking for updates
+        scheduler.resume()
+    except Exception as exc:
+        log.exception("Error initializing scheduler: %s", exc)
 
     while True:
         wait_for_next_interval(interval=CRAWL_CONFIGS_INTERVAL)
 
-        # check for updates to crawl configs
-        crawl_configs = CrawlConfigs.from_database()
-        crawl_jobs = transform_crawl_configs(crawl_configs)
+        try:
+            # check for updates to crawl configs
+            crawl_configs = CrawlConfigs.from_database()
+            crawl_jobs = transform_crawl_configs(crawl_configs)
 
-        # Remove jobs that no longer exist in the database
-        crawl_job_ids = (crawl_job["id"] for crawl_job in crawl_jobs)
-        job_ids_to_remove = [job for job in scheduler.get_jobs(jobstore="redis") if job.id not in crawl_job_ids]
+            # Remove jobs that no longer exist in the database
+            crawl_job_ids = (crawl_job["id"] for crawl_job in crawl_jobs)
+            job_ids_to_remove = [job for job in scheduler.get_jobs(jobstore="redis") if job.id not in crawl_job_ids]
 
-        scheduler.remove_jobs(job_ids_to_remove, jobstore="redis")
+            scheduler.remove_jobs(job_ids_to_remove, jobstore="redis")
 
-        # Add new jobs and update existing jobs
-        scheduler.add_jobs(crawl_jobs, jobstore="redis", update_existing=True)
+            # Add new jobs and update existing jobs
+            scheduler.add_jobs(crawl_jobs, jobstore="redis", update_existing=True)
+        except Exception as exc:
+            log.exception("Error updating scheduler: %s", exc)
 
 
 if __name__ == "__main__":

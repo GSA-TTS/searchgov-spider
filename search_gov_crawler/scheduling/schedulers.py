@@ -104,8 +104,10 @@ class SpiderBackgroundScheduler(BackgroundScheduler):
                     self.reschedule_job(job_id, trigger=job_trigger)
                 else:
                     log.exception("Error adding job %s", job.get("id"))
+                    raise
             except Exception:
                 log.exception("Error adding job %s", job.get("id"))
+                raise
 
     def remove_jobs(self, jobs_ids: list[str], jobstore: str) -> None:
         """Remove multiple jobs from the scheduler."""
@@ -115,3 +117,4 @@ class SpiderBackgroundScheduler(BackgroundScheduler):
                 self.remove_job(job_id, jobstore=jobstore)
             except JobLookupError:
                 log.exception("Job %s not found in scheduler, cannot remove", job_id)
+                raise
