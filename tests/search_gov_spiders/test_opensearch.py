@@ -16,23 +16,10 @@ def opensearch_instance(monkeypatch):
     monkeypatch.setattr(SearchGovOpensearch, "ENABLED", True)
     return SearchGovOpensearch(
         batch_size=2,
-        opensearch_hosts="http://localhost:9200",
+        opensearch_host="http://localhost",
+        opensearch_port=9200,
         opensearch_index="test-index"
     )
-
-
-def test_parse_opensearch_urls_valid(opensearch_instance):
-    urls = "http://host1:9200,https://host2:443"
-    result = opensearch_instance._parse_opensearch_urls(urls)
-    assert result == [
-        {"host": "host1", "port": 9200, "scheme": "http"},
-        {"host": "host2", "port": 443, "scheme": "https"},
-    ]
-
-
-def test_parse_opensearch_urls_invalid(opensearch_instance):
-    with pytest.raises(ValueError):
-        opensearch_instance._parse_opensearch_urls("http://badurl")
 
 
 def test_index_name_property(opensearch_instance):
