@@ -133,12 +133,14 @@ def init_scheduler() -> SpiderBackgroundScheduler:
     )
 
 
-def wait_for_next_interval(interval: int) -> None:
+def wait_for_next_interval(interval: int, *, keep_running: bool = True) -> bool:
     """
-    Sleeps for the specified interval in seconds
+    Sleeps for the specified interval in seconds, then returns the keep_running value.
 
     """
     time.sleep(interval)
+    log.debug("Woke up after sleeping for %s seconds", interval)
+    return keep_running
 
 
 def start_scrapy_scheduler():
@@ -166,12 +168,10 @@ def start_scrapy_scheduler():
 
         # Resume Scheduler and start infinite loop while checking for updates
         scheduler.resume()
-    except Exception as exc:
-        log.exception("Error initializing scheduler: %s", exc)
+    except Exception:
+        log.exception("Error initializing scheduler!")
 
-    while True:
-        wait_for_next_interval(interval=CRAWL_CONFIGS_INTERVAL)
-
+    while wait_for_next_interval(interval=CRAWL_CONFIGS_INTERVAL):
         try:
             # check for updates to crawl configs
             crawl_configs = CrawlConfigs.from_database()

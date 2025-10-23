@@ -1,6 +1,5 @@
 import os
 import subprocess
-from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -13,6 +12,7 @@ from search_gov_crawler.scrapy_scheduler import (
     run_scrapy_crawl,
     start_scrapy_scheduler,
     transform_crawl_configs,
+    wait_for_next_interval,
 )
 
 
@@ -49,6 +49,18 @@ def test_run_scrapy_crawl(caplog, monkeypatch, run_args):
         "allowed_domains=test-domain.example.com, start_urls=http://starting-url.example.com/, "
         "output_target=csv, depth_limit=3, deny_paths=path"
     ) in caplog.messages
+
+
+@pytest.mark.parametrize(
+    ("test_kwargs", "expected"),
+    [({"interval": 0}, True), ({"interval": 0, "keep_running": False}, False)],
+)
+def test_wait_for_next_interval(caplog, test_kwargs, expected):
+    with caplog.at_level("DEBUG"):
+        result = wait_for_next_interval(**test_kwargs)
+
+    assert result is expected
+    assert f"Woke up after sleeping for {test_kwargs['interval']} seconds" in caplog.messages
 
 
 def test_transform_crawl_configs(crawl_configs_from_test_file):
@@ -145,14 +157,30 @@ def test_init_scheduler(caplog, monkeypatch, scrapy_max_workers, expected_val, m
     assert f"Max workers for schedule set to {expected_val}" in caplog.messages
 
 
-def test_start_scrapy_scheduler_bad_input_file():
-    with pytest.raises(ValueError, match="Cannot start scheduler! Input file invalid_file.json does not exist."):
-        start_scrapy_scheduler(input_file=Path("invalid_file.json"))
+def test_start_scrapy_scheduler_bad_initialization(caplog, monkeypatch):
+    def raise_error(*_args, **_kwargs):
+        msg = "Sorry database is down!"
+        raise ValueError(msg)
+
+    monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.CrawlConfigs.from_database", raise_error)
+    monkeypatch.setenv("SPIDER_CRAWL_CONFIGS_CHECK_INTERVAL", "0")
+    monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.wait_for_next_interval", lambda interval: False)
+    with caplog.at_level("ERROR"):
+        start_scrapy_scheduler()
+
+    assert "Error initializing scheduler!" in caplog.messages
 
 
-def test_start_scrapy_scheduler(caplog, monkeypatch, crawl_sites_test_file, mock_es_client, mock_jobstore):
+def test_start_scrapy_scheduler(caplog, monkeypatch, crawl_configs_from_test_file, mock_es_client, mock_jobstore):
+    def mock_from_database():
+        return crawl_configs_from_test_file
+
+    def mock_wait_for_next_interval(*_args, **_kwargs):
+        yield from [True, False]
+
+    monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.CrawlConfigs.from_database", mock_from_database)
     monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.SpiderBackgroundScheduler.resume", lambda _: True)
-    monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.keep_scheduler_alive", lambda: True)
+    monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.wait_for_next_interval", mock_wait_for_next_interval)
 
     with (
         caplog.at_level("INFO"),
@@ -162,7 +190,7 @@ def test_start_scrapy_scheduler(caplog, monkeypatch, crawl_sites_test_file, mock
         ),
         patch("search_gov_crawler.scrapy_scheduler.SpiderRedisJobStore", return_value=mock_jobstore),
     ):
-        start_scrapy_scheduler(input_file=crawl_sites_test_file)
+        start_scrapy_scheduler()
 
         messages = [f'Added job "Quotes {job_num}" to job store "redis"' for job_num in range(1, 5)]
         assert all(message in caplog.messages for message in messages)
