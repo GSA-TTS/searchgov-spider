@@ -22,11 +22,6 @@ def opensearch_instance(monkeypatch):
     )
 
 
-def test_parse_opensearch_urls_invalid(opensearch_instance):
-    with pytest.raises(ValueError):
-        opensearch_instance._parse_opensearch_urls("http://badurl")
-
-
 def test_index_name_property(opensearch_instance):
     assert opensearch_instance.index_name == "test-index"
 

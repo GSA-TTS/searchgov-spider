@@ -44,7 +44,7 @@ class SearchGovOpensearch:
 
         Args:
             batch_size: number of docs to buffer before bulk upload
-            opensearch_host: Opensearch URL (e.g. "https://host1:9200")
+            opensearch_host: Opensearch host URL without port (e.g. "https://host1")
             opensearch_port: Opensearch PORT (e.g. 9200)
             opensearch_index: Opensearch index name
             opensearch_user: Basic auth username
@@ -81,7 +81,7 @@ class SearchGovOpensearch:
                 http_auth=(self._env_opensearch_user, self._env_opensearch_password)
                 if self._env_opensearch_user or self._env_opensearch_password
                 else None,
-                use_ssl=any(host.get("scheme") == "https" for host in self._env_opensearch_host),
+                use_ssl=self._env_opensearch_host.startswith("https://"),
                 verify_certs=False,
                 ssl_show_warn=False,
                 timeout=self._timeout,
