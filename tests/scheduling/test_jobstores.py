@@ -13,6 +13,10 @@ def test_alias_without_scheduler(mock_redis_jobstore):
         mock_redis_jobstore.alias
 
 
+def test_alias_with_scheduler(mock_redis_jobstore):
+    assert mock_redis_jobstore.alias == "redis"
+
+
 @pytest.mark.parametrize(
     ("method", "args", "expected_log_message"),
     [
