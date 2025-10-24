@@ -31,6 +31,9 @@ logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 log = logging.getLogger("search_gov_crawler.scrapy_scheduler")
 
 CRAWL_CONFIGS_INTERVAL = int(os.environ.get("SPIDER_CRAWL_CONFIGS_CHECK_INTERVAL", "300"))  # in seconds
+CRAWL_SITES_FILE = (
+    Path(__file__).parent / "domains" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
+)
 
 
 def run_scrapy_crawl(
@@ -133,6 +136,15 @@ def init_scheduler() -> SpiderBackgroundScheduler:
     )
 
 
+def keep_scheduler_alive() -> None:
+    """
+    Keeps the scheduler alive by sleeping in an infinite loop
+
+    """
+    while True:
+        time.sleep(5)
+
+
 def wait_for_next_interval(interval: int, *, keep_running: bool = True) -> bool:
     """
     Sleeps for the specified interval in seconds, then returns the keep_running value.
@@ -143,8 +155,11 @@ def wait_for_next_interval(interval: int, *, keep_running: bool = True) -> bool:
     return keep_running
 
 
-def start_scrapy_scheduler():
-    """Initializes schedule from database, schedules jobs and runs scheduler"""
+def start_scrapy_scheduler_from_db():
+    """
+    Initializes schedule from database, schedules jobs and runs scheduler
+    THIS IS FOR FUTURE USE - CURRENTLY NOT CALLED ANYWHERE
+    """
 
     # Initialize Scheduler and add listeners
     scheduler = init_scheduler()
@@ -155,7 +170,7 @@ def start_scrapy_scheduler():
     try:
         # Load and transform crawl configs
         crawl_configs = CrawlConfigs.from_database()
-        if not crawl_configs.scheduled():
+        if not list(crawl_configs.scheduled()):
             msg = "No crawl configs with a schedule found in database! No jobs scheduled."
             log.error(msg)
         else:
@@ -185,9 +200,38 @@ def start_scrapy_scheduler():
 
             # Add new jobs and update existing jobs
             scheduler.add_jobs(crawl_jobs, jobstore="redis", update_existing=True)
-        except Exception as exc:
-            log.exception("Error updating scheduler: %s", exc)
+        except Exception:
+            log.exception("Error updating scheduler!")
+
+
+def start_scrapy_scheduler(input_file: Path) -> None:
+    """Initializes schedule from input file, schedules jobs and runs scheduler"""
+    if not input_file.exists():
+        msg = f"Cannot start scheduler! Input file {input_file} does not exist."
+        raise ValueError(msg)
+
+    # Load and transform crawl configs
+    crawl_sites = CrawlConfigs.from_file(file=input_file)
+    apscheduler_jobs = transform_crawl_configs(crawl_sites)
+
+    # Initialize Scheduler and add listeners
+    scheduler = init_scheduler()
+    scheduler.add_listener(scheduler.add_pending_job, EVENT_JOB_SUBMITTED)
+    scheduler.add_listener(scheduler.remove_pending_job, EVENT_JOB_EXECUTED | EVENT_JOB_ERROR)
+    scheduler.start(paused=True)
+
+    # Remove all jobs from scheduler, and add new version of jobs from config
+    scheduler.remove_all_jobs(jobstore="redis", include_pending_jobs=False)
+    for apscheduler_job in apscheduler_jobs:
+        scheduler.add_job(**apscheduler_job, jobstore="redis")
+
+    # Set any pending jobs to run immeidately and clear the pending jobs queue
+    scheduler.trigger_pending_jobs()
+
+    # Resume Scheduler and start infinite loop to keep the scheduler process open
+    scheduler.resume()
+    keep_scheduler_alive()
 
 
 if __name__ == "__main__":
-    start_scrapy_scheduler()
+    start_scrapy_scheduler(input_file=CRAWL_SITES_FILE)
