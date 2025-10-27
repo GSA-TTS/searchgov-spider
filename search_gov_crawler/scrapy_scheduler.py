@@ -233,5 +233,4 @@ def start_scrapy_scheduler(input_file: Path) -> None:
 
 
 if __name__ == "__main__":
-    # start_scrapy_scheduler(input_file=CRAWL_SITES_FILE)
-    start_scrapy_scheduler_from_db()
+    start_scrapy_scheduler(input_file=CRAWL_SITES_FILE)
