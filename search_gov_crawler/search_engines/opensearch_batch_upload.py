@@ -32,7 +32,8 @@ class SearchGovOpensearch:
     def __init__(
         self,
         batch_size: int = 50,
-        opensearch_hosts: Optional[str] = None,
+        opensearch_host: Optional[str] = None,
+        opensearch_port: Optional[int] = None,
         opensearch_index: Optional[str] = None,
         opensearch_user: Optional[str] = None,
         opensearch_password: Optional[str] = None,
@@ -43,7 +44,8 @@ class SearchGovOpensearch:
 
         Args:
             batch_size: number of docs to buffer before bulk upload
-            opensearch_hosts: comma-separated Opensearch URLs (e.g. "https://host1:9200,https://host2:9200")
+            opensearch_host: Opensearch host URL without port (e.g. "https://host1")
+            opensearch_port: Opensearch PORT (e.g. 9200)
             opensearch_index: Opensearch index name
             opensearch_user: Basic auth username
             opensearch_password: Basic auth password
@@ -52,8 +54,9 @@ class SearchGovOpensearch:
         """
         self._batch_size = batch_size
         self._current_batch: List[Dict[str, Any]] = []
-
-        self._env_opensearch_hosts = opensearch_hosts or os.getenv("OPENSEARCH_SEARCH_HOST", "http://localhost:9300")
+        port = opensearch_port or os.getenv("OPENSEARCH_SEARCH_PORT", "9200")
+        self._env_opensearch_host = opensearch_host or os.getenv("OPENSEARCH_SEARCH_HOST", f"http://localhost")
+        self._env_opensearch_host = f"{self._env_opensearch_host}:{port}"
         self._env_opensearch_index = opensearch_index or os.getenv(
             "OPENSEARCH_SEARCH_INDEX",
             "development-i14y-documents-searchgov",
@@ -63,12 +66,6 @@ class SearchGovOpensearch:
         self._timeout = timeout
         self._max_retries = max_retries
         self._opensearch_client: Optional[OpenSearch] = None
-
-        try:
-            self._parsed_hosts = self._parse_opensearch_urls(self._env_opensearch_hosts)
-        except ValueError:
-            log.exception("Environment variable OPENSEARCH_SEARCH_DOMAIN is malformed")
-            raise
 
     @property
     def index_name(self) -> str:
@@ -80,11 +77,11 @@ class SearchGovOpensearch:
         """Lazily initialize and return the Opensearch client."""
         if self._opensearch_client is None:
             self._opensearch_client = OpenSearch(
-                hosts=self._parsed_hosts,
+                hosts=self._env_opensearch_host,
                 http_auth=(self._env_opensearch_user, self._env_opensearch_password)
                 if self._env_opensearch_user or self._env_opensearch_password
                 else None,
-                use_ssl=any(host.get("scheme") == "https" for host in self._parsed_hosts),
+                use_ssl=self._env_opensearch_host.startswith("https://"),
                 verify_certs=False,
                 ssl_show_warn=False,
                 timeout=self._timeout,
