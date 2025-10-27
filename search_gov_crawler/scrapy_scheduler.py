@@ -193,9 +193,8 @@ def start_scrapy_scheduler_from_db():
             crawl_jobs = transform_crawl_configs(crawl_configs)
 
             # Remove jobs that no longer exist in the database
-            crawl_job_ids = (crawl_job["id"] for crawl_job in crawl_jobs)
-            job_ids_to_remove = [job for job in scheduler.get_jobs(jobstore="redis") if job.id not in crawl_job_ids]
-
+            crawl_job_ids = [crawl_job["id"] for crawl_job in crawl_jobs]
+            job_ids_to_remove = [job.id for job in scheduler.get_jobs(jobstore="redis") if job.id not in crawl_job_ids]
             scheduler.remove_jobs(job_ids_to_remove, jobstore="redis")
 
             # Add new jobs and update existing jobs
@@ -234,4 +233,5 @@ def start_scrapy_scheduler(input_file: Path) -> None:
 
 
 if __name__ == "__main__":
-    start_scrapy_scheduler(input_file=CRAWL_SITES_FILE)
+    # start_scrapy_scheduler(input_file=CRAWL_SITES_FILE)
+    start_scrapy_scheduler_from_db()
