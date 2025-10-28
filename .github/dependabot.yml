@@ -22,6 +22,7 @@ updates:
           - "pypdf"
           - "langdetect"
           - "python-dateutil"
+          - "pymysql"
       testing-linting-and-scripts:
         patterns:
           - "click"
