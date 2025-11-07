@@ -279,7 +279,8 @@ def create_sitemaps_csv(csv_filename: str, batch_size: int = 10):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
-    logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
+    handler = logging.StreamHandler()
+    handler.setFormatter(JsonFormatter(fmt=LOG_FMT))
+    logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"), handlers=[handler], force=True)
 
     create_sitemaps_csv("all_production_sitemaps.csv")

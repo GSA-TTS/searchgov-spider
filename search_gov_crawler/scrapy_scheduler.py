@@ -178,7 +178,7 @@ def start_scrapy_scheduler_from_db():
             crawl_jobs = transform_crawl_configs(crawl_configs)
             scheduler.add_jobs(jobs=crawl_jobs, jobstore="redis")
 
-        # Set any pending jobs to run immeidately and clear the pending jobs queue
+        # Set any pending jobs to run immediately and clear the pending jobs queue
         scheduler.trigger_pending_jobs()
 
         # Resume Scheduler and start infinite loop while checking for updates

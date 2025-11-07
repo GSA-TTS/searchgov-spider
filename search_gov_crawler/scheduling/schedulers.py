@@ -94,13 +94,15 @@ class SpiderBackgroundScheduler(BackgroundScheduler):
         """
 
         for job in jobs:
+            job_id = job["id"]
+            job_trigger = job["trigger"]
+            job_kwargs = {k: v for k, v in job.items() if k not in ("id", "trigger", "jobstore")}
+
             try:
-                self.add_job(**job, jobstore=jobstore)
+                self.add_job(id=job_id, trigger=job_trigger, jobstore=jobstore, **job_kwargs)
             except ConflictingIdError:
                 if update_existing:
-                    job_id = job.pop("id")
-                    self.modify_job(job_id=job_id, **job)
-                    job_trigger = job.pop("trigger")
+                    self.modify_job(job_id=job_id, **job_kwargs)
                     self.reschedule_job(job_id, trigger=job_trigger)
                 else:
                     log.exception("Error adding job %s", job.get("id"))
