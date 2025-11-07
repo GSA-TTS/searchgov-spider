@@ -1,7 +1,5 @@
 """
-Starts scrapy scheduler.  Takes job details from the crawl-sites-production.json file referenced below as
-CRAWL_SITES_FILE. Schedule is fully contained in-memory but current cron expression is stored in the input file
-so that on each deploy the schedule can pickup where it left off.
+Starts scrapy scheduler.  Takes job details from the crawl_configs table in the searchgov database.
 
 Use the env var SPIDER_SCRAPY_MAX_WORKERS to control how many jobs can run at once.  If the max number of
 jobs are running when other jobs are supposed to run, those jobs will queue until one or more of the running
@@ -23,7 +21,7 @@ from pythonjsonlogger.json import JsonFormatter
 from search_gov_crawler.scheduling.jobstores import SpiderRedisJobStore
 from search_gov_crawler.scheduling.redis import get_redis_connection_args
 from search_gov_crawler.scheduling.schedulers import SpiderBackgroundScheduler
-from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSites
+from search_gov_crawler.search_gov_app.crawl_config import CrawlConfigs
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 
 load_dotenv()
@@ -32,6 +30,7 @@ logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
 logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 log = logging.getLogger("search_gov_crawler.scrapy_scheduler")
 
+CRAWL_CONFIGS_INTERVAL = int(os.environ.get("SPIDER_CRAWL_CONFIGS_CHECK_INTERVAL", "300"))  # in seconds
 CRAWL_SITES_FILE = (
     Path(__file__).parent / "domains" / os.environ.get("SPIDER_CRAWL_SITES_FILE_NAME", "crawl-sites-production.json")
 )
@@ -77,35 +76,35 @@ def run_scrapy_crawl(
     log.info(msg, spider, allow_query_string, allowed_domains, start_urls, output_target, depth_limit, deny_paths)
 
 
-def transform_crawl_sites(crawl_sites: CrawlSites) -> list[dict]:
+def transform_crawl_configs(crawl_configs: CrawlConfigs) -> list[dict]:
     """
     Transform crawl sites records into a format that can be used to create apscheduler jobs.  Only
     scheduler jobs that have a value for the `schedule` field.
     """
 
-    transformed_crawl_sites = []
+    transformed_crawl_configs = []
 
-    for crawl_site in crawl_sites.scheduled():
-        job_name = crawl_site.name
-        transformed_crawl_sites.append(
+    for crawl_config in crawl_configs.scheduled():
+        job_name = crawl_config.name
+        transformed_crawl_configs.append(
             {
                 "func": run_scrapy_crawl,
-                "id": crawl_site.job_id,
+                "id": crawl_config.job_id,
                 "name": job_name,
-                "trigger": CronTrigger.from_crontab(expr=crawl_site.schedule, timezone="UTC"),
+                "trigger": CronTrigger.from_crontab(expr=crawl_config.schedule, timezone="UTC"),
                 "args": [
-                    ("domain_spider" if not crawl_site.handle_javascript else "domain_spider_js"),
-                    crawl_site.allow_query_string,
-                    crawl_site.allowed_domains,
-                    crawl_site.starting_urls,
-                    crawl_site.output_target,
-                    crawl_site.depth_limit,
-                    crawl_site.deny_paths if crawl_site.deny_paths else [],
+                    ("domain_spider" if not crawl_config.handle_javascript else "domain_spider_js"),
+                    crawl_config.allow_query_string,
+                    crawl_config.allowed_domains,
+                    crawl_config.starting_urls,
+                    crawl_config.output_target,
+                    crawl_config.depth_limit,
+                    crawl_config.deny_paths if crawl_config.deny_paths else [],
                 ],
             },
         )
 
-    return transformed_crawl_sites
+    return transformed_crawl_configs
 
 
 def init_scheduler() -> SpiderBackgroundScheduler:
@@ -146,15 +145,73 @@ def keep_scheduler_alive() -> None:
         time.sleep(5)
 
 
+def wait_for_next_interval(interval: int, *, keep_running: bool = True) -> bool:
+    """
+    Sleeps for the specified interval in seconds, then returns the keep_running value.
+
+    """
+    time.sleep(interval)
+    log.debug("Woke up after sleeping for %s seconds", interval)
+    return keep_running
+
+
+def start_scrapy_scheduler_from_db():
+    """
+    Initializes schedule from database, schedules jobs and runs scheduler
+    THIS IS FOR FUTURE USE - CURRENTLY NOT CALLED ANYWHERE
+    """
+
+    # Initialize Scheduler and add listeners
+    scheduler = init_scheduler()
+    scheduler.add_listener(scheduler.add_pending_job, EVENT_JOB_SUBMITTED)
+    scheduler.add_listener(scheduler.remove_pending_job, EVENT_JOB_EXECUTED | EVENT_JOB_ERROR)
+    scheduler.start(paused=True)
+
+    try:
+        # Load and transform crawl configs
+        crawl_configs = CrawlConfigs.from_database()
+        if not list(crawl_configs.scheduled()):
+            msg = "No crawl configs with a schedule found in database! No jobs scheduled."
+            log.error(msg)
+        else:
+            scheduler.remove_all_jobs(jobstore="redis", include_pending_jobs=False)
+            crawl_jobs = transform_crawl_configs(crawl_configs)
+            scheduler.add_jobs(jobs=crawl_jobs, jobstore="redis")
+
+        # Set any pending jobs to run immediately and clear the pending jobs queue
+        scheduler.trigger_pending_jobs()
+
+        # Resume Scheduler and start infinite loop while checking for updates
+        scheduler.resume()
+    except Exception:
+        log.exception("Error initializing scheduler!")
+
+    while wait_for_next_interval(interval=CRAWL_CONFIGS_INTERVAL):
+        try:
+            # check for updates to crawl configs
+            crawl_configs = CrawlConfigs.from_database()
+            crawl_jobs = transform_crawl_configs(crawl_configs)
+
+            # Remove jobs that no longer exist in the database
+            crawl_job_ids = [crawl_job["id"] for crawl_job in crawl_jobs]
+            job_ids_to_remove = [job.id for job in scheduler.get_jobs(jobstore="redis") if job.id not in crawl_job_ids]
+            scheduler.remove_jobs(job_ids_to_remove, jobstore="redis")
+
+            # Add new jobs and update existing jobs
+            scheduler.add_jobs(crawl_jobs, jobstore="redis", update_existing=True)
+        except Exception:
+            log.exception("Error updating scheduler!")
+
+
 def start_scrapy_scheduler(input_file: Path) -> None:
     """Initializes schedule from input file, schedules jobs and runs scheduler"""
     if not input_file.exists():
         msg = f"Cannot start scheduler! Input file {input_file} does not exist."
         raise ValueError(msg)
 
-    # Load and transform crawl sites
-    crawl_sites = CrawlSites.from_file(file=input_file)
-    apscheduler_jobs = transform_crawl_sites(crawl_sites)
+    # Load and transform crawl configs
+    crawl_sites = CrawlConfigs.from_file(file=input_file)
+    apscheduler_jobs = transform_crawl_configs(crawl_sites)
 
     # Initialize Scheduler and add listeners
     scheduler = init_scheduler()

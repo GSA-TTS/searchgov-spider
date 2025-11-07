@@ -31,3 +31,24 @@ def get_database_connection() -> Generator[Connection, Any, None]:
         yield connection
     finally:
         connection.close()
+
+
+def select_active_crawl_configs(connection: Connection) -> list[dict]:
+    """Returns all active crawl configurations from the database."""
+    stmt = """SELECT CONCAT(name,'-',id) AS name,
+                     allowed_domains,
+                     starting_urls,
+                     sitemap_urls,
+                     deny_paths,
+                     depth_limit,
+                     sitemap_check_hours AS check_sitemap_hours,
+                     allow_query_string,
+                     handle_javascript,
+                     schedule,
+                     output_target
+              FROM   crawl_configs
+              WHERE  active = 1"""
+
+    with connection.cursor() as cursor:
+        cursor.execute(stmt)
+        return list(cursor.fetchall())

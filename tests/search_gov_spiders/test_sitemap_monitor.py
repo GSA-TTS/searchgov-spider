@@ -1,17 +1,14 @@
-import pytest
 import hashlib
+from unittest.mock import MagicMock, patch
+
+import pytest
 import requests
-from pathlib import Path
-from unittest.mock import patch, MagicMock
 
-from search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor import (
-    SitemapMonitor,
-    create_directory,
-)
+from search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor import SitemapMonitor, create_directory
 
 
-class MockCrawlSite:
-    """A mock CrawlSite class for testing purposes."""
+class MockCrawlConfig:
+    """A mock CrawlConfig class for testing purposes."""
 
     def __init__(self, starting_urls, sitemap_urls=None, depth_limit=8, check_sitemap_hours=None, **kwargs):
         self.starting_urls = starting_urls
@@ -44,6 +41,7 @@ def md5_name(url: str) -> str:
 # create_directory tests
 # -------------------------------
 
+
 def test_create_new_directory(tmp_path):
     target = tmp_path / "foo"
     create_directory(target)
@@ -61,6 +59,7 @@ def test_create_directory_idempotent(tmp_path):
 # SitemapMonitor setup / processing
 # -------------------------------
 
+
 @patch("search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor.SitemapFinder")
 def test_setup_filters_records_by_depth(MockSitemapFinder):
     mock_finder = MockSitemapFinder.return_value
@@ -68,9 +67,9 @@ def test_setup_filters_records_by_depth(MockSitemapFinder):
     mock_finder.find.side_effect = lambda url: {f"{url}/sitemap.xml"}
 
     records = [
-        MockCrawlSite(starting_urls="https://example0.com", depth_limit=7),
-        MockCrawlSite(starting_urls="https://example1.com", depth_limit=8),
-        MockCrawlSite(starting_urls="https://example2.com", depth_limit=9),
+        MockCrawlConfig(starting_urls="https://example0.com", depth_limit=7),
+        MockCrawlConfig(starting_urls="https://example1.com", depth_limit=8),
+        MockCrawlConfig(starting_urls="https://example2.com", depth_limit=9),
     ]
     monitor = SitemapMonitor(records)
     monitor.setup()
@@ -87,7 +86,7 @@ def test_process_record_sitemaps_combines_predefined_and_found(MockSitemapFinder
     mock_finder.confirm_sitemap_url.side_effect = lambda url: url.startswith("https://valid-")
     mock_finder.find.return_value = {"https://discovered.com/sitemap.xml"}
 
-    record = MockCrawlSite(
+    record = MockCrawlConfig(
         starting_urls="https://example.com",
         sitemap_urls=[
             "https://valid-predefined.com/sitemap.xml",
@@ -106,6 +105,7 @@ def test_process_record_sitemaps_combines_predefined_and_found(MockSitemapFinder
 # -------------------------------
 # Stored sitemap load/save
 # -------------------------------
+
 
 def test_load_stored_sitemaps(temp_dir):
     sitemap_url_existing = "https://example.com/existing.xml"
@@ -138,6 +138,7 @@ def test_save_sitemap(temp_dir):
 # -------------------------------
 # _fetch_sitemap tests
 # -------------------------------
+
 
 @patch("requests.Session")
 def test_fetch_sitemap_urlset_success(MockSession):
@@ -199,14 +200,13 @@ def test_fetch_sitemap_error_returns_empty(MockSession):
 def test_fetch_sitemap_max_depth(mock_log):
     monitor = SitemapMonitor([])
     monitor._fetch_sitemap("https://fake.url/sitemap.xml", depth=11, max_depth=10)
-    mock_log.error.assert_called_with(
-        "Maximum recursion depth (10) exceeded for sitemap https://fake.url/sitemap.xml"
-    )
+    mock_log.error.assert_called_with("Maximum recursion depth (10) exceeded for sitemap https://fake.url/sitemap.xml")
 
 
 # -------------------------------
 # _check_for_changes tests
 # -------------------------------
+
 
 @pytest.mark.parametrize(
     "first_run,stored,fetched,expected_new,expected_total",
@@ -237,18 +237,19 @@ def test_check_for_changes(temp_dir, first_run, stored, fetched, expected_new, e
 # _get_check_interval tests
 # -------------------------------
 
+
 @patch("search_gov_crawler.search_gov_spiders.sitemaps.sitemap_monitor.SitemapFinder")
 def test_get_check_interval(MockSitemapFinder):
     mock_finder = MockSitemapFinder.return_value
     mock_finder.confirm_sitemap_url.return_value = True
     mock_finder.find.return_value = set()
 
-    rec1 = MockCrawlSite(
+    rec1 = MockCrawlConfig(
         "https://ex.com",
         sitemap_urls=["https://ex.com/sitemap.xml"],
         check_sitemap_hours=12,
     )
-    rec2 = MockCrawlSite(
+    rec2 = MockCrawlConfig(
         "https://default.com",
         sitemap_urls=["https://default.com/sitemap.xml"],
         check_sitemap_hours=None,
