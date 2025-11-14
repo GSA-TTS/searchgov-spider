@@ -132,7 +132,7 @@ def test_benchmark_from_file(caplog, monkeypatch, mock_es_client):
         monkeypatch.setattr(time, "sleep", lambda x: True)
         monkeypatch.setattr("search_gov_crawler.benchmark.init_scheduler", lambda: MockScheduler())  # pylint: disable=unnecessary-lambda
 
-        input_file = Path(__file__).parent / "crawl-sites-test.json"
+        input_file = Path(__file__).parent.parent / "crawl-sites-test.json"
         with caplog.at_level("INFO"):
             benchmark_from_file(input_file=input_file, runtime_offset_seconds=0)
 
