@@ -17400,7 +17400,7 @@
       "output_target": "elasticsearch",
       "schedule": "37 7 * * MON",
       "sitemap_urls": null,
-      "starting_urls": "https://dk.usembassy.gov"
+      "starting_urls": "https://dk.usembassy.gov/"
    },
    {
       "allow_query_string": false,
