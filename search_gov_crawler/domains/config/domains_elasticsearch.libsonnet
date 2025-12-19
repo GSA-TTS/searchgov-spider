@@ -10596,9 +10596,9 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: 'New depth 8 (dk.usembassy.gov/da)',
-    config: DomainConfig(allowed_domains='dk.usembassy.gov/da',
-                         starting_urls='https://dk.usembassy.gov/da/',
+    name: 'New depth 8 (dk.usembassy.gov)',
+    config: DomainConfig(allowed_domains='dk.usembassy.gov',
+                         starting_urls='https://dk.usembassy.gov',
                          schedule='37 7 * * MON',
                          output_target=output_target,
                          depth_limit=8),

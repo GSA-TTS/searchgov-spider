@@ -17391,16 +17391,16 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "dk.usembassy.gov/da",
+      "allowed_domains": "dk.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "New depth 8 (dk.usembassy.gov/da)",
+      "name": "New depth 8 (dk.usembassy.gov)",
       "output_target": "elasticsearch",
       "schedule": "37 7 * * MON",
       "sitemap_urls": null,
-      "starting_urls": "https://dk.usembassy.gov/da/"
+      "starting_urls": "https://dk.usembassy.gov"
    },
    {
       "allow_query_string": false,
