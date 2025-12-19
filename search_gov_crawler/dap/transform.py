@@ -56,3 +56,11 @@ def transform_dap_response(dap_response: list[dict]) -> list[dict]:
             )
 
     return list(default_dict.values())
+
+
+def normalize_domain_for_dap_lookup(domain: str) -> str:
+    """
+    Normalize a domain for DAP lookup by removing the path, lowercasing and removing "www." prefix.
+    """
+    domain_without_path = domain.split("/")[0]
+    return domain_without_path.lower().removeprefix("www.")

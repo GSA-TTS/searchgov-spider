@@ -1,6 +1,6 @@
 import pytest
 
-from search_gov_crawler.dap.transform import domain_is_valid, transform_dap_response
+from search_gov_crawler.dap.transform import domain_is_valid, normalize_domain_for_dap_lookup, transform_dap_response
 
 
 def test_transform_dap_response():
@@ -65,3 +65,18 @@ DOMAIN_IS_VALID_TEST_CASES = [
 @pytest.mark.parametrize(("domain, is_valid"), DOMAIN_IS_VALID_TEST_CASES)
 def test_domain_is_valid(domain, is_valid):
     assert domain_is_valid(domain) is is_valid
+
+
+@pytest.mark.parametrize(
+    ("input_domain", "expected_normalized_domain"),
+    [
+        ("www.example.com", "example.com"),
+        ("EXAMPLE.COM", "example.com"),
+        ("subdomain.example.com", "subdomain.example.com"),
+        ("www.subdomain.example.com", "subdomain.example.com"),
+        ("example.com", "example.com"),
+        ("WWW.EXAMPLE.COM/PATH/PAGE.HTML", "example.com"),
+    ],
+)
+def test_normalize_domain_for_dap_lookup(input_domain, expected_normalized_domain):
+    assert normalize_domain_for_dap_lookup(input_domain) == expected_normalized_domain
