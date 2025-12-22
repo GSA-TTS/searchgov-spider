@@ -9344,6 +9344,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://drive.hhs.gov',
                          schedule='05 16 * * MON',
                          output_target=output_target,
+                         options=['allow_query_string'],
                          depth_limit=8),
   },
   {

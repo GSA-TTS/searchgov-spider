@@ -15349,7 +15349,7 @@
       "starting_urls": "https://www.peogcs.army.mil"
    },
    {
-      "allow_query_string": false,
+      "allow_query_string": true,
       "allowed_domains": "drive.hhs.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
