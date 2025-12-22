@@ -225,8 +225,8 @@ def get_domain_visits(spider: SearchGovDomainSpider) -> dict:
     redis = init_redis_client(db=2)
 
     for allowed_domain in spider.allowed_domains:
-        normalized_domain = normalize_domain_for_dap_lookup(allowed_domain)
-        domain_visits.update(get_avg_daily_visits_by_domain(redis=redis, domain=normalized_domain, days_back=7))
+        if normalized_domain := normalize_domain_for_dap_lookup(allowed_domain):
+            domain_visits.update(get_avg_daily_visits_by_domain(redis=redis, domain=normalized_domain, days_back=7))
 
     spider.logger.info("Retrieved %d DAP daily visit domain records for spider", len(domain_visits))
     return domain_visits

@@ -178,6 +178,7 @@ GET_DOMAIN_VISITS_TEST_CASES = [
             "subtest.test1.example.com": 100,
         },
     ),
+    (["example.com", None, ""], {"test1.example.com": 100, "example.com": 200}),
 ]
 
 
