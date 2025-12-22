@@ -76,6 +76,13 @@ def test_domain_is_valid(domain, is_valid):
         ("www.subdomain.example.com", "subdomain.example.com"),
         ("example.com", "example.com"),
         ("WWW.EXAMPLE.COM/PATH/PAGE.HTML", "example.com"),
+        ("", ""),
+        (None, ""),
+        ("https://www.example.com", "example.com"),
+        ("https://www.example.com/asdf/asdf/", "example.com"),
+        ("http://www.example.com/", "example.com"),
+        ("http://subdomain.example.com/", "subdomain.example.com"),
+        ("ftp://www.example.com/resource", "example.com"),
     ],
 )
 def test_normalize_domain_for_dap_lookup(input_domain, expected_normalized_domain):
