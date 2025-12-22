@@ -16,7 +16,7 @@ import requests
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 
-from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSite
+from search_gov_crawler.search_gov_app.crawl_config import CrawlConfig
 from search_gov_crawler.search_gov_spiders.job_state.scheduler import disable_redis_job_state
 from search_gov_crawler.search_gov_spiders.sitemaps.sitemap_finder import SitemapFinder
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
@@ -71,16 +71,16 @@ def run_crawl_in_dedicated_process(spider_cls: type[DomainSpiderJs] | type[Domai
 
 
 class SitemapMonitor:
-    def __init__(self, records: List[CrawlSite]):
+    def __init__(self, records: List[CrawlConfig]):
         """Initialize the SitemapMonitor with crawl site records."""
         self.records = records
         self.all_sitemap_urls: List[str] = []
-        self.records_map: Dict[str, CrawlSite] = {}
+        self.records_map: Dict[str, CrawlConfig] = {}
         self.stored_sitemaps: Dict[str, Set[str]] = {}
         self.next_check_times: Dict[str, float] = {}
         self.is_first_run: Dict[str, bool] = {}
-    
-    def _process_record_sitemaps(self, record: CrawlSite, sitemap_finder: SitemapFinder) -> List[str]:
+
+    def _process_record_sitemaps(self, record: CrawlConfig, sitemap_finder: SitemapFinder) -> List[str]:
         """
         Validates predefined sitemaps, discovers new ones, and returns a combined list
         of unique, valid sitemap URLs for the given record.
@@ -90,7 +90,7 @@ class SitemapMonitor:
 
         # Step 1: Handle predefined sitemaps
         predefined_sitemaps: Set[str] = set()
-        
+
         for url in record.sitemap_urls or []:
             if sitemap_finder.confirm_sitemap_url(url):
                 log.info(f"Confirmed predefined sitemap URL {url} for {starting_url}")
@@ -100,7 +100,7 @@ class SitemapMonitor:
 
         # Step 2: Discover new sitemaps
         found_sitemaps: Set[str] = set()
-        
+
         try:
             found_sitemaps = sitemap_finder.find(starting_url)
             if not found_sitemaps:
@@ -111,7 +111,7 @@ class SitemapMonitor:
 
         # Step 3: Combine and return both found_sitemaps and predefined_sitemaps
         return list(predefined_sitemaps | found_sitemaps)
-    
+
     def setup(self):
         """Setup and filter records, then find and validate all sitemap URLs."""
         sitemap_finder = SitemapFinder()
@@ -132,7 +132,7 @@ class SitemapMonitor:
             for sitemap_url in record.sitemap_urls:
                 all_sitemaps_set.add(sitemap_url)
                 self.records_map[sitemap_url] = record
-        
+
         # Step 2: Finalize the list of unique, non-empty sitemap URLs
         all_sitemaps_set.discard("")
         all_sitemaps_set.discard(None)
@@ -245,7 +245,6 @@ class SitemapMonitor:
             log.error(f"Unexpected error processing sitemap {url}: {e}")
             return set()
 
-
     def _check_for_changes(self, sitemap_url: str) -> Tuple[Set[str], int]:
         """
         Check a sitemap for new URLs, only storing on first run.
@@ -287,7 +286,7 @@ class SitemapMonitor:
 
         check_queue: List[Tuple[float, str]] = []
         for sitemap_url in self.all_sitemap_urls:
-            log.info(f"Check interval for {sitemap_url}: {self._get_check_interval(sitemap_url)/3600:.1f}h")
+            log.info(f"Check interval for {sitemap_url}: {self._get_check_interval(sitemap_url) / 3600:.1f}h")
             heapq.heappush(check_queue, (self.next_check_times[sitemap_url], sitemap_url))
 
         try:
