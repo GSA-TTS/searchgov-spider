@@ -7,6 +7,7 @@ from typing import Any, Optional
 from scrapy.http.response import Response
 
 from search_gov_crawler.dap.datastore import get_avg_daily_visits_by_domain
+from search_gov_crawler.dap.transform import normalize_domain_for_dap_lookup
 from search_gov_crawler.scheduling.redis import init_redis_client
 from search_gov_crawler.search_gov_spiders.spiders import SearchGovDomainSpider
 
@@ -215,13 +216,17 @@ def force_bool(value: Any) -> bool:
 
 
 def get_domain_visits(spider: SearchGovDomainSpider) -> dict:
-    """For all allowed domains, query redis and aggregate results for later use."""
+    """
+    For all allowed domains, query redis and aggregate results for later use.
+    Normalize domains by lowercasing and removing "www." prefix to match how they are stored in redis.
+    """
 
     domain_visits = {}
     redis = init_redis_client(db=2)
 
     for allowed_domain in spider.allowed_domains:
-        domain_visits.update(get_avg_daily_visits_by_domain(redis=redis, domain=allowed_domain, days_back=7))
+        if normalized_domain := normalize_domain_for_dap_lookup(allowed_domain):
+            domain_visits.update(get_avg_daily_visits_by_domain(redis=redis, domain=normalized_domain, days_back=7))
 
     spider.logger.info("Retrieved %d DAP daily visit domain records for spider", len(domain_visits))
     return domain_visits

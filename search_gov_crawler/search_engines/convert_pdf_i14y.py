@@ -148,7 +148,7 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str | None =
         "extension": extension or None,
         "url_path": get_url_path(url),
         "domain_name": get_domain_name(url),
-        "dap_domain_visits_count": 0,
+        "dap_domain_visits_count": None,
     }
 
     add_title_and_filename(content_key, title_key, i14y_doc)
