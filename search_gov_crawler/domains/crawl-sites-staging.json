@@ -22102,7 +22102,7 @@
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "9/11 Commision Report",
+      "name": "9/11 Commission Report",
       "output_target": "elasticsearch",
       "schedule": "29 03 * * SUN",
       "sitemap_urls": null,
@@ -23902,6 +23902,6 @@
       "output_target": "elasticsearch",
       "schedule": "30 12 * * FRI",
       "sitemap_urls": null,
-      "starting_urls": "https://www.pfm.gov/"
+      "starting_urls": "https://www.pmf.gov/"
    }
 ]

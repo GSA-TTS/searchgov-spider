@@ -13496,7 +13496,7 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: '9/11 Commision Report',
+    name: '9/11 Commission Report',
     config: DomainConfig(allowed_domains='govinfo.library.unt.edu/911',
                          starting_urls='https://govinfo.library.unt.edu/911',
                          schedule='29 03 * * SUN',
@@ -14603,7 +14603,7 @@ local output_target = 'elasticsearch';
   {
     name: 'PMF.gov',
     config: DomainConfig(allowed_domains='www.pmf.gov',
-                         starting_urls='https://www.pfm.gov/',
+                         starting_urls='https://www.pmf.gov/',
                          schedule='30 12 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
