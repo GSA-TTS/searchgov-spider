@@ -1,7 +1,10 @@
+import re
+
 import pytest
 from apscheduler.events import JobExecutionEvent, JobSubmissionEvent
 from apscheduler.executors.pool import ThreadPoolExecutor
 from apscheduler.job import Job
+from apscheduler.jobstores.base import ConflictingIdError, JobLookupError
 from apscheduler.jobstores.memory import MemoryJobStore
 
 from search_gov_crawler.scheduling.schedulers import SpiderBackgroundScheduler
@@ -100,3 +103,61 @@ def test_trigger_pending_jobs(caplog, monkeypatch, spider_scheduler, mock_redis_
         spider_scheduler.trigger_pending_jobs()
 
     assert "Found and retrieved 2 pending jobs from key test_pending_jobs" in caplog.messages
+
+
+@pytest.fixture(name="test_jobs")
+def fixture_test_jobs() -> list[dict]:
+    return [
+        {"func": print, "id": "job1", "name": "Job 1", "args": [], "kwargs": {}, "trigger": "test"},
+        {"func": print, "id": "job2", "name": "Job 2", "args": [], "kwargs": {}, "trigger": "test"},
+    ]
+
+
+def test_add_jobs(mocker, spider_scheduler, test_jobs):
+    mock_add_job = mocker.patch.object(spider_scheduler, "add_job")
+
+    spider_scheduler.add_jobs(jobs=test_jobs, jobstore="redis")
+    assert mock_add_job.call_count == len(test_jobs)
+
+
+def test_add_jobs_conflicting_ids(mocker, spider_scheduler, test_jobs):
+    mock_add_job = mocker.patch.object(spider_scheduler, "add_job")
+    mock_add_job.side_effect = ConflictingIdError("job1")
+
+    with pytest.raises(ConflictingIdError, match=re.escape("Job identifier (job1) conflicts with an existing job")):
+        spider_scheduler.add_jobs(jobs=test_jobs, jobstore="redis")
+
+
+def test_add_jobs_conflicting_ids_update_existing(mocker, spider_scheduler, test_jobs):
+    mock_add_job = mocker.patch.object(spider_scheduler, "add_job")
+    mock_add_job.side_effect = ConflictingIdError("job1")
+    mock_modify_job = mocker.patch.object(spider_scheduler, "modify_job")
+    mock_reschedule_job = mocker.patch.object(spider_scheduler, "reschedule_job")
+
+    spider_scheduler.add_jobs(jobs=test_jobs, jobstore="redis", update_existing=True)
+    assert mock_add_job.call_count == len(test_jobs)
+    assert mock_modify_job.call_count == len(test_jobs)
+    assert mock_reschedule_job.call_count == len(test_jobs)
+
+
+def test_add_jobs_other_exception(mocker, spider_scheduler, test_jobs):
+    mock_add_job = mocker.patch.object(spider_scheduler, "add_job")
+    mock_add_job.side_effect = Exception("Some other error")
+
+    with pytest.raises(Exception, match="Some other error"):
+        spider_scheduler.add_jobs(jobs=test_jobs, jobstore="redis")
+
+
+def test_remove_jobs(mocker, spider_scheduler, test_jobs):
+    mock_remove_jobs = mocker.patch.object(spider_scheduler, "remove_job")
+
+    spider_scheduler.remove_jobs(jobs_ids=[job["id"] for job in test_jobs], jobstore="redis")
+    assert mock_remove_jobs.call_count == len(test_jobs)
+
+
+def test_remove_jobs_job_lookup_error(mocker, spider_scheduler, test_jobs):
+    mock_remove_jobs = mocker.patch.object(spider_scheduler, "remove_job")
+    mock_remove_jobs.side_effect = JobLookupError("job1")
+
+    with pytest.raises(JobLookupError, match="job1"):
+        spider_scheduler.remove_jobs(jobs_ids=[job["id"] for job in test_jobs], jobstore="redis")

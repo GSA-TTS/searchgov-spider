@@ -38,7 +38,7 @@ from dotenv import load_dotenv
 from pythonjsonlogger.json import JsonFormatter
 
 from search_gov_crawler import scrapy_scheduler
-from search_gov_crawler.search_gov_spiders.crawl_sites import CrawlSites
+from search_gov_crawler.search_gov_app.crawl_config import CrawlConfigs
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 from search_gov_crawler.search_gov_spiders.helpers.domain_spider import (
     ALLOWED_CONTENT_TYPE_OUTPUT_MAP,
@@ -123,13 +123,13 @@ def benchmark_from_file(input_file: Path, runtime_offset_seconds: int):
 
     msg = "Starting benchmark from file! input_file=%s runtime_offset_seconds=%s"
     log.info(msg, input_file.name, runtime_offset_seconds)
-    crawl_sites = CrawlSites.from_file(file=input_file)
+    crawl_configs = CrawlConfigs.from_file(file=input_file)
 
     scheduler = init_scheduler()
-    for crawl_site in crawl_sites:
+    for crawl_config in crawl_configs:
         apscheduler_job = create_apscheduler_job(
             runtime_offset_seconds=runtime_offset_seconds,
-            **crawl_site.to_dict(exclude=("schedule", "sitemap_urls", "check_sitemap_hours")),
+            **crawl_config.to_dict(exclude=("schedule", "sitemap_urls", "check_sitemap_hours")),
         )
         scheduler.add_job(**apscheduler_job, jobstore="memory")
     scheduler.start()

@@ -218,6 +218,7 @@ def test_convert_pdf_normal(monkeypatch):
     assert result["extension"] == "pdf"
     assert result["url_path"] == "/fake/path"
     assert result["domain_name"] == "fake.domain.com"
+    assert result["dap_domain_visits_count"] is None
 
 
 def test_convert_pdf_encrypted(monkeypatch):

@@ -20,10 +20,6 @@ class MockRedisClient:
     def zrange(*_args, jobs_to_output, **_kwargs): ...
 
     @staticmethod
-    def lookup_job(*_args, **_kwargs):
-        return True
-
-    @staticmethod
     def zcard(*_args, **_kwargs):
         return 0
 
@@ -32,16 +28,11 @@ class MockRedisClient:
         return ["test-key"]
 
     @staticmethod
-    def object(*_args, **_kwargs):
-        return True
+    def object(*_args, **_kwargs): ...
 
     @staticmethod
     def ping():
         return True
-
-    @staticmethod
-    def llen(*_args, **_kwargs):
-        return 0
 
 
 @pytest.fixture(name="mock_redis_jobstore")
