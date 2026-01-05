@@ -320,7 +320,7 @@
 |Army USAFMCOM (army_usafmcom)|07:03|www.usafmcom.army.mil|N|3||
 |Army Quartermaster Museum (qmm)|07:36|qmmuseum.army.mil|N|3||
 |dodcio.defense.gov (osd_cio_nii)|07:37|dodcio.defense.gov|N|8||
-|New depth 8 (dk.usembassy.gov/da)|07:37|dk.usembassy.gov/da|N|8||
+|New depth 8 (dk.usembassy.gov)|07:37|dk.usembassy.gov|N|8||
 |USACE North Atlantic Division (usace_nad)|07:58|www.nad.usace.army.mil|N|3||
 |tricare_guthrie|08:00|guthrie.tricare.mil|N|8||
 |Radiation Emergency Medical Management|08:00|remm.hhs.gov|N|8||

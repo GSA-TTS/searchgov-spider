@@ -189,7 +189,7 @@ def update_dap_visits_to_document(document: dict, spider: SearchGovDomainSpider)
     values normalized by the DAP extractor process.
 
     This function assumes that
-      - The `dap_domain_visits_count` is being set to 0 on during the creation of all documents.
+      - The `dap_domain_visits_count` is being set to None on during the creation of all documents.
       - The `domain_name` field exists on all documents
       - The `domain_visits` dict exists on all spiders
     """
