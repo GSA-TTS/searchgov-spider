@@ -1545,7 +1545,7 @@
 |Science On a Sphere (sos)|19:10|sos.noaa.gov|N|8||
 |Forms Warehouse (formswarehouse)|19:10|forms.cgaux.org|N|3||
 |Great Lakes Environmental Research Laboratory (glerl)|19:11|www.glerl.noaa.gov|N|8|/res/recon/data/|
-|NOAA Research (research)|19:11|research.noaa.gov|N|3||
+|NOAA Research (research)|19:11|research.noaa.gov|N|8||
 |Pacific Marine Environmental Laboratory (pmel)|19:11|www.pmel.noaa.gov|N|3||
 |National Marine Sanctuaries (sanctuaries)|19:12|sanctuaries.noaa.gov|N|8||
 |Geostationary Operational Environmental Satellites (goes)|19:12|www.goes.noaa.gov|N|3||
