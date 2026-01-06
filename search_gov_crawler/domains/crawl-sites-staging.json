@@ -597,7 +597,7 @@
       "allowed_domains": "research.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
-      "depth_limit": 3,
+      "depth_limit": 8,
       "handle_javascript": false,
       "name": "NOAA Research (research)",
       "output_target": "elasticsearch",
