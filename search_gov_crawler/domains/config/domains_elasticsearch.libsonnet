@@ -255,7 +255,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://research.noaa.gov/',
                          schedule='11 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Pacific Marine Environmental Laboratory (pmel)',
