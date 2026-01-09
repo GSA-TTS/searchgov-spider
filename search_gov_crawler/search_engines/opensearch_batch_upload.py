@@ -33,7 +33,6 @@ class SearchGovOpensearch:
         self,
         batch_size: int = 50,
         opensearch_host: Optional[str] = None,
-        opensearch_port: Optional[int] = None,
         opensearch_index: Optional[str] = None,
         opensearch_user: Optional[str] = None,
         opensearch_password: Optional[str] = None,
@@ -44,8 +43,7 @@ class SearchGovOpensearch:
 
         Args:
             batch_size: number of docs to buffer before bulk upload
-            opensearch_host: Opensearch host URL without port (e.g. "https://host1")
-            opensearch_port: Opensearch PORT (e.g. 9200)
+            opensearch_host: Opensearch host URL with port (e.g. "https://host1:9200")
             opensearch_index: Opensearch index name
             opensearch_user: Basic auth username
             opensearch_password: Basic auth password
@@ -54,9 +52,7 @@ class SearchGovOpensearch:
         """
         self._batch_size = batch_size
         self._current_batch: List[Dict[str, Any]] = []
-        port = opensearch_port or os.getenv("OPENSEARCH_SEARCH_PORT", "9200")
-        self._env_opensearch_host = opensearch_host or os.getenv("OPENSEARCH_SEARCH_HOST", f"http://localhost")
-        self._env_opensearch_host = f"{self._env_opensearch_host}:{port}"
+        self._env_opensearch_host = opensearch_host or os.getenv("OPENSEARCH_SEARCH_HOST", f"http://localhost:9200")
         self._env_opensearch_index = opensearch_index or os.getenv(
             "OPENSEARCH_SEARCH_INDEX",
             "development-i14y-documents-searchgov",
