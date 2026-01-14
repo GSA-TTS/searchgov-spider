@@ -908,5 +908,70 @@
       "schedule": "00 14 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://ylai.state.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "bo.usembassy.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "US Embassy Bolivia",
+      "output_target": "elasticsearch",
+      "schedule": "31 06 * * WED",
+      "sitemap_urls": null,
+      "starting_urls": "https://bo.usembassy.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "gm.usembassy.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "US Embassy The Gambia",
+      "output_target": "elasticsearch",
+      "schedule": "03 09 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://gm.usembassy.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "my.usembassy.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "US Embassy Malaysia",
+      "output_target": "elasticsearch",
+      "schedule": "11 13 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://my.usembassy.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.scidac.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "SciDAC",
+      "output_target": "elasticsearch",
+      "schedule": "55 16 * * WED",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.scidac.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.jlab.org",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Jefferson Lab",
+      "output_target": "elasticsearch",
+      "schedule": "17 06 * * TUE",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.jlab.org/"
    }
 ]

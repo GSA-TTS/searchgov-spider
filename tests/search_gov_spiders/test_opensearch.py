@@ -16,9 +16,8 @@ def opensearch_instance(monkeypatch):
     monkeypatch.setattr(SearchGovOpensearch, "ENABLED", True)
     return SearchGovOpensearch(
         batch_size=2,
-        opensearch_host="http://localhost",
-        opensearch_port=9200,
-        opensearch_index="test-index"
+        opensearch_host="http://localhost:9300",
+        opensearch_index="test-index",
     )
 
 
