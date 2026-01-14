@@ -13496,7 +13496,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://2017-2021.commerce.gov/',
                          schedule='07 22 * * SAT',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['/blog/', '/news/']),
   },
   {
     name: '9/11 Commission Report',

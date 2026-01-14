@@ -1864,7 +1864,7 @@
 |www.mvn.usace.army.mil (neworleans_district)|22:01|www.mvn.usace.army.mil|N|8||
 |New depth 8 (yali.state.gov/pt)|22:01|yali.state.gov/pt|N|8||
 |Navy SSP (navy_ssp)|22:07|www.ssp.navy.mil|N|3||
-|Commerce.gov Archive 2017-2021|22:07|2017-2021.commerce.gov|N|8||
+|Commerce.gov Archive 2017-2021|22:07|2017-2021.commerce.gov|N|8|/blog/,/news/|
 |US Embassy Georgia|22:29|ge.usembassy.gov|N|8||
 |Strategic National Stockpile (SNS)|22:29|sns.gov|N|8||
 |Air Force Operational Test and Evaluation Center (afotec)|22:36|www.afotec.af.mil|N|8||

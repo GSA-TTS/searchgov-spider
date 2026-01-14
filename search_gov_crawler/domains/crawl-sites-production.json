@@ -22095,7 +22095,10 @@
       "allow_query_string": false,
       "allowed_domains": "2017-2021.commerce.gov",
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "/blog/",
+         "/news/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Commerce.gov Archive 2017-2021",
