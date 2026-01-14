@@ -22047,7 +22047,10 @@
       "allow_query_string": false,
       "allowed_domains": "2001-2009.commerce.gov",
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "/blog/",
+         "/news/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Commerce.gov Archive 2001-2009",
@@ -22060,7 +22063,10 @@
       "allow_query_string": false,
       "allowed_domains": "2010-2014.commerce.gov",
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "/blog/",
+         "/news/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Commerce.gov Archive 2010-2014",
@@ -22073,7 +22079,10 @@
       "allow_query_string": false,
       "allowed_domains": "2014-2017.commerce.gov",
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "/blog/",
+         "/news/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Commerce.gov Archive 2014-2017",
@@ -22086,7 +22095,10 @@
       "allow_query_string": false,
       "allowed_domains": "2017-2021.commerce.gov",
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "/blog/",
+         "/news/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Commerce.gov Archive 2017-2021",
