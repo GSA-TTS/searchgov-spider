@@ -13469,7 +13469,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://2001-2009.commerce.gov/',
                          schedule='04 15 * * SUN',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['/blog/', '/news/']),
   },
   {
     name: 'Commerce.gov Archive 2010-2014',
@@ -13477,7 +13478,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://2010-2014.commerce.gov/',
                          schedule='13 02 * * THU',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['/blog/', '/news/']),
   },
   {
     name: 'Commerce.gov Archive 2014-2017',
@@ -13485,7 +13487,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://2014-2017.commerce.gov/',
                          schedule='41 06 * * MON',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         deny_paths=['/blog/', '/news/']),
   },
   {
     name: 'Commerce.gov Archive 2017-2021',
