@@ -202,7 +202,7 @@
 |www.pbgc.gov (usagov-replacement)|15:00|www.pbgc.gov|N|3||
 |tricare_munson|15:00|munson.tricare.mil|N|8||
 |Army PEO GCS (army_peogcs)|15:04|www.peogcs.army.mil|N|3||
-|Commerce.gov Archive 2001-2009|15:04|2001-2009.commerce.gov|N|8||
+|Commerce.gov Archive 2001-2009|15:04|2001-2009.commerce.gov|N|8|/blog/,/news/|
 |Air Force BES (afpw_gunter)|15:20|www.airforcebes.af.mil|N|8||
 |Navy 6th Fleet (navy_us6fleet)|15:21|www.c6f.navy.mil|N|3||
 |Web Harvest|15:42|webharvest.gov|N|8||
@@ -344,7 +344,7 @@
 |MRSI (mrsi)|06:36|mrsi.erdc.dren.mil|N|3||
 |www.justthinktwice.gov (jtt)|06:38|www.justthinktwice.gov|N|8||
 |Professional Development Guide (afpw_pdg)|06:40|www.studyguides.af.mil|N|8||
-|Commerce.gov Archive 2014-2017|06:41|2014-2017.commerce.gov|N|8||
+|Commerce.gov Archive 2014-2017|06:41|2014-2017.commerce.gov|N|8|/blog/,/news/|
 |US Embassy Tonga|06:45|to.usembassy.gov|N|8||
 |tricare_southcomclinic|07:00|southcomclinic.tricare.mil|N|8||
 |Army USAFMCOM (army_usafmcom)|07:03|www.usafmcom.army.mil|N|3||
@@ -1099,7 +1099,7 @@
 |www.dcms.uscg.mil (uscg_all)|01:50|www.dcms.uscg.mil|N|8||
 |tricare_camplejeune|02:00|camp-lejeune.tricare.mil|N|8||
 |Stop Fakes (trade.gov)|02:05|www.stopfakes.gov|N|8||
-|Commerce.gov Archive 2010-2014|02:13|2010-2014.commerce.gov|N|8||
+|Commerce.gov Archive 2010-2014|02:13|2010-2014.commerce.gov|N|8|/blog/,/news/|
 |Army Cyber (ar_cyber)|02:15|cyber.army.mil|N|3||
 |8th Air Force (afpw_8af)|02:17|www.8af.af.mil|N|8||
 |EXIM Bank Learning Center|02:27|grow.exim.gov|N|8||
@@ -1864,7 +1864,7 @@
 |www.mvn.usace.army.mil (neworleans_district)|22:01|www.mvn.usace.army.mil|N|8||
 |New depth 8 (yali.state.gov/pt)|22:01|yali.state.gov/pt|N|8||
 |Navy SSP (navy_ssp)|22:07|www.ssp.navy.mil|N|3||
-|Commerce.gov Archive 2017-2021|22:07|2017-2021.commerce.gov|N|8||
+|Commerce.gov Archive 2017-2021|22:07|2017-2021.commerce.gov|N|8|/blog/,/news/|
 |US Embassy Georgia|22:29|ge.usembassy.gov|N|8||
 |Strategic National Stockpile (SNS)|22:29|sns.gov|N|8||
 |Air Force Operational Test and Evaluation Center (afotec)|22:36|www.afotec.af.mil|N|8||
