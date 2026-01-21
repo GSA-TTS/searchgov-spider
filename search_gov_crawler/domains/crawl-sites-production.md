@@ -1,5 +1,5 @@
 # Production Schedule
- * [Sunday (260)](#sunday-260)
+ * [Sunday (259)](#sunday-259)
  * [Monday (259)](#monday-259)
  * [Tuesday (265)](#tuesday-265)
  * [Wednesday (264)](#wednesday-264)
@@ -8,7 +8,7 @@
  * [Saturday (262)](#saturday-262)
 
 
-## Sunday (260)
+## Sunday (259)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Air Force Learning Professionals (aflearningprofessionals)|00:00|www.learningprofessionals.af.mil|N|8||
@@ -202,7 +202,6 @@
 |www.pbgc.gov (usagov-replacement)|15:00|www.pbgc.gov|N|3||
 |tricare_munson|15:00|munson.tricare.mil|N|8||
 |Army PEO GCS (army_peogcs)|15:04|www.peogcs.army.mil|N|3||
-|Commerce.gov Archive 2001-2009|15:04|2001-2009.commerce.gov|N|8|/blog/,/news/|
 |Air Force BES (afpw_gunter)|15:20|www.airforcebes.af.mil|N|8||
 |Navy 6th Fleet (navy_us6fleet)|15:21|www.c6f.navy.mil|N|3||
 |Web Harvest|15:42|webharvest.gov|N|8||

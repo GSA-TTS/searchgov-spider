@@ -13464,15 +13464,6 @@ local output_target = 'elasticsearch';
                          depth_limit=8),
   },
   {
-    name: 'Commerce.gov Archive 2001-2009',
-    config: DomainConfig(allowed_domains='2001-2009.commerce.gov',
-                         starting_urls='https://2001-2009.commerce.gov/',
-                         schedule='04 15 * * SUN',
-                         output_target=output_target,
-                         depth_limit=8,
-                         deny_paths=['/blog/', '/news/']),
-  },
-  {
     name: '9/11 Commission Report',
     config: DomainConfig(allowed_domains='govinfo.library.unt.edu/911',
                          starting_urls='https://govinfo.library.unt.edu/911',

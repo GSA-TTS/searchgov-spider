@@ -1,14 +1,14 @@
 # Development Schedule
- * [Sunday (11)](#sunday-11)
+ * [Sunday (12)](#sunday-12)
  * [Monday (9)](#monday-9)
- * [Tuesday (13)](#tuesday-13)
- * [Wednesday (12)](#wednesday-12)
- * [Thursday (8)](#thursday-8)
- * [Friday (9)](#friday-9)
- * [Saturday (13)](#saturday-13)
+ * [Tuesday (14)](#tuesday-14)
+ * [Wednesday (11)](#wednesday-11)
+ * [Thursday (9)](#thursday-9)
+ * [Friday (8)](#friday-8)
+ * [Saturday (12)](#saturday-12)
 
 
-## Sunday (11)
+## Sunday (12)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Air Force Learning Professionals (aflearningprofessionals)|00:00|www.learningprofessionals.af.mil|N|8||
@@ -17,6 +17,7 @@
 |IN.Usembassy.gov (dos_emb_csa_newdelhi)|03:15|in.usembassy.gov|N|8||
 |Safe to Sleep|03:42|safetosleep.nichd.nih.gov|N|8||
 |316th Medical Group - Joint Base Andrews (Malcolm Grow Medical Clinics and Surgery Center)|06:00|andrews.tricare.mil|N|8||
+|CENDI|14:18|www.cendi.gov|N|8||
 |tricare_weedirwin|18:00|weed-irwin.tricare.mil|N|8||
 |Office of Research Facilities (nih)|18:03|orf.od.nih.gov|N|8||
 |US Embassy Montenegro (dos_emb_eur_podgorica_me)|19:22|me.usembassy.gov|N|8||
@@ -28,17 +29,17 @@
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Air Force Recruiting Service (afpw_rs)|01:48|www.afaccessionscenter.af.mil|N|8||
+|US Embassy Somalia|02:07|so.usembassy.gov|N|8||
 |NOAA CoastWatch East Coast Node|08:30|eastcoast.coastwatch.noaa.gov|N|3||
 |NOAA GOES-R|09:30|www.goes-r.gov|N|3||
 |Army MRC Europe (army_mrceurope)|10:47|mrc-europe.army.mil|N|3||
 |Young Leaders of the Americas Initiative|14:00|ylai.state.gov|N|8||
 |Navy NAVWAR (navy_navwar)|14:10|www.navwar.navy.mil|N|3||
-|NCSACW (ACF)|16:03|ncsacw.acf.gov|N|8||
 |New depth 8 (ht.usembassy.gov/fr)|21:28|ht.usembassy.gov/fr|N|8||
 |SERDP-ESTCP|22:16|serdp-estcp.mil,sepub-prod-0001-124733793621-us-gov-west-1.s3.us-gov-west-1.amazonaws.com|N|8||
 
 
-## Tuesday (13)
+## Tuesday (14)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Minneapolis-St Paul Air Reserve Station (minneapolis)|00:55|www.minneapolis.afrc.af.mil|N|8||
@@ -54,9 +55,10 @@
 |medlineplus.gov (usagov-replacement)|16:30|www.medlineplus.gov|N|3||
 |Air Force General Counsel (afpw_safgc)|16:50|www.safgc.hq.af.mil|N|8||
 |Department of Labor OIG (oig)|19:49|www.oig.dol.gov|N|8||
+|US Embassy Nigeria|21:20|ng.usembassy.gov|N|8||
 
 
-## Wednesday (12)
+## Wednesday (11)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |NIST Metaschema (metaschema)|01:31|pages.nist.gov|N|3||
@@ -69,11 +71,10 @@
 |tricare_ireland|16:00|ireland.tricare.mil|N|8||
 |US Courts NEP|17:18|www.nep.uscourts.gov|N|8||
 |Eastern Air Defense Sector (afpw_eads)|21:25|www.eads.ang.af.mil|N|8||
-|US Embassy Guatemala|21:40|gt.usembassy.gov|N|8||
 |New depth 8 (qa.usembassy.gov/ar)|22:52|qa.usembassy.gov/ar|N|8||
 
 
-## Thursday (8)
+## Thursday (9)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Gray's Reef National Marine Sanctuary|01:12|graysreef.noaa.gov|N|8||
@@ -81,18 +82,18 @@
 |Navy NIA (navy_nia)|08:39|www.nia.navy.mil|N|3||
 |www.ready.gov (usagov-replacement)|09:22|www.ready.gov|N|8||
 |Legacy Export Portal|10:30|legacy.export.gov|N|8||
+|History Hub|14:09|historyhub.history.gov|N|8||
 |913th Airlift Group (airforce_913ag)|19:23|www.913ag.afrc.af.mil|N|8||
 |188th WG, Arkansas ANG (afpw_188fw)|19:43|www.188wg.ang.af.mil|N|8||
 |US Courts CAEPT (caept_uscourts)|21:04|www.caept.uscourts.gov|N|3||
 
 
-## Friday (9)
+## Friday (8)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |www.asafm.army.mil (army_afmc)|03:32|www.asafm.army.mil|N|8||
 |Manual on Uniform Traffic Control Devices|12:08|mutcd.fhwa.dot.gov|N|8||
 |USNIC Domain (usnic-domain)|15:35|usicecenter.gov|N|3||
-|Lawrence Livermore National Lab|15:53|www.llnl.gov|N|8||
 |162nd Wing, Arizona ANG (afpw_162fw)|18:43|www.162wing.ang.af.mil|N|8||
 |Army JTF NCR (army_jtfncr)|19:07|jtfncr.mdw.army.mil|N|3||
 |Atlantic Oceanographic and Meteorological Laboratory (aoml)|19:09|www.aoml.noaa.gov|N|8||
@@ -100,7 +101,7 @@
 |NIH ORIP (orip)|23:45|orip.nih.gov|N|8||
 
 
-## Saturday (13)
+## Saturday (12)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |419th Fighter Wing (419fw)|00:00|www.419fw.afrc.af.mil|N|8||
@@ -109,10 +110,9 @@
 |tricare_andersen|05:00|andersen.tricare.mil|N|8||
 |Federal Permitting Dashboard|08:30|permitting.innovation.gov|N|8||
 |Alaska District (alaska_district)|08:49|www.poa.usace.army.mil|N|3||
-|US Embassy DR Congo|12:06|cd.usembassy.gov|N|8||
 |New depth 8 (ncolcoe.army.mil)|12:08|www.ncolcoe.army.mil|N|8||
 |www.erdc.usace.army.mil (engineer_research)|14:07|www.erdc.usace.army.mil|N|8||
 |Air Force Agency for Modeling and Simulation (afams)|17:44|www.afams.af.mil|N|8||
+|US Bankruptcy Court MOEB|18:11|www.moeb.uscourts.gov|N|8||
 |FCSIC (fcsic_staging)|19:48|www.fcsic.gov|N|8||
 |USACE Seattle District (usace_all)|20:18|www.nws.usace.army.mil|N|3||
-|Strategic National Stockpile (SNS)|22:29|sns.gov|N|8||

@@ -911,67 +911,67 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "cd.usembassy.gov",
+      "allowed_domains": "www.cendi.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "US Embassy DR Congo",
+      "name": "CENDI",
       "output_target": "elasticsearch",
-      "schedule": "06 12 * * SAT",
+      "schedule": "18 14 * * SUN",
       "sitemap_urls": null,
-      "starting_urls": "https://cd.usembassy.gov/"
+      "starting_urls": "https://www.cendi.gov/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "gt.usembassy.gov",
+      "allowed_domains": "historyhub.history.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "US Embassy Guatemala",
+      "name": "History Hub",
       "output_target": "elasticsearch",
-      "schedule": "40 21 * * WED",
+      "schedule": "09 14 * * THU",
       "sitemap_urls": null,
-      "starting_urls": "https://gt.usembassy.gov/"
+      "starting_urls": "https://historyhub.history.gov/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "ncsacw.acf.gov",
+      "allowed_domains": "ng.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "NCSACW (ACF)",
+      "name": "US Embassy Nigeria",
       "output_target": "elasticsearch",
-      "schedule": "03 16 * * MON",
+      "schedule": "20 21 * * TUE",
       "sitemap_urls": null,
-      "starting_urls": "https://ncsacw.acf.gov/"
+      "starting_urls": "https://ng.usembassy.gov/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "sns.gov",
+      "allowed_domains": "so.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "Strategic National Stockpile (SNS)",
+      "name": "US Embassy Somalia",
       "output_target": "elasticsearch",
-      "schedule": "29 22 * * SAT",
+      "schedule": "07 02 * * MON",
       "sitemap_urls": null,
-      "starting_urls": "https://sns.gov/"
+      "starting_urls": "https://so.usembassy.gov/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.llnl.gov",
+      "allowed_domains": "www.moeb.uscourts.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "Lawrence Livermore National Lab",
+      "name": "US Bankruptcy Court MOEB",
       "output_target": "elasticsearch",
-      "schedule": "53 15 * * FRI",
+      "schedule": "11 18 * * SAT",
       "sitemap_urls": null,
-      "starting_urls": "https://www.llnl.gov/"
+      "starting_urls": "https://www.moeb.uscourts.gov/"
    }
 ]
