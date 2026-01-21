@@ -1,11 +1,11 @@
 # Production Schedule
  * [Sunday (260)](#sunday-260)
- * [Monday (260)](#monday-260)
+ * [Monday (259)](#monday-259)
  * [Tuesday (265)](#tuesday-265)
  * [Wednesday (264)](#wednesday-264)
- * [Thursday (262)](#thursday-262)
+ * [Thursday (261)](#thursday-261)
  * [Friday (262)](#friday-262)
- * [Saturday (263)](#saturday-263)
+ * [Saturday (262)](#saturday-262)
 
 
 ## Sunday (260)
@@ -273,7 +273,7 @@
 |1st Infantry Division (army_11d)|23:50|www.1id.army.mil|N|3||
 
 
-## Monday (260)
+## Monday (259)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |cgaux.org (cgaux)|00:00|www.cgaux.org|N|8||
@@ -344,7 +344,6 @@
 |MRSI (mrsi)|06:36|mrsi.erdc.dren.mil|N|3||
 |www.justthinktwice.gov (jtt)|06:38|www.justthinktwice.gov|N|8||
 |Professional Development Guide (afpw_pdg)|06:40|www.studyguides.af.mil|N|8||
-|Commerce.gov Archive 2014-2017|06:41|2014-2017.commerce.gov|N|8|/blog/,/news/|
 |US Embassy Tonga|06:45|to.usembassy.gov|N|8||
 |tricare_southcomclinic|07:00|southcomclinic.tricare.mil|N|8||
 |Army USAFMCOM (army_usafmcom)|07:03|www.usafmcom.army.mil|N|3||
@@ -1077,7 +1076,7 @@
 |Army 2nd Signal Brigade (army_2sigbde)|23:52|www.2sigbde.army.mil|N|3||
 
 
-## Thursday (262)
+## Thursday (261)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |niccs.cisa.gov (niccs.cisa)|00:00|niccs.cisa.gov|N|8||
@@ -1099,7 +1098,6 @@
 |www.dcms.uscg.mil (uscg_all)|01:50|www.dcms.uscg.mil|N|8||
 |tricare_camplejeune|02:00|camp-lejeune.tricare.mil|N|8||
 |Stop Fakes (trade.gov)|02:05|www.stopfakes.gov|N|8||
-|Commerce.gov Archive 2010-2014|02:13|2010-2014.commerce.gov|N|8|/blog/,/news/|
 |Army Cyber (ar_cyber)|02:15|cyber.army.mil|N|3||
 |8th Air Force (afpw_8af)|02:17|www.8af.af.mil|N|8||
 |EXIM Bank Learning Center|02:27|grow.exim.gov|N|8||
@@ -1611,7 +1609,7 @@
 |DOS Embassy Comoros (dos_emb_afr_comoros)|23:54|km.usembassy.gov|N|3||
 
 
-## Saturday (263)
+## Saturday (262)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |419th Fighter Wing (419fw)|00:00|www.419fw.afrc.af.mil|N|8||
@@ -1864,7 +1862,6 @@
 |www.mvn.usace.army.mil (neworleans_district)|22:01|www.mvn.usace.army.mil|N|8||
 |New depth 8 (yali.state.gov/pt)|22:01|yali.state.gov/pt|N|8||
 |Navy SSP (navy_ssp)|22:07|www.ssp.navy.mil|N|3||
-|Commerce.gov Archive 2017-2021|22:07|2017-2021.commerce.gov|N|8|/blog/,/news/|
 |US Embassy Georgia|22:29|ge.usembassy.gov|N|8||
 |Strategic National Stockpile (SNS)|22:29|sns.gov|N|8||
 |Air Force Operational Test and Evaluation Center (afotec)|22:36|www.afotec.af.mil|N|8||

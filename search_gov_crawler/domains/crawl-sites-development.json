@@ -911,67 +911,67 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "bo.usembassy.gov",
+      "allowed_domains": "cd.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "US Embassy Bolivia",
+      "name": "US Embassy DR Congo",
       "output_target": "elasticsearch",
-      "schedule": "31 06 * * WED",
+      "schedule": "06 12 * * SAT",
       "sitemap_urls": null,
-      "starting_urls": "https://bo.usembassy.gov/"
+      "starting_urls": "https://cd.usembassy.gov/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "gm.usembassy.gov",
+      "allowed_domains": "gt.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "US Embassy The Gambia",
+      "name": "US Embassy Guatemala",
       "output_target": "elasticsearch",
-      "schedule": "03 09 * * SUN",
+      "schedule": "40 21 * * WED",
       "sitemap_urls": null,
-      "starting_urls": "https://gm.usembassy.gov/"
+      "starting_urls": "https://gt.usembassy.gov/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "my.usembassy.gov",
+      "allowed_domains": "ncsacw.acf.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "US Embassy Malaysia",
+      "name": "NCSACW (ACF)",
       "output_target": "elasticsearch",
-      "schedule": "11 13 * * FRI",
+      "schedule": "03 16 * * MON",
       "sitemap_urls": null,
-      "starting_urls": "https://my.usembassy.gov/"
+      "starting_urls": "https://ncsacw.acf.gov/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.scidac.gov",
+      "allowed_domains": "sns.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "SciDAC",
+      "name": "Strategic National Stockpile (SNS)",
       "output_target": "elasticsearch",
-      "schedule": "55 16 * * WED",
+      "schedule": "29 22 * * SAT",
       "sitemap_urls": null,
-      "starting_urls": "https://www.scidac.gov/"
+      "starting_urls": "https://sns.gov/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.jlab.org",
+      "allowed_domains": "www.llnl.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "Jefferson Lab",
+      "name": "Lawrence Livermore National Lab",
       "output_target": "elasticsearch",
-      "schedule": "17 06 * * TUE",
+      "schedule": "53 15 * * FRI",
       "sitemap_urls": null,
-      "starting_urls": "https://www.jlab.org/"
+      "starting_urls": "https://www.llnl.gov/"
    }
 ]
