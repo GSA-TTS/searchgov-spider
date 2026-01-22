@@ -911,67 +911,67 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "bo.usembassy.gov",
+      "allowed_domains": "www.cendi.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "US Embassy Bolivia",
+      "name": "CENDI",
       "output_target": "elasticsearch",
-      "schedule": "31 06 * * WED",
+      "schedule": "18 14 * * SUN",
       "sitemap_urls": null,
-      "starting_urls": "https://bo.usembassy.gov/"
+      "starting_urls": "https://www.cendi.gov/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "gm.usembassy.gov",
+      "allowed_domains": "historyhub.history.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "US Embassy The Gambia",
+      "name": "History Hub",
       "output_target": "elasticsearch",
-      "schedule": "03 09 * * SUN",
+      "schedule": "09 14 * * THU",
       "sitemap_urls": null,
-      "starting_urls": "https://gm.usembassy.gov/"
+      "starting_urls": "https://historyhub.history.gov/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "my.usembassy.gov",
+      "allowed_domains": "ng.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "US Embassy Malaysia",
+      "name": "US Embassy Nigeria",
       "output_target": "elasticsearch",
-      "schedule": "11 13 * * FRI",
+      "schedule": "20 21 * * TUE",
       "sitemap_urls": null,
-      "starting_urls": "https://my.usembassy.gov/"
+      "starting_urls": "https://ng.usembassy.gov/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.scidac.gov",
+      "allowed_domains": "so.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "SciDAC",
+      "name": "US Embassy Somalia",
       "output_target": "elasticsearch",
-      "schedule": "55 16 * * WED",
+      "schedule": "07 02 * * MON",
       "sitemap_urls": null,
-      "starting_urls": "https://www.scidac.gov/"
+      "starting_urls": "https://so.usembassy.gov/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.jlab.org",
+      "allowed_domains": "www.moeb.uscourts.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "Jefferson Lab",
+      "name": "US Bankruptcy Court MOEB",
       "output_target": "elasticsearch",
-      "schedule": "17 06 * * TUE",
+      "schedule": "11 18 * * SAT",
       "sitemap_urls": null,
-      "starting_urls": "https://www.jlab.org/"
+      "starting_urls": "https://www.moeb.uscourts.gov/"
    }
 ]
