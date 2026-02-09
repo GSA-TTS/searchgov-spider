@@ -10002,7 +10002,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.adlnet.gov',
                          schedule='41 15 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD AFRIMS (dod_afrims)',
@@ -11854,8 +11854,8 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Department of Education Sites',
-    config: DomainConfig(allowed_domains='sites.ed.gov',
-                         starting_urls='https://sites.ed.gov/',
+    config: DomainConfig(allowed_domains='sites.ed.gov/idea/',
+                         starting_urls='https://sites.ed.gov/idea/',
                          schedule='32 05 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -12346,9 +12346,10 @@ local output_target = 'elasticsearch';
   {
     name: 'Administrative Resource Center',
     config: DomainConfig(allowed_domains='arc.fiscal.treasury.gov',
-                         starting_urls='https://arc.fiscal.treasury.gov/',
+                         starting_urls='https://arc.fiscal.treasury.gov/s/',
                          schedule='00 05 * * SUN',
                          output_target=output_target,
+                         options=['handle_javascript'],
                          depth_limit=8),
   },
   {
@@ -12845,6 +12846,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.nep.uscourts.gov/',
                          schedule='18 17 * * WED',
                          output_target=output_target,
+                         options=['allow_query_string'],
                          depth_limit=8),
   },
   {
@@ -13042,9 +13044,10 @@ local output_target = 'elasticsearch';
   {
     name: 'Legacy Export Portal',
     config: DomainConfig(allowed_domains='legacy.export.gov',
-                         starting_urls='https://legacy.export.gov/',
+                         starting_urls='https://legacy.export.gov/welcome',
                          schedule='30 10 * * THU',
                          output_target=output_target,
+                         options=['allow_query_string'],
                          depth_limit=8),
   },
   {
@@ -13213,6 +13216,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.onrr.gov/',
                          schedule='30 07 * * SAT',
                          output_target=output_target,
+                         options=['allow_query_string'],
                          depth_limit=8),
   },
   {
@@ -13369,8 +13373,8 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Statistical Policy',
-    config: DomainConfig(allowed_domains='www.statspolicy.gov',
-                         starting_urls='https://www.statspolicy.gov/',
+    config: DomainConfig(allowed_domains='statspolicy.gov',
+                         starting_urls='https://statspolicy.gov/',
                          schedule='30 10 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -13785,8 +13789,8 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'FHWA Environment',
-    config: DomainConfig(allowed_domains='environment.fhwa.dot.gov',
-                         starting_urls='https://environment.fhwa.dot.gov/',
+    config: DomainConfig(allowed_domains='www.environment.fhwa.dot.gov',
+                         starting_urls='https://www.environment.fhwa.dot.gov/',
                          schedule='58 19 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
@@ -14558,6 +14562,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.tneb.uscourts.gov/',
                          schedule='09 01 * * TUE',
                          output_target=output_target,
+                         options=['allow_query_string'],
                          depth_limit=8),
   },
   {
