@@ -83,14 +83,14 @@
 |US Embassy Argentina|04:45|ar.usembassy.gov|N|8||
 |tricare_desmonddoss|05:00|desmond-doss.tricare.mil|N|8||
 |11th Medical Squadron - Joint Base Anacostia-Bolling|05:00|anacostiabolling.tricare.mil|N|8||
-|Administrative Resource Center|05:00|arc.fiscal.treasury.gov|N|8||
+|Administrative Resource Center|05:00|arc.fiscal.treasury.gov|Y|8||
 |US Embassy Kazakhstan (dos_emb_csa_kazakhstan_ru)|05:08|kz.usembassy.gov|N|8||
 |NAL.USDA.gov (USDA NAL)|05:15|www.nal.usda.gov|N|8||
 |US Mission to ASEAN|05:15|asean.usmission.gov|N|8||
 |Army 1st TSC (army_1tsc)|05:18|www.1tsc.army.mil|N|3||
 |US Embassy Azerbaijan|05:30|az.usembassy.gov|N|8||
 |Vance Air Force Base (vance)|05:32|www.vance.af.mil|N|8||
-|Department of Education Sites|05:32|sites.ed.gov|N|8||
+|Department of Education Sites|05:32|sites.ed.gov/idea/|N|8||
 |Air Force Resilience (afpw_resil)|05:35|www.resilience.af.mil|N|8||
 |Pennsylvania National Guard (ng_pang)|05:35|www.pa.ng.mil|N|3||
 |US Embassy Cape Verde|05:39|cv.usembassy.gov|N|8||
@@ -245,7 +245,7 @@
 |Solar Decathlon|19:43|www.solardecathlon.gov|N|8||
 |New depth 8 (cg.usembassy.gov/fr)|19:46|cg.usembassy.gov/fr|N|8||
 |Open Defense (opendgov)|19:49|open.defense.gov|N|3||
-|FHWA Environment|19:58|environment.fhwa.dot.gov|N|8||
+|FHWA Environment|19:58|www.environment.fhwa.dot.gov|N|8||
 |Office of Research Services (nih)|20:05|ors.od.nih.gov|N|8||
 |Air University (afpw_au)|20:13|www.airuniversity.af.edu|N|8||
 |GPS.gov (gps.gov)|20:15|www.gps.gov|N|8||
@@ -1218,7 +1218,7 @@
 |www.navy.mil (usagov-replacement)|10:22|www.navy.mil|N|8||
 |ICT Baseline Access Board|10:22|ictbaseline.access-board.gov|N|8||
 |Legacy Export Portal|10:30|legacy.export.gov|N|8||
-|Statistical Policy|10:30|www.statspolicy.gov|N|8||
+|Statistical Policy|10:30|statspolicy.gov|N|8||
 |eg.usembassy.gov (usagov-replacement)|10:32|eg.usembassy.gov|N|3||
 |175th Wing, Maryland Air National Guard (afpw_175wg)|10:39|www.175wg.ang.af.mil|N|8||
 |Army NATO (army_nato)|10:39|www.usanato.army.mil|N|3||
@@ -1497,7 +1497,7 @@
 |hn.usembassy.gov (dos_emb_wha_honduras_es)|15:23|hn.usembassy.gov|N|8||
 |USNIC Domain (usnic-domain)|15:35|usicecenter.gov|N|3||
 |US Embassy Ecuador|15:37|ec.usembassy.gov|N|8||
-|DoD ADLI (dod_adli)|15:41|www.adlnet.gov|N|3||
+|DoD ADLI (dod_adli)|15:41|www.adlnet.gov|N|8||
 |Center for Information Technology (CIT) (cit.nih.gov)|15:42|cit.nih.gov|N|8||
 |United States Forces Japan (usfj)|15:45|www.usfj.mil|N|3||
 |NSF NCSES Data|15:52|ncsesdata.nsf.gov|N|8||
