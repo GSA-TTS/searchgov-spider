@@ -16419,7 +16419,7 @@
       "allowed_domains": "www.adlnet.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
-      "depth_limit": 3,
+      "depth_limit": 8,
       "handle_javascript": false,
       "name": "DoD ADLI (dod_adli)",
       "output_target": "elasticsearch",
@@ -19432,7 +19432,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "sites.ed.gov",
+      "allowed_domains": "sites.ed.gov/idea/",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -19441,7 +19441,7 @@
       "output_target": "elasticsearch",
       "schedule": "32 05 * * SUN",
       "sitemap_urls": null,
-      "starting_urls": "https://sites.ed.gov/"
+      "starting_urls": "https://sites.ed.gov/idea/"
    },
    {
       "allow_query_string": false,
@@ -20229,12 +20229,12 @@
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
-      "handle_javascript": false,
+      "handle_javascript": true,
       "name": "Administrative Resource Center",
       "output_target": "elasticsearch",
       "schedule": "00 05 * * SUN",
       "sitemap_urls": null,
-      "starting_urls": "https://arc.fiscal.treasury.gov/"
+      "starting_urls": "https://arc.fiscal.treasury.gov/s/"
    },
    {
       "allow_query_string": false,
@@ -21030,7 +21030,7 @@
       "starting_urls": "https://www.ned.uscourts.gov/"
    },
    {
-      "allow_query_string": false,
+      "allow_query_string": true,
       "allowed_domains": "www.nep.uscourts.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -21355,7 +21355,7 @@
       "starting_urls": "https://www.lawb.uscourts.gov/"
    },
    {
-      "allow_query_string": false,
+      "allow_query_string": true,
       "allowed_domains": "legacy.export.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -21365,7 +21365,7 @@
       "output_target": "elasticsearch",
       "schedule": "30 10 * * THU",
       "sitemap_urls": null,
-      "starting_urls": "https://legacy.export.gov/"
+      "starting_urls": "https://legacy.export.gov/welcome"
    },
    {
       "allow_query_string": false,
@@ -21628,7 +21628,7 @@
       "starting_urls": "https://www.onhir.gov/"
    },
    {
-      "allow_query_string": false,
+      "allow_query_string": true,
       "allowed_domains": "www.onrr.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -21889,7 +21889,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.statspolicy.gov",
+      "allowed_domains": "statspolicy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -21898,7 +21898,7 @@
       "output_target": "elasticsearch",
       "schedule": "30 10 * * THU",
       "sitemap_urls": null,
-      "starting_urls": "https://www.statspolicy.gov/"
+      "starting_urls": "https://statspolicy.gov/"
    },
    {
       "allow_query_string": false,
@@ -22565,7 +22565,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "environment.fhwa.dot.gov",
+      "allowed_domains": "www.environment.fhwa.dot.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -22574,7 +22574,7 @@
       "output_target": "elasticsearch",
       "schedule": "58 19 * * SUN",
       "sitemap_urls": null,
-      "starting_urls": "https://environment.fhwa.dot.gov/"
+      "starting_urls": "https://www.environment.fhwa.dot.gov/"
    },
    {
       "allow_query_string": false,
@@ -23814,7 +23814,7 @@
       "starting_urls": "https://www.srnl.gov/"
    },
    {
-      "allow_query_string": false,
+      "allow_query_string": true,
       "allowed_domains": "www.tneb.uscourts.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
