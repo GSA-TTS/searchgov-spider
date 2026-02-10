@@ -54,6 +54,7 @@ def convert_html_scrapy(html_content: str) -> dict:
         or meta_tags["og:site_name"]
         or meta_tags["pagename"]
     )
+    return_obj["title"] = return_obj["title"].strip() if return_obj["title"] else None
     return_obj["language"] = (
         html_selector.xpath("//html/@lang").get()
         or html_selector.css("html::attr(lang)").get()
