@@ -973,5 +973,18 @@
       "schedule": "11 18 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.moeb.uscourts.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "sm.usmission.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "sm.usmission.gov",
+      "output_target": "elasticsearch",
+      "schedule": "50 12 * * MON",
+      "sitemap_urls": null,
+      "starting_urls": "https://sm.usmission.gov/"
    }
 ]

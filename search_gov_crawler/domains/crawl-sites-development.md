@@ -1,6 +1,6 @@
 # Development Schedule
  * [Sunday (12)](#sunday-12)
- * [Monday (9)](#monday-9)
+ * [Monday (10)](#monday-10)
  * [Tuesday (14)](#tuesday-14)
  * [Wednesday (11)](#wednesday-11)
  * [Thursday (9)](#thursday-9)
@@ -25,7 +25,7 @@
 |US Embassy Dhaka (dos_emb_csa_dhaka)|22:15|bd.usembassy.gov|N|8||
 
 
-## Monday (9)
+## Monday (10)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Air Force Recruiting Service (afpw_rs)|01:48|www.afaccessionscenter.af.mil|N|8||
@@ -33,6 +33,7 @@
 |NOAA CoastWatch East Coast Node|08:30|eastcoast.coastwatch.noaa.gov|N|3||
 |NOAA GOES-R|09:30|www.goes-r.gov|N|3||
 |Army MRC Europe (army_mrceurope)|10:47|mrc-europe.army.mil|N|3||
+|sm.usmission.gov|12:50|sm.usmission.gov|N|8||
 |Young Leaders of the Americas Initiative|14:00|ylai.state.gov|N|8||
 |Navy NAVWAR (navy_navwar)|14:10|www.navwar.navy.mil|N|3||
 |New depth 8 (ht.usembassy.gov/fr)|21:28|ht.usembassy.gov/fr|N|8||
