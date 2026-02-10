@@ -32,7 +32,7 @@ def convert_html(response_bytes: bytes, url: str, response_language: str = None)
     if not main_content:
         return None
 
-    title = article.title or article.meta_site_name or article_backup["title"] or None
+    title = article_backup["title"] or article.title or article.meta_site_name or None
     description = article.meta_description or article.summary or article_backup["description"] or None
     tags = article.tags or article.keywords or article.meta_keywords or article_backup["keywords"] or None
 
