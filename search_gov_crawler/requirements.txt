@@ -19,7 +19,7 @@ python-dotenv==1.1.1
 python-json-logger==3.3.0
 redis==5.2.1,<6.0.0 # 6.0.0 is not compatible with redis 6
 rich==14.1.0
-scrapy==2.13.2
+scrapy==2.14.1
 scrapy-playwright==0.0.43
 scrapy-redis==0.9.1
 spidermon[monitoring]==1.24.0
