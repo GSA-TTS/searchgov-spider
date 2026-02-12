@@ -858,7 +858,7 @@
       "starting_urls": "https://www.fcsm.gov/"
    },
    {
-      "allow_query_string": false,
+      "allow_query_string": true,
       "allowed_domains": "www.nep.uscourts.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -871,7 +871,7 @@
       "starting_urls": "https://www.nep.uscourts.gov/"
    },
    {
-      "allow_query_string": false,
+      "allow_query_string": true,
       "allowed_domains": "legacy.export.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -881,7 +881,7 @@
       "output_target": "elasticsearch",
       "schedule": "30 10 * * THU",
       "sitemap_urls": null,
-      "starting_urls": "https://legacy.export.gov/"
+      "starting_urls": "https://legacy.export.gov/welcome"
    },
    {
       "allow_query_string": false,
@@ -973,5 +973,18 @@
       "schedule": "11 18 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.moeb.uscourts.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "sm.usmission.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "sm.usmission.gov",
+      "output_target": "elasticsearch",
+      "schedule": "50 12 * * MON",
+      "sitemap_urls": null,
+      "starting_urls": "https://sm.usmission.gov/"
    }
 ]
