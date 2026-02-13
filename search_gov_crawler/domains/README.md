@@ -22,7 +22,8 @@ A shared DomainConfig function is used to generate crawl site records in a speci
     config: DomainConfig(allowed_domains='new-domain.gov',
                          starting_urls='https://www.new-domain.gov/',
                          schedule='00 12 * * WED',
-                         output_target=output_target),
+                         output_target=output_target,
+                         depth_limit=8),
   }
 ```
 
@@ -44,7 +45,7 @@ jsonnet -m . crawl-sites.jsonnet
 ```
 
 ### Generate Markdown Schedules 
-To generate all human readable schedules run readschedule
+To generate ALL human readable schedules run readschedule
 ```bash 
 cd search_gov_crawler/domains
 python readschedule.py

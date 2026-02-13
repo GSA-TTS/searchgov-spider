@@ -1,6 +1,6 @@
 # Staging Schedule
- * [Sunday (259)](#sunday-259)
- * [Monday (259)](#monday-259)
+ * [Sunday (264)](#sunday-264)
+ * [Monday (263)](#monday-263)
  * [Tuesday (265)](#tuesday-265)
  * [Wednesday (264)](#wednesday-264)
  * [Thursday (261)](#thursday-261)
@@ -8,7 +8,7 @@
  * [Saturday (262)](#saturday-262)
 
 
-## Sunday (259)
+## Sunday (264)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Air Force Learning Professionals (aflearningprofessionals)|00:00|www.learningprofessionals.af.mil|N|8||
@@ -83,14 +83,14 @@
 |US Embassy Argentina|04:45|ar.usembassy.gov|N|8||
 |tricare_desmonddoss|05:00|desmond-doss.tricare.mil|N|8||
 |11th Medical Squadron - Joint Base Anacostia-Bolling|05:00|anacostiabolling.tricare.mil|N|8||
-|Administrative Resource Center|05:00|arc.fiscal.treasury.gov|N|8||
+|Administrative Resource Center|05:00|arc.fiscal.treasury.gov|Y|8||
 |US Embassy Kazakhstan (dos_emb_csa_kazakhstan_ru)|05:08|kz.usembassy.gov|N|8||
 |NAL.USDA.gov (USDA NAL)|05:15|www.nal.usda.gov|N|8||
 |US Mission to ASEAN|05:15|asean.usmission.gov|N|8||
 |Army 1st TSC (army_1tsc)|05:18|www.1tsc.army.mil|N|3||
 |US Embassy Azerbaijan|05:30|az.usembassy.gov|N|8||
 |Vance Air Force Base (vance)|05:32|www.vance.af.mil|N|8||
-|Department of Education Sites|05:32|sites.ed.gov|N|8||
+|Department of Education Sites|05:32|sites.ed.gov/idea/|N|8||
 |Air Force Resilience (afpw_resil)|05:35|www.resilience.af.mil|N|8||
 |Pennsylvania National Guard (ng_pang)|05:35|www.pa.ng.mil|N|3||
 |US Embassy Cape Verde|05:39|cv.usembassy.gov|N|8||
@@ -173,14 +173,19 @@
 |tricare_paxriver|12:00|paxriver.tricare.mil|N|8||
 |31st Medical Group - Aviano Air Base|12:00|aviano.tricare.mil|N|8||
 |Air Force Technology Transfer and Transition Program (usaf_aft3)|12:00|www.aft3.af.mil|N|8||
+|efile.fara.gov|12:10|efile.fara.gov|N|8||
 |www.epa.gov (usagov-replacement)|12:15|www.epa.gov|N|3||
 |US Embassy Tanzania (dos_emb_afr_tanzania)|12:15|tz.usembassy.gov|N|8||
 |US Embassy Indonesia|12:16|id.usembassy.gov|N|8||
+|etd.gsfc.nasa.gov|12:20|etd.gsfc.nasa.gov|N|8||
 |Army RMC (army_rmc)|12:25|www.rmc.usace.army.mil|N|3||
 |www.ed.gov (usagov-replacement)|12:30|www.ed.gov|N|8||
+|www.restorethegulf.gov|12:30|www.restorethegulf.gov|N|8||
 |194th Wing, Wahington ANG (afpw_194wg)|12:33|194wg.ang.af.mil|N|8||
+|mjrp.osd.mil|12:40|mjrp.osd.mil|N|8||
 |FHFA OIG (fhfa_oig)|12:42|www.fhfaoig.gov|N|8||
 |USDA Library Cornell|12:47|usda.library.cornell.edu|N|8||
+|wrairafrica.health.mil|12:50|wrairafrica.health.mil|N|8||
 |www.911.gov (911)|12:51|www.911.gov|N|8||
 |AFDC (afdc.energy.gov)|12:54|afdc.energy.gov|N|8||
 |Air Force Research Laboratory (usaf_afrl)|12:55|www.afrl.af.mil|N|8||
@@ -244,7 +249,7 @@
 |Solar Decathlon|19:43|www.solardecathlon.gov|N|8||
 |New depth 8 (cg.usembassy.gov/fr)|19:46|cg.usembassy.gov/fr|N|8||
 |Open Defense (opendgov)|19:49|open.defense.gov|N|3||
-|FHWA Environment|19:58|environment.fhwa.dot.gov|N|8||
+|FHWA Environment|19:58|www.environment.fhwa.dot.gov|N|8||
 |Office of Research Services (nih)|20:05|ors.od.nih.gov|N|8||
 |Air University (afpw_au)|20:13|www.airuniversity.af.edu|N|8||
 |GPS.gov (gps.gov)|20:15|www.gps.gov|N|8||
@@ -272,7 +277,7 @@
 |1st Infantry Division (army_11d)|23:50|www.1id.army.mil|N|3||
 
 
-## Monday (259)
+## Monday (263)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |cgaux.org (cgaux)|00:00|www.cgaux.org|N|8||
@@ -431,9 +436,13 @@
 |Ramstein Air Base (ramstein)|12:00|www.ramstein.af.mil|N|8||
 |do.usembassy.gov/es/ (do.usembassy)|12:00|do.usembassy.gov/es/|N|8||
 |US Bureau of Labor Statistics|12:00|www.bls.gov|N|8||
+|www.dcdc.mil|12:10|www.dcdc.mil|N|8||
 |Army Nevada National Guard (army_nang)|12:24|nv.ng.mil|N|3||
+|docs.cloud.gov|12:30|docs.cloud.gov|N|8||
 |NIH Office of AIDS Research (oar)|12:34|oar.nih.gov|N|3||
+|www.seaway.dot.gov|12:40|www.seaway.dot.gov|N|8||
 |DOS Embassy USAU (dos_emb_afr_usau)|12:43|usau.usmission.gov|N|8||
+|sm.usmission.gov|12:50|sm.usmission.gov|N|8||
 |Pittsburgh IAP Air Reserve Station (pittsburgh)|12:55|www.pittsburgh.afrc.af.mil|N|8||
 |tricare_yokosuka|13:00|yokosuka.tricare.mil|N|8||
 |Access Board|13:00|www.access-board.gov|N|8||
@@ -1215,7 +1224,7 @@
 |www.navy.mil (usagov-replacement)|10:22|www.navy.mil|N|8||
 |ICT Baseline Access Board|10:22|ictbaseline.access-board.gov|N|8||
 |Legacy Export Portal|10:30|legacy.export.gov|N|8||
-|Statistical Policy|10:30|www.statspolicy.gov|N|8||
+|Statistical Policy|10:30|statspolicy.gov|N|8||
 |eg.usembassy.gov (usagov-replacement)|10:32|eg.usembassy.gov|N|3||
 |175th Wing, Maryland Air National Guard (afpw_175wg)|10:39|www.175wg.ang.af.mil|N|8||
 |Army NATO (army_nato)|10:39|www.usanato.army.mil|N|3||
@@ -1494,7 +1503,7 @@
 |hn.usembassy.gov (dos_emb_wha_honduras_es)|15:23|hn.usembassy.gov|N|8||
 |USNIC Domain (usnic-domain)|15:35|usicecenter.gov|N|3||
 |US Embassy Ecuador|15:37|ec.usembassy.gov|N|8||
-|DoD ADLI (dod_adli)|15:41|www.adlnet.gov|N|3||
+|DoD ADLI (dod_adli)|15:41|www.adlnet.gov|N|8||
 |Center for Information Technology (CIT) (cit.nih.gov)|15:42|cit.nih.gov|N|8||
 |United States Forces Japan (usfj)|15:45|www.usfj.mil|N|3||
 |NSF NCSES Data|15:52|ncsesdata.nsf.gov|N|8||
