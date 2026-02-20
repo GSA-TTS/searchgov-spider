@@ -46,6 +46,4 @@ disable= [
 
 [tool.pytest.ini_options]
 asyncio_default_fixture_loop_scope = "module"
-filterwarnings = [
-    "ignore:scrapy.downloadermiddlewares.ajaxcrawl.AjaxCrawlMiddleware is deprecated and will be removed in a future Scrapy version.:Warning"
-]
+filterwarnings = []
