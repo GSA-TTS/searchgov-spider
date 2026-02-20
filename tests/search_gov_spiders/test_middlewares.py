@@ -41,14 +41,15 @@ def test_offsite_process_request_domain_filtering(allowed_domain, allowed_domain
         allowed_domains=allowed_domain,
         allowed_domain_paths=allowed_domain_path,
     )
+    crawler.spider = spider
     mw = SearchGovSpidersOffsiteMiddleware.from_crawler(crawler)
     mw.spider_opened(spider)
     request = Request(url)
     if allowed:
-        assert mw.process_request(request, spider) is None
+        assert mw.process_request(request) is None
     else:
         with pytest.raises(IgnoreRequest):
-            mw.process_request(request, spider)
+            mw.process_request(request)
 
 
 INVALID_DOMAIN_TEST_CASES = [
@@ -86,7 +87,7 @@ def test_offsite_invalid_domain_paths(allowed_domain, allowed_domain_path, warni
         mw.spider_opened(crawler.spider)
 
     request = Request("http://www.example.com")
-    assert mw.process_request(request, crawler.spider) is None
+    assert mw.process_request(request) is None
 
 
 def test_offsite_invalid_domain_in_starting_urls(caplog):
@@ -102,7 +103,7 @@ def test_offsite_invalid_domain_in_starting_urls(caplog):
 
     request = Request("http://www.not-an-example.com")
     with pytest.raises(IgnoreRequest), caplog.at_level("ERROR"):
-        mw.process_request(request=request, spider=crawler.spider)
+        mw.process_request(request=request)
 
     msg = (
         "IgnoreRequest raised for starting URL due to Offsite request: "
@@ -119,24 +120,24 @@ def test_spider_downloader_middleware():
     )
     mw = SearchGovSpidersDownloaderMiddleware()
     request = Request("http://www.example.com/test")
-    return (mw, request, crawler.spider)
+    return (mw, request)
 
 
 def test_downloader_middleware_process_response(downloader_middleware):
-    mw, request, spider = downloader_middleware
+    mw, request = downloader_middleware
     response = Response("http://www.example.com/test")
-    assert mw.process_response(request, response, spider) == response
+    assert mw.process_response(request, response) == response
 
 
 def test_downloader_middleware_process_request(downloader_middleware):
-    mw, request, spider = downloader_middleware
-    assert mw.process_request(request, spider) is None
+    mw, request = downloader_middleware
+    assert mw.process_request(request) is None
 
 
 def test_downloader_middleware_process_exception(downloader_middleware):
-    mw, request, spider = downloader_middleware
+    mw, request = downloader_middleware
     exception = Exception("This is just a test!")
-    assert mw.process_exception(request, exception, spider) is None
+    assert mw.process_exception(request, exception) is None
 
 
 @pytest.mark.parametrize(
@@ -244,6 +245,7 @@ def test_spider_middleware_spider_exception_start_url(caplog):
         allowed_domains="example.com",
         start_urls=["http://www.example.com"],
     )
+    crawler.spider = spider
     mw = SearchGovSpidersSpiderMiddleware.from_crawler(crawler)
 
     mw.spider_opened(spider)
@@ -257,7 +259,6 @@ def test_spider_middleware_spider_exception_start_url(caplog):
         mw.process_spider_exception(
             response=response,
             exception=IgnoreRequest("Igore this test request"),
-            spider=spider,
         )
         msg = (
             "Error occured while accessing start url: http://www.example.com: "
