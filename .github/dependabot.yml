@@ -23,6 +23,8 @@ updates:
           - "langdetect"
           - "python-dateutil"
           - "pymysql"
+          - "brotli"
+          - "zstandard"
       testing-linting-and-scripts:
         patterns:
           - "click"
