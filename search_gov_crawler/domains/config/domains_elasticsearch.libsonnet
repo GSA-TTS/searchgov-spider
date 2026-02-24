@@ -14656,4 +14656,28 @@ local output_target = 'elasticsearch';
                          output_target=output_target,
                          depth_limit=8),
   },
+  {
+    name: 'www.ustranscom.mil',
+    config: DomainConfig(allowed_domains='www.ustranscom.mil',
+                         starting_urls='https://www.ustranscom.mil/',
+                         schedule='10 12 * * TUE',
+                         output_target=output_target,
+                         depth_limit=8),
+  },
+  {
+    name: 'www.acq.osd.mil/asda/dpc/',
+    config: DomainConfig(allowed_domains='www.acq.osd.mil/asda/dpc/',
+                         starting_urls='https://www.acq.osd.mil/asda/dpc/index.html',
+                         schedule='20 12 * * TUE',
+                         output_target=output_target,
+                         depth_limit=8),
+  },
+  {
+    name: 'bjatta.bja.ojp.gov',
+    config: DomainConfig(allowed_domains='bjatta.bja.ojp.gov',
+                         starting_urls='https://bjatta.bja.ojp.gov/',
+                         schedule='30 12 * * TUE',
+                         output_target=output_target,
+                         depth_limit=8),
+  },
 ]

@@ -23970,5 +23970,44 @@
       "schedule": "50 12 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://sm.usmission.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.ustranscom.mil",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "www.ustranscom.mil",
+      "output_target": "elasticsearch",
+      "schedule": "10 12 * * TUE",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.ustranscom.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.acq.osd.mil/asda/dpc/",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "www.acq.osd.mil/asda/dpc/",
+      "output_target": "elasticsearch",
+      "schedule": "20 12 * * TUE",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.acq.osd.mil/asda/dpc/index.html"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "bjatta.bja.ojp.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "bjatta.bja.ojp.gov",
+      "output_target": "elasticsearch",
+      "schedule": "30 12 * * TUE",
+      "sitemap_urls": null,
+      "starting_urls": "https://bjatta.bja.ojp.gov/"
    }
 ]

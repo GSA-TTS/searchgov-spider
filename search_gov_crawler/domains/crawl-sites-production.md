@@ -1,7 +1,7 @@
 # Production Schedule
  * [Sunday (264)](#sunday-264)
  * [Monday (263)](#monday-263)
- * [Tuesday (265)](#tuesday-265)
+ * [Tuesday (268)](#tuesday-268)
  * [Wednesday (264)](#wednesday-264)
  * [Thursday (261)](#thursday-261)
  * [Friday (262)](#friday-262)
@@ -545,7 +545,7 @@
 |EBCCP Cancer Control (ebccp.cancercontrol.cancer.gov)|23:29|ebccp.cancercontrol.cancer.gov|N|8||
 
 
-## Tuesday (265)
+## Tuesday (268)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Minot Air Force Base (minot)|00:00|www.minot.af.mil|N|8||
@@ -686,6 +686,9 @@
 |Kirtland Air Force Base (kirtland)|12:00|www.kirtland.af.mil|N|8||
 |DOD HPC DAAC|12:00|daac.hpc.mil|N|8||
 |September 11th Victim Compensation Fund|12:00|www.vcf.gov|N|8||
+|www.ustranscom.mil|12:10|www.ustranscom.mil|N|8||
+|www.acq.osd.mil/asda/dpc/|12:20|www.acq.osd.mil/asda/dpc/|N|8||
+|bjatta.bja.ojp.gov|12:30|bjatta.bja.ojp.gov|N|8||
 |Delaware National Guard (ng_deng)|12:32|www.de.ng.mil|N|3||
 |Army PSCC (army_pscc)|12:38|www.pscc.army.mil|N|3||
 |Air Force Special Operations Command (afsoc)|12:39|www.afsoc.af.mil|N|8||
