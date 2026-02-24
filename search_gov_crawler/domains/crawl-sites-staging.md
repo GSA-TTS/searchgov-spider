@@ -367,21 +367,19 @@
 |National Institute on Alcohol Abuse and Alcoholism (NIAAA) (www.niaaa.nih.gov)|08:18|www.niaaa.nih.gov|N|8||
 |Air Force Installations, Environment & Logistics (safie)|08:18|www.safie.hq.af.mil|N|8||
 |US Embassy Ethiopia (dos_emb_afr_ethiopia)|08:27|et.usembassy.gov|N|8||
-|NOAA CoastWatch East Coast Node|08:30|eastcoast.coastwatch.noaa.gov|N|3||
-|VA Benefits.va.gov|08:30|benefits.va.gov|N|3||
 |NOAA CoastWatch|08:30|coastwatch.noaa.gov|N|3||
 |VA Research & Development|08:30|www.research.va.gov|N|3||
 |Social Security Advisory Board|08:30|www.ssab.gov|N|8||
+|VA Benefits.va.gov|08:30|benefits.va.gov|N|8||
+|NOAA CoastWatch East Coast Node|08:30|eastcoast.coastwatch.noaa.gov|N|8||
 |Maine National Guard (ng_maine)|08:52|www.me.ng.mil|N|3||
 |tricare_kenner|09:00|kenner.tricare.mil|N|8||
 |OSHA (osha)|09:04|www.osha.gov|N|8||
 |Air Force Financial Management & Comptroller (saffm)|09:14|www.saffm.hq.af.mil|N|8||
 |US Embassy Slovenia|09:15|si.usembassy.gov|N|8||
-|DOS AIS USVISA INFO|09:30|ais.usvisa-info.com|N|3||
 |toolkit.climate.gov - endpoint|09:30|toolkit.climate.gov|N|3||
 |ED Office of Hearings and Appeals OHA|09:30|oha.ed.gov|N|3||
 |FDA Import Alerts|09:30|www.accessdata.fda.gov|N|8||
-|NOAA CoastWatch West Coast|09:30|coastwatch.pfeg.noaa.gov|N|3||
 |www.eeoc.gov (usagov-replacement)|09:30|www.eeoc.gov|N|3||
 |VA Access To Care|09:30|www.accesstocare.va.gov|N|3||
 |USCOURTS CACB|09:30|www.cacb.uscourts.gov|N|3||
@@ -400,6 +398,8 @@
 |USCOURTS UTB|09:30|www.utb.uscourts.gov|N|8||
 |VA CFM Technical Information Library TIL|09:30|www.cfm.va.gov/til/|N|3||
 |Digital.gov Standards|09:30|standards.digital.gov|N|8||
+|NOAA CoastWatch West Coast|09:30|coastwatch.pfeg.noaa.gov|N|8||
+|DOS AIS USVISA INFO|09:30|ais.usvisa-info.com|N|8||
 |it.usembassy.gov (dos_emb_eur_italy)|09:36|it.usembassy.gov|N|8||
 |www.dnfsb.gov (dnfsb)|09:36|www.dnfsb.gov|N|8||
 |New depth 8 (ee.usembassy.gov/et)|09:36|ee.usembassy.gov/et|N|8||
@@ -1693,7 +1693,7 @@
 |120th Airlift Wing (afpw_120fw)|07:16|www.120thairliftwing.ang.af.mil|N|8||
 |Policy Manual (nih)|07:17|policymanual.nih.gov|N|8||
 |315th Airlift Wing (315aw)|07:23|www.315aw.afrc.af.mil|N|8||
-|Office of Natural Resources Revenue|07:30|www.onrr.gov|N|8||
+|Office of Natural Resources Revenue|07:30|www.onrr.gov|Y|8||
 |US Embassy Kolonia (dos_emb_eap_kolonia)|07:43|fm.usembassy.gov|N|8||
 |OrganDonor.gov|07:45|www.organdonor.gov|N|8||
 |DoD DHRA (dod_dhra)|07:53|www.dhra.mil|N|3||
@@ -1800,7 +1800,7 @@
 |cnrj.cnic.navy.mil (navy_cnrj)|16:06|cnrj.cnic.navy.mil|N|8||
 |New depth 8 (xk.usembassy.gov/sq)|16:06|xk.usembassy.gov/sq|N|8||
 |ERA.NIH.gov (NIH grants)|16:15|www.era.nih.gov|N|8||
-|Quality Payment Program|16:17|qpp.cms.gov|N|8||
+|Quality Payment Program|16:17|qpp.cms.gov,qpp-cm-prod-content.s3.amazonaws.com|N|8||
 |133rd Airlift Wing, Minnesota Air National Guard (afpw_133aw)|16:20|www.133aw.ang.af.mil|N|8||
 |Science.gov|16:31|www.science.gov|N|8||
 |Navy NCC (navy_ncc)|16:36|ncc.navfac.navy.mil|N|3||

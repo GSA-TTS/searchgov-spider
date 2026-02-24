@@ -1,16 +1,16 @@
 [
    {
       "allow_query_string": false,
-      "allowed_domains": "eastcoast.coastwatch.noaa.gov",
+      "allowed_domains": "toolkit.climate.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 3,
       "handle_javascript": false,
-      "name": "NOAA CoastWatch East Coast Node",
+      "name": "toolkit.climate.gov - endpoint",
       "output_target": "endpoint",
-      "schedule": "30 08 * * MON",
+      "schedule": "30 09 * * MON",
       "sitemap_urls": null,
-      "starting_urls": "https://eastcoast.coastwatch.noaa.gov/"
+      "starting_urls": "https://toolkit.climate.gov"
    },
    {
       "allow_query_string": false,

@@ -29,7 +29,7 @@
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Air Force Recruiting Service (afpw_rs)|01:48|www.afaccessionscenter.af.mil|N|8||
-|NOAA CoastWatch East Coast Node|08:30|eastcoast.coastwatch.noaa.gov|N|3||
+|toolkit.climate.gov - endpoint|09:30|toolkit.climate.gov|N|3||
 |Army MRC Europe (army_mrceurope)|10:47|mrc-europe.army.mil|N|3||
 |Navy NAVWAR (navy_navwar)|14:10|www.navwar.navy.mil|N|3||
 |US Embassy Zambia|15:00|zm.usembassy.gov|N|8||

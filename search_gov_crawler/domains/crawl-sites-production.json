@@ -1,45 +1,6 @@
 [
    {
       "allow_query_string": false,
-      "allowed_domains": "eastcoast.coastwatch.noaa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "NOAA CoastWatch East Coast Node",
-      "output_target": "endpoint",
-      "schedule": "30 08 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://eastcoast.coastwatch.noaa.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "benefits.va.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "VA Benefits.va.gov",
-      "output_target": "endpoint",
-      "schedule": "30 08 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://benefits.va.gov/benefits/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "ais.usvisa-info.com",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "DOS AIS USVISA INFO",
-      "output_target": "endpoint",
-      "schedule": "30 09 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://ais.usvisa-info.com/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "toolkit.climate.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -76,19 +37,6 @@
       "schedule": "30 09 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.accessdata.fda.gov/CMS_IA/default.html"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "coastwatch.pfeg.noaa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "NOAA CoastWatch West Coast",
-      "output_target": "endpoint",
-      "schedule": "30 09 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://coastwatch.pfeg.noaa.gov/"
    },
    {
       "allow_query_string": false,
@@ -1024,7 +972,7 @@
       "starting_urls": "https://www.uscis.gov/"
    },
    {
-      "allow_query_string": false,
+      "allow_query_string": true,
       "allowed_domains": "www.justice.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -19250,7 +19198,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "qpp.cms.gov",
+      "allowed_domains": "qpp.cms.gov,qpp-cm-prod-content.s3.amazonaws.com",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -20129,7 +20077,9 @@
       "name": "Administrative Resource Center",
       "output_target": "elasticsearch",
       "schedule": "00 05 * * SUN",
-      "sitemap_urls": null,
+      "sitemap_urls": [
+         "https://arc.fiscal.treasury.gov/s/sitemap-view-1.xml"
+      ],
       "starting_urls": "https://arc.fiscal.treasury.gov/s/"
    },
    {
@@ -21516,7 +21466,7 @@
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
-      "handle_javascript": false,
+      "handle_javascript": true,
       "name": "Office of Natural Resources Revenue",
       "output_target": "elasticsearch",
       "schedule": "30 07 * * SAT",
@@ -23879,5 +23829,57 @@
       "schedule": "30 12 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://bjatta.bja.ojp.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "coastwatch.pfeg.noaa.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NOAA CoastWatch West Coast",
+      "output_target": "elasticsearch",
+      "schedule": "30 09 * * MON",
+      "sitemap_urls": null,
+      "starting_urls": "https://coastwatch.pfeg.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "benefits.va.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "VA Benefits.va.gov",
+      "output_target": "elasticsearch",
+      "schedule": "30 08 * * MON",
+      "sitemap_urls": null,
+      "starting_urls": "https://benefits.va.gov/benefits/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ais.usvisa-info.com",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "DOS AIS USVISA INFO",
+      "output_target": "elasticsearch",
+      "schedule": "30 09 * * MON",
+      "sitemap_urls": null,
+      "starting_urls": "https://ais.usvisa-info.com/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "eastcoast.coastwatch.noaa.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NOAA CoastWatch East Coast Node",
+      "output_target": "elasticsearch",
+      "schedule": "30 08 * * MON",
+      "sitemap_urls": null,
+      "starting_urls": "https://eastcoast.coastwatch.noaa.gov/"
    }
 ]
