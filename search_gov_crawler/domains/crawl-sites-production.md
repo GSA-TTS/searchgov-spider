@@ -1,9 +1,9 @@
 # Production Schedule
  * [Sunday (264)](#sunday-264)
- * [Monday (263)](#monday-263)
+ * [Monday (254)](#monday-254)
  * [Tuesday (268)](#tuesday-268)
  * [Wednesday (264)](#wednesday-264)
- * [Thursday (261)](#thursday-261)
+ * [Thursday (260)](#thursday-260)
  * [Friday (262)](#friday-262)
  * [Saturday (262)](#saturday-262)
 
@@ -277,7 +277,7 @@
 |1st Infantry Division (army_11d)|23:50|www.1id.army.mil|N|3||
 
 
-## Monday (263)
+## Monday (254)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |cgaux.org (cgaux)|00:00|www.cgaux.org|N|8||
@@ -381,15 +381,7 @@
 |toolkit.climate.gov - endpoint|09:30|toolkit.climate.gov|N|3||
 |ED Office of Hearings and Appeals OHA|09:30|oha.ed.gov|N|3||
 |FDA Import Alerts|09:30|www.accessdata.fda.gov|N|8||
-|Navy MyNavyHR|09:30|www.mynavyhr.navy.mil|N|3||
-|NIH National Institute of General Medical Sciences|09:30|www.nigms.nih.gov|N|3||
-|NOAA Coastwatch Great Lakes|09:30|coastwatch.glerl.noaa.gov|N|3||
 |NOAA CoastWatch West Coast|09:30|coastwatch.pfeg.noaa.gov|N|3||
-|NOAA GOES-R|09:30|www.goes-r.gov|N|3||
-|TREAS - FinCEN|09:30|www.fincen.gov|N|3||
-|VA Office of Accountability and Whistleblower Protection|09:30|department.va.gov/accountability/|N|3||
-|VA Resources|09:30|www.va.gov/resources/|N|3||
-|DOD DANTES|09:30|www.dantes.mil|N|3||
 |www.eeoc.gov (usagov-replacement)|09:30|www.eeoc.gov|N|3||
 |VA Access To Care|09:30|www.accesstocare.va.gov|N|3||
 |USCOURTS CACB|09:30|www.cacb.uscourts.gov|N|3||
@@ -475,7 +467,6 @@
 |National Institute of Allergy and Infectious Diseases (NIAID) (www.niaid.nih.gov)|14:46|www.niaid.nih.gov|N|8||
 |Osan Air Base (osan)|14:46|www.osan.af.mil|N|8||
 |NIH Down Syndrome (downsyndrome.nih)|14:46|downsyndrome.nih.gov|N|8||
-|VA eBenefits (ebenefits.va)|14:47|www.ebenefits.va.gov|N|8||
 |Economic Development Administration (eda)|14:48|www.eda.gov|N|8||
 |NASA Earth Observatory (eol.jsc)|14:49|eol.jsc.nasa.gov|N|8||
 |US Embassy Eritrea (er.usembassy)|14:50|er.usembassy.gov|N|8||
@@ -1087,7 +1078,7 @@
 |Army 2nd Signal Brigade (army_2sigbde)|23:52|www.2sigbde.army.mil|N|3||
 
 
-## Thursday (261)
+## Thursday (260)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |niccs.cisa.gov (niccs.cisa)|00:00|niccs.cisa.gov|N|8||
@@ -1237,7 +1228,6 @@
 |US Embassy Mauritania|11:00|mr.usembassy.gov|N|8||
 |US Embassy Sri Lanka (dos_emb_csa_srilanka)|11:02|lk.usembassy.gov|N|8||
 |Andersen Air Force Base (andersen)|11:05|www.andersen.af.mil|N|8||
-|OSTI|11:07|www.osti.gov|N|8||
 |Navy NDW (navy_ndw)|11:09|ndw.cnic.navy.mil|N|3||
 |US Bankruptcy Court District of Minnesota|11:15|www.msnb.uscourts.gov|N|8||
 |NOAA Foster Scholars (fosterscholars.noaa.gov)|11:18|fosterscholars.noaa.gov|N|8||
