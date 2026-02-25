@@ -1,4 +1,5 @@
 apscheduler==3.11.0
+brotli==1.2.0 # adds br compression support to scrapy
 cchardet==2.2.0a2 # C version of chardet
 click==8.3.0
 elasticsearch==8.19.0,<9.0.0 # 9.0.0 is not compatible with elasticsearch 7
@@ -9,7 +10,7 @@ newspaper4k[all]==0.9.3.1 # This also installs the nltk library
 opensearch-py==3.0.0
 pylint==3.3.9
 pymysql==1.1.2
-pypdf==6.0.0
+pypdf==6.7.1
 pytest==8.4.2
 pytest-asyncio==1.2.0
 pytest-console-scripts==1.4.1
@@ -19,8 +20,9 @@ python-dotenv==1.1.1
 python-json-logger==3.3.0
 redis==5.2.1,<6.0.0 # 6.0.0 is not compatible with redis 6
 rich==14.1.0
-scrapy==2.13.2
-scrapy-playwright==0.0.43
+scrapy==2.14.1
+scrapy-playwright==0.0.46
 scrapy-redis==0.9.1
 spidermon[monitoring]==1.24.0
 typing-extensions==4.12.2 # Required by newspaper4k, ignored by dependabot
+zstandard==0.25.0 # adds zstd compression support to scrapy
