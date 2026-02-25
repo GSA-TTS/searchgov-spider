@@ -1,9 +1,9 @@
 # Staging Schedule
  * [Sunday (264)](#sunday-264)
- * [Monday (263)](#monday-263)
- * [Tuesday (265)](#tuesday-265)
+ * [Monday (254)](#monday-254)
+ * [Tuesday (268)](#tuesday-268)
  * [Wednesday (264)](#wednesday-264)
- * [Thursday (261)](#thursday-261)
+ * [Thursday (260)](#thursday-260)
  * [Friday (262)](#friday-262)
  * [Saturday (262)](#saturday-262)
 
@@ -277,7 +277,7 @@
 |1st Infantry Division (army_11d)|23:50|www.1id.army.mil|N|3||
 
 
-## Monday (263)
+## Monday (254)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |cgaux.org (cgaux)|00:00|www.cgaux.org|N|8||
@@ -367,29 +367,19 @@
 |National Institute on Alcohol Abuse and Alcoholism (NIAAA) (www.niaaa.nih.gov)|08:18|www.niaaa.nih.gov|N|8||
 |Air Force Installations, Environment & Logistics (safie)|08:18|www.safie.hq.af.mil|N|8||
 |US Embassy Ethiopia (dos_emb_afr_ethiopia)|08:27|et.usembassy.gov|N|8||
-|NOAA CoastWatch East Coast Node|08:30|eastcoast.coastwatch.noaa.gov|N|3||
-|VA Benefits.va.gov|08:30|benefits.va.gov|N|3||
 |NOAA CoastWatch|08:30|coastwatch.noaa.gov|N|3||
 |VA Research & Development|08:30|www.research.va.gov|N|3||
 |Social Security Advisory Board|08:30|www.ssab.gov|N|8||
+|VA Benefits.va.gov|08:30|benefits.va.gov|N|8||
+|NOAA CoastWatch East Coast Node|08:30|eastcoast.coastwatch.noaa.gov|N|8||
 |Maine National Guard (ng_maine)|08:52|www.me.ng.mil|N|3||
 |tricare_kenner|09:00|kenner.tricare.mil|N|8||
 |OSHA (osha)|09:04|www.osha.gov|N|8||
 |Air Force Financial Management & Comptroller (saffm)|09:14|www.saffm.hq.af.mil|N|8||
 |US Embassy Slovenia|09:15|si.usembassy.gov|N|8||
-|DOS AIS USVISA INFO|09:30|ais.usvisa-info.com|N|3||
 |toolkit.climate.gov - endpoint|09:30|toolkit.climate.gov|N|3||
 |ED Office of Hearings and Appeals OHA|09:30|oha.ed.gov|N|3||
 |FDA Import Alerts|09:30|www.accessdata.fda.gov|N|8||
-|Navy MyNavyHR|09:30|www.mynavyhr.navy.mil|N|3||
-|NIH National Institute of General Medical Sciences|09:30|www.nigms.nih.gov|N|3||
-|NOAA Coastwatch Great Lakes|09:30|coastwatch.glerl.noaa.gov|N|3||
-|NOAA CoastWatch West Coast|09:30|coastwatch.pfeg.noaa.gov|N|3||
-|NOAA GOES-R|09:30|www.goes-r.gov|N|3||
-|TREAS - FinCEN|09:30|www.fincen.gov|N|3||
-|VA Office of Accountability and Whistleblower Protection|09:30|department.va.gov/accountability/|N|3||
-|VA Resources|09:30|www.va.gov/resources/|N|3||
-|DOD DANTES|09:30|www.dantes.mil|N|3||
 |www.eeoc.gov (usagov-replacement)|09:30|www.eeoc.gov|N|3||
 |VA Access To Care|09:30|www.accesstocare.va.gov|N|3||
 |USCOURTS CACB|09:30|www.cacb.uscourts.gov|N|3||
@@ -408,6 +398,8 @@
 |USCOURTS UTB|09:30|www.utb.uscourts.gov|N|8||
 |VA CFM Technical Information Library TIL|09:30|www.cfm.va.gov/til/|N|3||
 |Digital.gov Standards|09:30|standards.digital.gov|N|8||
+|NOAA CoastWatch West Coast|09:30|coastwatch.pfeg.noaa.gov|N|8||
+|DOS AIS USVISA INFO|09:30|ais.usvisa-info.com|N|8||
 |it.usembassy.gov (dos_emb_eur_italy)|09:36|it.usembassy.gov|N|8||
 |www.dnfsb.gov (dnfsb)|09:36|www.dnfsb.gov|N|8||
 |New depth 8 (ee.usembassy.gov/et)|09:36|ee.usembassy.gov/et|N|8||
@@ -475,7 +467,6 @@
 |National Institute of Allergy and Infectious Diseases (NIAID) (www.niaid.nih.gov)|14:46|www.niaid.nih.gov|N|8||
 |Osan Air Base (osan)|14:46|www.osan.af.mil|N|8||
 |NIH Down Syndrome (downsyndrome.nih)|14:46|downsyndrome.nih.gov|N|8||
-|VA eBenefits (ebenefits.va)|14:47|www.ebenefits.va.gov|N|8||
 |Economic Development Administration (eda)|14:48|www.eda.gov|N|8||
 |NASA Earth Observatory (eol.jsc)|14:49|eol.jsc.nasa.gov|N|8||
 |US Embassy Eritrea (er.usembassy)|14:50|er.usembassy.gov|N|8||
@@ -545,7 +536,7 @@
 |EBCCP Cancer Control (ebccp.cancercontrol.cancer.gov)|23:29|ebccp.cancercontrol.cancer.gov|N|8||
 
 
-## Tuesday (265)
+## Tuesday (268)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Minot Air Force Base (minot)|00:00|www.minot.af.mil|N|8||
@@ -686,6 +677,9 @@
 |Kirtland Air Force Base (kirtland)|12:00|www.kirtland.af.mil|N|8||
 |DOD HPC DAAC|12:00|daac.hpc.mil|N|8||
 |September 11th Victim Compensation Fund|12:00|www.vcf.gov|N|8||
+|www.ustranscom.mil|12:10|www.ustranscom.mil|N|8||
+|www.acq.osd.mil/asda/dpc/|12:20|www.acq.osd.mil/asda/dpc/|N|8||
+|bjatta.bja.ojp.gov|12:30|bjatta.bja.ojp.gov|N|8||
 |Delaware National Guard (ng_deng)|12:32|www.de.ng.mil|N|3||
 |Army PSCC (army_pscc)|12:38|www.pscc.army.mil|N|3||
 |Air Force Special Operations Command (afsoc)|12:39|www.afsoc.af.mil|N|8||
@@ -1084,7 +1078,7 @@
 |Army 2nd Signal Brigade (army_2sigbde)|23:52|www.2sigbde.army.mil|N|3||
 
 
-## Thursday (261)
+## Thursday (260)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |niccs.cisa.gov (niccs.cisa)|00:00|niccs.cisa.gov|N|8||
@@ -1234,7 +1228,6 @@
 |US Embassy Mauritania|11:00|mr.usembassy.gov|N|8||
 |US Embassy Sri Lanka (dos_emb_csa_srilanka)|11:02|lk.usembassy.gov|N|8||
 |Andersen Air Force Base (andersen)|11:05|www.andersen.af.mil|N|8||
-|OSTI|11:07|www.osti.gov|N|8||
 |Navy NDW (navy_ndw)|11:09|ndw.cnic.navy.mil|N|3||
 |US Bankruptcy Court District of Minnesota|11:15|www.msnb.uscourts.gov|N|8||
 |NOAA Foster Scholars (fosterscholars.noaa.gov)|11:18|fosterscholars.noaa.gov|N|8||
@@ -1700,7 +1693,7 @@
 |120th Airlift Wing (afpw_120fw)|07:16|www.120thairliftwing.ang.af.mil|N|8||
 |Policy Manual (nih)|07:17|policymanual.nih.gov|N|8||
 |315th Airlift Wing (315aw)|07:23|www.315aw.afrc.af.mil|N|8||
-|Office of Natural Resources Revenue|07:30|www.onrr.gov|N|8||
+|Office of Natural Resources Revenue|07:30|www.onrr.gov|Y|8||
 |US Embassy Kolonia (dos_emb_eap_kolonia)|07:43|fm.usembassy.gov|N|8||
 |OrganDonor.gov|07:45|www.organdonor.gov|N|8||
 |DoD DHRA (dod_dhra)|07:53|www.dhra.mil|N|3||
@@ -1807,7 +1800,7 @@
 |cnrj.cnic.navy.mil (navy_cnrj)|16:06|cnrj.cnic.navy.mil|N|8||
 |New depth 8 (xk.usembassy.gov/sq)|16:06|xk.usembassy.gov/sq|N|8||
 |ERA.NIH.gov (NIH grants)|16:15|www.era.nih.gov|N|8||
-|Quality Payment Program|16:17|qpp.cms.gov|N|8||
+|Quality Payment Program|16:17|qpp.cms.gov,qpp-cm-prod-content.s3.amazonaws.com|N|8||
 |133rd Airlift Wing, Minnesota Air National Guard (afpw_133aw)|16:20|www.133aw.ang.af.mil|N|8||
 |Science.gov|16:31|www.science.gov|N|8||
 |Navy NCC (navy_ncc)|16:36|ncc.navfac.navy.mil|N|3||
