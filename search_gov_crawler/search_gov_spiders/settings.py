@@ -52,7 +52,7 @@ DOWNLOAD_MAXSIZE = 15728640
 # settings for broad crawling
 SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
 # This setting is deprecated
-AJAXCRAWL_ENABLED = True
+#AJAXCRAWL_ENABLED = False
 
 # default setting for how deep we want to go
 DEPTH_LIMIT = 3

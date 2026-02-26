@@ -67,7 +67,7 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
     # pylint: disable=unused-argument
     # disable unused arguments in this scrapy-generated class template
 
-    def process_spider_input(self, response: Response, spider: Spider) -> None:
+    def process_spider_input(self, response: Response) -> None:
         """
         Called for each response that goes through the spider middleware and into the spider.
 
@@ -75,21 +75,21 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
         """
         return
 
-    def process_spider_output(self, response: Response, result: Iterator[Any], spider: Spider):
+    def process_spider_output(self, response: Response, result: Iterator[Any]):
         """Called with the results returned from the Spider, after it has processed the response.
 
         Must return an iterable of Request, or item objects.
         """
         yield from result
 
-    def process_spider_exception(self, response: Response, exception, spider: Spider) -> None:
+    def process_spider_exception(self, response: Response, exception) -> None:
         """Called when a spider or process_spider_input() method
         (from other spider middleware) raises an exception.
 
         Should return either None or an iterable of Request or item objects.
         """
         if response.request.meta.get("is_start_request", False):
-            spider.logger.exception(
+            self.crawler.spider.logger.exception(
                 "Error occured while accessing start url: %s: response: %s, %s",
                 response.request.url,
                 response,
@@ -169,7 +169,7 @@ class SearchGovSpidersDownloaderMiddleware:
 
     # pylint: disable=unused-argument
     # disable unused arguments in this scrapy-generated class template
-    def process_request(self, request: Request, spider: Spider) -> None:
+    def process_request(self, request: Request) -> None:
         """
         Called for each request that goes through the downloader middleware.  Ignore
         requests that contain query params except if the spider specifically allows it.
@@ -183,7 +183,7 @@ class SearchGovSpidersDownloaderMiddleware:
         """
         return
 
-    def process_response(self, request: Request, response: Response, spider: Spider) -> Response:
+    def process_response(self, request: Request, response: Response) -> Response:
         """
         Called with the response returned from the downloader.
 
@@ -194,7 +194,7 @@ class SearchGovSpidersDownloaderMiddleware:
         """
         return response
 
-    def process_exception(self, request: Request, exception, spider: Spider):
+    def process_exception(self, request: Request, exception):
         """
         Called when a download handler or a process_request() (from other downloader middleware)
         raises an exception.
@@ -226,16 +226,16 @@ class SearchGovSpidersOffsiteMiddleware(OffsiteMiddleware):
 
         return bool(self.host_regex.search(host) and self.host_path_regex.search(cahched_request.geturl()))
 
-    def process_request(self, request: Request, spider: Spider) -> None:
+    def process_request(self, request: Request) -> None:
         """If the superclass process_request() raises an IgnoreRequest, log the error"""
         try:
-            return super().process_request(request, spider)
+            return super().process_request(request)
         except IgnoreRequest:
-            if request.url in spider.start_urls:
-                spider.logger.exception(
+            if request.url in self.crawler.spider.start_urls:
+                self.crawler.spider.logger.exception(
                     "IgnoreRequest raised for starting URL due to Offsite request: %s, allowed_domains: %s",
                     request.url,
-                    spider.allowed_domains,
+                    self.crawler.spider.allowed_domains,
                 )
             raise
 
