@@ -10,7 +10,7 @@ newspaper4k[all]==0.9.3.1 # This also installs the nltk library
 opensearch-py==3.0.0
 pylint==3.3.9
 pymysql==1.1.2
-pypdf==6.7.1
+pypdf==6.7.3
 pytest==8.4.2
 pytest-asyncio==1.2.0
 pytest-console-scripts==1.4.1
