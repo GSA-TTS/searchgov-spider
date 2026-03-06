@@ -875,7 +875,8 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.healthcare.gov/',
                          schedule='14 14 * * TUE',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         sitemap_urls=['https://www.healthcare.gov/sitemap-0.xml']),
   },
   {
     name: 'www.fincen.gov (usagov-replacement)',
@@ -5588,7 +5589,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://www.clu-in.org',
                          schedule='30 10 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'mag.ncep.noaa.gov (nws.noaa.gov)',
@@ -11811,6 +11812,7 @@ local output_target = 'elasticsearch';
                          starting_urls='https://qpp.cms.gov/',
                          schedule='17 16 * * SAT',
                          output_target=output_target,
+                         options=['handle_javascript'],
                          depth_limit=8),
   },
   {

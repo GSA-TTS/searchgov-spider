@@ -411,7 +411,7 @@
 |School Safety|10:00|www.schoolsafety.gov|N|8||
 |Air Force Scientific Advisory Board (sab)|10:09|www.scientificadvisoryboard.af.mil|N|8||
 |SimpleReport|10:15|www.simplereport.gov|N|8||
-|clu-in|10:30|www.clu-in.org|N|3||
+|clu-in|10:30|www.clu-in.org|N|8||
 |US Mission to UN Rome|10:45|usunrome.usmission.gov|N|8||
 |Army MRC Europe (army_mrceurope)|10:47|mrc-europe.army.mil|N|3||
 |NIH Data Science (data_science)|10:51|datascience.nih.gov|N|3||
@@ -1800,7 +1800,7 @@
 |cnrj.cnic.navy.mil (navy_cnrj)|16:06|cnrj.cnic.navy.mil|N|8||
 |New depth 8 (xk.usembassy.gov/sq)|16:06|xk.usembassy.gov/sq|N|8||
 |ERA.NIH.gov (NIH grants)|16:15|www.era.nih.gov|N|8||
-|Quality Payment Program|16:17|qpp.cms.gov,qpp-cm-prod-content.s3.amazonaws.com|N|8||
+|Quality Payment Program|16:17|qpp.cms.gov,qpp-cm-prod-content.s3.amazonaws.com|Y|8||
 |133rd Airlift Wing, Minnesota Air National Guard (afpw_133aw)|16:20|www.133aw.ang.af.mil|N|8||
 |Science.gov|16:31|www.science.gov|N|8||
 |Navy NCC (navy_ncc)|16:36|ncc.navfac.navy.mil|N|3||

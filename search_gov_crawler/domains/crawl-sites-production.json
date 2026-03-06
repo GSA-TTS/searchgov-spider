@@ -1451,7 +1451,9 @@
       "name": "www.healthcare.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "14 14 * * TUE",
-      "sitemap_urls": null,
+      "sitemap_urls": [
+         "https://www.healthcare.gov/sitemap-0.xml"
+      ],
       "starting_urls": "https://www.healthcare.gov/"
    },
    {
@@ -9107,7 +9109,7 @@
       "allowed_domains": "www.clu-in.org",
       "check_sitemap_hours": null,
       "deny_paths": null,
-      "depth_limit": 3,
+      "depth_limit": 8,
       "handle_javascript": false,
       "name": "clu-in",
       "output_target": "elasticsearch",
@@ -19202,7 +19204,7 @@
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
-      "handle_javascript": false,
+      "handle_javascript": true,
       "name": "Quality Payment Program",
       "output_target": "elasticsearch",
       "schedule": "17 16 * * SAT",
