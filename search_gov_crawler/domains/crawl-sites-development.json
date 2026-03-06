@@ -963,15 +963,15 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.acq.osd.mil/asda/dpc/",
+      "allowed_domains": "www.ustranscom.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "www.acq.osd.mil/asda/dpc/",
+      "name": "www.ustranscom.mil",
       "output_target": "elasticsearch",
-      "schedule": "20 12 * * TUE",
+      "schedule": "10 12 * * TUE",
       "sitemap_urls": null,
-      "starting_urls": "https://www.acq.osd.mil/asda/dpc/index.html"
+      "starting_urls": "https://www.ustranscom.mil/"
    }
 ]
