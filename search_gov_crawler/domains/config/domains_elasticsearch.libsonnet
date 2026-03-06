@@ -14619,7 +14619,14 @@ local output_target = 'elasticsearch';
                          output_target=output_target,
                          depth_limit=8),
   },
-
+  {
+    name: 'playbook.healthit.gov',
+    config: DomainConfig(allowed_domains='playbook.healthit.gov',
+                         starting_urls='https://playbook.healthit.gov/',
+                         schedule='20 12 * * MON',
+                         output_target=output_target,
+                         depth_limit=8),
+  },
   {
     name: 'docs.cloud.gov',
     config: DomainConfig(allowed_domains='docs.cloud.gov',
@@ -14666,6 +14673,31 @@ local output_target = 'elasticsearch';
                          starting_urls='https://bjatta.bja.ojp.gov/',
                          schedule='30 12 * * TUE',
                          output_target=output_target,
+                         depth_limit=8),
+  },
+  {
+    name: 'www.unemployment.gov',
+    config: DomainConfig(allowed_domains='www.unemployment.gov',
+                         starting_urls='https://www.unemployment.gov/',
+                         schedule='40 12 * * TUE',
+                         output_target=output_target,
+                         depth_limit=8),
+  },
+  {
+    name: 'www.dspo.mil',
+    config: DomainConfig(allowed_domains='www.dspo.mil',
+                         starting_urls='https://www.dspo.mil/',
+                         schedule='50 12 * * TUE',
+                         output_target=output_target,
+                         depth_limit=8),
+  },
+  {
+    name: 'dsacms.github.io/ospo-guide/',
+    config: DomainConfig(allowed_domains='dsacms.github.io/ospo-guide/',
+                         starting_urls='https://dsacms.github.io/ospo-guide/',
+                         schedule='0 12 * * WED',
+                         output_target=output_target,
+                         sitemap_urls=['https://dsacms.github.io/ospo-guide/sitemap.xml'],
                          depth_limit=8),
   },
   {

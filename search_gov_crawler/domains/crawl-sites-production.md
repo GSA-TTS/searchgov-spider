@@ -1,8 +1,8 @@
 # Production Schedule
  * [Sunday (264)](#sunday-264)
- * [Monday (254)](#monday-254)
- * [Tuesday (268)](#tuesday-268)
- * [Wednesday (264)](#wednesday-264)
+ * [Monday (255)](#monday-255)
+ * [Tuesday (270)](#tuesday-270)
+ * [Wednesday (265)](#wednesday-265)
  * [Thursday (260)](#thursday-260)
  * [Friday (262)](#friday-262)
  * [Saturday (262)](#saturday-262)
@@ -277,7 +277,7 @@
 |1st Infantry Division (army_11d)|23:50|www.1id.army.mil|N|3||
 
 
-## Monday (254)
+## Monday (255)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |cgaux.org (cgaux)|00:00|www.cgaux.org|N|8||
@@ -429,6 +429,7 @@
 |do.usembassy.gov/es/ (do.usembassy)|12:00|do.usembassy.gov/es/|N|8||
 |US Bureau of Labor Statistics|12:00|www.bls.gov|N|8||
 |www.dcdc.mil|12:10|www.dcdc.mil|N|8||
+|playbook.healthit.gov|12:20|playbook.healthit.gov|N|8||
 |Army Nevada National Guard (army_nang)|12:24|nv.ng.mil|N|3||
 |docs.cloud.gov|12:30|docs.cloud.gov|N|8||
 |NIH Office of AIDS Research (oar)|12:34|oar.nih.gov|N|3||
@@ -536,7 +537,7 @@
 |EBCCP Cancer Control (ebccp.cancercontrol.cancer.gov)|23:29|ebccp.cancercontrol.cancer.gov|N|8||
 
 
-## Tuesday (268)
+## Tuesday (270)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Minot Air Force Base (minot)|00:00|www.minot.af.mil|N|8||
@@ -683,8 +684,10 @@
 |Delaware National Guard (ng_deng)|12:32|www.de.ng.mil|N|3||
 |Army PSCC (army_pscc)|12:38|www.pscc.army.mil|N|3||
 |Air Force Special Operations Command (afsoc)|12:39|www.afsoc.af.mil|N|8||
+|www.unemployment.gov|12:40|www.unemployment.gov|N|8||
 |US Embassy Monrovia (dos_emb_afr_monrovia)|12:42|lr.usembassy.gov|N|8||
 |www.ftc.gov (usagov-replacement)|12:48|www.ftc.gov|N|8||
+|www.dspo.mil|12:50|www.dspo.mil|N|8||
 |Keesler Air Force Base (keesler)|12:55|www.keesler.af.mil|N|8||
 |tricare_cherrypoint|13:00|cherrypoint.tricare.mil|N|8||
 |Drug Enforcement Administration|13:00|www.dea.gov|N|8||
@@ -809,7 +812,7 @@
 |McConnell Air Force Base (afpw_mcconnell)|23:48|www.mcconnell.af.mil|N|8||
 
 
-## Wednesday (264)
+## Wednesday (265)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |www.fec.gov (usagov-replacement)|00:00|www.fec.gov|N|8||
@@ -960,6 +963,7 @@
 |Dobbins Air Reserve Base, Ga. (dobbins)|12:00|www.dobbins.afrc.af.mil|N|8||
 |iucrc.nsf.gov (nsf)|12:00|iucrc.nsf.gov|N|8||
 |rcnsc.ndu.edu (nduedu)|12:00|rcnsc.ndu.edu|N|8||
+|dsacms.github.io/ospo-guide/|12:00|dsacms.github.io/ospo-guide/|N|8||
 |USDA Food Buying Guide|12:05|foodbuyingguide.fns.usda.gov|N|8||
 |www.eia.gov (usagov-replacement)|12:12|www.eia.gov|N|8||
 |Altus Air Force Base (afpw_altus)|12:21|www.altus.af.mil|N|8||

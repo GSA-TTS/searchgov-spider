@@ -23756,6 +23756,19 @@
    },
    {
       "allow_query_string": false,
+      "allowed_domains": "playbook.healthit.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "playbook.healthit.gov",
+      "output_target": "elasticsearch",
+      "schedule": "20 12 * * MON",
+      "sitemap_urls": null,
+      "starting_urls": "https://playbook.healthit.gov/"
+   },
+   {
+      "allow_query_string": false,
       "allowed_domains": "docs.cloud.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -23831,6 +23844,47 @@
       "schedule": "30 12 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://bjatta.bja.ojp.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.unemployment.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "www.unemployment.gov",
+      "output_target": "elasticsearch",
+      "schedule": "40 12 * * TUE",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.unemployment.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.dspo.mil",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "www.dspo.mil",
+      "output_target": "elasticsearch",
+      "schedule": "50 12 * * TUE",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.dspo.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "dsacms.github.io/ospo-guide/",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "dsacms.github.io/ospo-guide/",
+      "output_target": "elasticsearch",
+      "schedule": "0 12 * * WED",
+      "sitemap_urls": [
+         "https://dsacms.github.io/ospo-guide/sitemap.xml"
+      ],
+      "starting_urls": "https://dsacms.github.io/ospo-guide/"
    },
    {
       "allow_query_string": false,
