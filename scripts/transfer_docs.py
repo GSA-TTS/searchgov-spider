@@ -3,9 +3,8 @@ import os
 from collections.abc import Generator
 
 import click
-
-from elasticsearch import NotFoundError
 from elasticsearch.helpers import scan
+from elasticsearch import NotFoundError
 from opensearchpy.exceptions import RequestError
 from opensearchpy.helpers import streaming_bulk
 from pythonjsonlogger.json import JsonFormatter
@@ -139,11 +138,9 @@ def copy_index(source: str, target: str | None, create_target, scroll):
     sg_es = SearchGovElasticsearch(es_index=source)
     sg_os = SearchGovOpensearch(opensearch_index=target)
 
-    try:
-        sg_es.client.indices.exists(index=source)
-    except Exception:
+    if not sg_es.client.indices.exists(index=source):
         log.exception("Source index %s does not exist in Elasticsearch!", source)
-        raise
+        raise Exception("Source Index Doesn't Exist!")
 
     if create_target:
         log.info("Creating target template and index...")
@@ -151,7 +148,7 @@ def copy_index(source: str, target: str | None, create_target, scroll):
 
     if not sg_os.client.indices.exists(index=sg_os.index_name):
         log.error("Index %s does not exist in Opensearch!", sg_os.index_name)
-        raise
+        raise RequestError(404, "Index does not exist!")
 
     results = {"succeeded": [], "failed": []}
     chunk_size = 100
@@ -169,7 +166,7 @@ def copy_index(source: str, target: str | None, create_target, scroll):
             log.error("Error loading batch of documents into Opensearch!")
 
         if (actions + 1) % chunk_size == 0 and actions > 0:
-            log.error("Ingested documents into Opensearch! Total Ingested: %s", len(results["succeeded"]))
+            log.info("Ingested documents into Opensearch! Total Ingested: %s", len(results["succeeded"]))
 
     log.info("Finished loading documents!")
     log.info("Bulk-inserted %s documents to Opensearch index %s.", len(results["succeeded"]), sg_os.index_name)
