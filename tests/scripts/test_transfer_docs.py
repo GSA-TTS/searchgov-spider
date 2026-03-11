@@ -176,12 +176,12 @@ VALIDATE_ARGS_TEST_CASES = [
 
 @pytest.mark.parametrize(("source", "target", "output"), VALIDATE_ARGS_TEST_CASES)
 def test_validate_args(monkeypatch, source, target, output):
-    monkeypatch.delenv("ELASTICSEARCH_SEARCHGOV_INDEX", raising=False)
+    monkeypatch.delenv("LEGACY_OPENSEARCH_INDEX", raising=False)
     assert output == td.validate_args(source, target)
 
 
 def test_validate_args_env(monkeypatch):
-    monkeypatch.setenv("ELASTICSEARCH_SEARCHGOV_INDEX", "test-env")
+    monkeypatch.setenv("LEGACY_OPENSEARCH_INDEX", "test-env")
     assert td.validate_args(None, None) == ("test-env", "test-env")
 
 
@@ -238,7 +238,6 @@ def test_copy_no_target_index(mocker):
     mocker.patch("scripts.transfer_docs.SearchGovElasticsearch")
     mock_os = mocker.patch("scripts.transfer_docs.SearchGovOpensearch")
     mock_os.return_value.client.indices.exists.return_value = False
-    # mock_os.client.indices.exists.return_value = False
 
     runner = CliRunner()
     result = runner.invoke(td.copy_index)

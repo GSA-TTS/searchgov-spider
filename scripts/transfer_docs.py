@@ -3,8 +3,8 @@ import os
 from collections.abc import Generator
 
 import click
-from elasticsearch.helpers import scan
 from elasticsearch import NotFoundError
+from elasticsearch.helpers import scan
 from opensearchpy.exceptions import RequestError
 from opensearchpy.helpers import streaming_bulk
 from pythonjsonlogger.json import JsonFormatter
@@ -107,7 +107,7 @@ def validate_args(source: str | None, target: str | None) -> tuple[str, str]:
     Validate input args and assign defaults
     """
     if not source:
-        source = os.getenv("ELASTICSEARCH_SEARCHGOV_INDEX", "development-i14y-documents-searchgov-legacy")
+        source = os.getenv("LEGACY_OPENSEARCH_INDEX", "development-i14y-documents-searchgov-legacy")
     if not target:
         target = source
 
