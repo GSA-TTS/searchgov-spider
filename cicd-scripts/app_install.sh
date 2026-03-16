@@ -23,7 +23,7 @@ install_system_dependencies() {
     echo "Installing system dependencies..."
     sudo apt-get update -y
     sudo apt-get install -y \
-        lzma liblzma-dev libbz2-dev python-setuptools \
+        lzma liblzma-dev libbz2-dev python3-setuptools \
         acl build-essential checkinstall libreadline-dev \
         libncursesw5-dev libssl-dev libsqlite3-dev tk-dev \
         libgdbm-dev libc6-dev zlib1g-dev libffi-dev openssl
