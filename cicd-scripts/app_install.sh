@@ -68,9 +68,15 @@ update_pythonpath() {
 # Setup virtual environment
 setup_virtualenv() {
     echo "Setting up virtual environment..."
+    # Remove old venv if exists
+    rm -rf "$VENV_DIR"
+    # Create venv with pip explicitly included
     python${SPIDER_PYTHON_VERSION} -m venv "$VENV_DIR"
     source "$VENV_DIR/bin/activate"
-    python${SPIDER_PYTHON_VERSION} -m pip install --upgrade pip
+    # Verify we're in venv
+    which python
+    python -m ensurepip --upgrade
+    python -m pip install --upgrade pip
 }
 
 # Install dependencies
