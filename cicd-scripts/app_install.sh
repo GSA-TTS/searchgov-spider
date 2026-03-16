@@ -70,7 +70,7 @@ setup_virtualenv() {
     echo "Setting up virtual environment..."
     python${SPIDER_PYTHON_VERSION} -m venv "$VENV_DIR"
     source "$VENV_DIR/bin/activate"
-    python -m pip install --upgrade pip
+    python${SPIDER_PYTHON_VERSION} -m pip install --upgrade pip
 }
 
 # Install dependencies
