@@ -47,11 +47,9 @@ install_python() {
 
 # Check and install Python if needed
 check_python() {
-    if ! command -v python${SPIDER_PYTHON_VERSION} &>/dev/null; then
-        install_python
-    else
-        echo "Python ${SPIDER_PYTHON_VERSION} already installed: $(python${SPIDER_PYTHON_VERSION} --version)"
-    fi
+    echo "Python version: $(python3 --version)"
+    # Ubuntu 24.04 has python3.12, just install venv packages
+    sudo apt-get install -y python3-venv python3-dev python3-pip
 }
 
 # Fetch environment variables from parameter store
@@ -68,14 +66,17 @@ update_pythonpath() {
 # Setup virtual environment
 setup_virtualenv() {
     echo "Setting up virtual environment..."
-    # Remove old venv if exists
     rm -rf "$VENV_DIR"
-    # Create venv with pip explicitly included
-    python${SPIDER_PYTHON_VERSION} -m venv "$VENV_DIR"
+    
+    echo "Creating venv with python3..."
+    python3 -m venv "$VENV_DIR"
+    
+    if [ ! -f "$VENV_DIR/bin/activate" ]; then
+        echo "ERROR: Venv creation failed"
+        exit 1
+    fi
+    
     source "$VENV_DIR/bin/activate"
-    # Verify we're in venv
-    which python
-    python -m ensurepip --upgrade
     python -m pip install --upgrade pip
 }
 
