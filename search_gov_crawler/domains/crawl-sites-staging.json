@@ -23940,15 +23940,15 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.councils.gov",
+      "allowed_domains": "www.counsils.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Counsils.gov",
       "output_target": "elasticsearch",
-      "schedule": "00 14 * * MON",
+      "schedule": "30 14 * * MON",
       "sitemap_urls": null,
-      "starting_urls": "https://www.councils.gov/"
+      "starting_urls": "https://www.counsils.gov/"
    }
 ]

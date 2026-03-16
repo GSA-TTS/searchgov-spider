@@ -448,10 +448,10 @@
 |tricare_mdahc|14:00|mcdonald.tricare.mil|N|8||
 |NOAA American Samoa|14:00|americansamoa.noaa.gov|N|8||
 |Young Leaders of the Americas Initiative|14:00|ylai.state.gov|N|8||
-|Counsils.gov|14:00|www.councils.gov|N|8||
 |Navy NAVWAR (navy_navwar)|14:10|www.navwar.navy.mil|N|3||
 |NASA Astronomy Picture of the Day|14:15|apod.nasa.gov|N|8||
 |Apprenticeship USA|14:30|www.apprenticeship.gov|N|8||
+|Counsils.gov|14:30|www.counsils.gov|N|8||
 |Donación de Órganos (donaciondeorganos)|14:34|donaciondeorganos.gov|N|8||
 |Choose VA (choose.va)|14:35|choose.va.gov|N|8||
 |Federal CIO Council (cio)|14:36|www.cio.gov|N|8||
