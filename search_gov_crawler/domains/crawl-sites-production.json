@@ -23881,5 +23881,18 @@
       "schedule": "30 08 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://eastcoast.coastwatch.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.councils.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Councils.gov",
+      "output_target": "elasticsearch",
+      "schedule": "00 16 * * MON",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.councils.gov/"
    }
 ]
