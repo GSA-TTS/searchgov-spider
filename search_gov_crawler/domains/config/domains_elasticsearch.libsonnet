@@ -14700,9 +14700,9 @@ local output_target = 'elasticsearch';
   },
   {
     name: 'Counsils.gov',
-    config: DomainConfig(allowed_domains='www.councils.gov',
-                         starting_urls='https://www.councils.gov/',
-                         schedule='00 14 * * MON',
+    config: DomainConfig(allowed_domains='www.counsils.gov',
+                         starting_urls='https://www.counsils.gov/',
+                         schedule='30 14 * * MON',
                          output_target=output_target,
                          depth_limit=8),
   },
