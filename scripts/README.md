@@ -9,3 +9,4 @@ This folder contains miscellaneous scripts that help us perform reoccurring but 
 * `load_crawl_configs.py` - Helper to load crawl site JSON files to crawl config table.
 * `query_tester.py`       - Used to help acceptance test changes to the search query
 * `sitemaps_sandbox/`     - Included scripts to help in testing of sitemap functionality.
+* `transfer_docs.py`      - Transfer docs from elasticsearch to opensearch.
