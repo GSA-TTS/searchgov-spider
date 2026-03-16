@@ -50,7 +50,7 @@
 |FEHRM (fehrm)|07:20|www.fehrm.gov|N|3||
 |Clinton Presidential Library|08:00|www.clintonlibrary.gov|N|8||
 |tricare_nhcp|09:00|camp-pendleton.tricare.mil|N|8||
-|www.acq.osd.mil/asda/dpc/|12:20|www.acq.osd.mil/asda/dpc/|N|8||
+|www.ustranscom.mil|12:10|www.ustranscom.mil|N|8||
 |VA Digital (digital.va)|14:31|digital.va.gov|N|8||
 |FedRAMP (fedramp)|14:57|www.fedramp.gov|N|8||
 |medlineplus.gov (usagov-replacement)|16:30|www.medlineplus.gov|N|3||
