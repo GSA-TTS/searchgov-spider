@@ -14732,4 +14732,12 @@ local output_target = 'elasticsearch';
                          output_target=output_target,
                          depth_limit=8),
   },
+  {
+    name: 'Councils.gov',
+    config: DomainConfig(allowed_domains='www.councils.gov',
+                         starting_urls='https://www.councils.gov/',
+                         schedule='00 16 * * MON',
+                         output_target=output_target,
+                         depth_limit=8),
+  },
 ]
