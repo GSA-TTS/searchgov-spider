@@ -69,7 +69,7 @@ def test_batch_upload_success(mocker, opensearch_instance, mock_spider):
     docs = [{"_id": "1", "field": "v1"}, {"_id": "2", "field": "v2"}]
     opensearch_instance._current_batch = docs.copy()
 
-    mock_bulk = mocker.patch("search_gov_crawler.search_engines.es_batch_upload.helpers.parallel_bulk")
+    mock_bulk = mocker.patch("search_gov_crawler.search_engines.opensearch.helpers.parallel_bulk")
     mock_bulk.return_value = iter([(True, {"index": {}}), (True, {"index": {}})])
 
     with patch("search_gov_crawler.search_engines.opensearch.helpers.parallel_bulk", return_value=mock_bulk()):

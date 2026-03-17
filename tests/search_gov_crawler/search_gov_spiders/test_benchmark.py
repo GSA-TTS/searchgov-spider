@@ -5,8 +5,8 @@ from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
-from elasticsearch import Elasticsearch
 from freezegun import freeze_time
+from opensearchpy import OpenSearch
 
 from search_gov_crawler import scrapy_scheduler
 from search_gov_crawler.benchmark import (
@@ -17,9 +17,9 @@ from search_gov_crawler.benchmark import (
 )
 
 
-@pytest.fixture
-def mock_es_client():
-    client = MagicMock(spec=Elasticsearch)
+@pytest.fixture(name="mock_opensearch_client")
+def fixture_mock_opensearch_client():
+    client = MagicMock(spec=OpenSearch)
     client.indices = MagicMock()
     client.indices.exists = MagicMock()
     client.indices.create = MagicMock()
@@ -96,10 +96,10 @@ class MockScheduler:
         return True
 
 
-def test_benchmark_from_args(caplog, monkeypatch, mock_es_client):
+def test_benchmark_from_args(caplog, monkeypatch, mock_opensearch_client):
     with patch(
-        "search_gov_crawler.search_engines.es_batch_upload.SearchGovElasticsearch.client",
-        return_value=mock_es_client,
+        "search_gov_crawler.search_engines.opensearch.SearchGovOpensearch.client",
+        return_value=mock_opensearch_client,
     ):
         monkeypatch.setattr(time, "sleep", lambda x: True)
         monkeypatch.setattr("search_gov_crawler.benchmark.init_scheduler", lambda: MockScheduler())  # pylint: disable=unnecessary-lambda
@@ -124,10 +124,10 @@ def test_benchmark_from_args(caplog, monkeypatch, mock_es_client):
         assert expected_log_msg in caplog.messages
 
 
-def test_benchmark_from_file(caplog, monkeypatch, mock_es_client):
+def test_benchmark_from_file(caplog, monkeypatch, mock_opensearch_client):
     with patch(
-        "search_gov_crawler.search_engines.es_batch_upload.SearchGovElasticsearch.client",
-        return_value=mock_es_client,
+        "search_gov_crawler.search_engines.opensearch.SearchGovOpensearch.client",
+        return_value=mock_opensearch_client,
     ):
         monkeypatch.setattr(time, "sleep", lambda x: True)
         monkeypatch.setattr("search_gov_crawler.benchmark.init_scheduler", lambda: MockScheduler())  # pylint: disable=unnecessary-lambda
