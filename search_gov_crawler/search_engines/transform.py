@@ -1,6 +1,6 @@
 import newspaper
 
-from search_gov_crawler.search_engines.i14y_helper import (
+from search_gov_crawler.search_engines.helpers import (
     ALLOWED_LANGUAGE_CODE,
     current_utc_iso,
     detect_lang,
@@ -11,11 +11,11 @@ from search_gov_crawler.search_engines.i14y_helper import (
     parse_date_safely,
     summarize_text,
 )
-from search_gov_crawler.search_engines.parse_html_scrapy import convert_html_scrapy
+from search_gov_crawler.search_engines.parse import convert_html_scrapy
 from search_gov_crawler.search_gov_spiders.helpers import content, encoding
 
 
-def convert_html(response_bytes: bytes, url: str, response_language: str = None):
+def convert_html(response_bytes: bytes, url: str, response_language: str | None = None):
     """Extracts and processes article content from HTML using newspaper4k."""
     html_content = encoding.decode_http_response(response_bytes=response_bytes)
     config = newspaper.Config()
@@ -73,7 +73,7 @@ def convert_html(response_bytes: bytes, url: str, response_language: str = None)
         "updated_at": time_now_str,
         "updated": parse_date_safely(article.publish_date) or parse_date_safely(article_backup["created_at"]),
         f"title{valid_language}": title,
-        f"description{valid_language}": content.sanitize_text(description),
+        f"description{valid_language}": content.sanitize_text(str(description)),
         f"content{valid_language}": content.sanitize_text(main_content),
         "basename": basename,
         "extension": extension or None,

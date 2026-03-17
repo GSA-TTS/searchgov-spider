@@ -198,7 +198,7 @@ def test_crawl_configs_file_is_valid(file_name):
     Additionally, we are assuming that there is at least one scheduled job in the file.
     """
 
-    crawl_sites_file = Path(__file__).parent.parent.parent / "search_gov_crawler" / "domains" / file_name
+    crawl_sites_file = Path(__file__).parent.parent.parent.parent / "search_gov_crawler" / "domains" / file_name
 
     cs = CrawlConfigs.from_file(file=crawl_sites_file)
     assert len(list(cs.scheduled())) > 0

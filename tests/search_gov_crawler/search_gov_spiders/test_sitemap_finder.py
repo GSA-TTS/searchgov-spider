@@ -12,9 +12,9 @@ class TestWriteDictToCsv:
         """Test overwriting a CSV file with the dictionary data"""
         mock_writer = mock_csv_writer.return_value
         data = {"https://example.com": ["https://example.com/sitemap.xml"]}
-        
+
         write_dict_to_csv(data, "test_file.csv", overwrite=True)
-        
+
         mock_file.assert_called_once_with("test_file.csv", mode="w", newline="", encoding="utf-8")
         mock_writer.writerow.assert_any_call(["starting_urls", "sitemap_urls"])
         mock_writer.writerow.assert_any_call(["https://example.com", ["https://example.com/sitemap.xml"]])
@@ -26,9 +26,9 @@ class TestWriteDictToCsv:
         """Test appending data to an existing CSV file without header"""
         mock_writer = mock_csv_writer.return_value
         data = {"https://example.com": ["https://example.com/sitemap.xml"]}
-        
+
         write_dict_to_csv(data, "test_file.csv", overwrite=False)
-        
+
         mock_file.assert_called_once_with("test_file.csv", mode="a", newline="", encoding="utf-8")
         # Header should not be written
         for call in mock_writer.writerow.call_args_list:
@@ -42,9 +42,9 @@ class TestWriteDictToCsv:
         """Test appending data to a new CSV file with header"""
         mock_writer = mock_csv_writer.return_value
         data = {"https://example.com": ["https://example.com/sitemap.xml"]}
-        
+
         write_dict_to_csv(data, "test_file.csv", overwrite=False)
-        
+
         mock_file.assert_called_once_with("test_file.csv", mode="a", newline="", encoding="utf-8")
         mock_writer.writerow.assert_any_call(["starting_urls", "sitemap_urls"])
         mock_writer.writerow.assert_any_call(["https://example.com", ["https://example.com/sitemap.xml"]])
@@ -55,32 +55,32 @@ class TestWriteDictToCsv:
     def test_write_dict_to_csv_adds_extension(self, mock_csv_writer, mock_file, mock_exists):
         """Test that .csv extension is added if not provided"""
         data = {"https://example.com": ["https://example.com/sitemap.xml"]}
-        
+
         write_dict_to_csv(data, "test_file", overwrite=True)
-        
+
         mock_file.assert_called_once_with("test_file.csv", mode="w", newline="", encoding="utf-8")
 
 class TestSitemapFinder:
     def setup_method(self):
         self.finder = SitemapFinder()
         self.base_url = "https://example.com"
-    
+
     def test_init(self):
         """Test initialization of SitemapFinder"""
         assert self.finder.timeout_seconds == 5
         assert "sitemap.xml" in self.finder.common_sitemap_names
-    
+
     def test_join_base_with_relative_path(self):
         """Test joining base URL with relative path"""
         result = self.finder._join_base("https://example.com/", "sitemap.xml")
         assert result == "https://example.com/sitemap.xml"
-    
+
     def test_join_base_with_absolute_url(self):
         """Test that absolute URLs are not modified when joining"""
         absolute_url = "https://another-domain.com/sitemap.xml"
         result = self.finder._join_base("https://example.com/", absolute_url)
         assert result == absolute_url
-    
+
     def test_fix_http(self):
         """Test that http URLs are converted to https"""
         http_url = "http://example.com/sitemap.xml"
@@ -93,11 +93,11 @@ class TestSitemapFinder:
         mock_confirm.side_effect = lambda url: "sitemap.xml" in url
         result = self.finder._check_common_locations(f"{self.base_url}/")
         expected_result = [
-            "https://example.com/sitemap.xml", 
-            "https://example.com/wp-sitemap.xml", 
-            "https://example.com/page-sitemap.xml", 
-            "https://example.com/tag-sitemap.xml", 
-            "https://example.com/category-sitemap.xml", 
+            "https://example.com/sitemap.xml",
+            "https://example.com/wp-sitemap.xml",
+            "https://example.com/page-sitemap.xml",
+            "https://example.com/tag-sitemap.xml",
+            "https://example.com/category-sitemap.xml",
             "https://example.com/post-sitemap.xml",
         ]
         assert sorted(result) == sorted(expected_result)
@@ -118,7 +118,7 @@ class TestSitemapFinder:
         mock_response.status_code = 200
         mock_response.text = "User-agent: *\nSitemap: https://example.com/custom-sitemap.xml"
         mock_get.return_value = mock_response
-        
+
         result = self.finder._check_robots_txt(f"{self.base_url}/")
         assert result == ["https://example.com/custom-sitemap.xml"]
         mock_get.assert_called_once_with(f"{self.base_url}/robots.txt", timeout=self.finder.timeout_seconds)
@@ -130,7 +130,7 @@ class TestSitemapFinder:
         mock_response.status_code = 200
         mock_response.text = "User-agent: *"  # No Sitemap directive
         mock_get.return_value = mock_response
-        
+
         result = self.finder._check_robots_txt(f"{self.base_url}/")
         assert result == []
         mock_get.assert_called_once_with(f"{self.base_url}/robots.txt", timeout=self.finder.timeout_seconds)
@@ -154,7 +154,7 @@ class TestSitemapFinder:
             <body><a href="https://example.com/sitemap2.xml">Sitemap</a></body></html>
         """
         mock_get.return_value = mock_response
-        
+
         result = self.finder._check_html_source(f"{self.base_url}/")
         assert set(result) == {f"{self.base_url}/sitemap1.xml", f"{self.base_url}/sitemap2.xml"}
         mock_get.assert_called_once_with(f"{self.base_url}/", timeout=self.finder.timeout_seconds)
@@ -167,7 +167,7 @@ class TestSitemapFinder:
         mock_response.status_code = 200
         mock_response.text = "<html><body>No sitemap references here</body></html>"
         mock_get.return_value = mock_response
-        
+
         result = self.finder._check_html_source(f"{self.base_url}/")
         assert result == []
         mock_get.assert_called_once_with(f"{self.base_url}/", timeout=self.finder.timeout_seconds)
@@ -180,7 +180,7 @@ class TestSitemapFinder:
         mock_response.status_code = 200
         mock_response.text = "<html><body><a href=\"sitemap-index.xml\">Sitemap</a></body></html>"
         mock_get.return_value = mock_response
-        
+
         result = self.finder._check_xml_files_in_root(f"{self.base_url}/")
         assert result == [f"{self.base_url}/sitemap-index.xml"]
         mock_get.assert_called_once_with(f"{self.base_url}/", timeout=self.finder.timeout_seconds)
@@ -194,7 +194,7 @@ class TestSitemapFinder:
         mock_response.status_code = 200
         mock_response.text = "<html><body><a href=\"data.xml\">Other XML</a></body></html>"
         mock_get.return_value = mock_response
-        
+
         result = self.finder._check_xml_files_in_root(f"{self.base_url}/")
         assert result == []
         mock_get.assert_called_once_with(f"{self.base_url}/", timeout=self.finder.timeout_seconds)
@@ -207,11 +207,11 @@ class TestSitemapFinder:
         mock_response.status_code = 200
         mock_response.headers.get.return_value = "application/xml"
         mock_head.return_value = mock_response
-        
+
         result = self.finder.confirm_sitemap_url(f"{self.base_url}/sitemap.xml")
         assert result is True
         mock_head.assert_called_once_with(
-            f"{self.base_url}/sitemap.xml", 
+            f"{self.base_url}/sitemap.xml",
             timeout=self.finder.timeout_seconds,
             allow_redirects=True
         )
@@ -223,7 +223,7 @@ class TestSitemapFinder:
         mock_response.status_code = 200
         mock_response.headers.get.return_value = "text/html"
         mock_head.return_value = mock_response
-        
+
         result = self.finder.confirm_sitemap_url(f"{self.base_url}/sitemap.xml")
         assert result is False
 
@@ -233,7 +233,7 @@ class TestSitemapFinder:
         mock_response = MagicMock()
         mock_response.status_code = 404
         mock_head.return_value = mock_response
-        
+
         result = self.finder.confirm_sitemap_url(f"{self.base_url}/sitemap.xml")
         assert result is False
         mock_head.assert_called_once()
@@ -242,7 +242,7 @@ class TestSitemapFinder:
     def test_confirm_sitemap_url_exception(self, mock_head):
         """Test handling exception when confirming sitemap URL"""
         mock_head.side_effect = Exception("Connection error")
-        
+
         result = self.finder.confirm_sitemap_url(f"{self.base_url}/sitemap.xml")
         assert result is False
         mock_head.assert_called_once()
@@ -262,9 +262,9 @@ class TestSitemapFinder:
         mock_robots.return_value = ["https://example.com/robots.xml", "https://example.com/sitemap.xml"]
         mock_html.return_value = []
         mock_xml.return_value = ["https://example.com/root.xml"]
-        
+
         result = self.finder.find(self.base_url)
-        
+
         expected = {
             "https://example.com/sitemap.xml",
             "https://example.com/robots.xml",
@@ -297,7 +297,7 @@ class TestSitemapFinder:
         """Test that URLs are normalized before processing"""
         # Test without protocol and without trailing slash
         self.finder.find("example.com")
-        
+
         # All methods should be called with a normalized URL
         normalized_url = "https://example.com/"
         mock_common.assert_called_with(normalized_url)

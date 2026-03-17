@@ -6,9 +6,9 @@ from urllib.parse import urlparse
 
 from elasticsearch import Elasticsearch, helpers  # pylint: disable=wrong-import-order
 
-from search_gov_crawler.search_engines.convert_html_i14y import convert_html
-from search_gov_crawler.search_engines.convert_pdf_i14y import convert_pdf
-from search_gov_crawler.search_engines.i14y_helper import update_dap_visits_to_document
+from search_gov_crawler.search_engines.transform import convert_html
+from search_gov_crawler.search_engines.convert import convert_pdf
+from search_gov_crawler.search_engines.helpers import update_dap_visits_to_document
 from search_gov_crawler.search_gov_spiders.spiders import SearchGovDomainSpider
 
 # Suppress warnings from urllib3 and Elasticsearch

@@ -15,7 +15,7 @@ from search_gov_crawler.search_gov_spiders.extensions.json_logging import (
     SearchGovSpiderStreamHandler,
 )
 from search_gov_crawler.search_gov_spiders.extensions.scheduler_queue import OnDiskSchedulerQueue, RedisSchedulerQueue
-from tests.scheduling.conftest import MockRedisClient
+from tests.search_gov_crawler.scheduling.conftest import MockRedisClient
 
 
 class SpiderForTest(Spider):

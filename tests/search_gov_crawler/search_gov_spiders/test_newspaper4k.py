@@ -1,6 +1,6 @@
 from newspaper import Article
 from pathlib import Path
-from search_gov_crawler.search_engines.parse_html_scrapy import convert_html_scrapy
+from search_gov_crawler.search_engines.parse import convert_html_scrapy
 
 
 def load_file_with_pathlib(filename):
@@ -11,6 +11,7 @@ def load_file_with_pathlib(filename):
     except FileNotFoundError:
         return f"Error: File '{filename}' not found."
 
+
 def test_newspaper4k_failed_html_parsing():
     """Test newspaper4k failed article text extraction from an HTML file."""
     html_content = load_file_with_pathlib("test_scrapy_html_1.html")
@@ -19,6 +20,7 @@ def test_newspaper4k_failed_html_parsing():
     article.parse()
     article.nlp()
     assert len(article.text) == 0
+
 
 def test_convert_scrapy_successful_html_parsing():
     """Test convert_html_scrapy successful article text extraction from an HTML file."""
@@ -29,4 +31,3 @@ def test_convert_scrapy_successful_html_parsing():
     assert "title" in result
     assert result["content"] != ""
     assert "language" in result
-   

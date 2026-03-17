@@ -1,16 +1,13 @@
-import time
 import logging
 import os
 import warnings
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 from urllib.parse import urlparse
 
 from opensearchpy import OpenSearch, helpers
 
+from search_gov_crawler.search_engines.helpers import generate_url_sha256
 from search_gov_crawler.search_gov_spiders.spiders import SearchGovDomainSpider
-
-from search_gov_crawler.search_engines.i14y_helper import generate_url_sha256
-
 
 # Suppress warnings from urllib3 and OpenSearch client. Already doing this in es_batch_upload,
 # but we want keep it here for when we remove Elasticsearch
@@ -32,10 +29,10 @@ class SearchGovOpensearch:
     def __init__(
         self,
         batch_size: int = 50,
-        opensearch_host: Optional[str] = None,
-        opensearch_index: Optional[str] = None,
-        opensearch_user: Optional[str] = None,
-        opensearch_password: Optional[str] = None,
+        opensearch_host: str | None = None,
+        opensearch_index: str | None = None,
+        opensearch_user: str | None = None,
+        opensearch_password: str | None = None,
         timeout: int = 30,
         max_retries: int = 3,
     ) -> None:
@@ -51,7 +48,7 @@ class SearchGovOpensearch:
             max_retries: how many times to retry on failure
         """
         self._batch_size = batch_size
-        self._current_batch: List[Dict[str, Any]] = []
+        self._current_batch: list[dict[str, Any]] = []
         self._env_opensearch_host = opensearch_host or os.getenv("OPENSEARCH_SEARCH_HOST", f"http://localhost:9200")
         self._env_opensearch_index = opensearch_index or os.getenv(
             "OPENSEARCH_SEARCH_INDEX",
@@ -61,7 +58,7 @@ class SearchGovOpensearch:
         self._env_opensearch_password = opensearch_password or os.getenv("OPENSEARCH_SEARCH_PASSWORD", "")
         self._timeout = timeout
         self._max_retries = max_retries
-        self._opensearch_client: Optional[OpenSearch] = None
+        self._opensearch_client: OpenSearch | None = None
 
     @property
     def index_name(self) -> str:
@@ -108,11 +105,11 @@ class SearchGovOpensearch:
         if len(self._current_batch) >= self._batch_size:
             self.batch_upload(spider)
 
-    def _create_actions(self, docs: List[Dict[str, Any]], spider: SearchGovDomainSpider) -> List[Dict[str, Any]]:
+    def _create_actions(self, docs: list[dict[str, Any]], spider: SearchGovDomainSpider) -> list[dict[str, Any]]:
         """Build bulk actions, popping out any explicit _id fields."""
-        actions: List[Dict[str, Any]] = []
+        actions: list[dict[str, Any]] = []
         for doc in docs:
-            action: Dict[str, Any] = {"_index": self._env_opensearch_index}
+            action: dict[str, Any] = {"_index": self._env_opensearch_index}
             if "path" in doc:
                 action["_id"] = generate_url_sha256(doc["path"])
             else:
@@ -125,11 +122,6 @@ class SearchGovOpensearch:
     def batch_upload(self, spider: SearchGovDomainSpider) -> None:
         """Send batch of documents to Opensearch via bulk API."""
 
-        # TODO: Remove this delay once Elasticsearch is removed.
-        # Opensearch has a 5 second delay before it sends its batch
-        # to not compete with elasticsearch batches for resources when sent simultaneously
-        time.sleep(5)
-
         if not self._current_batch or not self.ENABLED:
             return
 
@@ -138,7 +130,7 @@ class SearchGovOpensearch:
 
         actions = self._create_actions(batch, spider)
         failure_count = 0
-        failures: List[Any] = []
+        failures: list[Any] = []
 
         try:
             for ok, info in helpers.parallel_bulk(
@@ -161,12 +153,13 @@ class SearchGovOpensearch:
         except Exception:
             spider.logger.exception("Bulk upload to Opensearch failed")
 
-    def _parse_opensearch_urls(self, url_string: str) -> List[Dict[str, Union[str, int]]]:
+    def _parse_opensearch_urls(self, url_string: str) -> list[dict[str, str | int]]:
         """Parse comma-separated Opensearch URLs into host dicts."""
-        hosts: List[Dict[str, Union[str, int]]] = []
+        hosts: list[dict[str, str | int]] = []
         for raw in url_string.split(","):
             parsed = urlparse(raw.strip())
             if not parsed.scheme or not parsed.hostname or not parsed.port:
-                raise ValueError(f"Invalid Opensearch URL: {raw!r}")
+                msg = f"Invalid Opensearch URL: {raw!r}"
+                raise ValueError(msg)
             hosts.append({"host": parsed.hostname, "port": parsed.port, "scheme": parsed.scheme})
         return hosts

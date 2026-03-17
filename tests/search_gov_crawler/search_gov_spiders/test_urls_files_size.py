@@ -15,6 +15,7 @@ from search_gov_crawler.search_gov_spiders.pipelines import SearchGovSpidersPipe
 def fixture_install_reactor():
     install_reactor("twisted.internet.asyncioreactor.AsyncioSelectorReactor")
 
+
 @pytest.fixture(name="sample_crawler")
 def fixture_sample_crawler() -> Crawler:
     crawler = get_crawler(Spider)
@@ -76,7 +77,9 @@ def test_write_to_file(pipeline_no_api, mock_open, sample_item, mocker):
     pipeline_no_api.process_item(sample_item_copy)
 
     assert "html_content" not in sample_item_copy, f"Key 'html_content' should not be in the item after it's processed"
-    assert "output_target" not in sample_item_copy, f"Key 'output_target' should not be in the item after it's processed"
+    assert "output_target" not in sample_item_copy, (
+        f"Key 'output_target' should not be in the item after it's processed"
+    )
 
     # Ensure file is opened and written to
     mock_open.assert_called_once_with(pipeline_no_api.file_path, "a", encoding="utf-8")

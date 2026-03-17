@@ -10,10 +10,7 @@ from scrapy.utils.reactor import install_reactor
 from scrapy.utils.test import get_crawler
 
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
-from search_gov_crawler.search_gov_spiders.pipelines import (
-    DeDeuplicatorPipeline,
-    SearchGovSpidersPipeline,
-)
+from search_gov_crawler.search_gov_spiders.pipelines import DeDeuplicatorPipeline, SearchGovSpidersPipeline
 
 
 # ---------------------------
@@ -22,6 +19,7 @@ from search_gov_crawler.search_gov_spiders.pipelines import (
 @pytest.fixture(name="intsall_reactor", autouse=True)
 def fixture_install_reactor():
     install_reactor("twisted.internet.asyncioreactor.AsyncioSelectorReactor")
+
 
 @pytest.fixture(name="sample_item")
 def fixture_sample_item():
@@ -38,7 +36,11 @@ def fixture_invalid_item():
 @pytest.fixture(name="sample_crawler")
 def fixture_sample_crawler() -> Crawler:
     """Fixture for a mock crawlerwith a logger."""
-    return get_crawler(Spider)
+    crawler = get_crawler(Spider)
+    spider = Spider.from_crawler(crawler=crawler, name="dedup_test", allowed_domains="www.example.com")
+    crawler.spider = spider
+    return crawler
+
 
 @pytest.fixture(name="pipeline_no_api")
 def fixture_pipeline_no_api(sample_crawler) -> SearchGovSpidersPipeline:
@@ -52,9 +54,11 @@ def fixture_deduplicator_pipeline(sample_crawler) -> DeDeuplicatorPipeline:
     """Fixture for DeDeuplicatorPipeline with clean state."""
     return DeDeuplicatorPipeline.from_crawler(sample_crawler)
 
+
 # ---------------------------
 # Tests for SearchGovSpidersPipeline
 # ---------------------------
+
 
 def test_missing_url_in_item(pipeline_no_api, invalid_item):
     """
@@ -64,9 +68,11 @@ def test_missing_url_in_item(pipeline_no_api, invalid_item):
     with pytest.raises(DropItem, match="Missing URL in item"):
         pipeline_no_api.process_item(invalid_item)
 
+
 # ---------------------------
 # Tests for DeDeuplicatorPipeline
 # ---------------------------
+
 
 @pytest.mark.parametrize(
     "item",

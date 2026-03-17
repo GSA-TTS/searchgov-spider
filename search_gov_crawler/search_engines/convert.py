@@ -8,7 +8,7 @@ from pypdf import PageObject, PdfReader
 from pypdf.errors import FileNotDecryptedError, PdfReadError
 from pypdf.generic import IndirectObject
 
-from search_gov_crawler.search_engines.i14y_helper import (
+from search_gov_crawler.search_engines.helpers import (
     ALLOWED_LANGUAGE_CODE,
     current_utc_iso,
     detect_lang,
@@ -36,7 +36,7 @@ def add_title_and_filename(key: str, title_key: str, doc: dict):
 
     Args:
         key: str The key to use to apply the change, eg "content"
-        doc: dict The i14y document the changes will be applied to
+        doc: dict The document the changes will be applied to
 
     Returns:
         None The changes are applied to the document as a referance/pointer
@@ -121,7 +121,7 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str | None =
     description_key = f"description{valid_language}"
     title_key = f"title{valid_language}"
 
-    i14y_doc = {
+    doc = {
         "audience": None,
         "changed": parse_date_safely(meta_values.get("ModDate") or meta_values.get("SourceModified")),
         "click_count": None,
@@ -151,12 +151,12 @@ def convert_pdf(response_bytes: bytes, url: str, response_language: str | None =
         "dap_domain_visits_count": None,
     }
 
-    add_title_and_filename(content_key, title_key, i14y_doc)
-    add_title_and_filename(description_key, title_key, i14y_doc)
+    add_title_and_filename(content_key, title_key, doc)
+    add_title_and_filename(description_key, title_key, doc)
     all_links = get_links_set(pages)
-    i14y_doc[content_key] = f"{i14y_doc[content_key]} {' '.join(all_links) if len(all_links) > 0 else ''}"
+    doc[content_key] = f"{doc[content_key]} {' '.join(all_links) if len(all_links) > 0 else ''}"
 
-    return i14y_doc
+    return doc
 
 
 def get_pdf_text(reader: PdfReader) -> tuple[str, list[tuple[str, PageObject]]]:

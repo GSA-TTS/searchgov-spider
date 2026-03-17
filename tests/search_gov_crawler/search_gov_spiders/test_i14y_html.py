@@ -1,4 +1,4 @@
-from search_gov_crawler.search_engines import convert_html_i14y
+from search_gov_crawler.search_engines import transform
 from search_gov_crawler.search_gov_spiders.helpers import content
 
 
@@ -20,7 +20,7 @@ def test_convert_html_valid_article():
     """
     response_bytes = html_content.encode()
     url = "https://example.com/test-article"
-    result = convert_html_i14y.convert_html(response_bytes, url, "en")
+    result = transform.convert_html(response_bytes, url, "en")
 
     assert result is not None
     assert result["title_en"] == "Test Article Title"
@@ -48,7 +48,7 @@ def test_convert_html_no_content():
     </html>
     """
     url = "https://example.com/test-article"
-    result = convert_html_i14y.convert_html(html_content.encode(), url, "en")
+    result = transform.convert_html(html_content.encode(), url, "en")
     assert result is None
 
 
@@ -63,7 +63,7 @@ def test_convert_html_no_title_or_description():
     </html>
     """
     url = "https://example.com/test-article"
-    result = convert_html_i14y.convert_html(html_content.encode(), url, "en")
+    result = transform.convert_html(html_content.encode(), url, "en")
     expected_content = "This is the main content of the test article."
     assert result is not None
     assert result["title_en"] is None
@@ -84,7 +84,7 @@ def test_convert_html_with_meta_site_name():
     </html>
     """
     url = "https://example.com/test-article"
-    result = convert_html_i14y.convert_html(html_content.encode(), url, "en")
+    result = transform.convert_html(html_content.encode(), url, "en")
     assert result is not None
     assert result["title_en"] == "Example Site"  # Uses meta_site_name
     assert "This is the main content." in result["content_en"]
@@ -103,7 +103,7 @@ def test_convert_html_with_publish_date():
     </html>
     """
     url = "https://example.com/test-article"
-    result = convert_html_i14y.convert_html(html_content.encode(), url, "en")
+    result = transform.convert_html(html_content.encode(), url, "en")
     assert result is not None
     assert result["updated"] is not None  # newspaper4k may or may not parse date from meta; this checks for any value.
 
@@ -121,7 +121,7 @@ def test_convert_html_with_out_publish_date():
     </html>
     """
     url = "https://example.com/test-article"
-    result = convert_html_i14y.convert_html(html_content.encode(), url, "en")
+    result = transform.convert_html(html_content.encode(), url, "en")
     assert result is not None
     assert result["updated"] != ""
     assert result["updated"] is None  # newspaper4k may or may not parse date from meta; this checks for any value.
@@ -146,7 +146,7 @@ def test_convert_html_languages():
     """
     url = "https://example.cn/article"
 
-    result = convert_html_i14y.convert_html(html_content.encode(), url, "zh")
+    result = transform.convert_html(html_content.encode(), url, "zh")
 
     assert result is not None
     assert result["content_zh"] == (

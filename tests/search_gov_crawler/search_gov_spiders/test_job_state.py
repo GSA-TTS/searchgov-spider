@@ -12,7 +12,7 @@ from search_gov_crawler.search_gov_spiders.job_state.scheduler import (
     SearchGovSpiderRedisScheduler,
     disable_redis_job_state,
 )
-from tests.scheduling.conftest import MockRedisClient
+from tests.search_gov_crawler.scheduling.conftest import MockRedisClient
 
 
 @pytest.fixture(name="intsall_reactor", autouse=True)

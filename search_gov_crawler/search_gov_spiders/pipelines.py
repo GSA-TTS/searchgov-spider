@@ -3,17 +3,19 @@ Don't forget to add your pipeline to the ITEM_PIPELINES setting
 See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 """
 
+import contextlib
 import os
 from pathlib import Path
-from typing import Any, Self
+from typing import Self
 
 import requests
 from scrapy.crawler import Crawler
 from scrapy.exceptions import DropItem
-from scrapy.spiders import Spider
 
-from search_gov_crawler.search_engines.es_batch_upload import SearchGovElasticsearch
-from search_gov_crawler.search_engines.opensearch_batch_upload import SearchGovOpensearch
+from search_gov_crawler.search_engines.convert import convert_pdf
+from search_gov_crawler.search_engines.helpers import update_dap_visits_to_document
+from search_gov_crawler.search_engines.opensearch import SearchGovOpensearch
+from search_gov_crawler.search_engines.transform import convert_html
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 
@@ -22,10 +24,9 @@ def safe_del(item, key: str):
     This method prevents any exception errors if item does not have the key or is null.
     This is just in case, since the item should always have the keys we delete
     """
-    try:
+
+    with contextlib.suppress(Exception):
         del item[key]
-    except Exception as _:
-        pass
 
 
 class SearchGovSpidersPipeline:
@@ -34,19 +35,19 @@ class SearchGovSpidersPipeline:
     requests (both rotated at ~100KB) to SPIDER_URLS_API if the environment variable is set.
     """
 
-    MAX_URL_BATCH_SIZE_BYTES = int(100 * 1024)  # 100KB in bytes
+    MAX_URL_BATCH_SIZE_BYTES = 100 * 1024  # 100KB in bytes
     APP_PID = os.getpid()
 
-    def __init__(self, *, crawler: Crawler)-> None:
+    def __init__(self, *, crawler: Crawler) -> None:
         self.api_url = os.environ.get("SPIDER_URLS_API")
         self.urls_batch = []
         self.file_number = 1
         self.file_path = None
         self.current_file = None
         self.file_open = False
-        self._es = None
         self._opensearch = None
         self.crawler = crawler
+        self.spider_logger = crawler.spider.logger
 
     @classmethod
     def from_crawler(cls, crawler: Crawler) -> Self:
@@ -67,9 +68,7 @@ class SearchGovSpidersPipeline:
             raise DropItem(msg)
 
         if output_target == "elasticsearch":
-            doc = self._process_es_item(item)
-            if doc and SearchGovOpensearch.ENABLED:
-                self._process_opensearch_item(doc)
+            self._process_opensearch_item(item)
         elif output_target == "endpoint":
             if not self.api_url:
                 msg = "Item 'endpoint' not resolved, env.SPIDER_URLS_API is not set"
@@ -85,45 +84,42 @@ class SearchGovSpidersPipeline:
 
         return item
 
-    def _get_elasticsearch_client(self) -> SearchGovElasticsearch:
-        if self._es:
-            return self._es
-        self._es = SearchGovElasticsearch()
-        return self._es
-
     def _get_opensearch_client(self) -> SearchGovOpensearch:
-        if self._opensearch:
-            return self._opensearch
-        self._opensearch = SearchGovOpensearch()
-        return self._opensearch
+        return self._opensearch or SearchGovOpensearch()
 
-    def _process_es_item(self, item: SearchGovSpidersItem) -> dict[str, Any] | None:
-        url = item.get("url", None)
+    def _process_opensearch_item(self, item: SearchGovSpidersItem) -> None:
+        doc = {}
+
         response_bytes = item.get("response_bytes", None)
-        response_language = item.get("response_language", None)
-        content_type = item.get("content_type", None)
-        doc = None
-
+        url = item.get("url", None)
         if not response_bytes:
             err = f"Missing 'response_bytes' for url: {url}"
-            self.crawler.spider.logger.error(err)
+            self.spider_logger.error(err)
             raise DropItem(err)
+
         try:
-            doc = self._get_elasticsearch_client().add_to_batch(
-                response_bytes=response_bytes,
-                url=url,
-                spider=self.crawler.spider,
-                response_language=response_language,
-                content_type=content_type,
-            )
+            response_language = item.get("response_language", None)
+            content_type = item.get("content_type", None)
+            match content_type:
+                case "text/html":
+                    doc = convert_html(response_bytes, url, response_language)
+                case "application/pdf":
+                    doc = convert_pdf(response_bytes, url, response_language)
+                case _:
+                    self.spider_logger.warning("Unsupported content type %r for URL %s; skipping", content_type, url)
         except Exception:
-            msg = "Failed to add item to Elasticsearch batch"
-            self.crawler.spider.logger.exception(msg)
-            raise DropItem(msg) from None
+            self.spider_logger.exception("Failed to convert %s (type %s)", url, content_type)
 
-        return doc
+        if not doc:
+            self.spider_logger.warning("No document generated for URL %s", url)
+            return
 
-    def _process_opensearch_item(self, doc: dict[str, Any]):
+        try:
+            doc = update_dap_visits_to_document(doc, self.crawler.spider)
+        except Exception:
+            self.spider_logger.exception("Failed to update DAP visits for url: %s, content_type: %s", url, content_type)
+            # still continue to include the doc without DAP data
+
         try:
             self._get_opensearch_client().add_to_batch(
                 doc=doc,

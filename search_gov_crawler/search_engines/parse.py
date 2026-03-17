@@ -3,20 +3,20 @@ import search_gov_crawler.search_gov_spiders.helpers.content as content
 
 def extract_article_content(html_selector: Selector) -> str:
     """
-    Extracts the main content from an article in HTML while excluding links, button text, etc, 
+    Extracts the main content from an article in HTML while excluding links, button text, etc,
     and ignoring <style> and <script> tags.
-    
+
     :param html_selector: Scrapy HTML content selector.
     :return: The extracted content as a string.
     """
-    
+
     body = html_selector.css("body")
-    
+
     if not body:
         return ""
-    
+
     content_text = body.xpath(".//text()[not(ancestor::a) and not(ancestor::button) and not(ancestor::style) and not(ancestor::script)]").getall()
-    
+
     content_text = " ".join(text.strip() for text in content_text if text.strip())
     return content.replace_whitespace(content_text)
 
@@ -24,17 +24,17 @@ def extract_article_content(html_selector: Selector) -> str:
 def get_meta_values(html_selector: Selector, meta_names: list) -> dict:
     """
     Extracts meta tag values by their name or property attributes and returns a dictionary.
-    
+
     :param html_selector: Scrapy HTML content selector.
     :param meta_names: A list of meta tag names/properties to extract values for.
     :return: A dictionary with meta names as keys and extracted values or None.
     """
     meta_values = {}
-    
+
     for name in meta_names:
         value = html_selector.xpath(f"//meta[@content and (@name=\"{name}\" or @property=\"{name}\")]/@content").get()
         meta_values[name] = value if value else None
-    
+
     return meta_values
 
 def convert_html_scrapy(html_content: str) -> dict:
