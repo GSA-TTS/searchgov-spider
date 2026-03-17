@@ -20,7 +20,7 @@
       "depth_limit": 3,
       "handle_javascript": false,
       "name": "NIH Research Festival (nih-oir-research_festival)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "00 06 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://researchfestival.nih.gov/"
@@ -33,7 +33,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Atlantic Oceanographic and Meteorological Laboratory (aoml)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "09 19 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://www.aoml.noaa.gov/"
@@ -46,7 +46,7 @@
       "depth_limit": 3,
       "handle_javascript": false,
       "name": "OSPO (ospo)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "18 19 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://www.ospo.noaa.gov/"
@@ -59,7 +59,7 @@
       "depth_limit": 3,
       "handle_javascript": false,
       "name": "Centers for Disease Control and Prevention (usagov-replacement)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "15 02 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://www.cdc.gov/"
@@ -72,7 +72,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.ice.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "10 04 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.ice.gov/"
@@ -85,7 +85,7 @@
       "depth_limit": 3,
       "handle_javascript": false,
       "name": "medlineplus.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "30 16 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.medlineplus.gov/"
@@ -98,7 +98,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.eia.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "12 12 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.eia.gov/"
@@ -111,7 +111,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.climate.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "51 09 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.climate.gov/"
@@ -124,7 +124,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.ready.gov (usagov-replacement)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "22 09 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.ready.gov/"
@@ -137,7 +137,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "US Embassy (usa.gov-replacement)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "42 06 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.usembassy.gov/"
@@ -150,7 +150,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "tricare_weedirwin",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "00 18 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://weed-irwin.tricare.mil/"
@@ -163,7 +163,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "tricare_nhcp",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "00 09 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://camp-pendleton.tricare.mil/"
@@ -176,7 +176,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "tricare_ireland",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "00 16 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://ireland.tricare.mil/"
@@ -189,7 +189,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "tricare_andersen",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "00 05 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://andersen.tricare.mil/"
@@ -202,7 +202,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Learning Professionals (aflearningprofessionals)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "0 0 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://www.learningprofessionals.af.mil/"
@@ -215,7 +215,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Recruiting Service (afpw_rs)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "48 1 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.afaccessionscenter.af.mil/"
@@ -228,7 +228,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force General Counsel (afpw_safgc)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "50 16 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.safgc.hq.af.mil/"
@@ -241,7 +241,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Eastern Air Defense Sector (afpw_eads)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "25 21 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.eads.ang.af.mil/"
@@ -254,7 +254,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "188th WG, Arkansas ANG (afpw_188fw)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "43 19 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.188wg.ang.af.mil/"
@@ -267,7 +267,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "162nd Wing, Arizona ANG (afpw_162fw)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "43 18 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://www.162wing.ang.af.mil/"
@@ -280,7 +280,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Air Force Agency for Modeling and Simulation (afams)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "44 17 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.afams.af.mil/"
@@ -293,7 +293,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "87th Medical Group - Joint Base McGuire-Dix-Lakehurst",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "00 03 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://mcguiredixlakehurst.tricare.mil/"
@@ -306,7 +306,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "316th Medical Group - Joint Base Andrews (Malcolm Grow Medical Clinics and Surgery Center)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "00 06 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://andrews.tricare.mil/"
@@ -319,7 +319,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "16th Air Force (usaf_16af)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "9 22 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://www.16af.af.mil/"
@@ -332,7 +332,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Minneapolis-St Paul Air Reserve Station (minneapolis)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "55 0 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.minneapolis.afrc.af.mil/"
@@ -345,7 +345,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Eielson Air Force Base (eielson)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "23 7 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.eielson.af.mil/"
@@ -358,7 +358,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "913th Airlift Group (airforce_913ag)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "23 19 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.913ag.afrc.af.mil/"
@@ -371,7 +371,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "419th Fighter Wing (419fw)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "0 0 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.419fw.afrc.af.mil/"
@@ -384,7 +384,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Office of Research Facilities (nih)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "03 18 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://orf.od.nih.gov/"
@@ -397,7 +397,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "IN.Usembassy.gov (dos_emb_csa_newdelhi)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "15 03 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://in.usembassy.gov"
@@ -410,7 +410,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.nco.ncep.noaa.gov (ncep.noaa.gov)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "22 5 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.nco.ncep.noaa.gov/"
@@ -423,7 +423,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "keystone.ndu.edu (nduedu)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "57 15 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://keystone.ndu.edu/"
@@ -436,7 +436,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.asafm.army.mil (army_afmc)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "32 3 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://www.asafm.army.mil/"
@@ -449,7 +449,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.erdc.usace.army.mil (engineer_research)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "7 14 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.erdc.usace.army.mil/"
@@ -462,7 +462,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "US Embassy Dhaka (dos_emb_csa_dhaka)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "15 22 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://bd.usembassy.gov"
@@ -475,7 +475,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "DoD Business Defense (dod-search)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "22 07 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://business.defense.gov"
@@ -488,7 +488,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "US Embassy Montenegro (dos_emb_eur_podgorica_me)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "22 19 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://me.usembassy.gov"
@@ -501,7 +501,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "US Embassy Oman (dos_emb_mena_oman)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "52 01 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://om.usembassy.gov"
@@ -514,7 +514,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Department of Labor OIG (oig)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "49 19 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.oig.dol.gov"
@@ -527,7 +527,7 @@
       "depth_limit": 3,
       "handle_javascript": false,
       "name": "USACE Seattle District (usace_all)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "18 20 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.nws.usace.army.mil"
@@ -540,7 +540,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "NIH ORIP (orip)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "45 23 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://orip.nih.gov"
@@ -553,7 +553,7 @@
       "depth_limit": 3,
       "handle_javascript": false,
       "name": "NIST Metaschema (metaschema)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "31 01 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://pages.nist.gov"
@@ -566,7 +566,7 @@
       "depth_limit": 3,
       "handle_javascript": false,
       "name": "Alaska District (alaska_district)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "49 08 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.poa.usace.army.mil"
@@ -579,7 +579,7 @@
       "depth_limit": 3,
       "handle_javascript": false,
       "name": "Navy NAVWAR (navy_navwar)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "10 14 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.navwar.navy.mil"
@@ -592,7 +592,7 @@
       "depth_limit": 3,
       "handle_javascript": false,
       "name": "USNIC Domain (usnic-domain)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "35 15 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://usicecenter.gov"
@@ -605,7 +605,7 @@
       "depth_limit": 3,
       "handle_javascript": false,
       "name": "Army JTF NCR (army_jtfncr)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "07 19 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://jtfncr.mdw.army.mil"
@@ -618,7 +618,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "US Mission to OSCE (dos_emb_eur_osce)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "36 00 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://osce.usmission.gov"
@@ -631,7 +631,7 @@
       "depth_limit": 3,
       "handle_javascript": false,
       "name": "FEHRM (fehrm)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "20 07 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.fehrm.gov"
@@ -644,7 +644,7 @@
       "depth_limit": 3,
       "handle_javascript": false,
       "name": "Army MRC Europe (army_mrceurope)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "47 10 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://mrc-europe.army.mil"
@@ -657,7 +657,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "FCSIC (fcsic_staging)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "48 19 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.fcsic.gov"
@@ -670,7 +670,7 @@
       "depth_limit": 3,
       "handle_javascript": false,
       "name": "US Courts CAEPT (caept_uscourts)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "04 21 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.caept.uscourts.gov"
@@ -683,7 +683,7 @@
       "depth_limit": 3,
       "handle_javascript": false,
       "name": "Navy NIA (navy_nia)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "39 08 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.nia.navy.mil"
@@ -696,7 +696,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "lhncbc.nlm.nih.gov/newbornscreeningcodes/ (lhncbc.nlm.nih)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "24 14 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://lhncbc.nlm.nih.gov/newbornscreeningcodes/"
@@ -709,7 +709,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "New depth 8 (ht.usembassy.gov/fr)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "28 21 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://ht.usembassy.gov/fr/"
@@ -722,7 +722,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "New depth 8 (qa.usembassy.gov/ar)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "52 22 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://qa.usembassy.gov/ar/"
@@ -735,7 +735,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "New depth 8 (ncolcoe.army.mil)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "8 12 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.ncolcoe.army.mil/"
@@ -748,7 +748,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Clinton Presidential Library",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "00 08 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.clintonlibrary.gov/"
@@ -761,7 +761,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Gray's Reef National Marine Sanctuary",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "12 01 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://graysreef.noaa.gov/"
@@ -774,7 +774,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Manual on Uniform Traffic Control Devices",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "08 12 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://mutcd.fhwa.dot.gov/"
@@ -787,7 +787,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Safe to Sleep",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "42 03 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://safetosleep.nichd.nih.gov/"
@@ -800,7 +800,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "SERDP-ESTCP",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "16 22 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://serdp-estcp.mil/"
@@ -813,7 +813,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Copyright Claims Board",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "45 01 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://ccb.gov/"
@@ -826,7 +826,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "VA Digital (digital.va)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "31 14 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://digital.va.gov/"
@@ -839,7 +839,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "FedRAMP (fedramp)",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "57 14 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.fedramp.gov/"
@@ -852,7 +852,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Naval Education and Training Command",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "16 18 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.netc.navy.mil/"
@@ -865,7 +865,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "US Courts Western District of Missouri",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "45 10 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.mow.uscourts.gov/"
@@ -878,7 +878,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "US Embassy Pakistan",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "45 08 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://pk.usembassy.gov/"
@@ -891,7 +891,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "US Embassy Zambia",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "00 15 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://zm.usembassy.gov/"
@@ -904,7 +904,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "CITAP",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "29 16 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.citap.gov/"
@@ -917,7 +917,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "US Embassy Hungary",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "33 08 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://hu.usembassy.gov/"
@@ -930,7 +930,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "US Embassy Nicaragua",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "55 04 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://ni.usembassy.gov/"
@@ -943,7 +943,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Solar Outreach",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "18 05 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://solaroutreach.org/"
@@ -956,7 +956,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "NERSC",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "23 20 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://www.nersc.gov/"
@@ -969,7 +969,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.acq.osd.mil/asda/dpc/",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "20 12 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.acq.osd.mil/asda/dpc/index.html"

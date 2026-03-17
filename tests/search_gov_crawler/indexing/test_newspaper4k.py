@@ -1,6 +1,8 @@
-from newspaper import Article
 from pathlib import Path
-from search_gov_crawler.search_engines.parse import convert_html_scrapy
+
+from newspaper import Article
+
+from search_gov_crawler.indexing.parse import convert_html_scrapy
 
 
 def load_file_with_pathlib(filename):

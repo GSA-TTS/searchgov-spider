@@ -42,7 +42,7 @@ class DomainSpiderJs(CrawlSpider):
 
     - `allowed_domains="test-3.example.com"`
     - `start_urls="http://test-3.example.com/"`
-    - `output_target="elasticsearch"`
+    - `output_target="opensearch"`
 
     - `allow_query_string=true`
     - `allowed_domains="test-4.example.com"`
@@ -58,7 +58,7 @@ class DomainSpiderJs(CrawlSpider):
     - ```scrapy crawl domain_spider \
              -a allowed_domains=test-3.example.com \
              -a start_urls=http://test-3.example.com/
-             -a output_target=elasticsearch```
+             -a output_target=opensearch```
     - ```scrapy crawl domain_spider \
              -a allow_query_string=true \
              -a allowed_domains=test-4.example.com \

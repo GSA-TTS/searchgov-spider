@@ -162,7 +162,7 @@ class CrawlConfigs:
             record["allow_query_string"] = bool(record["allow_query_string"])
             record["handle_javascript"] = bool(record["handle_javascript"])
             record["output_target"] = (
-                "elasticsearch" if record["output_target"] == "searchengine" else record["output_target"]
+                "opensearch" if record["output_target"] == "searchengine" else record["output_target"]
             )
             record["deny_paths"] = json.loads(record["deny_paths"]) if record["deny_paths"] else []
             record["sitemap_urls"] = json.loads(record["sitemap_urls"]) if record["sitemap_urls"] else []

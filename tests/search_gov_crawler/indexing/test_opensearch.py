@@ -2,8 +2,8 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from search_gov_crawler.search_engines.helpers import generate_url_sha256
-from search_gov_crawler.search_engines.opensearch import SearchGovOpensearch
+from search_gov_crawler.indexing.helpers import generate_url_sha256
+from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
 
 
 @pytest.fixture
@@ -30,7 +30,7 @@ def test_index_name_property(opensearch_instance):
 
 def test_client_lazy_init(opensearch_instance):
     mock_client = MagicMock()
-    with patch("search_gov_crawler.search_engines.opensearch.OpenSearch", return_value=mock_client) as mock_cls:
+    with patch("search_gov_crawler.indexing.opensearch.OpenSearch", return_value=mock_client) as mock_cls:
         client = opensearch_instance.client
         assert client == mock_client
         mock_cls.assert_called_once()
@@ -69,10 +69,10 @@ def test_batch_upload_success(mocker, opensearch_instance, mock_spider):
     docs = [{"_id": "1", "field": "v1"}, {"_id": "2", "field": "v2"}]
     opensearch_instance._current_batch = docs.copy()
 
-    mock_bulk = mocker.patch("search_gov_crawler.search_engines.opensearch.helpers.parallel_bulk")
+    mock_bulk = mocker.patch("search_gov_crawler.indexing.opensearch.helpers.parallel_bulk")
     mock_bulk.return_value = iter([(True, {"index": {}}), (True, {"index": {}})])
 
-    with patch("search_gov_crawler.search_engines.opensearch.helpers.parallel_bulk", return_value=mock_bulk()):
+    with patch("search_gov_crawler.indexing.opensearch.helpers.parallel_bulk", return_value=mock_bulk()):
         opensearch_instance.batch_upload(mock_spider)
 
     mock_spider.logger.info.assert_called_once_with("Loaded %s records to Opensearch!", 2)
@@ -84,7 +84,7 @@ def test_batch_upload_failure(opensearch_instance, mock_spider):
     opensearch_instance._current_batch = docs.copy()
 
     mock_bulk = [(False, {"error": "failed"})]
-    with patch("search_gov_crawler.search_engines.opensearch.helpers.parallel_bulk", return_value=mock_bulk):
+    with patch("search_gov_crawler.indexing.opensearch.helpers.parallel_bulk", return_value=mock_bulk):
         opensearch_instance.batch_upload(mock_spider)
 
     mock_spider.logger.error.assert_called_once()
@@ -94,7 +94,7 @@ def test_batch_upload_exception(opensearch_instance, mock_spider):
     docs = [{"_id": "1", "field": "v1"}]
     opensearch_instance._current_batch = docs.copy()
 
-    with patch("search_gov_crawler.search_engines.opensearch.helpers.parallel_bulk", side_effect=Exception("boom")):
+    with patch("search_gov_crawler.indexing.opensearch.helpers.parallel_bulk", side_effect=Exception("boom")):
         opensearch_instance.batch_upload(mock_spider)
 
     mock_spider.logger.exception.assert_called_once_with("Bulk upload to Opensearch failed")
@@ -102,6 +102,6 @@ def test_batch_upload_exception(opensearch_instance, mock_spider):
 
 def test_batch_upload_no_docs(opensearch_instance, mock_spider):
     opensearch_instance._current_batch = []
-    with patch("search_gov_crawler.search_engines.opensearch.helpers.parallel_bulk") as mock_bulk:
+    with patch("search_gov_crawler.indexing.opensearch.helpers.parallel_bulk") as mock_bulk:
         opensearch_instance.batch_upload(mock_spider)
         mock_bulk.assert_not_called()

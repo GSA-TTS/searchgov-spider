@@ -59,7 +59,7 @@ ALLOWED_CONTENT_TYPE = [
 ]
 
 
-ES_ALLOWED_CONTENT_TYPE = [
+OPENSEARCH_ALLOWED_CONTENT_TYPE = [
     "text/html",
     "application/pdf",
 ]
@@ -67,7 +67,7 @@ ES_ALLOWED_CONTENT_TYPE = [
 ALLOWED_CONTENT_TYPE_OUTPUT_MAP = {
     "csv": ALLOWED_CONTENT_TYPE,
     "endpoint": ALLOWED_CONTENT_TYPE,
-    "elasticsearch": ES_ALLOWED_CONTENT_TYPE,
+    "opensearch": OPENSEARCH_ALLOWED_CONTENT_TYPE,
 }
 
 LINK_DENY_REGEX_STR = set()  # place global deny regex strings here
@@ -107,7 +107,7 @@ def is_valid_content_type(content_type_header: str, output_target: str) -> bool:
 
 
 def get_simple_content_type(content_type_header: str, output_target: str) -> str:
-    r"""Returns simple content time like: \"text/html\" """
+    r"""Returns simple content time like: \"text/html\""""
     if not content_type_header:
         return None
     content_type_header = str(content_type_header)

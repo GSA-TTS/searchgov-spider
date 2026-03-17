@@ -1,7 +1,7 @@
 import pytest
 from nltk.corpus import stopwords
 
-from search_gov_crawler.search_engines.helpers import (
+from search_gov_crawler.indexing.helpers import (
     detect_lang,
     parse_date_safely,
     separate_file_name,

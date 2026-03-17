@@ -48,7 +48,7 @@ Before setting the output target to `elastcisearch` for any domains:
 1. Install required nltk modules (only required for output target of elasticsearch):
 ```bash
 # make sure the virtual environment is activate
-python ./search_gov_crawler/search_engines/install_nltk.py
+python ./search_gov_crawler/indexing/install_nltk.py
 ```
 
 2. Ensure elasticsearch/opensearch is running by using the docker compose file at the project root:

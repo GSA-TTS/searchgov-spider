@@ -106,7 +106,7 @@ def test_invalid_crawl_config_wrong_type(base_crawl_config_args, field, new_valu
 @pytest.mark.parametrize(
     ("field", "new_value", "expected_type"),
     [
-        ("output_target", "index", ["csv", "endpoint", "elasticsearch"]),
+        ("output_target", "index", ["csv", "endpoint", "opensearch"]),
     ],
 )
 def test_invalid_crawl_config_output_target(base_crawl_config_args, field, new_value, expected_type):
@@ -257,7 +257,7 @@ def test_crawl_configs_from_database(monkeypatch, valid_crawl_config):
         "allow_query_string": True,
         "allowed_domains": "example.gov",
         "handle_javascript": False,
-        "output_target": "elasticsearch",
+        "output_target": "opensearch",
         "starting_urls": "https://www.example.gov,https://subdomain.example.gov",
         "depth_limit": 3,
         "schedule": "0 0 * * *",

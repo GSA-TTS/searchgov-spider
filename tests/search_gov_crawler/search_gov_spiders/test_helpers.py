@@ -22,8 +22,8 @@ def test_is_valid_content_type(content_type_header, result):
         (None, None, None),
         ("text/html", "csv", "text/html"),
         ("text/html;extra/whatever", "csv", "text/html"),
-        ("text/html;extra/whatever", "elasticsearch", "text/html"),
-        ("application/msword", "elasticsearch", None),
+        ("text/html;extra/whatever", "opensearch", "text/html"),
+        ("application/msword", "opensearch", None),
     ],
 )
 def test_get_simple_content_type(content_type_header, output_target, result):

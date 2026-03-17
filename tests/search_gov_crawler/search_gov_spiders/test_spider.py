@@ -82,22 +82,22 @@ INVALID_ARGS_TEST_CASES = [
     (
         DomainSpider,
         {"allowed_domains": "test.example.com", "start_urls": "http://test.example.com/", "output_target": "yaml"},
-        "Invalid arguments: output_target must be one of the following: ['csv', 'endpoint', 'elasticsearch']",
+        "Invalid arguments: output_target must be one of the following: ['csv', 'endpoint', 'opensearch']",
     ),
     (
         DomainSpiderJs,
         {"allowed_domains": "test.example.com", "start_urls": "http://test.example.com/", "output_target": "yaml"},
-        "Invalid arguments: output_target must be one of the following: ['csv', 'endpoint', 'elasticsearch']",
+        "Invalid arguments: output_target must be one of the following: ['csv', 'endpoint', 'opensearch']",
     ),
     (
         DomainSpider,
         {"output_target": "yaml"},
-        "Invalid arguments: output_target must be one of the following: ['csv', 'endpoint', 'elasticsearch']",
+        "Invalid arguments: output_target must be one of the following: ['csv', 'endpoint', 'opensearch']",
     ),
     (
         DomainSpiderJs,
         {"output_target": "yaml"},
-        "Invalid arguments: output_target must be one of the following: ['csv', 'endpoint', 'elasticsearch']",
+        "Invalid arguments: output_target must be one of the following: ['csv', 'endpoint', 'opensearch']",
     ),
 ]
 

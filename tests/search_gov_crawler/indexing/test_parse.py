@@ -2,7 +2,7 @@ from pathlib import Path
 
 from scrapy import Selector
 
-from search_gov_crawler.search_engines.parse import convert_html_scrapy, extract_article_content, get_meta_values
+from search_gov_crawler.indexing.parse import convert_html_scrapy, extract_article_content, get_meta_values
 
 
 def load_file_with_pathlib(filename):

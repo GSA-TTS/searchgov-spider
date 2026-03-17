@@ -12,10 +12,10 @@ import requests
 from scrapy.crawler import Crawler
 from scrapy.exceptions import DropItem
 
-from search_gov_crawler.search_engines.convert import convert_pdf
-from search_gov_crawler.search_engines.helpers import update_dap_visits_to_document
-from search_gov_crawler.search_engines.opensearch import SearchGovOpensearch
-from search_gov_crawler.search_engines.transform import convert_html
+from search_gov_crawler.indexing.convert import convert_pdf
+from search_gov_crawler.indexing.helpers import update_dap_visits_to_document
+from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
+from search_gov_crawler.indexing.transform import convert_html
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 
@@ -59,7 +59,7 @@ class SearchGovSpidersPipeline:
         url = item.get("url", None)
         output_target = item.get("output_target", None)
 
-        if output_target not in ["endpoint", "elasticsearch", "csv"]:
+        if output_target not in ["endpoint", "opensearch", "csv"]:
             msg = f"Not a valid output_target: {output_target}"
             raise DropItem(msg)
 
@@ -67,7 +67,7 @@ class SearchGovSpidersPipeline:
             msg = "Missing URL in item"
             raise DropItem(msg)
 
-        if output_target == "elasticsearch":
+        if output_target == "opensearch":
             self._process_opensearch_item(item)
         elif output_target == "endpoint":
             if not self.api_url:
@@ -183,13 +183,6 @@ class SearchGovSpidersPipeline:
 
     def close_spider(self) -> None:
         """Finalize operations: close files or send remaining batched URLs."""
-        try:
-            if self._es:
-                self._get_elasticsearch_client().batch_upload(self.crawler.spider)
-        except Exception:  # pylint: disable=broad-except
-            msg = "Failed to upload Elasticsearch batch"
-            self.crawler.spider.logger.exception(msg)
-
         try:
             if self._opensearch:
                 self._get_opensearch_client().batch_upload(self.crawler.spider)

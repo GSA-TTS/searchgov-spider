@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 def parse_date_safely(date_value: Any) -> str | None:
     """
     Convert falsey date values (like an empty string) to None,
-    which will yield a null value in elasticsearch.
+    which will yield a null value in opensearch.
 
     Args:
         date_value (str | Any): Date value that needs to fallback to null

@@ -98,7 +98,7 @@ class MockScheduler:
 
 def test_benchmark_from_args(caplog, monkeypatch, mock_opensearch_client):
     with patch(
-        "search_gov_crawler.search_engines.opensearch.SearchGovOpensearch.client",
+        "search_gov_crawler.indexing.opensearch.SearchGovOpensearch.client",
         return_value=mock_opensearch_client,
     ):
         monkeypatch.setattr(time, "sleep", lambda x: True)
@@ -126,7 +126,7 @@ def test_benchmark_from_args(caplog, monkeypatch, mock_opensearch_client):
 
 def test_benchmark_from_file(caplog, monkeypatch, mock_opensearch_client):
     with patch(
-        "search_gov_crawler.search_engines.opensearch.SearchGovOpensearch.client",
+        "search_gov_crawler.indexing.opensearch.SearchGovOpensearch.client",
         return_value=mock_opensearch_client,
     ):
         monkeypatch.setattr(time, "sleep", lambda x: True)

@@ -30,7 +30,7 @@ class DomainSpider(CrawlSpider):
 
     - `allowed_domains="test-3.example.com"`
     - `start_urls="http://test-3.example.com/"`
-    - `output_target="elasticsearch"`
+    - `output_target="opensearch"`
 
     - `allow_query_string=true`
     - `allowed_domains="test-4.example.com"`
@@ -53,7 +53,7 @@ class DomainSpider(CrawlSpider):
              -a allowed_domains=test-4.example.com \
              -a deny_paths=/tricky/path/,/another/tricky/path/ \
              -a start_urls=http://test-4.example.com/
-             -a output_target=elasticsearch```
+             -a output_target=opensearch```
     """
 
     name: str = "domain_spider"

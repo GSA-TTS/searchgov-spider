@@ -8,7 +8,7 @@ from pypdf import PageObject, PdfReader
 from pypdf.errors import FileNotDecryptedError, PdfReadError
 from pypdf.generic import IndirectObject
 
-from search_gov_crawler.search_engines.helpers import (
+from search_gov_crawler.indexing.helpers import (
     ALLOWED_LANGUAGE_CODE,
     current_utc_iso,
     detect_lang,

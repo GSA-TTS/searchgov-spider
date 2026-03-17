@@ -13,10 +13,10 @@ nltk_packages = ["popular", "punkt_tab", "punkt", "perluniprops", "nonbreaking_p
 
 with ThreadPoolExecutor(max_workers=len(nltk_packages)) as executor:
     future_to_package = {
-        executor.submit(download_nltk_package, package): package 
+        executor.submit(download_nltk_package, package): package
         for package in nltk_packages
     }
-    
+
     for future in future_to_package:
         package = future_to_package[future]
         try:

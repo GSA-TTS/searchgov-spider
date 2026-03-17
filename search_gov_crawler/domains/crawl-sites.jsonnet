@@ -1,8 +1,8 @@
 // This file is used to generate json files.  The -m option must be used to generated multiple files.
 
 local csv_domains = import 'config/domains_csv.libsonnet';
-local elasticsearch_domains = import 'config/domains_elasticsearch.libsonnet';
 local endpoint_domains = import 'config/domains_endpoint.libsonnet';
+local opensearch_domains = import 'config/domains_opensearch.libsonnet';
 
 local CrawlSite(domain) = {
   name: domain.name,
@@ -20,10 +20,10 @@ local CrawlSite(domain) = {
 
 // Define output file names and their contents below.  Development files are a subset of the production files.
 {
-  'crawl-sites-production.json': [CrawlSite(domain) for domain in csv_domains + endpoint_domains + elasticsearch_domains],
-  'crawl-sites-staging.json': [CrawlSite(domain) for domain in csv_domains + endpoint_domains + elasticsearch_domains],
+  'crawl-sites-production.json': [CrawlSite(domain) for domain in csv_domains + endpoint_domains + opensearch_domains],
+  'crawl-sites-staging.json': [CrawlSite(domain) for domain in csv_domains + endpoint_domains + opensearch_domains],
   'crawl-sites-development.json': [
     CrawlSite(domain)
-    for domain in csv_domains[0::10] + endpoint_domains[0::10] + elasticsearch_domains[0::25]
+    for domain in csv_domains[0::10] + endpoint_domains[0::10] + opensearch_domains[0::25]
   ],
 }

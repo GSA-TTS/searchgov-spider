@@ -1,6 +1,6 @@
 import newspaper
 
-from search_gov_crawler.search_engines.helpers import (
+from search_gov_crawler.indexing.helpers import (
     ALLOWED_LANGUAGE_CODE,
     current_utc_iso,
     detect_lang,
@@ -11,7 +11,7 @@ from search_gov_crawler.search_engines.helpers import (
     parse_date_safely,
     summarize_text,
 )
-from search_gov_crawler.search_engines.parse import convert_html_scrapy
+from search_gov_crawler.indexing.parse import convert_html_scrapy
 from search_gov_crawler.search_gov_spiders.helpers import content, encoding
 
 

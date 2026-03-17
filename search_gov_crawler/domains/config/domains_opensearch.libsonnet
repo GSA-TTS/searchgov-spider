@@ -1,6 +1,6 @@
-// elasticsearch domain config for export
+// opensearch domain config for export
 local DomainConfig = import 'domain_config.libsonnet';
-local output_target = 'elasticsearch';
+local output_target = 'opensearch';
 
 // list of domains
 [

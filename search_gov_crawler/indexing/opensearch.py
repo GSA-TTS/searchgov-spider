@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 
 from opensearchpy import OpenSearch, helpers
 
-from search_gov_crawler.search_engines.helpers import generate_url_sha256
+from search_gov_crawler.indexing.helpers import generate_url_sha256
 from search_gov_crawler.search_gov_spiders.spiders import SearchGovDomainSpider
 
 # Suppress warnings from urllib3 and OpenSearch client. Already doing this in es_batch_upload,
@@ -17,8 +17,7 @@ warnings.filterwarnings("ignore", category=Warning, module="opensearchpy")
 # limit excess INFO messages from the OpenSearch transport
 # opensearch-py exposes transport internals under opensearchpy.transport
 logging.getLogger("opensearchpy.transport").setLevel(logging.ERROR)
-
-log = logging.getLogger("search_gov_crawler.search_engines")
+log = logging.getLogger(__name__)
 
 
 class SearchGovOpensearch:
