@@ -151,14 +151,3 @@ class SearchGovOpensearch:
 
         except Exception:
             spider.logger.exception("Bulk upload to Opensearch failed")
-
-    def _parse_opensearch_urls(self, url_string: str) -> list[dict[str, str | int]]:
-        """Parse comma-separated Opensearch URLs into host dicts."""
-        hosts: list[dict[str, str | int]] = []
-        for raw in url_string.split(","):
-            parsed = urlparse(raw.strip())
-            if not parsed.scheme or not parsed.hostname or not parsed.port:
-                msg = f"Invalid Opensearch URL: {raw!r}"
-                raise ValueError(msg)
-            hosts.append({"host": parsed.hostname, "port": parsed.port, "scheme": parsed.scheme})
-        return hosts

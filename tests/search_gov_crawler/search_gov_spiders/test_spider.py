@@ -1,8 +1,12 @@
 import re
 
 import pytest
+from scrapy import Spider
+from scrapy.crawler import Crawler
 from scrapy.http.request import Request
 from scrapy.http.response import Response
+from scrapy.utils.reactor import install_reactor
+from scrapy.utils.test import get_crawler
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
@@ -106,6 +110,28 @@ INVALID_ARGS_TEST_CASES = [
 def test_invalid_args(spider_cls, kwargs, msg):
     with pytest.raises(ValueError, match=re.escape(msg)):
         spider_cls(**kwargs)
+
+
+INVALID_DEPTH_LIMIT_TEST_CASES = [
+    (
+        DomainSpider,
+        {
+            "allowed_domains": "test.example.com",
+            "start_urls": "http://test.example.com/",
+            "output_target": "csv",
+        },
+        "Search Depth must be between 1 and 250 inclusive. You submitted: %s ",
+    ),
+]
+
+
+@pytest.mark.parametrize(("spider_cls", "kwargs", "msg"), INVALID_DEPTH_LIMIT_TEST_CASES)
+def test_invalid_args_crawl_limit(spider_cls, kwargs, msg):
+    install_reactor("twisted.internet.asyncioreactor.AsyncioSelectorReactor")
+
+    depth_limit = 5000
+    with pytest.raises(ValueError, match=msg % depth_limit):
+        spider_cls.from_crawler(crawler=get_crawler(Spider), **kwargs, depth_limit=depth_limit)
 
 
 @pytest.mark.parametrize(

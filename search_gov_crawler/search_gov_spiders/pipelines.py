@@ -85,7 +85,9 @@ class SearchGovSpidersPipeline:
         return item
 
     def _get_opensearch_client(self) -> SearchGovOpensearch:
-        return self._opensearch or SearchGovOpensearch()
+        if not self._opensearch:
+            self._opensearch = SearchGovOpensearch()
+        return self._opensearch
 
     def _process_opensearch_item(self, item: SearchGovSpidersItem) -> None:
         doc = {}
@@ -125,10 +127,10 @@ class SearchGovSpidersPipeline:
                 doc=doc,
                 spider=self.crawler.spider,
             )
-        except Exception:
+        except Exception as exc:
             msg = "Failed to add item to Opensearch batch"
             self.crawler.spider.logger.exception(msg)
-            raise DropItem(msg) from None
+            raise DropItem(msg) from exc
 
     def _process_api_item(self, url: str) -> None:
         """Batch URLs for API and send POST if size limit is reached."""
