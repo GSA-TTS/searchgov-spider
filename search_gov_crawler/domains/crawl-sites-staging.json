@@ -1454,7 +1454,9 @@
       "name": "www.healthcare.gov (usagov-replacement)",
       "output_target": "elasticsearch",
       "schedule": "14 14 * * TUE",
-      "sitemap_urls": null,
+      "sitemap_urls": [
+         "https://www.healthcare.gov/sitemap-0.xml"
+      ],
       "starting_urls": "https://www.healthcare.gov/"
    },
    {
@@ -9110,7 +9112,7 @@
       "allowed_domains": "www.clu-in.org",
       "check_sitemap_hours": null,
       "deny_paths": null,
-      "depth_limit": 3,
+      "depth_limit": 8,
       "handle_javascript": false,
       "name": "clu-in",
       "output_target": "elasticsearch",
@@ -19205,7 +19207,7 @@
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
-      "handle_javascript": false,
+      "handle_javascript": true,
       "name": "Quality Payment Program",
       "output_target": "elasticsearch",
       "schedule": "17 16 * * SAT",
@@ -23757,6 +23759,19 @@
    },
    {
       "allow_query_string": false,
+      "allowed_domains": "playbook.healthit.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "playbook.healthit.gov",
+      "output_target": "elasticsearch",
+      "schedule": "20 12 * * MON",
+      "sitemap_urls": null,
+      "starting_urls": "https://playbook.healthit.gov/"
+   },
+   {
+      "allow_query_string": false,
       "allowed_domains": "docs.cloud.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -23835,6 +23850,47 @@
    },
    {
       "allow_query_string": false,
+      "allowed_domains": "www.unemployment.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "www.unemployment.gov",
+      "output_target": "elasticsearch",
+      "schedule": "40 12 * * TUE",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.unemployment.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.dspo.mil",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "www.dspo.mil",
+      "output_target": "elasticsearch",
+      "schedule": "50 12 * * TUE",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.dspo.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "dsacms.github.io/ospo-guide/",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "dsacms.github.io/ospo-guide/",
+      "output_target": "elasticsearch",
+      "schedule": "0 12 * * WED",
+      "sitemap_urls": [
+         "https://dsacms.github.io/ospo-guide/sitemap.xml"
+      ],
+      "starting_urls": "https://dsacms.github.io/ospo-guide/"
+   },
+   {
+      "allow_query_string": false,
       "allowed_domains": "coastwatch.pfeg.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -23888,42 +23944,15 @@
    {
       "allow_query_string": false,
       "allowed_domains": "www.afn.mil",
+      "allowed_domains": "www.councils.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "American Forces Network",
+      "name": "Councils.gov",
       "output_target": "elasticsearch",
-      "schedule": "40 08 * * MON",
-      "sitemap_urls": [
-         "https://www.afn.mil/DesktopModules/SiteData/SiteMap.ashx"
-      ],
-      "starting_urls": "https://www.afn.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.data.bsee.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "BSEE Data Center",
-      "output_target": "elasticsearch",
-      "schedule": "50 08 * * MON",
+      "schedule": "00 16 * * MON",
       "sitemap_urls": null,
-      "starting_urls": "https://www.data.bsee.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.data.boem.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "BOEM Data Center",
-      "output_target": "elasticsearch",
-      "schedule": "00 07 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.data.boem.gov/"
+      "starting_urls": "https://www.councils.gov/"
    }
 ]
