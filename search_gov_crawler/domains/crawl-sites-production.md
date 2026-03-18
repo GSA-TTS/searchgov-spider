@@ -1,6 +1,6 @@
 # Production Schedule
  * [Sunday (264)](#sunday-264)
- * [Monday (256)](#monday-256)
+ * [Monday (259)](#monday-259)
  * [Tuesday (270)](#tuesday-270)
  * [Wednesday (265)](#wednesday-265)
  * [Thursday (260)](#thursday-260)
@@ -277,7 +277,7 @@
 |1st Infantry Division (army_11d)|23:50|www.1id.army.mil|N|3||
 
 
-## Monday (256)
+## Monday (259)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |cgaux.org (cgaux)|00:00|www.cgaux.org|N|8||
