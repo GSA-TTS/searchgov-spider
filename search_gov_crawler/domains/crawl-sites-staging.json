@@ -981,7 +981,10 @@
       "name": "Justice Dept (usagov-replacement)",
       "output_target": "opensearch",
       "schedule": "30 21 * * TUE",
-      "sitemap_urls": null,
+      "sitemap_urls": [
+         "https://www.justice.gov/osg-brief/sitemap.xml",
+         "https://www.justice.gov/sitemap.xml"
+      ],
       "starting_urls": "https://www.justice.gov/"
    },
    {
@@ -21555,7 +21558,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.presidentialinnovationfellows.gov",
+      "allowed_domains": "presidentialinnovationfellows.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -21564,7 +21567,7 @@
       "output_target": "opensearch",
       "schedule": "00 07 * * TUE",
       "sitemap_urls": null,
-      "starting_urls": "https://www.presidentialinnovationfellows.gov/"
+      "starting_urls": "https://presidentialinnovationfellows.gov/"
    },
    {
       "allow_query_string": false,
@@ -23937,6 +23940,47 @@
       "schedule": "30 08 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://eastcoast.coastwatch.noaa.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.afn.mil",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "American Forces Network",
+      "output_target": "elasticsearch",
+      "schedule": "40 08 * * MON",
+      "sitemap_urls": [
+         "https://www.afn.mil/DesktopModules/SiteData/SiteMap.ashx"
+      ],
+      "starting_urls": "https://www.afn.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.data.bsee.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "BSEE Data Center",
+      "output_target": "elasticsearch",
+      "schedule": "50 08 * * MON",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.data.bsee.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.data.boem.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "BOEM Data Center",
+      "output_target": "elasticsearch",
+      "schedule": "00 07 * * MON",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.data.boem.gov/"
    },
    {
       "allow_query_string": false,
