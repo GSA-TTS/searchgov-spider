@@ -23762,7 +23762,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "playbook.healthit.gov",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "20 12 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://playbook.healthit.gov/"
@@ -23853,7 +23853,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.unemployment.gov",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "40 12 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.unemployment.gov/"
@@ -23866,7 +23866,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "www.dspo.mil",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "50 12 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.dspo.mil/"
@@ -23879,7 +23879,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "dsacms.github.io/ospo-guide/",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "0 12 * * WED",
       "sitemap_urls": [
          "https://dsacms.github.io/ospo-guide/sitemap.xml"
@@ -23946,7 +23946,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Councils.gov",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "00 16 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.councils.gov/"
