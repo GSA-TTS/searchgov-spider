@@ -23949,7 +23949,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "American Forces Network",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "40 08 * * MON",
       "sitemap_urls": [
          "https://www.afn.mil/DesktopModules/SiteData/SiteMap.ashx"
@@ -23964,7 +23964,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "BSEE Data Center",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "50 08 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.data.bsee.gov/"
@@ -23977,7 +23977,7 @@
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "BOEM Data Center",
-      "output_target": "elasticsearch",
+      "output_target": "opensearch",
       "schedule": "00 07 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.data.boem.gov/"
