@@ -54,7 +54,7 @@ def test_add_to_batch_disabled(monkeypatch, opensearch_instance, mock_spider):
         assert not mock_upload.called
 
 
-def test__create_actions_with_and_without_path(opensearch_instance, mock_spider):
+def test_create_actions_with_and_without_path(opensearch_instance, mock_spider):
     path = "http://www.example.com/1"
     id = generate_url_sha256(path)
     docs = [{"path": path, "field": "value"}, {"field": "missing id"}]

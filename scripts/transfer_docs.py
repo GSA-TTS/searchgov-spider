@@ -9,8 +9,8 @@ from opensearchpy.exceptions import RequestError
 from opensearchpy.helpers import streaming_bulk
 from pythonjsonlogger.json import JsonFormatter
 
-from search_gov_crawler.search_engines.es_batch_upload import SearchGovElasticsearch
-from search_gov_crawler.search_engines.opensearch_batch_upload import SearchGovOpensearch
+from search_gov_crawler.indexing.es import SearchGovElasticsearch
+from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 
 logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))

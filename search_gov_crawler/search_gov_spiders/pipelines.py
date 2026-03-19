@@ -12,10 +12,9 @@ import requests
 from scrapy.crawler import Crawler
 from scrapy.exceptions import DropItem
 
-from search_gov_crawler.indexing.convert import convert_pdf
 from search_gov_crawler.indexing.helpers import update_dap_visits_to_document
 from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
-from search_gov_crawler.indexing.transform import convert_html
+from search_gov_crawler.indexing.transform import convert_html, convert_pdf
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 

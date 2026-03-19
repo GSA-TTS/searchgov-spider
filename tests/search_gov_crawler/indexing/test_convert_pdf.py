@@ -4,7 +4,7 @@ import pytest
 from pypdf.errors import FileNotDecryptedError, PdfReadError
 from pypdf.generic import ByteStringObject, DictionaryObject, IndirectObject, TextStringObject
 
-from search_gov_crawler.indexing import convert
+from search_gov_crawler.indexing import transform
 
 
 class FakePage:
@@ -74,18 +74,18 @@ def dummy_sanitize_text(text):
 
 @pytest.fixture(autouse=True)
 def patch_helpers(monkeypatch):
-    monkeypatch.setattr(convert, "get_base_extension", dummy_get_base_extension)
-    monkeypatch.setattr(convert, "separate_file_name", dummy_separate_file_name)
-    monkeypatch.setattr(convert, "summarize_text", dummy_summarize_text)
-    monkeypatch.setattr(convert, "generate_url_sha256", dummy_generate_url_sha256)
-    monkeypatch.setattr(convert, "detect_lang", dummy_detect_lang)
-    monkeypatch.setattr(convert, "current_utc_iso", dummy_current_utc_iso)
-    monkeypatch.setattr(convert, "parse_date_safely", dummy_parse_date_safely)
-    monkeypatch.setattr(convert, "get_url_path", dummy_get_url_path)
-    monkeypatch.setattr(convert, "get_domain_name", dummy_get_domain_name)
-    monkeypatch.setattr(convert.content, "sanitize_text", dummy_sanitize_text)
+    monkeypatch.setattr(transform, "get_base_extension", dummy_get_base_extension)
+    monkeypatch.setattr(transform, "separate_file_name", dummy_separate_file_name)
+    monkeypatch.setattr(transform, "summarize_text", dummy_summarize_text)
+    monkeypatch.setattr(transform, "generate_url_sha256", dummy_generate_url_sha256)
+    monkeypatch.setattr(transform, "detect_lang", dummy_detect_lang)
+    monkeypatch.setattr(transform, "current_utc_iso", dummy_current_utc_iso)
+    monkeypatch.setattr(transform, "parse_date_safely", dummy_parse_date_safely)
+    monkeypatch.setattr(transform, "get_url_path", dummy_get_url_path)
+    monkeypatch.setattr(transform, "get_domain_name", dummy_get_domain_name)
+    monkeypatch.setattr(transform.content, "sanitize_text", dummy_sanitize_text)
     # Ensure the allowed language list includes "en" so that we get a valid language suffix.
-    monkeypatch.setattr(convert, "ALLOWED_LANGUAGE_CODE", {"en": "english"})
+    monkeypatch.setattr(transform, "ALLOWED_LANGUAGE_CODE", {"en": "english"})
 
 
 # ----- Tests for helper functions -----
@@ -102,7 +102,7 @@ def test_get_pdf_text():
     fake_page_content_2 = f"Page 2 content: {fake_page_content_1}"
     pages = [FakePage(fake_page_content_1), FakePage(fake_page_content_2)]
     fake_reader = FakePdfReader(None, pages=pages)
-    result, _ = convert.get_pdf_text(fake_reader)
+    result, _ = transform.get_pdf_text(fake_reader)
     expected = f"{fake_page_content_1} {fake_page_content_2} "
     assert result == expected
 
@@ -129,7 +129,7 @@ def test_get_pdf_meta(monkeypatch, metadata, expected_output):
     """Test that metadata is cleaned and dates are parsed."""
     monkeypatch.setattr(IndirectObject, "get_object", lambda x: x.pdf)
     fake_reader = FakePdfReader(None, metadata=metadata)
-    assert convert.get_pdf_meta(fake_reader) == expected_output
+    assert transform.get_pdf_meta(fake_reader) == expected_output
 
 
 PARSE_DATE_IF_VALID_TEST_CASES = [
@@ -168,13 +168,13 @@ PARSE_DATE_IF_VALID_TEST_CASES = [
 @pytest.mark.parametrize(("input_val", "apply_tz_offset", "expected"), PARSE_DATE_IF_VALID_TEST_CASES)
 def test_parse_if_date_valid(input_val, apply_tz_offset, expected):
     """Test parse_if_date with various valid values"""
-    assert convert.parse_if_date(input_val, apply_tz_offset) == expected
+    assert transform.parse_if_date(input_val, apply_tz_offset) == expected
 
 
 @pytest.mark.parametrize("input_val", ["D:20239901023045", "D:00000000-0--000"])
 def test_parse_if_date_datetime_debugging(caplog, input_val):
     with caplog.at_level("DEBUG"):
-        convert.parse_if_date(input_val)
+        transform.parse_if_date(input_val)
 
         assert f"Failed to parse date string: {input_val}" in caplog.messages
 
@@ -182,13 +182,13 @@ def test_parse_if_date_datetime_debugging(caplog, input_val):
 def test_parse_if_date_non_date():
     """Test parse_if_date with a non-string value (or a string not starting with 'D:')."""
     non_date = "Not a date"
-    result = convert.parse_if_date(non_date)
+    result = transform.parse_if_date(non_date)
     assert result == non_date.strip()
 
 
 def test_parse_if_date_non_string():
     non_string = 10
-    assert convert.parse_if_date(non_string) == non_string
+    assert transform.parse_if_date(non_string) == non_string
 
 
 # ----- Tests for the main conversion function -----
@@ -200,11 +200,11 @@ def test_convert_pdf_normal(monkeypatch):
     pages = [FakePage("This is the content of the PDF.")]
     fake_reader = FakePdfReader(None, is_encrypted=False, pages=pages, metadata=fake_metadata)
     # Patch PdfReader so that any instantiation returns our fake_reader.
-    monkeypatch.setattr(convert, "PdfReader", lambda stream: fake_reader)
+    monkeypatch.setattr(transform, "PdfReader", lambda stream: fake_reader)
 
     response_bytes = b"dummy bytes representing pdf"
     url = "http://example.com/fake.pdf"
-    result = convert.convert_pdf(response_bytes, url, response_language="en")
+    result = transform.convert_pdf(response_bytes, url, response_language="en")
 
     # Check that the result is a dict with expected keys and values.
     assert result is not None
@@ -228,11 +228,11 @@ def test_convert_pdf_encrypted(monkeypatch):
         raise FileNotDecryptedError("PDF is encrypted and cannot be read.")
 
     fake_reader = FakePdfReader(None, is_encrypted=True)
-    monkeypatch.setattr(convert, "PdfReader", lambda stream: fake_reader)
-    monkeypatch.setattr(convert, "get_pdf_meta", raise_encrypted_error)
+    monkeypatch.setattr(transform, "PdfReader", lambda stream: fake_reader)
+    monkeypatch.setattr(transform, "get_pdf_meta", raise_encrypted_error)
     response_bytes = b"dummy bytes representing pdf"
     url = "http://example.com/encrypted.pdf"
-    result = convert.convert_pdf(response_bytes, url)
+    result = transform.convert_pdf(response_bytes, url)
     assert result is None
 
 
@@ -243,7 +243,7 @@ def test_convert_pdf_stream_error(caplog, mocker):
     response_bytes = b"some bytes representing pdf"
     url = "http://example.com/bad-read-pdf.pdf"
     with caplog.at_level("WARNING"):
-        doc = convert.convert_pdf(response_bytes, url)
+        doc = transform.convert_pdf(response_bytes, url)
 
     assert f"Could not download PDF file at {url}: {error_msg}" in caplog.messages
     assert doc is None
@@ -257,7 +257,7 @@ def test_add_title_and_filename():
         "extension": "pdf",
         "content_en": "This is some sample content.",
     }
-    convert.add_title_and_filename("content_en", "title_en", doc)
+    transform.add_title_and_filename("content_en", "title_en", doc)
     expected_content = "Sample PDF sample.pdf This is some sample content."
     assert doc["content_en"] == expected_content
 
@@ -284,7 +284,7 @@ def test_get_links_set(mocker):
 
     page_items = [(page1_text, fake_page1), (page2_text, fake_page2)]
 
-    links = convert.get_links_set(page_items)
+    links = transform.get_links_set(page_items)
 
     expected_links = {
         "https://example.com",
