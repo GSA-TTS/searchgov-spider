@@ -1,6 +1,6 @@
 # Staging Schedule
  * [Sunday (264)](#sunday-264)
- * [Monday (256)](#monday-256)
+ * [Monday (259)](#monday-259)
  * [Tuesday (270)](#tuesday-270)
  * [Wednesday (265)](#wednesday-265)
  * [Thursday (260)](#thursday-260)
@@ -277,7 +277,7 @@
 |1st Infantry Division (army_11d)|23:50|www.1id.army.mil|N|3||
 
 
-## Monday (256)
+## Monday (259)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |cgaux.org (cgaux)|00:00|www.cgaux.org|N|8||
@@ -350,6 +350,7 @@
 |Professional Development Guide (afpw_pdg)|06:40|www.studyguides.af.mil|N|8||
 |US Embassy Tonga|06:45|to.usembassy.gov|N|8||
 |tricare_southcomclinic|07:00|southcomclinic.tricare.mil|N|8||
+|BOEM Data Center|07:00|www.data.boem.gov|N|8||
 |Army USAFMCOM (army_usafmcom)|07:03|www.usafmcom.army.mil|N|3||
 |Army Quartermaster Museum (qmm)|07:36|qmmuseum.army.mil|N|3||
 |dodcio.defense.gov (osd_cio_nii)|07:37|dodcio.defense.gov|N|8||
@@ -372,6 +373,8 @@
 |Social Security Advisory Board|08:30|www.ssab.gov|N|8||
 |VA Benefits.va.gov|08:30|benefits.va.gov|N|8||
 |NOAA CoastWatch East Coast Node|08:30|eastcoast.coastwatch.noaa.gov|N|8||
+|American Forces Network|08:40|www.afn.mil|N|8||
+|BSEE Data Center|08:50|www.data.bsee.gov|N|8||
 |Maine National Guard (ng_maine)|08:52|www.me.ng.mil|N|3||
 |tricare_kenner|09:00|kenner.tricare.mil|N|8||
 |OSHA (osha)|09:04|www.osha.gov|N|8||
@@ -622,7 +625,7 @@
 |US Embassy Korea|06:37|kr.usembassy.gov|N|8||
 |tricare_sigonella|07:00|sigonella.tricare.mil|N|8||
 |FMCSA Drug & Alcohol Clearinghouse|07:00|clearinghouse.fmcsa.dot.gov|N|8||
-|Presidential Innovation Fellows|07:00|www.presidentialinnovationfellows.gov|N|8||
+|Presidential Innovation Fellows|07:00|presidentialinnovationfellows.gov|N|8||
 |10th Air Force (afpw_10af)|07:04|www.10af.afrc.af.mil|N|8||
 |Peterson-Schriever Space Force Base (peterson)|07:10|www.petersonschriever.spaceforce.mil|N|3||
 |Strategic Data Reporting|07:15|www.sdr.gov|N|8||
