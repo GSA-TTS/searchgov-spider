@@ -200,7 +200,11 @@ def test_fetch_sitemap_error_returns_empty(MockSession):
 def test_fetch_sitemap_max_depth(mock_log):
     monitor = SitemapMonitor([])
     monitor._fetch_sitemap("https://fake.url/sitemap.xml", depth=11, max_depth=10)
-    mock_log.error.assert_called_with("Maximum recursion depth (10) exceeded for sitemap https://fake.url/sitemap.xml")
+    mock_log.error.assert_called_with(
+        "Maximum recursion depth (%s) exceeded for sitemap %s",
+        10,
+        "https://fake.url/sitemap.xml",
+    )
 
 
 # -------------------------------
