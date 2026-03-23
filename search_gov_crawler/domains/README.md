@@ -12,7 +12,7 @@ In the config directory, there is one file for each of the different output targ
 - domains_csv.libsonnet: contains configuration for domains with an output target of `csv`.
 - domains_endpoint.libsonnet: contains configuration for domains with an output target of `endpoint`.
 - domains_opensearch.libsonnet: contains configuration for domains with an output target of `opensearch`.
-- domain_config.libsonnet: contains source for `DomainConfig` fuction used to generate domain configurations for all output targets.
+- domain_config.libsonnet: contains source for `DomainConfig` function used to generate domain configurations for all output targets.
 
 ### Domain Configuration
 A shared DomainConfig function is used to generate crawl site records in a specific format. When creating a new domain, choose the file that matches the output target and add a record to the file similar to the example below.  See the [DomainConfig](config/domain_config.libsonnet) function for more details.

@@ -6,13 +6,13 @@ import logging
 import os
 import sys
 import time
-import xml.etree.ElementTree as ET
-from datetime import datetime
+from datetime import UTC, datetime
 from multiprocessing import Process
 from pathlib import Path
-from typing import Any, Dict, List, Set, Tuple
+from typing import Any
 
 import requests
+from defusedxml.ElementTree import ParseError, fromstring
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 
@@ -32,18 +32,19 @@ def create_directory(path: Path) -> None:
     """Creates the directory using pathlib if it doesn't exist."""
     try:
         path.mkdir(parents=True, exist_ok=True)
-        log.info(f"Directory '{path}' ensured.")
-    except OSError as e:
-        log.error(f"Error creating directory '{path}': {e}", exc_info=True)
+        log.info("Directory '%s' ensured.", path)
+    except OSError:
+        log.exception("Error creating directory '%s'", path)
         sys.exit(1)
-    except Exception as e:
-        log.error(f"An unexpected error occurred creating directory '{path}': {e}", exc_info=True)
+    except Exception:
+        log.exception("An unexpected error occurred creating directory '%s'", path)
         sys.exit(1)
 
 
-def force_gc():
+def force_gc() -> None:
+    """Forces garbage collection, as a saftey measure."""
     ref_count = gc.collect()
-    log.info(f"Cleaned {ref_count} unreachable objects.")
+    log.info("Cleaned %s unreachable objects.", ref_count)
 
 
 def run_crawl_in_dedicated_process(spider_cls: type[DomainSpiderJs] | type[DomainSpider], spider_args: dict[str, Any]):
@@ -71,16 +72,20 @@ def run_crawl_in_dedicated_process(spider_cls: type[DomainSpiderJs] | type[Domai
 
 
 class SitemapMonitor:
-    def __init__(self, records: List[CrawlConfig]):
+    """
+    Class that runs the sitemap monitor.
+    """
+
+    def __init__(self, records: list[CrawlConfig]):
         """Initialize the SitemapMonitor with crawl site records."""
         self.records = records
-        self.all_sitemap_urls: List[str] = []
-        self.records_map: Dict[str, CrawlConfig] = {}
-        self.stored_sitemaps: Dict[str, Set[str]] = {}
-        self.next_check_times: Dict[str, float] = {}
-        self.is_first_run: Dict[str, bool] = {}
+        self.all_sitemap_urls: list[str] = []
+        self.records_map: dict[str, CrawlConfig] = {}
+        self.stored_sitemaps: dict[str, set[str]] = {}
+        self.next_check_times: dict[str, float] = {}
+        self.is_first_run: dict[str, bool] = {}
 
-    def _process_record_sitemaps(self, record: CrawlConfig, sitemap_finder: SitemapFinder) -> List[str]:
+    def _process_record_sitemaps(self, record: CrawlConfig, sitemap_finder: SitemapFinder) -> list[str]:
         """
         Validates predefined sitemaps, discovers new ones, and returns a combined list
         of unique, valid sitemap URLs for the given record.
@@ -89,25 +94,25 @@ class SitemapMonitor:
         starting_url = (record.starting_urls or "").split(",")[0]
 
         # Step 1: Handle predefined sitemaps
-        predefined_sitemaps: Set[str] = set()
+        predefined_sitemaps: set[str] = set()
 
         for url in record.sitemap_urls or []:
             if sitemap_finder.confirm_sitemap_url(url):
-                log.info(f"Confirmed predefined sitemap URL {url} for {starting_url}")
+                log.info("Confirmed predefined sitemap URL %s for %s", url, starting_url)
                 predefined_sitemaps.add(url)
             else:
-                log.warning(f"Could not confirm predefined sitemap URL {url} for {starting_url}")
+                log.warning("Could not confirm predefined sitemap URL %s for %s", url, starting_url)
 
         # Step 2: Discover new sitemaps
-        found_sitemaps: Set[str] = set()
+        found_sitemaps: set[str] = set()
 
         try:
             found_sitemaps = sitemap_finder.find(starting_url)
             if not found_sitemaps:
                 raise Exception("no sitemap URLs found")
-            log.info(f"Discovered sitemap URLs: {list(found_sitemaps)} for {starting_url}")
+            log.info("Discovered sitemap URLs: %s for %s", list(found_sitemaps), starting_url)
         except Exception as e:
-            log.warning(f"Failed to discover sitemaps for {starting_url}. Reason: {e}")
+            log.warning("Failed to discover sitemaps for %s. Reason: %s", starting_url, e)
 
         # Step 3: Combine and return both found_sitemaps and predefined_sitemaps
         return list(predefined_sitemaps | found_sitemaps)
@@ -115,7 +120,7 @@ class SitemapMonitor:
     def setup(self):
         """Setup and filter records, then find and validate all sitemap URLs."""
         sitemap_finder = SitemapFinder()
-        all_sitemaps_set: Set[str] = set()
+        all_sitemaps_set: set[str] = set()
 
         # Step 1: Filter records and process sitemaps for each one
         records_to_process = [r for r in self.records if r.depth_limit >= 8]
@@ -158,16 +163,16 @@ class SitemapMonitor:
             url_hash = hashlib.md5(sitemap_url.encode()).hexdigest()
             file_path = TARGET_DIR / f"{url_hash}.txt"
             if file_path.exists():
-                with open(file_path) as f:
+                with file_path.open() as f:
                     lines = {ln.strip() for ln in f}
                 self.stored_sitemaps[sitemap_url] = lines
                 self.is_first_run[sitemap_url] = False
-                log.info(f"Loaded {len(lines)} URLs from {sitemap_url}")
+                log.info("Loaded %s URLs from %s", len(lines), sitemap_url)
             else:
                 self.stored_sitemaps[sitemap_url] = set()
                 self.is_first_run[sitemap_url] = True
 
-    def _save_sitemap(self, sitemap_url: str, urls: Set[str]) -> None:
+    def _save_sitemap(self, sitemap_url: str, urls: set[str]) -> None:
         """Save sitemap URLs to disk."""
         if not urls:
             return
@@ -176,14 +181,14 @@ class SitemapMonitor:
         file_path = TARGET_DIR / f"{url_hash}.txt"
 
         try:
-            with open(file_path, "w") as f:
+            with file_path.open("w") as f:
                 for url in sorted(urls):
                     f.write(f"{url}\n")
-            log.info(f"Saved {len(urls)} URLs for {sitemap_url}")
-        except Exception as e:
-            log.error(f"Error saving sitemap for {sitemap_url}: {e}")
+            log.info("Saved %s URLs for %s", len(urls), sitemap_url)
+        except Exception:
+            log.exception("Error saving sitemap for %s", sitemap_url)
 
-    def _fetch_sitemap(self, url: str, depth: int = 0, max_depth: int = 10) -> Set[str]:
+    def _fetch_sitemap(self, url: str, depth: int = 0, max_depth: int = 10) -> set[str]:
         """
         Fetch and parse a sitemap XML file recursively up to a maximum depth.
 
@@ -196,20 +201,20 @@ class SitemapMonitor:
             A set of URLs found in the sitemap
         """
         if depth > max_depth:
-            log.error(f"Maximum recursion depth ({max_depth}) exceeded for sitemap {url}")
+            log.error("Maximum recursion depth (%s) exceeded for sitemap %s", max_depth, url)
             return set()
 
         try:
-            log.info(f"Fetching sitemap from {url} at depth {depth}")
+            urls = set()
+            log.info("Fetching sitemap from %s at depth %s", url, depth)
             with requests.Session() as session:
-                session.headers.update({"Cache-Control": "no-cache"})
-                session.cache_disabled = True
+                session.headers.update(
+                    {"Cache-Control": "no-cache, no-store, must-revalidate", "Pragma": "no-cache", "Expires": "0"},
+                )
                 response = session.get(url, timeout=30)
                 response.raise_for_status()
 
-                root = ET.fromstring(response.content)
-
-                urls = set()
+                root = fromstring(response.content)
                 ns = root.tag.split("}")[0] + "}" if "}" in root.tag else ""
 
                 if root.tag.endswith("sitemapindex"):
@@ -223,29 +228,28 @@ class SitemapMonitor:
                                 child_urls = self._fetch_sitemap(loc_text, depth + 1, max_depth)
                                 urls.update(child_urls)
                             else:
-                                log.warning(f"Skipping non-sitemap URL in sitemapindex: {loc_text}")
+                                log.warning("Skipping non-sitemap URL in sitemapindex: %s", loc_text)
                 elif root.tag.endswith("urlset"):
                     for url_element in root.findall(f"{ns}url"):
                         loc = url_element.find(f"{ns}loc")
                         if loc is not None and loc.text:
                             urls.add(loc.text.strip())
                 else:
-                    log.warning(f"Unrecognized root tag in sitemap XML: {root.tag}")
+                    log.warning("Unrecognized root tag in sitemap XML: %s", root.tag)
 
-                log.info(f"Found {len(urls)} URLs in sitemap {url}")
+                log.info("Found %s URLs in sitemap %s", len(urls), url)
                 return urls
 
-        except requests.exceptions.RequestException as e:
-            log.error(f"Error fetching sitemap {url}: {e}")
-            return set()
-        except ET.ParseError as e:
-            log.error(f"Error parsing sitemap XML from {url}: {e}")
-            return set()
-        except Exception as e:
-            log.error(f"Unexpected error processing sitemap {url}: {e}")
-            return set()
+        except requests.exceptions.RequestException:
+            log.exception("Error fetching sitemap %s", url)
+        except ParseError:
+            log.exception("Error parsing sitemap XML from %s", url)
+        except Exception:
+            log.exception("Unexpected error processing sitemap %s", url)
 
-    def _check_for_changes(self, sitemap_url: str) -> Tuple[Set[str], int]:
+        return urls
+
+    def _check_for_changes(self, sitemap_url: str) -> tuple[set[str], int]:
         """
         Check a sitemap for new URLs, only storing on first run.
 
@@ -253,26 +257,29 @@ class SitemapMonitor:
             sitemap_url: The URL of the sitemap to check
 
         Returns:
-            Tuple of (new URLs, total URLs count)
+            tuple of (new URLs, total URLs count)
         """
+        new_urls = set()
+        total_count = 0
         try:
-            if sitemap_url in self.is_first_run and self.is_first_run[sitemap_url]:
+            if self.is_first_run.get(sitemap_url):
                 current_urls = self._fetch_sitemap(sitemap_url)
                 self.stored_sitemaps[sitemap_url] = current_urls
                 self._save_sitemap(sitemap_url, current_urls)
                 self.is_first_run[sitemap_url] = False
-                log.info(f"First run for {sitemap_url}: stored {len(current_urls)} URLs without indexing")
-                return set(), len(current_urls)
+                total_count = len(current_urls)
+                log.info("First run for %s: stored %s URLs without indexing", sitemap_url, total_count)
             else:
                 current_urls = self._fetch_sitemap(sitemap_url)
                 previous_urls = self.stored_sitemaps.get(sitemap_url, set())
                 new_urls = current_urls - previous_urls
                 self.stored_sitemaps[sitemap_url] = current_urls
                 self._save_sitemap(sitemap_url, current_urls)
-                return new_urls, len(current_urls)
-        except Exception as e:
-            log.error(f"Error checking for changes in {sitemap_url}: {e}")
-            return set(), 0
+                total_count = len(current_urls)
+        except Exception:
+            log.exception("Error checking for changes in %s", sitemap_url)
+
+        return new_urls, total_count
 
     def _get_check_interval(self, url: str) -> int:
         """Get the check interval for a specific sitemap URL."""
@@ -282,11 +289,12 @@ class SitemapMonitor:
     def run(self) -> None:
         """Run the sitemap monitor continuously."""
         self.setup()
-        log.info(f"Starting Sitemap Monitor for {len(self.records)} sitemaps")
+        log.info("Starting Sitemap Monitor for %s sitemaps", len(self.records))
 
-        check_queue: List[Tuple[float, str]] = []
+        check_queue: list[tuple[float, str]] = []
         for sitemap_url in self.all_sitemap_urls:
-            log.info(f"Check interval for {sitemap_url}: {self._get_check_interval(sitemap_url) / 3600:.1f}h")
+            interval = f"{self._get_check_interval(sitemap_url) / 3600:.1f}h"
+            log.info("Check interval for : %s, %s", sitemap_url, interval)
             heapq.heappush(check_queue, (self.next_check_times[sitemap_url], sitemap_url))
 
         try:
@@ -296,16 +304,20 @@ class SitemapMonitor:
                 sleep_time = max(0, next_check_time - current_time)
 
                 if sleep_time > 0:
-                    next_check_str = datetime.fromtimestamp(next_check_time).strftime("%Y-%m-%d %H:%M:%S")
+                    next_check_str = datetime.fromtimestamp(next_check_time, tz=UTC).strftime("%Y-%m-%d %H:%M:%S")
+                    sleep_seconds = f"{sleep_time:.1f} seconds"
                     log.info(
-                        f"Waiting until {next_check_str} to check {sitemap_url} (sleeping for {sleep_time:.1f} seconds)"
+                        "Waiting until %s to check %s (sleeping for %s)",
+                        next_check_str,
+                        sitemap_url,
+                        sleep_seconds,
                     )
                     time.sleep(sleep_time)
 
-                log.info(f"Processing sitemap: {sitemap_url}")
+                log.info("Processing sitemap: %s", sitemap_url)
                 new_urls, total_count = self._check_for_changes(sitemap_url)
                 if new_urls:
-                    log.info(f"Found {len(new_urls)} new URLs in {sitemap_url}")
+                    log.info("Found %s new URLs in %s", len(new_urls), sitemap_url)
                     new_urls_msg_lines = ["New URLs:"]
                     new_urls_msg_lines.extend([f"  - {url}" for url in sorted(new_urls)])
                     log.info("\n".join(new_urls_msg_lines))
@@ -326,24 +338,25 @@ class SitemapMonitor:
                             args=(spider_cls, spider_args),
                         )
                         crawl_process.start()
-                        crawl_process.join()  # Wait for the crawl process to complete before continuing, forces blocking
+                        # Wait for the crawl process to complete before continuing, forces blocking
+                        crawl_process.join()
                         time.sleep(3)
                 else:
-                    log.info(f"No changes in {sitemap_url}")
+                    log.info("No changes in %s", sitemap_url)
 
-                log.info(f"Total URLs in sitemap: {total_count}")
+                log.info("Total URLs in sitemap: %s", total_count)
 
                 check_interval = self._get_check_interval(sitemap_url)
                 self.next_check_times[sitemap_url] = time.time() + check_interval
-                next_check_str = datetime.fromtimestamp(self.next_check_times[sitemap_url]).strftime(
-                    "%Y-%m-%d %H:%M:%S"
+                next_check_str = datetime.fromtimestamp(self.next_check_times[sitemap_url], tz=UTC).strftime(
+                    "%Y-%m-%d %H:%M:%S",
                 )
-                log.info(f"Next check for {sitemap_url} scheduled at {next_check_str}")
+                log.info("Next check for %s scheduled at %s", sitemap_url, next_check_str)
 
                 heapq.heappush(check_queue, (self.next_check_times[sitemap_url], sitemap_url))
 
         except KeyboardInterrupt:
             log.info("Sitemap Monitor stopped by user")
-        except Exception as e:
-            log.error(f"Sitemap Monitor stopped due to error: {e}")
+        except Exception:
+            log.exception("Sitemap Monitor stopped due to error")
             raise

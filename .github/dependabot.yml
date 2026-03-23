@@ -25,6 +25,7 @@ updates:
           - "pymysql"
           - "brotli"
           - "zstandard"
+          - "defusedxml"
       testing-linting-and-scripts:
         patterns:
           - "click"
