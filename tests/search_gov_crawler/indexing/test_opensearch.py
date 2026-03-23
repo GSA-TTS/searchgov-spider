@@ -54,19 +54,23 @@ def test_add_to_batch_disabled(monkeypatch, opensearch_instance, mock_spider):
         assert not mock_upload.called
 
 
-def test_create_actions_with_and_without_path(opensearch_instance, mock_spider):
+def test_create_actions_with_and_without_id(opensearch_instance, mock_spider):
     path = "http://www.example.com/1"
     id = generate_url_sha256(path)
-    docs = [{"path": path, "field": "value"}, {"field": "missing id"}]
+    docs = [{"id": id, "path": path, "field": "value"}, {"id": None, "field": "missing id"}]
     actions = opensearch_instance._create_actions(docs, mock_spider)
     assert actions == [
-        {"_index": "test-index", "_id": id, "_source": {"path": "http://www.example.com/1", "field": "value"}}
+        {
+            "_index": "test-index",
+            "_id": id,
+            "_source": {"path": "http://www.example.com/1", "field": "value", "id": id},
+        },
     ]
     mock_spider.logger.error.assert_called_once()
 
 
 def test_batch_upload_success(mocker, opensearch_instance, mock_spider):
-    docs = [{"_id": "1", "field": "v1"}, {"_id": "2", "field": "v2"}]
+    docs = [{"id": "1", "field": "v1"}, {"id": "2", "field": "v2"}]
     opensearch_instance._current_batch = docs.copy()
 
     mock_bulk = mocker.patch("search_gov_crawler.indexing.opensearch.helpers.parallel_bulk")
@@ -80,7 +84,7 @@ def test_batch_upload_success(mocker, opensearch_instance, mock_spider):
 
 def test_batch_upload_failure(opensearch_instance, mock_spider):
     path = "http://www.example.com/1"
-    docs = [{"path": path, "field": "v1"}]
+    docs = [{"path": path, "field": "v1", "id": "asdf"}]
     opensearch_instance._current_batch = docs.copy()
 
     mock_bulk = [(False, {"error": "failed"})]
@@ -91,7 +95,7 @@ def test_batch_upload_failure(opensearch_instance, mock_spider):
 
 
 def test_batch_upload_exception(opensearch_instance, mock_spider):
-    docs = [{"_id": "1", "field": "v1"}]
+    docs = [{"id": "1", "field": "v1"}]
     opensearch_instance._current_batch = docs.copy()
 
     with patch("search_gov_crawler.indexing.opensearch.helpers.parallel_bulk", side_effect=Exception("boom")):

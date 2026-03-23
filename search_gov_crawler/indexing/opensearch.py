@@ -108,13 +108,11 @@ class SearchGovOpensearch:
         """Build bulk actions, popping out any explicit _id fields."""
         actions: list[dict[str, Any]] = []
         for doc in docs:
-            action: dict[str, Any] = {"_index": self._env_opensearch_index}
-            if "path" in doc:
-                action["_id"] = generate_url_sha256(doc["path"])
+            if doc["id"]:
+                action = {"_index": self._env_opensearch_index, "_id": doc["id"], "_source": doc}
             else:
-                spider.logger.error("Missing required 'path' property in document: %s", doc)
+                spider.logger.error("Missing required 'id' property in document: %s", doc)
                 continue
-            action["_source"] = doc
             actions.append(action)
         return actions
 
@@ -139,6 +137,7 @@ class SearchGovOpensearch:
                 queue_size=4,
                 chunk_size=self._batch_size,
                 max_chunk_bytes=10 * 1024 * 1024,
+                raise_on_error=False,
             ):
                 if not ok:
                     failure_count += 1

@@ -2,7 +2,6 @@ import re
 
 import pytest
 from scrapy import Spider
-from scrapy.crawler import Crawler
 from scrapy.http.request import Request
 from scrapy.http.response import Response
 from scrapy.utils.reactor import install_reactor
@@ -126,9 +125,9 @@ INVALID_DEPTH_LIMIT_TEST_CASES = [
 
 
 @pytest.mark.parametrize(("spider_cls", "kwargs", "msg"), INVALID_DEPTH_LIMIT_TEST_CASES)
-def test_invalid_args_crawl_limit(spider_cls, kwargs, msg):
+def test_invalid_args_crawl_limit(mocker, spider_cls, kwargs, msg):
     install_reactor("twisted.internet.asyncioreactor.AsyncioSelectorReactor")
-
+    mocker.patch("search_gov_crawler.search_gov_spiders.spiders.domain_spider.CrawlSpider.from_crawler")
     depth_limit = 5000
     with pytest.raises(ValueError, match=msg % depth_limit):
         spider_cls.from_crawler(crawler=get_crawler(Spider), **kwargs, depth_limit=depth_limit)

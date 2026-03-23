@@ -33,7 +33,7 @@ def test_convert_html_valid_article():
     assert result["extension"] is None
     assert result["domain_name"] == "example.com"
     assert result["url_path"] == "/test-article"
-    assert len(result["_id"]) == 64  # SHA256 hash
+    assert len(result["id"]) == 64  # SHA256 hash
     assert result["dap_domain_visits_count"] is None
 
 

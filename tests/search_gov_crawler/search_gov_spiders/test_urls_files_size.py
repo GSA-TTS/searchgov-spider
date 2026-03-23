@@ -76,10 +76,8 @@ def test_write_to_file(pipeline_no_api, mock_open, sample_item, mocker):
     mocker.patch.object(SearchGovSpidersPipeline, "_file_size", return_value=100)
     pipeline_no_api.process_item(sample_item_copy)
 
-    assert "html_content" not in sample_item_copy, f"Key 'html_content' should not be in the item after it's processed"
-    assert "output_target" not in sample_item_copy, (
-        f"Key 'output_target' should not be in the item after it's processed"
-    )
+    assert "html_content" not in sample_item_copy, "Key 'html_content' should not be in the item after it's processed"
+    assert "output_target" not in sample_item_copy, "Key 'output_target' should not be in the item after it's processed"
 
     # Ensure file is opened and written to
     mock_open.assert_called_once_with(pipeline_no_api.file_path, "a", encoding="utf-8")
@@ -105,7 +103,7 @@ def test_post_to_api(pipeline_with_api, sample_item, mocker):
     pipeline_with_api.process_item(sample_item_copy)
 
     # Ensure POST request was made
-    mock_post.assert_called_once_with("http://mockapi.com", json={"urls": pipeline_with_api.urls_batch})
+    mock_post.assert_called_once_with("http://mockapi.com", json={"urls": pipeline_with_api.urls_batch}, timeout=60)
 
 
 def test_rotate_file(pipeline_no_api, mock_open, sample_item, mocker):
@@ -136,9 +134,9 @@ def test_post_to_api_size_limit(pipeline_with_api, mocker, sample_item_long):
     pipeline_with_api.close_spider()
     # Ensure POST request was made
     calls = [
-        mocker.call("http://mockapi.com", json=mocker.ANY),
+        mocker.call("http://mockapi.com", json=mocker.ANY, timeout=60),
         mocker.call().raise_for_status(),
-        mocker.call("http://mockapi.com", json=mocker.ANY),
+        mocker.call("http://mockapi.com", json=mocker.ANY, timeout=60),
         mocker.call().raise_for_status(),
     ]
     mock_post.assert_has_calls(calls)
@@ -152,4 +150,4 @@ def test_post_urls_on_spider_close(pipeline_with_api, mocker):
     pipeline_with_api.close_spider()
 
     # Ensure POST request was made on spider close, cannot verify json once urls_batch is cleared
-    mock_post.assert_called_once_with("http://mockapi.com", json=mocker.ANY)
+    mock_post.assert_called_once_with("http://mockapi.com", json=mocker.ANY, timeout=60)

@@ -8,8 +8,8 @@ jobs finishes.
 
 import logging
 import os
-import subprocess
 import sys
+import subprocess
 import time
 from pathlib import Path
 
@@ -71,12 +71,7 @@ def run_scrapy_crawl(
         f"deny_paths={','.join(deny_paths)}",
     ]
 
-    subprocess.run(
-        cmd,
-        check=True,
-        cwd=Path(__file__).parent,
-        env=scrapy_env,
-    )
+    subprocess.run(cmd, check=True, cwd=Path(__file__).parent, env=scrapy_env)
     msg = (
         "Successfully completed scrapy crawl with args "
         "spider=%s, allow_query_string=%s, allowed_domains=%s, "

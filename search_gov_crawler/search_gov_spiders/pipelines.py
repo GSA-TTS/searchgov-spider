@@ -172,7 +172,7 @@ class SearchGovSpidersPipeline:
     def _send_post_request(self) -> None:
         """Send a POST request with the batched URLs."""
         try:
-            response = requests.post(self.api_url, json={"urls": self.urls_batch})
+            response = requests.post(self.api_url, json={"urls": self.urls_batch}, timeout=60)
             response.raise_for_status()
             self.crawler.spider.logger.info("Successfully posted %s URLs to %s", len(self.urls_batch), {self.api_url})
         except requests.RequestException:

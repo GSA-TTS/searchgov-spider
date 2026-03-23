@@ -212,7 +212,7 @@ def test_convert_pdf_normal(monkeypatch):
     assert result["title_en"] == "Fake Title"
     assert result["description_en"] == "Fake Title fake_basename.pdf Fake description"
     assert result["content_en"] == "Fake Title fake_basename.pdf This is the content of the PDF. "
-    assert result["_id"] == "dummy_sha"
+    assert result["id"] == "dummy_sha"
     # Check values from dummy helpers.
     assert result["basename"] == "fake_basename"
     assert result["extension"] == "pdf"
