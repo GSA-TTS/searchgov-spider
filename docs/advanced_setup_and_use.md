@@ -111,22 +111,6 @@ prevent this file from getting into an invalid state.
 
         $ python search_gov_crawler/scrapy_scheduler.py
 
-
-## Running Against All Listed Search.gov Domains
-
-This method is *not recommended*.  If you want to run a large amount of domains you should [setup a schedule](#option-3-custom-scheduler).
-
-Navigate down to `search_gov_crawler/search_gov_spiders`, then enter the command below:
-```commandline
-scrapy crawl domain_spider
-```
-to run for all urls / domains that do not require javacript handling.  To run for all sites that require
-javascript run:
-```commandline
-scrapy crawl domain_spider_js
-```
-^^^ These will take a _long_ time
-
 ## Adding new spiders
 
 1.  Navigate to anywhere within the [Scrapy project root](../search_gov_crawler) directory and run this command:

@@ -156,9 +156,10 @@ def default_allowed_domains(handle_javascript: bool, remove_paths: bool = True) 
 def validate_spider_arguments(allowed_domains: str | None, start_urls: str | None, output_target: str) -> None:
     """Common logic used to validate spider arguements and raise errors"""
 
-    if any([allowed_domains, start_urls]) and not all([allowed_domains, start_urls]):
-        msg = "Invalid arguments: allowed_domains and start_urls must be used together or not at all."
-        raise ValueError(msg)
+    for field in (allowed_domains, start_urls):
+        if len(str(field)) < 2 or "." not in str(field):
+            msg = f"Invalid argument! '{field}' must be a valid URL or domain name."
+            raise ValueError(msg)
 
     if output_target not in ALLOWED_CONTENT_TYPE_OUTPUT_MAP:
         msg = (

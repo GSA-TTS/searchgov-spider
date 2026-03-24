@@ -31,10 +31,6 @@ def dummy_get_base_extension(url):
     return ("fake_basename", "pdf")
 
 
-def dummy_separate_file_name(filename):
-    return "Fake Title from filename"
-
-
 def dummy_summarize_text(text, url, lang_code):
     # Return a tuple: (description, list of keywords)
     return ("Fake description", ["keyword1", "keyword2"])
@@ -75,7 +71,6 @@ def dummy_sanitize_text(text):
 @pytest.fixture(autouse=True)
 def patch_helpers(monkeypatch):
     monkeypatch.setattr(transform, "get_base_extension", dummy_get_base_extension)
-    monkeypatch.setattr(transform, "separate_file_name", dummy_separate_file_name)
     monkeypatch.setattr(transform, "summarize_text", dummy_summarize_text)
     monkeypatch.setattr(transform, "generate_url_sha256", dummy_generate_url_sha256)
     monkeypatch.setattr(transform, "detect_lang", dummy_detect_lang)

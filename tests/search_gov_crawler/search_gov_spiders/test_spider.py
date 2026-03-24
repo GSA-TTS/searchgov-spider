@@ -75,39 +75,45 @@ INVALID_ARGS_TEST_CASES = [
     (
         DomainSpider,
         {"allowed_domains": "test.example.com", "output_target": "csv"},
-        "Invalid arguments: allowed_domains and start_urls must be used together or not at all.",
+        TypeError,
+        "DomainSpider.__init__() missing 1 required keyword-only argument: 'start_urls'",
     ),
     (
         DomainSpiderJs,
         {"allowed_domains": "test.example.com", "output_target": "csv"},
-        "Invalid arguments: allowed_domains and start_urls must be used together or not at all.",
+        TypeError,
+        "DomainSpiderJs.__init__() missing 1 required keyword-only argument: 'start_urls'",
     ),
     (
         DomainSpider,
         {"allowed_domains": "test.example.com", "start_urls": "http://test.example.com/", "output_target": "yaml"},
+        ValueError,
         "Invalid arguments: output_target must be one of the following: ['csv', 'endpoint', 'opensearch']",
     ),
     (
         DomainSpiderJs,
         {"allowed_domains": "test.example.com", "start_urls": "http://test.example.com/", "output_target": "yaml"},
+        ValueError,
         "Invalid arguments: output_target must be one of the following: ['csv', 'endpoint', 'opensearch']",
     ),
     (
         DomainSpider,
-        {"output_target": "yaml"},
-        "Invalid arguments: output_target must be one of the following: ['csv', 'endpoint', 'opensearch']",
+        {"allowed_domains": "test.example.com", "start_urls": "123456", "output_target": "yaml"},
+        ValueError,
+        "Invalid argument! '123456' must be a valid URL or domain name.",
     ),
     (
         DomainSpiderJs,
-        {"output_target": "yaml"},
-        "Invalid arguments: output_target must be one of the following: ['csv', 'endpoint', 'opensearch']",
+        {"allowed_domains": "1", "start_urls": "http://test.example.com/", "output_target": "yaml"},
+        ValueError,
+        "Invalid argument! '1' must be a valid URL or domain name.",
     ),
 ]
 
 
-@pytest.mark.parametrize(("spider_cls", "kwargs", "msg"), INVALID_ARGS_TEST_CASES)
-def test_invalid_args(spider_cls, kwargs, msg):
-    with pytest.raises(ValueError, match=re.escape(msg)):
+@pytest.mark.parametrize(("spider_cls", "kwargs", "error", "msg"), INVALID_ARGS_TEST_CASES)
+def test_invalid_args(spider_cls, kwargs, error, msg):
+    with pytest.raises(error, match=re.escape(msg)):
         spider_cls(**kwargs)
 
 
