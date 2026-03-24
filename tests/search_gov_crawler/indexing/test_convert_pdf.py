@@ -40,10 +40,6 @@ def dummy_generate_url_sha256(url):
     return "dummy_sha"
 
 
-def dummy_detect_lang(text):
-    return "en"
-
-
 def dummy_current_utc_iso():
     return "2023-01-01T00:00:00Z"
 
@@ -73,7 +69,7 @@ def patch_helpers(monkeypatch):
     monkeypatch.setattr(transform, "get_base_extension", dummy_get_base_extension)
     monkeypatch.setattr(transform, "summarize_text", dummy_summarize_text)
     monkeypatch.setattr(transform, "generate_url_sha256", dummy_generate_url_sha256)
-    monkeypatch.setattr(transform, "detect_lang", dummy_detect_lang)
+    monkeypatch.setattr(transform, "generate_url_sha256", dummy_generate_url_sha256)
     monkeypatch.setattr(transform, "current_utc_iso", dummy_current_utc_iso)
     monkeypatch.setattr(transform, "parse_date_safely", dummy_parse_date_safely)
     monkeypatch.setattr(transform, "get_url_path", dummy_get_url_path)
