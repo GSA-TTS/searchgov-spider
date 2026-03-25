@@ -32,26 +32,23 @@ def test_get_matching_documents(mocker):
     assert documents[1]["_source"]["field"] == "value2"
 
 
-def test_create_opensearch_action():
-    document = {
-        "_id": "asdf",
-        "_source": {
-            "id": "1234",
-            "data": "value",
-        },
-        "_index": "test-source-index",
-    }
+CREATE_ACTION_TEST_CASES = [
+    (
+        {"_id": "1234", "_source": {"id": "1234", "data": "value"}, "_index": "test-source-index"},
+        {"_index": "test-target-index", "_id": "1234", "_source": {"id": "1234", "data": "value"}},
+    ),
+    (
+        {"_id": "1234", "_source": {"data": "value"}, "_index": "test-source-index"},
+        {"_index": "test-target-index", "_id": "1234", "_source": {"data": "value"}},
+    ),
+]
+
+
+@pytest.mark.parametrize(("document", "action"), CREATE_ACTION_TEST_CASES)
+def test_create_opensearch_action(document, action):
     index = "test-target-index"
 
-    action = td.create_opensearch_action(document=document, target_index=index)
-    assert action == {
-        "_index": "test-target-index",
-        "_id": "1234",
-        "_source": {
-            "id": "1234",
-            "data": "value",
-        },
-    }
+    assert action == td.create_opensearch_action(document=document, target_index=index)
 
 
 def test_transform_es_template():

@@ -38,7 +38,7 @@ def create_opensearch_action(document: dict, target_index: str) -> dict:
     Create action dict in format needed for opensearch bulk upload
     """
     source = document["_source"]
-    return {"_index": target_index, "_id": source["id"], "_source": source}
+    return {"_index": target_index, "_id": document["_id"], "_source": source}
 
 
 def transform_es_template(elasticseach_template: dict) -> dict:
