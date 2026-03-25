@@ -38,8 +38,9 @@ def fixture_sample_crawler() -> Crawler:
 
 
 @pytest.fixture(name="spiders_pipeline")
-def fixture_spiders_pipeline(sample_crawler) -> SearchGovSpidersPipeline:
+def fixture_spiders_pipeline(monkeypatch, sample_crawler) -> SearchGovSpidersPipeline:
     """Fixture for SearchGovSpidersPipeline"""
+    monkeypatch.setenv("SPIDER_URLS_API", "https://mockapi.com")
     return SearchGovSpidersPipeline.from_crawler(sample_crawler)
 
 
