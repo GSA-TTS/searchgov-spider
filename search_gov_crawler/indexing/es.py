@@ -17,7 +17,7 @@ warnings.filterwarnings("ignore", category=Warning, module="elasticsearch")
 # limit excess INFO messages from elasticsearch that are not tied to a spider
 logging.getLogger("elastic_transport").setLevel(logging.ERROR)
 
-log = logging.getLogger("search_gov_crawler.search_engines")
+log = logging.getLogger("search_gov_crawler.indexing.es")
 
 
 class SearchGovElasticsearch:
