@@ -13,7 +13,6 @@ updates:
           - "scrapy*"
           - "spidermon*"
           - "apscheduler"
-          - "elasticsearch"
           - "opensearch-py"
           - "redis"
           - "newspaper4k*"
@@ -39,5 +38,3 @@ updates:
       - dependency-name: "typing-extensions"
       - dependency-name: "redis"
         versions: [ ">=6" ]
-      - dependency-name: "elasticsearch"
-        versions: [ ">=9" ]

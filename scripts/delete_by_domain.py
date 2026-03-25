@@ -1,5 +1,5 @@
 """
-Deletes all records from the spider index in elasticsearch based on the given domain.
+Deletes all records from the spider index in opensearch based on the given domain.
 Usage:
     python scripts/delete_by_domain.py <domain_name> [--apply]
 """
@@ -12,7 +12,7 @@ from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
 
 
 def initialize_opensearch() -> tuple[OpenSearch, str]:
-    """Initialize the Elasticsearch client."""
+    """Initialize the OpenSearch client."""
 
     es = SearchGovOpensearch()
     return es.client, es.index_name
