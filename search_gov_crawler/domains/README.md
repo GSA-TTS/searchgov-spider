@@ -7,12 +7,12 @@ So as to have better control and readabilty of these configuration files, we use
 We are maintaining a few files that spider used to use to create crawl sites files in the case that we need to reference them.  They are not used to generate any crawl site data.  You can access the files in the [legacy_files](legacy_files) folder.
 
 ### Domain Configuration Files
-In the config directory, there is one file for each of the different output targets we support (csv, endpoint, and elasticsearc) as well as a common file imported by the other domain files that contains code used by all others.  These files contain all attributes necessary to have the spider run a domain.
+In the config directory, there is one file for each of the different output targets we support (csv, endpoint, and opensearch) as well as a common file imported by the other domain files that contains code used by all others.  These files contain all attributes necessary to have the spider run a domain.
 
 - domains_csv.libsonnet: contains configuration for domains with an output target of `csv`.
 - domains_endpoint.libsonnet: contains configuration for domains with an output target of `endpoint`.
-- domains_elasticsearch.libsonnet: contains configuration for domains with an output target of `elasticsearch`.
-- domain_config.libsonnet: contains source for `DomainConfig` fuction used to generate domain configurations for all output targets.
+- domains_opensearch.libsonnet: contains configuration for domains with an output target of `opensearch`.
+- domain_config.libsonnet: contains source for `DomainConfig` function used to generate domain configurations for all output targets.
 
 ### Domain Configuration
 A shared DomainConfig function is used to generate crawl site records in a specific format. When creating a new domain, choose the file that matches the output target and add a record to the file similar to the example below.  See the [DomainConfig](config/domain_config.libsonnet) function for more details.
@@ -44,18 +44,18 @@ cd search_gov_crawler/domains
 jsonnet -m . crawl-sites.jsonnet
 ```
 
-### Generate Markdown Schedules 
+### Generate Markdown Schedules
 To generate ALL human readable schedules run readschedule
-```bash 
+```bash
 cd search_gov_crawler/domains
 python readschedule.py
 ```
 
-To generate individual human readable schedules run readschedule with the json file you would like to create/update: 
+To generate individual human readable schedules run readschedule with the json file you would like to create/update:
 
 ```bash
 cd search_gov_crawler/domains
 python readschedule.py crawl-sites-development.json
 python readschedule.py crawl-sites-staging.json
-python readschedule.py crawl-sites-production.json   
+python readschedule.py crawl-sites-production.json
 ```

@@ -216,7 +216,7 @@ if __name__ == "__main__":
         "--output_target",
         type=str,
         help="Point the output of the crawls to a backend",
-        default="elasticsearch",
+        default="opensearch",
         choices=list(ALLOWED_CONTENT_TYPE_OUTPUT_MAP.keys()),
     )
     parser.add_argument(

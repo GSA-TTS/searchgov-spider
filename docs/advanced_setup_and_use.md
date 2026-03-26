@@ -23,12 +23,6 @@ SCRAPY_LOG_LEVEL="INFO"
 SPIDER_SCRAPY_MAX_WORKERS="5"
 SPIDER_CRAWL_SITES_FILE_NAME="crawl-sites-sample.json"
 
-# Needed for elasticsearch Output target
-SEARCHELASTIC_INDEX="development-i14y-documents-searchgov"
-ES_HOSTS="http://localhost:9200"
-ES_USER="username"
-ES_PASSWORD="password"
-
 # Needed for endpoint Output Target
 SPIDER_URLS_API="https://jsonplaceholder.typicode.com/posts"
 
@@ -44,24 +38,16 @@ DATA_GOV_API_KEY="NOT-A-REAL-API-KEY"
 ```
 
 ## Search Engines
-Before setting the output target to `elastcisearch` for any domains:
-1. Install required nltk modules (only required for output target of elasticsearch):
+Before setting the output target to `opensearch` for any domains:
+1. Install required nltk modules (only required for output target of opensearch):
 ```bash
 # make sure the virtual environment is activate
-python ./search_gov_crawler/search_engines/install_nltk.py
+python ./search_gov_crawler/indexing/install_nltk.py
 ```
 
-2. Ensure elasticsearch/opensearch is running by using the docker compose file at the project root:
-```bash
-# ensure current working directory is the project root
-docker compose up
-```
+2. Ensure opensearch is running by using the [search-services repo](https://github.com/GSA/search-services).  See project documentation for details.
 
-3. Create index in elasticsearch/opensearch using a template.  Documents will still load without this
-step but it is necessary to enable full searchgov functionality.
-```bash
-/bin/bash docker_create_index.sh
-```
+3. Create index in opensearch using the [searchgov application](https://github.com/GSA/search-gov).  See project documentation for details.
 
 ## Starting Spider Jobs
 
@@ -79,8 +65,8 @@ scrapy crawl domain_spider -a allowed_domains=quotes.toscrape.com -a start_urls=
 # post URLs to an endpoint
 scrapy crawl domain_spider -a allowed_domains=quotes.toscrape.com -a start_urls=https://quotes.toscrape.com -a output_target=endpoint
 
-# post documents to elasticsearch
-scrapy crawl domain_spider_js -a allowed_domains=quotes.toscrape.com -a start_urls=https://quotes.toscrape.com/js -a output_target=elasticsearch
+# post documents to opensearch
+scrapy crawl domain_spider_js -a allowed_domains=quotes.toscrape.com -a start_urls=https://quotes.toscrape.com/js -a output_target=opensearch
 ```
 
 ### Option 2: Benchmark Command Line
@@ -124,22 +110,6 @@ prevent this file from getting into an invalid state.
 1. Start scheduler
 
         $ python search_gov_crawler/scrapy_scheduler.py
-
-
-## Running Against All Listed Search.gov Domains
-
-This method is *not recommended*.  If you want to run a large amount of domains you should [setup a schedule](#option-3-custom-scheduler).
-
-Navigate down to `search_gov_crawler/search_gov_spiders`, then enter the command below:
-```commandline
-scrapy crawl domain_spider
-```
-to run for all urls / domains that do not require javacript handling.  To run for all sites that require
-javascript run:
-```commandline
-scrapy crawl domain_spider_js
-```
-^^^ These will take a _long_ time
 
 ## Adding new spiders
 
