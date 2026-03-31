@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 import pytest
+
 from search_gov_crawler.search_gov_app.crawl_config import CrawlConfigs
 
 

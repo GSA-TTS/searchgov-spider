@@ -10,9 +10,8 @@ from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 class DomainSpider(CrawlSpider):
     """
     Main spider for crawling and retrieving URLs.  Will grab single values for url and domain
-    or use multiple comma-separated inputs.  If nothing is passed, it will crawl using the default list of
-    domains and urls.  Supports path filtering of domains by extending the built-in OffsiteMiddleware. Has
-    the ability to allow URLs with query string parameters if desired.
+    or use multiple comma-separated inputs. Supports path filtering of domains by extending the
+    built-in OffsiteMiddleware. Has the ability to allow URLs with query string parameters if desired.
 
     Playwright javascript handling is disabled, use `domain_spider_js` for site that need to handle javascript.
 
@@ -30,7 +29,7 @@ class DomainSpider(CrawlSpider):
 
     - `allowed_domains="test-3.example.com"`
     - `start_urls="http://test-3.example.com/"`
-    - `output_target="elasticsearch"`
+    - `output_target="opensearch"`
 
     - `allow_query_string=true`
     - `allowed_domains="test-4.example.com"`
@@ -53,7 +52,7 @@ class DomainSpider(CrawlSpider):
              -a allowed_domains=test-4.example.com \
              -a deny_paths=/tricky/path/,/another/tricky/path/ \
              -a start_urls=http://test-4.example.com/
-             -a output_target=elasticsearch```
+             -a output_target=opensearch```
     """
 
     name: str = "domain_spider"
@@ -62,9 +61,9 @@ class DomainSpider(CrawlSpider):
         self,
         *args,
         allow_query_string: bool = False,
-        allowed_domains: str | None = None,
+        allowed_domains: str,
         deny_paths: str | None = None,
-        start_urls: str | None = None,
+        start_urls: str,
         output_target: str,
         prevent_follow: bool = False,
         **kwargs,
@@ -92,19 +91,9 @@ class DomainSpider(CrawlSpider):
         super().__init__(*args, **kwargs)
         self.allow_query_string = helpers.force_bool(allow_query_string)
         self.output_target = output_target
-        self.allowed_domains = (
-            helpers.split_allowed_domains(allowed_domains)
-            if allowed_domains
-            else helpers.default_allowed_domains(handle_javascript=False)
-        )
-        self.allowed_domain_paths = (
-            allowed_domains.split(",")
-            if allowed_domains
-            else helpers.default_allowed_domains(handle_javascript=False, remove_paths=False)
-        )
-        self.start_urls = (
-            start_urls.split(",") if start_urls else helpers.default_starting_urls(handle_javascript=False)
-        )
+        self.allowed_domains = helpers.split_allowed_domains(allowed_domains)
+        self.allowed_domain_paths = allowed_domains.split(",")
+        self.start_urls = start_urls.split(",")
 
         # store input args as private attributes for use in logging
         self._deny_paths = deny_paths

@@ -13,7 +13,6 @@ updates:
           - "scrapy*"
           - "spidermon*"
           - "apscheduler"
-          - "elasticsearch"
           - "opensearch-py"
           - "redis"
           - "newspaper4k*"
@@ -25,6 +24,7 @@ updates:
           - "pymysql"
           - "brotli"
           - "zstandard"
+          - "defusedxml"
       testing-linting-and-scripts:
         patterns:
           - "click"
@@ -38,5 +38,3 @@ updates:
       - dependency-name: "typing-extensions"
       - dependency-name: "redis"
         versions: [ ">=6" ]
-      - dependency-name: "elasticsearch"
-        versions: [ ">=9" ]
