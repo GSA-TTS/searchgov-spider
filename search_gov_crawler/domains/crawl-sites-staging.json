@@ -15238,19 +15238,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "pra.digital.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "DigitalGov PRA (digitalgov-pra)",
-      "output_target": "opensearch",
-      "schedule": "08 19 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://pra.digital.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "jamrs.defense.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -23367,19 +23354,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.challenge.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Challenge.gov",
-      "output_target": "opensearch",
-      "schedule": "59 12 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.challenge.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.financialfrontline.army.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -23873,6 +23847,47 @@
       "schedule": "50 12 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.dspo.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.army.edu",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Army University",
+      "output_target": "opensearch",
+      "schedule": "00 13 * * TUE",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.army.edu/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.osc.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "U.S. Office of Special Counsel",
+      "output_target": "opensearch",
+      "schedule": "10 13 * * TUE",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.osc.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "oig-files.ssa.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "oig-files.ssa.gov",
+      "output_target": "opensearch",
+      "schedule": "20 13 * * TUE",
+      "sitemap_urls": [
+         "https://oig-files.ssa.gov/sitemap.xml"
+      ],
+      "starting_urls": "https://oig-files.ssa.gov/"
    },
    {
       "allow_query_string": false,

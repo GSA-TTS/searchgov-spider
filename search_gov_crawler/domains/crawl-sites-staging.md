@@ -1,10 +1,10 @@
 # Staging Schedule
  * [Sunday (264)](#sunday-264)
  * [Monday (259)](#monday-259)
- * [Tuesday (270)](#tuesday-270)
+ * [Tuesday (273)](#tuesday-273)
  * [Wednesday (265)](#wednesday-265)
- * [Thursday (260)](#thursday-260)
- * [Friday (262)](#friday-262)
+ * [Thursday (259)](#thursday-259)
+ * [Friday (261)](#friday-261)
  * [Saturday (262)](#saturday-262)
 
 
@@ -541,7 +541,7 @@
 |EBCCP Cancer Control (ebccp.cancercontrol.cancer.gov)|23:29|ebccp.cancercontrol.cancer.gov|N|8||
 
 
-## Tuesday (270)
+## Tuesday (273)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Minot Air Force Base (minot)|00:00|www.minot.af.mil|N|8||
@@ -695,8 +695,11 @@
 |Keesler Air Force Base (keesler)|12:55|www.keesler.af.mil|N|8||
 |tricare_cherrypoint|13:00|cherrypoint.tricare.mil|N|8||
 |Drug Enforcement Administration|13:00|www.dea.gov|N|8||
+|Army University|13:00|www.army.edu|N|8||
+|U.S. Office of Special Counsel|13:10|www.osc.gov|N|8||
 |cfs.ncep.noaa.gov (ncep.noaa.gov)|13:16|cfs.ncep.noaa.gov|N|8||
 |New depth 8 (la.usembassy.gov/lo)|13:16|la.usembassy.gov/lo|N|8||
+|oig-files.ssa.gov|13:20|oig-files.ssa.gov|N|8||
 |VA Developer Portal (developer.va.gov)|13:25|developer.va.gov|N|8||
 |Whitehouse (usagov-replacement)|13:30|www.whitehouse.gov|N|3||
 |US Embassy Sarajevo (dos_emb_eur_sarajevo)|13:35|ba.usembassy.gov|N|3||
@@ -1086,7 +1089,7 @@
 |Army 2nd Signal Brigade (army_2sigbde)|23:52|www.2sigbde.army.mil|N|3||
 
 
-## Thursday (260)
+## Thursday (259)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |niccs.cisa.gov (niccs.cisa)|00:00|niccs.cisa.gov|N|8||
@@ -1312,7 +1315,6 @@
 |NOAA Water (water)|19:02|water.noaa.gov|N|3||
 |Weather Prediction Center (wpc)|19:03|www.wpc.ncep.noaa.gov|N|3||
 |NOAA Ocean Service (oceanservice)|19:03|oceanservice.noaa.gov|N|3||
-|DigitalGov PRA (digitalgov-pra)|19:08|pra.digital.gov|N|8||
 |913th Airlift Group (airforce_913ag)|19:23|www.913ag.afrc.af.mil|N|8||
 |www.dote.osd.mil (usagov-replacement)|19:32|www.dote.osd.mil|N|3||
 |FEMA Training (usagov-replacement)|19:42|training.fema.gov|N|8||
@@ -1351,7 +1353,7 @@
 |WRAIR (wrair)|23:53|wrair.health.mil|N|3||
 
 
-## Friday (262)
+## Friday (261)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |944th Fighter Wing (944fw)|00:00|www.944fw.afrc.af.mil|N|8||
@@ -1476,7 +1478,6 @@
 |PMF.gov|12:30|www.pmf.gov|N|8||
 |OPM.gov|12:51|www.opm.gov|N|8||
 |514th Air Mobility Wing (514amw)|12:55|www.514amw.afrc.af.mil|N|8||
-|Challenge.gov|12:59|www.challenge.gov|N|8||
 |tricare_peterson|13:00|peterson.tricare.mil|N|8||
 |152nd Airlift Wing, NV ANG (afpw_152aw)|13:09|www.152aw.ang.af.mil|N|8||
 |US Embassy Malaysia|13:11|my.usembassy.gov|N|8||
