@@ -23857,7 +23857,7 @@
       "handle_javascript": false,
       "name": "Army University",
       "output_target": "opensearch",
-      "schedule": "00 13 * * TUE",
+      "schedule": "00 19 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.army.edu/"
    },
@@ -23870,7 +23870,7 @@
       "handle_javascript": false,
       "name": "U.S. Office of Special Counsel",
       "output_target": "opensearch",
-      "schedule": "10 13 * * TUE",
+      "schedule": "10 19 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.osc.gov/"
    },
@@ -23883,7 +23883,7 @@
       "handle_javascript": false,
       "name": "oig-files.ssa.gov",
       "output_target": "opensearch",
-      "schedule": "20 13 * * TUE",
+      "schedule": "20 19 * * TUE",
       "sitemap_urls": [
          "https://oig-files.ssa.gov/sitemap.xml"
       ],

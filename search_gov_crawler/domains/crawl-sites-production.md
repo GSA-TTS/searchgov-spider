@@ -695,11 +695,8 @@
 |Keesler Air Force Base (keesler)|12:55|www.keesler.af.mil|N|8||
 |tricare_cherrypoint|13:00|cherrypoint.tricare.mil|N|8||
 |Drug Enforcement Administration|13:00|www.dea.gov|N|8||
-|Army University|13:00|www.army.edu|N|8||
-|U.S. Office of Special Counsel|13:10|www.osc.gov|N|8||
 |cfs.ncep.noaa.gov (ncep.noaa.gov)|13:16|cfs.ncep.noaa.gov|N|8||
 |New depth 8 (la.usembassy.gov/lo)|13:16|la.usembassy.gov/lo|N|8||
-|oig-files.ssa.gov|13:20|oig-files.ssa.gov|N|8||
 |VA Developer Portal (developer.va.gov)|13:25|developer.va.gov|N|8||
 |Whitehouse (usagov-replacement)|13:30|www.whitehouse.gov|N|3||
 |US Embassy Sarajevo (dos_emb_eur_sarajevo)|13:35|ba.usembassy.gov|N|3||
@@ -773,8 +770,11 @@
 |US Embassy Cameroon|18:41|cm.usembassy.gov|N|8||
 |Joint Base Anacostia-Bolling (joint_jbab)|18:45|www.jbab.jb.mil|N|3||
 |Air Force Trademark and Licensing Program (afpw_trademark)|18:55|www.trademark.af.mil|N|8||
+|Army University|19:00|www.army.edu|N|8||
 |NG Massachusetts (ng_massachusetts)|19:02|campedwards.ng.mil|N|3||
+|U.S. Office of Special Counsel|19:10|www.osc.gov|N|8||
 |New depth 8 (ma.usembassy.gov/ar)|19:12|ma.usembassy.gov/ar|N|8||
+|oig-files.ssa.gov|19:20|oig-files.ssa.gov|N|8||
 |Homestead Air Reserve Base, Fla. (homestead)|19:23|www.homestead.afrc.af.mil|N|8||
 |www.commerce.gov (usagov-replacement)|19:30|www.commerce.gov|N|8||
 |Travis Air Force Base (afpw_travis)|19:37|www.travis.af.mil|N|8||
