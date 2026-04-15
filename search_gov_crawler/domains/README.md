@@ -27,11 +27,23 @@ A shared DomainConfig function is used to generate crawl site records in a speci
   }
 ```
 
+### Apply Changes to Schedule
+The simpliest way to apply any changes made is to use our Makefile.  This runs a format check, generates new
+json files, and updates the markdown schedule.  After which, you can `add` and `commit` your changes.
+```bash
+make schedule
+```
+To run any of these steps individually, see instuctions below.
+
 ### Check Formatting
 Use the `jsonnetfmt` command to check formatting prior to commiting and changes:
 ```bash
 cd search_gov_crawler/domains
 jsonnetfmt -i *.jsonnet config/*.libsonnet
+```
+or use our Makefile
+```bash
+make schedule-format
 ```
 
 ### Jsonnet File
@@ -43,12 +55,20 @@ To create or recreate the json files after changes, use the `jsonnet` command:
 cd search_gov_crawler/domains
 jsonnet -m . crawl-sites.jsonnet
 ```
+or use our Makefile
+```bash
+make schedule-generate
+```
 
 ### Generate Markdown Schedules
 To generate ALL human readable schedules run readschedule
 ```bash
 cd search_gov_crawler/domains
 python readschedule.py
+```
+or use our Makefile
+```bash
+make schedule-markdown
 ```
 
 To generate individual human readable schedules run readschedule with the json file you would like to create/update:

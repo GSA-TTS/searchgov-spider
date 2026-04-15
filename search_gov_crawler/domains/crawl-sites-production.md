@@ -3,7 +3,7 @@
  * [Monday (259)](#monday-259)
  * [Tuesday (273)](#tuesday-273)
  * [Wednesday (265)](#wednesday-265)
- * [Thursday (259)](#thursday-259)
+ * [Thursday (261)](#thursday-261)
  * [Friday (261)](#friday-261)
  * [Saturday (262)](#saturday-262)
 
@@ -1089,7 +1089,7 @@
 |Army 2nd Signal Brigade (army_2sigbde)|23:52|www.2sigbde.army.mil|N|3||
 
 
-## Thursday (259)
+## Thursday (261)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |niccs.cisa.gov (niccs.cisa)|00:00|niccs.cisa.gov|N|8||
@@ -1141,6 +1141,7 @@
 |NIH MD-PhD (md-phd)|05:00|mdphd.gpp.nih.gov|N|3||
 |Air Force Be Ready (afpw_afbr)|05:05|www.beready.af.mil|N|8||
 |jp.usembassy.gov (usagov-replacement)|05:22|jp.usembassy.gov|N|3||
+|Air Force Safety Center|05:23|www.safety.af.mil/|N|8||
 |americanenglish.state.gov (usagov-replacement)|05:32|americanenglish.state.gov|N|3||
 |Aviano Air Base (aviano)|05:32|www.aviano.af.mil|N|8||
 |Department of Health and Human Services|05:33|www.hhs.gov|N|8||
@@ -1209,6 +1210,7 @@
 |172nd Airlift Wing, Mississippi Air National Guard (afpw_172aw)|09:16|www.172aw.ang.af.mil|N|8||
 |www.ready.gov (usagov-replacement)|09:22|www.ready.gov|N|8||
 |Lab Partnering Service|09:23|www.labpartnering.org|N|8||
+|National Air and Space Intelligence Center|09:23|www.nasic.af.mil/|N|8||
 |IT Vendor Management Office|09:30|itvmo.gsa.gov|N|8||
 |US Embassy Samoa|09:30|ws.usembassy.gov|N|8||
 |Army Combat Capabilities Development (army_comcapdev)|09:39|www.avmc.army.mil|N|3||

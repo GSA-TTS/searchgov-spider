@@ -18188,7 +18188,7 @@
       "starting_urls": "https://ceal.nih.gov/"
    },
    {
-      "allow_query_string": false,
+      "allow_query_string": true,
       "allowed_domains": "centers.hpc.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -24009,5 +24009,31 @@
       "schedule": "00 16 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.councils.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.nasic.af.mil/",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "National Air and Space Intelligence Center",
+      "output_target": "opensearch",
+      "schedule": "23 09 * * THU",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.nasic.af.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.safety.af.mil/",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Air Force Safety Center",
+      "output_target": "opensearch",
+      "schedule": "23 05 * * THU",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.safety.af.mil/"
    }
 ]
