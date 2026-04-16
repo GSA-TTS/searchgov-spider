@@ -2,6 +2,7 @@ apscheduler==3.11.0
 brotli==1.2.0 # adds br compression support to scrapy
 cchardet==2.2.0a2 # C version of chardet
 click==8.3.1
+coverage==7.13.5
 defusedxml==0.7.1
 freezegun==1.5.5
 langdetect==1.0.9
