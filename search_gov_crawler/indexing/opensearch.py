@@ -47,7 +47,6 @@ class SearchGovOpensearch:
         self._batch_size = batch_size
         self._current_batch: list[dict[str, Any]] = []
         self._env_opensearch_host = opensearch_host or os.getenv("OPENSEARCH_SEARCH_HOST", "http://localhost:9200")
-        self._env_opensearch_host = opensearch_host or os.getenv("OPENSEARCH_SEARCH_HOST", "http://localhost:9200")
         self._env_opensearch_index = opensearch_index or os.getenv(
             "OPENSEARCH_SEARCH_INDEX",
             "development-i14y-documents-searchgov",
