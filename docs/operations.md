@@ -52,7 +52,7 @@ nohup python search_gov_crawler/benchmark.py -d usa.gov -u https://www.usa.gov/ 
 ### Resolution
 
 #### Restart the Scheduler
-In some cases we may need to restart the scheudler using the normal process.  In that case it is best to use the same scripts as the deployment process.
+In some cases we may need to restart the scheduler using the normal process.  In that case it is best to use the same scripts as the deployment process.
 * Move to the correct deployment directory (the PYTHONPATH env var can be used for this)
 * Source the run script
 ```bash

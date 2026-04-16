@@ -8,6 +8,7 @@ jobs finishes.
 
 import logging
 import os
+import sys
 import subprocess
 import time
 from pathlib import Path
@@ -50,24 +51,27 @@ def run_scrapy_crawl(
     scrapy_env = os.environ.copy()
     scrapy_env["PYTHONPATH"] = str(Path(__file__).parent.parent)
 
-    cmd = (
-        f"scrapy crawl {spider}"
-        f" -a allow_query_string={allow_query_string}"
-        f" -a allowed_domains={allowed_domains}"
-        f" -a start_urls={start_urls}"
-        f" -a output_target={output_target}"
-        f" -a depth_limit={depth_limit}"
-        f" -a deny_paths={','.join(deny_paths)}"
-    )
+    cmd = [
+        sys.executable,
+        "-m",
+        "scrapy",
+        "crawl",
+        spider,
+        "-a",
+        f"allow_query_string={allow_query_string}",
+        "-a",
+        f"allowed_domains={allowed_domains}",
+        "-a",
+        f"start_urls={start_urls}",
+        "-a",
+        f"output_target={output_target}",
+        "-a",
+        f"depth_limit={depth_limit}",
+        "-a",
+        f"deny_paths={','.join(deny_paths)}",
+    ]
 
-    subprocess.run(
-        cmd,
-        check=True,
-        cwd=Path(__file__).parent,
-        env=scrapy_env,
-        executable="/bin/bash",
-        shell=True,
-    )
+    subprocess.run(cmd, check=True, cwd=Path(__file__).parent, env=scrapy_env)
     msg = (
         "Successfully completed scrapy crawl with args "
         "spider=%s, allow_query_string=%s, allowed_domains=%s, "
@@ -99,7 +103,7 @@ def transform_crawl_configs(crawl_configs: CrawlConfigs) -> list[dict]:
                     crawl_config.starting_urls,
                     crawl_config.output_target,
                     crawl_config.depth_limit,
-                    crawl_config.deny_paths if crawl_config.deny_paths else [],
+                    crawl_config.deny_paths or [],
                 ],
             },
         )

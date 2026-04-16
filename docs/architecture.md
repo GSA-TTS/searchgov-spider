@@ -71,7 +71,7 @@ We support three output targets for our scrapy jobs.  These are specified in a `
 
 2. `endpoint` - This is used to send links to a indexing service, such as searchgov.  All URLs will be posted to the endpoint contained in the `SPIDER_URLS_API` environment variables.
 
-3. `elasticsearch` - This option is used to post content to an Elasticsearch host and index based on environment variable configurations.  Here, it is not just the links being captured but also the content.
+3. `opensearch` - This option is used to post content to an Opensearch host and index based on environment variable configurations.  Here, it is not just the links being captured but also the content.
 
 ## DAP
 In order to better rank domains in a multi-domain search such as a full government search, we ingest daily visits data from the [Digital Analytics Program](https://digital.gov/guides/dap/) (DAP).  A key is created in Redis for each domain reported by the DAP API. This visit data is stored for a time in redis and later aggregated and used to populate a field on documents we index during spider crawls.

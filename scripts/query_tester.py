@@ -1,21 +1,20 @@
 import warnings
 
 import click
-from elastic_transport import ObjectApiResponse, SecurityWarning
-from elasticsearch import Elasticsearch, ElasticsearchWarning
+from opensearchpy import OpenSearch
 from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 from urllib3.exceptions import InsecureRequestWarning
 
-from search_gov_crawler.search_engines.es_batch_upload import SearchGovElasticsearch
+from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
 
 
-def initialize_elasticsearch() -> tuple[Elasticsearch, str]:
-    """Initialize the Elasticsearch client."""
+def initialize_opensearch() -> tuple[OpenSearch, str]:
+    """Initialize the Opensearch client."""
 
-    es = SearchGovElasticsearch()
-    return es.client, es.index_name
+    opensearch = SearchGovOpensearch()
+    return opensearch.client, opensearch.index_name
 
 
 def get_common_query_args(search_terms: str) -> dict:
@@ -234,12 +233,12 @@ def get_common_query_args(search_terms: str) -> dict:
     }
 
 
-def print_results(response: ObjectApiResponse, search_terms: str, index_name: str, page: int) -> None:
+def print_results(response: dict, search_terms: str, index_name: str, page: int) -> None:
     """Common function to print results from queries"""
 
-    total = response.body["hits"]["total"]["value"]
-    max_score = response.body["hits"]["max_score"]
-    hits = response.body["hits"]["hits"]
+    total = response["body"]["hits"]["total"]["value"]
+    max_score = response["body"]["hits"]["max_score"]
+    hits = response["body"]["hits"]["hits"]
 
     title = f"Search Results: {search_terms}"
     subtitle = f"Index: {index_name:<20} Total Hits: {total:<5} Max Score: {max_score:<15} Page: {page}"
@@ -306,14 +305,14 @@ def cli(): ...
 def full_govt_search(search_term: str, size: int, page: int) -> None:
     """Mimic search.gov results page with full governtment search.  Used for testing query relevance"""
 
-    es_client, index_name = initialize_elasticsearch()
+    client, index_name = initialize_opensearch()
 
     search_terms = " ".join(search_term)
 
     page_from = (page - 1) * size
     custom_query_args = {"index": index_name, "from": page_from, "size": size}
     query_args = custom_query_args | get_common_query_args(search_terms)
-    response = es_client.search(**query_args)
+    response = client.search(**query_args)
 
     print_results(response=response, search_terms=search_terms, index_name=index_name, page=page)
 
@@ -326,7 +325,7 @@ def full_govt_search(search_term: str, size: int, page: int) -> None:
 def affiliate_search(search_term: str, domains: str, size: int, page: int) -> None:
     """Mimic search.gov results page with affiliate search.  Used for testing query relevance"""
 
-    es_client, index_name = initialize_elasticsearch()
+    client, index_name = initialize_opensearch()
 
     search_terms = " ".join(search_term)
 
@@ -336,13 +335,11 @@ def affiliate_search(search_term: str, domains: str, size: int, page: int) -> No
     affiliate_query_args = add_domains_to_query(common_query_args=common_query_args, domains=domains)
 
     query_args = custom_query_args | affiliate_query_args
-    response = es_client.search(**query_args)
+    response = client.search(**query_args)
 
     print_results(response=response, search_terms=search_terms, index_name=index_name, page=page)
 
 
 if __name__ == "__main__":
-    warnings.filterwarnings("ignore", category=ElasticsearchWarning)
     warnings.filterwarnings("ignore", category=InsecureRequestWarning)
-    warnings.filterwarnings("ignore", category=SecurityWarning)
     cli()

@@ -1,27 +1,27 @@
 """
-Deletes all records from the spider index in elasticsearch based on the given domain.
+Deletes all records from the spider index in opensearch based on the given domain.
 Usage:
     python scripts/delete_by_domain.py <domain_name> [--apply]
 """
 
 import argparse
 
-from elasticsearch import Elasticsearch
+from opensearchpy import OpenSearch
 
-from search_gov_crawler.search_engines.es_batch_upload import SearchGovElasticsearch
+from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
 
 
-def initialize_elasticsearch() -> tuple[Elasticsearch, str]:
-    """Initialize the Elasticsearch client."""
+def initialize_opensearch() -> tuple[OpenSearch, str]:
+    """Initialize the OpenSearch client."""
 
-    es = SearchGovElasticsearch()
+    es = SearchGovOpensearch()
     return es.client, es.index_name
 
 
 def delete_by_domain(domain_name: str, apply: bool) -> None:
     """Delete documents from Elasticsearch by domain."""
 
-    es_client, index_name = initialize_elasticsearch()
+    es_client, index_name = initialize_opensearch()
     query = {"query": {"term": {"domain_name": {"value": domain_name}}}}
 
     response = es_client.count(index=index_name, body=query)
