@@ -36,9 +36,7 @@ def load_crawl_config(input_file: str | None, *, truncate_table: bool = False) -
         raise TypeError(msg)
 
     for record in records:
-        record["output_target"] = (
-            "searchengine" if record["output_target"] == "elasticsearch" else record["output_target"]
-        )
+        record["output_target"] = "searchengine" if record["output_target"] == "opensearch" else record["output_target"]
         record["sitemap_urls"] = json.dumps(record["sitemap_urls"]) if record["sitemap_urls"] else "[]"
         record["deny_paths"] = json.dumps(record["deny_paths"]) if record["deny_paths"] else "[]"
         record["starting_urls"] = json.dumps(record["starting_urls"].split(",")) if record["starting_urls"] else "[]"

@@ -21,8 +21,9 @@ We currently run python 3.12.  The spider is based on the open source [scrapy](h
 ├── search_gov_crawler              # scrapy root
 │   ├── dap                         # code for handling data from DAP
 │   ├── domains                     # json files with domains to scrape
-│   ├── elasticsearch               # code related to indexing content in elasticsearch
+│   ├── indexing                    # code related to indexing content in opensearch
 │   ├── scheduling                  # code for job scheduling and storing schedules in redis
+|   ├── search_gov_app              # code for communicating with the searchgov app
 │   ├── search_gov_spider           # scrapy project dir
 │   │   ├── extensions              # custom scrapy extensions
 │   │   ├── helpers                 # common functions
@@ -53,7 +54,7 @@ docker compose --profile spider up
 
 The default behavior is that the `spider-scheduler` and `spider-sitemap` containers start running based on our development schedule.  It may be that no jobs are scheduled for a while so nothing will run.  Likewise, the sitemap process may not detect changes and index any documents.
 
-If a crawl does start watch the logs for information about records loaded to Elasticsearch and Opensearch.  Then, visit [Kibana](http://localhost:5601) and/or [Opensearch Dashboards](http://localhost:5602) to view indexed documents.
+If a crawl does start watch the logs for information about records loaded to Opensearch.  Then, visit [Opensearch Dashboards](http://localhost:5602) to view indexed documents.
 
 3. Run an on-demand crawl
 To direct documents from a specific domain, use the helper script to trigger an on-demand crawl.  Here the `spider crawl` command can be used as a shortcut to trigger a non-js crawl starting at `https://www.gsa.gov` and limited to pages in the `www.gsa.gov` domain.
