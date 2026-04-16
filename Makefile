@@ -5,7 +5,7 @@ PYTHON = $(abspath $(VENV)/bin/python3)
 
 .PHONY: project-requirements
 project-requirements: $(VENV)
-	$(PYTHON) -m pip install -r requirements.txt
+	$(PYTHON) -m pip install --upgrade pip && $(PYTHON) -m pip install -r requirements.txt
 
 # tasks related to domain config and markdown schedule
 .PHONY: schedule-format
@@ -17,7 +17,7 @@ schedule-generate:
 	cd search_gov_crawler/domains && jsonnet -m . crawl-sites.jsonnet
 
 .PHONY: schedule-markdown schedule
-schedule-markdown:project-requirements
+schedule-markdown: project-requirements
 	cd search_gov_crawler/domains && $(PYTHON) readschedule.py
 
 .PHONY: schedule
@@ -25,9 +25,20 @@ schedule: schedule-format schedule-generate schedule-markdown
 
 # tasks related to testing and project maintenence
 .PHONY: tests
-tests:project-requirements
+tests: project-requirements
 	$(PYTHON) -m pytest tests
 
 .PHONY: coverage
-coverage:project-requirements
+coverage: project-requirements
 	$(PYTHON) -m coverage run -m pytest tests && $(PYTHON) -m coverage html
+
+.PHONY: ruff-format
+ruff-format: project-requirements
+	$(PYTHON) -m ruff format --check --config ./ruff.toml --diff .
+
+.PHONY: ruff-check
+ruff-check: project-requirements
+	$(PYTHON) -m ruff check --config ./ruff.toml .
+
+.PHONY: ruff-all
+ruff-all: ruff-format ruff-check
