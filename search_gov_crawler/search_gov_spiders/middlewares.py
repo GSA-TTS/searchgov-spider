@@ -67,7 +67,7 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
     # pylint: disable=unused-argument
     # disable unused arguments in this scrapy-generated class template
 
-    def process_spider_input(self, response: Response) -> None:
+    def process_spider_input(self, response: Response) -> None:  # noqa: ARG002
         """
         Called for each response that goes through the spider middleware and into the spider.
 
@@ -75,7 +75,7 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
         """
         return
 
-    def process_spider_output(self, response: Response, result: Iterator[Any]):
+    def process_spider_output(self, response: Response, result: Iterator[Any]):  # noqa: ARG002
         """Called with the results returned from the Spider, after it has processed the response.
 
         Must return an iterable of Request, or item objects.
@@ -96,7 +96,7 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
                 exception,
             )
 
-    def get_processed_request(self, request: Request, response: Response | None) -> Request | None:
+    def get_processed_request(self, request: Request, response: Response | None) -> Request | None:  # noqa: ARG002
         """Return a processed request from the spider output.
 
         This method is called with a single request from the start seeds or the
@@ -169,7 +169,7 @@ class SearchGovSpidersDownloaderMiddleware:
 
     # pylint: disable=unused-argument
     # disable unused arguments in this scrapy-generated class template
-    def process_request(self, request: Request) -> None:
+    def process_request(self, request: Request) -> None:  # noqa: ARG002
         """
         Called for each request that goes through the downloader middleware.  Ignore
         requests that contain query params except if the spider specifically allows it.
@@ -183,7 +183,7 @@ class SearchGovSpidersDownloaderMiddleware:
         """
         return
 
-    def process_response(self, request: Request, response: Response) -> Response:
+    def process_response(self, request: Request, response: Response) -> Response:  # noqa: ARG002
         """
         Called with the response returned from the downloader.
 
@@ -194,7 +194,7 @@ class SearchGovSpidersDownloaderMiddleware:
         """
         return response
 
-    def process_exception(self, request: Request, exception):
+    def process_exception(self, request: Request, exception):  # noqa: ARG002
         """
         Called when a download handler or a process_request() (from other downloader middleware)
         raises an exception.
@@ -218,7 +218,7 @@ class SearchGovSpidersOffsiteMiddleware(OffsiteMiddleware):
         self.host_regex = self.get_host_regex(spider)
         self.host_path_regex = self.get_host_path_regex(spider)
 
-    def should_follow(self, request: Request, spider: Spider) -> bool:
+    def should_follow(self, request: Request, spider: Spider) -> bool:  # noqa: ARG002
         """Overridden to add boolean condition on matching path regex"""
         # hostname can be None for wrong urls (like javascript links)
         cahched_request = urlparse_cached(request)
@@ -256,13 +256,13 @@ class SearchGovSpidersOffsiteMiddleware(OffsiteMiddleware):
                     "allowed_domain_paths accepts only domains, not URLs. "
                     f"Ignoring URL entry {domain} in allowed_domain_paths."
                 )
-                warnings.warn(message)
+                warnings.warn(message, stacklevel=2)
             elif port_pattern.search(domain):
                 message = (
                     "allowed_domain_paths accepts only domains without ports. "
                     f"Ignoring entry {domain} in allowed_domain_paths."
                 )
-                warnings.warn(message)
+                warnings.warn(message, stacklevel=2)
             else:
                 domains.append(re.escape(domain))
         regex = rf"{'|'.join(domains)}"

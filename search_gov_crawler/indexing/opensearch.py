@@ -2,11 +2,9 @@ import logging
 import os
 import warnings
 from typing import Any
-from urllib.parse import urlparse
 
 from opensearchpy import OpenSearch, helpers
 
-from search_gov_crawler.indexing.helpers import generate_url_sha256
 from search_gov_crawler.search_gov_spiders.spiders import SearchGovDomainSpider
 
 # Suppress warnings from urllib3 and OpenSearch client. Already doing this in es_batch_upload,
@@ -48,7 +46,8 @@ class SearchGovOpensearch:
         """
         self._batch_size = batch_size
         self._current_batch: list[dict[str, Any]] = []
-        self._env_opensearch_host = opensearch_host or os.getenv("OPENSEARCH_SEARCH_HOST", f"http://localhost:9200")
+        self._env_opensearch_host = opensearch_host or os.getenv("OPENSEARCH_SEARCH_HOST", "http://localhost:9200")
+        self._env_opensearch_host = opensearch_host or os.getenv("OPENSEARCH_SEARCH_HOST", "http://localhost:9200")
         self._env_opensearch_index = opensearch_index or os.getenv(
             "OPENSEARCH_SEARCH_INDEX",
             "development-i14y-documents-searchgov",
@@ -80,7 +79,7 @@ class SearchGovOpensearch:
                 max_retries=self._max_retries,
                 retry_on_timeout=True,
             )
-        return self._opensearch_client  # type: ignore
+        return self._opensearch_client
 
     def add_to_batch(
         self,
