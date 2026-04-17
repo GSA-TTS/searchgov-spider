@@ -15,22 +15,24 @@ def expand_day_name(day: str) -> str:
 
     match day.lower().strip():
         case "sun":
-            return "Sunday"
+            day_name = "Sunday"
         case "mon":
-            return "Monday"
+            day_name = "Monday"
         case "tue":
-            return "Tuesday"
+            day_name = "Tuesday"
         case "wed":
-            return "Wednesday"
+            day_name = "Wednesday"
         case "thu":
-            return "Thursday"
+            day_name = "Thursday"
         case "fri":
-            return "Friday"
+            day_name = "Friday"
         case "sat":
-            return "Saturday"
+            day_name = "Saturday"
         case _:
             msg = "Invalid day abbreviation: {day}"
             raise ValueError(msg)
+
+    return day_name
 
 
 def transform_schedule(raw_schedule: dict) -> defaultdict:

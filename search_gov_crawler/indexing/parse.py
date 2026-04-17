@@ -1,5 +1,7 @@
 from scrapy import Selector
-import search_gov_crawler.search_gov_spiders.helpers.content as content
+
+from search_gov_crawler.search_gov_spiders.helpers import content
+
 
 def extract_article_content(html_selector: Selector) -> str:
     """
@@ -15,7 +17,9 @@ def extract_article_content(html_selector: Selector) -> str:
     if not body:
         return ""
 
-    content_text = body.xpath(".//text()[not(ancestor::a) and not(ancestor::button) and not(ancestor::style) and not(ancestor::script)]").getall()
+    content_text = body.xpath(
+        ".//text()[not(ancestor::a) and not(ancestor::button) and not(ancestor::style) and not(ancestor::script)]",
+    ).getall()
 
     content_text = " ".join(text.strip() for text in content_text if text.strip())
     return content.replace_whitespace(content_text)
@@ -32,19 +36,38 @@ def get_meta_values(html_selector: Selector, meta_names: list) -> dict:
     meta_values = {}
 
     for name in meta_names:
-        value = html_selector.xpath(f"//meta[@content and (@name=\"{name}\" or @property=\"{name}\")]/@content").get()
-        meta_values[name] = value if value else None
+        value = html_selector.xpath(f'//meta[@content and (@name="{name}" or @property="{name}")]/@content').get()
+        meta_values[name] = value or None
 
     return meta_values
 
+
 def convert_html_scrapy(html_content: str) -> dict:
+    """
+    Converts HTML content into a dictionary of extracted values for indexing in opensearch.
+    """
+
     return_obj = {}
     html_selector = Selector(text=html_content)
 
-    meta_tags = get_meta_values(html_selector, [
-        "keywords", "description", "summary", "date", "revised", "audience", "pagename", "language", "url",
-        "og:title", "og:image", "og:site_name", "og:description"
-    ])
+    meta_tags = get_meta_values(
+        html_selector,
+        [
+            "keywords",
+            "description",
+            "summary",
+            "date",
+            "revised",
+            "audience",
+            "pagename",
+            "language",
+            "url",
+            "og:title",
+            "og:image",
+            "og:site_name",
+            "og:description",
+        ],
+    )
 
     return_obj["audience"] = meta_tags["audience"]
     return_obj["title"] = (
@@ -70,8 +93,8 @@ def convert_html_scrapy(html_content: str) -> dict:
     return_obj["changed"] = meta_tags["revised"]
     return_obj["thumbnail_url"] = meta_tags["og:image"]
 
-    for key in return_obj:
-        return_obj[key] = content.replace_whitespace(return_obj[key])
+    for k, v in return_obj.items():
+        return_obj[k] = content.replace_whitespace(v)
 
     return_obj["content"] = extract_article_content(html_selector)
 

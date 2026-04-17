@@ -6,23 +6,25 @@ PORT = 8000
 
 top_links = []
 
+
 class SitemapHandler(http.server.SimpleHTTPRequestHandler):
+    """A simple HTTP handler that serves a sitemap.xml with dynamically generated links."""
+
     def do_GET(self):
-        global top_links
+        """Handle GET requests to serve a sitemap.xml with dynamically generated links."""
+        global top_links  # noqa: PLW0603
         if self.path == "/sitemap.xml":
             if not top_links:
                 top_links = [generate_random_link() for _ in range(5)]
             else:
                 top_links.append(generate_random_link())
 
-            xml_lines = ["<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
-                         "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">"]
+            xml_lines = [
+                '<?xml version="1.0" encoding="UTF-8"?>',
+                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+            ]
             for link in top_links:
-                xml_lines.extend([
-                    "  <url>",
-                    f"    <loc>{link}</loc>",
-                    "  </url>"
-                ])
+                xml_lines.extend(["  <url>", f"    <loc>{link}</loc>", "  </url>"])
             xml_lines.append("</urlset>")
             xml_data = "\n".join(xml_lines).encode("utf-8")
 
@@ -35,8 +37,11 @@ class SitemapHandler(http.server.SimpleHTTPRequestHandler):
             super().do_GET()
 
 
-def generate_random_link():
+def generate_random_link() -> str:
+    """Generate a random URL for testing purposes."""
+
     return f"https://example.com/{uuid.uuid4()}"
+
 
 if __name__ == "__main__":
     with socketserver.TCPServer(("", PORT), SitemapHandler) as httpd:

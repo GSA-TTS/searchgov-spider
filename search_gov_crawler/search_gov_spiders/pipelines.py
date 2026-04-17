@@ -146,7 +146,7 @@ class SearchGovSpidersPipeline:
             output_dir.mkdir(parents=True, exist_ok=True)
             base_filename = f"all-links-p{self.APP_PID}"
             self.file_path = output_dir / f"{base_filename}.csv"
-            self.current_file = open(self.file_path, "a", encoding="utf-8")
+            self.current_file = open(self.file_path, "a", encoding="utf-8")  # noqa: PTH123, SIM115
 
         self.current_file.write(f"{url}\n")
         if self._file_size() >= self.MAX_URL_BATCH_SIZE_BYTES:
@@ -165,8 +165,8 @@ class SearchGovSpidersPipeline:
         """Close the current file, rename it, and open a new one."""
         self.current_file.close()
         rotated_file = self.file_path.with_name(f"{self.file_path.stem}-{self.file_number}.csv")
-        os.rename(self.file_path, rotated_file)
-        self.current_file = open(self.file_path, "a", encoding="utf-8")
+        os.rename(self.file_path, rotated_file)  # noqa: PTH104
+        self.current_file = open(self.file_path, "a", encoding="utf-8")  # noqa: PTH123, SIM115
         self.file_number += 1
 
     def _send_post_request(self) -> None:
@@ -187,7 +187,7 @@ class SearchGovSpidersPipeline:
         try:
             if self._opensearch:
                 self._get_opensearch_client().batch_upload(self.crawler.spider)
-        except Exception:  # pylint: disable=broad-except
+        except Exception:
             msg = "Failed to upload Opensearch batch"
             self.crawler.spider.logger.exception(msg)
 

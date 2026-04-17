@@ -28,10 +28,11 @@ updates:
       testing-linting-and-scripts:
         patterns:
           - "click"
+          - "coverage"
           - "freezegun"
-          - "pylint"
           - "pytest*"
           - "rich"
+          - "ruff"
     ignore:
       # see requirements.txt for more details
       - dependency-name: "lxml-html-clean"

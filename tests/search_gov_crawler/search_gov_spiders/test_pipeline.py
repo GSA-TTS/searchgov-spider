@@ -80,13 +80,13 @@ def test_spiders_pipeline_valid_output(spiders_pipeline, mocker, output_target, 
 
 def test_spiders_pipeline_get_opensearch_client(mocker, spiders_pipeline):
     mock_opensearch = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovOpensearch")
-    spiders_pipeline._get_opensearch_client()  # pylint: disable=protected-access
+    spiders_pipeline._get_opensearch_client()
     mock_opensearch.assert_called_once()
 
 
 def test_spiders_pipeline_process_opensearch_item_no_response_bytes(spiders_pipeline, sample_item):
     with pytest.raises(DropItem, match="Missing 'response_bytes' for url"):
-        spiders_pipeline._process_opensearch_item(sample_item)  # pylint: disable=protected-access
+        spiders_pipeline._process_opensearch_item(sample_item)
 
 
 @pytest.mark.parametrize(
@@ -131,7 +131,7 @@ def test_spiders_pipeline_conversion_failure(caplog, mocker, spiders_pipeline, s
     sample_item["content_type"] = "text/html"
 
     with caplog.at_level("INFO"):
-        spiders_pipeline._process_opensearch_item(sample_item)  # pylint: disable=protected-access
+        spiders_pipeline._process_opensearch_item(sample_item)
 
     assert caplog.messages == [
         "Failed to convert http://example.com (type text/html)",
@@ -148,7 +148,7 @@ def test_spiders_pipeline_dap_error(caplog, mocker, spiders_pipeline, sample_ite
     sample_item["response_bytes"] = "you call these bytes??!?!"
     sample_item["content_type"] = "text/html"
 
-    spiders_pipeline._process_opensearch_item(sample_item)  # pylint: disable=protected-access
+    spiders_pipeline._process_opensearch_item(sample_item)
     assert "Failed to update DAP visits for url: http://example.com, content_type: text/html" in caplog.messages
 
 
@@ -163,12 +163,12 @@ def test_spiders_pipeline_opensearch_error(mocker, spiders_pipeline, sample_item
     sample_item["content_type"] = "text/html"
 
     with pytest.raises(DropItem, match="Failed to add item to Opensearch batch"):
-        spiders_pipeline._process_opensearch_item(sample_item)  # pylint: disable=protected-access
+        spiders_pipeline._process_opensearch_item(sample_item)
 
 
 def test_spiders_pipeline_close_spider(mocker, spiders_pipeline):
     mock_opensearch = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovOpensearch")
-    spiders_pipeline._get_opensearch_client()  # pylint: disable=protected-access
+    spiders_pipeline._get_opensearch_client()
     spiders_pipeline.close_spider()
 
     mock_opensearch.return_value.batch_upload.assert_called_once()

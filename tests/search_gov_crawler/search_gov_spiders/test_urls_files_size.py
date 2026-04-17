@@ -54,7 +54,8 @@ def fixture_mock_open(mocker):
 
 
 @pytest.fixture(name="pipeline_no_api")
-def fixture_pipeline_no_api(mock_open, mocker, sample_crawler) -> SearchGovSpidersPipeline:
+def fixture_pipeline_no_api(mocker, sample_crawler) -> SearchGovSpidersPipeline:
+    mocker.patch("builtins.open", mocker.mock_open())
     mocker.patch.dict(os.environ, {})
     mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovSpidersPipeline.APP_PID", 1234)
     return SearchGovSpidersPipeline.from_crawler(sample_crawler)

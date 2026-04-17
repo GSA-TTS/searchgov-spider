@@ -116,7 +116,10 @@ def test_offsite_invalid_domain_in_starting_urls(caplog):
 def test_spider_downloader_middleware():
     crawler = get_crawler(Spider)
     crawler.spider = Spider.from_crawler(
-        crawler=crawler, name="test", allow_query_string=False, allowed_domains="example.com"
+        crawler=crawler,
+        name="test",
+        allow_query_string=False,
+        allowed_domains="example.com",
     )
     mw = SearchGovSpidersDownloaderMiddleware()
     request = Request("http://www.example.com/test")

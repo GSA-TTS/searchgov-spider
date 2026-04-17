@@ -178,7 +178,8 @@ def test_invalid_craw_sites_cron_expression(base_crawl_config_args):
     invalid_schedule_crawl_config_args = {"schedule": "I AM NOT A CRON EXPRESSION"} | base_crawl_config_args
 
     with pytest.raises(
-        CrawlConfigValidationError, match="Invalid cron expression in schedule value: I AM NOT A CRON EXPRESSION"
+        CrawlConfigValidationError,
+        match="Invalid cron expression in schedule value: I AM NOT A CRON EXPRESSION",
     ):
         CrawlConfig(**invalid_schedule_crawl_config_args)
 
