@@ -187,7 +187,7 @@ class SearchGovSpidersPipeline:
         try:
             if self._opensearch:
                 self._get_opensearch_client().batch_upload(self.crawler.spider)
-        except Exception:  # pylint: disable=broad-except
+        except Exception:
             msg = "Failed to upload Opensearch batch"
             self.crawler.spider.logger.exception(msg)
 

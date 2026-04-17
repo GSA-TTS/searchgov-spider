@@ -32,7 +32,7 @@ class SearchgovMiddlewareBase(BaseSpiderMiddleware):
         s.crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
         return s
 
-    def spider_opened(self, spider: Spider):  # pylint: disable=unused-argument
+    def spider_opened(self, spider: Spider):
         """Placeholder method in Middleware.  Called when spider starts. Override in subclass if needed."""
 
 
@@ -63,9 +63,6 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
             url = parse_result._replace(params="").geturl()
 
         return url
-
-    # pylint: disable=unused-argument
-    # disable unused arguments in this scrapy-generated class template
 
     def process_spider_input(self, response: Response) -> None:  # noqa: ARG002
         """
@@ -167,8 +164,6 @@ class SearchGovSpidersDownloaderMiddleware:
     middleware does not modify the passed objects.
     """
 
-    # pylint: disable=unused-argument
-    # disable unused arguments in this scrapy-generated class template
     def process_request(self, request: Request) -> None:  # noqa: ARG002
         """
         Called for each request that goes through the downloader middleware.  Ignore
