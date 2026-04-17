@@ -25,7 +25,7 @@ from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import Domai
 log = logging.getLogger(__name__)
 
 
-TARGET_DIR = Path("/var/tmp/spider_sitemaps")
+TARGET_DIR = Path("/var/tmp/spider_sitemaps")  # noqa: S108
 
 
 def create_directory(path: Path) -> None:
@@ -109,7 +109,8 @@ class SitemapMonitor:
         try:
             found_sitemaps = sitemap_finder.find(starting_url)
             if not found_sitemaps:
-                raise Exception("no sitemap URLs found")
+                msg = "no sitemap URLs found"
+                raise Exception(msg)  # noqa: TRY301
             log.info("Discovered sitemap URLs: %s for %s", list(found_sitemaps), starting_url)
         except Exception as e:
             log.warning("Failed to discover sitemaps for %s. Reason: %s", starting_url, e)
@@ -123,7 +124,7 @@ class SitemapMonitor:
         all_sitemaps_set: set[str] = set()
 
         # Step 1: Filter records and process sitemaps for each one
-        records_to_process = [r for r in self.records if r.depth_limit >= 8]
+        records_to_process = [r for r in self.records if r.depth_limit >= 8]  # noqa: PLR2004
 
         for record in records_to_process:
             # Set check interval, defaulting to 48 hours (in seconds)
@@ -188,7 +189,7 @@ class SitemapMonitor:
         except Exception:
             log.exception("Error saving sitemap for %s", sitemap_url)
 
-    def _fetch_sitemap(self, url: str, depth: int = 0, max_depth: int = 10) -> set[str]:
+    def _fetch_sitemap(self, url: str, depth: int = 0, max_depth: int = 10) -> set[str]:  # noqa: C901
         """
         Fetch and parse a sitemap XML file recursively up to a maximum depth.
 

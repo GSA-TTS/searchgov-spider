@@ -1,0 +1,20 @@
+line-length = 120
+target-version = "py312"
+
+[lint]
+select = ["ALL"]
+ignore = ["ANN", "BLE001", "COM812", "D100", "D107", "D2", "D4", "EXE002", "S324", "TRY002", "TRY003"]
+
+[lint.mccabe]
+max-complexity = 11
+
+[lint.pylint]
+max-branches = 20
+max-args = 10
+
+[lint.per-file-ignores]
+"tests/*" = ["D", "INP001", "PLR2004", "S101", "SLF001"]
+"scripts/*" = ["T201"]
+"__init__.py" = ["D104", "N999"]
+"install_nltk.py" = ["T201"]
+"readschedule.py" = ["T201"]

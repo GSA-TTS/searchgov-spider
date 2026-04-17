@@ -74,15 +74,15 @@ def init_scheduler() -> BackgroundScheduler:
 
 def create_apscheduler_job(
     name: str,
-    allow_query_string: bool,
+    allow_query_string: bool,  # noqa: FBT001
     allowed_domains: str,
     starting_urls: str,
-    handle_javascript: bool,
+    handle_javascript: bool,  # noqa: FBT001
     output_target: str,
     runtime_offset_seconds: int,
     depth_limit: int,
     deny_paths: str,
-    job_id: str = None,
+    job_id: str | None = None,
 ) -> dict:
     """Creates job record in format needed by apscheduler"""
 
@@ -90,7 +90,7 @@ def create_apscheduler_job(
 
     return {
         "func": scrapy_scheduler.run_scrapy_crawl,
-        "id": job_id if job_id else job_name,
+        "id": job_id or job_name,
         "name": job_name,
         "next_run_time": datetime.now(tz=UTC) + timedelta(seconds=runtime_offset_seconds),
         "args": [
@@ -100,7 +100,7 @@ def create_apscheduler_job(
             starting_urls,
             output_target,
             depth_limit,
-            deny_paths if deny_paths else [],
+            deny_paths or [],
         ],
     }
 
@@ -138,10 +138,10 @@ def benchmark_from_file(input_file: Path, runtime_offset_seconds: int):
 
 
 def benchmark_from_args(
-    allow_query_string: bool,
+    allow_query_string: bool,  # noqa: FBT001
     allowed_domains: str,
     starting_urls: str,
-    handle_javascript: bool,
+    handle_javascript: bool,  # noqa: FBT001
     output_target: str,
     runtime_offset_seconds: int,
     depth_limit: int,

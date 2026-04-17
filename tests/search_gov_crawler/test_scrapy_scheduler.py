@@ -16,7 +16,6 @@ from search_gov_crawler.scrapy_scheduler import (
     transform_crawl_configs,
     wait_for_next_interval,
 )
-from search_gov_crawler.search_gov_app.crawl_config import CrawlConfigs
 
 
 @pytest.fixture(name="mock_jobstore")
@@ -185,7 +184,7 @@ def test_start_scrapy_scheduler_from_db_bad_initialization(caplog, monkeypatch):
 
     monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.CrawlConfigs.from_database", raise_error)
     monkeypatch.setenv("SPIDER_CRAWL_CONFIGS_CHECK_INTERVAL", "0")
-    monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.wait_for_next_interval", lambda interval: False)
+    monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.wait_for_next_interval", lambda interval: False)  # noqa: ARG005
     with caplog.at_level("ERROR"):
         start_scrapy_scheduler_from_db()
 
@@ -212,7 +211,7 @@ def test_start_scrapy_scheduler_from_db(mocker, caplog, monkeypatch, crawl_confi
         messages = [f'Added job "Quotes {job_num}" to job store "redis"' for job_num in range(1, 5)]
         messages.append("Error updating scheduler!")
 
-        assert all([message in caplog.messages for message in messages])
+        assert all(message in caplog.messages for message in messages)
 
 
 def test_start_scrapy_scheduler_from_db_no_jobs_scheduled(
@@ -229,7 +228,7 @@ def test_start_scrapy_scheduler_from_db_no_jobs_scheduled(
     monkeypatch.setenv("SPIDER_CRAWL_CONFIGS_CHECK_INTERVAL", "0")
     monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.CrawlConfigs.from_database", mock_crawl_configs)
     monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.SpiderBackgroundScheduler.resume", lambda _: True)
-    monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.wait_for_next_interval", lambda interval: False)
+    monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.wait_for_next_interval", lambda interval: False)  # noqa: ARG005
 
     with (
         caplog.at_level("ERROR"),

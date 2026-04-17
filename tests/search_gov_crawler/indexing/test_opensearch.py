@@ -56,14 +56,14 @@ def test_add_to_batch_disabled(monkeypatch, opensearch_instance, mock_spider):
 
 def test_create_actions_with_and_without_id(opensearch_instance, mock_spider):
     path = "http://www.example.com/1"
-    id = generate_url_sha256(path)
-    docs = [{"id": id, "path": path, "field": "value"}, {"id": None, "field": "missing id"}]
+    doc_id = generate_url_sha256(path)
+    docs = [{"id": doc_id, "path": path, "field": "value"}, {"id": None, "field": "missing id"}]
     actions = opensearch_instance._create_actions(docs, mock_spider)
     assert actions == [
         {
             "_index": "test-index",
-            "_id": id,
-            "_source": {"path": "http://www.example.com/1", "field": "value", "id": id},
+            "_id": doc_id,
+            "_source": {"path": "http://www.example.com/1", "field": "value", "id": doc_id},
         },
     ]
     mock_spider.logger.error.assert_called_once()

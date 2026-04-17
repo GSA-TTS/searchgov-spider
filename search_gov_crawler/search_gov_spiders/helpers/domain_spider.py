@@ -1,8 +1,9 @@
+import contextlib
 import hashlib
 import json
 import re
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 from scrapy.http.response import Response
 
@@ -106,7 +107,7 @@ def is_valid_content_type(content_type_header: str, output_target: str) -> bool:
     return False
 
 
-def get_simple_content_type(content_type_header: str, output_target: str) -> str:
+def get_simple_content_type(content_type_header: str, output_target: str) -> str | None:
     r"""Returns simple content time like: \"text/html\""""
     if not content_type_header:
         return None
@@ -117,7 +118,7 @@ def get_simple_content_type(content_type_header: str, output_target: str) -> str
     return None
 
 
-def get_crawl_sites(crawl_file_path: Optional[str] = None) -> list[dict]:
+def get_crawl_sites(crawl_file_path: str | None = None) -> list[dict]:
     """Read in list of crawl sites from json file"""
     if not crawl_file_path:
         crawl_file = Path(__file__).parent.parent.parent / "domains" / "crawl-sites-production.json"
@@ -127,7 +128,7 @@ def get_crawl_sites(crawl_file_path: Optional[str] = None) -> list[dict]:
     return json.loads(crawl_file.resolve().read_text(encoding="utf-8"))
 
 
-def default_starting_urls(handle_javascript: bool) -> list[str]:
+def default_starting_urls(*, handle_javascript: bool) -> list[str]:
     """Created default list of starting urls filtered by ability to handle javascript"""
 
     crawl_sites_records = get_crawl_sites()
@@ -136,7 +137,7 @@ def default_starting_urls(handle_javascript: bool) -> list[str]:
     ]
 
 
-def default_allowed_domains(handle_javascript: bool, remove_paths: bool = True) -> list[str]:
+def default_allowed_domains(*, handle_javascript: bool, remove_paths: bool = True) -> list[str]:
     """Created default list of domains filtered by ability to handle javascript"""
 
     allowed_domains = []
@@ -157,7 +158,7 @@ def validate_spider_arguments(allowed_domains: str | None, start_urls: str | Non
     """Common logic used to validate spider arguements and raise errors"""
 
     for field in (allowed_domains, start_urls):
-        if len(str(field)) < 2 or "." not in str(field):
+        if len(str(field)) < 2 or "." not in str(field):  # noqa: PLR2004
             msg = f"Invalid argument! '{field}' must be a valid URL or domain name."
             raise ValueError(msg)
 
@@ -169,7 +170,7 @@ def validate_spider_arguments(allowed_domains: str | None, start_urls: str | Non
         raise ValueError(msg)
 
 
-def get_response_language_code(response: Response) -> str:
+def get_response_language_code(response: Response) -> str | None:
     """
     Retrieves the two-letter language code from Content-Language header of a response.
 
@@ -179,13 +180,12 @@ def get_response_language_code(response: Response) -> str:
     Returns:
         str: The two-letter language code, or None if not found or invalid.
     """
-    try:
+    with contextlib.suppress(Exception):
         header_name = "Content-Language"
         content_language = response.headers.get(header_name, response.headers.get(header_name.lower(), None))
         if content_language:
             return content_language[:2]
-    except Exception:
-        pass
+
     return None
 
 

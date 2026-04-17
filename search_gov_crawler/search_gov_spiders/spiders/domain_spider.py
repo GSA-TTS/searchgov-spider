@@ -116,9 +116,9 @@ class DomainSpider(CrawlSpider):
         Override default method to set DEPTH_LIMIT.  Default is set in settings.py file but can be overridden either by
         command line argument (-a depth_limit=x) or within a json scheduling file.
         """
-
+        max_depth_limit = 250
         spider = super().from_crawler(crawler, *args, **kwargs)
-        if int(depth_limit) > 250 or int(depth_limit) < 1:
+        if int(depth_limit) > max_depth_limit or int(depth_limit) < 1:
             msg = f"Search Depth must be between 1 and 250 inclusive. You submitted: {depth_limit} "
             raise ValueError(msg)
 
@@ -136,7 +136,8 @@ class DomainSpider(CrawlSpider):
         """
         content_type_name = "Content-Type"
         content_type_value = response.headers.get(
-            content_type_name, response.headers.get(content_type_name.lower(), None)
+            content_type_name,
+            response.headers.get(content_type_name.lower(), None),
         )
         if helpers.is_valid_content_type(content_type_value, output_target=self.output_target):
             yield SearchGovSpidersItem(

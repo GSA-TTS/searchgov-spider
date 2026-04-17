@@ -36,7 +36,7 @@ def test_write_dict_to_csv_append_existing(mocker):
     for call in mock_csv_writer.return_value.writerow.call_args_list:
         assert call.args[0] != ["starting_urls", "sitemap_urls"]
     mock_csv_writer.return_value.writerow.assert_called_once_with(
-        ["https://example.com", ["https://example.com/sitemap.xml"]]
+        ["https://example.com", ["https://example.com/sitemap.xml"]],
     )
 
 
@@ -231,7 +231,9 @@ class TestSitemapFinder:
         result = self.finder.confirm_sitemap_url(f"{self.base_url}/sitemap.xml")
         assert result is True
         mock_head.assert_called_once_with(
-            f"{self.base_url}/sitemap.xml", timeout=self.finder.timeout_seconds, allow_redirects=True
+            f"{self.base_url}/sitemap.xml",
+            timeout=self.finder.timeout_seconds,
+            allow_redirects=True,
         )
 
     @patch("requests.head")

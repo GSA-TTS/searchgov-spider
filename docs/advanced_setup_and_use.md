@@ -2,6 +2,7 @@
 This page gives a more detailed description and further instructions on running the spider in various ways.
 
 #### Table of contents
+* [Formatting and Linting](#formatting-and-linting)
 * [Environment Variables](#environment-variables)
 * [Output Targets](#output-targets)
 * [Search Engines](#search-engines)
@@ -13,6 +14,10 @@ This page gives a more detailed description and further instructions on running 
 * [Adding New Spiders](#adding-new-spiders)
 * [Running Sitemap Monitor](#running-sitemap-monitor)
 * [Running DAP Extractor](#running-dap-extractor)
+
+## Formatting and Linting
+We use [ruff](https://astral.sh/ruff) as a formatter and linter.  This is enforced as precommit hook as well as in our circleci config.  Developers can also
+add [intergrations](https://docs.astral.sh/ruff/editors/) to their editor of choice.  Rules are defined in `ruff.toml` and can be adjusted as needed.
 
 ## Environment Variables
 If running a scheduler or benchmark, we support the use of a `.env` file in the project root to read keys and values.  Otherwise these must be exported through other means.   We also provide a `.env.development` for use with dock as well as a example for some of these values.

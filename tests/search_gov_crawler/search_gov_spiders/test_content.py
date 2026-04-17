@@ -65,6 +65,8 @@ def test_sanitize_text_with_only_whitespace_lines():
 
 
 def test_sanitize_text_with_punctuation_and_newlines():
+    # ruff: disable[E501]
     text = "Test sentence.\nAnother sentence!\n\"Quoted sentence.\"\n(Parenthetical sentence).\n[Bracketed sentence].\n{Braced sentence}.\n<Angle bracketed sentence>.\n'Apostrophe sentence'."
     expected = "Test sentence. Another sentence! \"Quoted sentence.\" (Parenthetical sentence). [Bracketed sentence]. {Braced sentence}. <Angle bracketed sentence>. 'Apostrophe sentence'."
+    # ruff: enable[E501]
     assert sanitize_text(text) == expected

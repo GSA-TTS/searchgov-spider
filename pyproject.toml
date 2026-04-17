@@ -7,13 +7,12 @@ name = "search_gov_crawler"
 version = "0.0.1"
 description = "The home for the spider that supports search.gov."
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.12"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-
 
 [project.urls]
 Homepage = "https://github.com/GSA/searchgov-spider"
@@ -25,24 +24,6 @@ cache_tools = "scripts.cache_tools:cli"
 exclude_also = [
     "if __name__ == .__main__.:",
     ]
-
-[tool.pylint.'MAIN']
-py-version=3.12
-
-[tool.pylint.'FORMAT']
-max-line-length=120
-
-[tool.pylint.'MESSAGES CONTROL']
-disable= [
-    "abstract-method",
-    "missing-class-docstring",
-    "missing-module-docstring",
-    "missing-function-docstring",
-    "too-few-public-methods",
-    "too-many-arguments",
-    "too-many-positional-arguments",
-    "too-many-instance-attributes"
-]
 
 [tool.pytest.ini_options]
 asyncio_default_fixture_loop_scope = "module"

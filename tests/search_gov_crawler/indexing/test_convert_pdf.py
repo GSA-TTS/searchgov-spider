@@ -20,23 +20,23 @@ class FakePage:
 
 
 class FakePdfReader:
-    def __init__(self, stream, is_encrypted=False, pages=None, metadata=None):
-        self.is_encrypted = is_encrypted
+    def __init__(self, _stream, is_encrypted, pages=None, metadata=None):
+        self.is_encrypted = is_encrypted or False
         self.pages = pages if pages is not None else []
         self.metadata = metadata if metadata is not None else {}
 
 
 # Dummy helper functions to override external dependencies. We're already testing them in other places
-def dummy_get_base_extension(url):
+def dummy_get_base_extension(*_args, **_kwargs):
     return ("fake_basename", "pdf")
 
 
-def dummy_summarize_text(text, url, lang_code):
+def dummy_summarize_text(*_args, **_kwargs):
     # Return a tuple: (description, list of keywords)
     return ("Fake description", ["keyword1", "keyword2"])
 
 
-def dummy_generate_url_sha256(url):
+def dummy_generate_url_sha256(*_args, **_kwargs):
     return "dummy_sha"
 
 
@@ -46,14 +46,14 @@ def dummy_current_utc_iso():
 
 def dummy_parse_date_safely(date_str):
     # For testing, simply return the date_str (or a default if none provided)
-    return date_str if date_str else "parse_date_safely"
+    return date_str or "parse_date_safely"
 
 
-def dummy_get_url_path(url):
+def dummy_get_url_path(*_args, **_kwargs):
     return "/fake/path"
 
 
-def dummy_get_domain_name(url):
+def dummy_get_domain_name(*_args, **_kwargs):
     return "fake.domain.com"
 
 
@@ -88,11 +88,12 @@ def test_get_pdf_text():
     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
     when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
+    unchanged.
     """
     fake_page_content_2 = f"Page 2 content: {fake_page_content_1}"
     pages = [FakePage(fake_page_content_1), FakePage(fake_page_content_2)]
-    fake_reader = FakePdfReader(None, pages=pages)
+    fake_reader = FakePdfReader(None, is_encrypted=False, pages=pages)
     result, _ = transform.get_pdf_text(fake_reader)
     expected = f"{fake_page_content_1} {fake_page_content_2} "
     assert result == expected
@@ -102,11 +103,11 @@ GET_PDF_META_TEST_CASES = [
     (None, {}),
     (
         {"/Title": "Fake Title", "/CreationDate": "D:20230101000000"},
-        {"Title": "Fake Title", "CreationDate": datetime(2023, 1, 1, 0, 0, 0)},
+        {"Title": "Fake Title", "CreationDate": datetime(2023, 1, 1, 0, 0, 0)},  # noqa: DTZ001
     ),
     (
         {"Test Field": "Test Value", "/CreationDate": "D:20230101000000"},
-        {"Test Field": "Test Value", "CreationDate": datetime(2023, 1, 1, 0, 0, 0)},
+        {"Test Field": "Test Value", "CreationDate": datetime(2023, 1, 1, 0, 0, 0)},  # noqa: DTZ001
     ),
     (
         {"/IndirectField": IndirectObject(idnum=0, generation=0, pdf="Resolved Value")},
@@ -119,9 +120,11 @@ GET_PDF_META_TEST_CASES = [
 def test_get_pdf_meta(monkeypatch, metadata, expected_output):
     """Test that metadata is cleaned and dates are parsed."""
     monkeypatch.setattr(IndirectObject, "get_object", lambda x: x.pdf)
-    fake_reader = FakePdfReader(None, metadata=metadata)
+    fake_reader = FakePdfReader(None, is_encrypted=False, metadata=metadata)
     assert transform.get_pdf_meta(fake_reader) == expected_output
 
+
+# ruff: disable[DTZ001]
 
 PARSE_DATE_IF_VALID_TEST_CASES = [
     ("D:20230101023045", True, datetime(2023, 1, 1, 2, 30, 45)),
@@ -154,18 +157,19 @@ PARSE_DATE_IF_VALID_TEST_CASES = [
     ("D:/this/is/a/directory.pdf", False, "D:/this/is/a/directory.pdf"),
     ("D:00000000-0--000Z'0000'", False, None),
 ]
+# ruff: enable[DTZ001]
 
 
 @pytest.mark.parametrize(("input_val", "apply_tz_offset", "expected"), PARSE_DATE_IF_VALID_TEST_CASES)
 def test_parse_if_date_valid(input_val, apply_tz_offset, expected):
     """Test parse_if_date with various valid values"""
-    assert transform.parse_if_date(input_val, apply_tz_offset) == expected
+    assert transform.parse_if_date(value=input_val, apply_tz_offset=apply_tz_offset) == expected
 
 
 @pytest.mark.parametrize("input_val", ["D:20239901023045", "D:00000000-0--000"])
 def test_parse_if_date_datetime_debugging(caplog, input_val):
     with caplog.at_level("DEBUG"):
-        transform.parse_if_date(input_val)
+        transform.parse_if_date(value=input_val, apply_tz_offset=False)
 
         assert f"Failed to parse date string: {input_val}" in caplog.messages
 
@@ -173,13 +177,13 @@ def test_parse_if_date_datetime_debugging(caplog, input_val):
 def test_parse_if_date_non_date():
     """Test parse_if_date with a non-string value (or a string not starting with 'D:')."""
     non_date = "Not a date"
-    result = transform.parse_if_date(non_date)
+    result = transform.parse_if_date(value=non_date, apply_tz_offset=False)
     assert result == non_date.strip()
 
 
 def test_parse_if_date_non_string():
     non_string = 10
-    assert transform.parse_if_date(non_string) == non_string
+    assert transform.parse_if_date(value=non_string, apply_tz_offset=False) == non_string
 
 
 # ----- Tests for the main conversion function -----
@@ -191,7 +195,7 @@ def test_convert_pdf_normal(monkeypatch):
     pages = [FakePage("This is the content of the PDF.")]
     fake_reader = FakePdfReader(None, is_encrypted=False, pages=pages, metadata=fake_metadata)
     # Patch PdfReader so that any instantiation returns our fake_reader.
-    monkeypatch.setattr(transform, "PdfReader", lambda stream: fake_reader)
+    monkeypatch.setattr(transform, "PdfReader", lambda _stream: fake_reader)
 
     response_bytes = b"dummy bytes representing pdf"
     url = "http://example.com/fake.pdf"
@@ -215,11 +219,12 @@ def test_convert_pdf_normal(monkeypatch):
 def test_convert_pdf_encrypted(monkeypatch):
     """Test convert_pdf when the PDF is actually encrypted (should return None)."""
 
-    def raise_encrypted_error(*args, **kwargs):
-        raise FileNotDecryptedError("PDF is encrypted and cannot be read.")
+    def raise_encrypted_error(*_args, **_kwargs):
+        msg = "PDF is encrypted and cannot be read."
+        raise FileNotDecryptedError(msg)
 
     fake_reader = FakePdfReader(None, is_encrypted=True)
-    monkeypatch.setattr(transform, "PdfReader", lambda stream: fake_reader)
+    monkeypatch.setattr(transform, "PdfReader", lambda _stream: fake_reader)
     monkeypatch.setattr(transform, "get_pdf_meta", raise_encrypted_error)
     response_bytes = b"dummy bytes representing pdf"
     url = "http://example.com/encrypted.pdf"

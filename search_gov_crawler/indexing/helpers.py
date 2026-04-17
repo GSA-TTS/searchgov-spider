@@ -1,3 +1,4 @@
+import contextlib
 import hashlib
 import logging
 import os
@@ -59,7 +60,7 @@ def parse_date_safely(date_value: Any) -> str | None:
         return None
 
 
-def detect_lang(text: str) -> str:
+def detect_lang(text: str) -> str | None:
     """
     Detect language based on charachters and encoding
 
@@ -69,15 +70,14 @@ def detect_lang(text: str) -> str:
     Returns:
         str: A two letter language code, eg: "en", "es", "zh", ...
     """
-    try:
+    with contextlib.suppress(Exception):
         lang = detect(text[:64])
         return lang[:2] if len(lang) > 1 else None
-    except Exception:
-        pass
+
     return None
 
 
-def summarize_text(text: str, url: str, lang_code: str = None):
+def summarize_text(text: str, url: str, lang_code: str | None = None):
     """
     Summarizes text and extracts keywords using nltk, and calculates execution time.
 
@@ -158,9 +158,8 @@ def get_url_path(url: str) -> str:
 def get_base_extension(url: str) -> tuple[str, str]:
     """Extracts the basename and file extension from a URL."""
     url = ensure_http_prefix(url)
-    basename, extension = os.path.splitext(os.path.basename(urlparse(url).path))
-    if extension.startswith("."):
-        extension = extension[1:]
+    basename, extension = os.path.splitext(os.path.basename(urlparse(url).path))  # noqa: PTH119, PTH122
+    extension = extension.removeprefix(".")
     return basename, extension
 
 

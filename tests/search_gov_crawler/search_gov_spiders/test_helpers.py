@@ -1,4 +1,5 @@
-from collections import namedtuple
+import re
+from typing import NamedTuple
 
 import pytest
 from scrapy.spiders import Spider
@@ -44,10 +45,11 @@ def test_default_starting_urls(monkeypatch, crawl_sites_test_file_json, handle_j
         return crawl_sites_test_file_json
 
     monkeypatch.setattr(
-        "search_gov_crawler.search_gov_spiders.helpers.domain_spider.get_crawl_sites", mock_get_crawl_sites
+        "search_gov_crawler.search_gov_spiders.helpers.domain_spider.get_crawl_sites",
+        mock_get_crawl_sites,
     )
 
-    starting_urls = helpers.default_starting_urls(handle_javascript)
+    starting_urls = helpers.default_starting_urls(handle_javascript=handle_javascript)
     assert len(starting_urls) == results
 
 
@@ -57,7 +59,8 @@ def test_default_allowed_domains(monkeypatch, crawl_sites_test_file_json, handle
         return crawl_sites_test_file_json
 
     monkeypatch.setattr(
-        "search_gov_crawler.search_gov_spiders.helpers.domain_spider.get_crawl_sites", mock_get_crawl_sites
+        "search_gov_crawler.search_gov_spiders.helpers.domain_spider.get_crawl_sites",
+        mock_get_crawl_sites,
     )
 
     allowed_domains = helpers.default_allowed_domains(handle_javascript=handle_javascript)
@@ -76,14 +79,17 @@ def test_default_allowed_domains_remove_paths(monkeypatch, crawl_sites_test_file
         return crawl_sites_test_file_json
 
     monkeypatch.setattr(
-        "search_gov_crawler.search_gov_spiders.helpers.domain_spider.get_crawl_sites", mock_get_crawl_sites
+        "search_gov_crawler.search_gov_spiders.helpers.domain_spider.get_crawl_sites",
+        mock_get_crawl_sites,
     )
 
     allowed_domains = helpers.default_allowed_domains(handle_javascript=False, remove_paths=remove_paths)
     assert allowed_domains == results
 
 
-Request = namedtuple("Request", ["resource_type", "should_abort"])
+class Request(NamedTuple):
+    resource_type: str
+    should_abort: bool
 
 
 @pytest.fixture(name="request_with_resource_type", params=[("jpeg", True), ("html", False)], ids=["Valid", "Invalid"])
@@ -140,7 +146,7 @@ def test_generate_spider_id_from_args(input_args, expected_spider_id):
 
 
 def test_generate_spider_id_no_args():
-    with pytest.raises(ValueError, match="One or more arguments must be passed to generate a spider_id."):
+    with pytest.raises(ValueError, match=re.escape("One or more arguments must be passed to generate a spider_id.")):
         helpers.generate_spider_id_from_args()
 
 
