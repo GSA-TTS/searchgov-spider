@@ -14,9 +14,8 @@ def mock_spider():
 
 
 @pytest.fixture
-def opensearch_instance(monkeypatch):
+def opensearch_instance():
     # Ensure ENABLED is True for testing
-    monkeypatch.setattr(SearchGovOpensearch, "ENABLED", True)
     return SearchGovOpensearch(
         batch_size=2,
         opensearch_host="http://localhost:9300",
@@ -45,13 +44,6 @@ def test_add_to_batch_triggers_upload(opensearch_instance, mock_spider):
         opensearch_instance.add_to_batch(doc1, mock_spider)
         opensearch_instance.add_to_batch(doc2, mock_spider)  # should trigger batch_upload
         assert mock_upload.called
-
-
-def test_add_to_batch_disabled(monkeypatch, opensearch_instance, mock_spider):
-    monkeypatch.setattr(SearchGovOpensearch, "ENABLED", False)
-    with patch.object(opensearch_instance, "batch_upload") as mock_upload:
-        opensearch_instance.add_to_batch({"_id": "1", "field": "value"}, mock_spider)
-        assert not mock_upload.called
 
 
 def test_create_actions_with_and_without_id(opensearch_instance, mock_spider):

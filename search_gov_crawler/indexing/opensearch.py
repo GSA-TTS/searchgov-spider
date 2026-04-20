@@ -1,16 +1,9 @@
 import logging
 import os
-import warnings
 from typing import Any
 
 from opensearchpy import OpenSearch, helpers
-
-from search_gov_crawler.search_gov_spiders.spiders import SearchGovDomainSpider
-
-# Suppress warnings from urllib3 and OpenSearch client. Already doing this in es_batch_upload,
-# but we want keep it here for when we remove Elasticsearch
-warnings.filterwarnings("ignore", category=Warning, module="urllib3")
-warnings.filterwarnings("ignore", category=Warning, module="opensearchpy")
+from scrapy import Spider
 
 # limit excess INFO messages from the OpenSearch transport
 # opensearch-py exposes transport internals under opensearchpy.transport
@@ -20,8 +13,6 @@ log = logging.getLogger(__name__)
 
 class SearchGovOpensearch:
     """Manages batching and bulk-upload of scraped documents to Opensearch."""
-
-    ENABLED = os.environ.get("OPENSEARCH_ENABLED") == "True"
 
     def __init__(
         self,
@@ -80,29 +71,21 @@ class SearchGovOpensearch:
             )
         return self._opensearch_client
 
-    def add_to_batch(
-        self,
-        doc: dict[str, Any] | None,
-        spider: SearchGovDomainSpider,
-    ) -> None:
-        """Add an already converted i14y document to the Opensearch batch.
-
-        NOTE: The creation of the i14y document "doc" is done in es_batch_upload.py > add_to_batch() method.
-              We are not calling convert_html(), convert_pdf(), and etc. in this method, and they will need
-              to be added once we completely migrate to Opensearch and disable Elasticsearch
+    def add_to_batch(self, doc: dict[str, Any] | None, spider: Spider) -> None:
+        """Add a document to the Opensearch batch.
 
         Args:
-            doc: dict The already converted i14y document
-            spider: SearchGovDomainSpider The scrapy spider
+            doc: dict The document to be indexed, which must include an "id" field for the document ID in Opensearch
+            spider:  The scrapy spider being used, for logging purposes
         """
-        if not self.ENABLED or not doc:
+        if not doc:
             return
 
         self._current_batch.append(doc)
         if len(self._current_batch) >= self._batch_size:
             self.batch_upload(spider)
 
-    def _create_actions(self, docs: list[dict[str, Any]], spider: SearchGovDomainSpider) -> list[dict[str, Any]]:
+    def _create_actions(self, docs: list[dict[str, Any]], spider: Spider) -> list[dict[str, Any]]:
         """Build bulk actions, popping out any explicit _id fields."""
         actions: list[dict[str, Any]] = []
         for doc in docs:
@@ -114,16 +97,16 @@ class SearchGovOpensearch:
             actions.append(action)
         return actions
 
-    def batch_upload(self, spider: SearchGovDomainSpider) -> None:
+    def batch_upload(self, spider: Spider) -> None:
         """Send batch of documents to Opensearch via bulk API."""
 
-        if not self._current_batch or not self.ENABLED:
+        if not self._current_batch:
             return
 
         batch = self._current_batch
         self._current_batch = []
 
-        actions = self._create_actions(batch, spider)
+        actions = self._create_actions(docs=batch, spider=spider)
         failure_count = 0
         failures: list[Any] = []
 
