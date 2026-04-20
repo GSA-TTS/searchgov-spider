@@ -21,10 +21,6 @@ PARAMS="
   DB_PASSWORD
   DB_PORT
   DB_USER
-  ES_HOSTS
-  ES_USER
-  ES_PASSWORD
-  OPENSEARCH_ENABLED
   OPENSEARCH_SEARCH_INDEX
   OPENSEARCH_SEARCH_HOST
   OPENSEARCH_SEARCH_PASSWORD
@@ -53,11 +49,9 @@ for PARAM in $PARAMS; do
         exit 1
     fi
 
-    # clean and prep value for some.  ES_HOSTS sometimes has blanks and leading/trailing brackets.
+    # clean and prep value for some.
     # DAP_EXTRACTOR_SCHEDULE contains spaces so needs quotes added around it.
-    if [[ $PARAM == "ES_HOSTS" ]]; then
-        VALUE=$(echo $RAW_VALUE | tr -d '[:blank:]|[\"\[\]]')
-    elif [[ $PARAM == "DAP_EXTRACTOR_SCHEDULE" ]]; then
+    if [[ $PARAM == "DAP_EXTRACTOR_SCHEDULE" ]]; then
         VALUE=$(echo \""$RAW_VALUE"\")
     else
         VALUE=$RAW_VALUE
