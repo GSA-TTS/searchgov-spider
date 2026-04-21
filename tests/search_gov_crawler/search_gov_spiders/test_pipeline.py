@@ -80,7 +80,7 @@ def test_spiders_pipeline_valid_output(spiders_pipeline, mocker, output_target, 
 
 def test_spiders_pipeline_get_opensearch_client(mocker, spiders_pipeline):
     mock_opensearch = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovOpensearch")
-    spiders_pipeline._get_opensearch_client()
+    _ = spiders_pipeline.opensearch
     mock_opensearch.assert_called_once()
 
 
@@ -168,7 +168,7 @@ def test_spiders_pipeline_opensearch_error(mocker, spiders_pipeline, sample_item
 
 def test_spiders_pipeline_close_spider(mocker, spiders_pipeline):
     mock_opensearch = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovOpensearch")
-    spiders_pipeline._get_opensearch_client()
+    _ = spiders_pipeline.opensearch
     spiders_pipeline.close_spider()
 
     mock_opensearch.return_value.batch_upload.assert_called_once()
