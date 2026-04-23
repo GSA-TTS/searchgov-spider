@@ -108,10 +108,10 @@ update_pythonpath() {
 setup_virtualenv() {
     log_info "Setting up virtual environment..."
     rm -rf "$VENV_DIR"
-    
+
     log_info "Creating venv with python3..."
     python3 -m venv "$VENV_DIR"
-    
+
     if [ ! -x "$VENV_PYTHON" ]; then
         log_error "Venv creation failed"
         exit 1
