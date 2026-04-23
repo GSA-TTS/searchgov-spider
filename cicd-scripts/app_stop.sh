@@ -7,16 +7,30 @@ source ./cicd-scripts/helpers/ensure_executable.sh
 
 ### FUNCTIONS ###
 
+run_helper_script() {
+    local script_path="$1"
+
+    if [ ! -f "$script_path" ]; then
+        echo "Error: $script_path not found!"
+        return 1
+    fi
+
+    sudo chmod +x "$script_path"
+    sudo chown -R "$(whoami)" "$script_path"
+    echo "$script_path is now executable."
+    bash "$script_path"
+}
+
 # stop dap extractor
 stop_dap_extractor() {
     echo "Stopping dap_extractor.py (if running)..."
-    ensure_executable "./cicd-scripts/helpers/kill_dap_extractor.sh"
+    run_helper_script "./cicd-scripts/helpers/kill_dap_extractor.sh"
 }
 
 # Stop sitemap monitor
 stop_sitemap_monitor() {
     echo "Stopping run_sitemap_monitor.py (if running)..."
-    ensure_executable "./cicd-scripts/helpers/kill_sitemap_monitor.sh"
+    run_helper_script "./cicd-scripts/helpers/kill_sitemap_monitor.sh"
 }
 
 # Remove virtual environment if it exists
@@ -24,11 +38,11 @@ remove_venv() {
     echo "Removing Python virtual environment..."
 
     # Check if a virtual environment is active and deactivate it
-    if [[ -n "$VIRTUAL_ENV" ]] && type deactivate >/dev/null 2>&1; then
+    if [[ -n "${VIRTUAL_ENV:-}" ]] && type deactivate >/dev/null 2>&1; then
         deactivate
     fi
 
-    if [ -d "$VIRTUAL_ENV" ]; then
+    if [ -n "${VIRTUAL_ENV:-}" ] && [ -d "$VIRTUAL_ENV" ]; then
         rm -rf "$VIRTUAL_ENV"
     fi
 
@@ -46,7 +60,7 @@ purge_pip_cache() {
 # Stop scrapy scheduler if running
 stop_scrapy_scheduler() {
     echo "Stopping scrapy_scheduler.py (if running)..."
-    ensure_executable "./cicd-scripts/helpers/kill_scheduler.sh"
+    run_helper_script "./cicd-scripts/helpers/kill_scheduler.sh"
 }
 
 # Display remaining scrapy processes
