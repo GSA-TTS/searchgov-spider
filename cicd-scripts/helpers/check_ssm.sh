@@ -1,12 +1,34 @@
 #!/bin/bash
 
+set -euo pipefail
+
 SSM_SERVICE_NAME="amazon-ssm-agent"
+SSM_SNAP_SERVICE_NAME="snap.amazon-ssm-agent.amazon-ssm-agent.service"
+
+is_ssm_active() {
+    if command -v systemctl >/dev/null 2>&1; then
+        if systemctl is-active --quiet "${SSM_SERVICE_NAME}"; then
+            return 0
+        fi
+
+        if systemctl is-active --quiet "${SSM_SNAP_SERVICE_NAME}"; then
+            return 0
+        fi
+    fi
+
+    pgrep -f "amazon-ssm-agent" >/dev/null 2>&1
+}
 
 # Function to start the service using systemctl or service
 _start_ssm() {
     if command -v systemctl >/dev/null 2>&1; then
         echo "Attempting to start ${SSM_SERVICE_NAME} with systemctl..."
-        sudo systemctl start "${SSM_SERVICE_NAME}"
+        if sudo systemctl start "${SSM_SERVICE_NAME}"; then
+            return 0
+        fi
+
+        echo "Falling back to snap-managed SSM service..."
+        sudo systemctl start "${SSM_SNAP_SERVICE_NAME}"
         return $?
     else
         echo "systemctl not available; attempting to start ${SSM_SERVICE_NAME} with service..."
@@ -19,7 +41,7 @@ _start_ssm() {
 check_ssm() {
     # Prefer systemctl check if available
     if command -v systemctl >/dev/null 2>&1; then
-        if ! systemctl is-active --quiet "${SSM_SERVICE_NAME}"; then
+        if ! is_ssm_active; then
             echo "AWS SSM Agent (${SSM_SERVICE_NAME}) is not active. Starting it now..."
             if _start_ssm; then
                 echo "AWS SSM Agent started successfully (systemctl)."
@@ -32,7 +54,7 @@ check_ssm() {
         fi
     else
         # Fallback to pgrep check if systemctl is not present
-        if ! pgrep -f "${SSM_SERVICE_NAME}" >/dev/null 2>&1; then
+        if ! is_ssm_active; then
             echo "AWS SSM Agent process not found. Starting it now..."
             if _start_ssm; then
                 echo "AWS SSM Agent started successfully (service)."

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 # CD into the current script directory (which != $pwd)
 cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && cd ../
 
@@ -9,6 +11,7 @@ source ./cicd-scripts/helpers/ensure_executable.sh
 ### VARIABLES ###
 _CURRENT_BUILD_DIR=${PWD}
 VENV_DIR=./venv
+VENV_PYTHON="${VENV_DIR}/bin/python"
 
 ### FUNCTIONS ###
 
@@ -71,29 +74,26 @@ setup_virtualenv() {
     echo "Creating venv with python3..."
     python3 -m venv "$VENV_DIR"
     
-    if [ ! -f "$VENV_DIR/bin/activate" ]; then
+    if [ ! -x "$VENV_PYTHON" ]; then
         echo "ERROR: Venv creation failed"
         exit 1
     fi
-    
-    source "$VENV_DIR/bin/activate"
-    python -m pip install --upgrade pip
+
+    "$VENV_PYTHON" -m pip install --upgrade pip
 }
 
 # Install dependencies
 install_dependencies() {
     echo "Installing dependencies..."
-    python -m pip install --upgrade -r ./search_gov_crawler/requirements.txt
+    "$VENV_PYTHON" -m pip install --upgrade -r ./search_gov_crawler/requirements.txt
     echo "Installing Playwright..."
-    playwright install --with-deps
-    playwright install chrome --force
-    deactivate
+    "$VENV_PYTHON" -m playwright install --with-deps
+    "$VENV_PYTHON" -m playwright install chrome --force
 }
 
 # Install NLTK (for text)
 install_nltk() {
-    source "$VENV_DIR/bin/activate"
-    python ./search_gov_crawler/indexing/install_nltk.py
+    "$VENV_PYTHON" ./search_gov_crawler/search_engines/install_nltk.py
 }
 
 # Configure permissions
