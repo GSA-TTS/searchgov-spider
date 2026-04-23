@@ -12,18 +12,55 @@ source ./cicd-scripts/helpers/ensure_executable.sh
 _CURRENT_BUILD_DIR=${PWD}
 VENV_DIR=./venv
 VENV_PYTHON="${VENV_DIR}/bin/python"
+CURRENT_STEP="initialization"
+
+### LOGGING ###
+
+log_step() {
+    echo
+    echo "==> $1"
+}
+
+log_info() {
+    echo "[INFO] $1"
+}
+
+log_error() {
+    echo "[ERROR] $1" >&2
+}
+
+on_error() {
+    local exit_code=$?
+    local line_number=$1
+    local failed_command=${2:-unknown}
+    log_error "Step '${CURRENT_STEP}' failed at line ${line_number}."
+    log_error "Command: ${failed_command}"
+    exit "${exit_code}"
+}
+
+trap 'on_error "${LINENO}" "${BASH_COMMAND}"' ERR
 
 ### FUNCTIONS ###
 
+run_step() {
+    local step_name="$1"
+    shift
+
+    CURRENT_STEP="${step_name}"
+    log_step "${step_name}"
+    "$@"
+    log_info "Completed: ${step_name}"
+}
+
 # Stop spider services
 stop_services() {
-    echo "Running app_stop.sh..."
+    log_info "Running app_stop.sh..."
     ensure_executable "./cicd-scripts/app_stop.sh"
 }
 
 # Install missing system dependencies
 install_system_dependencies() {
-    echo "Installing system dependencies..."
+    log_info "Installing system dependencies..."
     sudo apt-get update -y
     sudo apt-get install -y \
         lzma liblzma-dev libbz2-dev python3-setuptools \
@@ -34,7 +71,7 @@ install_system_dependencies() {
 
 # Install Python
 install_python() {
-    echo "Installing Python ${SPIDER_PYTHON_VERSION}..."
+    log_info "Installing Python ${SPIDER_PYTHON_VERSION}..."
     cd /usr/src
     sudo wget -q https://www.python.org/ftp/python/${SPIDER_PYTHON_VERSION}.0/Python-${SPIDER_PYTHON_VERSION}.0.tgz
     sudo tar xzf Python-${SPIDER_PYTHON_VERSION}.0.tgz
@@ -45,37 +82,38 @@ install_python() {
     sudo make install
     sudo make altinstall
     cd "$_CURRENT_BUILD_DIR"
-    echo "Python ${SPIDER_PYTHON_VERSION} installed successfully."
+    log_info "Python ${SPIDER_PYTHON_VERSION} installed successfully."
 }
 
 # Check and install Python if needed
 check_python() {
-    echo "Python version: $(python3 --version)"
+    log_info "Python version: $(python3 --version)"
     # Ubuntu 24.04 has python3.12, just install venv packages
     sudo apt-get install -y python3-venv python3-dev python3-pip
 }
 
 # Fetch environment variables from parameter store
 fetch_env_vars() {
-    echo "Fetching environment variables..."
+    log_info "Fetching environment variables..."
     ensure_executable "./cicd-scripts/helpers/fetch_env_vars.sh"
 }
 
 # Set environment paths
 update_pythonpath() {
-  ensure_executable "./cicd-scripts/helpers/update_pythonpath.sh"
+    log_info "Updating PYTHONPATH..."
+    ensure_executable "./cicd-scripts/helpers/update_pythonpath.sh"
 }
 
 # Setup virtual environment
 setup_virtualenv() {
-    echo "Setting up virtual environment..."
+    log_info "Setting up virtual environment..."
     rm -rf "$VENV_DIR"
     
-    echo "Creating venv with python3..."
+    log_info "Creating venv with python3..."
     python3 -m venv "$VENV_DIR"
     
     if [ ! -x "$VENV_PYTHON" ]; then
-        echo "ERROR: Venv creation failed"
+        log_error "Venv creation failed"
         exit 1
     fi
 
@@ -84,21 +122,23 @@ setup_virtualenv() {
 
 # Install dependencies
 install_dependencies() {
-    echo "Installing dependencies..."
+    log_info "Installing Python dependencies..."
     "$VENV_PYTHON" -m pip install --upgrade -r ./search_gov_crawler/requirements.txt
-    echo "Installing Playwright..."
+    log_info "Installing Playwright browser dependencies..."
     "$VENV_PYTHON" -m playwright install --with-deps
+    log_info "Installing Playwright Chrome..."
     "$VENV_PYTHON" -m playwright install chrome --force
 }
 
 # Install NLTK (for text)
 install_nltk() {
+    log_info "Installing NLTK assets..."
     "$VENV_PYTHON" ./search_gov_crawler/search_engines/install_nltk.py
 }
 
 # Configure permissions
 configure_permissions() {
-    echo "Configuring file permissions..."
+    log_info "Configuring file permissions..."
     sudo chmod -R 777 .
     sudo chown -R "$(whoami)" .
     sudo setfacl -Rdm g:dgsearch:rwx .
@@ -106,7 +146,7 @@ configure_permissions() {
 
 # Manage cron jobs
 add_start_script_cron_job() {
-    echo "Adding app_start.sh cron job..."
+    log_info "Adding app_start.sh cron job..."
     local app_start_script="app_start.sh"
     local start_script_path="$(pwd)/cicd-scripts/$app_start_script"
 
@@ -115,66 +155,46 @@ add_start_script_cron_job() {
 
     # Remove any existing app_start.sh cron jobs
     if ! (crontab -l 2>/dev/null | grep -v -F "$app_start_script") | crontab -; then
-        echo "Warning: Could not remove existing $app_start_script cron jobs"
+        log_info "Warning: Could not remove existing $app_start_script cron jobs"
     fi
 
     # Add the new app_start.sh cron job
     if (crontab -l 2>/dev/null; echo "@reboot $start_script_path") | crontab -; then
-        echo "Added $app_start_script cron job successfully:"
+        log_info "Added $app_start_script cron job successfully:"
         crontab -l | grep "$app_start_script" | sed 's/^/  /'
     else
-        echo "Failed to add $app_start_script cron job for: $start_script_path"
+        log_error "Failed to add $app_start_script cron job for: $start_script_path"
     fi
 }
 
 # Start monitoring agents
 start_agents() {
-    echo "Starting AWS CloudWatch agent..."
+    log_info "Starting AWS CloudWatch agent..."
     ensure_executable "./cicd-scripts/helpers/check_cloudwatch.sh"
     setup_cloudwatch_cron
 
-    echo "Starting AWS CodeDeploy agent..."
+    log_info "Starting AWS CodeDeploy agent..."
     ensure_executable "./cicd-scripts/helpers/check_codedeploy.sh"
     setup_codedeploy_cron
 
-    echo "Starting AWS SSM agent..."
+    log_info "Starting AWS SSM agent..."
     ensure_executable "./cicd-scripts/helpers/check_ssm.sh"
     setup_ssm_cron
 }
 
 ### SCRIPT EXECUTION ###
 
-# Stop running services
-stop_services
+run_step "Stop running services" stop_services
+run_step "Fetch and export environment variables" fetch_env_vars
+run_step "Install system dependencies" install_system_dependencies
+run_step "Check Python prerequisites" check_python
+run_step "Set environment paths" update_pythonpath
+run_step "Configure file permissions" configure_permissions
+run_step "Create virtual environment" setup_virtualenv
+run_step "Install application dependencies" install_dependencies
+run_step "Install NLTK data" install_nltk
+run_step "Start AWS agents" start_agents
+run_step "Configure startup cron job" add_start_script_cron_job
 
-# fetch and export env vars
-fetch_env_vars
-
-# Install system dependencies
-install_system_dependencies
-
-# Check and install Python if missing
-check_python
-
-# Set environment paths
-update_pythonpath
-
-# Configure permissions
-configure_permissions
-
-# Setup and activate virtual environment
-setup_virtualenv
-
-# Install dependencies
-install_dependencies
-
-# Install nltk
-install_nltk
-
-# Start AWS agents
-start_agents
-
-# Manage cron jobs
-add_start_script_cron_job
-
-echo "App installation completed successfully."
+CURRENT_STEP="completed"
+log_info "App installation completed successfully."

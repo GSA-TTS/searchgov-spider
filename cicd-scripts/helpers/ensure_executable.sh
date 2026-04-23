@@ -6,11 +6,11 @@ ensure_executable() {
 
   if [ -f "$script" ]; then
     sudo chmod +x "$script"
-    sudo chown -R $(whoami) "$script"
+    sudo chown -R "$(whoami)" "$script"
     echo "$script is now executable."
     source "$script"
   else
     echo "Error: $script not found!"
-    # exit 1
+    return 1
   fi
 }
