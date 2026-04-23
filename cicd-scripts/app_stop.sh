@@ -85,8 +85,22 @@ kill_remaining_scrapy_jobs() {
 # Remove nohup jobs (python scripts)
 remove_nohup_jobs() {
     echo "Removing nohup jobs (python)..."
-    pgrep -f "nohup.*python" | xargs --no-run-if-empty kill -SIGINT
-    pgrep -f "scrapy_scheduler" | xargs --no-run-if-empty kill -SIGINT
+    local nohup_pids
+    local scheduler_pids
+
+    nohup_pids=$(pgrep -f "nohup.*python" || true)
+    if [ -n "$nohup_pids" ]; then
+        echo "$nohup_pids" | xargs --no-run-if-empty kill -SIGINT
+    else
+        echo "No nohup python jobs found."
+    fi
+
+    scheduler_pids=$(pgrep -f "scrapy_scheduler" || true)
+    if [ -n "$scheduler_pids" ]; then
+        echo "$scheduler_pids" | xargs --no-run-if-empty kill -SIGINT
+    else
+        echo "No scrapy_scheduler jobs found."
+    fi
 }
 
 # Remove cron job entries referencing the given string
@@ -102,7 +116,15 @@ remove_cron_entry() {
     echo "Removing cron job entries referencing: $CRON_ENTRY"
 
     # Remove cron job for the current user (including the full path if needed)
-    sudo crontab -l -u "$CRON_USER" 2>/dev/null | grep -v -F "$CRON_ENTRY" | sudo crontab -u "$CRON_USER" -
+    local current_crontab
+    current_crontab=$(sudo crontab -l -u "$CRON_USER" 2>/dev/null || true)
+
+    if [ -z "$current_crontab" ]; then
+        echo "No cron jobs found for '$CRON_USER'."
+        return 0
+    fi
+
+    printf '%s\n' "$current_crontab" | grep -v -F "$CRON_ENTRY" | sudo crontab -u "$CRON_USER" - || true
 
     echo "Cron job entries for '$CRON_ENTRY' removed."
 }
