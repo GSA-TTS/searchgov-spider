@@ -133,7 +133,7 @@ install_dependencies() {
 # Install NLTK (for text)
 install_nltk() {
     log_info "Installing NLTK assets..."
-    "$VENV_PYTHON" ./search_gov_crawler/search_engines/install_nltk.py
+    "$VENV_PYTHON" ./search_gov_crawler/indexing/install_nltk.py
 }
 
 # Configure permissions
