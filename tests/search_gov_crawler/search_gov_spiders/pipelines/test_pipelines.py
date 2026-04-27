@@ -1,4 +1,5 @@
 from contextlib import suppress
+from datetime import UTC, datetime
 
 import pytest
 from scrapy import Spider
@@ -7,8 +8,16 @@ from scrapy.exceptions import DropItem
 from scrapy.utils.reactor import install_reactor
 from scrapy.utils.test import get_crawler
 
-from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
-from search_gov_crawler.search_gov_spiders.pipelines import DeDeuplicatorPipeline, SearchGovSpidersPipeline
+from search_gov_crawler.search_gov_spiders.items import (
+    FreshnessSpiderException,
+    FreshnessSpiderItem,
+    SearchGovSpidersItem,
+)
+from search_gov_crawler.search_gov_spiders.pipelines import (
+    DeDeuplicatorPipeline,
+    FreshnessSpiderPipeline,
+    SearchGovSpidersPipeline,
+)
 
 
 @pytest.fixture(name="intsall_reactor", autouse=True)
@@ -213,11 +222,11 @@ def test_deduplicator_pipeline_multiple_items(deduplicator_pipeline):
     assert result2 == item2
 
 
-def test_deduplicator_pipeline_clean_state(sample_crawler):
+def test_deduplicator_pipeline_clean_state(deduplicator_pipeline, sample_crawler):
     """
     Verify that a new instance of DeDeuplicatorPipeline starts with a clean state.
     """
-    pipeline1 = DeDeuplicatorPipeline.from_crawler(sample_crawler)
+    pipeline1 = deduplicator_pipeline
     pipeline2 = DeDeuplicatorPipeline.from_crawler(sample_crawler)
 
     item = {"url": "http://example.com/1"}
@@ -250,11 +259,58 @@ def test_deduplicator_pipeline_clean_state(sample_crawler):
         ),
     ],
 )
-def test_deduplicator_pipeline(sample_crawler, items, urls_seen_length):
-    pl = DeDeuplicatorPipeline.from_crawler(sample_crawler)
-
+def test_deduplicator_pipeline(deduplicator_pipeline, items, urls_seen_length):
     with suppress(DropItem):
         for item in items:
-            pl.process_item(item)
+            deduplicator_pipeline.process_item(item)
 
-    assert len(pl.urls_seen) == urls_seen_length
+    assert len(deduplicator_pipeline.urls_seen) == urls_seen_length
+
+
+@pytest.fixture(name="freshness_spider_pipeline")
+def fixture_freshness_spider_pipeline(mocker, sample_crawler):
+    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovOpensearch")
+    return FreshnessSpiderPipeline.from_crawler(sample_crawler)
+
+
+def test_freshness_spider_pipeline_init(freshness_spider_pipeline):
+    assert isinstance(freshness_spider_pipeline, FreshnessSpiderPipeline)
+
+
+@pytest.fixture(name="freshness_spider_item")
+def fixture_freshness_spider_item():
+    return FreshnessSpiderItem(
+        checked_at=datetime(2026, 1, 1, 0, 0, 0, tzinfo=UTC),
+        result="success",
+        index_name="test_index",
+        id="test_id",
+        path="test_path",
+        domain_name="test_domain",
+        marked_for_deletion=False,
+        status_code=503,
+        exception=FreshnessSpiderException(exception_type="TestError", exception_message="Test Exception"),
+    )
+
+
+def test_freshness_spider_pipeline_process_item(freshness_spider_pipeline, freshness_spider_item):
+    freshness_spider_pipeline.process_item(freshness_spider_item)
+    freshness_spider_pipeline.opensearch.add_to_batch.assert_called_once()
+
+
+def test_freshness_spider_pipeline_process_item_exception(freshness_spider_pipeline, freshness_spider_item):
+    freshness_spider_pipeline.opensearch.add_to_batch.side_effect = [Exception("This is an error!")]
+    with pytest.raises(DropItem, match="Failed to add item to Opensearch batch"):
+        freshness_spider_pipeline.process_item(freshness_spider_item)
+
+
+def test_freshness_spider_pipeline_close_spider(freshness_spider_pipeline):
+    freshness_spider_pipeline.close_spider()
+    freshness_spider_pipeline.opensearch.batch_upload.assert_called_once()
+
+
+def test_freshness_spider_pipeline_close_spider_exception(caplog, freshness_spider_pipeline):
+    freshness_spider_pipeline.opensearch.batch_upload.side_effect = [Exception("This is an error!")]
+    with caplog.at_level("INFO"):
+        freshness_spider_pipeline.close_spider()
+
+    assert "Failed to upload Opensearch batch on spider close" in caplog.messages
