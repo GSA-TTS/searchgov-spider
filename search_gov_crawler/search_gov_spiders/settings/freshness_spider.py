@@ -14,5 +14,8 @@ ITEM_PIPELINES = {"search_gov_spiders.pipelines.FreshnessSpiderPipeline": 100}
 # We actually care about errors, so let them all through
 HTTPERROR_ALLOW_ALL = True
 
+# Capture the fact of redirects, do not follow
+REDIRECT_ENABLED = False
+
 # We have alreay obeyed the robots.txt file during the inital spidering, this is not necessary
 ROBOTSTXT_OBEY = False
