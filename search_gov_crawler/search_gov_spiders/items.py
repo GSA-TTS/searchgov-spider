@@ -72,7 +72,10 @@ class FreshnessSpiderItem:
             elif cls_field_template := cls_field.metadata.get("template"):
                 properties[cls_field.name] = cls_field_template
 
-        return {"mappings": {"properties": properties}}
+        return {
+            "mappings": {"properties": properties},
+            "settings": {"number_of_shards": 2, "number_of_replicas": 1},
+        }
 
 
 @dataclass(kw_only=True)

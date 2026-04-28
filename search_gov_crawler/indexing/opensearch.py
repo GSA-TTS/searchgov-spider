@@ -3,6 +3,7 @@ import os
 from typing import Any
 
 from opensearchpy import OpenSearch, helpers
+from opensearchpy.exceptions import RequestError
 from scrapy import Spider
 
 # limit excess INFO messages from the OpenSearch transport
@@ -131,3 +132,23 @@ class SearchGovOpensearch:
 
         except Exception:
             spider.logger.exception("Bulk upload to Opensearch failed")
+
+    def create_index(self, template: dict):
+        """Creates index with a given template"""
+        self.client.indices.create(index=self.index_name, body=template)
+        log.info("Created index %s with template!", self.index_name)
+
+    def update_index_template(self, template: dict):
+        """Updates index with a given template"""
+
+        if self.client.indices.exists(index=self.index_name):
+            try:
+                self.client.indices.put_mapping(name=self.index_name, body=template["mappings"])
+                log.info("Updated mappings for index %s", self.index_name)
+                self.client.indices.put_settings(name=self.index_name, body=template["settings"])
+                log.info("Updated settings for index %s", self.index_name)
+            except RequestError:
+                log.exception("Error updating index %s", self.index_name)
+                raise
+        else:
+            log.error("Index %s does not exist, create it first!", self.index_name)

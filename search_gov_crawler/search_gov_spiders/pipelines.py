@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Self
 
 import requests
+from opensearchpy.exceptions import RequestError
 from scrapy.crawler import Crawler
 from scrapy.exceptions import DropItem
 
@@ -229,6 +230,12 @@ class FreshnessSpiderPipeline:
         self.crawler = crawler
         self.opensearch = SearchGovOpensearch(opensearch_index="spider-freshness")
         self.spider_logger = crawler.spider.logger
+        self._ensure_target_index_exists()
+
+    def _ensure_target_index_exists(self):
+        """Create the freshness index if it doesn't exist"""
+        with contextlib.suppress(RequestError):
+            self.opensearch.create_index(template=FreshnessSpiderItem.generate_template())
 
     def process_item(self, item: FreshnessSpiderItem) -> None:
         """Log the URL and status code from the freshness spider item."""
