@@ -143,5 +143,6 @@ def test_freshness_spider_item_generate_template():
                     }
                 },
             }
-        }
+        },
+        "settings": {"number_of_replicas": 1, "number_of_shards": 2},
     }
