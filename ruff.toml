@@ -5,6 +5,9 @@ target-version = "py312"
 select = ["ALL"]
 ignore = ["ANN", "BLE001", "COM812", "D100", "D107", "D2", "D4", "EXE002", "S324", "TRY002", "TRY003"]
 
+[lint.isort]
+known-first-party = ["search_gov_crawler"]
+
 [lint.mccabe]
 max-complexity = 11
 

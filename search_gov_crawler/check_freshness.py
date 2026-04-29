@@ -17,7 +17,7 @@ load_dotenv()
 
 logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
 logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
-log = logging.getLogger("search_gov_crawler.dap_extractor")
+log = logging.getLogger("search_gov_crawler.check_freshness")
 
 
 def init_scheduler() -> BlockingScheduler:
