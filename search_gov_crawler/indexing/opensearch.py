@@ -147,7 +147,7 @@ class SearchGovOpensearch:
                 log.info("Updated mappings for index %s", self.index_name)
                 self.client.indices.put_settings(name=self.index_name, body=template["settings"])
                 log.info("Updated settings for index %s", self.index_name)
-            except RequestError:
+            except (KeyError, RequestError):
                 log.exception("Error updating index %s", self.index_name)
                 raise
         else:
