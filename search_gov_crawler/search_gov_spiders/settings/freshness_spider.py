@@ -1,4 +1,4 @@
-# These settings are for the freshness_checker spider and represent the differences
+# These settings are for the freshness spider and represent the differences
 # between the main `settings.py` and what is needed for the freshness spider.
 
 # since we are making HEADS and checking on existing docs, we can go a little faster here
