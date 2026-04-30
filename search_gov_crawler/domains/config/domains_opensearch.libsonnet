@@ -877,7 +877,7 @@ local output_target = 'opensearch';
                          schedule='14 14 * * TUE',
                          output_target=output_target,
                          depth_limit=8,
-                         sitemap_urls=['https://www.healthcare.gov/sitemap-0.xml']),
+                         sitemap_urls=['https://www.healthcare.gov/sitemap-0.xml', 'https://www.healthcare.gov/sitemap-index.xml']),
   },
   {
     name: 'www.fincen.gov (usagov-replacement)',
@@ -3117,7 +3117,7 @@ local output_target = 'opensearch';
   {
     name: 'Air Force Privacy Act (afpw_privacyact)',
     config: DomainConfig(allowed_domains='www.privacy.af.mil',
-                         starting_urls='https://www.privacy.af.mil/',
+                         starting_urls='https://www.privacy.af.mil/Home/Welcome/',
                          schedule='26 15 * * TUE',
                          output_target=output_target,
                          depth_limit=8),

@@ -1455,7 +1455,8 @@
       "output_target": "opensearch",
       "schedule": "14 14 * * TUE",
       "sitemap_urls": [
-         "https://www.healthcare.gov/sitemap-0.xml"
+         "https://www.healthcare.gov/sitemap-0.xml",
+         "https://www.healthcare.gov/sitemap-index.xml"
       ],
       "starting_urls": "https://www.healthcare.gov/"
    },
@@ -5102,7 +5103,7 @@
       "output_target": "opensearch",
       "schedule": "26 15 * * TUE",
       "sitemap_urls": null,
-      "starting_urls": "https://www.privacy.af.mil/"
+      "starting_urls": "https://www.privacy.af.mil/Home/Welcome/"
    },
    {
       "allow_query_string": false,
