@@ -7,6 +7,7 @@ SCHEDULER_SCRIPT=search_gov_crawler/scrapy_scheduler.py
 SITEMAP_SCRIPT=run_sitemap_monitor.py
 SITEMAP_DIR=/var/tmp/spider_sitemaps
 DAP_SCRIPT=search_gov_crawler/dap_extractor.py
+FRESHNESS_SCRIPT=search_gov_crawler/check_freshness.py
 
 # ensure profile vars and log file are configured
 source ~/.profile
@@ -33,6 +34,9 @@ nohup bash -c "source ./venv/bin/activate && ./venv/bin/python ./$DAP_SCRIPT" >>
 
 # Start scheduler
 nohup bash -c "source ./venv/bin/activate && ./venv/bin/python ./$SCHEDULER_SCRIPT" >> $LOG_FILE 2>&1 &
+
+# start freshness cheker
+nohup bash -c "source ./venv/bin/activate && ./venv/bin/python ./$FRESHNESS_SCRIPT" >> $LOG_FILE 2>&1 &
 
 # check that scheduler is running before exit, it not raise error
 if [[ -n $(pgrep -f "scrapy_scheduler.py") ]]; then
