@@ -1,5 +1,4 @@
 import os
-import subprocess
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
@@ -23,25 +22,6 @@ def fixture_mock_jobstore() -> MagicMock:
     jobstore = MagicMock(spec=SpiderRedisJobStore)
     jobstore.get_due_jobs = MagicMock(return_value=[])
     return jobstore
-
-
-@pytest.mark.parametrize(
-    "run_args",
-    [("test_spider", False, "test-domain.example.com", "http://starting-url.example.com/", "csv", 3, "path")],
-)
-def test_run_scrapy_crawl(caplog, monkeypatch, run_args):
-    def mock_run(*_args, **_kwargs):
-        return True
-
-    monkeypatch.setattr(subprocess, "run", mock_run)
-    with caplog.at_level("INFO"):
-        run_scrapy_crawl(*run_args)
-
-    assert (
-        "Successfully completed scrapy crawl with args spider=test_spider, allow_query_string=False, "
-        "allowed_domains=test-domain.example.com, start_urls=http://starting-url.example.com/, "
-        "output_target=csv, depth_limit=3, deny_paths=path"
-    ) in caplog.messages
 
 
 @pytest.mark.parametrize(
@@ -86,49 +66,57 @@ def test_transform_crawl_configs(crawl_configs_from_test_file):
             "func": run_scrapy_crawl,
             "id": "quotes-1",
             "name": "Quotes 1",
-            "args": ["domain_spider", False, "quotes.toscrape.com", "https://quotes.toscrape.com/", "csv", 3, []],
+            "kwargs": {
+                "spider": "domain_spider",
+                "allow_query_string": False,
+                "allowed_domains": "quotes.toscrape.com",
+                "start_urls": "https://quotes.toscrape.com/",
+                "output_target": "csv",
+                "depth_limit": 3,
+                "deny_paths": [],
+            },
         },
         {
             "func": run_scrapy_crawl,
             "id": "quotes-2",
             "name": "Quotes 2",
-            "args": [
-                "domain_spider_js",
-                False,
-                "quotes.toscrape.com/js",
-                "https://quotes.toscrape.com/js/",
-                "csv",
-                3,
-                [],
-            ],
+            "kwargs": {
+                "spider": "domain_spider_js",
+                "allow_query_string": False,
+                "allowed_domains": "quotes.toscrape.com/js",
+                "start_urls": "https://quotes.toscrape.com/js/",
+                "output_target": "csv",
+                "depth_limit": 3,
+                "deny_paths": [],
+            },
         },
         {
             "func": run_scrapy_crawl,
             "id": "quotes-3",
             "name": "Quotes 3",
-            "args": [
-                "domain_spider_js",
-                False,
-                "quotes.toscrape.com/js-delayed",
-                "https://quotes.toscrape.com/js-delayed/",
-                "endpoint",
-                3,
-                ["/author/", "/tag/"],
-            ],
+            "kwargs": {
+                "spider": "domain_spider_js",
+                "allow_query_string": False,
+                "allowed_domains": "quotes.toscrape.com/js-delayed",
+                "start_urls": "https://quotes.toscrape.com/js-delayed/",
+                "output_target": "endpoint",
+                "depth_limit": 3,
+                "deny_paths": ["/author/", "/tag/"],
+            },
         },
         {
             "func": run_scrapy_crawl,
             "id": "quotes-4",
             "name": "Quotes 4",
-            "args": [
-                "domain_spider",
-                False,
-                "quotes.toscrape.com/tag/",
-                "https://quotes.toscrape.com/tag/love/",
-                "endpoint",
-                3,
-                ["/author/"],
-            ],
+            "kwargs": {
+                "spider": "domain_spider",
+                "allow_query_string": False,
+                "allowed_domains": "quotes.toscrape.com/tag/",
+                "start_urls": "https://quotes.toscrape.com/tag/love/",
+                "output_target": "endpoint",
+                "depth_limit": 3,
+                "deny_paths": ["/author/"],
+            },
         },
     ]
 

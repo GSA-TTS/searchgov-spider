@@ -1,11 +1,6 @@
-# Scrapy settings for search_gov_spiders project
-#
-# For simplicity, this file contains only settings considered important or
-# commonly used. You can find more settings consulting the documentation:
-#
-#     https://docs.scrapy.org/en/latest/topics/settings.html
-#     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+# These settings are for `domain_spider` and `domain_spider_js` only, specifically they
+# should not apply to `freshness_spider` or other future spiders.  These differences could
+# include changes in values or a need to revert to defaults in a spider.
 
 import os
 from datetime import UTC, datetime
@@ -14,52 +9,19 @@ from pathlib import Path
 from search_gov_crawler.scheduling.redis import get_redis_connection_args
 
 spider_start = datetime.now(tz=UTC)
-
-# Settings for logging and json logging
-LOG_ENABLED = False
-JSON_LOGGING_ENABLED = True
-LOG_LEVEL = os.environ.get("SCRAPY_LOG_LEVEL", "INFO")
-
-BOT_NAME = "search_gov_spiders"
-SPIDER_MODULES = ["search_gov_spiders.spiders"]
-NEWSPIDER_MODULE = "search_gov_spiders.spiders"
-
-# Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = "usasearch"
-
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
-
-# Disable telnet console since we don't use it
-TELNETCONSOLE_ENABLED = False
-
-COOKIES_ENABLED = False
-REACTOR_THREADPOOL_MAXSIZE = 20
-RETRY_ENABLED = False
-DOWNLOAD_TIMEOUT = 15
-
-# Close spider if no URLs found in period
-CLOSESPIDER_TIMEOUT_NO_ITEM = 60 * 60 * 24  # 24 hours in seconds
 
 # Enforce slow crawling
 CONCURRENT_REQUESTS = 1
 CONCURRENT_REQUESTS_PER_DOMAIN = 1
 DOWNLOAD_DELAY = 1
 
-# Limit downloads to 15MB
-DOWNLOAD_MAXSIZE = 15728640
-
 # settings for broad crawling
 SCHEDULER_PRIORITY_QUEUE = "scrapy.pqueues.DownloaderAwarePriorityQueue"
 
-# default setting for how deep we want to go
-DEPTH_LIMIT = 3
-
-# crawl in BFO order rather than DFO
-DEPTH_PRIORITY = 1
-# These settings remain here to enable memory queue for testing and cases when we don't use redis
-SCHEDULER_DISK_QUEUE = "scrapy.squeues.PickleFifoDiskQueue"
-SCHEDULER_MEMORY_QUEUE = "scrapy.squeues.FifoMemoryQueue"
+# Close spider if no URLs found in period
+CLOSESPIDER_TIMEOUT_NO_ITEM = 60 * 60 * 24  # 24 hours in seconds
 
 # Enable requests scheduler and dupefilter in redis using scrapy-redis
 # See https://github.com/rmax/scrapy-redis/wiki/Usage
@@ -105,18 +67,6 @@ ITEM_PIPELINES = {
     "search_gov_spiders.pipelines.DeDeuplicatorPipeline": 100,
     "search_gov_spiders.pipelines.SearchGovSpidersPipeline": 200,
 }
-
-# Enable and configure the AutoThrottle extension (disabled by default)
-# See https://docs.scrapy.org/en/latest/topics/autothrottle.html
-AUTOTHROTTLE_ENABLED = False
-
-
-# Enable and configure HTTP caching (disabled by default)
-# HTTPCACHE_ENABLED must be set to false for scrapy playwright to run
-HTTPCACHE_ENABLED = False
-HTTPCACHE_DIR = "httpcache"
-
-TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 
 # SPIDERMON SETTINGS
 SPIDERMON_ENABLED = os.environ.get("SPIDER_SPIDERMON_ENABLED", "False")

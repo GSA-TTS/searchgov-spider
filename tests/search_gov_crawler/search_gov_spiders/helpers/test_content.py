@@ -1,4 +1,6 @@
-from search_gov_crawler.search_gov_spiders.helpers.content import sanitize_text
+import pytest
+
+from search_gov_crawler.search_gov_spiders.helpers.content import sanitize_text, trim_whitespace
 
 
 def test_sanitize_text_empty_string():
@@ -70,3 +72,12 @@ def test_sanitize_text_with_punctuation_and_newlines():
     expected = "Test sentence. Another sentence! \"Quoted sentence.\" (Parenthetical sentence). [Bracketed sentence]. {Braced sentence}. <Angle bracketed sentence>. 'Apostrophe sentence'."
     # ruff: enable[E501]
     assert sanitize_text(text) == expected
+
+
+@pytest.mark.parametrize("text_input", [(" Hello there! "), ("Hello   there!")])
+def test_trim_whitespace(text_input):
+    assert trim_whitespace(text_input) == "Hello there!"
+
+
+def test_trim_whitespace_error():
+    assert trim_whitespace(None) == ""

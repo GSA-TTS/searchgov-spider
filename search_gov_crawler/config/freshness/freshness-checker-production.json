@@ -1,0 +1,8 @@
+[
+    {
+        "name": "documents-older-than-ten-days",
+        "schedule": "0 22 * * *",
+        "query": {"query": { "range": { "updated_at": { "lte": "now-10d/d" }}}},
+        "max_results": null
+    }
+]

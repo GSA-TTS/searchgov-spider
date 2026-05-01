@@ -194,7 +194,7 @@ def test_invalid_craw_sites_cron_expression(base_crawl_config_args):
 )
 def test_crawl_configs_file_is_valid(file_name):
     """
-    Read in the actual crawl-sites-sample.json file and instantiate as a CrawlConfigs class.  This will run all built-in
+    Read in the actual crawl sites files and instantiate as a CrawlConfigs class.  This will run all built-in
     validations and hopefully let you know if the file is invalid prior to attempting to run it in the scheduler.
     Additionally, we are assuming that there is at least one scheduled job in the file.
     """
