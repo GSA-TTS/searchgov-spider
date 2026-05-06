@@ -1,6 +1,68 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "local>GSA-TTS/scanning-service:default.json5"
+  "extends": ["local>GSA-TTS/scanning-service:default.json5"],
+  "packageRules": [
+    {
+      "groupName": "python dev/test dependencies",
+      "description": "Dependency upgrades for development or testing libraries only.",
+      "matchManagers": ["pip_requirements", "pep621"],
+      "matchPackageNames": [
+        "click",
+        "coverage",
+        "freezegun",
+        "pytest*",
+        "rich",
+        "ruff",
+        "pytest*",
+        "rich"
+      ],
+      "addLabels": ["dependencies", "pip", "dev/test"]
+    },
+    {
+      "groupName": "python production dependencies",
+      "description": "Dependency upgrades for production libraries.",
+      "matchManagers": ["pip_requirements", "pep621"],
+      "matchPackageNames": [
+        "apscheduler",
+        "brotli",
+        "defusedxml",
+        "cchardet",
+        "langdetect",
+        "newspaper4k*",
+        "opensearch-py",
+        "pymysql",
+        "pypdf",
+        "python-dateutil",
+        "python-dotenv",
+        "python-json-logger",
+        "redis",
+        "scrapy*",
+        "spidermon*",
+        "zstandard"
+      ],
+      "addLabels": ["dependencies", "pip", "production"]
+    },
+    {
+      "groupName": "python redis version constrained",
+      "description": "Limit updates to ensure system and library compatibility",
+      "matchManagers": ["pip_requirements"],
+      "matchPackageNames": ["redis"],
+      "allowedVersions": "<=6",
+      "addLabels": ["dependencies", "pip", "production"]
+    },
+    {
+      "groupName": "python lxml version pinned",
+      "description": "Pinned to current version due to newspaper4k dependency issues",
+      "matchManagers": ["pip_requirements"],
+      "matchPackageNames": ["lxml-html-clean"],
+      "allowedVersions": "0.4.1"
+    },
+    {
+      "groupName": "python tpying-extension version pinned",
+      "description": "Pinned to current version due to newspaper4k dependency issues",
+      "matchManagers": ["pip_requirements"],
+      "matchPackageNames": ["typing-extensions"],
+      "allowedVersions": "4.12.2"
+    }
   ]
 }
