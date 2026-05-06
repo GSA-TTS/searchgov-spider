@@ -104,24 +104,24 @@ class FreshnessSpider(Spider):
         elif response.status in self.status_codes_to_mark_for_deletion:
             item = FreshnessSpiderMarkedForDeletionItem(
                 checked_at=datetime.now(tz=UTC),
-                status_code=response.status,
+                status_code=str(response.status),
                 index_name=self.opensearch.index_name,
                 id=response.meta["document_id"],
                 path=response.url,
                 domain_name=response.meta["domain_name"],
                 exception=None,
-                result=response.status,
+                result=str(response.status),
             )
         else:
             item = FreshnessSpiderNotMarkedForDeletionItem(
                 checked_at=datetime.now(tz=UTC),
-                status_code=response.status,
+                status_code=str(response.status),
                 index_name=self.opensearch.index_name,
                 id=response.meta["document_id"],
                 path=response.url,
                 domain_name=response.meta["domain_name"],
                 exception=None,
-                result=response.status,
+                result=str(response.status),
             )
 
         yield item

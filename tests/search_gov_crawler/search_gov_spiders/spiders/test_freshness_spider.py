@@ -59,8 +59,8 @@ def test_freshness_spider_response_parse(freshness_spider, response, expected_it
     assert isinstance(item, expected_item_cls)
     assert item.to_dict() == {
         "checked_at": datetime(2026, 1, 1, 0, 0, tzinfo=UTC),
-        "result": response.status,
-        "status_code": response.status,
+        "result": str(response.status),
+        "status_code": str(response.status),
         "index_name": "test_index",
         "id": "test_id",
         "path": response.url,
