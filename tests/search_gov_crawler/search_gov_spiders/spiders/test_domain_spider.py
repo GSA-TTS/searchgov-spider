@@ -127,6 +127,15 @@ INVALID_DEPTH_LIMIT_TEST_CASES = [
         },
         "Search Depth must be between 1 and 250 inclusive. You submitted: %s ",
     ),
+    (
+        DomainSpiderJs,
+        {
+            "allowed_domains": "test.example.com",
+            "start_urls": "http://test.example.com/",
+            "output_target": "csv",
+        },
+        "Search Depth must be between 1 and 250 inclusive. You submitted: %s ",
+    ),
 ]
 
 
