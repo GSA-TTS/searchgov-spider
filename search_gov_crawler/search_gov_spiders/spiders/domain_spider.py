@@ -1,6 +1,7 @@
 from scrapy.crawler import Crawler
 from scrapy.http.response import Response
 from scrapy.linkextractors import LinkExtractor
+from scrapy.settings import BaseSettings
 from scrapy.spiders.crawl import CrawlSpider, Rule
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
@@ -146,3 +147,12 @@ class DomainSpider(CrawlSpider):
                 output_target=self.output_target,
                 content_type=helpers.get_simple_content_type(content_type_value, output_target=self.output_target),
             )
+
+    @classmethod
+    def update_settings(cls, settings: BaseSettings) -> None:
+        """
+        Apply project-wider common settings as well as custom settings at the spider priority level
+        for just this spider.
+        """
+        super().update_settings(settings)
+        settings.setmodule(module="search_gov_crawler.search_gov_spiders.settings.domain_spider", priority="spider")

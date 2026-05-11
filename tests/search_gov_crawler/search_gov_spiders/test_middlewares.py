@@ -9,6 +9,7 @@ from scrapy.utils.test import get_crawler
 
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 from search_gov_crawler.search_gov_spiders.middlewares import (
+    FreshnessSpiderDownloaderMiddleware,
     SearchGovSpidersDownloaderMiddleware,
     SearchGovSpidersOffsiteMiddleware,
     SearchGovSpidersSpiderMiddleware,
@@ -268,3 +269,23 @@ def test_spider_middleware_spider_exception_start_url(caplog):
             "response: <403 http://www.example.com>, Igore this test request"
         )
         assert msg in caplog.messages
+
+
+def test_freshness_spider_downloader_middleware(caplog):
+    crawler = get_crawler(Spider)
+    spider = Spider.from_crawler(name="test", crawler=crawler)
+    crawler.spider = spider
+
+    with caplog.at_level("INFO"):
+        mw = FreshnessSpiderDownloaderMiddleware.from_crawler(crawler)
+    mw_kwargs = {"request": Request("http://www.example.com"), "exception": Exception("This is just a test!")}
+    result = mw.process_exception(**mw_kwargs)
+    expected_result = Response(url="http://www.example.com", status=0, request=mw_kwargs["request"])
+    expected_result.meta["exception"] = mw_kwargs["exception"]
+
+    assert isinstance(result, Response)
+    assert result.url == "http://www.example.com"
+    assert result.status == 0
+    assert result.request == mw_kwargs["request"]
+    assert result.meta["exception"] == mw_kwargs["exception"]
+    assert "Error occured while accessing URL: http://www.example.com: This is just a test!" in caplog.messages

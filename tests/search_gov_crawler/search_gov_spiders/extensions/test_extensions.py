@@ -209,11 +209,13 @@ def test_extension_init_extra_handler(root_logger):
         ),
     ],
 )
-def test_extension_from_crawler_not_configured(project_settings, extension_cls, extension_settings, error_message):
-    project_settings.set(*extension_settings)
+def test_extension_from_crawler_not_configured(
+    domain_spider_settings, extension_cls, extension_settings, error_message
+):
+    domain_spider_settings.set(*extension_settings)
 
     with pytest.raises(NotConfigured, match=error_message):
-        extension_cls.from_crawler(Crawler(spidercls=Spider, settings=project_settings))
+        extension_cls.from_crawler(Crawler(spidercls=Spider, settings=domain_spider_settings))
 
 
 @pytest.mark.parametrize("extension_cls", [JsonLogging, OnDiskSchedulerQueue])
@@ -273,7 +275,7 @@ def test_extension_spider_closed(project_settings):
         assert not job_dir.exists()
 
 
-def test_redis_scheduler_spider_closed(project_settings, monkeypatch, caplog):
+def test_redis_scheduler_spider_closed(domain_spider_settings, monkeypatch, caplog):
     def mock_redis_client(*_args, **_kwargs):
         return MockRedisClient()
 
@@ -289,7 +291,7 @@ def test_redis_scheduler_spider_closed(project_settings, monkeypatch, caplog):
         name="test_spider",
         allowed_domains=["domain 1", "domain 2"],
         start_urls=["url 1", "url 2"],
-        settings=project_settings,
+        settings=domain_spider_settings,
     )
 
     extension = RedisSchedulerQueue()

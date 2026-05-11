@@ -262,3 +262,25 @@ class SearchGovSpidersOffsiteMiddleware(OffsiteMiddleware):
                 domains.append(re.escape(domain))
         regex = rf"{'|'.join(domains)}"
         return re.compile(regex)
+
+
+class FreshnessSpiderDownloaderMiddleware(BaseSpiderMiddleware):
+    """
+    Downloader middleware for freshness spider.  Handle exceptions and errors for HEAD requests to URLs,
+    creating items for each so that the results of freshness checks can be loaded into opensearch.
+    """
+
+    def process_exception(self, request: Request, exception) -> Response:
+        """
+        Called when a download handler or a process_request() (from other downloader middleware)
+        raises an exception.  If there is an exception here, create a response with the exception information
+        so it can be handled by process_response and loaded into opensearch.
+        """
+        self.crawler.spider.logger.error("Error occured while accessing URL: %s: %s", request.url, str(exception))
+        response = Response(
+            url=request.url,
+            status=0,
+            request=request,
+        )
+        response.meta["exception"] = exception
+        return response

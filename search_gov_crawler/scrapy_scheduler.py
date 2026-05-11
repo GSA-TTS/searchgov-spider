@@ -8,8 +8,6 @@ jobs finishes.
 
 import logging
 import os
-import subprocess
-import sys
 import time
 from pathlib import Path
 
@@ -19,6 +17,7 @@ from apscheduler.triggers.cron import CronTrigger
 from dotenv import load_dotenv
 from pythonjsonlogger.json import JsonFormatter
 
+from search_gov_crawler.run.crawl import run_scrapy_crawl
 from search_gov_crawler.scheduling.jobstores import SpiderRedisJobStore
 from search_gov_crawler.scheduling.redis import get_redis_connection_args
 from search_gov_crawler.scheduling.schedulers import SpiderBackgroundScheduler
@@ -37,49 +36,6 @@ CRAWL_SITES_FILE = (
 )
 
 
-def run_scrapy_crawl(
-    spider: str,
-    allow_query_string: bool,  # noqa: FBT001
-    allowed_domains: str,
-    start_urls: str,
-    output_target: str,
-    depth_limit: int,
-    deny_paths: list[str],
-) -> None:
-    """Runs `scrapy crawl` command as a subprocess given the allowed arguments"""
-
-    scrapy_env = os.environ.copy()
-    scrapy_env["PYTHONPATH"] = str(Path(__file__).parent.parent)
-
-    cmd = [
-        sys.executable,
-        "-m",
-        "scrapy",
-        "crawl",
-        spider,
-        "-a",
-        f"allow_query_string={allow_query_string}",
-        "-a",
-        f"allowed_domains={allowed_domains}",
-        "-a",
-        f"start_urls={start_urls}",
-        "-a",
-        f"output_target={output_target}",
-        "-a",
-        f"depth_limit={depth_limit}",
-        "-a",
-        f"deny_paths={','.join(deny_paths)}",
-    ]
-
-    subprocess.run(cmd, check=True, cwd=Path(__file__).parent, env=scrapy_env)  # noqa: S603
-    msg = (
-        "Successfully completed scrapy crawl with args "
-        "spider=%s, allow_query_string=%s, allowed_domains=%s, "
-        "start_urls=%s, output_target=%s, depth_limit=%s, deny_paths=%s"
-    )
-    log.info(msg, spider, allow_query_string, allowed_domains, start_urls, output_target, depth_limit, deny_paths)
-
-
 def transform_crawl_configs(crawl_configs: CrawlConfigs) -> list[dict]:
     """
     Transform crawl sites records into a format that can be used to create apscheduler jobs.  Only
@@ -96,15 +52,15 @@ def transform_crawl_configs(crawl_configs: CrawlConfigs) -> list[dict]:
                 "id": crawl_config.job_id,
                 "name": job_name,
                 "trigger": CronTrigger.from_crontab(expr=crawl_config.schedule, timezone="UTC"),
-                "args": [
-                    ("domain_spider" if not crawl_config.handle_javascript else "domain_spider_js"),
-                    crawl_config.allow_query_string,
-                    crawl_config.allowed_domains,
-                    crawl_config.starting_urls,
-                    crawl_config.output_target,
-                    crawl_config.depth_limit,
-                    crawl_config.deny_paths or [],
-                ],
+                "kwargs": {
+                    "spider": ("domain_spider" if not crawl_config.handle_javascript else "domain_spider_js"),
+                    "allow_query_string": crawl_config.allow_query_string,
+                    "allowed_domains": crawl_config.allowed_domains,
+                    "start_urls": crawl_config.starting_urls,
+                    "output_target": crawl_config.output_target,
+                    "depth_limit": crawl_config.depth_limit,
+                    "deny_paths": crawl_config.deny_paths or [],
+                },
             },
         )
 

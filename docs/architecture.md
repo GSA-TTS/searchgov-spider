@@ -73,6 +73,31 @@ We support three output targets for our scrapy jobs.  These are specified in a `
 
 3. `opensearch` - This option is used to post content to an Opensearch host and index based on environment variable configurations.  Here, it is not just the links being captured but also the content.
 
+## Freshness Checker
+To solve the problem of documents getting removed or renamed on websites but remaining in the search index we created a freshness checker process to ensure documents still exist after they have not been visited for a period of time. The freshness checker queries the main search index for documents that match specific criteria (e.g. not updated in 8 days), performs a HEAD request to verify the URL, and records any stale or broken links into a separate freshness index for further action.
+
+```mermaid
+flowchart TD
+    subgraph Entrypoint
+    FC[check_freshness.py] -- "reads from" --> CFG[Freshness Config JSON]
+    FC -- "Adds jobs to" --> S[Scheduler]
+    end
+
+    S -- triggers --> SP[Freshness Spider]
+
+    subgraph "Checker Process"
+    SP -- "1. Query Docs" --> OS_MAIN[(OpenSearch Main Index)]
+    SP -- "2. HEAD Request" --> WEB{{Websites}}
+    end
+
+    SP -- "3. Yield Item" --> PIPE[Freshness Pipeline]
+
+    subgraph Output
+    PIPE -- "4. Log Status" --> LOGS[Logs]
+    PIPE -- "5. Index Results" --> OS_FRESH[(OpenSearch Freshness Index)]
+    end
+```
+
 ## DAP
 In order to better rank domains in a multi-domain search such as a full government search, we ingest daily visits data from the [Digital Analytics Program](https://digital.gov/guides/dap/) (DAP).  A key is created in Redis for each domain reported by the DAP API. This visit data is stored for a time in redis and later aggregated and used to populate a field on documents we index during spider crawls.
 
