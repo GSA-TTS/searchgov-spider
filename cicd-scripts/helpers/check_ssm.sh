@@ -23,12 +23,12 @@ is_ssm_active() {
 _start_ssm() {
     if command -v systemctl >/dev/null 2>&1; then
         echo "Attempting to start ${SSM_SERVICE_NAME} with systemctl..."
-        if sudo systemctl start "${SSM_SERVICE_NAME}"; then
+        if sudo systemctl start "${SSM_SERVICE_NAME}" 2>/dev/null; then
             return 0
         fi
 
         echo "Falling back to snap-managed SSM service..."
-        sudo systemctl start "${SSM_SNAP_SERVICE_NAME}"
+        sudo systemctl start "${SSM_SNAP_SERVICE_NAME}" 2>/dev/null
         return $?
     else
         echo "systemctl not available; attempting to start ${SSM_SERVICE_NAME} with service..."

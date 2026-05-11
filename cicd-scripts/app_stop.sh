@@ -49,6 +49,12 @@ purge_pip_cache() {
     rm -rf ~/.cache/pip
 }
 
+# Stop freshness checker
+stop_freshness_checker() {
+    echo "Stopping check_freshness.py (if running)..."
+    run_executable "./cicd-scripts/helpers/kill_freshness_checker.sh"
+}
+
 # Stop scrapy scheduler if running
 stop_scrapy_scheduler() {
     echo "Stopping scrapy_scheduler.py (if running)..."
@@ -67,8 +73,17 @@ kill_remaining_scrapy_jobs() {
 
     local SCRAPY_PIDS=$(ps aux | grep -ie [s]crapy | awk '{print $2}')
     if [ -n "$SCRAPY_PIDS" ]; then
+        echo "Sending SIGINT to scrapy PIDs: $SCRAPY_PIDS"
         echo $SCRAPY_PIDS | xargs kill -SIGINT
-        echo "Remaining scrapy jobs killed."
+        sleep 5
+        # Force kill any that survived SIGINT
+        local REMAINING=$(ps aux | grep -ie [s]crapy | awk '{print $2}')
+        if [ -n "$REMAINING" ]; then
+            echo "Force killing with SIGKILL (PIDs survived SIGINT): $REMAINING"
+            echo $REMAINING | xargs kill -9
+        else
+            echo "All scrapy jobs terminated after SIGINT."
+        fi
     else
         echo "No remaining scrapy jobs to kill."
     fi
@@ -134,6 +149,9 @@ remove_venv
 
 # Purge pip cache
 purge_pip_cache
+
+# Stop freshness checker
+stop_freshness_checker
 
 # Stop scrapy scheduler if running
 stop_scrapy_scheduler
