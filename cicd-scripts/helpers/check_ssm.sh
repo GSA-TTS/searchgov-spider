@@ -28,8 +28,18 @@ _start_ssm() {
         fi
 
         echo "Falling back to snap-managed SSM service..."
-        sudo systemctl start "${SSM_SNAP_SERVICE_NAME}" 2>/dev/null
-        return $?
+        if sudo systemctl start "${SSM_SNAP_SERVICE_NAME}" 2>/dev/null; then
+            return 0
+        fi
+
+        # Both systemctl attempts failed — check if agent is already running via snap/pgrep
+        if pgrep -f "amazon-ssm-agent" >/dev/null 2>&1; then
+            echo "SSM agent is already running (snap-managed). No action needed."
+            return 0
+        fi
+
+        echo "SSM agent not found after all start attempts."
+        return 1
     else
         echo "systemctl not available; attempting to start ${SSM_SERVICE_NAME} with service..."
         sudo service "${SSM_SERVICE_NAME}" start
