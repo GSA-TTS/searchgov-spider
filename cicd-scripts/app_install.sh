@@ -58,38 +58,14 @@ stop_services() {
     ensure_executable "./cicd-scripts/app_stop.sh"
 }
 
-# Install missing system dependencies
-install_system_dependencies() {
-    log_info "Installing system dependencies..."
-    sudo apt-get update -y
-    sudo apt-get install -y \
-        lzma liblzma-dev libbz2-dev python3-setuptools \
-        acl build-essential checkinstall libreadline-dev \
-        libncursesw5-dev libssl-dev libsqlite3-dev tk-dev \
-        libgdbm-dev libc6-dev zlib1g-dev libffi-dev openssl
-}
-
-# Install Python
-install_python() {
-    log_info "Installing Python ${SPIDER_PYTHON_VERSION}..."
-    cd /usr/src
-    sudo wget -q https://www.python.org/ftp/python/${SPIDER_PYTHON_VERSION}.0/Python-${SPIDER_PYTHON_VERSION}.0.tgz
-    sudo tar xzf Python-${SPIDER_PYTHON_VERSION}.0.tgz
-    sudo chown -R $(whoami) ./Python-${SPIDER_PYTHON_VERSION}.0
-    cd Python-${SPIDER_PYTHON_VERSION}.0
-    ./configure --enable-optimizations
-    sudo make
-    sudo make install
-    sudo make altinstall
-    cd "$_CURRENT_BUILD_DIR"
-    log_info "Python ${SPIDER_PYTHON_VERSION} installed successfully."
-}
-
-# Check and install Python if needed
+# Verify Python 3.12 is available (installed by Ansible during host provisioning)
 check_python() {
-    log_info "Python version: $(python3 --version)"
-    # Ubuntu 24.04 has python3.12, just install venv packages
-    sudo apt-get install -y python3-venv python3-dev python3-pip
+    log_info "Verifying Python 3.12..."
+    if ! command -v python3.12 &>/dev/null; then
+        log_error "Python 3.12 not found. Ensure the Ansible spider playbook has run on this host."
+        exit 1
+    fi
+    log_info "Python version: $(python3.12 --version)"
 }
 
 # Fetch environment variables from parameter store
@@ -109,8 +85,8 @@ setup_virtualenv() {
     log_info "Setting up virtual environment..."
     rm -rf "$VENV_DIR"
 
-    log_info "Creating venv with python3..."
-    python3 -m venv "$VENV_DIR"
+    log_info "Creating venv with python3.12..."
+    python3.12 -m venv "$VENV_DIR"
 
     if [ ! -x "$VENV_PYTHON" ]; then
         log_error "Venv creation failed"
@@ -186,7 +162,6 @@ start_agents() {
 
 run_step "Stop running services" stop_services
 run_step "Fetch and export environment variables" fetch_env_vars
-run_step "Install system dependencies" install_system_dependencies
 run_step "Check Python prerequisites" check_python
 run_step "Set environment paths" update_pythonpath
 run_step "Configure file permissions" configure_permissions
