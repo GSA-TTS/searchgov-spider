@@ -5,7 +5,7 @@
  * [Wednesday (258)](#wednesday-258)
  * [Thursday (257)](#thursday-257)
  * [Friday (252)](#friday-252)
- * [Saturday (257)](#saturday-257)
+ * [Saturday (256)](#saturday-256)
 
 
 ## Sunday (247)
@@ -1569,7 +1569,7 @@
 |DOS Embassy Comoros (dos_emb_afr_comoros)|23:54|km.usembassy.gov|N|3||
 
 
-## Saturday (257)
+## Saturday (256)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |419th Fighter Wing (419fw)|00:00|www.419fw.afrc.af.mil|N|8||
@@ -1823,7 +1823,6 @@
 |Army EDIS (army_edis)|22:59|www.edis.army.mil|N|3||
 |www.nih.gov (usagov-replacement)|23:00|www.nih.gov|N|8||
 |23d Medical Group - Moody Air Force Base|23:00|moody.tricare.mil|N|8||
-|training.smartpay.gsa.gov (gsa_smartpay_training)|23:01|training.smartpay.gsa.gov|N|8||
 |US Embassy Bahrain|23:02|bh.usembassy.gov|N|8||
 |Coral Reef NOAA (coralreef.gov)|23:06|coralreef.noaa.gov|N|8||
 |History.Army.mil (army_uacomh)|23:15|history.army.mil|N|8||
