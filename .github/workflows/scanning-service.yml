@@ -1,5 +1,8 @@
 name: GSA-TTS Scanning Service
 on: [pull_request]
+permissions:
+  contents: read
+  packages: read
 jobs:
   lint:
     uses: GSA-TTS/scanning-service/.github/workflows/dependency-lint.yml@main
