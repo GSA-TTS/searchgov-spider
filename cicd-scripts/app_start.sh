@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 # Setup high-level variables
 # run_sitemap_monitor.py needs to be started from search_gov_crawler because that's where the scrapy.cfg is
 LOG_FILE=/var/log/scrapy_scheduler.log
@@ -7,6 +9,7 @@ SCHEDULER_SCRIPT=search_gov_crawler/scrapy_scheduler.py
 SITEMAP_SCRIPT=run_sitemap_monitor.py
 SITEMAP_DIR=/var/tmp/spider_sitemaps
 DAP_SCRIPT=search_gov_crawler/dap_extractor.py
+VENV_PYTHON=./venv/bin/python
 FRESHNESS_SCRIPT=search_gov_crawler/check_freshness.py
 
 # ensure profile vars and log file are configured
@@ -26,20 +29,26 @@ sudo chown -R "$(whoami)" "$SITEMAP_DIR"
 # CD into the current script directory (which != $pwd)
 cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && cd ../
 
+if [ ! -x "$VENV_PYTHON" ]; then
+    echo "ERROR: Virtual environment python not found at $VENV_PYTHON"
+    exit 1
+fi
+
 # start sitemap monitor
-nohup bash -c "source ./venv/bin/activate && cd ./search_gov_crawler && python $SITEMAP_SCRIPT" >> $LOG_FILE 2>&1 &
+nohup bash -lc "source ~/.profile && cd ./search_gov_crawler && ../venv/bin/python $SITEMAP_SCRIPT" >> "$LOG_FILE" 2>&1 &
 
 # start dap extractor
-nohup bash -c "source ./venv/bin/activate && ./venv/bin/python ./$DAP_SCRIPT" >> $LOG_FILE 2>&1 &
+nohup bash -lc "source ~/.profile && $VENV_PYTHON ./$DAP_SCRIPT" >> "$LOG_FILE" 2>&1 &
 
 # Start scheduler
-nohup bash -c "source ./venv/bin/activate && ./venv/bin/python ./$SCHEDULER_SCRIPT" >> $LOG_FILE 2>&1 &
+nohup bash -lc "source ~/.profile && $VENV_PYTHON ./$SCHEDULER_SCRIPT" >> "$LOG_FILE" 2>&1 &
 
 # start freshness cheker
 nohup bash -c "source ./venv/bin/activate && ./venv/bin/python ./$FRESHNESS_SCRIPT" >> $LOG_FILE 2>&1 &
 
 # check that scheduler is running before exit, it not raise error
-if [[ -n $(pgrep -f "scrapy_scheduler.py") ]]; then
+sleep 5
+if pgrep -f "scrapy_scheduler.py" >/dev/null; then
     echo "App start completed successfully."
 else
     echo "ERROR: Could not start scrapy_scheduler.py. See log file for details."

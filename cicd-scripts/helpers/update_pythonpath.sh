@@ -7,6 +7,9 @@ CURRENT_DIR=$(pwd)
 # for non-interactive shells, which is what the codedeploy agent uses to run things.
 PROFILE=$HOME/.profile
 
+# Ensure the profile exists before grepping or sourcing it.
+touch "$PROFILE"
+
 # Check if .profile contains an export PYTHONPATH line
 if grep -q "^export PYTHONPATH=" "$PROFILE"; then
     # Extract the existing PYTHONPATH line
@@ -25,11 +28,11 @@ else
 fi
 
 # Apply changes for the current session
-source $PROFILE
+source "$PROFILE"
 
 # Check that PYTHONPATH has been applied
-if [ -n $PYTHONPATH ]; then
-    echo "PYTHONPATH changes applied: $PYTHONPATH"
+if [ -n "${PYTHONPATH:-}" ]; then
+    echo "PYTHONPATH changes applied: ${PYTHONPATH}"
 else
     echo "ERROR: Could not apply PYTHONPATH changes"
     exit 2
