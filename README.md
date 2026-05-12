@@ -1,288 +1,233 @@
 # searchgov-spider
+The home for the spider that supports [Search.gov](https://www.search.gov).
 
-Crawler and supporting runtime processes for [Search.gov](https://www.search.gov). This repository contains the Scrapy-based crawlers, the scheduler that launches them, sitemap monitoring, DAP ingestion, deployment scripts, and supporting utilities.
+#### Table of contents
+* [About](#about)
+* [Quick Start (Docker)](#quick-start---docker)
+* [Quick Start (Local)](#quick-start---local-development)
+* [Entry Points](#entrypoints)
+* [Signed Commits](#signed-commits)
+* [Helpful Links](#helpful-links)
 
-## Contents
-- [Overview](#overview)
-- [Repository Layout](#repository-layout)
-- [Prerequisites](#prerequisites)
-- [Local Setup](#local-setup)
-- [Running the App Locally](#running-the-app-locally)
-- [Common Developer Commands](#common-developer-commands)
-- [Configuration](#configuration)
-- [Docker and Related Services](#docker-and-related-services)
-- [Additional Documentation](#additional-documentation)
+## About
+With the move away from using Bing to provide search results for some domains, we need a solution that can index sites that were previously indexed by Bing and/or that do not have standard sitemaps.  Additionally, the Scrutiny desktop application is being run manually to provide coverage for a few dozen domains that cannot be otherwise indexed.  The spider application is our solution to both the Bing problem and the removal of manual steps.  The documentation here represents the most current state of the application and our design.
 
-## Overview
+### Technologies
+We currently run python 3.12.  The spider is based on the open source [scrapy](https://scrapy.org/) framework.  On top of that we use several other open source libraries and scrapy plugins.  See our [requirements file](search_gov_crawler/requirements.txt) for more details.
 
-This project crawls websites that Search.gov indexes directly rather than relying on third-party search providers. At a high level, it:
-
-- Crawls HTML and JavaScript-heavy sites with Scrapy and Playwright.
-- Writes crawl output to CSV, an HTTP endpoint, or OpenSearch.
-- Schedules recurring crawls from domain configuration files.
-- Monitors sitemaps for changes and triggers targeted recrawls.
-- Ingests DAP visit data into Redis for use during indexing and ranking.
-
-The codebase targets Python 3.12 and uses Redis for scheduler and crawl state.
-
-## Repository Layout
-
-```text
-.
-├── cicd-scripts/                Deployment and instance lifecycle scripts
-├── docs/                        Architecture, deployment, operations, and advanced usage docs
-├── scripts/                     One-off utility scripts for cache, configs, and query testing
-├── search_gov_crawler/          Main application package and Scrapy project root
-│   ├── dap/                     DAP retrieval, transformation, and storage logic
-│   ├── domains/                 Crawl configuration inputs and generated domain lists
-│   ├── indexing/                OpenSearch indexing and NLTK setup
-│   ├── scheduling/              APScheduler and Redis job state integration
-│   ├── search_gov_app/          Integration code for Search.gov app data/configs
-│   ├── search_gov_spiders/      Spiders, pipelines, middleware, monitors, and job state
-│   ├── benchmark.py             Manual benchmark and ad hoc crawl runner
-│   ├── dap_extractor.py         DAP scheduler / on-demand ingestion entrypoint
-│   ├── run_sitemap_monitor.py   Sitemap monitor entrypoint
-│   ├── scrapy_scheduler.py      Scheduled crawl entrypoint
-│   └── scrapy.cfg               Scrapy configuration root
-├── tests/                       Test suite
-├── Makefile                     Common setup, lint, test, and schedule tasks
-├── pyproject.toml               Package metadata and pytest configuration
-└── requirements.txt             Root requirements wrapper
-```
-
-## Prerequisites
-
-- Python 3.12.x
-- `venv`
-- Redis
-- Google Chrome / Playwright browser dependencies for JavaScript-enabled crawling
-- Optional but recommended: `make`, `pre-commit`
-
-The repo is configured for Python 3.12 in [runtime.txt](/Users/amian/Documents/projects/searchgov-spider/runtime.txt:1) and [pyproject.toml](/Users/amian/Documents/projects/searchgov-spider/pyproject.toml:9).
-
-## Local Setup
-
-1. Create and activate a virtual environment:
+### Core Scrapy File Structure
+*Note: Other files and directories are within the repository but the folders and files below relate to those needed for the scrapy framework.
 
 ```bash
-python3.12 -m venv venv
+├── search_gov_crawler              # scrapy root
+│   ├── dap                         # code for handling data from DAP
+│   ├── domains                     # json files with domains to scrape
+│   ├── indexing                    # code related to indexing content in opensearch
+│   ├── scheduling                  # code for job scheduling and storing schedules in redis
+|   ├── search_gov_app              # code for communicating with the searchgov app
+│   ├── search_gov_spider           # scrapy project dir
+│   │   ├── extensions              # custom scrapy extensions
+│   │   ├── helpers                 # common functions
+│   │   ├── job_state               # code related to storing job state in redis
+│   │   ├── sitemaps                # code related to indexing based on sitemap data
+│   │   ├── spiders                 # all search_gov_spider spiders
+│   │   │   ├── domain_spider.py    # for html pages
+│   │   │   ├── domain_spider_js.py # for js pages
+│   │   ├── items.py                # defines individual output of scrapes
+│   │   ├── middlewares.py          # custom middleware code
+│   │   ├── monitors.py             # custom spidermon monitors
+│   │   ├── pipelines.py            # custom item pipelines
+│   │   ├── settings.py             # settings that control all scrapy jobs
+│   ├── scrapy.cfg
+```
+
+## Quick Start - Docker
+Docker can be used to run spider from this repo or from [search-services](https://www.github.com/GSA/search-services).  If you want to run other SearchGov services besides spider and its dependencies, you should use the search services repo.
+
+1. Start docker:
+
+The spider profile must be used to start the spider and its dependencies.
+```bash
+docker compose --profile spider up
+```
+
+2. Watch Logs and Check Output:
+
+The default behavior is that the `spider-scheduler` and `spider-sitemap` containers start running based on our development schedule.  It may be that no jobs are scheduled for a while so nothing will run.  Likewise, the sitemap process may not detect changes and index any documents.
+
+If a crawl does start watch the logs for information about records loaded to Opensearch.  Then, visit [Opensearch Dashboards](http://localhost:5602) to view indexed documents.
+
+3. Run an on-demand crawl
+To direct documents from a specific domain, use the helper script to trigger an on-demand crawl.  Here the `spider crawl` command can be used as a shortcut to trigger a non-js crawl starting at `https://www.gsa.gov` and limited to pages in the `www.gsa.gov` domain.
+
+```bash
+docker compose run spider /bin/bash -c "spider crawl www.gsa.gov https://www.gsa.gov"
+```
+
+
+## Quick Start - Local Development
+
+1. Install and activate virtual environment:
+```bash
+python -m venv venv
 source venv/bin/activate
 ```
 
-2. Install project dependencies:
-
+2. Add required python modules:
 ```bash
-make project-requirements
-```
+pip install -r requirements.txt
 
-If you prefer not to use `make`:
-
-```bash
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-```
-
-3. Install Playwright browser dependencies for JavaScript crawling:
-
-```bash
+# required for domains that need javascript
 playwright install --with-deps
 playwright install chrome --force
 ```
 
-4. Start Redis locally:
-
+3. Start Redis locally:
 ```bash
 redis-server
 ```
 
-If you run Redis another way, make sure `REDIS_HOST` and `REDIS_PORT` match your local instance.
-
-5. Optional: install git hooks:
-
-```bash
-pre-commit install
-```
-
-6. Optional: create a local `.env` file if you want to run the scheduler, sitemap monitor, endpoint output, DAP extraction, or OpenSearch indexing. The runtime entrypoints call `load_dotenv()`, so a repo-root `.env` file will be picked up automatically.
-
-## Running the App Locally
-
-### Run a single crawl
-
-From the Scrapy project root:
-
+4. Run A Spider:
 ```bash
 cd search_gov_crawler
+
+# to run for a non-js domain:
+scrapy crawl domain_spider -a allowed_domains=quotes.toscrape.com -a start_urls=https://quotes.toscrape.com -a output_target=csv
+
+# or to run for a js domain
+scrapy crawl domain_spider_js -a allowed_domains=quotes.toscrape.com -a start_urls=https://quotes.toscrape.com/js -a output_target=csv
 ```
 
-Run a non-JavaScript crawl:
+5. Check Output:
+
+The output of this scrape is one or more csv files containing URLs in the [output directory](search_gov_crawler/output).
+
+6. Learn More:
+
+For more advanced usage, see the [Advanced Setup and Use Page](docs/advanced_setup_and_use.md)
+
+## Entrypoints
+* [Scrapy Scheduler](search_gov_crawler/scrapy_scheduler.py) - Process that manages and runs spider crawls based on a schedule.
+
+* [Sitemap Monitor](search_gov_crawler/run_sitemap_monitor.py) - Process that monitors domains for changes in their sitemaps and triggers spider runs to capture changes.
+
+* [DAP Extractor](search_gov_crawler/dap_extractor.py) - Stand-alone job that handles extracting and loading DAP visits data for use in spider crawls.
+
+* [Benchmark](search_gov_crawler/benchmark.py) - Allows for manual testing and benchmarking using similar mechanisms as scheduled runs.
+
+## Signed Commits
+
+The GSA-TTS organization requires **all commits in pull requests to be cryptographically signed**. Unsigned commits will be blocked from merging.
+
+### Option A — SSH signing (recommended)
+
+#### 1. Generate an SSH key (skip if you already have one)
 
 ```bash
-scrapy crawl domain_spider \
-  -a allowed_domains=quotes.toscrape.com \
-  -a start_urls=https://quotes.toscrape.com \
-  -a output_target=csv
+ssh-keygen -t ed25519 -C "you@example.com" -f ~/.ssh/github_signing_key
 ```
 
-Run a JavaScript-enabled crawl:
+#### 2. Register the key as a **Signing Key** on GitHub
+
+> ⚠️ This must be added as a *Signing Key*, not just an *Authentication Key*.
+
+1. Go to **https://github.com/settings/ssh/new**
+2. Set **Key type** to **Signing Key**
+3. Paste the contents of `~/.ssh/github_signing_key.pub`
+
+#### 3. Create the allowed signers file
 
 ```bash
-scrapy crawl domain_spider_js \
-  -a allowed_domains=quotes.toscrape.com \
-  -a start_urls=https://quotes.toscrape.com/js \
-  -a output_target=csv
+echo "you@example.com $(cat ~/.ssh/github_signing_key.pub)" > ~/.ssh/allowed_signers
 ```
 
-CSV output is written under [search_gov_crawler/output](/Users/amian/Documents/projects/searchgov-spider/search_gov_crawler/output:1).
-
-### Run the scheduler
-
-The scheduler reads crawl config records from a JSON file in `search_gov_crawler/domains/` and stores job state in Redis.
+#### 4. Configure git for this repo
 
 ```bash
-python search_gov_crawler/scrapy_scheduler.py
+git config --local gpg.format ssh
+git config --local user.signingkey ~/.ssh/github_signing_key
+git config --local commit.gpgsign true
+git config --local gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
 ```
 
-Useful environment variables:
+Replace `--local` with `--global` to apply to all repos.
 
-- `SPIDER_CRAWL_SITES_FILE_NAME`
-- `SPIDER_SCRAPY_MAX_WORKERS`
-- `SPIDER_CRAWL_CONFIGS_CHECK_INTERVAL`
-- `REDIS_HOST`
-- `REDIS_PORT`
-
-### Run the sitemap monitor
+#### 5. Verify
 
 ```bash
-python search_gov_crawler/run_sitemap_monitor.py
+echo "test" | ssh-keygen -Y sign -n git -f ~/.ssh/github_signing_key
 ```
 
-This process reads the crawl config file, monitors sitemap sources, and triggers targeted crawls when it detects new URLs.
+You should see a `-----BEGIN SSH SIGNATURE-----` block.
 
-### Run the DAP extractor
+---
 
-Run once immediately:
+### Option B — GPG signing
+
+#### 1. Install GPG
 
 ```bash
-python search_gov_crawler/dap_extractor.py --run-now
+brew install gnupg
 ```
 
-Run on a schedule:
+#### 2. Generate a GPG key
 
 ```bash
-python search_gov_crawler/dap_extractor.py
+gpg --full-generate-key
 ```
 
-Required configuration:
+Choose **RSA and RSA**, key size **4096**, and enter your GitHub-verified email.
 
-- `DAP_API_BASE_URL`
-- `DATA_GOV_API_KEY`
-- `DAP_EXTRACTOR_SCHEDULE`
-
-Optional configuration:
-
-- `DAP_VISITS_DAYS_BACK`
-- `DAP_VISITS_MAX_AGE`
-- `REDIS_HOST`
-- `REDIS_PORT`
-
-### Run benchmark tooling
+#### 3. Get your key ID
 
 ```bash
-python search_gov_crawler/benchmark.py --help
+gpg --list-secret-keys --keyid-format=long
 ```
 
-This is useful for manual timing, benchmarking, and ad hoc crawl execution outside the main scheduler.
+Copy the long key ID from the `sec` line (after `rsa4096/`).
 
-## Common Developer Commands
-
-Install dependencies:
+#### 4. Export and add the key to GitHub
 
 ```bash
-make project-requirements
+gpg --armor --export YOUR_KEY_ID
 ```
 
-Run tests:
+Go to **https://github.com/settings/gpg/new**, paste it, and save.
+
+#### 5. Configure git for this repo
 
 ```bash
-make tests
+git config --local user.signingkey YOUR_KEY_ID
+git config --local commit.gpgsign true
 ```
 
-Run coverage:
+---
 
-```bash
-make coverage
-```
+### IntelliJ IDEA
 
-Run lint and formatting checks:
+IntelliJ reads git's signing config automatically — no additional IDE settings needed. Commits via **Git > Commit** will be signed as long as the steps above are complete.
 
-```bash
-make ruff-all
-```
+If IntelliJ uses a bundled git, verify it points to your system git under **Settings → Version Control → Git → Path to Git executable**.
 
-Run only formatting check:
+---
 
-```bash
-make ruff-format
-```
+### Troubleshooting
 
-Run only linting:
+| Symptom | Fix |
+|---|---|
+| `error: gpg failed to sign the data` | Run `export GPG_TTY=$(tty)` and add to your shell profile |
+| Commit shows **Unverified** on GitHub | Signing key not registered on your GitHub account — see step 2/4 above |
+| Commits signed locally but blocked by org | Key must be added as a **Signing Key** (not just Authentication Key) on GitHub |
 
-```bash
-make ruff-check
-```
+## Helpful Links
+* [Architecture](docs/architecture.md)
 
-Regenerate crawl-site artifacts from Jsonnet:
+* [Advanced Setup and Use](docs/advanced_setup_and_use.md)
 
-```bash
-make schedule
-```
+* [Deployments](docs/deployments.md)
 
-## Configuration
+* [Operations](docs/operations.md)
 
-Common environment variables used in local development:
-
-```bash
-SCRAPY_LOG_LEVEL=INFO
-REDIS_HOST=localhost
-REDIS_PORT=6379
-SPIDER_CRAWL_SITES_FILE_NAME=crawl-sites-development.json
-SPIDER_SCRAPY_MAX_WORKERS=5
-SPIDER_CRAWL_CONFIGS_CHECK_INTERVAL=300
-SPIDER_URLS_API=https://local.search.usa.gov/urls
-SPIDER_SPIDERMON_ENABLED=False
-```
-
-Additional variables are required depending on the output target or runtime:
-
-- `csv`: no extra external service configuration required.
-- `endpoint`: requires `SPIDER_URLS_API`.
-- `opensearch`: requires OpenSearch-related credentials and host settings, plus NLTK data installation.
-- `dap_extractor.py`: requires the DAP variables listed above.
-
-To install the NLTK data used for OpenSearch-related indexing:
-
-```bash
-python search_gov_crawler/indexing/install_nltk.py
-```
-
-For a more complete deployment-oriented variable list, see [docs/advanced_setup_and_use.md](/Users/amian/Documents/projects/searchgov-spider/docs/advanced_setup_and_use.md:1) and [cicd-scripts/helpers/fetch_env_vars.sh](/Users/amian/Documents/projects/searchgov-spider/cicd-scripts/helpers/fetch_env_vars.sh:1).
-
-## Docker and Related Services
-
-This repository does not include a `docker-compose.yml` file. If you want a full local stack with Search.gov-related services such as OpenSearch and supporting infrastructure, use the companion `search-services` repository referenced in the project docs.
-
-This repo can still be developed locally without Docker if you have:
-
-- Python 3.12
-- Redis
-- Playwright browser dependencies
-
-## Additional Documentation
-
-- [Architecture](/Users/amian/Documents/projects/searchgov-spider/docs/architecture.md:1)
-- [Advanced Setup and Use](/Users/amian/Documents/projects/searchgov-spider/docs/advanced_setup_and_use.md:1)
-- [Deployments](/Users/amian/Documents/projects/searchgov-spider/docs/deployments.md:1)
-- [Operations](/Users/amian/Documents/projects/searchgov-spider/docs/operations.md:1)
-- [Domain Config Documentation](/Users/amian/Documents/projects/searchgov-spider/search_gov_crawler/domains/README.md:1)
-- [Utility Scripts](/Users/amian/Documents/projects/searchgov-spider/scripts/README.md:1)
+* [Spider Schedules and Domain Configs README](search_gov_crawler/domains/README.md)
+  * [Current Production Domain List - JSON](search_gov_crawler/domains/crawl-sites-production.json)
+  * [Current Production Domain List - Markdown](search_gov_crawler/domains/crawl-sites-production.md)
