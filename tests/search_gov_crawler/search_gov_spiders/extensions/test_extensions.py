@@ -13,6 +13,7 @@ from search_gov_crawler.search_gov_spiders.extensions.json_logging import (
     JsonLogging,
     SearchGovSpiderFileHandler,
     SearchGovSpiderStreamHandler,
+    search_gov_default,
 )
 from search_gov_crawler.search_gov_spiders.extensions.scheduler_queue import OnDiskSchedulerQueue, RedisSchedulerQueue
 from tests.search_gov_crawler.scheduling.conftest import MockRedisClient
@@ -312,3 +313,16 @@ def test_is_orphan_key(monkeypatch, key_age, expected_result):
 
     monkeypatch.setattr(MockRedisClient, "object", mock_object)
     assert extension._is_orphan_key(redis=redis, orphan_age=10, key="test-key") == expected_result
+
+
+def test_redis_extension_from_crawler(project_settings):
+    project_settings.set("SCHEDULER_PERSIST", True)  # noqa: FBT003
+    project_settings.set("SCHEDULER_KEY_ORPHAN_AGE", 10)
+    project_settings.set("SCHEDULER_DUPEFILTER_KEY", "test")
+    project_settings.set("SCHEDULER_QUEUE_KEY", "test")
+    extension = RedisSchedulerQueue.from_crawler(Crawler(spidercls=Spider, settings=project_settings))
+    assert isinstance(extension, RedisSchedulerQueue)
+
+
+def test_search_gov_default_format_non_spider():
+    assert search_gov_default("this is not a spider") is None
