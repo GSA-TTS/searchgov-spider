@@ -10,13 +10,13 @@ source ./cicd-scripts/helpers/ensure_executable.sh
 # stop dap extractor
 stop_dap_extractor() {
     echo "Stopping dap_extractor.py (if running)..."
-    ensure_executable "./cicd-scripts/helpers/kill_dap_extractor.sh"
+    run_executable "./cicd-scripts/helpers/kill_dap_extractor.sh"
 }
 
 # Stop sitemap monitor
 stop_sitemap_monitor() {
     echo "Stopping run_sitemap_monitor.py (if running)..."
-    ensure_executable "./cicd-scripts/helpers/kill_sitemap_monitor.sh"
+    run_executable "./cicd-scripts/helpers/kill_sitemap_monitor.sh"
 }
 
 # Remove virtual environment if it exists
@@ -24,11 +24,11 @@ remove_venv() {
     echo "Removing Python virtual environment..."
 
     # Check if a virtual environment is active and deactivate it
-    if [[ -n "$VIRTUAL_ENV" ]] && type deactivate >/dev/null 2>&1; then
+    if [[ -n "${VIRTUAL_ENV:-}" ]] && type deactivate >/dev/null 2>&1; then
         deactivate
     fi
 
-    if [ -d "$VIRTUAL_ENV" ]; then
+    if [ -n "${VIRTUAL_ENV:-}" ] && [ -d "$VIRTUAL_ENV" ]; then
         rm -rf "$VIRTUAL_ENV"
     fi
 
@@ -43,10 +43,16 @@ purge_pip_cache() {
     rm -rf ~/.cache/pip
 }
 
+# Stop freshness checker
+stop_freshness_checker() {
+    echo "Stopping check_freshness.py (if running)..."
+    run_executable "./cicd-scripts/helpers/kill_freshness_checker.sh"
+}
+
 # Stop scrapy scheduler if running
 stop_scrapy_scheduler() {
     echo "Stopping scrapy_scheduler.py (if running)..."
-    ensure_executable "./cicd-scripts/helpers/kill_scheduler.sh"
+    run_executable "./cicd-scripts/helpers/kill_scheduler.sh"
 }
 
 # Display remaining scrapy processes
@@ -61,8 +67,17 @@ kill_remaining_scrapy_jobs() {
 
     local SCRAPY_PIDS=$(ps aux | grep -ie [s]crapy | awk '{print $2}')
     if [ -n "$SCRAPY_PIDS" ]; then
+        echo "Sending SIGINT to scrapy PIDs: $SCRAPY_PIDS"
         echo $SCRAPY_PIDS | xargs kill -SIGINT
-        echo "Remaining scrapy jobs killed."
+        sleep 5
+        # Force kill any that survived SIGINT
+        local REMAINING=$(ps aux | grep -ie [s]crapy | awk '{print $2}')
+        if [ -n "$REMAINING" ]; then
+            echo "Force killing with SIGKILL (PIDs survived SIGINT): $REMAINING"
+            echo $REMAINING | xargs kill -9
+        else
+            echo "All scrapy jobs terminated after SIGINT."
+        fi
     else
         echo "No remaining scrapy jobs to kill."
     fi
@@ -71,8 +86,22 @@ kill_remaining_scrapy_jobs() {
 # Remove nohup jobs (python scripts)
 remove_nohup_jobs() {
     echo "Removing nohup jobs (python)..."
-    pgrep -f "nohup.*python" | xargs --no-run-if-empty kill -SIGINT
-    pgrep -f "scrapy_scheduler" | xargs --no-run-if-empty kill -SIGINT
+    local nohup_pids
+    local scheduler_pids
+
+    nohup_pids=$(pgrep -f "nohup.*python" || true)
+    if [ -n "$nohup_pids" ]; then
+        echo "$nohup_pids" | xargs --no-run-if-empty kill -SIGINT
+    else
+        echo "No nohup python jobs found."
+    fi
+
+    scheduler_pids=$(pgrep -f "scrapy_scheduler" || true)
+    if [ -n "$scheduler_pids" ]; then
+        echo "$scheduler_pids" | xargs --no-run-if-empty kill -SIGINT
+    else
+        echo "No scrapy_scheduler jobs found."
+    fi
 }
 
 # Remove cron job entries referencing the given string
@@ -88,7 +117,15 @@ remove_cron_entry() {
     echo "Removing cron job entries referencing: $CRON_ENTRY"
 
     # Remove cron job for the current user (including the full path if needed)
-    sudo crontab -l -u "$CRON_USER" 2>/dev/null | grep -v -F "$CRON_ENTRY" | sudo crontab -u "$CRON_USER" -
+    local current_crontab
+    current_crontab=$(sudo crontab -l -u "$CRON_USER" 2>/dev/null || true)
+
+    if [ -z "$current_crontab" ]; then
+        echo "No cron jobs found for '$CRON_USER'."
+        return 0
+    fi
+
+    printf '%s\n' "$current_crontab" | grep -v -F "$CRON_ENTRY" | sudo crontab -u "$CRON_USER" - || true
 
     echo "Cron job entries for '$CRON_ENTRY' removed."
 }
@@ -106,6 +143,9 @@ remove_venv
 
 # Purge pip cache
 purge_pip_cache
+
+# Stop freshness checker
+stop_freshness_checker
 
 # Stop scrapy scheduler if running
 stop_scrapy_scheduler
