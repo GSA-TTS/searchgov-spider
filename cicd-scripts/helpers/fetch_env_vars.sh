@@ -4,6 +4,9 @@
 # for non-interactive shells, which is what the codedeploy agent uses to run things.
 PROFILE=$HOME/.profile
 
+# Ensure the profile exists before updating or sourcing it.
+touch "$PROFILE"
+
 # Use ec2metadata from cloud-utils to get the region containing the EC2
 REGION=$(ec2metadata --availability-zone | sed 's/.$//')
 
@@ -71,7 +74,7 @@ for PARAM in $PARAMS; do
     fi
 
     # Apply changes for the current session and verify
-    source $PROFILE
+    source "$PROFILE"
     if [[ "$(eval echo \"\$$PARAM\")" != "$(sed -e 's/^"//' -e 's/"$//' <<< "$VALUE")" ]]; then
             echo "ERROR! Value for $PARAM not set properly!"
         exit 2
