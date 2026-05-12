@@ -16,13 +16,21 @@ class SearchGovSpidersItem(scrapy.Item):
     output_target = scrapy.Field()
     response_language = scrapy.Field()
     content_type = scrapy.Field()
+    item_source = scrapy.Field()
+    download_seconds = scrapy.Field()
 
     def __repr__(self) -> str:
         """Override the default __repr__ so that we don't print the response_bytes which is very long sometimes."""
 
         return (
-            f"Item(url={self.get('url')}, output_target={self.get('output_target')}, "
-            f"content_type={self.get('content_type')}, response_language={self.get('response_language')})"
+            "Item("
+            f"url={self.get('url')}, "
+            f"output_target={self.get('output_target')}, "
+            f"response_language={self.get('response_language')}, "
+            f"content_type={self.get('content_type')}, "
+            f"item_source={self.get('item_source')}, "
+            f"download_seconds={self.get('download_seconds')}"
+            ")"
         )
 
 

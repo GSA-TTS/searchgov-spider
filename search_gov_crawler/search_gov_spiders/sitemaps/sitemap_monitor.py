@@ -19,6 +19,7 @@ from scrapy.utils.project import get_project_settings
 from search_gov_crawler.search_gov_app.crawl_config import CrawlConfig
 from search_gov_crawler.search_gov_spiders.job_state.scheduler import disable_redis_job_state
 from search_gov_crawler.search_gov_spiders.sitemaps.sitemap_finder import SitemapFinder
+from search_gov_crawler.search_gov_spiders.spiders import SpiderStartedBy
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import DomainSpiderJs
 
@@ -333,6 +334,7 @@ class SitemapMonitor:
                             "output_target": record.output_target,
                             "prevent_follow": True,
                             "depth_limit": 1,
+                            "started_by": SpiderStartedBy.SITEMAP.value,
                         }
                         crawl_process = Process(
                             target=run_crawl_in_dedicated_process,

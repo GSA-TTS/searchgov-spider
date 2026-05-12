@@ -6,6 +6,7 @@ from scrapy.spiders.crawl import CrawlSpider, Rule
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
+from search_gov_crawler.search_gov_spiders.spiders import SpiderStartedBy
 
 
 class DomainSpider(CrawlSpider):
@@ -67,6 +68,7 @@ class DomainSpider(CrawlSpider):
         start_urls: str,
         output_target: str,
         prevent_follow: bool = False,
+        started_by: str = SpiderStartedBy.MANUAL.value,
         **kwargs,
     ) -> None:
         helpers.validate_spider_arguments(allowed_domains, start_urls, output_target)
@@ -95,6 +97,7 @@ class DomainSpider(CrawlSpider):
         self.allowed_domains = helpers.split_allowed_domains(allowed_domains)
         self.allowed_domain_paths = allowed_domains.split(",")
         self.start_urls = start_urls.split(",")
+        self.started_by = started_by
 
         # store input args as private attributes for use in logging
         self._deny_paths = deny_paths
@@ -136,9 +139,11 @@ class DomainSpider(CrawlSpider):
         @scrapes url
         """
         content_type_name = "Content-Type"
-        content_type_value = response.headers.get(
-            content_type_name,
-            response.headers.get(content_type_name.lower(), None),
+        content_type_value = str(
+            response.headers.get(
+                content_type_name,
+                response.headers.get(content_type_name.lower(), None),
+            )
         )
         if helpers.is_valid_content_type(content_type_value, output_target=self.output_target):
             yield SearchGovSpidersItem(
@@ -146,6 +151,8 @@ class DomainSpider(CrawlSpider):
                 response_bytes=response.body,
                 output_target=self.output_target,
                 content_type=helpers.get_simple_content_type(content_type_value, output_target=self.output_target),
+                item_source=self.started_by,
+                download_seconds=response.meta.get("download_latency"),
             )
 
     @classmethod

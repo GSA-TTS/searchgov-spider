@@ -7,6 +7,7 @@ from scrapy.spiders.crawl import CrawlSpider, Rule
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
+from search_gov_crawler.search_gov_spiders.spiders import SpiderStartedBy
 
 
 def should_abort_request(request):
@@ -77,6 +78,7 @@ class DomainSpiderJs(CrawlSpider):
         start_urls: str,
         output_target: str,
         prevent_follow: bool = False,
+        started_by: str = SpiderStartedBy.MANUAL.value,
         **kwargs,
     ) -> None:
         helpers.validate_spider_arguments(allowed_domains, start_urls, output_target)
@@ -107,6 +109,7 @@ class DomainSpiderJs(CrawlSpider):
         self.allowed_domain_paths = allowed_domains.split(",")
         self.start_urls = start_urls.split(",")
         self.output_target = output_target
+        self.started_by = started_by
 
         # store input args as private attributes for use in logging
         self._deny_paths = deny_paths
@@ -150,9 +153,11 @@ class DomainSpiderJs(CrawlSpider):
         """
 
         content_type_name = "Content-Type"
-        content_type_value = response.headers.get(
-            content_type_name,
-            response.headers.get(content_type_name.lower(), None),
+        content_type_value = str(
+            response.headers.get(
+                content_type_name,
+                response.headers.get(content_type_name.lower(), None),
+            )
         )
         if helpers.is_valid_content_type(content_type_value, output_target=self.output_target):
             yield SearchGovSpidersItem(
