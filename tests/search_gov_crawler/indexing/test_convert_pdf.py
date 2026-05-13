@@ -2,6 +2,7 @@ import pytest
 from pypdf.errors import FileNotDecryptedError, PdfReadError
 
 from search_gov_crawler.indexing import transform
+from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 
 @pytest.fixture(autouse=True)
@@ -52,9 +53,14 @@ def test_convert_pdf_normal(monkeypatch, fake_page, fake_pdf_reader):
     # Patch PdfReader so that any instantiation returns our fake_reader.
     monkeypatch.setattr(transform, "PdfReader", lambda _stream: fake_reader)
 
-    response_bytes = b"dummy bytes representing pdf"
-    url = "http://example.com/fake.pdf"
-    result = transform.convert_pdf(response_bytes, url, response_language="en")
+    item = SearchGovSpidersItem(
+        response_bytes=b"yadda yadda yadda",
+        url="http://example.com/fake.pdf",
+        response_language="en",
+        item_source="test",
+        download_seconds=100,
+    )
+    result = transform.convert_pdf(item=item)
 
     # Check that the result is a dict with expected keys and values.
     assert result is not None
@@ -81,23 +87,34 @@ def test_convert_pdf_encrypted(monkeypatch, fake_pdf_reader):
     fake_reader = fake_pdf_reader(None, is_encrypted=True)
     monkeypatch.setattr(transform, "PdfReader", lambda _stream: fake_reader)
     monkeypatch.setattr(transform, "get_pdf_meta", raise_encrypted_error)
-    response_bytes = b"dummy bytes representing pdf"
-    url = "http://example.com/encrypted.pdf"
-    result = transform.convert_pdf(response_bytes, url)
-    assert result is None
+
+    item = SearchGovSpidersItem(
+        response_bytes=b"yadda yadda yadda",
+        url="http://example.com/encrypted.pdf",
+        response_language="en",
+        item_source="test",
+        download_seconds=100,
+    )
+    result = transform.convert_pdf(item=item)
+    assert result == {}
 
 
 def test_convert_pdf_stream_error(caplog, mocker):
     mock_reader = mocker.patch("pypdf.PdfReader.__init__")
     error_msg = "Error reading PDF"
     mock_reader.side_effect = PdfReadError(error_msg)
-    response_bytes = b"some bytes representing pdf"
-    url = "http://example.com/bad-read-pdf.pdf"
+    item = SearchGovSpidersItem(
+        response_bytes=b"yadda yadda yadda",
+        url="http://example.com/bad-read-pdf.pdf",
+        response_language="en",
+        item_source="test",
+        download_seconds=100,
+    )
     with caplog.at_level("WARNING"):
-        doc = transform.convert_pdf(response_bytes, url)
+        doc = transform.convert_pdf(item=item)
 
-    assert f"Could not download PDF file at {url}: {error_msg}" in caplog.messages
-    assert doc is None
+    assert f"Could not download PDF file for item {item}: {error_msg}" in caplog.messages
+    assert doc == {}
 
 
 def test_add_title_and_filename():

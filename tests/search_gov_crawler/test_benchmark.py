@@ -62,7 +62,8 @@ def test_create_apscheduler_job(handle_javascript, spider_arg):
         "output_target": "csv",
         "runtime_offset_seconds": 5,
         "depth_limit": 3,
-        "deny_paths": "/deny-path1/,/deny-path2/",
+        "deny_paths": ["/deny-path1/", "/deny-path2/"],
+        "job_id": None,
     }
 
     assert create_apscheduler_job(**test_args) == {
@@ -70,15 +71,16 @@ def test_create_apscheduler_job(handle_javascript, spider_arg):
         "id": f"benchmark - {test_args['name']}",
         "name": f"benchmark - {test_args['name']}",
         "next_run_time": datetime(2024, 1, 1, 0, 0, 5, tzinfo=UTC),
-        "args": [
-            spider_arg,
-            test_args["allow_query_string"],
-            test_args["allowed_domains"],
-            test_args["starting_urls"],
-            test_args["output_target"],
-            test_args["depth_limit"],
-            test_args["deny_paths"],
-        ],
+        "kwargs": {
+            "spider": spider_arg,
+            "allow_query_string": test_args["allow_query_string"],
+            "allowed_domains": test_args["allowed_domains"],
+            "start_urls": test_args["starting_urls"],
+            "output_target": test_args["output_target"],
+            "depth_limit": test_args["depth_limit"],
+            "deny_paths": test_args["deny_paths"],
+            "started_by": "manual_run",
+        },
     }
 
 

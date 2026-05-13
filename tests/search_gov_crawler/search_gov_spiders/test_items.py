@@ -12,23 +12,46 @@ from search_gov_crawler.search_gov_spiders.items import (
 )
 
 
-def test_search_gov_spiders_item():
-    item = SearchGovSpidersItem(
+@pytest.fixture(name="search_gov_spiders_item")
+def fixture_search_gov_spiders_item():
+    return SearchGovSpidersItem(
         response_bytes=b"this is some bytes",
         url="https://www.example.com",
         output_target="opensearch",
         response_language="en",
         content_type="text/html",
+        item_source="unit_tests",
+        download_seconds=10,
     )
 
-    assert item["response_bytes"] == b"this is some bytes"
-    assert item["url"] == "https://www.example.com"
-    assert item["output_target"] == "opensearch"
-    assert item["response_language"] == "en"
-    assert (
-        str(item)
-        == "Item(url=https://www.example.com, output_target=opensearch, content_type=text/html, response_language=en)"
+
+SEARCH_GOV_SPIDERS_ITEM_TEST_CASES = [
+    ("response_bytes", b"this is some bytes"),
+    ("url", "https://www.example.com"),
+    ("output_target", "opensearch"),
+    ("response_language", "en"),
+    ("item_source", "unit_tests"),
+    ("download_seconds", 10),
+]
+
+
+@pytest.mark.parametrize(("field", "value"), SEARCH_GOV_SPIDERS_ITEM_TEST_CASES)
+def test_search_gov_spiders_item(search_gov_spiders_item, field, value):
+    assert search_gov_spiders_item[field] == value
+
+
+def test_searc_gov_spiders_item_repr(search_gov_spiders_item):
+    expected_repr = (
+        "Item("
+        "url=https://www.example.com, "
+        "output_target=opensearch, "
+        "response_language=en, "
+        "content_type=text/html, "
+        "item_source=unit_tests, "
+        "download_seconds=10"
+        ")"
     )
+    assert str(search_gov_spiders_item) == expected_repr
 
 
 @pytest.fixture(name="freshness_spider_marked_for_deletion_item")
