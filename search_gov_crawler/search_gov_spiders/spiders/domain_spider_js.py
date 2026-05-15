@@ -99,7 +99,7 @@ class DomainSpiderJs(CrawlSpider):
                     ),
                     callback="parse_item",
                     follow=True,
-                    process_request="set_playwright_usage",
+                    process_request="update_request_meta",
                 ),
             )
 
@@ -152,26 +152,29 @@ class DomainSpiderJs(CrawlSpider):
         @scrapes url
         """
 
-        content_type_name = "Content-Type"
-        content_type_value = str(
-            response.headers.get(
-                content_type_name,
-                response.headers.get(content_type_name.lower(), None),
-            )
-        )
-        if helpers.is_valid_content_type(content_type_value, output_target=self.output_target):
+        if content_type := helpers.get_simple_content_type(response=response, output_target=self.output_target):
             yield SearchGovSpidersItem(
-                url=response.url,
-                response_bytes=response.body,
+                content_type=content_type,
+                creator=self.started_by,
+                crawl_depth=response.meta.get("depth"),
+                download_milliseconds=helpers.get_download_milliseconds(response=response),
                 output_target=self.output_target,
-                response_language=helpers.get_response_language_code(response),
-                content_type=helpers.get_simple_content_type(content_type_value, output_target=self.output_target),
+                response_bytes=response.body,
+                response_language=helpers.get_response_language_code(response=response),
+                source_url=response.meta.get("source_url"),
+                url=response.url,
             )
 
-    def set_playwright_usage(self, request: Request, _response: Response) -> Request:
-        """Set meta tags for playwright to run"""
+    def update_request_meta(self, request: Request, response: Response) -> Request:
+        """
+        Add the source url to the request meta field for inclusion in the item and
+        set meta tags for playwright to run
+        """
 
         request.meta["playwright"] = True
+        if response.request:
+            request.meta["source_url"] = response.request.url
+
         return request
 
     @classmethod

@@ -1,3 +1,4 @@
+from scrapy import Request
 from scrapy.crawler import Crawler
 from scrapy.http.response import Response
 from scrapy.linkextractors import LinkExtractor
@@ -89,6 +90,7 @@ class DomainSpider(CrawlSpider):
                     ),
                     callback="parse_item",
                     follow=True,
+                    process_request="update_request_meta",
                 ),
             )
         super().__init__(*args, **kwargs)
@@ -138,22 +140,25 @@ class DomainSpider(CrawlSpider):
         @returns items 1 1
         @scrapes url
         """
-        content_type_name = "Content-Type"
-        content_type_value = str(
-            response.headers.get(
-                content_type_name,
-                response.headers.get(content_type_name.lower(), None),
-            )
-        )
-        if helpers.is_valid_content_type(content_type_value, output_target=self.output_target):
+        if content_type := helpers.get_simple_content_type(response=response, output_target=self.output_target):
             yield SearchGovSpidersItem(
-                url=response.url,
-                response_bytes=response.body,
+                content_type=content_type,
+                creator=self.started_by,
+                crawl_depth=response.meta.get("depth"),
+                download_milliseconds=helpers.get_download_milliseconds(response=response),
                 output_target=self.output_target,
-                content_type=helpers.get_simple_content_type(content_type_value, output_target=self.output_target),
-                item_source=self.started_by,
-                download_seconds=response.meta.get("download_latency"),
+                response_bytes=response.body,
+                response_language=helpers.get_response_language_code(response=response),
+                source_url=response.request.meta.get("source_url") if response.request else None,
+                url=response.url,
             )
+
+    def update_request_meta(self, request: Request, response: Response):
+        """Add the source url to the request meta field for inclusion in the item"""
+        if response.request:
+            request.meta["source_url"] = response.request.url
+
+        return request
 
     @classmethod
     def update_settings(cls, settings: BaseSettings) -> None:

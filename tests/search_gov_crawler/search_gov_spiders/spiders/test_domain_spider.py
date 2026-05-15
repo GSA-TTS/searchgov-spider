@@ -11,8 +11,6 @@ import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import DomainSpiderJs
 
-TEST_URL = "http://example.com"
-
 
 @pytest.fixture(name="spider_args")
 def fixture_spider_args() -> dict:
@@ -38,6 +36,11 @@ def fixture_domain_spider_js(monkeypatch, spider_args) -> DomainSpiderJs:
     return DomainSpiderJs(**spider_args)
 
 
+@pytest.fixture(name="sample_request")
+def fixture_sample_request() -> Request:
+    return Request(url="http://example.com", encoding="utf-8")
+
+
 @pytest.mark.parametrize(
     ("spider_fixture", "content_type"),
     [
@@ -47,13 +50,12 @@ def fixture_domain_spider_js(monkeypatch, spider_args) -> DomainSpiderJs:
         ("domain_spider_js", "text/html;utf-8"),
     ],
 )
-def test_valid_content(request, spider_fixture, content_type):
+def test_valid_content(request, spider_fixture, sample_request, content_type):
     spider = request.getfixturevalue(spider_fixture)
-    request = Request(url=TEST_URL, encoding="utf-8")
-    response = Response(url=TEST_URL, request=request, headers={"content-type": content_type})
+    response = Response(url="http://example.com", request=sample_request, headers={"content-type": content_type})
     results = next(spider.parse_item(response), None)
     assert results is not None
-    assert results.get("url") == TEST_URL
+    assert results.get("url") == "http://example.com"
 
 
 @pytest.mark.parametrize(
@@ -63,10 +65,9 @@ def test_valid_content(request, spider_fixture, content_type):
         ("domain_spider_js", "media/image"),
     ],
 )
-def test_invalid_content(request, spider_fixture, content_type):
+def test_invalid_content(request, spider_fixture, sample_request, content_type):
     spider = request.getfixturevalue(spider_fixture)
-    request = Request(url=TEST_URL, encoding="utf-8")
-    response = Response(url=TEST_URL, request=request, headers={"content-type": content_type})
+    response = Response(url="http://example.com", request=sample_request, headers={"content-type": content_type})
     results = next(spider.parse_item(response), None)
     assert results is None
 
@@ -181,3 +182,21 @@ def test_spider_init_allow_query_string_str_input(monkeypatch, spider_cls, spide
     spider_args["allow_query_string"] = allow_query_string
     spider = spider_cls(**spider_args)
     assert spider.allow_query_string is False
+
+
+@pytest.mark.parametrize(
+    ("spider_fixture", "meta_key", "meta_value"),
+    [
+        ("domain_spider", "source_url", "http://www.example.com/source"),
+        ("domain_spider_js", "source_url", "http://www.example.com/source"),
+        ("domain_spider_js", "playwright", True),
+    ],
+)
+def test_update_request_meta(request, spider_fixture, sample_request, meta_key, meta_value):
+    spider = request.getfixturevalue(spider_fixture)
+    response_request = Request(url="http://www.example.com/source", encoding="utf-8")
+    updated_request = spider.update_request_meta(
+        request=sample_request, response=Response(url="http://www.example.com", request=response_request)
+    )
+
+    assert updated_request.meta[meta_key] == meta_value
