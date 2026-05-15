@@ -20,11 +20,11 @@ logging.getLogger("pypdf._cmap").setLevel(logging.CRITICAL)
 def set_metadata_fields(item: SearchGovSpidersItem) -> dict:
     """These fields are placeholders for fields populated at runtime"""
     return {
-        "do_not_delete": False,
-        "document_source": None,
+        "crawl_depth": item.get("crawl_depth", None),
+        "creator": item.get("creator", None),
         "download_bytes": len(item.get("response_bytes", b"")),
-        "download_seconds": None,
-        "keep_until": None,
+        "download_milliseconds": item.get("download_milliseconds", None),
+        "source_url": item.get("source_url", None),
     }
 
 
