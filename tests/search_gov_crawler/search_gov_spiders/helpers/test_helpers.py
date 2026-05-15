@@ -14,15 +14,6 @@ from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import shoul
 
 
 @pytest.mark.parametrize(
-    ("content_type_header", "result"),
-    [("text/html", True), ("application/msword.more.and.more", True), ("Something/Else", False), (None, None)],
-    ids=["good", "regex", "bad", "missing"],
-)
-def test_is_valid_content_type(content_type_header, result):
-    assert ds_helpers.is_valid_content_type(content_type_header, "csv") is result
-
-
-@pytest.mark.parametrize(
     ("content_type_header", "output_target", "result"),
     [
         (None, None, None),
@@ -32,8 +23,12 @@ def test_is_valid_content_type(content_type_header, result):
         ("application/msword", "opensearch", None),
     ],
 )
-def test_get_simple_content_type(content_type_header, output_target, result):
-    assert ds_helpers.get_simple_content_type(content_type_header, output_target) == result
+def test_get_simple_content_type(mocker, content_type_header, output_target, result):
+    mock_get_response_header = mocker.patch(
+        "search_gov_crawler.search_gov_spiders.helpers.domain_spider.get_response_header"
+    )
+    mock_get_response_header.return_value = content_type_header
+    assert ds_helpers.get_simple_content_type(mocker.Mock(), output_target) == result
 
 
 def test_get_crawl_sites_test_file(crawl_sites_test_file):
@@ -42,6 +37,16 @@ def test_get_crawl_sites_test_file(crawl_sites_test_file):
 
 def test_get_crawl_sites_no_input():
     assert len(ds_helpers.get_crawl_sites()) > 0
+
+
+@pytest.mark.parametrize(
+    ("download_latency", "download_milliseconds"),
+    [(None, None), (0.12345, 123), (123456.7891, 123456789)],
+)
+def test_get_download_milliseconds(mocker, download_latency, download_milliseconds):
+    mock_response = mocker.MagicMock()
+    mock_response.meta.get.return_value = download_latency
+    assert ds_helpers.get_download_milliseconds(response=mock_response) == download_milliseconds
 
 
 @pytest.mark.parametrize(("handle_javascript", "results"), [(True, 2), (False, 2)])
@@ -125,17 +130,22 @@ def test_set_link_extractor_deny(deny_paths, expected_output):
     assert ds_helpers.set_link_extractor_deny(deny_paths) == expected_output
 
 
+def test_get_response_header(mocker):
+    response = mocker.Mock()
+    response.headers.get.side_effect = [None, bytes("test_value", "utf-8")]
+    header = ds_helpers.get_response_header(response, "Test-Header")
+
+    assert response.headers.get.call_count == 2
+    assert header == "test_value"
+
+
 @pytest.mark.parametrize(("content_language", "result"), [("en-US", "en"), (None, None)])
 def test_get_response_language_code(mocker, content_language, result):
-    response = mocker.Mock()
-    response.headers.get.return_value = content_language
-    assert ds_helpers.get_response_language_code(response) == result
-
-
-def test_get_response_language_code_exception(mocker):
-    response = mocker.Mock()
-    response.headers.get.side_effect = Exception("Something went wrong!")
-    assert ds_helpers.get_response_language_code(response) is None
+    mock_get_response_header = mocker.patch(
+        "search_gov_crawler.search_gov_spiders.helpers.domain_spider.get_response_header"
+    )
+    mock_get_response_header.return_value = content_language
+    assert ds_helpers.get_response_language_code(response=mocker.Mock()) == result
 
 
 @pytest.mark.parametrize(
