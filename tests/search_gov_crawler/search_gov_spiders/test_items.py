@@ -15,23 +15,28 @@ from search_gov_crawler.search_gov_spiders.items import (
 @pytest.fixture(name="search_gov_spiders_item")
 def fixture_search_gov_spiders_item():
     return SearchGovSpidersItem(
-        response_bytes=b"this is some bytes",
-        url="https://www.example.com",
-        output_target="opensearch",
-        response_language="en",
         content_type="text/html",
-        item_source="unit_tests",
-        download_seconds=10,
+        creator="unit_tests",
+        crawl_depth=1,
+        download_milliseconds=10,
+        output_target="opensearch",
+        response_bytes=b"this is some bytes",
+        response_language="en",
+        source_url="https://www.example.com/source",
+        url="https://www.example.com",
     )
 
 
 SEARCH_GOV_SPIDERS_ITEM_TEST_CASES = [
-    ("response_bytes", b"this is some bytes"),
-    ("url", "https://www.example.com"),
+    ("content_type", "text/html"),
+    ("creator", "unit_tests"),
+    ("crawl_depth", 1),
+    ("download_milliseconds", 10),
     ("output_target", "opensearch"),
+    ("response_bytes", b"this is some bytes"),
     ("response_language", "en"),
-    ("item_source", "unit_tests"),
-    ("download_seconds", 10),
+    ("source_url", "https://www.example.com/source"),
+    ("url", "https://www.example.com"),
 ]
 
 
@@ -43,12 +48,14 @@ def test_search_gov_spiders_item(search_gov_spiders_item, field, value):
 def test_searc_gov_spiders_item_repr(search_gov_spiders_item):
     expected_repr = (
         "Item("
-        "url=https://www.example.com, "
+        "content_type=text/html, "
+        "crawl_depth=1, "
+        "creator=unit_tests, "
+        "download_milliseconds=10, "
         "output_target=opensearch, "
         "response_language=en, "
-        "content_type=text/html, "
-        "item_source=unit_tests, "
-        "download_seconds=10"
+        "source_url=https://www.example.com/source, "
+        "url=https://www.example.com"
         ")"
     )
     assert str(search_gov_spiders_item) == expected_repr

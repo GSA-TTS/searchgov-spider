@@ -11,25 +11,28 @@ import scrapy
 class SearchGovSpidersItem(scrapy.Item):
     """Class for Item which is a container for every returned scraped page"""
 
-    response_bytes = scrapy.Field()
-    url = scrapy.Field()
-    output_target = scrapy.Field()
-    response_language = scrapy.Field()
     content_type = scrapy.Field()
-    item_source = scrapy.Field()
-    download_seconds = scrapy.Field()
+    crawl_depth = scrapy.Field()
+    creator = scrapy.Field()
+    download_milliseconds = scrapy.Field()
+    output_target = scrapy.Field()
+    response_bytes = scrapy.Field()
+    response_language = scrapy.Field()
+    source_url = scrapy.Field()
+    url = scrapy.Field()
 
     def __repr__(self) -> str:
         """Override the default __repr__ so that we don't print the response_bytes which is very long sometimes."""
-
         return (
             "Item("
-            f"url={self.get('url')}, "
+            f"content_type={self.get('content_type')}, "
+            f"crawl_depth={self.get('crawl_depth')}, "
+            f"creator={self.get('creator')}, "
+            f"download_milliseconds={self.get('download_milliseconds')}, "
             f"output_target={self.get('output_target')}, "
             f"response_language={self.get('response_language')}, "
-            f"content_type={self.get('content_type')}, "
-            f"item_source={self.get('item_source')}, "
-            f"download_seconds={self.get('download_seconds')}"
+            f"source_url={self.get('source_url')}, "
+            f"url={self.get('url')}"
             ")"
         )
 
