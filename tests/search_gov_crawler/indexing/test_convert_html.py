@@ -1,9 +1,29 @@
+import pytest
+
 from search_gov_crawler.indexing import transform
 from search_gov_crawler.search_gov_spiders.helpers import content
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 
-def test_convert_html_valid_article():
+@pytest.fixture(name="create_item_with_content")
+def fixture_create_item_with_content():
+    def _create_item_with_content(content: str, url: str = "https://example.com/test-article", lang: str = "en"):
+        return SearchGovSpidersItem(
+            response_bytes=content.encode(),
+            crawl_depth=2,
+            creator="test",
+            content_type="text/html",
+            download_milliseconds=100,
+            output_target="opensearch",
+            response_language=lang,
+            source_url="test",
+            url=url,
+        )
+
+    return _create_item_with_content
+
+
+def test_convert_html_valid_article(create_item_with_content):
     html_content = """
     <html lang="en">
     <head>
@@ -19,14 +39,7 @@ def test_convert_html_valid_article():
     </body>
     </html>
     """
-    item = SearchGovSpidersItem(
-        response_bytes=html_content.encode(),
-        url="https://example.com/test-article",
-        response_language="en",
-        item_source="test",
-        download_seconds=100,
-    )
-
+    item = create_item_with_content(content=html_content)
     result = transform.convert_html(item=item)
 
     assert result is not None
@@ -44,7 +57,7 @@ def test_convert_html_valid_article():
     assert result["dap_domain_visits_count"] is None
 
 
-def test_convert_html_no_content():
+def test_convert_html_no_content(create_item_with_content):
     html_content = """
     <html lang="en">
     <head>
@@ -54,19 +67,13 @@ def test_convert_html_no_content():
     </body>
     </html>
     """
-    item = SearchGovSpidersItem(
-        response_bytes=html_content.encode(),
-        url="https://example.com/test-article",
-        response_language="en",
-        item_source="test",
-        download_seconds=100,
-    )
+    item = create_item_with_content(content=html_content)
     result = transform.convert_html(item=item)
 
     assert result == {}
 
 
-def test_convert_html_no_title_or_description():
+def test_convert_html_no_title_or_description(create_item_with_content):
     html_content = """
     <html lang="en">
     <head>
@@ -76,13 +83,7 @@ def test_convert_html_no_title_or_description():
     </body>
     </html>
     """
-    item = SearchGovSpidersItem(
-        response_bytes=html_content.encode(),
-        url="https://example.com/test-article",
-        response_language="en",
-        item_source="test",
-        download_seconds=100,
-    )
+    item = create_item_with_content(content=html_content)
     result = transform.convert_html(item=item)
     expected_content = "This is the main content of the test article."
     assert result is not None
@@ -91,7 +92,7 @@ def test_convert_html_no_title_or_description():
     assert result["content_en"] == expected_content
 
 
-def test_convert_html_with_meta_site_name():
+def test_convert_html_with_meta_site_name(create_item_with_content):
     html_content = """
     <html lang="en">
     <head>
@@ -103,20 +104,14 @@ def test_convert_html_with_meta_site_name():
     </body>
     </html>
     """
-    item = SearchGovSpidersItem(
-        response_bytes=html_content.encode(),
-        url="https://example.com/test-article",
-        response_language="en",
-        item_source="test",
-        download_seconds=100,
-    )
+    item = create_item_with_content(content=html_content)
     result = transform.convert_html(item=item)
     assert result is not None
     assert result["title_en"] == "Example Site"  # Uses meta_site_name
     assert "This is the main content." in result["content_en"]
 
 
-def test_convert_html_with_publish_date():
+def test_convert_html_with_publish_date(create_item_with_content):
     html_content = """
     <html lang="en">
     <head>
@@ -128,19 +123,13 @@ def test_convert_html_with_publish_date():
     </body>
     </html>
     """
-    item = SearchGovSpidersItem(
-        response_bytes=html_content.encode(),
-        url="https://example.com/test-article",
-        response_language="en",
-        item_source="test",
-        download_seconds=100,
-    )
+    item = create_item_with_content(content=html_content)
     result = transform.convert_html(item=item)
     assert result is not None
     assert result["updated"] is not None  # newspaper4k may or may not parse date from meta; this checks for any value.
 
 
-def test_convert_html_with_out_publish_date():
+def test_convert_html_with_out_publish_date(create_item_with_content):
     html_content = """
     <html lang="en">
     <head>
@@ -152,20 +141,14 @@ def test_convert_html_with_out_publish_date():
     </body>
     </html>
     """
-    item = SearchGovSpidersItem(
-        response_bytes=html_content.encode(),
-        url="https://example.com/test-article",
-        response_language="en",
-        item_source="test",
-        download_seconds=100,
-    )
+    item = create_item_with_content(content=html_content)
     result = transform.convert_html(item=item)
     assert result is not None
     assert result["updated"] != ""
     assert result["updated"] is None  # newspaper4k may or may not parse date from meta; this checks for any value.
 
 
-def test_convert_html_languages():
+def test_convert_html_languages(create_item_with_content):
     html_content = """
         <html>
             <head>
@@ -182,14 +165,7 @@ def test_convert_html_languages():
             </body>
         </html>
     """
-
-    item = SearchGovSpidersItem(
-        response_bytes=html_content.encode(),
-        url="https://example.cn/article",
-        response_language="zh",
-        item_source="test",
-        download_seconds=100,
-    )
+    item = create_item_with_content(content=html_content, url="https://example.cn/article", lang="zh")
     result = transform.convert_html(item=item)
 
     assert result is not None
