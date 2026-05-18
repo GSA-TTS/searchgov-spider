@@ -162,10 +162,16 @@ def default_allowed_domains(*, handle_javascript: bool, remove_paths: bool = Tru
     return allowed_domains
 
 
-def validate_spider_arguments(allowed_domains: str | None, start_urls: str | None, output_target: str) -> None:
+def validate_spider_arguments(
+    allowed_domains: str | None, start_urls: str | None, sitemap_url: str | None, output_target: str
+) -> None:
     """Common logic used to validate spider arguements and raise errors"""
 
-    for field in (allowed_domains, start_urls):
+    url_fields = [allowed_domains, start_urls]
+    if sitemap_url:
+        url_fields.append(sitemap_url)
+
+    for field in url_fields:
         if len(str(field)) < 2 or "." not in str(field):  # noqa: PLR2004
             msg = f"Invalid argument! '{field}' must be a valid URL or domain name."
             raise ValueError(msg)

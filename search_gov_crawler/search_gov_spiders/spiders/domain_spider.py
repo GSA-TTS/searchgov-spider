@@ -65,20 +65,17 @@ class DomainSpider(CrawlSpider):
         *args,
         allow_query_string: bool = False,
         allowed_domains: str,
-        deny_paths: str | None = None,
         start_urls: str,
         output_target: str,
-        prevent_follow: bool = False,
+        deny_paths: str | None = None,
+        sitemap_url: str | None = None,
         started_by: str = SpiderStartedBy.MANUAL.value,
         **kwargs,
     ) -> None:
-        helpers.validate_spider_arguments(allowed_domains, start_urls, output_target)
+        helpers.validate_spider_arguments(allowed_domains, start_urls, sitemap_url, output_target)
 
         # assign rules before super()__init__ so they can be processed by CrawlSpider
-        if prevent_follow:
-            self.rules = ()
-            self.parse_start_url = self.parse_item
-        else:
+        if not sitemap_url:
             self.rules = (
                 Rule(
                     LinkExtractor(
@@ -103,7 +100,7 @@ class DomainSpider(CrawlSpider):
 
         # store input args as private attributes for use in logging
         self._deny_paths = deny_paths
-        self._prevent_follow = prevent_follow
+        self._sitemap_url = sitemap_url
 
         # gather domain visits for domain and subdomains
         self.domain_visits = helpers.get_domain_visits(self)
@@ -113,8 +110,13 @@ class DomainSpider(CrawlSpider):
             self.name,
             self.allowed_domains,
             self.start_urls,
-            prevent_follow,
+            self.is_sitemap_crawl,
         )
+
+    @property
+    def is_sitemap_crawl(self) -> bool:
+        """Check for existence of sitemap url"""
+        return bool(self._sitemap_url)
 
     @classmethod
     def from_crawler(cls, crawler: Crawler, *args, depth_limit: int | None = None, **kwargs) -> "DomainSpider":
@@ -144,7 +146,7 @@ class DomainSpider(CrawlSpider):
             yield SearchGovSpidersItem(
                 content_type=content_type,
                 creator=self.started_by,
-                crawl_depth=response.meta.get("depth"),
+                crawl_depth=response.meta.get("depth") if not self.is_sitemap_crawl else 1,
                 download_milliseconds=helpers.get_download_milliseconds(response=response),
                 output_target=self.output_target,
                 response_bytes=response.body,
@@ -152,6 +154,18 @@ class DomainSpider(CrawlSpider):
                 source_url=response.request.meta.get("source_url") if response.request else None,
                 url=response.url,
             )
+
+    def parse_start_url(self, response: Response, **_kwargs):
+        """
+        When this is a sitemap crawl is enabled, add sitemap url to start urls responses otherwise
+        skip as this is handled elsewhere
+        """
+        if self.is_sitemap_crawl:
+            if response.request:
+                response.request.meta["source_url"] = self._sitemap_url
+            return self.parse_item(response=response)
+
+        return ()
 
     def update_request_meta(self, request: Request, response: Response):
         """Add the source url to the request meta field for inclusion in the item"""

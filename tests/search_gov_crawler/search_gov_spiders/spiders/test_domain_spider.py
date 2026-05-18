@@ -12,28 +12,28 @@ from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSp
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import DomainSpiderJs
 
 
-@pytest.fixture(name="spider_args")
-def fixture_spider_args() -> dict:
+@pytest.fixture(name="spider_kwargs")
+def fixture_spider_kwargs() -> dict:
     return {
         "allowed_domains": "example.com",
         "start_urls": "http://example.com/",
         "output_target": "csv",
         "allow_query_string": True,
         "deny_paths": "/deny/path",
-        "prevent_follow": False,
+        "sitemap_url": "http://example.com/sitemap.xml",
     }
 
 
 @pytest.fixture(name="domain_spider")
-def fixture_domain_spider(monkeypatch, spider_args) -> DomainSpider:
+def fixture_domain_spider(monkeypatch, spider_kwargs) -> DomainSpider:
     monkeypatch.setattr(helpers, "get_domain_visits", lambda _: {})
-    return DomainSpider(**spider_args)
+    return DomainSpider(**spider_kwargs)
 
 
 @pytest.fixture(name="domain_spider_js")
-def fixture_domain_spider_js(monkeypatch, spider_args) -> DomainSpiderJs:
+def fixture_domain_spider_js(monkeypatch, spider_kwargs) -> DomainSpiderJs:
     monkeypatch.setattr(helpers, "get_domain_visits", lambda _: {})
-    return DomainSpiderJs(**spider_args)
+    return DomainSpiderJs(**spider_kwargs)
 
 
 @pytest.fixture(name="sample_request")
@@ -109,6 +109,28 @@ INVALID_ARGS_TEST_CASES = [
         ValueError,
         "Invalid argument! '1' must be a valid URL or domain name.",
     ),
+    (
+        DomainSpider,
+        {
+            "allowed_domains": "test.example.com",
+            "start_urls": "http://test.example.com/",
+            "output_target": "csv",
+            "sitemap_url": "waaaaaa",
+        },
+        ValueError,
+        "Invalid argument! 'waaaaaa' must be a valid URL or domain name.",
+    ),
+    (
+        DomainSpiderJs,
+        {
+            "allowed_domains": "test.example.com",
+            "start_urls": "http://test.example.com/",
+            "output_target": "csv",
+            "sitemap_url": "sitemap",
+        },
+        ValueError,
+        "Invalid argument! 'sitemap' must be a valid URL or domain name.",
+    ),
 ]
 
 
@@ -177,10 +199,10 @@ def test_domain_spider_js_init(domain_spider_js, attribute, value):
         (DomainSpiderJs, "not a boolean"),
     ],
 )
-def test_spider_init_allow_query_string_str_input(monkeypatch, spider_cls, spider_args, allow_query_string):
+def test_spider_init_allow_query_string_str_input(monkeypatch, spider_cls, spider_kwargs, allow_query_string):
     monkeypatch.setattr(helpers, "get_domain_visits", lambda _: {})
-    spider_args["allow_query_string"] = allow_query_string
-    spider = spider_cls(**spider_args)
+    spider_kwargs["allow_query_string"] = allow_query_string
+    spider = spider_cls(**spider_kwargs)
     assert spider.allow_query_string is False
 
 

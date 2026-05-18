@@ -75,19 +75,16 @@ class DomainSpiderJs(CrawlSpider):
         allow_query_string: bool = False,
         allowed_domains: str,
         deny_paths: str | None = None,
-        start_urls: str,
         output_target: str,
-        prevent_follow: bool = False,
+        sitemap_url: str | None = None,
+        start_urls: str,
         started_by: str = SpiderStartedBy.MANUAL.value,
         **kwargs,
     ) -> None:
-        helpers.validate_spider_arguments(allowed_domains, start_urls, output_target)
+        helpers.validate_spider_arguments(allowed_domains, start_urls, sitemap_url, output_target)
 
         # assign rules before super()__init__ so they can be processed by CrawlSpider
-        if prevent_follow:
-            self.rules = ()
-            self.parse_start_url = self.parse_item
-        else:
+        if not sitemap_url:
             self.rules = (
                 Rule(
                     link_extractor=LinkExtractor(
@@ -113,7 +110,7 @@ class DomainSpiderJs(CrawlSpider):
 
         # store input args as private attributes for use in logging
         self._deny_paths = deny_paths
-        self._prevent_follow = prevent_follow
+        self._sitemap_url = sitemap_url
 
         # gather domain visits for domain and subdomains
         self.domain_visits = helpers.get_domain_visits(self)
@@ -123,7 +120,7 @@ class DomainSpiderJs(CrawlSpider):
             self.name,
             self.allowed_domains,
             self.start_urls,
-            prevent_follow,
+            self.is_sitemap_crawl,
         )
 
     @classmethod
@@ -142,6 +139,11 @@ class DomainSpiderJs(CrawlSpider):
         spider.settings.set("DEPTH_LIMIT", depth_limit, priority="spider")
         return spider
 
+    @property
+    def is_sitemap_crawl(self):
+        """Check for existence of sitemap url"""
+        return bool(self._sitemap_url)
+
     def parse_item(self, response: Response):
         """
         This method is called by spiders to gather the url.  Placed in the spider to assist with
@@ -156,12 +158,12 @@ class DomainSpiderJs(CrawlSpider):
             yield SearchGovSpidersItem(
                 content_type=content_type,
                 creator=self.started_by,
-                crawl_depth=response.meta.get("depth"),
+                crawl_depth=response.meta.get("depth") if not self.is_sitemap_crawl else 1,
                 download_milliseconds=helpers.get_download_milliseconds(response=response),
                 output_target=self.output_target,
                 response_bytes=response.body,
                 response_language=helpers.get_response_language_code(response=response),
-                source_url=response.meta.get("source_url"),
+                source_url=response.request.meta.get("source_url") if response.request else None,
                 url=response.url,
             )
 

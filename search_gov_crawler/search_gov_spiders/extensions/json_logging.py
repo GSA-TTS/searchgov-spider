@@ -20,7 +20,7 @@ def search_gov_default(obj) -> dict | None:
             "allow_query_string": getattr(obj, "allow_query_string", None),
             "allowed_domains": getattr(obj, "allowed_domains", None),
             "allowed_domain_paths": getattr(obj, "allowed_domain_paths", None),
-            "start_urls": SITEMAP_START_URLS if getattr(obj, "_prevent_follow", None) else obj.start_urls,
+            "start_urls": SITEMAP_START_URLS if getattr(obj, "sitemap_url", None) else obj.start_urls,
             "output_target": getattr(obj, "output_target", None),
             "depth_limit": obj.settings.get("DEPTH_LIMIT", None),
             "deny_paths": getattr(obj, "_deny_paths", None),
@@ -128,14 +128,15 @@ class JsonLogging:
             (
                 "Starting spider %s (spider_id %s) with following args: "
                 "allowed_domains=%s allowed_domain_paths=%s start_urls=%s "
-                "output_target=%s depth_limit=%s deny_paths=%s"
+                "output_target=%s depth_limit=%s deny_paths=%s sitemap_url=%s"
             ),
             spider.name,
             getattr(spider, "spider_id", None),
             ",".join(getattr(spider, "allowed_domains", [])),
             ",".join(getattr(spider, "allowed_domains_paths", [])),
-            SITEMAP_START_URLS if getattr(spider, "_prevent_follow", None) else ",".join(spider.start_urls),
+            SITEMAP_START_URLS if getattr(spider, "_sitemap_url", None) else ",".join(spider.start_urls),
             getattr(spider, "output_target", None),
             spider.settings.get("DEPTH_LIMIT", None),
             getattr(spider, "_deny_paths", None),
+            getattr(spider, "_sitemap_url", None),
         )
