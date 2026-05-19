@@ -19,4 +19,4 @@ class SpiderStartedBy(StrEnum):
 
     MANUAL = "manual_run"
     SCHEDULED = "scheduled_spider"
-    SITEMAP = "sitemap_spider"
+    SITEMAP_DELTA = "sitemap_delta_spider"
