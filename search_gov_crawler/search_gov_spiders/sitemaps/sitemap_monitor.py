@@ -18,6 +18,7 @@ from scrapy.utils.project import get_project_settings
 
 from search_gov_crawler.search_gov_app.crawl_config import CrawlConfig
 from search_gov_crawler.search_gov_spiders.job_state.scheduler import disable_redis_job_state
+from search_gov_crawler.search_gov_spiders.settings.common import USER_AGENT
 from search_gov_crawler.search_gov_spiders.sitemaps.sitemap_finder import SitemapFinder
 from search_gov_crawler.search_gov_spiders.spiders import SpiderStartedBy
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
@@ -211,7 +212,12 @@ class SitemapMonitor:
             log.info("Fetching sitemap from %s at depth %s", url, depth)
             with requests.Session() as session:
                 session.headers.update(
-                    {"Cache-Control": "no-cache, no-store, must-revalidate", "Pragma": "no-cache", "Expires": "0"},
+                    {
+                        "User-Agent": USER_AGENT,
+                        "Cache-Control": "no-cache, no-store, must-revalidate",
+                        "Pragma": "no-cache",
+                        "Expires": "0",
+                    },
                 )
                 response = session.get(url, timeout=30)
                 response.raise_for_status()
@@ -332,9 +338,9 @@ class SitemapMonitor:
                             "deny_paths": record.deny_paths,
                             "start_urls": ",".join(url_batch),
                             "output_target": record.output_target,
-                            "prevent_follow": True,
+                            "sitemap_url": sitemap_url,
                             "depth_limit": 1,
-                            "started_by": SpiderStartedBy.SITEMAP.value,
+                            "started_by": SpiderStartedBy.SITEMAP_DELTA.value,
                         }
                         crawl_process = Process(
                             target=run_crawl_in_dedicated_process,
