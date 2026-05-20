@@ -108,6 +108,14 @@ def test_batch_upload_no_docs(mocker, opensearch_instance, mock_spider):
     mock_bulk.assert_not_called()
 
 
+@pytest.mark.parametrize("return_val", [True, False])
+def test_index_exists(mocker, opensearch_instance, return_val):
+    mock_client = mocker.MagicMock()
+    mocker.patch("search_gov_crawler.indexing.opensearch.OpenSearch", return_value=mock_client)
+    mock_client.indices.exists.return_value = return_val
+    assert opensearch_instance.index_exists() is return_val
+
+
 def test_create_index(mocker, opensearch_instance):
     mock_client = mocker.MagicMock()
     mocker.patch("search_gov_crawler.indexing.opensearch.OpenSearch", return_value=mock_client)
@@ -118,6 +126,7 @@ def test_create_index(mocker, opensearch_instance):
 def test_update_index_template(mocker, opensearch_instance):
     mock_client = mocker.MagicMock()
     mocker.patch("search_gov_crawler.indexing.opensearch.OpenSearch", return_value=mock_client)
+    mock_client.inidices.exists.return_value = False
     opensearch_instance.update_index_template(template={"mappings": {}, "settings": {}})
     mock_client.indices.put_mapping.assert_called_once()
     mock_client.indices.put_settings.assert_called_once()
