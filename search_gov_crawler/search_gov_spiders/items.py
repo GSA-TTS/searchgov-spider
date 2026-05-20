@@ -58,7 +58,7 @@ class FreshnessSpiderItem:
     checked_at: datetime = field(metadata={"template": {"type": "date"}})
     result: str = field(metadata={"template": {"type": "keyword"}})
     marked_for_deletion: bool = field(metadata={"template": {"type": "boolean"}})
-    status_code: int | None = field(metadata={"template": {"type": "integer"}})
+    status_code: str | None = field(metadata={"template": {"type": "keyword"}})
     exception: FreshnessSpiderException | None
     index_name: str = field(metadata={"template": {"type": "keyword"}})
     id: str = field(metadata={"template": {"type": "keyword"}})

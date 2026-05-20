@@ -133,19 +133,23 @@ class SearchGovOpensearch:
         except Exception:
             spider.logger.exception("Bulk upload to Opensearch failed")
 
-    def create_index(self, template: dict):
+    def index_exists(self) -> bool:
+        """Wrapper around opensearch-py client check"""
+        return self.client.indices.exists(index=self.index_name)
+
+    def create_index(self, template: dict) -> None:
         """Creates index with a given template"""
         self.client.indices.create(index=self.index_name, body=template)
         log.info("Created index %s with template!", self.index_name)
 
-    def update_index_template(self, template: dict):
+    def update_index_template(self, template: dict) -> None:
         """Updates index with a given template"""
 
-        if self.client.indices.exists(index=self.index_name):
+        if self.index_exists():
             try:
-                self.client.indices.put_mapping(name=self.index_name, body=template["mappings"])
+                self.client.indices.put_mapping(index=self.index_name, body=template["mappings"])
                 log.info("Updated mappings for index %s", self.index_name)
-                self.client.indices.put_settings(name=self.index_name, body=template["settings"])
+                self.client.indices.put_settings(index=self.index_name, body=template["settings"])
                 log.info("Updated settings for index %s", self.index_name)
             except (KeyError, RequestError):
                 log.exception("Error updating index %s", self.index_name)

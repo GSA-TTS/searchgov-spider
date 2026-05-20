@@ -274,7 +274,7 @@ def test_deduplicator_pipeline(deduplicator_pipeline, items, urls_seen_length):
 
 
 @pytest.fixture(name="freshness_spider_pipeline")
-def fixture_freshness_spider_pipeline(mocker, sample_crawler):
+def fixture_freshness_spider_pipeline(mocker, sample_crawler) -> FreshnessSpiderPipeline:
     mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovOpensearch")
     return FreshnessSpiderPipeline.from_crawler(sample_crawler)
 
@@ -283,8 +283,20 @@ def test_freshness_spider_pipeline_init(freshness_spider_pipeline):
     assert isinstance(freshness_spider_pipeline, FreshnessSpiderPipeline)
 
 
+def test_freshness_spider_pipeline_open_spider(freshness_spider_pipeline):
+    freshness_spider_pipeline.opensearch.index_exists.return_value = False
+    freshness_spider_pipeline.open_spider()
+    freshness_spider_pipeline.opensearch.create_index.assert_called_once()
+
+
+def test_freshness_spider_pipeline_open_spider_index_already_exists(freshness_spider_pipeline):
+    freshness_spider_pipeline.opensearch.index_exists.return_value = True
+    freshness_spider_pipeline.open_spider()
+    freshness_spider_pipeline.opensearch.create_index.assert_not_called()
+
+
 @pytest.fixture(name="freshness_spider_item")
-def fixture_freshness_spider_item():
+def fixture_freshness_spider_item() -> FreshnessSpiderItem:
     return FreshnessSpiderItem(
         checked_at=datetime(2026, 1, 1, 0, 0, 0, tzinfo=UTC),
         result="success",
@@ -293,7 +305,7 @@ def fixture_freshness_spider_item():
         path="test_path",
         domain_name="test_domain",
         marked_for_deletion=False,
-        status_code=503,
+        status_code="503",
         exception=FreshnessSpiderException(exception_type="TestError", exception_message="Test Exception"),
     )
 
