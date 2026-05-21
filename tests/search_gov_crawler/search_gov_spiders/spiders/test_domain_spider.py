@@ -231,3 +231,15 @@ def test_update_request_meta(request, spider_fixture, sample_request, meta_key, 
     )
 
     assert updated_request.meta[meta_key] == meta_value
+
+
+@pytest.mark.parametrize("spider_fixture", ["domain_spider", "domain_spider_js"])
+def test_parse_start_url(mocker, request, spider_fixture):
+    spider = request.getfixturevalue(spider_fixture)
+    mock_parse_item = mocker.patch(
+        f"search_gov_crawler.search_gov_spiders.spiders.{spider_fixture}.{spider.__class__.__name__}.parse_item"
+    )
+    response_request = Request(url="http://www.example.com/source", encoding="utf-8")
+
+    spider.parse_start_url(response=Response(url="http://www.example.com", request=response_request))
+    assert mock_parse_item.call_args.kwargs["response"].request.meta["source_url"] == "http://example.com/sitemap.xml"

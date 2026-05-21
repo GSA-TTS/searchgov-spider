@@ -167,6 +167,20 @@ class DomainSpiderJs(CrawlSpider):
                 url=response.url,
             )
 
+    def parse_start_url(self, response: Response, **_kwargs):
+        """
+        When this is a sitemap crawl is enabled, add sitemap url to start urls responses otherwise
+        skip as this is handled elsewhere
+        """
+
+        if self.is_sitemap_crawl:
+            if response.request:
+                response.request.meta["source_url"] = self._sitemap_url
+
+            return self.parse_item(response=response)
+
+        return ()
+
     def update_request_meta(self, request: Request, response: Response) -> Request:
         """
         Add the source url to the request meta field for inclusion in the item and
