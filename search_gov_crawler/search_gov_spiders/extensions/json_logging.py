@@ -20,7 +20,7 @@ def search_gov_default(obj) -> dict | None:
             "allow_query_string": getattr(obj, "allow_query_string", None),
             "allowed_domains": getattr(obj, "allowed_domains", None),
             "allowed_domain_paths": getattr(obj, "allowed_domain_paths", None),
-            "start_urls": SITEMAP_START_URLS if getattr(obj, "sitemap_url", None) else obj.start_urls,
+            "start_urls": SITEMAP_START_URLS if getattr(obj, "_sitemap_url", None) else obj.start_urls,
             "output_target": getattr(obj, "output_target", None),
             "depth_limit": obj.settings.get("DEPTH_LIMIT", None),
             "deny_paths": getattr(obj, "_deny_paths", None),
