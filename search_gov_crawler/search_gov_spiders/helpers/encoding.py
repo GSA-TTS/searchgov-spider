@@ -1,5 +1,4 @@
 import logging
-import os
 
 import cchardet  # Faster and more reliable character encoding detection than chardet
 
@@ -16,7 +15,7 @@ def detect_encoding(data: bytes) -> str | None:
     if str(encoding).upper() == "VISCII":
         return "cp1258"
 
-    return encoding if encoding else None
+    return encoding or None
 
 
 def decode_http_response(response_bytes: bytes) -> str:

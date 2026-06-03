@@ -137,12 +137,12 @@ def get_links_set(pages: list[tuple[str, PageObject]]):
 
         # Get all hidden links from annotations
         page_object = page.get_object()
-        if key in page_object.keys():
+        if key in page_object.keys():  # noqa: SIM118
             ann = page_object[key]
             for a in ann:
                 u = a.get_object()
                 try:
-                    if ank in u and uri in u[ank].keys():
+                    if ank in u and uri in u[ank].keys():  # noqa: SIM118
                         link = u[ank][uri]
                         # Convert bytes to string if necessary
                         if isinstance(link, bytes):
@@ -262,12 +262,12 @@ def get_pdf_meta(reader: PdfReader) -> dict:
     clean_metadata = {}
     for k, v in reader.metadata.items():
         resolved_value = v.get_object() if isinstance(v, IndirectObject) else v
-        clean_metadata[str(k).removeprefix("/")] = parse_if_date(resolved_value)
+        clean_metadata[str(k).removeprefix("/")] = parse_if_date(resolved_value, apply_tz_offset=False)
 
     return clean_metadata
 
 
-def parse_if_date(value, apply_tz_offset: bool = False) -> Any:
+def parse_if_date(value, *, apply_tz_offset: bool) -> Any:
     """
     Parses a value as date if matched the conventional pdf/exif date format. If parsing fails,
     returns the original value
@@ -302,14 +302,13 @@ def parse_if_date(value, apply_tz_offset: bool = False) -> Any:
             hour = int(proper_date_format.group(4)) if proper_date_format.group(4) else 0
             minute = int(proper_date_format.group(5)) if proper_date_format.group(5) else 0
             second = int(proper_date_format.group(6)) if proper_date_format.group(6) else 0
-            tz_sign = proper_date_format.group(7) if proper_date_format.group(7) else "Z"
+            tz_sign = proper_date_format.group(7) or "Z"
             tz_hour = int(proper_date_format.group(8)) if proper_date_format.group(8) else 0
             tz_minute = int(proper_date_format.group(9)) if proper_date_format.group(9) else 0
 
             # Handle timezone offset if matched
             if proper_date_format.group(7) and apply_tz_offset:
                 tz_multiplier = -1 if tz_sign == "-" else 1
-                # tz_sign = 1 if tz_hour >= 0 else -1
                 offset = timedelta(hours=tz_hour, minutes=tz_minute) * tz_multiplier
                 tz = timezone(offset=offset)
             else:

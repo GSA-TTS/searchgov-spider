@@ -1,5 +1,4 @@
 import os
-import subprocess
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
@@ -16,7 +15,6 @@ from search_gov_crawler.scrapy_scheduler import (
     transform_crawl_configs,
     wait_for_next_interval,
 )
-from search_gov_crawler.search_gov_app.crawl_config import CrawlConfigs
 
 
 @pytest.fixture(name="mock_jobstore")
@@ -24,25 +22,6 @@ def fixture_mock_jobstore() -> MagicMock:
     jobstore = MagicMock(spec=SpiderRedisJobStore)
     jobstore.get_due_jobs = MagicMock(return_value=[])
     return jobstore
-
-
-@pytest.mark.parametrize(
-    "run_args",
-    [("test_spider", False, "test-domain.example.com", "http://starting-url.example.com/", "csv", 3, "path")],
-)
-def test_run_scrapy_crawl(caplog, monkeypatch, run_args):
-    def mock_run(*_args, **_kwargs):
-        return True
-
-    monkeypatch.setattr(subprocess, "run", mock_run)
-    with caplog.at_level("INFO"):
-        run_scrapy_crawl(*run_args)
-
-    assert (
-        "Successfully completed scrapy crawl with args spider=test_spider, allow_query_string=False, "
-        "allowed_domains=test-domain.example.com, start_urls=http://starting-url.example.com/, "
-        "output_target=csv, depth_limit=3, deny_paths=path"
-    ) in caplog.messages
 
 
 @pytest.mark.parametrize(
@@ -87,49 +66,57 @@ def test_transform_crawl_configs(crawl_configs_from_test_file):
             "func": run_scrapy_crawl,
             "id": "quotes-1",
             "name": "Quotes 1",
-            "args": ["domain_spider", False, "quotes.toscrape.com", "https://quotes.toscrape.com/", "csv", 3, []],
+            "kwargs": {
+                "spider": "domain_spider",
+                "allow_query_string": False,
+                "allowed_domains": "quotes.toscrape.com",
+                "start_urls": "https://quotes.toscrape.com/",
+                "output_target": "csv",
+                "depth_limit": 3,
+                "deny_paths": [],
+            },
         },
         {
             "func": run_scrapy_crawl,
             "id": "quotes-2",
             "name": "Quotes 2",
-            "args": [
-                "domain_spider_js",
-                False,
-                "quotes.toscrape.com/js",
-                "https://quotes.toscrape.com/js/",
-                "csv",
-                3,
-                [],
-            ],
+            "kwargs": {
+                "spider": "domain_spider_js",
+                "allow_query_string": False,
+                "allowed_domains": "quotes.toscrape.com/js",
+                "start_urls": "https://quotes.toscrape.com/js/",
+                "output_target": "csv",
+                "depth_limit": 3,
+                "deny_paths": [],
+            },
         },
         {
             "func": run_scrapy_crawl,
             "id": "quotes-3",
             "name": "Quotes 3",
-            "args": [
-                "domain_spider_js",
-                False,
-                "quotes.toscrape.com/js-delayed",
-                "https://quotes.toscrape.com/js-delayed/",
-                "endpoint",
-                3,
-                ["/author/", "/tag/"],
-            ],
+            "kwargs": {
+                "spider": "domain_spider_js",
+                "allow_query_string": False,
+                "allowed_domains": "quotes.toscrape.com/js-delayed",
+                "start_urls": "https://quotes.toscrape.com/js-delayed/",
+                "output_target": "endpoint",
+                "depth_limit": 3,
+                "deny_paths": ["/author/", "/tag/"],
+            },
         },
         {
             "func": run_scrapy_crawl,
             "id": "quotes-4",
             "name": "Quotes 4",
-            "args": [
-                "domain_spider",
-                False,
-                "quotes.toscrape.com/tag/",
-                "https://quotes.toscrape.com/tag/love/",
-                "endpoint",
-                3,
-                ["/author/"],
-            ],
+            "kwargs": {
+                "spider": "domain_spider",
+                "allow_query_string": False,
+                "allowed_domains": "quotes.toscrape.com/tag/",
+                "start_urls": "https://quotes.toscrape.com/tag/love/",
+                "output_target": "endpoint",
+                "depth_limit": 3,
+                "deny_paths": ["/author/"],
+            },
         },
     ]
 
@@ -185,7 +172,7 @@ def test_start_scrapy_scheduler_from_db_bad_initialization(caplog, monkeypatch):
 
     monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.CrawlConfigs.from_database", raise_error)
     monkeypatch.setenv("SPIDER_CRAWL_CONFIGS_CHECK_INTERVAL", "0")
-    monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.wait_for_next_interval", lambda interval: False)
+    monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.wait_for_next_interval", lambda interval: False)  # noqa: ARG005
     with caplog.at_level("ERROR"):
         start_scrapy_scheduler_from_db()
 
@@ -212,7 +199,7 @@ def test_start_scrapy_scheduler_from_db(mocker, caplog, monkeypatch, crawl_confi
         messages = [f'Added job "Quotes {job_num}" to job store "redis"' for job_num in range(1, 5)]
         messages.append("Error updating scheduler!")
 
-        assert all([message in caplog.messages for message in messages])
+        assert all(message in caplog.messages for message in messages)
 
 
 def test_start_scrapy_scheduler_from_db_no_jobs_scheduled(
@@ -229,7 +216,7 @@ def test_start_scrapy_scheduler_from_db_no_jobs_scheduled(
     monkeypatch.setenv("SPIDER_CRAWL_CONFIGS_CHECK_INTERVAL", "0")
     monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.CrawlConfigs.from_database", mock_crawl_configs)
     monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.SpiderBackgroundScheduler.resume", lambda _: True)
-    monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.wait_for_next_interval", lambda interval: False)
+    monkeypatch.setattr("search_gov_crawler.scrapy_scheduler.wait_for_next_interval", lambda interval: False)  # noqa: ARG005
 
     with (
         caplog.at_level("ERROR"),

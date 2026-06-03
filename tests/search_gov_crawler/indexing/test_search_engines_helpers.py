@@ -122,6 +122,13 @@ SUMMARIZE_TEXT_TEST_CASES = [
         "I am testing this function Hi there!",
         "hi, testing, function",
     ),
+    (
+        "Hi there! I am testing this function.  Hi again!",
+        "https://example.com",
+        "en",
+        "I am testing this function. Hi again! Hi there!",
+        "hi, testing, function",
+    ),
 ]
 
 

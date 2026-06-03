@@ -66,7 +66,7 @@ class SpiderBackgroundScheduler(BackgroundScheduler):
 
         log.info("Jobs in pending queue: %s", jobstore.count_pending_jobs())
 
-    def remove_all_jobs(self, jobstore: str | None = None, include_pending_jobs: bool = True) -> None:
+    def remove_all_jobs(self, jobstore: str | None = None, *, include_pending_jobs: bool = True) -> None:
         """Remove all jobs from the job store with an option to include pending jobs."""
 
         if include_pending_jobs:
