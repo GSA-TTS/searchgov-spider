@@ -127,8 +127,6 @@ INVALID_DEPTH_LIMIT_TEST_CASES = [
         },
         "Search Depth must be between 1 and 250 inclusive. You submitted: %s ",
     ),
-<<<<<<<< HEAD:tests/search_gov_crawler/search_gov_spiders/test_spider.py
-========
     (
         DomainSpiderJs,
         {
@@ -138,7 +136,6 @@ INVALID_DEPTH_LIMIT_TEST_CASES = [
         },
         "Search Depth must be between 1 and 250 inclusive. You submitted: %s ",
     ),
->>>>>>>> origin/main:tests/search_gov_crawler/search_gov_spiders/spiders/test_domain_spider.py
 ]
 
 
