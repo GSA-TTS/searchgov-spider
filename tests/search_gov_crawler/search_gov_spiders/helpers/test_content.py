@@ -1,4 +1,5 @@
 import pytest
+
 from search_gov_crawler.search_gov_spiders.helpers.content import sanitize_text, trim_whitespace
 
 
