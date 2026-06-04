@@ -15,37 +15,37 @@ from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import (
 
 
 @pytest.fixture(name="mock_scrapy_settings")
-def fixture_mock_scrapy_settings(project_settings):
-    project_settings.set("SPIDER_MODULES", ["search_gov_crawler.search_gov_spiders.spiders"])
+def fixture_mock_scrapy_settings(domain_spider_settings):
+    domain_spider_settings.set("SPIDER_MODULES", ["search_gov_crawler.search_gov_spiders.spiders"])
     spider_mw_replacement = {}
-    for cls_name, priority in dict(project_settings.get("SPIDER_MIDDLEWARES")).items():
+    for cls_name, priority in dict(domain_spider_settings.get("SPIDER_MIDDLEWARES")).items():
         if str(cls_name).startswith("search_gov_spiders."):
             spider_mw_replacement[f"search_gov_crawler.{cls_name}"] = priority
 
-    project_settings.set("SPIDER_MIDDLEWARES", spider_mw_replacement)
+    domain_spider_settings.set("SPIDER_MIDDLEWARES", spider_mw_replacement)
 
-    project_settings.set(
+    domain_spider_settings.set(
         "DOWNLOADER_MIDDLEWARES",
         {
             f"search_gov_crawler.{k}": v
-            for k, v in dict(project_settings.get("DOWNLOADER_MIDDLEWARES").attributes).items()
+            for k, v in dict(domain_spider_settings.get("DOWNLOADER_MIDDLEWARES").attributes).items()
         },
     )
-    project_settings.set("EXTENSIONS", {})
-    project_settings.set("JOBDIR", None)
-    project_settings.set("HTTPCACHE_ENABLED", True)
-    project_settings.set("HTTPCACHE_DBM_MODULE", "dbm.dumb")
-    project_settings.set("HTTPCACHE_DIR", Path(__file__).parent.joinpath("scrapy_httpcache"))
-    project_settings.set("HTTPCACHE_STORAGE", "scrapy.extensions.httpcache.DbmCacheStorage")
-    project_settings.set("DEPTH_LIMIT", 0)
+    domain_spider_settings.set("EXTENSIONS", {})
+    domain_spider_settings.set("JOBDIR", None)
+    domain_spider_settings.set("HTTPCACHE_ENABLED", True)  # noqa: FBT003
+    domain_spider_settings.set("HTTPCACHE_DBM_MODULE", "dbm.dumb")
+    domain_spider_settings.set("HTTPCACHE_DIR", Path(__file__).parent.joinpath("scrapy_httpcache"))
+    domain_spider_settings.set("HTTPCACHE_STORAGE", "scrapy.extensions.httpcache.DbmCacheStorage")
+    domain_spider_settings.set("DEPTH_LIMIT", 0)
 
     # Ensures cache does not change, set to False if you need to update or replace cache files
-    project_settings.set("HTTPCACHE_IGNORE_MISSING", True)
+    domain_spider_settings.set("HTTPCACHE_IGNORE_MISSING", True)  # noqa: FBT003
 
     # Disable scrapy-redis
-    project_settings = disable_redis_job_state(project_settings)
+    domain_spider_settings = disable_redis_job_state(domain_spider_settings)
 
-    yield project_settings
+    yield domain_spider_settings
 
     try:
         del sys.modules["twisted.internet.reactor"]
@@ -147,7 +147,7 @@ def test_full_crawl(mock_scrapy_settings, monkeypatch, spider, use_dedup, crawl_
             pipeline_cls.parent_file_path = temp_dir
             pipeline_cls.base_file_name = temp_dir / "output" / "all-links-p1234.csv"
             pipeline_cls.file_path = pipeline_cls.base_file_name
-            pipeline_cls.current_file = open(pipeline_cls.file_path, "w", encoding="utf-8")
+            pipeline_cls.current_file = open(pipeline_cls.file_path, "w", encoding="utf-8")  # noqa: PTH123, SIM115
             pipeline_cls.file_open = False
             pipeline_cls._es = None
             pipeline_cls.urls_batch = []
@@ -157,13 +157,17 @@ def test_full_crawl(mock_scrapy_settings, monkeypatch, spider, use_dedup, crawl_
             mock_init,
         )
         monkeypatch.setattr(helpers, "get_domain_visits", lambda _: {})
+        monkeypatch.setattr(
+            f"search_gov_crawler.search_gov_spiders.spiders.{spider.name}.BaseSettings.setmodule",
+            lambda *_args, **_kwargs: None,
+        )
         mock_scrapy_settings.set("FEEDS", {output_file.name: {"format": "json"}})
 
         process = CrawlerProcess(mock_scrapy_settings, install_root_handler=False)
         process.crawl(spider, **crawl_kwargs)
         process.start()
 
-        with open(output_file.name, encoding="UTF") as f:
+        with open(output_file.name, encoding="UTF") as f:  # noqa: PTH123
             links = json.load(f)
 
         split_files = list(temp_dir.glob("all-links-p*.csv"))

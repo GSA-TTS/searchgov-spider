@@ -85,7 +85,11 @@ def test_search_gov_spider_redis_scheduler_open(redis_spider_from_crawler, redis
 
 @pytest.mark.parametrize("reason", ["finished", "closespider_test"])
 def test_search_gov_spider_redis_scheduler_close(
-    caplog, monkeypatch, redis_spider_from_crawler, redis_scheduler, reason
+    caplog,
+    monkeypatch,
+    redis_spider_from_crawler,
+    redis_scheduler,
+    reason,
 ):
     def mock_flush(*_args, **_kwargs):
         redis_spider_from_crawler.logger.info("Flushing Scheduler!")

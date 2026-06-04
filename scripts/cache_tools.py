@@ -12,10 +12,10 @@ Usage:
         - show-run-times: Show run times of jobs in the Redis job store.
 """
 
+import pickle
 from datetime import UTC, datetime
 
 import click
-import pickle
 from redis import Redis
 
 from search_gov_crawler.scheduling.redis import init_redis_client
@@ -79,7 +79,6 @@ def delete_key(redis: Redis, key: str) -> None:
 @click.group()
 def cli():
     """Redis job store tools."""
-    pass
 
 
 @cli.command()
@@ -110,11 +109,17 @@ def show_run_times():
 
 
 @cli.command()
-@click.option("-t", "--type", type=click.Choice(["requests", "dupefilter"], case_sensitive=False), required=True)
-def show_job_state_keys(type):
+@click.option(
+    "-t",
+    "--type",
+    "key_type",
+    type=click.Choice(["requests", "dupefilter"], case_sensitive=False),
+    required=True,
+)
+def show_job_state_keys(key_type):
     """Shows name and size of job state keys."""
     redis_client = init_redis_client(decode_responses=True)
-    key_pattern = JOB_STATE_KEY_PATTERN % {"spider_id": "*", "key_type": type}
+    key_pattern = JOB_STATE_KEY_PATTERN % {"spider_id": "*", "key_type": key_type}
     keys = list(redis_client.scan_iter(key_pattern))
     print_scheduler_keys_and_size(redis=redis_client, keys=keys, key_pattern=key_pattern)
 
@@ -122,7 +127,7 @@ def show_job_state_keys(type):
 @cli.command()
 @click.option("-id", "--spider_id", type=str, required=True)
 @click.option("--apply", is_flag=True, default=False)
-def delete_job_state_keys(spider_id: str, apply: bool):
+def delete_job_state_keys(spider_id: str, apply: bool):  # noqa: FBT001
     """Delete job state keys (requests and dupefilter) based on spider_id."""
     redis_client = init_redis_client(decode_responses=True)
     key_pattern = JOB_STATE_KEY_PATTERN % {"spider_id": spider_id, "key_type": "*"}
@@ -150,7 +155,7 @@ def show_queued_urls(spider_id: str, page_size: int):
 
     print_headers(key=key, results=requests, result_label="requests")
     for idx, request in enumerate(requests):
-        obj = pickle.loads(request)
+        obj = pickle.loads(request)  # noqa: S301
         print(obj.get("url"))
 
         if (idx + 1) % page_size == 0:

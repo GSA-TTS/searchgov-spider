@@ -62,7 +62,7 @@ DOMAIN_IS_VALID_TEST_CASES = [
 ]
 
 
-@pytest.mark.parametrize(("domain, is_valid"), DOMAIN_IS_VALID_TEST_CASES)
+@pytest.mark.parametrize(("domain", "is_valid"), DOMAIN_IS_VALID_TEST_CASES)
 def test_domain_is_valid(domain, is_valid):
     assert domain_is_valid(domain) is is_valid
 

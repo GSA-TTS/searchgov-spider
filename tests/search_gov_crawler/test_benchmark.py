@@ -101,8 +101,8 @@ def test_benchmark_from_args(caplog, monkeypatch, mock_opensearch_client):
         "search_gov_crawler.indexing.opensearch.SearchGovOpensearch.client",
         return_value=mock_opensearch_client,
     ):
-        monkeypatch.setattr(time, "sleep", lambda x: True)
-        monkeypatch.setattr("search_gov_crawler.benchmark.init_scheduler", lambda: MockScheduler())  # pylint: disable=unnecessary-lambda
+        monkeypatch.setattr(time, "sleep", lambda _: True)
+        monkeypatch.setattr("search_gov_crawler.benchmark.init_scheduler", lambda: MockScheduler())  # noqa: PLW0108
         test_args = {
             "allow_query_string": True,
             "allowed_domains": "unit-test.example.com",
@@ -129,8 +129,8 @@ def test_benchmark_from_file(caplog, monkeypatch, mock_opensearch_client):
         "search_gov_crawler.indexing.opensearch.SearchGovOpensearch.client",
         return_value=mock_opensearch_client,
     ):
-        monkeypatch.setattr(time, "sleep", lambda x: True)
-        monkeypatch.setattr("search_gov_crawler.benchmark.init_scheduler", lambda: MockScheduler())  # pylint: disable=unnecessary-lambda
+        monkeypatch.setattr(time, "sleep", lambda _: True)
+        monkeypatch.setattr("search_gov_crawler.benchmark.init_scheduler", lambda: MockScheduler())  # noqa: PLW0108
 
         input_file = Path(__file__).parent.parent / "crawl-sites-test.json"
         with caplog.at_level("INFO"):

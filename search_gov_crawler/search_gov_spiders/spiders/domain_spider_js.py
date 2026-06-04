@@ -2,6 +2,7 @@ from scrapy.crawler import Crawler
 from scrapy.http.request import Request
 from scrapy.http.response import Response
 from scrapy.linkextractors import LinkExtractor
+from scrapy.settings import BaseSettings
 from scrapy.spiders.crawl import CrawlSpider, Rule
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
@@ -67,23 +68,6 @@ class DomainSpiderJs(CrawlSpider):
 
     name: str = "domain_spider_js"
 
-    @classmethod
-    def update_settings(cls, settings):
-        """Moved settings update to this classmethod due to complexity."""
-
-        super().update_settings(settings)
-        settings.set("PLAYWRIGHT_ABORT_REQUEST", should_abort_request, priority="spider")
-        settings.set("PLAYWRIGHT_BROWSER_TYPE", "chromium", priority="spider")
-        settings.set("PLAYWRIGHT_LAUNCH_OPTIONS", {"headless": True}, priority="spider")
-        settings.set(
-            "DOWNLOAD_HANDLERS",
-            {
-                "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
-                "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
-            },
-            priority="spider",
-        )
-
     def __init__(
         self,
         *args,
@@ -145,9 +129,10 @@ class DomainSpiderJs(CrawlSpider):
         Override default method to set DEPTH_LIMIT.  Default is set in settings.py file but can be overridden either by
         command line argument (-a depth_limit=x) or within a json scheduling file.
         """
+        max_depth_limit = 250
 
         spider = super().from_crawler(crawler, *args, **kwargs)
-        if int(depth_limit) > 250 or int(depth_limit) < 1:
+        if int(depth_limit) > max_depth_limit or int(depth_limit) < 1:
             msg = f"Search Depth must be between 1 and 250 inclusive. You submitted: {depth_limit} "
             raise ValueError(msg)
 
@@ -166,7 +151,8 @@ class DomainSpiderJs(CrawlSpider):
 
         content_type_name = "Content-Type"
         content_type_value = response.headers.get(
-            content_type_name, response.headers.get(content_type_name.lower(), None)
+            content_type_name,
+            response.headers.get(content_type_name.lower(), None),
         )
         if helpers.is_valid_content_type(content_type_value, output_target=self.output_target):
             yield SearchGovSpidersItem(
@@ -182,3 +168,26 @@ class DomainSpiderJs(CrawlSpider):
 
         request.meta["playwright"] = True
         return request
+
+    @classmethod
+    def update_settings(cls, settings: BaseSettings):
+        """
+        Apply project-wider common settings as well as custom settings at the spider priority level
+        for just this spider.
+        """
+
+        super().update_settings(settings)
+        settings.setmodule(module="search_gov_crawler.search_gov_spiders.settings.domain_spider", priority="spider")
+
+        # domain_spider_js specific settings
+        settings.set("PLAYWRIGHT_ABORT_REQUEST", should_abort_request, priority="spider")
+        settings.set("PLAYWRIGHT_BROWSER_TYPE", "chromium", priority="spider")
+        settings.set("PLAYWRIGHT_LAUNCH_OPTIONS", {"headless": True}, priority="spider")
+        settings.set(
+            "DOWNLOAD_HANDLERS",
+            {
+                "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+                "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+            },
+            priority="spider",
+        )

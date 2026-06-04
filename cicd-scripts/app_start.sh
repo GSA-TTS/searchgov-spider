@@ -43,6 +43,9 @@ nohup bash -lc "source ~/.profile && $VENV_PYTHON ./$DAP_SCRIPT" >> "$LOG_FILE" 
 # Start scheduler
 nohup bash -lc "source ~/.profile && $VENV_PYTHON ./$SCHEDULER_SCRIPT" >> "$LOG_FILE" 2>&1 &
 
+# start freshness cheker
+nohup bash -c "source ./venv/bin/activate && ./venv/bin/python ./$FRESHNESS_SCRIPT" >> $LOG_FILE 2>&1 &
+
 # check that scheduler is running before exit, it not raise error
 sleep 5
 if pgrep -f "scrapy_scheduler.py" >/dev/null; then

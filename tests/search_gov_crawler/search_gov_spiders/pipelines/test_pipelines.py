@@ -1,4 +1,5 @@
 from contextlib import suppress
+from datetime import UTC, datetime
 
 import pytest
 from scrapy import Spider
@@ -7,8 +8,16 @@ from scrapy.exceptions import DropItem
 from scrapy.utils.reactor import install_reactor
 from scrapy.utils.test import get_crawler
 
-from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
-from search_gov_crawler.search_gov_spiders.pipelines import DeDeuplicatorPipeline, SearchGovSpidersPipeline
+from search_gov_crawler.search_gov_spiders.items import (
+    FreshnessSpiderException,
+    FreshnessSpiderItem,
+    SearchGovSpidersItem,
+)
+from search_gov_crawler.search_gov_spiders.pipelines import (
+    DeDeuplicatorPipeline,
+    FreshnessSpiderPipeline,
+    SearchGovSpidersPipeline,
+)
 
 
 @pytest.fixture(name="intsall_reactor", autouse=True)
@@ -80,13 +89,13 @@ def test_spiders_pipeline_valid_output(spiders_pipeline, mocker, output_target, 
 
 def test_spiders_pipeline_get_opensearch_client(mocker, spiders_pipeline):
     mock_opensearch = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovOpensearch")
-    spiders_pipeline._get_opensearch_client()  # pylint: disable=protected-access
+    _ = spiders_pipeline.opensearch
     mock_opensearch.assert_called_once()
 
 
 def test_spiders_pipeline_process_opensearch_item_no_response_bytes(spiders_pipeline, sample_item):
     with pytest.raises(DropItem, match="Missing 'response_bytes' for url"):
-        spiders_pipeline._process_opensearch_item(sample_item)  # pylint: disable=protected-access
+        spiders_pipeline._process_opensearch_item(sample_item)
 
 
 @pytest.mark.parametrize(
@@ -131,7 +140,7 @@ def test_spiders_pipeline_conversion_failure(caplog, mocker, spiders_pipeline, s
     sample_item["content_type"] = "text/html"
 
     with caplog.at_level("INFO"):
-        spiders_pipeline._process_opensearch_item(sample_item)  # pylint: disable=protected-access
+        spiders_pipeline._process_opensearch_item(sample_item)
 
     assert caplog.messages == [
         "Failed to convert http://example.com (type text/html)",
@@ -148,7 +157,7 @@ def test_spiders_pipeline_dap_error(caplog, mocker, spiders_pipeline, sample_ite
     sample_item["response_bytes"] = "you call these bytes??!?!"
     sample_item["content_type"] = "text/html"
 
-    spiders_pipeline._process_opensearch_item(sample_item)  # pylint: disable=protected-access
+    spiders_pipeline._process_opensearch_item(sample_item)
     assert "Failed to update DAP visits for url: http://example.com, content_type: text/html" in caplog.messages
 
 
@@ -163,12 +172,12 @@ def test_spiders_pipeline_opensearch_error(mocker, spiders_pipeline, sample_item
     sample_item["content_type"] = "text/html"
 
     with pytest.raises(DropItem, match="Failed to add item to Opensearch batch"):
-        spiders_pipeline._process_opensearch_item(sample_item)  # pylint: disable=protected-access
+        spiders_pipeline._process_opensearch_item(sample_item)
 
 
 def test_spiders_pipeline_close_spider(mocker, spiders_pipeline):
     mock_opensearch = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovOpensearch")
-    spiders_pipeline._get_opensearch_client()  # pylint: disable=protected-access
+    _ = spiders_pipeline.opensearch
     spiders_pipeline.close_spider()
 
     mock_opensearch.return_value.batch_upload.assert_called_once()
@@ -213,11 +222,11 @@ def test_deduplicator_pipeline_multiple_items(deduplicator_pipeline):
     assert result2 == item2
 
 
-def test_deduplicator_pipeline_clean_state(sample_crawler):
+def test_deduplicator_pipeline_clean_state(deduplicator_pipeline, sample_crawler):
     """
     Verify that a new instance of DeDeuplicatorPipeline starts with a clean state.
     """
-    pipeline1 = DeDeuplicatorPipeline.from_crawler(sample_crawler)
+    pipeline1 = deduplicator_pipeline
     pipeline2 = DeDeuplicatorPipeline.from_crawler(sample_crawler)
 
     item = {"url": "http://example.com/1"}
@@ -250,25 +259,70 @@ def test_deduplicator_pipeline_clean_state(sample_crawler):
         ),
     ],
 )
-def test_deduplicator_pipeline(sample_crawler, items, urls_seen_length):
-    pl = DeDeuplicatorPipeline.from_crawler(sample_crawler)
-
+def test_deduplicator_pipeline(deduplicator_pipeline, items, urls_seen_length):
     with suppress(DropItem):
         for item in items:
-            pl.process_item(item)
+            deduplicator_pipeline.process_item(item)
 
-    assert len(pl.urls_seen) == urls_seen_length
+    assert len(deduplicator_pipeline.urls_seen) == urls_seen_length
 
 
-def test_item_repr():
-    item = SearchGovSpidersItem(
-        url="https://www.example.com",
-        output_target="csv",
-        content_type="text/html",
-        response_language="en",
-        response_bytes=b"long long long long long long long long long response bytes",
+@pytest.fixture(name="freshness_spider_pipeline")
+def fixture_freshness_spider_pipeline(mocker, sample_crawler) -> FreshnessSpiderPipeline:
+    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovOpensearch")
+    return FreshnessSpiderPipeline.from_crawler(sample_crawler)
+
+
+def test_freshness_spider_pipeline_init(freshness_spider_pipeline):
+    assert isinstance(freshness_spider_pipeline, FreshnessSpiderPipeline)
+
+
+def test_freshness_spider_pipeline_open_spider(freshness_spider_pipeline):
+    freshness_spider_pipeline.opensearch.index_exists.return_value = False
+    freshness_spider_pipeline.open_spider()
+    freshness_spider_pipeline.opensearch.create_index.assert_called_once()
+
+
+def test_freshness_spider_pipeline_open_spider_index_already_exists(freshness_spider_pipeline):
+    freshness_spider_pipeline.opensearch.index_exists.return_value = True
+    freshness_spider_pipeline.open_spider()
+    freshness_spider_pipeline.opensearch.create_index.assert_not_called()
+
+
+@pytest.fixture(name="freshness_spider_item")
+def fixture_freshness_spider_item() -> FreshnessSpiderItem:
+    return FreshnessSpiderItem(
+        checked_at=datetime(2026, 1, 1, 0, 0, 0, tzinfo=UTC),
+        result="success",
+        index_name="test_index",
+        id="test_id",
+        path="test_path",
+        domain_name="test_domain",
+        marked_for_deletion=False,
+        status_code="503",
+        exception=FreshnessSpiderException(exception_type="TestError", exception_message="Test Exception"),
     )
 
-    assert str(item) == (
-        "Item(url=https://www.example.com, output_target=csv, content_type=text/html, response_language=en)"
-    )
+
+def test_freshness_spider_pipeline_process_item(freshness_spider_pipeline, freshness_spider_item):
+    freshness_spider_pipeline.process_item(freshness_spider_item)
+    freshness_spider_pipeline.opensearch.add_to_batch.assert_called_once()
+
+
+def test_freshness_spider_pipeline_process_item_exception(freshness_spider_pipeline, freshness_spider_item):
+    freshness_spider_pipeline.opensearch.add_to_batch.side_effect = [Exception("This is an error!")]
+    with pytest.raises(DropItem, match="Failed to add item to Opensearch batch"):
+        freshness_spider_pipeline.process_item(freshness_spider_item)
+
+
+def test_freshness_spider_pipeline_close_spider(freshness_spider_pipeline):
+    freshness_spider_pipeline.close_spider()
+    freshness_spider_pipeline.opensearch.batch_upload.assert_called_once()
+
+
+def test_freshness_spider_pipeline_close_spider_exception(caplog, freshness_spider_pipeline):
+    freshness_spider_pipeline.opensearch.batch_upload.side_effect = [Exception("This is an error!")]
+    with caplog.at_level("INFO"):
+        freshness_spider_pipeline.close_spider()
+
+    assert "Failed to upload Opensearch batch on spider close" in caplog.messages
