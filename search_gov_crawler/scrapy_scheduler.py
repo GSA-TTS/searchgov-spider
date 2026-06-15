@@ -23,6 +23,7 @@ from search_gov_crawler.scheduling.redis import get_redis_connection_args
 from search_gov_crawler.scheduling.schedulers import SpiderBackgroundScheduler
 from search_gov_crawler.search_gov_app.crawl_config import CrawlConfigs
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
+from search_gov_crawler.search_gov_spiders.spiders import SpiderStartedBy
 
 load_dotenv()
 
@@ -60,6 +61,7 @@ def transform_crawl_configs(crawl_configs: CrawlConfigs) -> list[dict]:
                     "output_target": crawl_config.output_target,
                     "depth_limit": crawl_config.depth_limit,
                     "deny_paths": crawl_config.deny_paths or [],
+                    "started_by": SpiderStartedBy.SCHEDULED.value,
                 },
             },
         )

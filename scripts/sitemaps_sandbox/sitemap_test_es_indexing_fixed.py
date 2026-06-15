@@ -56,21 +56,21 @@ def run_crawl_in_dedicated_process(spider_params):
 def do_crawl_sequential(new_urls: list[str]):
     """
     Runs a crawl with the same parameters twice sequentially."""
-    spider_args = {
+    spider_kwargs = {
         "allow_query_string": False,
         "allowed_domains": "ioos.noaa.gov",
         "deny_paths": None,
         "start_urls": ",".join(new_urls),
         "output_target": "opensearch",
-        "prevent_follow": True,
+        "sitemap_url": "https://ioos.noaa.gov/sitemap.xml",
         "depth_limit": 1,
     }
 
-    log.info("Starting crawl with args: %s", spider_args.get("start_urls"))
-    crawl_process = Process(target=run_crawl_in_dedicated_process, args=(spider_args,))
+    log.info("Starting crawl with args: %s", spider_kwargs.get("start_urls"))
+    crawl_process = Process(target=run_crawl_in_dedicated_process, kwargs=spider_kwargs)
     crawl_process.start()
     crawl_process.join()  # Wait for the crawl process to complete before continuing, force blocking
-    log.info("Crawl with args: %s finished.", spider_args.get("start_urls"))
+    log.info("Crawl with args: %s finished.", spider_kwargs.get("start_urls"))
 
 
 if __name__ == "__main__":

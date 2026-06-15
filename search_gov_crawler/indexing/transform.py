@@ -1,28 +1,14 @@
 import logging
-import re
-from datetime import datetime, timedelta, timezone
 from io import BytesIO
-from typing import Any
 
 import newspaper
-from pypdf import PageObject, PdfReader
+from pypdf import PdfReader
 from pypdf.errors import FileNotDecryptedError, PdfReadError
-from pypdf.generic import IndirectObject
 
-from search_gov_crawler.indexing.helpers import (
-    ALLOWED_LANGUAGE_CODE,
-    current_utc_iso,
-    detect_lang,
-    generate_url_sha256,
-    get_base_extension,
-    get_domain_name,
-    get_url_path,
-    parse_date_safely,
-    separate_file_name,
-    summarize_text,
-)
-from search_gov_crawler.indexing.parse import convert_html_scrapy
+from search_gov_crawler.indexing import helpers
+from search_gov_crawler.indexing.parse import convert_html_scrapy, get_pdf_links, get_pdf_meta, get_pdf_text
 from search_gov_crawler.search_gov_spiders.helpers import content, encoding
+from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 log = logging.getLogger(__name__)
 
@@ -31,13 +17,24 @@ logging.getLogger("pypdf._reader").setLevel(logging.ERROR)
 logging.getLogger("pypdf._cmap").setLevel(logging.CRITICAL)
 
 
-def convert_html(response_bytes: bytes, url: str, response_language: str | None = None):
+def set_metadata_fields(item: SearchGovSpidersItem) -> dict:
+    """These fields are placeholders for fields populated at runtime"""
+    return {
+        "crawl_depth": item.get("crawl_depth", None),
+        "creator": item.get("creator", None),
+        "download_bytes": len(item.get("response_bytes", b"")),
+        "download_milliseconds": item.get("download_milliseconds", None),
+        "source_url": item.get("source_url", None),
+    }
+
+
+def convert_html(item: SearchGovSpidersItem) -> dict:
     """Extracts and processes article content from HTML using newspaper4k."""
-    html_content = encoding.decode_http_response(response_bytes=response_bytes)
+    html_content = encoding.decode_http_response(response_bytes=item.get("response_bytes", None))
     config = newspaper.Config()
     config.fetch_images = False  # we are not using images, do not fetch!
     config.clean_article_html = False  # we are not using article_html, so don't clean it!
-    article = newspaper.Article(url=url, config=config)
+    article = newspaper.Article(url=item.get("url", None), config=config)
     article.download(input_html=html_content)
     article.parse()
     article.nlp()
@@ -46,34 +43,39 @@ def convert_html(response_bytes: bytes, url: str, response_language: str | None 
     main_content = article.text or article_backup["content"]
 
     if not main_content:
-        return None
+        return {}
 
     title = article_backup["title"] or article.title or article.meta_site_name or None
     description = article.meta_description or article.summary or article_backup["description"] or None
     tags = article.tags or article.keywords or article.meta_keywords or article_backup["keywords"] or None
 
-    time_now_str = current_utc_iso()
-    path = article.url or article_backup["url"] or url
+    time_now_str = helpers.current_utc_iso()
+    path = article.url or article_backup["url"] or item.get("url", None)
 
-    basename, extension = get_base_extension(url)
-    sha_id = generate_url_sha256(path)
+    basename, extension, _ = helpers.get_base_extension(item.get("url", None))
+    sha_id = helpers.generate_url_sha256(path)
 
-    language = article.meta_lang or article_backup["language"] or response_language or detect_lang(main_content)
+    language = (
+        article.meta_lang
+        or article_backup["language"]
+        or item.get("response_language", None)
+        or helpers.detect_lang(main_content)
+    )
     language = language[:2] if language else None
-    valid_language = f"_{language}" if language in ALLOWED_LANGUAGE_CODE else ""
+    valid_language = f"_{language}" if language in helpers.ALLOWED_LANGUAGE_CODE else ""
 
     # Only run summarize text if either tags or description is not populated
     if not (tags and description):
-        summary, keywords = summarize_text(text=main_content, url=url, lang_code=language)
+        summary, keywords = helpers.summarize_text(text=main_content, url=item.get("url", None), lang_code=language)
         tags = tags or keywords
         description = description or summary
 
     return {
         "audience": article_backup["audience"],
-        "changed": parse_date_safely(article_backup["changed"]),
+        "changed": helpers.parse_dates_safely(article_backup["changed"]),
         "click_count": None,
         "content_type": "article",
-        "created_at": parse_date_safely(article_backup["created_at"]) or time_now_str,
+        "created_at": helpers.parse_dates_safely(article_backup["created_at"]) or time_now_str,
         "created": None,
         "id": sha_id,
         "thumbnail_url": article_backup["thumbnail_url"] or None,
@@ -86,243 +88,107 @@ def convert_html(response_bytes: bytes, url: str, response_language: str | None 
         "searchgov_custom3": None,
         "tags": tags,
         "updated_at": time_now_str,
-        "updated": parse_date_safely(article.publish_date) or parse_date_safely(article_backup["created_at"]),
+        "updated": helpers.parse_dates_safely(article.publish_date, article_backup["created_at"]),
         f"title{valid_language}": title,
         f"description{valid_language}": content.sanitize_text(str(description)),
         f"content{valid_language}": content.sanitize_text(main_content),
         "basename": basename,
         "extension": extension or None,
-        "url_path": get_url_path(url),
-        "domain_name": get_domain_name(url),
+        "url_path": helpers.get_url_path(item.get("url", None)),
+        "domain_name": helpers.get_domain_name(item.get("url", None)),
         "dap_domain_visits_count": None,
+        "metadata": set_metadata_fields(item),
     }
 
 
-def add_title_and_filename(key: str, title_key: str, doc: dict):
+def add_title_and_filename(original_value: str, title: str, filename: str) -> str:
     """
-    Adds PDF's title and file name to the provided key.
-    Used mainly to improve index and relevance.
+    Adds PDF's title and file name to the provided value. Used mainly to improve index and relevance.
 
     Args:
-        key: str The key to use to apply the change, eg "content"
-        doc: dict The document the changes will be applied to
+        original_value: str The value to use to apply the change, eg "content"
+        title: str The title to add to the original value
+        filename: str the filename to add to the original value
 
     Returns:
-        None The changes are applied to the document as a referance/pointer
+        the new value
     """
-    doc[key] = f"{doc[title_key]} {doc['basename']}.{doc['extension']} {doc[key]}"
+
+    return f"{title} {filename} {original_value}"
 
 
-def get_links_set(pages: list[tuple[str, PageObject]]):
-    """
-    Returns a set of links for all pages in the PDF
-
-    Args:
-        pages: list of tuples containing (text, PageObject)
-
-    Returns:
-        (list[str]) unique set of links
-    """
-    key = "/Annots"
-    uri = "/URI"
-    ank = "/A"
-    links = set()  # Use a set for unique links
-
-    for page_item in pages:
-        text, page = page_item
-        # Get all visible links from text
-        page_links = re.findall(r"https?://\S+|www\.\S+", text)
-        for link in page_links:
-            links.add(link)
-
-        # Get all hidden links from annotations
-        page_object = page.get_object()
-        if key in page_object.keys():  # noqa: SIM118
-            ann = page_object[key]
-            for a in ann:
-                u = a.get_object()
-                try:
-                    if ank in u and uri in u[ank].keys():  # noqa: SIM118
-                        link = u[ank][uri]
-                        # Convert bytes to string if necessary
-                        if isinstance(link, bytes):
-                            link = link.decode("utf-8")
-                        links.add(link)
-                except ValueError:
-                    pass
-
-    return list(links)
-
-
-def convert_pdf(response_bytes: bytes, url: str, response_language: str | None = None):
+def convert_pdf(item: SearchGovSpidersItem) -> dict:
     """Extracts and processes PDF content using pypdf."""
-    log.debug("Processing PDF content from %s", url)
-
-    pdf_stream = BytesIO(response_bytes)
+    log.debug("Processing PDF content from item %s", item)
+    pdf_stream = BytesIO(item.get("response_bytes", None))
     try:
         reader = PdfReader(pdf_stream)
     except PdfReadError as err:
-        log.warning("Could not download PDF file at %s: %s", url, err)
-        return None
+        log.warning("Could not download PDF file for item %s: %s", item, err)
+        return {}
 
     try:
         meta_values = get_pdf_meta(reader)
         main_content, pages = get_pdf_text(reader)
     except FileNotDecryptedError as err:
-        log.warning("Could not decrypt PDF file at %s: %s", url, err)
-        return None
+        log.warning("Could not decrypt PDF file for item %s: %s", item, err)
+        return {}
 
-    basename, extension = get_base_extension(url)
-    title = meta_values.get("Title") or separate_file_name(f"{basename}.{extension}")
-    main_content = main_content or title
+    time_now_str = helpers.current_utc_iso()
+    basename, extension, filename = helpers.get_base_extension(item.get("url", None))
 
-    sha_id = generate_url_sha256(url)
-
-    language = meta_values.get("Lang") or response_language or detect_lang(main_content)
+    title_value = meta_values.get("Title") or helpers.separate_file_name(filename)
+    main_content = main_content or title_value
+    language = meta_values.get("Lang") or item.get("response_language", None) or helpers.detect_lang(main_content)
     language = language[:2] if language else None
-    valid_language = f"_{language}" if language in ALLOWED_LANGUAGE_CODE else ""
 
-    description, keywords = summarize_text(text=main_content, url=url, lang_code=language)
+    description, keywords = helpers.summarize_text(text=main_content, url=item.get("url", None), lang_code=language)
 
-    time_now_str = current_utc_iso()
-
-    content_key = f"content{valid_language}"
-    description_key = f"description{valid_language}"
+    # name and populate language-aware fields
+    valid_language = f"_{language}" if language in helpers.ALLOWED_LANGUAGE_CODE else ""
     title_key = f"title{valid_language}"
 
-    doc = {
+    content_key = f"content{valid_language}"
+    content_value = add_title_and_filename(
+        original_value=f"{content.sanitize_text(main_content)} {' '.join(get_pdf_links(pages))}",
+        title=title_value,
+        filename=filename,
+    )
+
+    description_key = f"description{valid_language}"
+    description_value = add_title_and_filename(
+        original_value=str(content.sanitize_text(str(description))),
+        title=title_value,
+        filename=filename,
+    )
+
+    return {
         "audience": None,
-        "changed": parse_date_safely(meta_values.get("ModDate") or meta_values.get("SourceModified")),
+        "changed": helpers.parse_dates_safely(meta_values.get("ModDate"), meta_values.get("SourceModified")),
         "click_count": None,
         "content_type": None,
-        "created_at": parse_date_safely(meta_values.get("CreationDate")) or time_now_str,
+        "created_at": helpers.parse_dates_safely(meta_values.get("CreationDate")) or time_now_str,
         "created": None,
-        "id": sha_id,
+        "id": helpers.generate_url_sha256(item.get("url", None)),
         "thumbnail_url": None,
         "language": language,
         "mime_type": "application/pdf",
-        "path": url,
+        "path": item.get("url", None),
         "promote": None,
         "searchgov_custom1": None,
         "searchgov_custom2": None,
         "searchgov_custom3": None,
         "tags": keywords,
         "updated_at": time_now_str,
-        "updated": parse_date_safely(meta_values.get("CreationDate")),
-        title_key: title,
-        description_key: content.sanitize_text(str(description)),
-        content_key: content.sanitize_text(main_content),
+        "updated": helpers.parse_dates_safely(meta_values.get("CreationDate")),
+        title_key: title_value,
+        description_key: description_value,
+        content_key: content_value,
         "basename": basename,
         "extension": extension or None,
-        "url_path": get_url_path(url),
-        "domain_name": get_domain_name(url),
+        "url_path": helpers.get_url_path(item.get("url", None)),
+        "domain_name": helpers.get_domain_name(item.get("url", None)),
+        # fields populated at runtime, placeholders here
         "dap_domain_visits_count": None,
+        "metadata": set_metadata_fields(item=item),
     }
-
-    add_title_and_filename(content_key, title_key, doc)
-    add_title_and_filename(description_key, title_key, doc)
-    all_links = get_links_set(pages)
-    doc[content_key] = f"{doc[content_key]} {' '.join(all_links) if len(all_links) > 0 else ''}"
-
-    return doc
-
-
-def get_pdf_text(reader: PdfReader) -> tuple[str, list[tuple[str, PageObject]]]:
-    """
-    Returns clean text/content from all pdf pages
-
-    Args:
-        reader: PdfReader from pypdf
-
-    Returns:
-        (string) without new any special characters
-    """
-    text = ""
-    pages = []
-    for page in reader.pages:
-        page_text = page.extract_text()
-        text += page_text + " "
-        pages.append((page_text, page))
-    return (text, pages)
-
-
-def get_pdf_meta(reader: PdfReader) -> dict:
-    """
-    Returns pdf metadata as a dict after its been cleaned.
-
-    Args:
-        reader: PdfReader from pypdf
-
-    Returns:
-        metadata object with possible keys: https://exiftool.org/TagNames/PDF.html
-    """
-    if not reader.metadata:
-        return {}
-
-    clean_metadata = {}
-    for k, v in reader.metadata.items():
-        resolved_value = v.get_object() if isinstance(v, IndirectObject) else v
-        clean_metadata[str(k).removeprefix("/")] = parse_if_date(resolved_value, apply_tz_offset=False)
-
-    return clean_metadata
-
-
-def parse_if_date(value, *, apply_tz_offset: bool) -> Any:
-    """
-    Parses a value as date if matched the conventional pdf/exif date format. If parsing fails,
-    returns the original value
-
-    Examples of str date format:
-        "D:20150113143419Z00'00'"
-        "D:20191018122555-04'00'"
-        "D:20191018162538"
-
-    Args:
-        value: The value to parse.
-
-    Returns:
-        A datetime.datetime object if parsing is successful, otherwise the original value.
-    """
-    if not isinstance(value, str):
-        return value
-
-    if value.startswith("D:"):
-        date_string = value.removeprefix("D:")
-
-        proper_date_format = re.match(
-            r"^(\d{4})(\d{2})(\d{2})(\d{2})?(\d{2})?(\d{2})?([+\-Z]{0,1})?(\d{2})?'?(\d{2})?'?$",
-            date_string,
-        )
-        misformed_date_format = re.match(r"^[0-9zZ+\-']*$", date_string)
-
-        if proper_date_format:
-            year = int(proper_date_format.group(1))
-            month = int(proper_date_format.group(2))
-            day = int(proper_date_format.group(3))
-            hour = int(proper_date_format.group(4)) if proper_date_format.group(4) else 0
-            minute = int(proper_date_format.group(5)) if proper_date_format.group(5) else 0
-            second = int(proper_date_format.group(6)) if proper_date_format.group(6) else 0
-            tz_sign = proper_date_format.group(7) or "Z"
-            tz_hour = int(proper_date_format.group(8)) if proper_date_format.group(8) else 0
-            tz_minute = int(proper_date_format.group(9)) if proper_date_format.group(9) else 0
-
-            # Handle timezone offset if matched
-            if proper_date_format.group(7) and apply_tz_offset:
-                tz_multiplier = -1 if tz_sign == "-" else 1
-                offset = timedelta(hours=tz_hour, minutes=tz_minute) * tz_multiplier
-                tz = timezone(offset=offset)
-            else:
-                tz = None
-
-            try:
-                return datetime(year, month, day, hour, minute, second, tzinfo=tz)
-            except ValueError:
-                log.debug("Failed to parse date string: %s", value)
-                return None
-        elif misformed_date_format:
-            log.debug("Failed to parse date string: %s", value)
-            return None
-        else:
-            pass  # Starts with D: but probably not a date
-
-    return content.sanitize_text(value)

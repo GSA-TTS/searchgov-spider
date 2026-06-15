@@ -94,7 +94,7 @@ def test_spiders_pipeline_get_opensearch_client(mocker, spiders_pipeline):
 
 
 def test_spiders_pipeline_process_opensearch_item_no_response_bytes(spiders_pipeline, sample_item):
-    with pytest.raises(DropItem, match="Missing 'response_bytes' for url"):
+    with pytest.raises(DropItem, match="Missing 'response_bytes' for item"):
         spiders_pipeline._process_opensearch_item(sample_item)
 
 
@@ -142,10 +142,16 @@ def test_spiders_pipeline_conversion_failure(caplog, mocker, spiders_pipeline, s
     with caplog.at_level("INFO"):
         spiders_pipeline._process_opensearch_item(sample_item)
 
-    assert caplog.messages == [
-        "Failed to convert http://example.com (type text/html)",
-        "No document generated for URL http://example.com",
-    ]
+    failed_msg = (
+        "Failed to convert item "
+        "{'url': 'http://example.com', 'response_bytes': 'you call these bytes??!?!', 'content_type': 'text/html'}"
+    )
+    no_doc_msg = (
+        "No document generated for item "
+        "{'url': 'http://example.com', 'response_bytes': 'you call these bytes??!?!', 'content_type': 'text/html'}"
+    )
+    assert failed_msg in caplog.messages
+    assert no_doc_msg in caplog.messages
 
 
 def test_spiders_pipeline_dap_error(caplog, mocker, spiders_pipeline, sample_item):
@@ -158,7 +164,7 @@ def test_spiders_pipeline_dap_error(caplog, mocker, spiders_pipeline, sample_ite
     sample_item["content_type"] = "text/html"
 
     spiders_pipeline._process_opensearch_item(sample_item)
-    assert "Failed to update DAP visits for url: http://example.com, content_type: text/html" in caplog.messages
+    assert any("Failed to update DAP visits for document" in message for message in caplog.messages)
 
 
 def test_spiders_pipeline_opensearch_error(mocker, spiders_pipeline, sample_item):

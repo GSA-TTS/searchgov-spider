@@ -28,7 +28,7 @@ def do_crawl():
         "deny_paths": None,
         "start_urls": ",".join(new_urls),
         "output_target": "opensearch",
-        "prevent_follow": True,
+        "sitemap_url": "https://ioos.noaa.gov/sitemap.xml",
         "depth_limit": 1,
     }
     spider_cls = DomainSpider

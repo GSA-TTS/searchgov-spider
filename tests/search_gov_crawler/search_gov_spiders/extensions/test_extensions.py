@@ -13,6 +13,7 @@ from search_gov_crawler.search_gov_spiders.extensions.json_logging import (
     JsonLogging,
     SearchGovSpiderFileHandler,
     SearchGovSpiderStreamHandler,
+    search_gov_default,
 )
 from search_gov_crawler.search_gov_spiders.extensions.scheduler_queue import OnDiskSchedulerQueue, RedisSchedulerQueue
 from tests.search_gov_crawler.scheduling.conftest import MockRedisClient
@@ -225,8 +226,11 @@ def test_extension_from_crawler(project_settings, extension_cls):
     assert isinstance(extension, extension_cls)
 
 
-@pytest.mark.parametrize(("prevent_follow", "start_urls"), [(True, "Generated from Sitemap"), (False, "url 1,url 2")])
-def test_extension_spider_opened(caplog, project_settings, prevent_follow, start_urls):
+@pytest.mark.parametrize(
+    ("sitemap_url", "start_urls"),
+    [("http://www.example.com/sitemap.xml", "Generated from Sitemap"), (None, "url 1,url 2")],
+)
+def test_extension_spider_opened(caplog, project_settings, sitemap_url, start_urls):
     log = logging.getLogger("test_spider")
     log.setLevel(logging.INFO)
 
@@ -237,8 +241,8 @@ def test_extension_spider_opened(caplog, project_settings, prevent_follow, start
         start_urls=["url 1", "url 2"],
         output_target="csv",
         settings=project_settings,
-        _prevent_follow=prevent_follow,
         _deny_paths="path1",
+        _sitemap_url=sitemap_url,
     )
     extension = JsonLogging(log_level=logging.INFO)
     with caplog.at_level(logging.INFO):
@@ -247,7 +251,7 @@ def test_extension_spider_opened(caplog, project_settings, prevent_follow, start
     assert (
         "Starting spider test_spider (spider_id testtesttest) with following args: "
         f"allowed_domains=domain 1,domain 2 allowed_domain_paths= start_urls={start_urls} "
-        "output_target=csv depth_limit=3 deny_paths=path1"
+        f"output_target=csv depth_limit=3 deny_paths=path1 sitemap_url={sitemap_url}"
     ) in caplog.messages
 
 
@@ -312,3 +316,16 @@ def test_is_orphan_key(monkeypatch, key_age, expected_result):
 
     monkeypatch.setattr(MockRedisClient, "object", mock_object)
     assert extension._is_orphan_key(redis=redis, orphan_age=10, key="test-key") == expected_result
+
+
+def test_redis_extension_from_crawler(project_settings):
+    project_settings.set("SCHEDULER_PERSIST", True)  # noqa: FBT003
+    project_settings.set("SCHEDULER_KEY_ORPHAN_AGE", 10)
+    project_settings.set("SCHEDULER_DUPEFILTER_KEY", "test")
+    project_settings.set("SCHEDULER_QUEUE_KEY", "test")
+    extension = RedisSchedulerQueue.from_crawler(Crawler(spidercls=Spider, settings=project_settings))
+    assert isinstance(extension, RedisSchedulerQueue)
+
+
+def test_search_gov_default_format_non_spider():
+    assert search_gov_default("this is not a spider") is None
