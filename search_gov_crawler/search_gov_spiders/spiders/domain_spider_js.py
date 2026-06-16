@@ -7,6 +7,7 @@ from scrapy.spiders.crawl import CrawlSpider, Rule
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
+from search_gov_crawler.search_gov_spiders.spiders import SpiderStartedBy
 
 
 def should_abort_request(request):
@@ -74,18 +75,16 @@ class DomainSpiderJs(CrawlSpider):
         allow_query_string: bool = False,
         allowed_domains: str,
         deny_paths: str | None = None,
-        start_urls: str,
         output_target: str,
-        prevent_follow: bool = False,
+        sitemap_url: str | None = None,
+        start_urls: str,
+        started_by: str = SpiderStartedBy.MANUAL.value,
         **kwargs,
     ) -> None:
-        helpers.validate_spider_arguments(allowed_domains, start_urls, output_target)
+        helpers.validate_spider_arguments(allowed_domains, start_urls, sitemap_url, output_target)
 
         # assign rules before super()__init__ so they can be processed by CrawlSpider
-        if prevent_follow:
-            self.rules = ()
-            self.parse_start_url = self.parse_item
-        else:
+        if not sitemap_url:
             self.rules = (
                 Rule(
                     link_extractor=LinkExtractor(
@@ -97,7 +96,7 @@ class DomainSpiderJs(CrawlSpider):
                     ),
                     callback="parse_item",
                     follow=True,
-                    process_request="set_playwright_usage",
+                    process_request="update_request_meta",
                 ),
             )
 
@@ -107,10 +106,11 @@ class DomainSpiderJs(CrawlSpider):
         self.allowed_domain_paths = allowed_domains.split(",")
         self.start_urls = start_urls.split(",")
         self.output_target = output_target
+        self.started_by = started_by
 
         # store input args as private attributes for use in logging
         self._deny_paths = deny_paths
-        self._prevent_follow = prevent_follow
+        self._sitemap_url = sitemap_url
 
         # gather domain visits for domain and subdomains
         self.domain_visits = helpers.get_domain_visits(self)
@@ -120,7 +120,7 @@ class DomainSpiderJs(CrawlSpider):
             self.name,
             self.allowed_domains,
             self.start_urls,
-            prevent_follow,
+            self.is_sitemap_crawl,
         )
 
     @classmethod
@@ -139,6 +139,11 @@ class DomainSpiderJs(CrawlSpider):
         spider.settings.set("DEPTH_LIMIT", depth_limit, priority="spider")
         return spider
 
+    @property
+    def is_sitemap_crawl(self):
+        """Check for existence of sitemap url"""
+        return bool(self._sitemap_url)
+
     def parse_item(self, response: Response):
         """
         This method is called by spiders to gather the url.  Placed in the spider to assist with
@@ -149,24 +154,43 @@ class DomainSpiderJs(CrawlSpider):
         @scrapes url
         """
 
-        content_type_name = "Content-Type"
-        content_type_value = response.headers.get(
-            content_type_name,
-            response.headers.get(content_type_name.lower(), None),
-        )
-        if helpers.is_valid_content_type(content_type_value, output_target=self.output_target):
+        if content_type := helpers.get_simple_content_type(response=response, output_target=self.output_target):
             yield SearchGovSpidersItem(
-                url=response.url,
-                response_bytes=response.body,
+                content_type=content_type,
+                creator=self.started_by,
+                crawl_depth=response.meta.get("depth") if not self.is_sitemap_crawl else 1,
+                download_milliseconds=helpers.get_download_milliseconds(response=response),
                 output_target=self.output_target,
-                response_language=helpers.get_response_language_code(response),
-                content_type=helpers.get_simple_content_type(content_type_value, output_target=self.output_target),
+                response_bytes=response.body,
+                response_language=helpers.get_response_language_code(response=response),
+                source_url=response.request.meta.get("source_url") if response.request else None,
+                url=response.url,
             )
 
-    def set_playwright_usage(self, request: Request, _response: Response) -> Request:
-        """Set meta tags for playwright to run"""
+    def parse_start_url(self, response: Response, **_kwargs):
+        """
+        When this is a sitemap crawl is enabled, add sitemap url to start urls responses otherwise
+        skip as this is handled elsewhere
+        """
+
+        if self.is_sitemap_crawl:
+            if response.request:
+                response.request.meta["source_url"] = self._sitemap_url
+
+            return self.parse_item(response=response)
+
+        return ()
+
+    def update_request_meta(self, request: Request, response: Response) -> Request:
+        """
+        Add the source url to the request meta field for inclusion in the item and
+        set meta tags for playwright to run
+        """
 
         request.meta["playwright"] = True
+        if response.request:
+            request.meta["source_url"] = response.request.url
+
         return request
 
     @classmethod

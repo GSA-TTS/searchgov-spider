@@ -1,292 +1,121 @@
-from datetime import datetime, timedelta, timezone
-
 import pytest
 from pypdf.errors import FileNotDecryptedError, PdfReadError
-from pypdf.generic import ByteStringObject, DictionaryObject, IndirectObject, TextStringObject
 
 from search_gov_crawler.indexing import transform
-
-
-class FakePage:
-    def __init__(self, text):
-        self._text = text
-        self._object = {}
-
-    def extract_text(self):
-        return self._text
-
-    def get_object(self):
-        return self._object
-
-
-class FakePdfReader:
-    def __init__(self, _stream, is_encrypted, pages=None, metadata=None):
-        self.is_encrypted = is_encrypted or False
-        self.pages = pages if pages is not None else []
-        self.metadata = metadata if metadata is not None else {}
-
-
-# Dummy helper functions to override external dependencies. We're already testing them in other places
-def dummy_get_base_extension(*_args, **_kwargs):
-    return ("fake_basename", "pdf")
-
-
-def dummy_summarize_text(*_args, **_kwargs):
-    # Return a tuple: (description, list of keywords)
-    return ("Fake description", ["keyword1", "keyword2"])
-
-
-def dummy_generate_url_sha256(*_args, **_kwargs):
-    return "dummy_sha"
-
-
-def dummy_current_utc_iso():
-    return "2023-01-01T00:00:00Z"
-
-
-def dummy_parse_date_safely(date_str):
-    # For testing, simply return the date_str (or a default if none provided)
-    return date_str or "parse_date_safely"
-
-
-def dummy_get_url_path(*_args, **_kwargs):
-    return "/fake/path"
-
-
-def dummy_get_domain_name(*_args, **_kwargs):
-    return "fake.domain.com"
-
-
-def dummy_sanitize_text(text):
-    return text.strip()
-
-
-# ----- Pytest fixture to patch helper functions -----
+from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 
 @pytest.fixture(autouse=True)
 def patch_helpers(monkeypatch):
-    monkeypatch.setattr(transform, "get_base_extension", dummy_get_base_extension)
-    monkeypatch.setattr(transform, "summarize_text", dummy_summarize_text)
-    monkeypatch.setattr(transform, "generate_url_sha256", dummy_generate_url_sha256)
-    monkeypatch.setattr(transform, "generate_url_sha256", dummy_generate_url_sha256)
-    monkeypatch.setattr(transform, "current_utc_iso", dummy_current_utc_iso)
-    monkeypatch.setattr(transform, "parse_date_safely", dummy_parse_date_safely)
-    monkeypatch.setattr(transform, "get_url_path", dummy_get_url_path)
-    monkeypatch.setattr(transform, "get_domain_name", dummy_get_domain_name)
-    monkeypatch.setattr(transform.content, "sanitize_text", dummy_sanitize_text)
+    def mock_get_base_extension(*_args, **_kwargs):
+        return ("fake_basename", "pdf", "fake_basename.pdf")
+
+    def mock_summarize_text(*_args, **_kwargs):
+        # Return a tuple: (description, list of keywords)
+        return ("Fake description", ["keyword1", "keyword2"])
+
+    def mock_generate_url_sha256(*_args, **_kwargs):
+        return "dummy_sha"
+
+    def mock_current_utc_iso():
+        return "2023-01-01T00:00:00Z"
+
+    def mock_parse_dates_safely(*date_str):
+        # For testing, simply return the date_str (or a default if none provided)
+        return date_str or "parse_date_safely"
+
+    def mock_get_url_path(*_args, **_kwargs):
+        return "/fake/path"
+
+    def mock_get_domain_name(*_args, **_kwargs):
+        return "fake.domain.com"
+
+    def mock_sanitize_text(text):
+        return text.strip()
+
+    monkeypatch.setattr("search_gov_crawler.indexing.transform.helpers.get_base_extension", mock_get_base_extension)
+    monkeypatch.setattr("search_gov_crawler.indexing.transform.helpers.summarize_text", mock_summarize_text)
+    monkeypatch.setattr("search_gov_crawler.indexing.transform.helpers.generate_url_sha256", mock_generate_url_sha256)
+    monkeypatch.setattr("search_gov_crawler.indexing.transform.helpers.current_utc_iso", mock_current_utc_iso)
+    monkeypatch.setattr("search_gov_crawler.indexing.transform.helpers.parse_dates_safely", mock_parse_dates_safely)
+    monkeypatch.setattr("search_gov_crawler.indexing.transform.helpers.get_url_path", mock_get_url_path)
+    monkeypatch.setattr("search_gov_crawler.indexing.transform.helpers.get_domain_name", mock_get_domain_name)
+    monkeypatch.setattr("search_gov_crawler.indexing.transform.content.sanitize_text", mock_sanitize_text)
     # Ensure the allowed language list includes "en" so that we get a valid language suffix.
-    monkeypatch.setattr(transform, "ALLOWED_LANGUAGE_CODE", {"en": "english"})
+    monkeypatch.setattr("search_gov_crawler.indexing.transform.helpers.ALLOWED_LANGUAGE_CODE", {"en": "english"})
 
 
-# ----- Tests for helper functions -----
+@pytest.fixture(name="sample_item")
+def fixture_sample_item():
+    return SearchGovSpidersItem(
+        crawl_depth=5,
+        creator="test",
+        download_milliseconds=100,
+        source_url="http://example.com/fake-page",
+        response_bytes=b"yadda yadda yadda",
+        url="http://example.com/fake.pdf",
+        response_language="en",
+        output_target="opensearch",
+    )
 
 
-def test_get_pdf_text():
-    """Test that get_pdf_text concatenates text from each page."""
-    fake_page_content_1 = """
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
-    unchanged.
-    """
-    fake_page_content_2 = f"Page 2 content: {fake_page_content_1}"
-    pages = [FakePage(fake_page_content_1), FakePage(fake_page_content_2)]
-    fake_reader = FakePdfReader(None, is_encrypted=False, pages=pages)
-    result, _ = transform.get_pdf_text(fake_reader)
-    expected = f"{fake_page_content_1} {fake_page_content_2} "
-    assert result == expected
-
-
-GET_PDF_META_TEST_CASES = [
-    (None, {}),
-    (
-        {"/Title": "Fake Title", "/CreationDate": "D:20230101000000"},
-        {"Title": "Fake Title", "CreationDate": datetime(2023, 1, 1, 0, 0, 0)},  # noqa: DTZ001
-    ),
-    (
-        {"Test Field": "Test Value", "/CreationDate": "D:20230101000000"},
-        {"Test Field": "Test Value", "CreationDate": datetime(2023, 1, 1, 0, 0, 0)},  # noqa: DTZ001
-    ),
-    (
-        {"/IndirectField": IndirectObject(idnum=0, generation=0, pdf="Resolved Value")},
-        {"IndirectField": "Resolved Value"},
-    ),
-]
-
-
-@pytest.mark.parametrize(("metadata", "expected_output"), GET_PDF_META_TEST_CASES)
-def test_get_pdf_meta(monkeypatch, metadata, expected_output):
-    """Test that metadata is cleaned and dates are parsed."""
-    monkeypatch.setattr(IndirectObject, "get_object", lambda x: x.pdf)
-    fake_reader = FakePdfReader(None, is_encrypted=False, metadata=metadata)
-    assert transform.get_pdf_meta(fake_reader) == expected_output
-
-
-# ruff: disable[DTZ001]
-
-PARSE_DATE_IF_VALID_TEST_CASES = [
-    ("D:20230101023045", True, datetime(2023, 1, 1, 2, 30, 45)),
-    ("D:20230101023045", False, datetime(2023, 1, 1, 2, 30, 45)),
-    ("D:20191018122555-04'00'", True, datetime(2019, 10, 18, 12, 25, 55, tzinfo=timezone(offset=-timedelta(hours=4)))),
-    ("D:20191018122555-04'00'", False, datetime(2019, 10, 18, 12, 25, 55)),
-    ("D:20200405124512+10'00'", True, datetime(2020, 4, 5, 12, 45, 12, tzinfo=timezone(offset=timedelta(hours=10)))),
-    ("D:20200405124512+10'00'", False, datetime(2020, 4, 5, 12, 45, 12)),
-    (
-        "D:20250930041000-02'30'",
-        True,
-        datetime(2025, 9, 30, 4, 10, 0, tzinfo=timezone(offset=-timedelta(hours=2, minutes=30))),
-    ),
-    ("D:20250930041000-02'30'", False, datetime(2025, 9, 30, 4, 10, 0)),
-    (
-        "D:19981223105959+05'30'",
-        True,
-        datetime(1998, 12, 23, 10, 59, 59, tzinfo=timezone(offset=timedelta(hours=5, minutes=30))),
-    ),
-    ("D:19981223105959+05'30'", False, datetime(1998, 12, 23, 10, 59, 59)),
-    ("D:20150113143419Z00'00'", False, datetime(2015, 1, 13, 14, 34, 19)),
-    (
-        "D:20150113143419Z00'00'",
-        True,
-        datetime(2015, 1, 13, 14, 34, 19, tzinfo=timezone(offset=timedelta(hours=0, minutes=0))),
-    ),
-    ("D:invalid    ", False, "D:invalid"),
-    ("Just a normal string", True, "Just a normal string"),
-    ("D:20239901023045", False, None),
-    ("D:/this/is/a/directory.pdf", False, "D:/this/is/a/directory.pdf"),
-    ("D:00000000-0--000Z'0000'", False, None),
-]
-# ruff: enable[DTZ001]
-
-
-@pytest.mark.parametrize(("input_val", "apply_tz_offset", "expected"), PARSE_DATE_IF_VALID_TEST_CASES)
-def test_parse_if_date_valid(input_val, apply_tz_offset, expected):
-    """Test parse_if_date with various valid values"""
-    assert transform.parse_if_date(value=input_val, apply_tz_offset=apply_tz_offset) == expected
-
-
-@pytest.mark.parametrize("input_val", ["D:20239901023045", "D:00000000-0--000"])
-def test_parse_if_date_datetime_debugging(caplog, input_val):
-    with caplog.at_level("DEBUG"):
-        transform.parse_if_date(value=input_val, apply_tz_offset=False)
-
-        assert f"Failed to parse date string: {input_val}" in caplog.messages
-
-
-def test_parse_if_date_non_date():
-    """Test parse_if_date with a non-string value (or a string not starting with 'D:')."""
-    non_date = "Not a date"
-    result = transform.parse_if_date(value=non_date, apply_tz_offset=False)
-    assert result == non_date.strip()
-
-
-def test_parse_if_date_non_string():
-    non_string = 10
-    assert transform.parse_if_date(value=non_string, apply_tz_offset=False) == non_string
-
-
-# ----- Tests for the main conversion function -----
-
-
-def test_convert_pdf_normal(monkeypatch):
+@pytest.fixture(name="convert_pdf_normal")
+def fixture_convert_pdf_normal(monkeypatch, fake_page, fake_pdf_reader, sample_item):
     """Test convert_pdf with a non-encrypted PDF simulation."""
     fake_metadata = {"/Title": "Fake Title", "/CreationDate": "D:20230101000000"}
-    pages = [FakePage("This is the content of the PDF.")]
-    fake_reader = FakePdfReader(None, is_encrypted=False, pages=pages, metadata=fake_metadata)
+    pages = [fake_page("This is the content of the PDF.")]
+    fake_reader = fake_pdf_reader(None, is_encrypted=False, pages=pages, metadata=fake_metadata)
     # Patch PdfReader so that any instantiation returns our fake_reader.
     monkeypatch.setattr(transform, "PdfReader", lambda _stream: fake_reader)
-
-    response_bytes = b"dummy bytes representing pdf"
-    url = "http://example.com/fake.pdf"
-    result = transform.convert_pdf(response_bytes, url, response_language="en")
-
-    # Check that the result is a dict with expected keys and values.
-    assert result is not None
-    # Since ALLOWED_LANGUAGE_CODE includes "en", we expect language suffix "_en" on these fields.
-    assert result["title_en"] == "Fake Title"
-    assert result["description_en"] == "Fake Title fake_basename.pdf Fake description"
-    assert result["content_en"] == "Fake Title fake_basename.pdf This is the content of the PDF. "
-    assert result["id"] == "dummy_sha"
-    # Check values from dummy helpers.
-    assert result["basename"] == "fake_basename"
-    assert result["extension"] == "pdf"
-    assert result["url_path"] == "/fake/path"
-    assert result["domain_name"] == "fake.domain.com"
-    assert result["dap_domain_visits_count"] is None
+    return transform.convert_pdf(item=sample_item)
 
 
-def test_convert_pdf_encrypted(monkeypatch):
+CONVERT_PDF_TEST_CASES = [
+    ("title_en", "Fake Title"),
+    ("description_en", "Fake Title fake_basename.pdf Fake description"),
+    ("content_en", "Fake Title fake_basename.pdf This is the content of the PDF. "),
+    ("id", "dummy_sha"),
+    ("basename", "fake_basename"),
+    ("extension", "pdf"),
+    ("url_path", "/fake/path"),
+    ("domain_name", "fake.domain.com"),
+    ("dap_domain_visits_count", None),
+]
+
+
+@pytest.mark.parametrize(("field", "value"), CONVERT_PDF_TEST_CASES)
+def test_convert_pdf(convert_pdf_normal, field, value):
+    assert convert_pdf_normal.get(field) == value
+
+
+def test_convert_pdf_encrypted(monkeypatch, fake_pdf_reader, sample_item):
     """Test convert_pdf when the PDF is actually encrypted (should return None)."""
 
     def raise_encrypted_error(*_args, **_kwargs):
         msg = "PDF is encrypted and cannot be read."
         raise FileNotDecryptedError(msg)
 
-    fake_reader = FakePdfReader(None, is_encrypted=True)
+    fake_reader = fake_pdf_reader(None, is_encrypted=True)
     monkeypatch.setattr(transform, "PdfReader", lambda _stream: fake_reader)
     monkeypatch.setattr(transform, "get_pdf_meta", raise_encrypted_error)
-    response_bytes = b"dummy bytes representing pdf"
-    url = "http://example.com/encrypted.pdf"
-    result = transform.convert_pdf(response_bytes, url)
-    assert result is None
+
+    result = transform.convert_pdf(item=sample_item)
+    assert result == {}
 
 
-def test_convert_pdf_stream_error(caplog, mocker):
+def test_convert_pdf_stream_error(caplog, mocker, sample_item):
     mock_reader = mocker.patch("pypdf.PdfReader.__init__")
     error_msg = "Error reading PDF"
     mock_reader.side_effect = PdfReadError(error_msg)
-    response_bytes = b"some bytes representing pdf"
-    url = "http://example.com/bad-read-pdf.pdf"
     with caplog.at_level("WARNING"):
-        doc = transform.convert_pdf(response_bytes, url)
+        doc = transform.convert_pdf(item=sample_item)
 
-    assert f"Could not download PDF file at {url}: {error_msg}" in caplog.messages
-    assert doc is None
+    assert f"Could not download PDF file for item {sample_item}: {error_msg}" in caplog.messages
+    assert doc == {}
 
 
 def test_add_title_and_filename():
     """Test that add_title_and_filename correctly formats the content."""
-    doc = {
-        "title_en": "Sample PDF",
-        "basename": "sample",
-        "extension": "pdf",
-        "content_en": "This is some sample content.",
-    }
-    transform.add_title_and_filename("content_en", "title_en", doc)
-    expected_content = "Sample PDF sample.pdf This is some sample content."
-    assert doc["content_en"] == expected_content
-
-
-def test_get_links_set(mocker):
-    """Test that get_links_set extracts unique links from PDF pages."""
-    page1_text = "Visit https://example.com for more info."
-    page2_text = "Check out www.test.com and also https://example.com"
-
-    fake_page1 = mocker.MagicMock()
-    fake_page1.get_object.return_value = {
-        "/Annots": [
-            DictionaryObject(
-                {"/A": DictionaryObject({"/URI": TextStringObject("https://hidden-link1.example.com")})},
-            ),
-            DictionaryObject(
-                {"/A": DictionaryObject({"/URI": ByteStringObject(b"https://hidden-link2.example.com")})},
-            ),
-        ],
-    }
-
-    fake_page2 = mocker.MagicMock()
-    fake_page2.get_object.return_value = {}
-
-    page_items = [(page1_text, fake_page1), (page2_text, fake_page2)]
-
-    links = transform.get_links_set(page_items)
-
-    expected_links = {
-        "https://example.com",
-        "www.test.com",
-        "https://hidden-link1.example.com",
-        "https://hidden-link2.example.com",
-    }
-
-    assert set(links) == expected_links
+    kwargs = {"original_value": "This is some sample content", "title": "Sample PDF", "filename": "sample.pdf"}
+    output = transform.add_title_and_filename(**kwargs)
+    assert output == "Sample PDF sample.pdf This is some sample content"

@@ -32,7 +32,7 @@ ALLOWED_LANGUAGE_CODE = {
 logger = logging.getLogger(__name__)
 
 
-def parse_date_safely(date_value: Any) -> str | None:
+def parse_dates_safely(*date_values: Any) -> str | None:
     """
     Convert falsey date values (like an empty string) to None,
     which will yield a null value in opensearch.
@@ -44,20 +44,24 @@ def parse_date_safely(date_value: Any) -> str | None:
         str: Either the date in isoformat (YYYY-MM-DD'T'HH:MM:SS), or None
     """
     datetime_format = "%Y-%m-%dT%H:%M:%S"
+    unparsable_date = None
 
-    if date_value is None or date_value == "":
-        return None
+    for date_value in date_values:
+        if date_value is None or date_value == "":
+            continue
 
-    if isinstance(date_value, datetime):
-        return date_value.strftime(datetime_format)
+        if isinstance(date_value, datetime):
+            return date_value.strftime(datetime_format)
 
-    try:
-        datetime_object = parser.parse(date_value, fuzzy=True)
-        return datetime_object.strftime(datetime_format)
+        try:
+            datetime_object = parser.parse(str(date_value), fuzzy=True)
+            return datetime_object.strftime(datetime_format)
 
-    except (ParserError, TypeError):
-        logger.warning("Could not parse date: '%s'", date_value)
-        return None
+        except (ParserError, TypeError):
+            logger.warning("Could not parse date: '%s'", date_value)
+            continue
+
+    return unparsable_date
 
 
 def detect_lang(text: str) -> str | None:
@@ -155,12 +159,13 @@ def get_url_path(url: str) -> str:
     return urlparse(url).path
 
 
-def get_base_extension(url: str) -> tuple[str, str]:
+def get_base_extension(url: str) -> tuple[str, str | None, str]:
     """Extracts the basename and file extension from a URL."""
     url = ensure_http_prefix(url)
     basename, extension = os.path.splitext(os.path.basename(urlparse(url).path))  # noqa: PTH119, PTH122
     extension = extension.removeprefix(".")
-    return basename, extension
+    filename = f"{basename}.{extension}" if extension else basename
+    return basename, extension, filename
 
 
 def current_utc_iso() -> str:

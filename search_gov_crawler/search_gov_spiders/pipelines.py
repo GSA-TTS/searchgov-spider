@@ -94,34 +94,30 @@ class SearchGovSpidersPipeline:
     def _process_opensearch_item(self, item: SearchGovSpidersItem) -> None:
         doc = {}
 
-        response_bytes = item.get("response_bytes", None)
-        url = item.get("url", None)
-        if not response_bytes:
-            err = f"Missing 'response_bytes' for url: {url}"
+        if not item.get("response_bytes"):
+            err = f"Missing 'response_bytes' for item: {item}"
             self.spider_logger.error(err)
             raise DropItem(err)
 
         try:
-            response_language = item.get("response_language", None)
-            content_type = item.get("content_type", None)
-            match content_type:
+            match item.get("content_type", None):
                 case "text/html":
-                    doc = convert_html(response_bytes, url, response_language)
+                    doc = convert_html(item=item)
                 case "application/pdf":
-                    doc = convert_pdf(response_bytes, url, response_language)
+                    doc = convert_pdf(item=item)
                 case _:
-                    self.spider_logger.warning("Unsupported content type %r for URL %s; skipping", content_type, url)
+                    self.spider_logger.warning("Unsupported content type for item %s", item)
         except Exception:
-            self.spider_logger.exception("Failed to convert %s (type %s)", url, content_type)
+            self.spider_logger.exception("Failed to convert item %s", item)
 
         if not doc:
-            self.spider_logger.warning("No document generated for URL %s", url)
+            self.spider_logger.warning("No document generated for item %s", item)
             return
 
         try:
             doc = update_dap_visits_to_document(doc, self.crawler.spider)
         except Exception:
-            self.spider_logger.exception("Failed to update DAP visits for url: %s, content_type: %s", url, content_type)
+            self.spider_logger.exception("Failed to update DAP visits for document %s", doc[id])
             # still continue to include the doc without DAP data
 
         try:

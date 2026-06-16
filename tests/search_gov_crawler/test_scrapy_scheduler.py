@@ -74,6 +74,7 @@ def test_transform_crawl_configs(crawl_configs_from_test_file):
                 "output_target": "csv",
                 "depth_limit": 3,
                 "deny_paths": [],
+                "started_by": "scheduled_spider",
             },
         },
         {
@@ -88,6 +89,7 @@ def test_transform_crawl_configs(crawl_configs_from_test_file):
                 "output_target": "csv",
                 "depth_limit": 3,
                 "deny_paths": [],
+                "started_by": "scheduled_spider",
             },
         },
         {
@@ -102,6 +104,7 @@ def test_transform_crawl_configs(crawl_configs_from_test_file):
                 "output_target": "endpoint",
                 "depth_limit": 3,
                 "deny_paths": ["/author/", "/tag/"],
+                "started_by": "scheduled_spider",
             },
         },
         {
@@ -116,6 +119,7 @@ def test_transform_crawl_configs(crawl_configs_from_test_file):
                 "output_target": "endpoint",
                 "depth_limit": 3,
                 "deny_paths": ["/author/"],
+                "started_by": "scheduled_spider",
             },
         },
     ]

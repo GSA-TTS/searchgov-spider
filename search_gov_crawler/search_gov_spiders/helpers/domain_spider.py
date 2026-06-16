@@ -1,4 +1,3 @@
-import contextlib
 import hashlib
 import json
 import re
@@ -96,26 +95,35 @@ def split_allowed_domains(allowed_domains: str) -> list[str]:
     return host_only_domains
 
 
-def is_valid_content_type(content_type_header: str, output_target: str) -> bool:
-    """Check that content type header is in list of allowed values"""
-    if not content_type_header:
-        return None
-    content_type_header = str(content_type_header)
-    for type_regex in ALLOWED_CONTENT_TYPE_OUTPUT_MAP[output_target]:
-        if re.search(type_regex, content_type_header):
-            return True
-    return False
+def get_response_header(response: Response, header_name: str) -> str | None:
+    """Check response for header value and retrun if found"""
+
+    header_value = response.headers.get(header_name)
+    if not header_value:
+        header_value = response.headers.get(header_name.lower())
+
+    return header_value.decode() if header_value else None
 
 
-def get_simple_content_type(content_type_header: str, output_target: str) -> str | None:
+def get_simple_content_type(response: Response, output_target: str) -> str | None:
     r"""Returns simple content time like: \"text/html\""""
-    if not content_type_header:
+    content_type = get_response_header(response=response, header_name="Content-Type")
+    if not content_type:
         return None
-    content_type_header = str(content_type_header)
+
     for type_regex in ALLOWED_CONTENT_TYPE_OUTPUT_MAP[output_target]:
-        if re.search(type_regex, content_type_header):
+        if re.search(type_regex, content_type):
             return type_regex
+
     return None
+
+
+def get_download_milliseconds(response: Response) -> int | None:
+    """
+    Retrieve download latency from responce meta and convert to closest millisecond
+    """
+    download_latency = response.meta.get("download_latency")
+    return round(download_latency * 1000) if download_latency else None
 
 
 def get_crawl_sites(crawl_file_path: str | None = None) -> list[dict]:
@@ -154,10 +162,16 @@ def default_allowed_domains(*, handle_javascript: bool, remove_paths: bool = Tru
     return allowed_domains
 
 
-def validate_spider_arguments(allowed_domains: str | None, start_urls: str | None, output_target: str) -> None:
+def validate_spider_arguments(
+    allowed_domains: str | None, start_urls: str | None, sitemap_url: str | None, output_target: str
+) -> None:
     """Common logic used to validate spider arguements and raise errors"""
 
-    for field in (allowed_domains, start_urls):
+    url_fields = [allowed_domains, start_urls]
+    if sitemap_url:
+        url_fields.append(sitemap_url)
+
+    for field in url_fields:
         if len(str(field)) < 2 or "." not in str(field):  # noqa: PLR2004
             msg = f"Invalid argument! '{field}' must be a valid URL or domain name."
             raise ValueError(msg)
@@ -180,13 +194,8 @@ def get_response_language_code(response: Response) -> str | None:
     Returns:
         str: The two-letter language code, or None if not found or invalid.
     """
-    with contextlib.suppress(Exception):
-        header_name = "Content-Language"
-        content_language = response.headers.get(header_name, response.headers.get(header_name.lower(), None))
-        if content_language:
-            return content_language[:2]
-
-    return None
+    content_language = get_response_header(response=response, header_name="Content-Language")
+    return content_language[:2] if content_language else None
 
 
 def generate_spider_id_from_args(*args) -> str:

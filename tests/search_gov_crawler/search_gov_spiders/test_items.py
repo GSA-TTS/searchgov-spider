@@ -12,23 +12,53 @@ from search_gov_crawler.search_gov_spiders.items import (
 )
 
 
-def test_search_gov_spiders_item():
-    item = SearchGovSpidersItem(
-        response_bytes=b"this is some bytes",
-        url="https://www.example.com",
-        output_target="opensearch",
-        response_language="en",
+@pytest.fixture(name="search_gov_spiders_item")
+def fixture_search_gov_spiders_item():
+    return SearchGovSpidersItem(
         content_type="text/html",
+        creator="unit_tests",
+        crawl_depth=1,
+        download_milliseconds=10,
+        output_target="opensearch",
+        response_bytes=b"this is some bytes",
+        response_language="en",
+        source_url="https://www.example.com/source",
+        url="https://www.example.com",
     )
 
-    assert item["response_bytes"] == b"this is some bytes"
-    assert item["url"] == "https://www.example.com"
-    assert item["output_target"] == "opensearch"
-    assert item["response_language"] == "en"
-    assert (
-        str(item)
-        == "Item(url=https://www.example.com, output_target=opensearch, content_type=text/html, response_language=en)"
+
+SEARCH_GOV_SPIDERS_ITEM_TEST_CASES = [
+    ("content_type", "text/html"),
+    ("creator", "unit_tests"),
+    ("crawl_depth", 1),
+    ("download_milliseconds", 10),
+    ("output_target", "opensearch"),
+    ("response_bytes", b"this is some bytes"),
+    ("response_language", "en"),
+    ("source_url", "https://www.example.com/source"),
+    ("url", "https://www.example.com"),
+]
+
+
+@pytest.mark.parametrize(("field", "value"), SEARCH_GOV_SPIDERS_ITEM_TEST_CASES)
+def test_search_gov_spiders_item(search_gov_spiders_item, field, value):
+    assert search_gov_spiders_item[field] == value
+
+
+def test_searc_gov_spiders_item_repr(search_gov_spiders_item):
+    expected_repr = (
+        "Item("
+        "content_type=text/html, "
+        "crawl_depth=1, "
+        "creator=unit_tests, "
+        "download_milliseconds=10, "
+        "output_target=opensearch, "
+        "response_language=en, "
+        "source_url=https://www.example.com/source, "
+        "url=https://www.example.com"
+        ")"
     )
+    assert str(search_gov_spiders_item) == expected_repr
 
 
 @pytest.fixture(name="freshness_spider_marked_for_deletion_item")
