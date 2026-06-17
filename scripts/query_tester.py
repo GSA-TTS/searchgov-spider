@@ -46,7 +46,7 @@ def get_common_query_args(search_terms: str) -> dict:
                                                                             "description_en^1.5",
                                                                             "content_en",
                                                                         ],
-                                                                    }
+                                                                    },
                                                                 },
                                                                 {
                                                                     "bool": {
@@ -205,7 +205,7 @@ def get_common_query_args(search_terms: str) -> dict:
                     "highlight": {"pre_tag": "", "post_tag": ""},
                     "collate": {
                         "query": {
-                            "source": {"multi_match": {"query": "{{suggestion}}", "type": "phrase", "fields": "*_en"}}
+                            "source": {"multi_match": {"query": "{{suggestion}}", "type": "phrase", "fields": "*_en"}},
                         },
                     },
                 },
@@ -295,7 +295,7 @@ def add_domains_to_query(common_query_args: dict, domains: str) -> dict:
 
 
 @click.group()
-def cli(): ...
+def cli(): ...  # noqa: D103
 
 
 @cli.command()

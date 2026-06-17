@@ -1,4 +1,3 @@
-import pytest
 from freezegun import freeze_time
 
 from search_gov_crawler.dap.datastore import (

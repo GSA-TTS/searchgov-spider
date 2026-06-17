@@ -3,38 +3,39 @@ from nltk.corpus import stopwords
 
 from search_gov_crawler.indexing.helpers import (
     detect_lang,
-    parse_date_safely,
+    parse_dates_safely,
     separate_file_name,
     summarize_text,
     update_dap_visits_to_document,
 )
 
 
-# Tests for parse_date_safely
+# Tests for parse_dates_safely
 def test_parse_date_safely_valid_date():
-    assert parse_date_safely("2025-03-13") == "2025-03-13T00:00:00"
+    assert parse_dates_safely("2025-03-13") == "2025-03-13T00:00:00"
 
 
 PARSE_DATE_TEST_CASES = [
-    ("5/30/2024 7:24:49 AM", "2024-05-30T07:24:49"),
-    ("Wed, 02 Nov 1998", "1998-11-02T00:00:00"),
-    ("2025-03-14 00:00:00.0", "2025-03-14T00:00:00"),
-    ("2024-04-08 18:17:47-04:00", "2024-04-08T18:17:47"),
-    ("Thursday, August 10, 2023", "2023-08-10T00:00:00"),
-    ("January 8, 2013 10:05:30 AM EST", "2013-01-08T10:05:30"),
-    ("jibberish", None),
-    ("2025-02-16T04:18:11.491+00:00", "2025-02-16T04:18:11"),
-    ("2024-02-22T00:00:00", "2024-02-22T00:00:00"),
-    ("", None),
-    (None, None),
-    (0, None),
-    (False, None),
+    (("5/30/2024 7:24:49 AM",), "2024-05-30T07:24:49"),
+    (("not a date", "Wed, 02 Nov 1998"), "1998-11-02T00:00:00"),
+    (("HI there!!", "2025-03-14 00:00:00.0"), "2025-03-14T00:00:00"),
+    (("2024-04-08 18:17:47-04:00", "Thursday, August 10, 2023"), "2024-04-08T18:17:47"),
+    (("Yes", "No", 0, "Thursday, August 10, 2023"), "2023-08-10T00:00:00"),
+    (("January 8, 2013 10:05:30 AM EST",), "2013-01-08T10:05:30"),
+    (("jibberish", "jibberish"), None),
+    (("2025-02-16T04:18:11.491+00:00",), "2025-02-16T04:18:11"),
+    (("2024-02-22T00:00:00",), "2024-02-22T00:00:00"),
+    (("",), None),
+    ((None,), None),
+    ((0,), None),
+    ((False,), None),
+    ((None, 0, False), None),
 ]
 
 
-@pytest.mark.parametrize(("input_str", "output_str"), PARSE_DATE_TEST_CASES)
-def test_for_known_date_issues(input_str, output_str):
-    assert parse_date_safely(input_str) == output_str
+@pytest.mark.parametrize(("input_strs", "output_str"), PARSE_DATE_TEST_CASES)
+def test_for_known_date_issues(input_strs, output_str):
+    assert parse_dates_safely(*input_strs) == output_str
 
 
 # Tests for detect_lang
@@ -120,6 +121,13 @@ SUMMARIZE_TEXT_TEST_CASES = [
         "https://example.com",
         "en",
         "I am testing this function Hi there!",
+        "hi, testing, function",
+    ),
+    (
+        "Hi there! I am testing this function.  Hi again!",
+        "https://example.com",
+        "en",
+        "I am testing this function. Hi again! Hi there!",
         "hi, testing, function",
     ),
 ]

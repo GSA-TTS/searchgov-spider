@@ -2,8 +2,10 @@ import copy
 import os
 
 import pytest
+from requests import RequestException
 from scrapy import Spider
 from scrapy.crawler import Crawler
+from scrapy.exceptions import DropItem
 from scrapy.utils.reactor import install_reactor
 from scrapy.utils.test import get_crawler
 
@@ -54,7 +56,8 @@ def fixture_mock_open(mocker):
 
 
 @pytest.fixture(name="pipeline_no_api")
-def fixture_pipeline_no_api(mock_open, mocker, sample_crawler) -> SearchGovSpidersPipeline:
+def fixture_pipeline_no_api(mocker, sample_crawler) -> SearchGovSpidersPipeline:
+    mocker.patch("builtins.open", mocker.mock_open())
     mocker.patch.dict(os.environ, {})
     mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovSpidersPipeline.APP_PID", 1234)
     return SearchGovSpidersPipeline.from_crawler(sample_crawler)
@@ -84,6 +87,16 @@ def test_write_to_file(pipeline_no_api, mock_open, sample_item, mocker):
     mock_open().write.assert_any_call(sample_item_copy["url"] + "\n")
 
 
+def test_close_spider_file(pipeline_no_api, sample_item, mock_open, mocker):
+    """Test that the spider file is closed after processing."""
+    sample_item_copy = copy.deepcopy(sample_item)
+    sample_item_copy["output_target"] = "csv"
+    mocker.patch.object(SearchGovSpidersPipeline, "_file_size", return_value=100)
+    pipeline_no_api.process_item(sample_item_copy)
+    pipeline_no_api.close_spider()
+    mock_open().close.assert_called_once()
+
+
 def test_post_to_api(pipeline_with_api, sample_item, mocker):
     """Test that URLs are batched and sent via POST when SPIDER_URLS_API is set."""
     mock_post = mocker.patch("requests.post")
@@ -104,6 +117,15 @@ def test_post_to_api(pipeline_with_api, sample_item, mocker):
 
     # Ensure POST request was made
     mock_post.assert_called_once_with("http://mockapi.com", json={"urls": pipeline_with_api.urls_batch}, timeout=60)
+
+
+def test_post_to_api_error(pipeline_with_api, mocker):
+    """Test that POST request errors are handled gracefully."""
+    mock_post = mocker.patch("requests.post")
+    mock_post.side_effect = RequestException("Test error")
+
+    with pytest.raises(DropItem):
+        pipeline_with_api._send_post_request()
 
 
 def test_rotate_file(pipeline_no_api, mock_open, sample_item, mocker):

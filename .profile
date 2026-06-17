@@ -1,1 +1,1 @@
-export PYTHONPATH="/app:$PYTHONPATH/bin/python" 
+export PYTHONPATH="/app:$PYTHONPATH/bin/python"

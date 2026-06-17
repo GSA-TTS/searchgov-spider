@@ -19,6 +19,12 @@ stop_sitemap_monitor() {
     run_executable "./cicd-scripts/helpers/kill_sitemap_monitor.sh"
 }
 
+# Stop freshness checker
+#stop_freshness_checker() {
+#    echo "Stopping check_freshness.py (if running)..."
+#    ensure_executable "./cicd-scripts/helpers/kill_freshness_checker.sh"
+#}
+
 # Remove virtual environment if it exists
 remove_venv() {
     echo "Removing Python virtual environment..."
