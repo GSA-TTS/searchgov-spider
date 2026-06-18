@@ -26,16 +26,20 @@ log.propagate = False
 load_dotenv()
 
 
-# Solution was to run each crawl in a separate process.
-# Each process will have its own independent twisted reactor, avoiding the stop/start conflict
+def force_gc() -> None:
+    """
+    Forces garbage collection to clean up any remaining objects in memory after a crawl.
+    """
 
-
-def force_gc():
     ref_count = gc.collect()
-    log.info(f"Cleaned {ref_count} unreachable objects.")
+    log.info("Cleaned %s unreachable objects.", ref_count)
 
 
 def run_crawl_in_dedicated_process(spider_params):
+    """
+    Runs a crawl in a dedicated process to avoid issues with starting/stopping the twisted reactor in the same process.
+    """
+
     os.environ.setdefault("SPIDER_SPIDERMON_ENABLED", "False")
 
     settings = get_project_settings()
@@ -49,23 +53,24 @@ def run_crawl_in_dedicated_process(spider_params):
     force_gc()
 
 
-def doCrawl_sequential(new_urls: list[str]):
-
-    spider_args = {
+def do_crawl_sequential(new_urls: list[str]):
+    """
+    Runs a crawl with the same parameters twice sequentially."""
+    spider_kwargs = {
         "allow_query_string": False,
         "allowed_domains": "ioos.noaa.gov",
         "deny_paths": None,
         "start_urls": ",".join(new_urls),
         "output_target": "opensearch",
-        "prevent_follow": True,
+        "sitemap_url": "https://ioos.noaa.gov/sitemap.xml",
         "depth_limit": 1,
     }
 
-    log.info(f"Starting crawl with args: {spider_args.get('start_urls')}")
-    crawl_process = Process(target=run_crawl_in_dedicated_process, args=(spider_args,))
+    log.info("Starting crawl with args: %s", spider_kwargs.get("start_urls"))
+    crawl_process = Process(target=run_crawl_in_dedicated_process, kwargs=spider_kwargs)
     crawl_process.start()
     crawl_process.join()  # Wait for the crawl process to complete before continuing, force blocking
-    log.info(f"Crawl with args: {spider_args.get('start_urls')} finished.")
+    log.info("Crawl with args: %s finished.", spider_kwargs.get("start_urls"))
 
 
 if __name__ == "__main__":
@@ -78,7 +83,7 @@ if __name__ == "__main__":
         "https://ioos.noaa.gov/project/ocean-enterprise-study/",
         "https://ioos.noaa.gov/about/ioos-history/",
     ]
-    doCrawl_sequential(first_run_urls)
+    do_crawl_sequential(first_run_urls)
     log.info("First crawl completed.\n")
 
     log.info("Executing second crawl (same parameters for this example)...")
@@ -86,5 +91,5 @@ if __name__ == "__main__":
         "https://ioos.noaa.gov/about/meet-the-ioos-program-office/",
         "https://ioos.noaa.gov/about/ioos-history/",
     ]
-    doCrawl_sequential(second_run_urls)
+    do_crawl_sequential(second_run_urls)
     log.info("Second crawl completed.")

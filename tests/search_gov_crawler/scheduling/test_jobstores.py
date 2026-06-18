@@ -1,3 +1,5 @@
+import re
+
 import pytest
 
 from search_gov_crawler.scheduling.jobstores import SpiderRedisJobStore
@@ -9,8 +11,11 @@ def test_init(mock_redis_jobstore):
 
 def test_alias_without_scheduler(mock_redis_jobstore):
     mock_redis_jobstore._alias = None
-    with pytest.raises(ValueError, match="Job store alias is not set. Please set the alias before using it."):
-        mock_redis_jobstore.alias
+    with pytest.raises(
+        ValueError,
+        match=re.escape("Job store alias is not set. Please set the alias before using it."),
+    ):
+        assert mock_redis_jobstore.alias
 
 
 def test_alias_with_scheduler(mock_redis_jobstore):

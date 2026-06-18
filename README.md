@@ -6,6 +6,7 @@ The home for the spider that supports [Search.gov](https://www.search.gov).
 * [Quick Start (Docker)](#quick-start---docker)
 * [Quick Start (Local)](#quick-start---local-development)
 * [Entry Points](#entrypoints)
+* [Signed Commits](#signed-commits)
 * [Helpful Links](#helpful-links)
 
 ## About
@@ -66,7 +67,7 @@ docker compose run spider /bin/bash -c "spider crawl www.gsa.gov https://www.gsa
 
 ## Quick Start - Local Development
 
-1. Insall and activate virtual environment:
+1. Install and activate virtual environment:
 ```bash
 python -m venv venv
 source venv/bin/activate
@@ -81,9 +82,9 @@ playwright install --with-deps
 playwright install chrome --force
 ```
 
-3. Start Required Infrastructure Using Docker:
+3. Start Redis locally:
 ```bash
-docker compose up redis
+redis-server
 ```
 
 4. Run A Spider:
@@ -113,6 +114,110 @@ For more advanced usage, see the [Advanced Setup and Use Page](docs/advanced_set
 * [DAP Extractor](search_gov_crawler/dap_extractor.py) - Stand-alone job that handles extracting and loading DAP visits data for use in spider crawls.
 
 * [Benchmark](search_gov_crawler/benchmark.py) - Allows for manual testing and benchmarking using similar mechanisms as scheduled runs.
+
+## Signed Commits
+
+The GSA-TTS organization requires **all commits in pull requests to be cryptographically signed**. Unsigned commits will be blocked from merging.
+
+### Option A — SSH signing (recommended)
+
+#### 1. Generate an SSH key (skip if you already have one)
+
+```bash
+ssh-keygen -t ed25519 -C "you@example.com" -f ~/.ssh/github_signing_key
+```
+
+#### 2. Register the key as a **Signing Key** on GitHub
+
+> ⚠️ This must be added as a *Signing Key*, not just an *Authentication Key*.
+
+1. Go to **https://github.com/settings/ssh/new**
+2. Set **Key type** to **Signing Key**
+3. Paste the contents of `~/.ssh/github_signing_key.pub`
+
+#### 3. Create the allowed signers file
+
+```bash
+echo "you@example.com $(cat ~/.ssh/github_signing_key.pub)" > ~/.ssh/allowed_signers
+```
+
+#### 4. Configure git for this repo
+
+```bash
+git config --local gpg.format ssh
+git config --local user.signingkey ~/.ssh/github_signing_key
+git config --local commit.gpgsign true
+git config --local gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
+```
+
+Replace `--local` with `--global` to apply to all repos.
+
+#### 5. Verify
+
+```bash
+echo "test" | ssh-keygen -Y sign -n git -f ~/.ssh/github_signing_key
+```
+
+You should see a `-----BEGIN SSH SIGNATURE-----` block.
+
+---
+
+### Option B — GPG signing
+
+#### 1. Install GPG
+
+```bash
+brew install gnupg
+```
+
+#### 2. Generate a GPG key
+
+```bash
+gpg --full-generate-key
+```
+
+Choose **RSA and RSA**, key size **4096**, and enter your GitHub-verified email.
+
+#### 3. Get your key ID
+
+```bash
+gpg --list-secret-keys --keyid-format=long
+```
+
+Copy the long key ID from the `sec` line (after `rsa4096/`).
+
+#### 4. Export and add the key to GitHub
+
+```bash
+gpg --armor --export YOUR_KEY_ID
+```
+
+Go to **https://github.com/settings/gpg/new**, paste it, and save.
+
+#### 5. Configure git for this repo
+
+```bash
+git config --local user.signingkey YOUR_KEY_ID
+git config --local commit.gpgsign true
+```
+
+---
+
+### IntelliJ IDEA
+
+IntelliJ reads git's signing config automatically — no additional IDE settings needed. Commits via **Git > Commit** will be signed as long as the steps above are complete.
+
+If IntelliJ uses a bundled git, verify it points to your system git under **Settings → Version Control → Git → Path to Git executable**.
+
+---
+
+### Troubleshooting
+
+| Symptom | Fix |
+|---|---|
+| `error: gpg failed to sign the data` | Run `export GPG_TTY=$(tty)` and add to your shell profile |
+| Commit shows **Unverified** on GitHub | Signing key not registered on your GitHub account — see step 2/4 above |
+| Commits signed locally but blocked by org | Key must be added as a **Signing Key** (not just Authentication Key) on GitHub |
 
 ## Helpful Links
 * [Architecture](docs/architecture.md)

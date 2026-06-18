@@ -15,7 +15,7 @@ from scrapy.exceptions import DropItem
 from search_gov_crawler.indexing.helpers import update_dap_visits_to_document
 from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
 from search_gov_crawler.indexing.transform import convert_html, convert_pdf
-from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
+from search_gov_crawler.search_gov_spiders.items import FreshnessSpiderItem, SearchGovSpidersItem
 
 
 def safe_del(item, key: str):
@@ -83,7 +83,10 @@ class SearchGovSpidersPipeline:
 
         return item
 
-    def _get_opensearch_client(self) -> SearchGovOpensearch:
+    @property
+    def opensearch(self) -> SearchGovOpensearch:
+        """Lazily initialize the OpenSearch client when first accessed."""
+
         if not self._opensearch:
             self._opensearch = SearchGovOpensearch()
         return self._opensearch
@@ -91,41 +94,34 @@ class SearchGovSpidersPipeline:
     def _process_opensearch_item(self, item: SearchGovSpidersItem) -> None:
         doc = {}
 
-        response_bytes = item.get("response_bytes", None)
-        url = item.get("url", None)
-        if not response_bytes:
-            err = f"Missing 'response_bytes' for url: {url}"
+        if not item.get("response_bytes"):
+            err = f"Missing 'response_bytes' for item: {item}"
             self.spider_logger.error(err)
             raise DropItem(err)
 
         try:
-            response_language = item.get("response_language", None)
-            content_type = item.get("content_type", None)
-            match content_type:
+            match item.get("content_type", None):
                 case "text/html":
-                    doc = convert_html(response_bytes, url, response_language)
+                    doc = convert_html(item=item)
                 case "application/pdf":
-                    doc = convert_pdf(response_bytes, url, response_language)
+                    doc = convert_pdf(item=item)
                 case _:
-                    self.spider_logger.warning("Unsupported content type %r for URL %s; skipping", content_type, url)
+                    self.spider_logger.warning("Unsupported content type for item %s", item)
         except Exception:
-            self.spider_logger.exception("Failed to convert %s (type %s)", url, content_type)
+            self.spider_logger.exception("Failed to convert item %s", item)
 
         if not doc:
-            self.spider_logger.warning("No document generated for URL %s", url)
+            self.spider_logger.warning("No document generated for item %s", item)
             return
 
         try:
             doc = update_dap_visits_to_document(doc, self.crawler.spider)
         except Exception:
-            self.spider_logger.exception("Failed to update DAP visits for url: %s, content_type: %s", url, content_type)
+            self.spider_logger.exception("Failed to update DAP visits for document %s", doc[id])
             # still continue to include the doc without DAP data
 
         try:
-            self._get_opensearch_client().add_to_batch(
-                doc=doc,
-                spider=self.crawler.spider,
-            )
+            self.opensearch.add_to_batch(doc=doc, spider=self.crawler.spider)
         except Exception as exc:
             msg = "Failed to add item to Opensearch batch"
             self.crawler.spider.logger.exception(msg)
@@ -146,7 +142,7 @@ class SearchGovSpidersPipeline:
             output_dir.mkdir(parents=True, exist_ok=True)
             base_filename = f"all-links-p{self.APP_PID}"
             self.file_path = output_dir / f"{base_filename}.csv"
-            self.current_file = open(self.file_path, "a", encoding="utf-8")
+            self.current_file = open(self.file_path, "a", encoding="utf-8")  # noqa: PTH123, SIM115
 
         self.current_file.write(f"{url}\n")
         if self._file_size() >= self.MAX_URL_BATCH_SIZE_BYTES:
@@ -165,8 +161,8 @@ class SearchGovSpidersPipeline:
         """Close the current file, rename it, and open a new one."""
         self.current_file.close()
         rotated_file = self.file_path.with_name(f"{self.file_path.stem}-{self.file_number}.csv")
-        os.rename(self.file_path, rotated_file)
-        self.current_file = open(self.file_path, "a", encoding="utf-8")
+        os.rename(self.file_path, rotated_file)  # noqa: PTH104
+        self.current_file = open(self.file_path, "a", encoding="utf-8")  # noqa: PTH123, SIM115
         self.file_number += 1
 
     def _send_post_request(self) -> None:
@@ -186,8 +182,8 @@ class SearchGovSpidersPipeline:
         """Finalize operations: close files or send remaining batched URLs."""
         try:
             if self._opensearch:
-                self._get_opensearch_client().batch_upload(self.crawler.spider)
-        except Exception:  # pylint: disable=broad-except
+                self.opensearch.batch_upload(spider=self.crawler.spider)
+        except Exception:
             msg = "Failed to upload Opensearch batch"
             self.crawler.spider.logger.exception(msg)
 
@@ -220,3 +216,42 @@ class DeDeuplicatorPipeline:
 
         self.urls_seen.add(item["url"])
         return item
+
+
+class FreshnessSpiderPipeline:
+    """Pipeline for the freshness spider to log the status of URLs checked"""
+
+    def __init__(self, *, crawler: Crawler) -> None:
+        self.crawler = crawler
+        self.opensearch = SearchGovOpensearch(opensearch_index="spider-freshness")
+        self.spider_logger = crawler.spider.logger
+
+    def open_spider(self):
+        """Create the freshness index if it doesn't exist"""
+        # with contextlib.suppress(RequestError):
+        if not self.opensearch.index_exists():
+            self.opensearch.create_index(template=FreshnessSpiderItem.generate_template())
+
+    def process_item(self, item: FreshnessSpiderItem) -> None:
+        """Log the URL and status code from the freshness spider item."""
+        self.spider_logger.info("Stale URL found, Result: %s.  URL: %s", item.result, item.path)
+        try:
+            self.opensearch.add_to_batch(doc=item.to_dict(), spider=self.crawler.spider)
+        except Exception as exc:
+            msg = "Failed to add item to Opensearch batch"
+            self.spider_logger.exception(msg)
+            raise DropItem(msg) from exc
+
+    def close_spider(self) -> None:
+        """Finalize operations by uploading any remaining items to Opensearch."""
+
+        try:
+            self.opensearch.batch_upload(spider=self.crawler.spider)
+        except Exception:
+            msg = "Failed to upload Opensearch batch on spider close"
+            self.spider_logger.exception(msg)
+
+    @classmethod
+    def from_crawler(cls, crawler: Crawler) -> Self:
+        """Supports initialization with Crawler to access spider data."""
+        return cls(crawler=crawler)

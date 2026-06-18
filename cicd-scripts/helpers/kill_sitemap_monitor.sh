@@ -9,7 +9,7 @@ else
     for pid in $pids; do
         echo "Sending SIGTERM to process $pid"
         # Send SIGTERM for graceful termination
-        kill $pid        
+        kill $pid
         sleep 5
         if kill -0 $pid 2>/dev/null; then
             echo "Process $pid still running, sending SIGKILL"

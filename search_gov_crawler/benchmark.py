@@ -37,12 +37,11 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from dotenv import load_dotenv
 from pythonjsonlogger.json import JsonFormatter
 
-from search_gov_crawler import scrapy_scheduler
+from search_gov_crawler.run.crawl import run_scrapy_crawl
 from search_gov_crawler.search_gov_app.crawl_config import CrawlConfigs
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
-from search_gov_crawler.search_gov_spiders.helpers.domain_spider import (
-    ALLOWED_CONTENT_TYPE_OUTPUT_MAP,
-)
+from search_gov_crawler.search_gov_spiders.helpers.domain_spider import ALLOWED_CONTENT_TYPE_OUTPUT_MAP
+from search_gov_crawler.search_gov_spiders.spiders import SpiderStartedBy
 
 load_dotenv()
 
@@ -74,34 +73,35 @@ def init_scheduler() -> BackgroundScheduler:
 
 def create_apscheduler_job(
     name: str,
-    allow_query_string: bool,
+    allow_query_string: bool,  # noqa: FBT001
     allowed_domains: str,
     starting_urls: str,
-    handle_javascript: bool,
+    handle_javascript: bool,  # noqa: FBT001
     output_target: str,
     runtime_offset_seconds: int,
     depth_limit: int,
-    deny_paths: str,
-    job_id: str = None,
+    deny_paths: list,
+    job_id: str | None = None,
 ) -> dict:
     """Creates job record in format needed by apscheduler"""
 
     job_name = f"benchmark - {name}"
 
     return {
-        "func": scrapy_scheduler.run_scrapy_crawl,
-        "id": job_id if job_id else job_name,
+        "func": run_scrapy_crawl,
+        "id": job_id or job_name,
         "name": job_name,
         "next_run_time": datetime.now(tz=UTC) + timedelta(seconds=runtime_offset_seconds),
-        "args": [
-            "domain_spider" if not handle_javascript else "domain_spider_js",
-            allow_query_string,
-            allowed_domains,
-            starting_urls,
-            output_target,
-            depth_limit,
-            deny_paths if deny_paths else [],
-        ],
+        "kwargs": {
+            "spider": "domain_spider" if not handle_javascript else "domain_spider_js",
+            "allow_query_string": allow_query_string,
+            "allowed_domains": allowed_domains,
+            "start_urls": starting_urls,
+            "output_target": output_target,
+            "depth_limit": depth_limit,
+            "deny_paths": deny_paths or [],
+            "started_by": SpiderStartedBy.MANUAL.value,
+        },
     }
 
 
@@ -138,10 +138,10 @@ def benchmark_from_file(input_file: Path, runtime_offset_seconds: int):
 
 
 def benchmark_from_args(
-    allow_query_string: bool,
+    allow_query_string: bool,  # noqa: FBT001
     allowed_domains: str,
     starting_urls: str,
-    handle_javascript: bool,
+    handle_javascript: bool,  # noqa: FBT001
     output_target: str,
     runtime_offset_seconds: int,
     depth_limit: int,
@@ -177,6 +177,7 @@ def benchmark_from_args(
         "runtime_offset_seconds": runtime_offset_seconds,
         "depth_limit": depth_limit,
         "deny_paths": deny_paths.split(","),
+        "job_id": None,
     }
 
     scheduler = init_scheduler()
