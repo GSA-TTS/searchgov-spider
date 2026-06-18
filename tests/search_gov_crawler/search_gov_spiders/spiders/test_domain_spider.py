@@ -11,31 +11,34 @@ import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import DomainSpiderJs
 
-TEST_URL = "http://example.com"
 
-
-@pytest.fixture(name="spider_args")
-def fixture_spider_args() -> dict:
+@pytest.fixture(name="spider_kwargs")
+def fixture_spider_kwargs() -> dict:
     return {
         "allowed_domains": "example.com",
         "start_urls": "http://example.com/",
         "output_target": "csv",
         "allow_query_string": True,
         "deny_paths": "/deny/path",
-        "prevent_follow": False,
+        "sitemap_url": "http://example.com/sitemap.xml",
     }
 
 
 @pytest.fixture(name="domain_spider")
-def fixture_domain_spider(monkeypatch, spider_args) -> DomainSpider:
+def fixture_domain_spider(monkeypatch, spider_kwargs) -> DomainSpider:
     monkeypatch.setattr(helpers, "get_domain_visits", lambda _: {})
-    return DomainSpider(**spider_args)
+    return DomainSpider(**spider_kwargs)
 
 
 @pytest.fixture(name="domain_spider_js")
-def fixture_domain_spider_js(monkeypatch, spider_args) -> DomainSpiderJs:
+def fixture_domain_spider_js(monkeypatch, spider_kwargs) -> DomainSpiderJs:
     monkeypatch.setattr(helpers, "get_domain_visits", lambda _: {})
-    return DomainSpiderJs(**spider_args)
+    return DomainSpiderJs(**spider_kwargs)
+
+
+@pytest.fixture(name="sample_request")
+def fixture_sample_request() -> Request:
+    return Request(url="http://example.com", encoding="utf-8")
 
 
 @pytest.mark.parametrize(
@@ -47,13 +50,12 @@ def fixture_domain_spider_js(monkeypatch, spider_args) -> DomainSpiderJs:
         ("domain_spider_js", "text/html;utf-8"),
     ],
 )
-def test_valid_content(request, spider_fixture, content_type):
+def test_valid_content(request, spider_fixture, sample_request, content_type):
     spider = request.getfixturevalue(spider_fixture)
-    request = Request(url=TEST_URL, encoding="utf-8")
-    response = Response(url=TEST_URL, request=request, headers={"content-type": content_type})
+    response = Response(url="http://example.com", request=sample_request, headers={"content-type": content_type})
     results = next(spider.parse_item(response), None)
     assert results is not None
-    assert results.get("url") == TEST_URL
+    assert results.get("url") == "http://example.com"
 
 
 @pytest.mark.parametrize(
@@ -63,10 +65,9 @@ def test_valid_content(request, spider_fixture, content_type):
         ("domain_spider_js", "media/image"),
     ],
 )
-def test_invalid_content(request, spider_fixture, content_type):
+def test_invalid_content(request, spider_fixture, sample_request, content_type):
     spider = request.getfixturevalue(spider_fixture)
-    request = Request(url=TEST_URL, encoding="utf-8")
-    response = Response(url=TEST_URL, request=request, headers={"content-type": content_type})
+    response = Response(url="http://example.com", request=sample_request, headers={"content-type": content_type})
     results = next(spider.parse_item(response), None)
     assert results is None
 
@@ -108,6 +109,28 @@ INVALID_ARGS_TEST_CASES = [
         ValueError,
         "Invalid argument! '1' must be a valid URL or domain name.",
     ),
+    (
+        DomainSpider,
+        {
+            "allowed_domains": "test.example.com",
+            "start_urls": "http://test.example.com/",
+            "output_target": "csv",
+            "sitemap_url": "waaaaaa",
+        },
+        ValueError,
+        "Invalid argument! 'waaaaaa' must be a valid URL or domain name.",
+    ),
+    (
+        DomainSpiderJs,
+        {
+            "allowed_domains": "test.example.com",
+            "start_urls": "http://test.example.com/",
+            "output_target": "csv",
+            "sitemap_url": "sitemap",
+        },
+        ValueError,
+        "Invalid argument! 'sitemap' must be a valid URL or domain name.",
+    ),
 ]
 
 
@@ -120,6 +143,15 @@ def test_invalid_args(spider_cls, kwargs, error, msg):
 INVALID_DEPTH_LIMIT_TEST_CASES = [
     (
         DomainSpider,
+        {
+            "allowed_domains": "test.example.com",
+            "start_urls": "http://test.example.com/",
+            "output_target": "csv",
+        },
+        "Search Depth must be between 1 and 250 inclusive. You submitted: %s ",
+    ),
+    (
+        DomainSpiderJs,
         {
             "allowed_domains": "test.example.com",
             "start_urls": "http://test.example.com/",
@@ -176,8 +208,38 @@ def test_domain_spider_js_init(domain_spider_js, attribute, value):
         (DomainSpiderJs, "not a boolean"),
     ],
 )
-def test_spider_init_allow_query_string_str_input(monkeypatch, spider_cls, spider_args, allow_query_string):
+def test_spider_init_allow_query_string_str_input(monkeypatch, spider_cls, spider_kwargs, allow_query_string):
     monkeypatch.setattr(helpers, "get_domain_visits", lambda _: {})
-    spider_args["allow_query_string"] = allow_query_string
-    spider = spider_cls(**spider_args)
+    spider_kwargs["allow_query_string"] = allow_query_string
+    spider = spider_cls(**spider_kwargs)
     assert spider.allow_query_string is False
+
+
+@pytest.mark.parametrize(
+    ("spider_fixture", "meta_key", "meta_value"),
+    [
+        ("domain_spider", "source_url", "http://www.example.com/source"),
+        ("domain_spider_js", "source_url", "http://www.example.com/source"),
+        ("domain_spider_js", "playwright", True),
+    ],
+)
+def test_update_request_meta(request, spider_fixture, sample_request, meta_key, meta_value):
+    spider = request.getfixturevalue(spider_fixture)
+    response_request = Request(url="http://www.example.com/source", encoding="utf-8")
+    updated_request = spider.update_request_meta(
+        request=sample_request, response=Response(url="http://www.example.com", request=response_request)
+    )
+
+    assert updated_request.meta[meta_key] == meta_value
+
+
+@pytest.mark.parametrize("spider_fixture", ["domain_spider", "domain_spider_js"])
+def test_parse_start_url(mocker, request, spider_fixture):
+    spider = request.getfixturevalue(spider_fixture)
+    mock_parse_item = mocker.patch(
+        f"search_gov_crawler.search_gov_spiders.spiders.{spider_fixture}.{spider.__class__.__name__}.parse_item"
+    )
+    response_request = Request(url="http://www.example.com/source", encoding="utf-8")
+
+    spider.parse_start_url(response=Response(url="http://www.example.com", request=response_request))
+    assert mock_parse_item.call_args.kwargs["response"].request.meta["source_url"] == "http://example.com/sitemap.xml"

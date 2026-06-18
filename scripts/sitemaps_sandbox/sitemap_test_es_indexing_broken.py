@@ -17,7 +17,10 @@ events for scrapy) cannot be restarted in the same process once it is stopped/co
 os.environ.setdefault("SPIDER_SPIDERMON_ENABLED", "False")
 
 
-def doCrawl():
+def do_crawl():
+    """
+    Runs a crawl programmatically
+    """
     new_urls = ["https://ioos.noaa.gov/project/ocean-enterprise-study/", "https://ioos.noaa.gov/about/ioos-history/"]
     spider_args = {
         "allow_query_string": False,
@@ -25,7 +28,7 @@ def doCrawl():
         "deny_paths": None,
         "start_urls": ",".join(new_urls),
         "output_target": "opensearch",
-        "prevent_follow": True,
+        "sitemap_url": "https://ioos.noaa.gov/sitemap.xml",
         "depth_limit": 1,
     }
     spider_cls = DomainSpider
@@ -35,5 +38,5 @@ def doCrawl():
 
 
 if __name__ == "__main__":
-    doCrawl()
-    doCrawl()
+    do_crawl()
+    do_crawl()

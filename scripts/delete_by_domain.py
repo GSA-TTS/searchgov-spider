@@ -18,7 +18,7 @@ def initialize_opensearch() -> tuple[OpenSearch, str]:
     return es.client, es.index_name
 
 
-def delete_by_domain(domain_name: str, apply: bool) -> None:
+def delete_by_domain(domain_name: str, apply: bool) -> None:  # noqa: FBT001
     """Delete documents from Elasticsearch by domain."""
 
     es_client, index_name = initialize_opensearch()

@@ -18,14 +18,16 @@ from scrapy.utils.project import get_project_settings
 
 from search_gov_crawler.search_gov_app.crawl_config import CrawlConfig
 from search_gov_crawler.search_gov_spiders.job_state.scheduler import disable_redis_job_state
+from search_gov_crawler.search_gov_spiders.settings.common import USER_AGENT
 from search_gov_crawler.search_gov_spiders.sitemaps.sitemap_finder import SitemapFinder
+from search_gov_crawler.search_gov_spiders.spiders import SpiderStartedBy
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider import DomainSpider
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import DomainSpiderJs
 
 log = logging.getLogger(__name__)
 
 
-TARGET_DIR = Path("/var/tmp/spider_sitemaps")
+TARGET_DIR = Path("/var/tmp/spider_sitemaps")  # noqa: S108
 
 
 def create_directory(path: Path) -> None:
@@ -109,7 +111,8 @@ class SitemapMonitor:
         try:
             found_sitemaps = sitemap_finder.find(starting_url)
             if not found_sitemaps:
-                raise Exception("no sitemap URLs found")
+                msg = "no sitemap URLs found"
+                raise Exception(msg)  # noqa: TRY301
             log.info("Discovered sitemap URLs: %s for %s", list(found_sitemaps), starting_url)
         except Exception as e:
             log.warning("Failed to discover sitemaps for %s. Reason: %s", starting_url, e)
@@ -123,7 +126,7 @@ class SitemapMonitor:
         all_sitemaps_set: set[str] = set()
 
         # Step 1: Filter records and process sitemaps for each one
-        records_to_process = [r for r in self.records if r.depth_limit >= 8]
+        records_to_process = [r for r in self.records if r.depth_limit >= 8]  # noqa: PLR2004
 
         for record in records_to_process:
             # Set check interval, defaulting to 48 hours (in seconds)
@@ -188,7 +191,7 @@ class SitemapMonitor:
         except Exception:
             log.exception("Error saving sitemap for %s", sitemap_url)
 
-    def _fetch_sitemap(self, url: str, depth: int = 0, max_depth: int = 10) -> set[str]:
+    def _fetch_sitemap(self, url: str, depth: int = 0, max_depth: int = 10) -> set[str]:  # noqa: C901
         """
         Fetch and parse a sitemap XML file recursively up to a maximum depth.
 
@@ -209,7 +212,12 @@ class SitemapMonitor:
             log.info("Fetching sitemap from %s at depth %s", url, depth)
             with requests.Session() as session:
                 session.headers.update(
-                    {"Cache-Control": "no-cache, no-store, must-revalidate", "Pragma": "no-cache", "Expires": "0"},
+                    {
+                        "User-Agent": USER_AGENT,
+                        "Cache-Control": "no-cache, no-store, must-revalidate",
+                        "Pragma": "no-cache",
+                        "Expires": "0",
+                    },
                 )
                 response = session.get(url, timeout=30)
                 response.raise_for_status()
@@ -330,8 +338,9 @@ class SitemapMonitor:
                             "deny_paths": record.deny_paths,
                             "start_urls": ",".join(url_batch),
                             "output_target": record.output_target,
-                            "prevent_follow": True,
+                            "sitemap_url": sitemap_url,
                             "depth_limit": 1,
+                            "started_by": SpiderStartedBy.SITEMAP_DELTA.value,
                         }
                         crawl_process = Process(
                             target=run_crawl_in_dedicated_process,

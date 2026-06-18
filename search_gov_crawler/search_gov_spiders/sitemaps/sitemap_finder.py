@@ -1,9 +1,10 @@
+import contextlib
 import csv
 import logging
 import os
 import re
+from http import HTTPStatus
 from pathlib import Path
-from typing import Optional
 from urllib.parse import urljoin
 
 import requests
@@ -24,7 +25,7 @@ CRAWL_SITES_FILE = (
 )
 
 
-def write_dict_to_csv(data: dict, filename: str, overwrite: bool = False):
+def write_dict_to_csv(data: dict, filename: str, *, overwrite: bool = False):
     """
     Writes a dictionary to a CSV file with headers:
     'starting_urls' and 'sitemap_urls'.
@@ -38,12 +39,12 @@ def write_dict_to_csv(data: dict, filename: str, overwrite: bool = False):
         overwrite (bool): Whether to overwrite the file or append to it.
     """
     filepath = filename if filename.endswith(".csv") else f"{filename}.csv"
-    file_exists = os.path.exists(filepath)
+    file_exists = os.path.exists(filepath)  # noqa: PTH110
 
     mode = "w" if overwrite else "a"
     write_header = overwrite or (not file_exists)
 
-    with open(filepath, mode=mode, newline="", encoding="utf-8") as csvfile:
+    with open(filepath, mode=mode, newline="", encoding="utf-8") as csvfile:  # noqa: PTH123
         writer = csv.writer(csvfile)
         if write_header:
             writer.writerow(["starting_urls", "sitemap_urls"])
@@ -52,6 +53,10 @@ def write_dict_to_csv(data: dict, filename: str, overwrite: bool = False):
 
 
 class SitemapFinder:
+    """
+    A class to find sitemap URLs for a given base URL using multiple methods.
+    """
+
     def __init__(self):
         self.common_sitemap_names = [
             "sitemap.xml",
@@ -75,7 +80,7 @@ class SitemapFinder:
 
     def _fix_http(self, url: str):
         url = url.strip()
-        if url.startswith(("http://")):
+        if url.startswith("http://"):
             return url.replace("http://", "https://")
         return url
 
@@ -104,7 +109,7 @@ class SitemapFinder:
 
         return set(sitemap_urls)
 
-    def confirm_sitemap_url(self, url: Optional[str]) -> bool:
+    def confirm_sitemap_url(self, url: str | None) -> bool:
         """
         Uses a HEAD request to confirm if a URL is likely a sitemap.
 
@@ -123,7 +128,7 @@ class SitemapFinder:
         try:
             # A HEAD request gets headers without downloading the full content.
             response = requests.head(url, timeout=self.timeout_seconds, allow_redirects=True)
-            if response.status_code != 200:
+            if response.status_code != HTTPStatus.OK:
                 return False
 
             content_type = response.headers.get("Content-Type", "").lower()
@@ -136,47 +141,46 @@ class SitemapFinder:
 
     def _check_common_locations(self, base_url: str) -> list[str]:
         """Try common sitemap locations"""
-        log.info(f"Method 1: Checking common sitemap locations for: {base_url}")
+        log.info("Method 1: Checking common sitemap locations for: %s", base_url)
         sitemap_urls: list[str] = []
         for name in self.common_sitemap_names:
             potential_url = urljoin(base_url, name)
             if self.confirm_sitemap_url(potential_url):
-                log.info(f"Method 1: Found sitemap at common location: {potential_url}")
+                log.info("Method 1: Found sitemap at common location: %s", potential_url)
                 sitemap_urls.append(potential_url)
         return sitemap_urls
 
     def _check_robots_txt(self, base_url: str) -> list[str]:
         """Check robots.txt for Sitemap directive."""
-        log.info(f"Method 2: Checking robots.txt to find sitemaps for: {base_url}")
+        log.info("Method 2: Checking robots.txt to find sitemaps for: %s", base_url)
 
         sitemap_urls: list[str] = []
 
-        try:
+        with contextlib.suppress(Exception):
+            # Supress exceptions, since it might be found in ofther locations
             robots_url = urljoin(base_url, "robots.txt")
             response = requests.get(robots_url, timeout=self.timeout_seconds)
 
-            if response.status_code == 200:
+            if response.status_code == HTTPStatus.OK:
                 content = response.text
                 # Look for Sitemap: directive
                 sitemap_matches = re.findall(r"(?i)Sitemap:\s*(https?://\S+)", content)
                 if sitemap_matches:
                     sitemap_urls = [self._fix_http(sitemap) for sitemap in sitemap_matches]
-                    log.info(f"Method 2: Found sitemap in robots.txt: {sitemap_urls}")
-        except Exception:
-            # Silent pass, since it might be found in ofther locations
-            pass
+                    log.info("Method 2: Found sitemap in robots.txt: %s", sitemap_urls)
 
         return sitemap_urls
 
     def _check_html_source(self, base_url: str) -> list[str]:
         """Check HTML source for sitemap references."""
-        log.info(f"Method 3: Checking HTML source to find sitemaps for: {base_url}")
+        log.info("Method 3: Checking HTML source to find sitemaps for: %s", base_url)
 
         sitemap_urls: list[str] = []
 
-        try:
+        with contextlib.suppress(Exception):
+            # Supress exceptions, since it might be found in ofther locations
             response = requests.get(base_url, timeout=self.timeout_seconds)
-            if response.status_code == 200:
+            if response.status_code == HTTPStatus.OK:
                 html_content = response.text
 
                 # Look for sitemap in link tags
@@ -184,21 +188,17 @@ class SitemapFinder:
                 matches = re.findall(link_pattern, html_content, re.IGNORECASE) or []
                 if matches:
                     sitemap_urls = sitemap_urls + matches
-                    log.info(f"Method 3: Found {len(matches)} sitemaps in HTML link tags")
+                    log.info("Method 3: Found %s sitemaps in HTML link tags", len(matches))
 
                 # Look for any .xml files that might be sitemaps
                 xml_pattern = r"href=[\"']([^\"']*sitemap[^\"']*\.xml)[\"']"
                 matches = re.findall(xml_pattern, html_content, re.IGNORECASE)
                 if matches:
                     sitemap_urls = sitemap_urls + matches
-                    log.info(f"Method 3: Found {len(matches)} sitemaps reference in raw HTML")
+                    log.info("Method 3: Found %s sitemaps reference in raw HTML", len(matches))
 
                 sitemap_urls = [self._fix_http(self._join_base(base_url, sitemap)) for sitemap in sitemap_urls]
                 sitemap_urls = [sitemap for sitemap in sitemap_urls if self.confirm_sitemap_url(sitemap)]
-
-        except Exception:
-            # Silent pass, since it might be found in ofther locations
-            pass
 
         return sitemap_urls
 
@@ -207,12 +207,13 @@ class SitemapFinder:
         Last resort: Sometimes web servers allow directory listing.
         Check if we can find XML files that might be sitemaps.
         """
-        log.info(f"Method 4: Checking for XML files in root directory to find sitemaps for: {base_url}")
+        log.info("Method 4: Checking for XML files in root directory to find sitemaps for: %s", base_url)
 
         sitemap_urls: list[str] = []
-        try:
+        with contextlib.suppress(Exception):
+            # Supress exceptions, since we already catch this exception outside
             response = requests.get(base_url, timeout=self.timeout_seconds)
-            if response.status_code == 200:
+            if response.status_code == HTTPStatus.OK:
                 html_content = response.text
 
                 # Look for XML files that might be sitemaps
@@ -223,12 +224,8 @@ class SitemapFinder:
                     if "sitemap" in match.lower():
                         sitemap_url = urljoin(base_url, match)
                         if self.confirm_sitemap_url(sitemap_url):
-                            log.info(f"Method 4: Found potential sitemap XML in directory: {sitemap_url}")
+                            log.info("Method 4: Found potential sitemap XML in directory: %s", sitemap_url)
                             sitemap_urls.append(sitemap_url)
-
-        except Exception:
-            # Silent pass, since we already catch this exception outside
-            pass
 
         return sitemap_urls
 
@@ -242,30 +239,30 @@ def create_sitemaps_csv(csv_filename: str, batch_size: int = 10):
         csv_filename (str): The name of the file/directory where you want to save the CSV file
         batch_size (int): (internal) Batch size to stream save the URLs
     """
-    log.info(f"Creating CSV file: {csv_filename} sorced from CRAWL_SITES_FILE: {CRAWL_SITES_FILE}")
+    log.info("Creating CSV file: %s sorced from CRAWL_SITES_FILE: %s", csv_filename, CRAWL_SITES_FILE)
     records = CrawlConfigs.from_file(file=CRAWL_SITES_FILE)
     sitemap_finder = SitemapFinder()
 
     sitemap_dict = {}
     count = 1
 
-    write_dict_to_csv(sitemap_dict, csv_filename, True)
+    write_dict_to_csv(data=sitemap_dict, filename=csv_filename, overwrite=True)
     for record in records:
         starting_url = record.starting_urls.split(",")[0]
 
         if record.sitemap_urls and len(record.sitemap_urls) > 0:
             for sitemap_url in record.sitemap_urls:
                 if not sitemap_finder.confirm_sitemap_url(sitemap_url):
-                    log.error(f"Failed to get existing sitemap_url: {sitemap_url} for: {starting_url}")
+                    log.error("Failed to get existing sitemap_url: %s for: %s", sitemap_url, starting_url)
         else:
             try:
                 record.sitemap_urls = list(sitemap_finder.find(starting_url))
                 if record.sitemap_urls and len(record.sitemap_urls) > 0:
-                    log.info(f"Found sitemap_urls: {record.sitemap_urls} for starting_url: {starting_url}")
+                    log.info("Found sitemap_urls: %s for starting_url: %s", record.sitemap_urls, starting_url)
                 else:
-                    log.warning(f"Failed to find sitemap_urls for starting_url: {starting_url}")
+                    log.warning("Failed to find sitemap_urls for starting_url: %s", starting_url)
             except Exception as e:
-                log.warning(f"Failed to find sitemap_urls for starting_url: {starting_url}.", f"Reason: {e}")
+                log.warning("Failed to find sitemap_urls for starting_url: %s. Reason: %s", starting_url, str(e))
 
         sitemap_dict[starting_url] = record.sitemap_urls
         if count % batch_size == 0:
@@ -275,7 +272,7 @@ def create_sitemaps_csv(csv_filename: str, batch_size: int = 10):
 
     # save remaining items that did not hit batch_size mod
     write_dict_to_csv(sitemap_dict, csv_filename)
-    log.info(f"Completed CSV file: {csv_filename} sorced from CRAWL_SITES_FILE: {CRAWL_SITES_FILE}")
+    log.info("Completed CSV file: %s sorced from CRAWL_SITES_FILE: %s", csv_filename, CRAWL_SITES_FILE)
 
 
 if __name__ == "__main__":

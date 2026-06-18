@@ -51,24 +51,26 @@ class CrawlConfig:
     def _validate_types(self) -> None:
         """Check field types against class definition to ensure compatability"""
 
-        for field in fields(self):
-            value = getattr(self, field.name)
-            if hasattr(field.type, "__args__"):
+        for cls_field in fields(self):
+            value = getattr(self, cls_field.name)
+            if hasattr(cls_field.type, "__args__"):
                 # for optional fields
-                valid_types = field.type.__args__
+                valid_types = cls_field.type.__args__
                 if value is None and type(None) in valid_types:
                     continue
 
                 for valid_type in (vt for vt in valid_types if vt is not type(None)):
                     if not isinstance(value, valid_type):
                         msg = (
-                            f"Invalid type! Field {field.name} with value "
-                            f"{getattr(self, field.name)} must be one of types {[vt.__name__ for vt in valid_types]}"
+                            f"Invalid type! Field {cls_field.name} with value "
+                            f"{getattr(self, cls_field.name)} must be one of "
+                            f"types {[vt.__name__ for vt in valid_types]}"
                         )
                         raise CrawlConfigValidationError(msg)
-            elif not isinstance(value, field.type):
+            elif not isinstance(value, cls_field.type):
                 msg = (
-                    f"Invalid type! Field {field.name} with value {getattr(self, field.name)} must be type {field.type}"
+                    f"Invalid type! Field {cls_field.name} with value"
+                    f" {getattr(self, cls_field.name)} must be type {cls_field.type}"
                 )
                 raise CrawlConfigValidationError(msg)
 
@@ -102,11 +104,11 @@ class CrawlConfig:
         """Ensure all required fields are present"""
 
         missing_field_names = []
-        for field in fields(self):
-            if field.name in {"schedule", "deny_paths", "sitemap_urls", "check_sitemap_hours", "job_id"}:
+        for cls_field in fields(self):
+            if cls_field.name in {"schedule", "deny_paths", "sitemap_urls", "check_sitemap_hours", "job_id"}:
                 pass
-            elif getattr(self, field.name) is None:
-                missing_field_names.append(field.name)
+            elif getattr(self, cls_field.name) is None:
+                missing_field_names.append(cls_field.name)
 
         if missing_field_names:
             msg = f"All CrawlConfig fields are required!  Add values for {','.join(missing_field_names)}"
@@ -115,8 +117,8 @@ class CrawlConfig:
     def to_dict(self, *, exclude: tuple = ()) -> dict:
         """Helper method to return dataclass as dictionary.  Exclude fields listed in exclude arg."""
         crawl_config = asdict(self)
-        for field in exclude:
-            crawl_config.pop(field, None)
+        for field_to_exclude in exclude:
+            crawl_config.pop(field_to_exclude, None)
 
         return crawl_config
 
@@ -169,7 +171,7 @@ class CrawlConfigs:
 
             record["starting_urls"] = ",".join(json.loads(record["starting_urls"]) if record["starting_urls"] else [])
             record["allowed_domains"] = ",".join(
-                json.loads(record["allowed_domains"]) if record["allowed_domains"] else []
+                json.loads(record["allowed_domains"]) if record["allowed_domains"] else [],
             )
 
         crawl_configs = []

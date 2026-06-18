@@ -1,9 +1,12 @@
-import os
 import logging
-from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
+import os
+
 from pythonjsonlogger.json import JsonFormatter
 
-def GetSpiderLogger(name: str):
+from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
+
+
+def get_spider_logger(name: str) -> logging.Logger:
     """
     Get only one (and only) instance of search-gov spider logging
 

@@ -3,12 +3,12 @@ version: 2.1
 jobs:
   python-lint-and-test:
     docker:
-      - image: cimg/python:3.12
+      - image: cimg/python:3.12.1 # should match `.python-version` file
     steps:
       - checkout
       - run:
           name: Store Python Version
-          command: python --version > python_version
+          command: python --version | tee python_version
       - restore_cache:
           keys:
             - deps-{{ .Branch }}-{{ checksum "./search_gov_crawler/requirements.txt" }}-{{ checksum "python_version"}}
@@ -28,6 +28,16 @@ jobs:
           paths:
             - ./venv
           key: deps-{{ .Branch }}-{{ checksum "./search_gov_crawler/requirements.txt" }}-{{ checksum "python_version"}}
+      - run:
+          name: Run Ruff Linter
+          command: |
+            . venv/bin/activate
+            python -m ruff check --config ./ruff.toml .
+      - run:
+          name: Run Ruff Formatter
+          command: |
+            . venv/bin/activate
+            python -m ruff format --check --config ./ruff.toml --diff .
       - run:
           name: Run Tests
           command: |
@@ -58,7 +68,6 @@ jobs:
             if [ -s git_diff_output ]; then exit 1; else exit 0; fi
 
 workflows:
-  version: 2
   lint-and-test:
     jobs:
       - python-lint-and-test

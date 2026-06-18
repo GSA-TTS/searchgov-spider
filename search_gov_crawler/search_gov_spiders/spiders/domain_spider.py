@@ -1,10 +1,13 @@
+from scrapy import Request
 from scrapy.crawler import Crawler
 from scrapy.http.response import Response
 from scrapy.linkextractors import LinkExtractor
+from scrapy.settings import BaseSettings
 from scrapy.spiders.crawl import CrawlSpider, Rule
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
+from search_gov_crawler.search_gov_spiders.spiders import SpiderStartedBy
 
 
 class DomainSpider(CrawlSpider):
@@ -62,19 +65,17 @@ class DomainSpider(CrawlSpider):
         *args,
         allow_query_string: bool = False,
         allowed_domains: str,
-        deny_paths: str | None = None,
         start_urls: str,
         output_target: str,
-        prevent_follow: bool = False,
+        deny_paths: str | None = None,
+        sitemap_url: str | None = None,
+        started_by: str = SpiderStartedBy.MANUAL.value,
         **kwargs,
     ) -> None:
-        helpers.validate_spider_arguments(allowed_domains, start_urls, output_target)
+        helpers.validate_spider_arguments(allowed_domains, start_urls, sitemap_url, output_target)
 
         # assign rules before super()__init__ so they can be processed by CrawlSpider
-        if prevent_follow:
-            self.rules = ()
-            self.parse_start_url = self.parse_item
-        else:
+        if not sitemap_url:
             self.rules = (
                 Rule(
                     LinkExtractor(
@@ -86,6 +87,7 @@ class DomainSpider(CrawlSpider):
                     ),
                     callback="parse_item",
                     follow=True,
+                    process_request="update_request_meta",
                 ),
             )
         super().__init__(*args, **kwargs)
@@ -94,10 +96,11 @@ class DomainSpider(CrawlSpider):
         self.allowed_domains = helpers.split_allowed_domains(allowed_domains)
         self.allowed_domain_paths = allowed_domains.split(",")
         self.start_urls = start_urls.split(",")
+        self.started_by = started_by
 
         # store input args as private attributes for use in logging
         self._deny_paths = deny_paths
-        self._prevent_follow = prevent_follow
+        self._sitemap_url = sitemap_url
 
         # gather domain visits for domain and subdomains
         self.domain_visits = helpers.get_domain_visits(self)
@@ -107,8 +110,13 @@ class DomainSpider(CrawlSpider):
             self.name,
             self.allowed_domains,
             self.start_urls,
-            prevent_follow,
+            self.is_sitemap_crawl,
         )
+
+    @property
+    def is_sitemap_crawl(self) -> bool:
+        """Check for existence of sitemap url"""
+        return bool(self._sitemap_url)
 
     @classmethod
     def from_crawler(cls, crawler: Crawler, *args, depth_limit: int | None = None, **kwargs) -> "DomainSpider":
@@ -116,9 +124,9 @@ class DomainSpider(CrawlSpider):
         Override default method to set DEPTH_LIMIT.  Default is set in settings.py file but can be overridden either by
         command line argument (-a depth_limit=x) or within a json scheduling file.
         """
-
+        max_depth_limit = 250
         spider = super().from_crawler(crawler, *args, **kwargs)
-        if int(depth_limit) > 250 or int(depth_limit) < 1:
+        if int(depth_limit) > max_depth_limit or int(depth_limit) < 1:
             msg = f"Search Depth must be between 1 and 250 inclusive. You submitted: {depth_limit} "
             raise ValueError(msg)
 
@@ -134,14 +142,43 @@ class DomainSpider(CrawlSpider):
         @returns items 1 1
         @scrapes url
         """
-        content_type_name = "Content-Type"
-        content_type_value = response.headers.get(
-            content_type_name, response.headers.get(content_type_name.lower(), None)
-        )
-        if helpers.is_valid_content_type(content_type_value, output_target=self.output_target):
+        if content_type := helpers.get_simple_content_type(response=response, output_target=self.output_target):
             yield SearchGovSpidersItem(
-                url=response.url,
-                response_bytes=response.body,
+                content_type=content_type,
+                creator=self.started_by,
+                crawl_depth=response.meta.get("depth") if not self.is_sitemap_crawl else 1,
+                download_milliseconds=helpers.get_download_milliseconds(response=response),
                 output_target=self.output_target,
-                content_type=helpers.get_simple_content_type(content_type_value, output_target=self.output_target),
+                response_bytes=response.body,
+                response_language=helpers.get_response_language_code(response=response),
+                source_url=response.request.meta.get("source_url") if response.request else None,
+                url=response.url,
             )
+
+    def parse_start_url(self, response: Response, **_kwargs):
+        """
+        When this is a sitemap crawl is enabled, add sitemap url to start urls responses otherwise
+        skip as this is handled elsewhere
+        """
+        if self.is_sitemap_crawl:
+            if response.request:
+                response.request.meta["source_url"] = self._sitemap_url
+            return self.parse_item(response=response)
+
+        return ()
+
+    def update_request_meta(self, request: Request, response: Response):
+        """Add the source url to the request meta field for inclusion in the item"""
+        if response.request:
+            request.meta["source_url"] = response.request.url
+
+        return request
+
+    @classmethod
+    def update_settings(cls, settings: BaseSettings) -> None:
+        """
+        Apply project-wider common settings as well as custom settings at the spider priority level
+        for just this spider.
+        """
+        super().update_settings(settings)
+        settings.setmodule(module="search_gov_crawler.search_gov_spiders.settings.domain_spider", priority="spider")
