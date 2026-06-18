@@ -19,3 +19,6 @@ REDIRECT_ENABLED = False
 
 # We have alreay obeyed the robots.txt file during the inital spidering, this is not necessary
 ROBOTSTXT_OBEY = False
+
+# We don't need deduplication because our source is already dedupliated
+DUPEFILTER_CLASS = "scrapy.dupefilters.BaseDupeFilter"
