@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euo pipefail
+set -eo pipefail
 
 # Setup high-level variables
 # run_sitemap_monitor.py needs to be started from search_gov_crawler because that's where the scrapy.cfg is
@@ -44,7 +44,7 @@ nohup bash -lc "source ~/.profile && $VENV_PYTHON ./$DAP_SCRIPT" >> "$LOG_FILE" 
 nohup bash -lc "source ~/.profile && $VENV_PYTHON ./$SCHEDULER_SCRIPT" >> "$LOG_FILE" 2>&1 &
 
 # start freshness cheker
-# nohup bash -c "source ./venv/bin/activate && ./venv/bin/python ./$FRESHNESS_SCRIPT" >> $LOG_FILE 2>&1 &
+nohup bash -c "source ./venv/bin/activate && ./venv/bin/python ./$FRESHNESS_SCRIPT" >> $LOG_FILE 2>&1 &
 
 # check that scheduler is running before exit, it not raise error
 sleep 5
