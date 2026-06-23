@@ -148,7 +148,7 @@ def test_full_crawl(mock_scrapy_settings, monkeypatch, spider, use_dedup, crawl_
             pipeline_cls.base_file_name = temp_dir / "output" / "all-links-p1234.csv"
             pipeline_cls.file_path = pipeline_cls.base_file_name
             pipeline_cls.current_file = open(pipeline_cls.file_path, "w", encoding="utf-8")  # noqa: PTH123, SIM115
-            pipeline_cls.file_open = False
+            pipeline_cls.file_open = True
             pipeline_cls._es = None
             pipeline_cls.urls_batch = []
 
