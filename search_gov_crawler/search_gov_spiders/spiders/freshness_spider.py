@@ -77,7 +77,7 @@ class FreshnessSpider(Spider):
             return
 
         try:
-            for docs_in_batch, document in enumerate(self.source_documents):
+            for doc_in_batch, document in enumerate(self.source_documents, start=1):
                 if self.max_results and self.doc_count >= self.max_results:
                     self.logger.info("Reached max query results of %d. Stopping generation of URLs.", self.max_results)
                     self.source_documents.close()
@@ -99,12 +99,13 @@ class FreshnessSpider(Spider):
                 )
                 self.doc_count += 1
 
-                if docs_in_batch >= self.doc_batch_size:
+                if doc_in_batch >= self.doc_batch_size:
                     break
 
         except Exception:
             self.logger.exception("Error while getting OpenSearch documents.")
             self.source_documents.close()
+            raise
 
     def crawl_next_batch(self):
         """ """
