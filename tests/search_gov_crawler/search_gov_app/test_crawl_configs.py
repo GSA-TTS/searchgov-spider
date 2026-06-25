@@ -185,21 +185,21 @@ def test_invalid_craw_sites_cron_expression(base_crawl_config_args):
 
 
 @pytest.mark.parametrize(
-    "file_name",
+    "filename",
     [
         "crawl-sites-development.json",
         "crawl-sites-staging.json",
         "crawl-sites-production.json",
     ],
 )
-def test_crawl_configs_file_is_valid(file_name):
+def test_crawl_configs_file_is_valid(filename):
     """
     Read in the actual crawl sites files and instantiate as a CrawlConfigs class.  This will run all built-in
     validations and hopefully let you know if the file is invalid prior to attempting to run it in the scheduler.
     Additionally, we are assuming that there is at least one scheduled job in the file.
     """
 
-    crawl_sites_file = Path(__file__).parent.parent.parent.parent / "search_gov_crawler" / "domains" / file_name
+    crawl_sites_file = Path(__file__).parent.parent.parent.parent / "search_gov_crawler" / "domains" / filename
 
     cs = CrawlConfigs.from_file(file=crawl_sites_file)
     assert len(list(cs.scheduled())) > 0
