@@ -3,8 +3,10 @@ from nltk.corpus import stopwords
 
 from search_gov_crawler.indexing.helpers import (
     detect_lang,
+    get_base_extension,
+    get_title_from_filename,
     parse_dates_safely,
-    separate_file_name,
+    separate_filename,
     summarize_text,
     update_dap_visits_to_document,
 )
@@ -67,49 +69,25 @@ def test_detect_lang_unrecognizable_text():
     assert detect_lang("1234567890!@#$%^&*()") is None
 
 
-# Tests for separate_file_name
-def test_separate_file_name_camel_case():
-    assert separate_file_name("camelCaseFile.pdf") == "camel Case File"
+SEPARATE_FILENAME_TEST_CASES = [
+    ("camelCaseFile.pdf", "camel Case File"),
+    ("snake_case_file.pdf", "snake case file"),
+    ("kebab-case-file.pdf", "kebab case file"),
+    ("PascalCaseFile.pdf", "Pascal Case File"),
+    ("mixedCase123File.pdf", "mixed Case 123 File"),
+    ("file123Test.pdf", "file 123 Test"),
+    ("file_with-symbols+test,file~name%test.pdf", "file with symbols test file name test"),
+    ("noExtensionFile", "no Extension File"),
+    ("file.with.multiple.dots.pdf", "file with multiple dots"),
+    ("sometimes%20a%20filename+is+encoded.pdf", "sometimes a filename is encoded"),
+    ("", ""),
+    (".pdf", ""),
+]
 
 
-def test_separate_file_name_snake_case():
-    assert separate_file_name("snake_case_file.pdf") == "snake case file"
-
-
-def test_separate_file_name_kebab_case():
-    assert separate_file_name("kebab-case-file.pdf") == "kebab case file"
-
-
-def test_separate_file_name_pascal_case():
-    assert separate_file_name("PascalCaseFile.pdf") == "Pascal Case File"
-
-
-def test_separate_file_name_mixed_case():
-    assert separate_file_name("mixedCase123File.pdf") == "mixed Case 123 File"
-
-
-def test_separate_file_name_numbers():
-    assert separate_file_name("file123Test.pdf") == "file 123 Test"
-
-
-def test_separate_file_name_symbols():
-    assert separate_file_name("file_with-symbols+test,file~name%test.pdf") == "file with symbols test file name test"
-
-
-def test_separate_file_name_no_extension():
-    assert separate_file_name("noExtensionFile") == "no Extension File"
-
-
-def test_separate_file_name_multiple_dots():
-    assert separate_file_name("file.with.multiple.dots.pdf") == "file with multiple dots"
-
-
-def test_separate_file_name_empty():
-    assert separate_file_name("") == ""
-
-
-def test_separate_file_name_only_extension():
-    assert separate_file_name(".pdf") == ""
+@pytest.mark.parametrize(("filename", "expected_output"), SEPARATE_FILENAME_TEST_CASES)
+def test_separate_filename(filename, expected_output):
+    assert separate_filename(filename) == expected_output
 
 
 SUMMARIZE_TEXT_TEST_CASES = [
@@ -176,3 +154,42 @@ def test_update_dap_visits_to_document(input_doc, domain_visits, output_doc, moc
     spider = mocker.Mock()
     spider.domain_visits.get.return_value = domain_visits
     assert update_dap_visits_to_document(input_doc, spider) == output_doc
+
+
+GET_BASE_EXTENSION_TEST_CASES = [
+    ("https://www.example.com/", ("", "", "")),
+    ("https://www.example.com/file.pdf", ("file", "pdf", "file.pdf")),
+    ("https://www.example.com/path/", ("", "", "")),
+    ("https://www.example.com/path", ("path", "", "path")),
+    ("https://www.example.com/file.", ("file", "", "file")),
+    ("https://www.example.com/path/one/two/file.pdf", ("file", "pdf", "file.pdf")),
+    ("https://www.example.com/path/one/two/this is a file.pdf", ("this is a file", "pdf", "this is a file.pdf")),
+    (
+        "https://www.example.com/path/one/two/this%20is%20a%20file.pdf",
+        ("this%20is%20a%20file", "pdf", "this%20is%20a%20file.pdf"),
+    ),
+    ("https://www.example.com/path/one/two/file.pdf?version=123", ("file", "pdf", "file.pdf")),
+]
+
+
+@pytest.mark.parametrize(("url", "expected_output"), GET_BASE_EXTENSION_TEST_CASES)
+def test_get_base_extension(monkeypatch, url, expected_output):
+
+    monkeypatch.setattr("search_gov_crawler.indexing.helpers.ensure_http_prefix", lambda x: x)
+    assert get_base_extension(url) == expected_output
+
+
+GET_TITLE_FROM_FILENAME_TEST_CASES = [
+    ("file", "file"),
+    ("file.pdf", "file"),
+    ("another_file.pdf", "another_file"),
+    ("ANOTHER_FILE.PDF", "ANOTHER_FILE"),
+    ("One-More-File.pdf", "One-More-File"),
+    ("and%20another%20one.pdf", "and another one"),
+    ("why-not-one-more.pdf?version=T2000", "why-not-one-more"),
+]
+
+
+@pytest.mark.parametrize(("filename", "expected_title"), GET_TITLE_FROM_FILENAME_TEST_CASES)
+def test_get_title_from_filename(filename, expected_title):
+    assert get_title_from_filename(filename) == expected_title

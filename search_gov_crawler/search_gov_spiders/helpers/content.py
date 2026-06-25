@@ -32,7 +32,7 @@ def sanitize_text(text: str) -> str | None:
         return None
 
     # Convert to string to remove non-printable characters and force string type
-    text = clean_text = f"{text}"
+    text = f"{text}"
 
     with contextlib.suppress(AttributeError):
         clean_text = "\n".join(
