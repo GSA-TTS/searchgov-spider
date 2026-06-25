@@ -1,14 +1,14 @@
 # Production Schedule
- * [Sunday (247)](#sunday-247)
+ * [Sunday (251)](#sunday-251)
  * [Monday (252)](#monday-252)
  * [Tuesday (265)](#tuesday-265)
  * [Wednesday (258)](#wednesday-258)
  * [Thursday (257)](#thursday-257)
  * [Friday (252)](#friday-252)
- * [Saturday (257)](#saturday-257)
+ * [Saturday (256)](#saturday-256)
 
 
-## Sunday (247)
+## Sunday (251)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Youngstown Air Reserve Station (youngstown)|00:00|www.youngstown.afrc.af.mil|N|8||
@@ -58,6 +58,7 @@
 |Army Letterkenny (army_letterkenny)|03:23|www.letterkenny.army.mil|N|3||
 |9/11 Commission Report|03:29|govinfo.library.unt.edu/911|N|8||
 |Commission of Fine Arts|03:30|www.cfa.gov|N|8||
+|Spectrum.gov|03:30|www.spectrum.gov|N|8||
 |WMAP (wmap)|03:33|wmap.gsfc.nasa.gov|N|3||
 |Westover Air Reserve Base, Mass (westover)|03:42|www.westover.afrc.af.mil|N|8||
 |Safe to Sleep|03:42|safetosleep.nichd.nih.gov|N|8||
@@ -134,6 +135,7 @@
 |Barquist Army Health Clinic|09:00|barquist.tricare.mil|N|8||
 |US Embassy The Gambia|09:03|gm.usembassy.gov|N|8||
 |US Embassy Rwanda|09:09|rw.usembassy.gov|N|8||
+|Survey of Current Business|09:09|apps.bea.gov|N|8||
 |Thunder Bay National Marine Sanctuary|09:42|thunderbay.noaa.gov|N|8||
 |Air Force Small Business (afpw_afsb)|09:46|www.airforcesmallbiz.af.mil|N|8||
 |Army 10th AAMDC (army_10aamdc)|09:46|www.10thaamdc.army.mil|N|3||
@@ -181,6 +183,7 @@
 |Joint UNC (joint_unc)|13:09|www.unc.mil|N|3||
 |US EU OSH|13:12|www.useuosh.org|N|8||
 |125th Fighter Wing (afpw_125fw and afpw_flang)|13:15|www.125fw.ang.af.mil|N|8||
+|FDA Food and Nutrition Administration|13:26|www.fna.usda.gov|N|8||
 |New depth 8 (br.usembassy.gov/pt)|13:50|br.usembassy.gov/pt|N|8||
 |Air Force Nuclear Weapons Center (usaf_afnwc)|13:51|www.afnwc.af.mil|N|8||
 |174th Attack Wing (afpw_174aw)|13:57|www.174attackwing.ang.af.mil|N|8||
@@ -256,6 +259,7 @@
 |Tyndall Air Force Base (tyndall)|23:05|www.tyndall.af.mil|N|8||
 |Army 21st TSC (army_21tsc)|23:08|www.21tsc.army.mil|N|8||
 |HRSA Injury Compensation (hrsaics)|23:28|injurycompensation.hrsa.gov|N|3||
+|VA Mental Health|23:32|www.mentalhealth.va.gov|N|8||
 |New depth 8 (ch.usembassy.gov/fr/sitemap-fr)|23:43|ch.usembassy.gov/fr/sitemap-fr|N|8||
 |1st Infantry Division (army_11d)|23:50|www.1id.army.mil|N|3||
 
@@ -1569,7 +1573,7 @@
 |DOS Embassy Comoros (dos_emb_afr_comoros)|23:54|km.usembassy.gov|N|3||
 
 
-## Saturday (257)
+## Saturday (256)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |419th Fighter Wing (419fw)|00:00|www.419fw.afrc.af.mil|N|8||
@@ -1747,7 +1751,6 @@
 |132nd DWing, Iowa ANG (afpw_132fw)|15:38|www.132dwing.ang.af.mil|N|8||
 |165th Airlift Wing (165aw)|15:42|www.165aw.ang.af.mil|N|8||
 |CTO Innovation (chieftechnologist)|15:42|www.ctoinnovation.mil|N|8||
-|Public Sans|15:42|public-sans.digital.gov|N|8||
 |www.nimh.nih.gov (usagov-replacement)|16:00|www.nimh.nih.gov|N|8||
 |www.marines.mil (usagov-replacement)|16:00|www.marines.mil|N|3||
 |tricare_wrightpatterson|16:00|wrightpatterson.tricare.mil|N|8||
