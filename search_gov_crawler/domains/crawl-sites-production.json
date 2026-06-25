@@ -9462,7 +9462,7 @@
       "starting_urls": "https://navalsafetycommand.navy.mil/"
    },
    {
-      "allow_query_string": false,
+      "allow_query_string": true,
       "allowed_domains": "www.asbca.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -18541,19 +18541,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "public-sans.digital.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Public Sans",
-      "output_target": "opensearch",
-      "schedule": "42 15 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://public-sans.digital.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "qpp.cms.gov,qpp-cm-prod-content.s3.amazonaws.com",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -23295,5 +23282,57 @@
       "schedule": "23 05 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.safety.af.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.spectrum.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Spectrum.gov",
+      "output_target": "opensearch",
+      "schedule": "30 03 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.spectrum.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "apps.bea.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Survey of Current Business",
+      "output_target": "opensearch",
+      "schedule": "09 09 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://apps.bea.gov/scb/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.fna.usda.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "FDA Food and Nutrition Administration",
+      "output_target": "opensearch",
+      "schedule": "26 13 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.fna.usda.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.mentalhealth.va.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "VA Mental Health",
+      "output_target": "opensearch",
+      "schedule": "32 23 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.mentalhealth.va.gov/"
    }
 ]
