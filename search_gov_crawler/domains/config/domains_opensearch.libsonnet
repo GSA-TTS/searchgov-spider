@@ -585,7 +585,6 @@ local output_target = 'opensearch';
                          starting_urls='https://www.justice.gov/',
                          schedule='30 21 * * TUE',
                          output_target=output_target,
-                         options=['allow_query_string'],
                          depth_limit=8,
                          sitemap_urls=['https://www.justice.gov/osg-brief/sitemap.xml', 'https://www.justice.gov/sitemap.xml']),
   },
@@ -6444,14 +6443,15 @@ local output_target = 'opensearch';
                          output_target=output_target,
                          depth_limit=8),
   },
-  {
-    name: 'training.smartpay.gsa.gov (gsa_smartpay_training)',
-    config: DomainConfig(allowed_domains='training.smartpay.gsa.gov',
-                         starting_urls='https://training.smartpay.gsa.gov/',
-                         schedule='1 23 * * SAT',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
+  // temporarily removing from schedule due to spider trap
+  //{
+  //  name: 'training.smartpay.gsa.gov (gsa_smartpay_training)',
+  //  config: DomainConfig(allowed_domains='training.smartpay.gsa.gov',
+  //                       starting_urls='https://training.smartpay.gsa.gov/',
+  //                       schedule='1 23 * * SAT',
+  //                       output_target=output_target,
+  //                       depth_limit=8),
+  //},
   {
     name: 'StudentAid.gov (usagov_en_az)',
     config: DomainConfig(allowed_domains='studentaid.gov',
