@@ -972,7 +972,7 @@
       "starting_urls": "https://www.uscis.gov/"
    },
    {
-      "allow_query_string": true,
+      "allow_query_string": false,
       "allowed_domains": "www.justice.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -10489,19 +10489,6 @@
       "schedule": "1 22 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.mvn.usace.army.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "training.smartpay.gsa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "training.smartpay.gsa.gov (gsa_smartpay_training)",
-      "output_target": "opensearch",
-      "schedule": "1 23 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://training.smartpay.gsa.gov/"
    },
    {
       "allow_query_string": false,
