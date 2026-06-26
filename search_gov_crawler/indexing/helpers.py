@@ -147,7 +147,7 @@ def separate_filename(filename: str):
     unquoted_filename = unquote_plus(filename)
     basename = unquoted_filename.rsplit(".", 1)[0].replace(".", " ")
     words = re.split(r"(?<!^)(?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z])|[-_+~,%]|(?<=\D)(?=\d)|(?<=\d)(?=\D)", basename)
-    return " ".join([str(word).strip() for word in words])
+    return " ".join([str(word).strip() for word in words if word])
 
 
 def ensure_http_prefix(url: str):

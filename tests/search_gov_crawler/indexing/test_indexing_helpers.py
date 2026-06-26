@@ -82,6 +82,10 @@ SEPARATE_FILENAME_TEST_CASES = [
     ("sometimes%20a%20filename+is+encoded.pdf", "sometimes a filename is encoded"),
     ("", ""),
     (".pdf", ""),
+    (
+        "Something_Here_Triggers%20An%20ExtraSpace%20123456You know what I mean?.pdf",
+        "Something Here Triggers An Extra Space 123456 You know what I mean?",
+    ),
 ]
 
 
