@@ -64,8 +64,8 @@ EXTENSIONS = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    "search_gov_spiders.pipelines.DeDeuplicatorPipeline": 100,
-    "search_gov_spiders.pipelines.SearchGovSpidersPipeline": 200,
+    "search_gov_spiders.pipelines.pipelines.DeDeuplicatorPipeline": 100,
+    "search_gov_spiders.pipelines.pipelines.SearchGovSpidersPipeline": 200,
 }
 
 # SPIDERMON SETTINGS
