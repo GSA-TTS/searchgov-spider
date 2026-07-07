@@ -103,3 +103,8 @@ docker-run-sitemap-monitor:
 		docker run -it --name $(SITEMAP_MONITOR_CONTAINER) --env-file $(ENV_FILE) --network host \
 			--volume $(VOLUME_PROJECT_ROOT) -w $(CRAWLER_DIR) $(IMAGE_NAME) python run_sitemap_monitor.py; \
 	fi
+
+.PHONY: docker-scrapy-crawl
+docker-scrapy-crawl:
+	docker run -it --rm --env-file $(ENV_FILE) --network host --volume $(VOLUME_PROJECT_ROOT) \
+	    -w $(CRAWLER_DIR) $(IMAGE_NAME) scrapy crawl $(ARGS)

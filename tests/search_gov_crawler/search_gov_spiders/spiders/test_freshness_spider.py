@@ -3,6 +3,7 @@ from datetime import UTC, datetime
 import pytest
 from freezegun import freeze_time
 from scrapy import Request
+from scrapy.exceptions import DontCloseSpider
 from scrapy.http.response import Response
 
 from search_gov_crawler.search_gov_spiders.items import (
@@ -17,7 +18,11 @@ from search_gov_crawler.search_gov_spiders.spiders.freshness_spider import Fresh
 def fixture_freshness_spider(mocker):
     mock_opensearch = mocker.patch("search_gov_crawler.search_gov_spiders.spiders.freshness_spider.SearchGovOpensearch")
     mock_opensearch.return_value.index_name = "test_index"
-    return FreshnessSpider(query='{"test": "query"}', max_results="100")
+
+    freshness_spider = FreshnessSpider(query='{"test": "query"}', max_results="100")
+    freshness_spider.crawler = mocker.MagicMock()
+
+    return freshness_spider
 
 
 def test_freshness_spider_args(freshness_spider):
@@ -189,6 +194,50 @@ async def test_freshness_spider_start_invalid_doc(mocker, freshness_spider, inva
         _ = {value async for value in freshness_spider.start()}
 
 
+@pytest.mark.parametrize(
+    ("max_results", "doc_batch_size", "expected_results"),
+    [(10, 100, 3), (2, 10, 2), (10, 1, 1)],
+)
+def test_next_batch(mocker, freshness_spider, max_results, doc_batch_size, expected_results):
+    def yield_docs(*_args, **_kwargs):
+        yield from [
+            {"_id": "123", "_source": {"path": "http://example1.com", "domain_name": "example1.com"}},
+            {"_id": "456", "_source": {"path": "http://example2.com", "domain_name": "example2.com"}},
+            {"_id": "789", "_source": {"path": "http://example3.com", "domain_name": "example3.com"}},
+        ]
+
+    mocker.patch.object(freshness_spider, "source_documents", yield_docs())
+    freshness_spider.max_results = max_results
+    freshness_spider.doc_batch_size = doc_batch_size
+
+    assert len(list(freshness_spider._next_batch())) == expected_results
+
+
+def test_next_batch_no_source_documents(freshness_spider):
+    assert list(freshness_spider._next_batch()) == []
+
+
+def test_crawl_next_batch(mocker, freshness_spider):
+    freshness_spider.source_documents = True
+
+    def yield_requests(*_args, **_kwargs):
+        yield from [Request(url="https://1.example.com"), Request(url="https://2.example.com")]
+
+    mock_next_batch = mocker.patch(
+        "search_gov_crawler.search_gov_spiders.spiders.freshness_spider.FreshnessSpider._next_batch"
+    )
+    mock_next_batch.side_effect = yield_requests
+
+    with pytest.raises(DontCloseSpider):
+        freshness_spider.crawl_next_batch()
+    assert freshness_spider.crawler.engine.crawl.call_count == 2
+
+
+def test_crawl_next_batch_no_source_documents(freshness_spider):
+    freshness_spider.crawl_next_batch()
+    freshness_spider.crawler.engine.crawl.assert_not_called()
+
+
 @pytest.fixture(name="freshness_spider_settings")
 def fixture_freshness_spider_settings(project_settings):
     FreshnessSpider.update_settings(settings=project_settings)
@@ -201,7 +250,7 @@ PROJECT_SETTINGS_TEST_CASES = [
     ("DOWNLOAD_DELAY", 0.25),
     ("DOWNLOADER_MIDDLEWARES", {"search_gov_spiders.middlewares.FreshnessSpiderDownloaderMiddleware": 100}),
     ("EXTENSIONS", {"search_gov_spiders.extensions.json_logging.JsonLogging": -1}),
-    ("ITEM_PIPELINES", {"search_gov_spiders.pipelines.FreshnessSpiderPipeline": 100}),
+    ("ITEM_PIPELINES", {"search_gov_spiders.pipelines.freshness_pipeline.FreshnessSpiderPipeline": 100}),
     ("HTTPERROR_ALLOW_ALL", True),
     ("REDIRECT_ENABLED", False),
     ("ROBOTSTXT_OBEY", False),
@@ -211,3 +260,13 @@ PROJECT_SETTINGS_TEST_CASES = [
 @pytest.mark.parametrize(("setting", "value"), PROJECT_SETTINGS_TEST_CASES)
 def test_freshness_spider_update_settings(freshness_spider_settings, setting, value):
     assert freshness_spider_settings.get(setting) == value
+
+
+def test_freshness_spider_from_crawler(mocker):
+    mocker.patch("search_gov_crawler.search_gov_spiders.spiders.freshness_spider.SearchGovOpensearch")
+    freshness_spider = FreshnessSpider.from_crawler(
+        crawler=mocker.MagicMock(), query='{"test": "query"}', max_results="100"
+    )
+
+    # assert call_count == 2 instead of 1 because close_spider is also being connected
+    assert freshness_spider.crawler.signals.connect.call_count == 2

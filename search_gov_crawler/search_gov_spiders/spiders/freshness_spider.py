@@ -1,11 +1,14 @@
-from collections.abc import AsyncGenerator
+from collections.abc import AsyncGenerator, Generator
 from datetime import UTC, datetime
 from http import HTTPStatus
 from typing import ClassVar
 
 from scrapy import Request, Spider
+from scrapy.crawler import Crawler
+from scrapy.exceptions import DontCloseSpider
 from scrapy.http.response import Response
 from scrapy.settings import BaseSettings
+from scrapy.signals import spider_idle
 
 from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
 from search_gov_crawler.search_gov_spiders.helpers.freshness_spider import (
@@ -29,6 +32,10 @@ class FreshnessSpider(Spider):
     query: dict
     max_results: int | None
 
+    source_documents: Generator[dict, None, None] | None
+    doc_count: int
+    doc_batch_size: ClassVar[int] = 250
+
     scroll: ClassVar[str] = "24h"
     status_codes_to_ignore: ClassVar[set[int]] = {200}
     status_codes_to_mark_for_deletion: ClassVar[set[int]] = {
@@ -40,6 +47,8 @@ class FreshnessSpider(Spider):
         self.opensearch = SearchGovOpensearch()
         self.query = ensure_valid_query(opensearch=self.opensearch, query=query)
         self.max_results = int(max_results) if max_results else None
+        self.doc_count = 0
+        self.source_documents = None
 
     async def start(self) -> AsyncGenerator:
         """
@@ -52,11 +61,26 @@ class FreshnessSpider(Spider):
             yield  # this is needed to make this an async generator, even though we have nothing to yield in this case
         else:
             self.logger.info("Found %d documents matching query", matching_documents)
-            for doc_count, document in enumerate(
-                get_matching_documents(opensearch=self.opensearch, query=self.query, scroll=self.scroll)
-            ):
-                if self.max_results and doc_count >= self.max_results:
+            self.source_documents = get_matching_documents(
+                opensearch=self.opensearch, query=self.query, scroll=self.scroll
+            )
+            # Yield the first batch requests
+            for request in self._next_batch():
+                yield request
+
+    def _next_batch(self) -> Generator[Request, None, None]:
+        """
+        Private method to get batches of documents from opensearch based on doc_batch_size.
+        """
+
+        if not self.source_documents:
+            return
+
+        try:
+            for doc_in_batch, document in enumerate(self.source_documents, start=1):
+                if self.max_results and self.doc_count >= self.max_results:
                     self.logger.info("Reached max query results of %d. Stopping generation of URLs.", self.max_results)
+                    self.source_documents.close()
                     break
                 try:
                     document_id = document["_id"]
@@ -64,15 +88,38 @@ class FreshnessSpider(Spider):
                     domain_name = document["_source"]["domain_name"]
                 except KeyError as err:
                     msg = f"""
-                    Invalid Document:
-                    _id = {document.get("_id", "missing_id")}
-                    path = {document.get("_source", {}).get("path", "missing_path")}
-                    """
+                        Invalid Document:
+                        _id = {document.get("_id", "missing_id")}
+                        path = {document.get("_source", {}).get("path", "missing_path")}
+                        """
                     raise ValueError(msg) from err
 
                 yield Request(
                     document_path, method="HEAD", meta={"document_id": document_id, "domain_name": domain_name}
                 )
+                self.doc_count += 1
+
+                if doc_in_batch >= self.doc_batch_size:
+                    break
+
+        except Exception:
+            self.logger.exception("Error while getting OpenSearch documents.")
+            self.source_documents.close()
+            raise
+
+    def crawl_next_batch(self):
+        """ """
+        if self.source_documents:
+            self.logger.info("Fetching next batch of %s URLs...", self.doc_batch_size)
+            requests_added = 0
+            for request in self._next_batch():
+                # Manually inject the next batch into the engine
+                self.crawler.engine.crawl(request)
+                requests_added += 1
+
+            if requests_added > 0:
+                # Signal Scrapy NOT to close yet
+                raise DontCloseSpider
 
     def parse(self, response: Response):
         """
@@ -125,6 +172,15 @@ class FreshnessSpider(Spider):
             )
 
         yield item
+
+    @classmethod
+    def from_crawler(cls, crawler: Crawler, *args, **kwargs):
+        """
+        Override existing from_crawler method to set spider_idle signal connection
+        """
+        spider = super().from_crawler(crawler, *args, **kwargs)
+        crawler.signals.connect(spider.crawl_next_batch, signal=spider_idle)
+        return spider
 
     @classmethod
     def update_settings(cls, settings: BaseSettings) -> None:

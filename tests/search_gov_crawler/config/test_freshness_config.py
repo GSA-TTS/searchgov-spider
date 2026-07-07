@@ -52,21 +52,21 @@ def test_freshness_checker_configs(base_kwargs):
 
 
 @pytest.mark.parametrize(
-    "file_name",
+    "filename",
     [
         "freshness-checker-development.json",
         "freshness-checker-staging.json",
         "freshness-checker-production.json",
     ],
 )
-def test_freshness_checker_files_are_valid(file_name):
+def test_freshness_checker_files_are_valid(filename):
     """
     Read in the actual freshness-checker config files and instantiate as a FreshnessCheckerConfigs class.  This will
     run all built-in validations and hopefully let you know if the file is invalid prior to attempting to run it in
     the scheduler. Additionally, we are assuming that there is at least one scheduled checker in each file.
     """
     frehness_checker_file = (
-        Path(__file__).parent.parent.parent.parent / "search_gov_crawler" / "config" / "freshness" / file_name
+        Path(__file__).parent.parent.parent.parent / "search_gov_crawler" / "config" / "freshness" / filename
     )
     fs = FreshnessCheckerConfigs.from_file(file=frehness_checker_file)
     assert len(list(fs)) > 0
