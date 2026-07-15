@@ -137,8 +137,9 @@ def convert_pdf(item: SearchGovSpidersItem) -> dict:
     time_now_str = helpers.current_utc_iso()
     basename, extension, filename = helpers.get_base_extension(item.get("url", None))
 
-    title_value = meta_values.get("Title") or helpers.separate_file_name(filename)
-    main_content = main_content or title_value
+    title = meta_values.get("Title") or helpers.get_title_from_filename(filename)
+    title_separated = meta_values.get("Title") or helpers.separate_filename(filename)
+    main_content = main_content or title_separated
     language = meta_values.get("Lang") or item.get("response_language", None) or helpers.detect_lang(main_content)
     language = language[:2] if language else None
 
@@ -151,14 +152,14 @@ def convert_pdf(item: SearchGovSpidersItem) -> dict:
     content_key = f"content{valid_language}"
     content_value = add_title_and_filename(
         original_value=f"{content.sanitize_text(main_content)} {' '.join(get_pdf_links(pages))}",
-        title=title_value,
+        title=title_separated,
         filename=filename,
     )
 
     description_key = f"description{valid_language}"
     description_value = add_title_and_filename(
         original_value=str(content.sanitize_text(str(description))),
-        title=title_value,
+        title=title_separated,
         filename=filename,
     )
 
@@ -181,7 +182,7 @@ def convert_pdf(item: SearchGovSpidersItem) -> dict:
         "tags": keywords,
         "updated_at": time_now_str,
         "updated": helpers.parse_dates_safely(meta_values.get("CreationDate")),
-        title_key: title_value,
+        title_key: title,
         description_key: description_value,
         content_key: content_value,
         "basename": basename,

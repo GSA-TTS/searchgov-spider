@@ -13,11 +13,8 @@ from search_gov_crawler.search_gov_spiders.items import (
     FreshnessSpiderItem,
     SearchGovSpidersItem,
 )
-from search_gov_crawler.search_gov_spiders.pipelines import (
-    DeDeuplicatorPipeline,
-    FreshnessSpiderPipeline,
-    SearchGovSpidersPipeline,
-)
+from search_gov_crawler.search_gov_spiders.pipelines.freshness_pipeline import FreshnessSpiderPipeline
+from search_gov_crawler.search_gov_spiders.pipelines.pipelines import DeDeuplicatorPipeline, SearchGovSpidersPipeline
 
 
 @pytest.fixture(name="intsall_reactor", autouse=True)
@@ -80,7 +77,7 @@ def test_spiders_pipeline_invalid_output_target(spiders_pipeline, sample_item):
 )
 def test_spiders_pipeline_valid_output(spiders_pipeline, mocker, output_target, process_method, sample_item):
     mock_process_item = mocker.patch(
-        f"search_gov_crawler.search_gov_spiders.pipelines.SearchGovSpidersPipeline.{process_method}",
+        f"search_gov_crawler.search_gov_spiders.pipelines.pipelines.SearchGovSpidersPipeline.{process_method}",
     )
     sample_item["output_target"] = output_target
     spiders_pipeline.process_item(sample_item)
@@ -88,7 +85,7 @@ def test_spiders_pipeline_valid_output(spiders_pipeline, mocker, output_target, 
 
 
 def test_spiders_pipeline_get_opensearch_client(mocker, spiders_pipeline):
-    mock_opensearch = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovOpensearch")
+    mock_opensearch = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.pipelines.SearchGovOpensearch")
     _ = spiders_pipeline.opensearch
     mock_opensearch.assert_called_once()
 
@@ -114,9 +111,11 @@ def test_spiders_pipeline_process_opensearch_item(
     convert_function,
     valid_content_type,
 ):
-    mock_opensearch = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovOpensearch")
-    mock_convert = mocker.patch(f"search_gov_crawler.search_gov_spiders.pipelines.{convert_function}")
-    mock_dap_visits = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.update_dap_visits_to_document")
+    mock_opensearch = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.pipelines.SearchGovOpensearch")
+    mock_convert = mocker.patch(f"search_gov_crawler.search_gov_spiders.pipelines.pipelines.{convert_function}")
+    mock_dap_visits = mocker.patch(
+        "search_gov_crawler.search_gov_spiders.pipelines.pipelines.update_dap_visits_to_document"
+    )
 
     sample_item["response_bytes"] = "you call these bytes??!?!"
     sample_item["response_language"] = "en"
@@ -134,7 +133,7 @@ def test_spiders_pipeline_process_opensearch_item(
 
 
 def test_spiders_pipeline_conversion_failure(caplog, mocker, spiders_pipeline, sample_item):
-    mock_convert = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.convert_html")
+    mock_convert = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.pipelines.convert_html")
     mock_convert.side_effect = [Exception("This is an error!")]
     sample_item["response_bytes"] = "you call these bytes??!?!"
     sample_item["content_type"] = "text/html"
@@ -155,9 +154,11 @@ def test_spiders_pipeline_conversion_failure(caplog, mocker, spiders_pipeline, s
 
 
 def test_spiders_pipeline_dap_error(caplog, mocker, spiders_pipeline, sample_item):
-    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovOpensearch")
-    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.convert_html")
-    mock_dap_visits = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.update_dap_visits_to_document")
+    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.pipelines.SearchGovOpensearch")
+    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.pipelines.convert_html")
+    mock_dap_visits = mocker.patch(
+        "search_gov_crawler.search_gov_spiders.pipelines.pipelines.update_dap_visits_to_document"
+    )
     mock_dap_visits.side_effect = [Exception("This is an error!")]
 
     sample_item["response_bytes"] = "you call these bytes??!?!"
@@ -168,9 +169,9 @@ def test_spiders_pipeline_dap_error(caplog, mocker, spiders_pipeline, sample_ite
 
 
 def test_spiders_pipeline_opensearch_error(mocker, spiders_pipeline, sample_item):
-    mock_opensearch = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovOpensearch")
-    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.convert_html")
-    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.update_dap_visits_to_document")
+    mock_opensearch = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.pipelines.SearchGovOpensearch")
+    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.pipelines.convert_html")
+    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.pipelines.update_dap_visits_to_document")
     mock_opensearch.side_effect = [Exception("This is an error!")]
 
     sample_item["response_bytes"] = "you call these bytes??!?!"
@@ -182,7 +183,7 @@ def test_spiders_pipeline_opensearch_error(mocker, spiders_pipeline, sample_item
 
 
 def test_spiders_pipeline_close_spider(mocker, spiders_pipeline):
-    mock_opensearch = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovOpensearch")
+    mock_opensearch = mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.pipelines.SearchGovOpensearch")
     _ = spiders_pipeline.opensearch
     spiders_pipeline.close_spider()
 
@@ -275,7 +276,7 @@ def test_deduplicator_pipeline(deduplicator_pipeline, items, urls_seen_length):
 
 @pytest.fixture(name="freshness_spider_pipeline")
 def fixture_freshness_spider_pipeline(mocker, sample_crawler) -> FreshnessSpiderPipeline:
-    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovOpensearch")
+    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.freshness_pipeline.SearchGovOpensearch")
     return FreshnessSpiderPipeline.from_crawler(sample_crawler)
 
 

@@ -10,7 +10,7 @@ from scrapy.utils.reactor import install_reactor
 from scrapy.utils.test import get_crawler
 
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
-from search_gov_crawler.search_gov_spiders.pipelines import SearchGovSpidersPipeline
+from search_gov_crawler.search_gov_spiders.pipelines.pipelines import SearchGovSpidersPipeline
 
 
 @pytest.fixture(name="intsall_reactor", autouse=True)
@@ -59,7 +59,7 @@ def fixture_mock_open(mocker):
 def fixture_pipeline_no_api(mocker, sample_crawler) -> SearchGovSpidersPipeline:
     mocker.patch("builtins.open", mocker.mock_open())
     mocker.patch.dict(os.environ, {})
-    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovSpidersPipeline.APP_PID", 1234)
+    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.pipelines.SearchGovSpidersPipeline.APP_PID", 1234)
     return SearchGovSpidersPipeline.from_crawler(sample_crawler)
 
 
@@ -67,7 +67,7 @@ def fixture_pipeline_no_api(mocker, sample_crawler) -> SearchGovSpidersPipeline:
 def fixture_pipeline_with_api(mocker, sample_crawler) -> SearchGovSpidersPipeline:
     """Fixture for pipeline with an API URL set."""
     mocker.patch.dict(os.environ, {"SPIDER_URLS_API": "http://mockapi.com"})
-    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.SearchGovSpidersPipeline.APP_PID", 1234)
+    mocker.patch("search_gov_crawler.search_gov_spiders.pipelines.pipelines.SearchGovSpidersPipeline.APP_PID", 1234)
 
     return SearchGovSpidersPipeline.from_crawler(sample_crawler)
 

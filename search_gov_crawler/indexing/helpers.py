@@ -1,11 +1,12 @@
 import contextlib
 import hashlib
 import logging
-import os
+import posixpath
 import re
 from datetime import UTC, datetime
+from pathlib import Path
 from typing import Any
-from urllib.parse import urlparse
+from urllib.parse import unquote_plus, urlparse
 
 from dateutil import parser
 from dateutil.parser import ParserError
@@ -139,13 +140,14 @@ def summarize_text(text: str, url: str, lang_code: str | None = None):
     return summary, keywords
 
 
-def separate_file_name(file_name):
+def separate_filename(filename: str):
     """
     Separates a file name into words, maintaining capitalization.
     """
-    base_name = file_name.rsplit(".", 1)[0].replace(".", " ")
-    words = re.split(r"(?<!^)(?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z])|[-_+~,%]|(?<=\D)(?=\d)|(?<=\d)(?=\D)", base_name)
-    return " ".join(words)
+    unquoted_filename = unquote_plus(filename)
+    basename = unquoted_filename.rsplit(".", 1)[0].replace(".", " ")
+    words = re.split(r"(?<!^)(?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z])|[-_+~,%]|(?<=\D)(?=\d)|(?<=\d)(?=\D)", basename)
+    return " ".join([str(word).strip() for word in words if word])
 
 
 def ensure_http_prefix(url: str):
@@ -162,10 +164,8 @@ def get_url_path(url: str) -> str:
 def get_base_extension(url: str) -> tuple[str, str | None, str]:
     """Extracts the basename and file extension from a URL."""
     url = ensure_http_prefix(url)
-    basename, extension = os.path.splitext(os.path.basename(urlparse(url).path))  # noqa: PTH119, PTH122
-    extension = extension.removeprefix(".")
-    filename = f"{basename}.{extension}" if extension else basename
-    return basename, extension, filename
+    url_basename = Path(posixpath.basename(urlparse(url).path).removesuffix("."))
+    return url_basename.stem, url_basename.suffix.removeprefix("."), url_basename.name
 
 
 def current_utc_iso() -> str:
@@ -184,6 +184,11 @@ def get_domain_name(url: str) -> str:
     url = ensure_http_prefix(url)
     parsed = urlparse(url)
     return parsed.netloc
+
+
+def get_title_from_filename(filename: str) -> str:
+    """Display filename for use as document title, unquoting URL encoding and removing the suffix"""
+    return Path(unquote_plus(filename)).stem
 
 
 def update_dap_visits_to_document(document: dict, spider: SearchGovDomainSpider) -> dict:
