@@ -162,20 +162,44 @@ def test_spider_middleware_allow_query_string_request(test_crawler, dont_filter,
     assert getattr(operator, none_test)(mw.get_processed_request(request=request, response=None), None)
 
 
-@pytest.mark.parametrize(
-    ("url_in", "url_out"),
-    [
-        ("https://www.example.com/test", "https://www.example.com/test"),
-        ("http://www.example.com/test;jsessionid=12345", "http://www.example.com/test"),
-        ("http://www.example.com/test;JSESSIONID=12345", "http://www.example.com/test"),
-        (
-            "https://www.example.com/test/1/more;jsessionid=67890",
-            "https://www.example.com/test/1/more",
-        ),
-        ("http://www.example.com/test;jsessionid=12345?query=string", "http://www.example.com/test?query=string"),
-    ],
-)
+JSESSIONID_REMOVAL_TEST_CASES = [
+    ("https://www.example.com/test", "https://www.example.com/test"),
+    ("http://www.example.com/test;jsessionid=12345", "http://www.example.com/test"),
+    ("http://www.example.com/test;JSESSIONID=12345", "http://www.example.com/test"),
+    (
+        "https://www.example.com/test/1/more;jsessionid=67890",
+        "https://www.example.com/test/1/more",
+    ),
+    ("http://www.example.com/test;jsessionid=12345?query=string", "http://www.example.com/test?query=string"),
+]
+
+
+@pytest.mark.parametrize(("url_in", "url_out"), JSESSIONID_REMOVAL_TEST_CASES)
 def test_spider_middleware_jsessionid_removal_request(test_crawler, url_in, url_out):
+    test_crawler.spider = Spider.from_crawler(
+        crawler=test_crawler,
+        name="test",
+        allow_query_string=True,
+        allowed_domains="example.com",
+    )
+    mw = SearchGovSpidersSpiderMiddleware.from_crawler(test_crawler)
+    request = Request(url_in)
+    processed_request = mw.get_processed_request(request=request, response=None)
+    assert processed_request.url == url_out
+
+
+URL_PORT_REMOVAL_TEST_CASES = [
+    ("https://www.example.com:8080/test", "https://www.example.com/test"),
+    ("https://www.example.com:8080/test/test/test.html", "https://www.example.com/test/test/test.html"),
+    ("https://www.example.com:8080/test/test/test.pdf", "https://www.example.com/test/test/test.pdf"),
+    ("https://www.example.com:8080/", "https://www.example.com/"),
+    ("https://www.example.com:8080", "https://www.example.com"),
+    ("https://www.example.com:443", "https://www.example.com"),
+]
+
+
+@pytest.mark.parametrize(("url_in", "url_out"), URL_PORT_REMOVAL_TEST_CASES)
+def test_spider_middleware_port_removal_request(test_crawler, url_in, url_out):
     test_crawler.spider = Spider.from_crawler(
         crawler=test_crawler,
         name="test",
@@ -210,20 +234,23 @@ def test_spider_middleware_allow_query_string_item(test_crawler, dont_filter, al
     assert getattr(operator, none_test)(mw.get_processed_item(item, response), None)
 
 
-@pytest.mark.parametrize(
-    ("url_in", "url_out"),
-    [
-        ("https://www.example.com/test", "https://www.example.com/test"),
-        ("http://www.example.com/test;jsessionid=12345", "http://www.example.com/test"),
-        ("http://www.example.com/test;JSESSIONID=12345", "http://www.example.com/test"),
-        (
-            "https://www.example.com/test/1/more;jsessionid=67890",
-            "https://www.example.com/test/1/more",
-        ),
-        ("http://www.example.com/test;jsessionid=12345?query=string", "http://www.example.com/test?query=string"),
-    ],
-)
+@pytest.mark.parametrize(("url_in", "url_out"), JSESSIONID_REMOVAL_TEST_CASES)
 def test_spider_middleware_jsessionid_removal_item(test_crawler, url_in, url_out):
+    test_crawler.spider = Spider.from_crawler(
+        crawler=test_crawler,
+        name="test",
+        allow_query_string=True,
+        allowed_domains="example.com",
+    )
+    mw = SearchGovSpidersSpiderMiddleware.from_crawler(test_crawler)
+    item = SearchGovSpidersItem(url=url_in)
+    response = Response(url=url_in, status=200, request=Request(url_in))
+
+    assert mw.get_processed_item(item, response).get("url") == url_out
+
+
+@pytest.mark.parametrize(("url_in", "url_out"), URL_PORT_REMOVAL_TEST_CASES)
+def test_spider_middleware_port_removal_item(test_crawler, url_in, url_out):
     test_crawler.spider = Spider.from_crawler(
         crawler=test_crawler,
         name="test",
