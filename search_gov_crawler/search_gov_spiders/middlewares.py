@@ -65,8 +65,7 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
 
     def _remove_port_from_url(self, url: ParseResult) -> str:
         """Private helper function to remove port from url"""
-        netloc_without_port = url.netloc.split(":")[0]
-        url_without_port = url._replace(netloc=netloc_without_port)
+        url_without_port = url._replace(netloc=url.hostname)
         return url_without_port.geturl()
 
     def process_spider_input(self, response: Response) -> None:  # noqa: ARG002
