@@ -8,7 +8,7 @@ import re
 import warnings
 from collections.abc import Iterator
 from typing import Any, Self
-from urllib.parse import urlparse
+from urllib.parse import ParseResult, urlparse
 
 from scrapy import signals
 from scrapy.crawler import Crawler
@@ -55,14 +55,18 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
 
         return False
 
-    def _remove_url_jsession_id(self, url: str | None) -> str | None:
+    def _remove_url_jsession_id(self, url: ParseResult) -> str:
         """Private helper function to filter urls by existence of JSESSIONID (if applicable)"""
 
-        parse_result = urlparse(url)
-        if "jsessionid" in parse_result.params.lower():
-            url = parse_result._replace(params="").geturl()
+        if "jsessionid" in url.params.lower():
+            url = url._replace(params="")
 
-        return url
+        return url.geturl()
+
+    def _remove_port_from_url(self, url: ParseResult) -> str:
+        """Private helper function to remove port from url"""
+        url_without_port = url._replace(netloc=url.hostname)
+        return url_without_port.geturl()
 
     def process_spider_input(self, response: Response) -> None:  # noqa: ARG002
         """
@@ -117,8 +121,12 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
         if self._filter_url_query_string(url=request.url):
             return None
 
-        if "jsessionid" in request.url.lower():
-            request = request.replace(url=self._remove_url_jsession_id(url=request.url))
+        parsed_url = urlparse(request.url)
+        if "jsessionid" in parsed_url.geturl().lower():
+            request = request.replace(url=self._remove_url_jsession_id(url=parsed_url))
+
+        if parsed_url.port:
+            request = request.replace(url=self._remove_port_from_url(url=parsed_url))
 
         return request
 
@@ -148,8 +156,12 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
         if self._filter_url_query_string(url=item_url):
             return None
 
-        if "jsessionid" in item_url.lower():
-            item["url"] = self._remove_url_jsession_id(url=item_url)
+        parsed_url = urlparse(item["url"])
+        if "jsessionid" in parsed_url.geturl().lower():
+            item["url"] = self._remove_url_jsession_id(url=parsed_url)
+
+        if parsed_url.port:
+            item["url"] = self._remove_port_from_url(url=parsed_url)
 
         return item
 
