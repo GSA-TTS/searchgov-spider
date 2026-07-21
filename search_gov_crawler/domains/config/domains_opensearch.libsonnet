@@ -6133,7 +6133,7 @@ local output_target = 'opensearch';
   {
     name: 'www.itl.nist.gov (nist-search)',
     config: DomainConfig(allowed_domains='www.itl.nist.gov',
-                         starting_urls='https://www.itl.nist.gov/',
+                         starting_urls='https://www.itl.nist.gov/div898/handbook/toolaids.htm,https://www.itl.nist.gov/div898/software/dataplot/',
                          schedule='39 17 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -14358,6 +14358,14 @@ local output_target = 'opensearch';
     config: DomainConfig(allowed_domains='www.mentalhealth.va.gov',
                          starting_urls='https://www.mentalhealth.va.gov/',
                          schedule='32 23 * * SUN',
+                         output_target=output_target,
+                         depth_limit=8),
+  },
+  {
+    name: "Office on Women's Health",
+    config: DomainConfig(allowed_domains='womenshealth.gov',
+                         starting_urls='https://womenshealth.gov/',
+                         schedule='09 05 * * SUN',
                          output_target=output_target,
                          depth_limit=8),
   },
