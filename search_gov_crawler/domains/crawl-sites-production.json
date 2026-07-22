@@ -9992,7 +9992,7 @@
       "output_target": "opensearch",
       "schedule": "39 17 * * THU",
       "sitemap_urls": null,
-      "starting_urls": "https://www.itl.nist.gov/"
+      "starting_urls": "https://www.itl.nist.gov/div898/handbook/toolaids.htm,https://www.itl.nist.gov/div898/software/dataplot/"
    },
    {
       "allow_query_string": false,
@@ -23321,5 +23321,18 @@
       "schedule": "32 23 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://www.mentalhealth.va.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "womenshealth.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Office on Women's Health",
+      "output_target": "opensearch",
+      "schedule": "09 05 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://womenshealth.gov/"
    }
 ]
