@@ -2,7 +2,7 @@
     {
         "name": "documents-eight-days-old",
         "schedule": "0 22 * * *",
-        "query": { "query": { "range": { "updated_at": { "gte": "now-8d/d", "lt": "now-7d/d" }}}},
+        "query": {"query": { "range": { "updated_at": { "gte": "now-8d/d", "lt": "now-7d/d" }}}},
         "max_results": null
     }
 ]
