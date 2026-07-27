@@ -151,8 +151,7 @@ remove_venv
 purge_pip_cache
 
 # Stop freshness checker
-# SRCH-6633 disabled so we can manually run and delete documents
-# stop_freshness_checker
+stop_freshness_checker
 
 # Stop scrapy scheduler if running
 stop_scrapy_scheduler
