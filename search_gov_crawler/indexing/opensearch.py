@@ -1,10 +1,11 @@
 import logging
-import os
+from logging import Logger, LoggerAdapter
 from typing import Any
 
 from opensearchpy import OpenSearch, helpers
 from opensearchpy.exceptions import RequestError
-from scrapy import Spider
+
+from search_gov_crawler.config.settings import SearchgovSpiderSettings
 
 # limit excess INFO messages from the OpenSearch transport
 # opensearch-py exposes transport internals under opensearchpy.transport
@@ -17,6 +18,8 @@ class SearchGovOpensearch:
 
     def __init__(
         self,
+        settings: SearchgovSpiderSettings,
+        action: str = "index",
         batch_size: int = 50,
         opensearch_host: str | None = None,
         opensearch_index: str | None = None,
@@ -28,42 +31,40 @@ class SearchGovOpensearch:
         """Initialize batch and Opensearch client parameters.
 
         Args:
+            settings: An instance of SearchgovSpiderSettings
+            action: the type of bulk action to take in opensearch
             batch_size: number of docs to buffer before bulk upload
-            opensearch_host: Opensearch host URL with port (e.g. "https://host1:9200")
-            opensearch_index: Opensearch index name
-            opensearch_user: Basic auth username
-            opensearch_password: Basic auth password
             timeout: client request timeout in seconds
             max_retries: how many times to retry on failure
         """
+        self.settings = settings
+        self._action = action
         self._batch_size = batch_size
         self._current_batch: list[dict[str, Any]] = []
-        self._env_opensearch_host = opensearch_host or os.getenv("OPENSEARCH_SEARCH_HOST", "http://localhost:9200")
-        self._env_opensearch_index = opensearch_index or os.getenv(
-            "OPENSEARCH_SEARCH_INDEX",
-            "development-i14y-documents-searchgov",
-        )
-        self._env_opensearch_user = opensearch_user or os.getenv("OPENSEARCH_SEARCH_USER", "")
-        self._env_opensearch_password = opensearch_password or os.getenv("OPENSEARCH_SEARCH_PASSWORD", "")
+        self._opensearch_host = opensearch_host or self.settings.opensearch_search_host
+        self._opensearch_index = opensearch_index or self.settings.opensearch_search_index
+        self._opensearch_user = opensearch_user or self.settings.opensearch_search_user
+        self._opensearch_password = opensearch_password or self.settings.opensearch_search_password
         self._timeout = timeout
         self._max_retries = max_retries
+        self._current_batch: list[dict[str, Any]] = []
         self._opensearch_client: OpenSearch | None = None
 
     @property
     def index_name(self) -> str:
         """Opensearch index name."""
-        return self._env_opensearch_index
+        return self._opensearch_index
 
     @property
     def client(self) -> OpenSearch:
         """Lazily initialize and return the Opensearch client."""
         if self._opensearch_client is None:
             self._opensearch_client = OpenSearch(
-                hosts=self._env_opensearch_host,
-                http_auth=(self._env_opensearch_user, self._env_opensearch_password)
-                if self._env_opensearch_user or self._env_opensearch_password
+                hosts=self._opensearch_host,
+                http_auth=(self._opensearch_user, self._opensearch_password)
+                if self._opensearch_user or self._opensearch_password
                 else None,
-                use_ssl=self._env_opensearch_host.startswith("https://"),
+                use_ssl=self._opensearch_host.startswith("https://"),
                 verify_certs=False,
                 ssl_show_warn=False,
                 timeout=self._timeout,
@@ -72,33 +73,33 @@ class SearchGovOpensearch:
             )
         return self._opensearch_client
 
-    def add_to_batch(self, doc: dict[str, Any] | None, spider: Spider) -> None:
+    def add_to_batch(self, doc: dict[str, Any] | None, logger: Logger | LoggerAdapter = log) -> None:
         """Add a document to the Opensearch batch.
 
         Args:
             doc: dict The document to be indexed, which must include an "id" field for the document ID in Opensearch
-            spider:  The scrapy spider being used, for logging purposes
+            logger:  The logger to use
         """
         if not doc:
             return
 
         self._current_batch.append(doc)
         if len(self._current_batch) >= self._batch_size:
-            self.batch_upload(spider)
+            self.batch_upload(logger=logger)
 
-    def _create_actions(self, docs: list[dict[str, Any]], spider: Spider) -> list[dict[str, Any]]:
+    def _create_actions(self, docs: list[dict[str, Any]], logger: Logger | LoggerAdapter) -> list[dict[str, Any]]:
         """Build bulk actions, popping out any explicit _id fields."""
         actions: list[dict[str, Any]] = []
         for doc in docs:
             if doc["id"]:
-                action = {"_index": self._env_opensearch_index, "_id": doc["id"], "_source": doc}
+                action = {"_index": self.index_name, "_id": doc["id"], "_source": doc}
             else:
-                spider.logger.error("Missing required 'id' property in document: %s", doc)
+                logger.error("Missing required 'id' property in document: %s", doc)
                 continue
             actions.append(action)
         return actions
 
-    def batch_upload(self, spider: Spider) -> None:
+    def batch_upload(self, logger: Logger | LoggerAdapter) -> None:
         """Send batch of documents to Opensearch via bulk API."""
 
         if not self._current_batch:
@@ -107,7 +108,7 @@ class SearchGovOpensearch:
         batch = self._current_batch
         self._current_batch = []
 
-        actions = self._create_actions(docs=batch, spider=spider)
+        actions = self._create_actions(docs=batch, logger=logger)
         failure_count = 0
         failures: list[Any] = []
 
@@ -126,12 +127,12 @@ class SearchGovOpensearch:
                     failures.append(info)
 
             if not failure_count:
-                spider.logger.info("Loaded %s records to Opensearch!", len(batch))
+                logger.info("Loaded %s records to Opensearch!", len(batch))
             else:
-                spider.logger.error("Failed to index %d documents; errors: %r", failure_count, failures)
+                logger.error("Failed to index %d documents; errors: %r", failure_count, failures)
 
         except Exception:
-            spider.logger.exception("Bulk upload to Opensearch failed")
+            logger.exception("Bulk upload to Opensearch failed")
 
     def index_exists(self) -> bool:
         """Wrapper around opensearch-py client check"""

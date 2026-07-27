@@ -88,7 +88,7 @@ class SearchGovSpidersPipeline:
         """Lazily initialize the OpenSearch client when first accessed."""
 
         if not self._opensearch:
-            self._opensearch = SearchGovOpensearch()
+            self._opensearch = SearchGovOpensearch(logger=self.spider_logger)
         return self._opensearch
 
     def _process_opensearch_item(self, item: SearchGovSpidersItem) -> None:

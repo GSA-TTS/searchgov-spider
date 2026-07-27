@@ -6,6 +6,7 @@ from scrapy.settings import BaseSettings
 from scrapy.spiders.crawl import CrawlSpider, Rule
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
+from search_gov_crawler.config.settings import SearchgovSpiderSettings
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 from search_gov_crawler.search_gov_spiders.spiders import SpiderStartedBy
 
@@ -112,6 +113,7 @@ class DomainSpider(CrawlSpider):
             self.start_urls,
             self.is_sitemap_crawl,
         )
+        self.settings = SearchgovSpiderSettings()
 
     @property
     def is_sitemap_crawl(self) -> bool:
