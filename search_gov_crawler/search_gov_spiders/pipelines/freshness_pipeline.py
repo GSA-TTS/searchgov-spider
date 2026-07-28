@@ -17,8 +17,13 @@ class FreshnessSpiderPipeline:
 
     def __init__(self, *, crawler: Crawler) -> None:
         self.crawler = crawler
-        self.opensearch = SearchGovOpensearch(opensearch_index="spider-freshness")
         self.spider_logger = crawler.spider.logger
+        self.spider_settings = crawler.spider.settings
+        self.opensearch = SearchGovOpensearch(
+            settings=self.spider_settings,
+            opensearch_index=self.crawler.spider.settings.opensearch_freshness_index,
+            logger=self.spider_logger,
+        )
 
     def open_spider(self):
         """Create the freshness index if it doesn't exist"""
@@ -30,7 +35,7 @@ class FreshnessSpiderPipeline:
         """Log the URL and status code from the freshness spider item."""
         self.spider_logger.info("Stale URL found, Result: %s.  URL: %s", item.result, item.path)
         try:
-            self.opensearch.add_to_batch(doc=item.to_dict(), spider=self.crawler.spider)
+            self.opensearch.add_to_batch(doc=item.to_dict())
         except Exception as exc:
             msg = "Failed to add item to Opensearch batch"
             self.spider_logger.exception(msg)
@@ -40,7 +45,7 @@ class FreshnessSpiderPipeline:
         """Finalize operations by uploading any remaining items to Opensearch."""
 
         try:
-            self.opensearch.batch_upload(spider=self.crawler.spider)
+            self.opensearch.batch_upload()
         except Exception:
             msg = "Failed to upload Opensearch batch on spider close"
             self.spider_logger.exception(msg)

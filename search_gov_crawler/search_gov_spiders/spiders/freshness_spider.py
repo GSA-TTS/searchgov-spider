@@ -10,7 +10,7 @@ from scrapy.http.response import Response
 from scrapy.settings import BaseSettings
 from scrapy.signals import spider_idle
 
-from search_gov_crawler.config.settings import SearchgovSpiderSettings
+from search_gov_crawler.config.settings import SearchgovSettings
 from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
 from search_gov_crawler.search_gov_spiders.helpers.freshness_spider import (
     count_matching_documents,
@@ -45,7 +45,7 @@ class FreshnessSpider(Spider):
 
     def __init__(self, *args, query: str, max_results: str | None = None, **kwargs):
         super().__init__(*args, **kwargs)
-        self.settings = SearchgovSpiderSettings()
+        self.searchgov_settings = SearchgovSettings()
         self.opensearch = SearchGovOpensearch(settings=self.settings, logger=self.logger)
         self.query = ensure_valid_query(opensearch=self.opensearch, query=query)
         self.max_results = int(max_results) if max_results else None

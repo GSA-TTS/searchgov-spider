@@ -3,14 +3,15 @@ from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class SearchgovSpiderSettings(BaseSettings):
+class SearchgovSettings(BaseSettings):
     """Global Settings Class That reads from environment or .env file"""
 
     scrapy_log_level: str = "INFO"
     opensearch_search_host: str = "http://localhost:9200"
-    opensearch_search_index: str = "development-i14y-documents-searchgov"
     opensearch_search_user: str = ""
     opensearch_search_password: str = ""
+    opensearch_search_index: str = "development-i14y-documents-searchgov"
+    opensearch_freshness_index: str = "spider-freshness"
 
     model_config = SettingsConfigDict(
         case_sensitive=True,

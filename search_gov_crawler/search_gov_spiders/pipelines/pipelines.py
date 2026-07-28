@@ -88,7 +88,7 @@ class SearchGovSpidersPipeline:
         """Lazily initialize the OpenSearch client when first accessed."""
 
         if not self._opensearch:
-            self._opensearch = SearchGovOpensearch(logger=self.spider_logger)
+            self._opensearch = SearchGovOpensearch(settings=self.crawler.spider.settings, logger=self.spider_logger)
         return self._opensearch
 
     def _process_opensearch_item(self, item: SearchGovSpidersItem) -> None:
@@ -121,10 +121,10 @@ class SearchGovSpidersPipeline:
             # still continue to include the doc without DAP data
 
         try:
-            self.opensearch.add_to_batch(doc=doc, spider=self.crawler.spider)
+            self.opensearch.add_to_batch(doc=doc)
         except Exception as exc:
             msg = "Failed to add item to Opensearch batch"
-            self.crawler.spider.logger.exception(msg)
+            self.spider_logger.exception(msg)
             raise DropItem(msg) from exc
 
     def _process_api_item(self, url: str) -> None:
@@ -170,10 +170,10 @@ class SearchGovSpidersPipeline:
         try:
             response = requests.post(self.api_url, json={"urls": self.urls_batch}, timeout=60)
             response.raise_for_status()
-            self.crawler.spider.logger.info("Successfully posted %s URLs to %s", len(self.urls_batch), {self.api_url})
+            self.spider_logger.info("Successfully posted %s URLs to %s", len(self.urls_batch), {self.api_url})
         except requests.RequestException:
             msg = f"Failed to send URLs to {self.api_url}"
-            self.crawler.spider.logger.exception(msg)
+            self.spider_logger.exception(msg)
             raise DropItem(msg) from None
         finally:
             self.urls_batch.clear()
@@ -182,10 +182,10 @@ class SearchGovSpidersPipeline:
         """Finalize operations: close files or send remaining batched URLs."""
         try:
             if self._opensearch:
-                self.opensearch.batch_upload(spider=self.crawler.spider)
+                self.opensearch.batch_upload()
         except Exception:
             msg = "Failed to upload Opensearch batch"
-            self.crawler.spider.logger.exception(msg)
+            self.spider_logger.exception(msg)
 
         if self.urls_batch:
             self._send_post_request()

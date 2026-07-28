@@ -5,7 +5,7 @@ from typing import Any
 from opensearchpy import OpenSearch, helpers
 from opensearchpy.exceptions import RequestError
 
-from search_gov_crawler.config.settings import SearchgovSpiderSettings
+from search_gov_crawler.config.settings import SearchgovSettings
 
 # limit excess INFO messages from the OpenSearch transport
 # opensearch-py exposes transport internals under opensearchpy.transport
@@ -18,8 +18,7 @@ class SearchGovOpensearch:
 
     def __init__(
         self,
-        settings: SearchgovSpiderSettings,
-        action: str = "index",
+        searchgov_settings: SearchgovSettings,
         batch_size: int = 50,
         opensearch_host: str | None = None,
         opensearch_index: str | None = None,
@@ -27,6 +26,7 @@ class SearchGovOpensearch:
         opensearch_password: str | None = None,
         timeout: int = 30,
         max_retries: int = 3,
+        logger: Logger | LoggerAdapter = log,
     ) -> None:
         """Initialize batch and Opensearch client parameters.
 
@@ -37,18 +37,17 @@ class SearchGovOpensearch:
             timeout: client request timeout in seconds
             max_retries: how many times to retry on failure
         """
-        self.settings = settings
-        self._action = action
+        self.searchgov_settings = searchgov_settings
         self._batch_size = batch_size
-        self._current_batch: list[dict[str, Any]] = []
-        self._opensearch_host = opensearch_host or self.settings.opensearch_search_host
-        self._opensearch_index = opensearch_index or self.settings.opensearch_search_index
-        self._opensearch_user = opensearch_user or self.settings.opensearch_search_user
-        self._opensearch_password = opensearch_password or self.settings.opensearch_search_password
+        self._current_batch: list[tuple[str, str, dict]] = []
+        self._opensearch_host = opensearch_host or self.searchgov_settings.opensearch_search_host
+        self._opensearch_index = opensearch_index or self.searchgov_settings.opensearch_search_index
+        self._opensearch_user = opensearch_user or self.searchgov_settings.opensearch_search_user
+        self._opensearch_password = opensearch_password or self.searchgov_settings.opensearch_search_password
         self._timeout = timeout
         self._max_retries = max_retries
-        self._current_batch: list[dict[str, Any]] = []
         self._opensearch_client: OpenSearch | None = None
+        self.logger = logger
 
     @property
     def index_name(self) -> str:
@@ -73,33 +72,32 @@ class SearchGovOpensearch:
             )
         return self._opensearch_client
 
-    def add_to_batch(self, doc: dict[str, Any] | None, logger: Logger | LoggerAdapter = log) -> None:
+    def add_to_batch(self, doc: dict[str, Any] | None, operation: str = "index", index_name: str | None = None) -> None:
         """Add a document to the Opensearch batch.
 
         Args:
             doc: dict The document to be indexed, which must include an "id" field for the document ID in Opensearch
-            logger:  The logger to use
         """
         if not doc:
             return
 
-        self._current_batch.append(doc)
+        self._current_batch.append((operation, index_name or self.index_name, doc))
         if len(self._current_batch) >= self._batch_size:
-            self.batch_upload(logger=logger)
+            self.batch_upload()
 
-    def _create_actions(self, docs: list[dict[str, Any]], logger: Logger | LoggerAdapter) -> list[dict[str, Any]]:
+    def _create_actions(self, batch: list[tuple[str, str, dict]]) -> list[dict[str, Any]]:
         """Build bulk actions, popping out any explicit _id fields."""
         actions: list[dict[str, Any]] = []
-        for doc in docs:
+        for operation, index_name, doc in batch:
             if doc["id"]:
-                action = {"_index": self.index_name, "_id": doc["id"], "_source": doc}
+                action = {"_op_type": operation, "_index": index_name, "_id": doc["id"], "_source": doc}
             else:
-                logger.error("Missing required 'id' property in document: %s", doc)
+                self.logger.error("Missing required 'id' property in document: %s", doc)
                 continue
             actions.append(action)
         return actions
 
-    def batch_upload(self, logger: Logger | LoggerAdapter) -> None:
+    def batch_upload(self) -> None:
         """Send batch of documents to Opensearch via bulk API."""
 
         if not self._current_batch:
@@ -108,7 +106,7 @@ class SearchGovOpensearch:
         batch = self._current_batch
         self._current_batch = []
 
-        actions = self._create_actions(docs=batch, logger=logger)
+        actions = self._create_actions(batch)
         failure_count = 0
         failures: list[Any] = []
 
@@ -127,12 +125,12 @@ class SearchGovOpensearch:
                     failures.append(info)
 
             if not failure_count:
-                logger.info("Loaded %s records to Opensearch!", len(batch))
+                self.logger.info("Loaded %s records to Opensearch!", len(batch))
             else:
-                logger.error("Failed to index %d documents; errors: %r", failure_count, failures)
+                self.logger.error("Failed to index %d documents; errors: %r", failure_count, failures)
 
         except Exception:
-            logger.exception("Bulk upload to Opensearch failed")
+            self.logger.exception("Bulk upload to Opensearch failed")
 
     def index_exists(self) -> bool:
         """Wrapper around opensearch-py client check"""
