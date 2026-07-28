@@ -121,7 +121,9 @@
       "allowed_domains": "www.ncei.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": [
-         "/pub/"
+         "/pub/",
+         "/thredds/",
+         "/thredds-ocean/"
       ],
       "depth_limit": 8,
       "handle_javascript": false,
@@ -23334,5 +23336,96 @@
       "schedule": "09 05 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://womenshealth.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.odni.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Office of DNI",
+      "output_target": "opensearch",
+      "schedule": "20 08 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.odni.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "discover.dtic.mil",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Defense Technical Information Center",
+      "output_target": "opensearch",
+      "schedule": "11 11 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://discover.dtic.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.ppa.mil",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Personal Property Activity",
+      "output_target": "opensearch",
+      "schedule": "31 02 * * MON",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.ppa.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.veterantraining.va.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "VA Veteran Training",
+      "output_target": "opensearch",
+      "schedule": "55 08 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.veterantraining.va.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.cpest3.army.mil",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Army CPEST3",
+      "output_target": "opensearch",
+      "schedule": "45 19 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.cpest3.army.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.waed.uscourts.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "WAED US Courts",
+      "output_target": "opensearch",
+      "schedule": "29 21 * * MON",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.waed.uscourts.gov"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.caed.uscourts.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "CAED US Courts",
+      "output_target": "opensearch",
+      "schedule": "12 12 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.caed.uscourts.gov"
    }
 ]

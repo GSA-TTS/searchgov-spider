@@ -1,14 +1,14 @@
 # Production Schedule
- * [Sunday (252)](#sunday-252)
- * [Monday (252)](#monday-252)
+ * [Sunday (254)](#sunday-254)
+ * [Monday (254)](#monday-254)
  * [Tuesday (265)](#tuesday-265)
  * [Wednesday (258)](#wednesday-258)
  * [Thursday (257)](#thursday-257)
- * [Friday (252)](#friday-252)
+ * [Friday (255)](#friday-255)
  * [Saturday (255)](#saturday-255)
 
 
-## Sunday (252)
+## Sunday (254)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Youngstown Air Reserve Station (youngstown)|00:00|www.youngstown.afrc.af.mil|N|8||
@@ -153,6 +153,7 @@
 |www.census.gov (usagov-replacement)|11:00|www.census.gov|N|3||
 |tricare_guantanamo|11:00|guantanamo.tricare.mil|N|8||
 |27th Special Operations Medical Group - Cannon Air Force Base|11:00|cannon.tricare.mil|N|8||
+|Defense Technical Information Center|11:11|discover.dtic.mil|N|8||
 |doge.gov (usagov-replacement)|11:15|www.doge.gov|N|3||
 |Navy BRAC PMO (navy_bracpmo)|11:23|www.bracpmo.navy.mil|N|3||
 |US Courts|11:32|www.uscourts.gov|N|8||
@@ -235,6 +236,7 @@
 |Air Force History and Museums (afhm)|19:31|www.afhistoryandmuseums.af.mil|N|8||
 |US Embassy Sudan (dos_emb_afr_sudan)|19:32|sd.usembassy.gov|N|8||
 |Solar Decathlon|19:43|www.solardecathlon.gov|N|8||
+|Army CPEST3|19:45|www.cpest3.army.mil|N|8||
 |New depth 8 (cg.usembassy.gov/fr)|19:46|cg.usembassy.gov/fr|N|8||
 |Open Defense (opendgov)|19:49|open.defense.gov|N|3||
 |FHWA Environment|19:58|www.environment.fhwa.dot.gov|N|8||
@@ -265,7 +267,7 @@
 |1st Infantry Division (army_11d)|23:50|www.1id.army.mil|N|3||
 
 
-## Monday (252)
+## Monday (254)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |cgaux.org (cgaux)|00:00|www.cgaux.org|N|8||
@@ -283,6 +285,7 @@
 |US Embassy Benin|02:07|bj.usembassy.gov|N|8||
 |US Embassy Somalia|02:07|so.usembassy.gov|N|8||
 |US Embassy Nepal|02:12|np.usembassy.gov|N|8||
+|Personal Property Activity|02:31|www.ppa.mil|N|8||
 |NREL|02:35|www.nrel.gov|N|8||
 |www.dodcui.mil (dod_cui)|02:41|www.dodcui.mil|N|8||
 |Spangdahlem Air Base (spangdahlem)|02:46|www.spangdahlem.af.mil|N|8||
@@ -507,6 +510,7 @@
 |Mountain Home Air Force Base (mountainhome)|21:14|www.mountainhome.af.mil|N|8||
 |US Embassy Moldova (dos_emb_eur_moldova)|21:17|md.usembassy.gov|N|8||
 |New depth 8 (ht.usembassy.gov/fr)|21:28|ht.usembassy.gov/fr|N|8||
+|WAED US Courts|21:29|www.waed.uscourts.gov|N|8||
 |FSA Partner Connect|21:55|fsapartners.ed.gov|N|8||
 |Savannah River National Lab|21:55|www.srnl.gov|N|8||
 |Moody Air Force Base (moody)|22:09|www.moody.af.mil|N|8||
@@ -1276,7 +1280,7 @@
 |www.ferc.gov (usagov-replacement)|18:32|www.ferc.gov|N|3||
 |New depth 8 (th.usembassy.gov/th)|18:38|th.usembassy.gov/th|N|8||
 |NOAA (noaa)|19:01|www.noaa.gov|N|8||
-|National Centers for Environmental Information (ncei)|19:01|www.ncei.noaa.gov|N|8|/pub/|
+|National Centers for Environmental Information (ncei)|19:01|www.ncei.noaa.gov|N|8|/pub/,/thredds/,/thredds-ocean/|
 |NOAA Fisheries (fisheries)|19:02|www.fisheries.noaa.gov|N|3||
 |NOAA Water (water)|19:02|water.noaa.gov|N|3||
 |Weather Prediction Center (wpc)|19:03|www.wpc.ncep.noaa.gov|N|3||
@@ -1317,7 +1321,7 @@
 |WRAIR (wrair)|23:53|wrair.health.mil|N|3||
 
 
-## Friday (252)
+## Friday (255)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |944th Fighter Wing (944fw)|00:00|www.944fw.afrc.af.mil|N|8||
@@ -1394,10 +1398,12 @@
 |Maritime Administration|08:11|www.maritime.dot.gov|N|8||
 |crb|08:15|crb.gov|N|3||
 |144th Fighter Wing, California Air National Guard (afpw_144fw)|08:16|www.144fw.ang.af.mil|N|8||
+|Office of DNI|08:20|www.odni.gov|N|8||
 |US Embassy Juba (dos_emb_afr_juba)|08:28|ss.usembassy.gov|N|3||
 |US Embassy Hungary|08:33|hu.usembassy.gov|N|8||
 |DoD JTF GTMO (dod_jtfgtmo)|08:34|www.jtfgtmo.southcom.mil|N|3||
 |NOAA HMS Permits (nmfs.noaa.gov)|08:38|hmspermits.noaa.gov|N|3||
+|VA Veteran Training|08:55|www.veterantraining.va.gov|N|8||
 |145th Airlift Wing, North Carolina ANG (afpw_145aw)|08:58|www.145aw.ang.af.mil|N|8||
 |tricare_ramstein|09:00|ramstein.tricare.mil|N|8||
 |NIH Clinical Center (CC) (www.cc.nih.gov)|09:14|www.cc.nih.gov|N|8||
@@ -1432,6 +1438,7 @@
 |Manual on Uniform Traffic Control Devices|12:08|mutcd.fhwa.dot.gov|N|8||
 |US Embassy Australia|12:09|au.usembassy.gov|N|8||
 |USACE Omaha District (usace_all)|12:10|www.nwo.usace.army.mil|N|3||
+|CAED US Courts|12:12|www.caed.uscourts.gov|N|8||
 |www.saj.usace.army.mil (saj)|12:25|www.saj.usace.army.mil|N|8||
 |PMF.gov|12:30|www.pmf.gov|N|8||
 |OPM.gov|12:51|www.opm.gov|N|8||
