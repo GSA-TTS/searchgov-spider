@@ -51,18 +51,11 @@
       "addLabels": ["dependencies", "pip", "production"]
     },
     {
-      "groupName": "python lxml version pinned",
-      "description": "Pinned to current version due to newspaper4k dependency issues",
+      "groupName": "python nltk version pinned",
+      "description": "Pinned to current version due to nltk import error in 3.10.1",
       "matchManagers": ["pip_requirements"],
-      "matchPackageNames": ["lxml-html-clean"],
-      "allowedVersions": "0.4.1"
-    },
-    {
-      "groupName": "python tpying-extension version pinned",
-      "description": "Pinned to current version due to newspaper4k dependency issues",
-      "matchManagers": ["pip_requirements"],
-      "matchPackageNames": ["typing-extensions"],
-      "allowedVersions": "4.12.2"
+      "matchPackageNames": ["nltk"],
+      "allowedVersions": "3.10.0"
     }
   ]
 }
