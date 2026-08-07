@@ -1,113 +1,114 @@
 # Development Schedule
- * [Sunday (11)](#sunday-11)
- * [Monday (8)](#monday-8)
- * [Tuesday (9)](#tuesday-9)
- * [Wednesday (16)](#wednesday-16)
- * [Thursday (6)](#thursday-6)
- * [Friday (12)](#friday-12)
- * [Saturday (8)](#saturday-8)
+ * [Sunday (13)](#sunday-13)
+ * [Monday (10)](#monday-10)
+ * [Tuesday (8)](#tuesday-8)
+ * [Wednesday (11)](#wednesday-11)
+ * [Thursday (9)](#thursday-9)
+ * [Friday (10)](#friday-10)
+ * [Saturday (10)](#saturday-10)
 
 
-## Sunday (11)
+## Sunday (13)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|Housing and Urban Development (usagov-replacement)|02:45|www.hud.gov|N|3||
-|US Army Research Institute of Environmental Medicine|02:45|usariem.health.mil|N|8||
-|Whiteman Air Force Base (whiteman)|02:46|www.whiteman.af.mil|N|8|/Striker-Strong-Resource-Directory/|
-|Telehealth.HHS.gov|07:12|telehealth.hhs.gov|N|8||
-|www.restorethegulf.gov|12:30|www.restorethegulf.gov|N|8||
-|www.911.gov (911)|12:51|www.911.gov|N|8||
-|174th Attack Wing (afpw_174aw)|13:57|www.174attackwing.ang.af.mil|N|8||
-|Army Transportation Command (tc)|17:37|transportation.army.mil|N|3||
-|New depth 8 (ca.water.usgs.gov)|17:47|ca.water.usgs.gov|N|8||
-|US Embassy Burkina Faso|18:55|bf.usembassy.gov|N|8||
-|FHWA Environment|19:58|www.environment.fhwa.dot.gov|N|8||
+|Joint METC (joint_metc)|01:47|www.metc.mil|N|3||
+|tricare_mhseurope|03:00|mhs-europe.tricare.mil|N|8||
+|Newborn Screening Codes (newbornscreeningcodes)|04:16|lhncbc.nlm.nih.gov|N|8||
+|US Embassy Argentina|04:45|ar.usembassy.gov|N|8||
+|FDA (usagov-replacement)|06:15|www.fda.gov|N|8||
+|Tesseract AF (HAF/A4L) (usaf_tesseract)|08:18|www.tesseract.af.mil|N|8||
+|US Embassy The Gambia|09:03|gm.usembassy.gov|N|8||
+|Navy INSURV (navy_insurv)|10:36|www.insurv.usff.navy.mil|N|3||
+|US Fire Administration|14:27|www.usfa.fema.gov|N|8||
+|www.pbgc.gov (usagov-replacement)|15:00|www.pbgc.gov|N|3||
+|Air University (afpw_au)|20:13|www.airuniversity.af.edu|N|8||
+|Nebraska National Guard (guard_nng)|20:16|ne.ng.mil|N|3||
+|Interagency Autism Coordinating Committee (iacc)|21:19|iacc.hhs.gov|N|3||
 
 
-## Monday (8)
+## Monday (10)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|tricare_southcomclinic|07:00|southcomclinic.tricare.mil|N|8||
-|US Embassy Ethiopia (dos_emb_afr_ethiopia)|08:27|et.usembassy.gov|N|8||
-|Social Security Advisory Board|08:30|www.ssab.gov|N|8||
+|www.nationalguard.mil (nationalguard)|03:40|www.nationalguard.mil|N|8||
 |toolkit.climate.gov - endpoint|09:30|toolkit.climate.gov|N|3||
-|VA Access To Care|09:30|www.accesstocare.va.gov|N|3||
-|Commercial Law Development Program (cldp.doc)|14:38|cldp.doc.gov|N|8||
-|National Museum of the USAF (museum)|20:18|www.nationalmuseum.af.mil|N|8||
-|National Institute of Arthritis and Musculoskeletal and Skin Diseases (NIAMS) (www.niams.nih.gov)|21:14|www.niams.nih.gov|N|8||
+|NIH LRP|09:30|www.lrp.nih.gov|N|8||
+|New depth 8 (ee.usembassy.gov/et)|09:36|ee.usembassy.gov/et|N|8||
+|US Mission to UN Rome|10:45|usunrome.usmission.gov|N|8||
+|tricare_rodriguez|11:00|rodriguez.tricare.mil|N|8||
+|sm.usmission.gov|12:50|sm.usmission.gov|N|8||
+|US Embassy Israel (dos_emb_mena_israel)|13:03|il.usembassy.gov|N|8||
+|NIH Down Syndrome (downsyndrome.nih)|14:46|downsyndrome.nih.gov|N|8||
+|NG IR (ng_ir)|22:29|dc.ng.mil|N|3||
 
 
-## Tuesday (9)
+## Tuesday (8)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|Alabama National Guard (ng_alabama)|00:30|al.ng.mil|N|3||
-|Bonneville Power Administration|02:24|www.bpa.gov|N|8||
+|Minot Air Force Base (minot)|00:00|www.minot.af.mil|N|8||
+|fletc.gov (fletc)|00:00|www.fletc.gov|N|8||
+|US Embassy Oman (dos_emb_mena_oman)|01:52|om.usembassy.gov|N|8||
 |NIH Research Festival (nih-oir-research_festival)|06:00|researchfestival.nih.gov|N|3||
-|NASA en Español|06:00|ciencia.nasa.gov|N|8||
-|Peterson-Schriever Space Force Base (peterson)|07:10|www.petersonschriever.spaceforce.mil|N|3||
-|www.ojp.gov (usagov-replacement)|10:56|www.ojp.gov|N|3||
-|Air Force Special Operations Command (afsoc)|12:39|www.afsoc.af.mil|N|8||
-|tricare_bremerton|16:00|bremerton.tricare.mil|N|8||
-|history.state.gov (usagov-replacement)|22:30|history.state.gov|N|3||
+|www.usgs.gov (usagov-replacement)|11:11|www.usgs.gov|N|8|pubs.usgs.gov/metrics/|
+|DOD HPC DAAC|12:00|daac.hpc.mil|N|8||
+|Air Force Trademark and Licensing Program (afpw_trademark)|18:55|www.trademark.af.mil|N|8||
+|National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK) (www.niddk.nih.gov)|23:05|www.niddk.nih.gov|N|8||
 
 
-## Wednesday (16)
+## Wednesday (11)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|DoD Live SMTC (dodlive_smtc)|00:12|smtc.dodlive.mil|N|3||
-|www.whs.mil (dod_whs)|02:07|www.whs.mil|N|8||
-|MedlinePlus Magazine|02:48|magazine.medlineplus.gov|N|8||
-|New depth 8 (me.usembassy.gov/me)|03:06|me.usembassy.gov/me|N|8||
-|Ellsworth Air Force Base (ellsworth)|06:28|www.ellsworth.af.mil|N|8||
-|ARMI (armi)|06:32|armi.usgs.gov|N|8||
-|www.energystar.gov (usagov-replacement)|15:45|www.energystar.gov|N|8||
-|George W. Bush Presidential Library|15:50|www.georgewbushlibrary.gov|N|8||
-|NIH History (nih_history)|16:12|history.nih.gov|N|8||
-|US Embassy Botswana (dos_emb_afr_botswana)|17:15|bw.usembassy.gov|N|8||
-|Pacific Ocean Division (pacific_ocean_division)|17:24|www.pod.usace.army.mil|N|3||
-|www.nia.nih.gov (usagov-replacement)|19:19|www.nia.nih.gov|N|8||
-|Army Center of Military History (achh)|19:46|achh.army.mil|N|3||
-|DoD DC3 (dod_dc3)|21:43|www.dc3.mil|N|3||
-|Department of the Air Force - E-Publishing (afpw_epubs)|22:06|www.e-publishing.af.mil|N|8||
-|US Embassy Palau|23:04|pw.usembassy.gov|N|8||
+|www.fec.gov (usagov-replacement)|00:00|www.fec.gov|N|8||
+|tricare_wrnmc|02:00|walterreed.tricare.mil|N|8||
+|US Embassy Bolivia|06:31|bo.usembassy.gov|N|8||
+|cisa.ndu.edu (nduedu)|07:04|cisa.ndu.edu|N|8||
+|US Mission Guinea-Bissau|09:34|gw.usmission.gov|N|8||
+|Dyess Air Force Base (dyess)|10:09|www.dyess.af.mil|N|8||
+|SciDAC|16:55|www.scidac.gov|N|8||
+|New depth 8 (om.usembassy.gov/ar)|16:56|om.usembassy.gov/ar|N|8||
+|Space Systems Command (dod_ssc)|20:50|www.ssc.spaceforce.mil|N|3||
+|oig.hhs.gov (usagov-replacement)|22:22|oig.hhs.gov|N|8||
+|DoD Actuary (actuary)|22:35|actuary.defense.gov|N|3||
 
 
-## Thursday (6)
+## Thursday (9)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|www.atlanticarea.uscg.mil (uscg_all)|05:47|www.atlanticarea.uscg.mil|N|8||
-|National Womens Business Council|07:30|www.nwbc.gov|N|8||
-|US Bankruptcy Court Northern District of Oklahoma|08:45|www.oknb.uscourts.gov|N|8||
-|National Air and Space Intelligence Center|09:23|www.nasic.af.mil/|N|8||
-|FEMA Training (usagov-replacement)|19:42|training.fema.gov|N|8||
-|www.ars.usda.gov (usagov-replacement)|20:22|www.ars.usda.gov|N|8||
+|USACE SWL-WC (usace_all)|01:16|www.swl-wc.usace.army.mil|N|3||
+|americanenglish.state.gov (usagov-replacement)|05:32|americanenglish.state.gov|N|3||
+|Department of Health and Human Services|05:33|www.hhs.gov|N|8||
+|Air Force Historical Research Agency (afpw_afhra)|06:28|www.dafhistory.af.mil|N|8||
+|NTIA Institute for Telecommunication Sciences|09:15|its.ntia.gov|N|8||
+|NICHD Annual Report (nichd_dir)|12:01|annualreport.nichd.nih.gov|N|8||
+|Army Tobyhanna (army_tad)|13:54|www.tobyhanna.army.mil|N|8||
+|snaped.fns.usda.gov (snap-edconnection)|15:40|snaped.fns.usda.gov|N|8||
+|Alaska National Guard (guard_akng)|21:41|ak.ng.mil|N|3||
 
 
-## Friday (12)
+## Friday (10)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|138th Fighter Wing, Oklahoma ANG (afpw_138fw)|04:05|www.138fw.ang.af.mil|N|8||
-|tricare_seymourjohnson|05:00|seymourjohnson.tricare.mil|N|8||
-|Navy CPRW1 (navy_cprw1)|06:01|www.cprw1.navy.mil|N|3||
-|Michigan National Guard (ng_michigan)|07:48|minationalguard.dodlive.mil|N|3||
-|FEMA Map Service Center|11:54|msc.fema.gov|N|8||
-|United States Forces Japan (usfj)|15:45|www.usfj.mil|N|3||
-|501st Combat Support Wing (501csw)|16:37|www.501csw.usafe.af.mil|N|8||
-|Physical Sciences Laboratory (psl)|19:10|psl.noaa.gov|N|8|downloads.psl.noaa.gov|
-|Forms Warehouse (formswarehouse)|19:10|forms.cgaux.org|N|3||
-|OMAO (omao)|19:19|www.omao.noaa.gov|N|3||
-|US Embassy Lesotho|20:48|ls.usembassy.gov|N|8||
-|gis.ngdc.noaa.gov (ngdc.noaa.gov)|22:18|gis.ngdc.noaa.gov|N|8||
+|Army ASB (army_asb)|04:33|asb.army.mil|N|3||
+|143rd Airlift Wing, Rhode Island ANG (afpw_143aw)|07:34|www.143aw.ang.af.mil|N|8||
+|Office of DNI|08:20|www.odni.gov|N|8||
+|tricare_ramstein|09:00|ramstein.tricare.mil|N|8||
+|Beasley Wildlife Lab|10:53|beasleywildlifelab.srel.uga.edu|N|8||
+|US Embassy Malaysia|13:11|my.usembassy.gov|N|8||
+|Lawrence Livermore National Lab|15:53|www.llnl.gov|N|8||
+|Patrick Space Force Base (patrick)|17:20|www.patrick.spaceforce.mil|N|3||
+|California Nevada River Forecast Center (cnrfc)|19:10|www.cnrfc.noaa.gov|N|3||
+|Coastwatch (coastwatch)|19:19|coastwatch.glerl.noaa.gov|N|8||
 
 
-## Saturday (8)
+## Saturday (10)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
-|New depth 8 (168wg.ang.af.mil)|02:16|www.168wg.ang.af.mil|N|8||
-|115th Fighter Wing (afpw_115fw)|04:29|www.115fw.ang.af.mil|N|8||
-|US Embassy Kolonia (dos_emb_eap_kolonia)|07:43|fm.usembassy.gov|N|8||
-|tricare_vance|12:00|vance.tricare.mil|N|8||
-|47th Medical Group - Laughlin Air Force Base|13:00|laughlin.tricare.mil|N|8||
-|Office of Human Resources (nih)|17:27|hr.nih.gov|N|8||
-|DoS 2009-2017 FPC (dos_2009_2017_fpc)|18:31|2009-2017-fpc.state.gov|N|3||
-|Army EDIS (army_edis)|22:59|www.edis.army.mil|N|3||
+|Natural Gas Vehicle Buyer Cooperative|01:12|ngvbcc.org|N|8||
+|Navy NIWC Pacific (navy_niwcpacific)|04:34|www.niwcpacific.navy.mil|N|3||
+|www.dtra.mil (dtra)|07:12|www.dtra.mil|N|8||
+|120th Airlift Wing (afpw_120fw)|07:16|www.120thairliftwing.ang.af.mil|N|8||
+|Office of Natural Resources Revenue|07:30|www.onrr.gov|Y|8||
+|Legacy RMA.USDA.gov (risk-management-agency_sandbox)|11:15|legacy.rma.usda.gov|N|8||
+|187th Fighter Wing, Alabama ANG (187fw)|13:51|www.187fw.ang.af.mil|N|8||
+|tricare_wrightpatterson|16:00|wrightpatterson.tricare.mil|N|8||
+|366th Medical Treatment Facility|17:00|mountainhome.tricare.mil|N|8||
+|New depth 8 (xk.usembassy.gov/sr)|18:04|xk.usembassy.gov/sr|N|8||
