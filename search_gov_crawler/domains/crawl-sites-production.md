@@ -1,6 +1,6 @@
 # Production Schedule
  * [Sunday (250)](#sunday-250)
- * [Monday (247)](#monday-247)
+ * [Monday (248)](#monday-248)
  * [Tuesday (255)](#tuesday-255)
  * [Wednesday (248)](#wednesday-248)
  * [Thursday (247)](#thursday-247)
@@ -263,7 +263,7 @@
 |1st Infantry Division (army_11d)|23:50|www.1id.army.mil|N|3||
 
 
-## Monday (247)
+## Monday (248)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |cgaux.org (cgaux)|00:00|www.cgaux.org|N|8||
@@ -508,6 +508,7 @@
 |SERDP-ESTCP|22:16|serdp-estcp.mil,sepub-prod-0001-124733793621-us-gov-west-1.s3.us-gov-west-1.amazonaws.com|N|8||
 |US Embassy Djibouti (dos_emb_afr_djibouti)|22:20|dj.usembassy.gov|N|3||
 |NG IR (ng_ir)|22:29|dc.ng.mil|N|3||
+|training.smartpay.gsa.gov (gsa_smartpay_training)|23:01|training.smartpay.gsa.gov|N|8||
 |Misawa Air Base (misawa)|23:05|www.misawa.af.mil|N|8||
 |US Embassy Accra (dos_emb_afr_accra)|23:15|gh.usembassy.gov|N|8||
 |Team McChord (afpw_62aw)|23:24|www.mcchord.af.mil|N|8||
