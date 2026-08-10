@@ -187,19 +187,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.swpc.noaa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Space Weather Prediction Center (swpc)",
-      "output_target": "opensearch",
-      "schedule": "04 19 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.swpc.noaa.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.cpc.ncep.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -293,19 +280,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "repository.library.noaa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "NOAA Library Repository (repository.library)",
-      "output_target": "opensearch",
-      "schedule": "07 19 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://repository.library.noaa.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.star.nesdis.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -358,7 +332,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "coast.noaa.gov",
+      "allowed_domains": "www.coast.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -367,7 +341,7 @@
       "output_target": "opensearch",
       "schedule": "09 19 * * FRI",
       "sitemap_urls": null,
-      "starting_urls": "https://coast.noaa.gov/"
+      "starting_urls": "https://www.coast.noaa.gov/"
    },
    {
       "allow_query_string": false,
@@ -856,19 +830,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.coris.noaa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "CORIS (coris)",
-      "output_target": "opensearch",
-      "schedule": "23 19 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.coris.noaa.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "ntwc.ncep.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -1069,19 +1030,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "usajobs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "USA Jobs (usagov-replacement)",
-      "output_target": "opensearch",
-      "schedule": "00 06 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.usajobs.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.fda.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -1157,19 +1105,6 @@
       "schedule": "00 11 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://www.census.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.doge.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "doge.gov (usagov-replacement)",
-      "output_target": "opensearch",
-      "schedule": "15 11 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.doge.gov/"
    },
    {
       "allow_query_string": false,
@@ -1404,19 +1339,6 @@
       "schedule": "34 08 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://www.usda.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.fns.usda.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "www.fns.usda.gov (usagov-replacement)",
-      "output_target": "opensearch",
-      "schedule": "45 09 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.fns.usda.gov/"
    },
    {
       "allow_query_string": false,
@@ -1854,19 +1776,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "nces.ed.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "nces.ed.gov (usagov-replacement)",
-      "output_target": "opensearch",
-      "schedule": "00 09 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://nces.ed.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "uk.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -2179,19 +2088,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "science.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "science.nasa.gov (usagov-replacement)",
-      "output_target": "opensearch",
-      "schedule": "24 12 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://science.nasa.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "mx.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -2467,7 +2363,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "disasterassistance.gov",
+      "allowed_domains": "www.disasterassistance.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -2909,19 +2805,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "ncua.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "National Credit Union Assn (usagov-replacement)",
-      "output_target": "opensearch",
-      "schedule": "32 23 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://ncua.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.niehs.nih.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -2935,7 +2818,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "cac.mil",
+      "allowed_domains": "www.cac.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -2958,19 +2841,6 @@
       "schedule": "42 03 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://ods.od.nih.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "ies.ed.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "ies.ed.gov (usagov-replacement)",
-      "output_target": "opensearch",
-      "schedule": "42 04 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://ies.ed.gov/"
    },
    {
       "allow_query_string": false,
@@ -3169,19 +3039,6 @@
       "schedule": "00 06 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://diegogarcia.tricare.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "belvoirhospital.tricare.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "tricare_belvoir",
-      "output_target": "opensearch",
-      "schedule": "00 07 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://belvoirhospital.tricare.mil/"
    },
    {
       "allow_query_string": false,
@@ -4576,7 +4433,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "crb.gov",
+      "allowed_domains": "www.crb.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 3,
@@ -4612,19 +4469,6 @@
       "schedule": "24 1 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://www.aiaccelerator.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.521amow.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "521st Air Mobility Operations Wing (af_521amow)",
-      "output_target": "opensearch",
-      "schedule": "11 4 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.521amow.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -4693,7 +4537,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "194wg.ang.af.mil",
+      "allowed_domains": "www.194wg.ang.af.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -4771,32 +4615,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.afhistory.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Air Force Historical Support Division (afpw-afhm)",
-      "output_target": "opensearch",
-      "schedule": "49 18 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.afhistory.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.afhistoryandmuseums.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Air Force History and Museums (afhm)",
-      "output_target": "opensearch",
-      "schedule": "31 19 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.afhistoryandmuseums.af.mil/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.airuniversity.af.edu",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -4833,19 +4651,6 @@
       "schedule": "48 1 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.afaccessionscenter.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.15wing.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "15th Wing (afpw_15wing)",
-      "output_target": "opensearch",
-      "schedule": "35 4 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.15wing.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -5135,19 +4940,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.safia.hq.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Air Force International Affairs (afpw_safia)",
-      "output_target": "opensearch",
-      "schedule": "32 17 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.safia.hq.af.mil/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.trademark.af.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -5397,19 +5189,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.secretsdeclassified.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "AF Declassification (afpw_dclass)",
-      "output_target": "opensearch",
-      "schedule": "19 19 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.secretsdeclassified.af.mil/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.dover.af.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -5446,71 +5225,6 @@
       "schedule": "6 22 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.e-publishing.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.477fg.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "477th Fighter Group (afpw_477fg)",
-      "output_target": "opensearch",
-      "schedule": "30 23 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.477fg.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.505ccw.acc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "505th Command and Control Wing (afpw_505ccw)",
-      "output_target": "opensearch",
-      "schedule": "12 0 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.505ccw.acc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.624rsg.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "624th Regional Support Group (afpw_624rsg)",
-      "output_target": "opensearch",
-      "schedule": "36 1 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.624rsg.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.8af.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "8th Air Force (afpw_8af)",
-      "output_target": "opensearch",
-      "schedule": "17 2 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.8af.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.926wing.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "926th Group (afpw_926gp)",
-      "output_target": "opensearch",
-      "schedule": "59 2 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.926wing.afrc.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -7106,19 +6820,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.youngstown.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Youngstown Air Reserve Station (youngstown)",
-      "output_target": "opensearch",
-      "schedule": "0 0 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.youngstown.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.yokota.af.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -7157,19 +6858,6 @@
       "schedule": "46 2 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://www.whiteman.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.westover.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Westover Air Reserve Base, Mass (westover)",
-      "output_target": "opensearch",
-      "schedule": "42 3 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.westover.afrc.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -7290,19 +6978,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.492sow.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "492nd Special Operations Wing (usaf_492sow)",
-      "output_target": "opensearch",
-      "schedule": "18 20 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.492sow.af.mil/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.16af.af.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -7381,32 +7056,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.safie.hq.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Air Force Installations, Environment & Logistics (safie)",
-      "output_target": "opensearch",
-      "schedule": "18 8 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.safie.hq.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.saffm.hq.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Air Force Financial Management & Comptroller (saffm)",
-      "output_target": "opensearch",
-      "schedule": "14 9 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.saffm.hq.af.mil/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.scientificadvisoryboard.af.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -7443,19 +7092,6 @@
       "schedule": "0 12 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.ramstein.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.pittsburgh.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Pittsburgh IAP Air Reserve Station (pittsburgh)",
-      "output_target": "opensearch",
-      "schedule": "55 12 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.pittsburgh.afrc.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -7615,7 +7251,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "malmstrom.af.mil",
+      "allowed_domains": "www.malmstrom.af.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -8111,19 +7747,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.modsim.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Air Force Chief Modeling And Simulation Office (airforce_modsim)",
-      "output_target": "opensearch",
-      "schedule": "55 12 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.modsim.af.mil/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.littlerock.af.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -8137,19 +7760,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.jagreporter.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "JAG Reporter (airforce_jagreporter)",
-      "output_target": "opensearch",
-      "schedule": "46 14 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.jagreporter.af.mil/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.hqrio.afrc.af.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -8160,32 +7770,6 @@
       "schedule": "42 15 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.hqrio.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.data.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Department of the Air Force Open Data Program (airforce_data)",
-      "output_target": "opensearch",
-      "schedule": "37 16 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.data.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.913ag.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "913th Airlift Group (airforce_913ag)",
-      "output_target": "opensearch",
-      "schedule": "23 19 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.913ag.afrc.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -8241,175 +7825,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.944fw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "944th Fighter Wing (944fw)",
-      "output_target": "opensearch",
-      "schedule": "0 0 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.944fw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.940arw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "940th Wing (940wg)",
-      "output_target": "opensearch",
-      "schedule": "51 1 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.940arw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.932aw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "932nd Airlift Wing (932aw)",
-      "output_target": "opensearch",
-      "schedule": "46 2 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.932aw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.931arw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "931st Air Refueling Group (931arg)",
-      "output_target": "opensearch",
-      "schedule": "42 3 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.931arw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.927arw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "927th Air Refueling Wing (927arw)",
-      "output_target": "opensearch",
-      "schedule": "37 4 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.927arw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.920rqw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "920th Rescue Wing (920rqw)",
-      "output_target": "opensearch",
-      "schedule": "32 5 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.920rqw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.919sow.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "919th Special Operations Wing (919sow)",
-      "output_target": "opensearch",
-      "schedule": "28 6 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.919sow.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.916arw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "916th Air Refueling Wing (916arw)",
-      "output_target": "opensearch",
-      "schedule": "23 7 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.916arw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.7af.pacaf.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "7th Air Force (7af)",
-      "output_target": "opensearch",
-      "schedule": "14 9 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.7af.pacaf.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.5af.pacaf.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "5th Air Force (5af)",
-      "output_target": "opensearch",
-      "schedule": "9 10 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.5af.pacaf.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.514amw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "514th Air Mobility Wing (514amw)",
-      "output_target": "opensearch",
-      "schedule": "55 12 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.514amw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.512aw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "512th Airlift Wing (512aw)",
-      "output_target": "opensearch",
-      "schedule": "51 13 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.512aw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.507arw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "507th Air Refueling Wing (507arw)",
-      "output_target": "opensearch",
-      "schedule": "46 14 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.507arw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.501csw.usafe.af.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -8420,84 +7835,6 @@
       "schedule": "37 16 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://www.501csw.usafe.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.459arw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "459th Air Refueling Wing (459arw)",
-      "output_target": "opensearch",
-      "schedule": "28 18 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.459arw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.446aw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "446th Airlift Wing (446aw)",
-      "output_target": "opensearch",
-      "schedule": "23 19 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.446aw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.445aw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "445th Airlift Wing (445aw)",
-      "output_target": "opensearch",
-      "schedule": "18 20 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.445aw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.433aw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "433rd Airlift Wing (433aw)",
-      "output_target": "opensearch",
-      "schedule": "5 23 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.433aw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.419fw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "419th Fighter Wing (419fw)",
-      "output_target": "opensearch",
-      "schedule": "0 0 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.419fw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.403wg.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "403rd Wing (403wg)",
-      "output_target": "opensearch",
-      "schedule": "55 0 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.403wg.afrc.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -8524,71 +7861,6 @@
       "schedule": "46 2 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.37trw.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.349amw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "349th Air Mobility Wing (349amw)",
-      "output_target": "opensearch",
-      "schedule": "37 4 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.349amw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.340ftg.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "340th Flying Training Wing (340ftg)",
-      "output_target": "opensearch",
-      "schedule": "32 5 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.340ftg.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.315aw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "315th Airlift Wing (315aw)",
-      "output_target": "opensearch",
-      "schedule": "23 7 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.315aw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.302aw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "302nd Airlift Wing (302aw)",
-      "output_target": "opensearch",
-      "schedule": "18 8 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.302aw.afrc.af.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.301fw.afrc.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "301st Fighter Wing (301fw)",
-      "output_target": "opensearch",
-      "schedule": "14 9 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.301fw.afrc.af.mil/"
    },
    {
       "allow_query_string": false,
@@ -8787,19 +8059,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "ors.od.nih.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Office of Research Services (nih)",
-      "output_target": "opensearch",
-      "schedule": "05 20 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://ors.od.nih.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "oalm.od.nih.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -8823,32 +8082,6 @@
       "schedule": "11 03 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://ofm.od.nih.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "oma.od.nih.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Office of Management Assessment (nih)",
-      "output_target": "opensearch",
-      "schedule": "15 05 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://oma.od.nih.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "policymanual.nih.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Policy Manual (nih)",
-      "output_target": "opensearch",
-      "schedule": "17 07 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://policymanual.nih.gov/"
    },
    {
       "allow_query_string": false,
@@ -9166,16 +8399,16 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.healthit.gov",
+      "allowed_domains": "healthit.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "www.healthit.gov (www.healthit.gov)",
+      "name": "www.healthit.gov (healthit.gov)",
       "output_target": "opensearch",
       "schedule": "59 1 * * SUN",
       "sitemap_urls": null,
-      "starting_urls": "https://www.healthit.gov/"
+      "starting_urls": "https://healthit.gov/"
    },
    {
       "allow_query_string": false,
@@ -9413,7 +8646,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "emc.ncep.noaa.gov",
+      "allowed_domains": "www.emc.ncep.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -9422,7 +8655,7 @@
       "output_target": "opensearch",
       "schedule": "21 6 * * TUE",
       "sitemap_urls": null,
-      "starting_urls": "https://emc.ncep.noaa.gov/"
+      "starting_urls": "https://www.emc.ncep.noaa.gov/"
    },
    {
       "allow_query_string": false,
@@ -9787,19 +9020,6 @@
       "schedule": "54 19 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.publications.usace.army.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "armyuniversity.edu",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "armyuniversity.edu (armyuniversity.edu)",
-      "output_target": "opensearch",
-      "schedule": "54 20 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://armyuniversity.edu/"
    },
    {
       "allow_query_string": false,
@@ -10494,6 +9714,19 @@
    },
    {
       "allow_query_string": false,
+      "allowed_domains": "training.smartpay.gsa.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "training.smartpay.gsa.gov (gsa_smartpay_training)",
+      "output_target": "opensearch",
+      "schedule": "1 23 * * MON",
+      "sitemap_urls": null,
+      "starting_urls": "https://training.smartpay.gsa.gov/"
+   },
+   {
+      "allow_query_string": false,
       "allowed_domains": "studentaid.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -10608,19 +9841,6 @@
       "schedule": "03 13 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://il.usembassy.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "quartermaster.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Quartermaster (qm)",
-      "output_target": "opensearch",
-      "schedule": "25 15 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://quartermaster.army.mil"
    },
    {
       "allow_query_string": false,
@@ -10873,19 +10093,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.srs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Savannah River Site (srs.gov)",
-      "output_target": "opensearch",
-      "schedule": "04 13 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.srs.gov/general/srs-home.html"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.fac.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -10990,19 +10197,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "alu.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Army Logistics University (alu)",
-      "output_target": "opensearch",
-      "schedule": "19 04 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://alu.army.mil"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.bsee.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -11042,19 +10236,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "deadiversion.usdoj.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "DEA Diversion Control Division (justice-odc)",
-      "output_target": "opensearch",
-      "schedule": "25 10 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.deadiversion.usdoj.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.esrl.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -11078,19 +10259,6 @@
       "schedule": "45 06 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://www.iaf.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "innovation.defense.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Defense Innovation (chieftechnologist)",
-      "output_target": "opensearch",
-      "schedule": "47 08 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://innovation.defense.gov"
    },
    {
       "allow_query_string": false,
@@ -11601,19 +10769,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.peosoldier.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "PEO Soldier (army_peos)",
-      "output_target": "opensearch",
-      "schedule": "47 20 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.peosoldier.army.mil"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.mvs.usace.army.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -11676,19 +10831,6 @@
       "schedule": "54 03 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.nab.usace.army.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.peostri.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "PEO STRI (peostri)",
-      "output_target": "opensearch",
-      "schedule": "55 04 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.peostri.army.mil"
    },
    {
       "allow_query_string": false,
@@ -12810,19 +11952,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "heal.nih.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "NIH HEAL Initiative (heal)",
-      "output_target": "opensearch",
-      "schedule": "20 14 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://heal.nih.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.c6f.navy.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -12966,7 +12095,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.medicalcountermeasures.gov",
+      "allowed_domains": "medicalcountermeasures.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -12975,7 +12104,7 @@
       "output_target": "opensearch",
       "schedule": "33 03 * * FRI",
       "sitemap_urls": null,
-      "starting_urls": "https://www.medicalcountermeasures.gov"
+      "starting_urls": "https://medicalcountermeasures.gov"
    },
    {
       "allow_query_string": false,
@@ -13356,19 +12485,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.atec.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Army ATEC (atec)",
-      "output_target": "opensearch",
-      "schedule": "02 17 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.atec.army.mil"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.corpscpc.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -13548,19 +12664,6 @@
       "schedule": "07 11 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://atlantic.navfac.navy.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "jpeoaa.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Army JPEO AA (army_jpeoaa)",
-      "output_target": "opensearch",
-      "schedule": "08 12 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://jpeoaa.army.mil"
    },
    {
       "allow_query_string": false,
@@ -14149,19 +13252,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.tam.usace.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Middle East District (middle_east_district)",
-      "output_target": "opensearch",
-      "schedule": "01 13 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.tam.usace.army.mil"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.nwdc.usff.navy.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -14331,19 +13421,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.arsouth.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Army South (army_south)",
-      "output_target": "opensearch",
-      "schedule": "17 05 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.arsouth.army.mil"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "coe.gsa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -14445,19 +13522,6 @@
       "schedule": "25 13 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://developer.va.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.peoc4i.navy.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Navy PEO C4I (navy_peoc4)",
-      "output_target": "opensearch",
-      "schedule": "26 14 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.peoc4i.navy.mil"
    },
    {
       "allow_query_string": false,
@@ -14929,7 +13993,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "t2.army.mil",
+      "allowed_domains": "www.t2.army.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 3,
@@ -15761,19 +14825,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "space-geodesy.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "NASA Space Geodesy (space-geodesy)",
-      "output_target": "opensearch",
-      "schedule": "03 20 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://space-geodesy.nasa.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.caept.uscourts.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -15901,19 +14952,6 @@
       "schedule": "20 13 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://gsl.noaa.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "publications.gsl.noaa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "NOAA GSL Publications (gsl)",
-      "output_target": "opensearch",
-      "schedule": "21 14 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://publications.gsl.noaa.gov"
    },
    {
       "allow_query_string": false,
@@ -16096,19 +15134,6 @@
       "schedule": "43 12 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://usau.usmission.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "nicic.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "Justice NIC (justice-nic)",
-      "output_target": "opensearch",
-      "schedule": "44 13 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://nicic.gov"
    },
    {
       "allow_query_string": false,
@@ -16489,7 +15514,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "nrcs.usda.gov",
+      "allowed_domains": "www.nrcs.usda.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -16697,16 +15722,16 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "hk.usconsulate.gov/zhhk",
+      "allowed_domains": "hk.usconsulate.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "New depth 8 (hk.usconsulate.gov/zhhk)",
+      "name": "New depth 8 (hk.usconsulate.gov)",
       "output_target": "opensearch",
       "schedule": "29 19 * * MON",
       "sitemap_urls": null,
-      "starting_urls": "https://hk.usconsulate.gov/zhhk/"
+      "starting_urls": "https://hk.usconsulate.gov"
    },
    {
       "allow_query_string": false,
@@ -16749,16 +15774,16 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "iq.usembassy.gov/ar",
+      "allowed_domains": "iq.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "New depth 8 (iq.usembassy.gov/ar)",
+      "name": "New depth 8 (iq.usembassy.gov)",
       "output_target": "opensearch",
       "schedule": "23 3 * * TUE",
       "sitemap_urls": null,
-      "starting_urls": "https://iq.usembassy.gov/ar/"
+      "starting_urls": "https://iq.usembassy.gov/"
    },
    {
       "allow_query_string": false,
@@ -16814,42 +15839,42 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "la.usembassy.gov/lo",
+      "allowed_domains": "la.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "New depth 8 (la.usembassy.gov/lo)",
+      "name": "New depth 8 (la.usembassy.gov)",
       "output_target": "opensearch",
       "schedule": "16 13 * * TUE",
       "sitemap_urls": null,
-      "starting_urls": "https://la.usembassy.gov/lo/"
+      "starting_urls": "https://la.usembassy.gov/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "lb.usembassy.gov/ar",
+      "allowed_domains": "lb.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "New depth 8 (lb.usembassy.gov/ar)",
+      "name": "New depth 8 (lb.usembassy.gov)",
       "output_target": "opensearch",
       "schedule": "15 15 * * TUE",
       "sitemap_urls": null,
-      "starting_urls": "https://lb.usembassy.gov/ar/"
+      "starting_urls": "https://lb.usembassy.gov/"
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "ly.usembassy.gov/ar",
+      "allowed_domains": "ly.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "New depth 8 (ly.usembassy.gov/ar)",
+      "name": "New depth 8 (ly.usembassy.gov)",
       "output_target": "opensearch",
       "schedule": "13 17 * * TUE",
       "sitemap_urls": null,
-      "starting_urls": "https://ly.usembassy.gov/ar/"
+      "starting_urls": "https://ly.usembassy.gov/"
    },
    {
       "allow_query_string": false,
@@ -17061,16 +16086,16 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "sy.usembassy.gov/ar",
+      "allowed_domains": "sy.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "New depth 8 (sy.usembassy.gov/ar)",
+      "name": "New depth 8 (sy.usembassy.gov)",
       "output_target": "opensearch",
       "schedule": "41 14 * * THU",
       "sitemap_urls": null,
-      "starting_urls": "https://sy.usembassy.gov/ar/"
+      "starting_urls": "https://sy.usembassy.gov/"
    },
    {
       "allow_query_string": false,
@@ -17243,19 +16268,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.353sow.af.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (353sow.af.mil)",
-      "output_target": "opensearch",
-      "schedule": "14 4 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.353sow.af.mil/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.afsouth.af.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -17292,19 +16304,6 @@
       "schedule": "10 10 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.dantes.mil/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.ncolcoe.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (ncolcoe.army.mil)",
-      "output_target": "opensearch",
-      "schedule": "8 12 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.ncolcoe.army.mil/"
    },
    {
       "allow_query_string": false,
@@ -17487,19 +16486,6 @@
       "schedule": "15 05 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://ask.fmcsa.dot.gov"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "aspr.hhs.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "ASPR HHS",
-      "output_target": "opensearch",
-      "schedule": "30 05 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://aspr.hhs.gov"
    },
    {
       "allow_query_string": false,
@@ -18114,7 +17100,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "its.dot.gov",
+      "allowed_domains": "www.its.dot.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -18123,7 +17109,7 @@
       "output_target": "opensearch",
       "schedule": "56 15 * * THU",
       "sitemap_urls": null,
-      "starting_urls": "https://its.dot.gov/"
+      "starting_urls": "https://www.its.dot.gov/"
    },
    {
       "allow_query_string": false,
@@ -18163,19 +17149,6 @@
       "schedule": "48 03 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://www.jobcorps.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.jpl.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "NASA Jet Propulsion Laboratory",
-      "output_target": "opensearch",
-      "schedule": "13 04 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.jpl.nasa.gov/"
    },
    {
       "allow_query_string": false,
@@ -18228,19 +17201,6 @@
       "schedule": "11 08 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://www.maritime.dot.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "mhpcc.hpc.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Maui High Performance Computing Center",
-      "output_target": "opensearch",
-      "schedule": "25 09 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://mhpcc.hpc.mil/"
    },
    {
       "allow_query_string": false,
@@ -18400,19 +17360,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "nominate.noaa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "NOAA Sanctuary Nomination",
-      "output_target": "opensearch",
-      "schedule": "32 05 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://nominate.noaa.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "officeofbudget.od.nih.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -18462,19 +17409,6 @@
       "schedule": "42 09 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.phenxtoolkit.org/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "photojournal.jpl.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "NASA JPL Photojournal",
-      "output_target": "opensearch",
-      "schedule": "17 10 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://photojournal.jpl.nasa.gov/"
    },
    {
       "allow_query_string": false,
@@ -19154,7 +18088,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.cfm.va.gov/til/",
+      "allowed_domains": "www.cfm.va.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 3,
@@ -19206,7 +18140,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "ccb.gov",
+      "allowed_domains": "www.ccb.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -19215,7 +18149,7 @@
       "output_target": "opensearch",
       "schedule": "45 01 * * SUN",
       "sitemap_urls": null,
-      "starting_urls": "https://ccb.gov/"
+      "starting_urls": "https://www.ccb.gov/"
    },
    {
       "allow_query_string": false,
@@ -19569,19 +18503,6 @@
       "schedule": "35 14 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://choose.va.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.cio.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Federal CIO Council (cio)",
-      "output_target": "opensearch",
-      "schedule": "36 14 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.cio.gov/"
    },
    {
       "allow_query_string": false,
@@ -20154,32 +19075,6 @@
       "schedule": "12 20 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://nhsc.hrsa.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "nihrecord.nih.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "NIH Record",
-      "output_target": "opensearch",
-      "schedule": "10 21 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://nihrecord.nih.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.rural.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Rural.gov",
-      "output_target": "opensearch",
-      "schedule": "08 22 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.rural.gov/"
    },
    {
       "allow_query_string": false,
@@ -21054,7 +19949,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "veteranshealthlibrary.va.gov",
+      "allowed_domains": "www.veteranshealthlibrary.va.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -21063,7 +19958,7 @@
       "output_target": "opensearch",
       "schedule": "00 13 * * WED",
       "sitemap_urls": null,
-      "starting_urls": "https://veteranshealthlibrary.va.gov/"
+      "starting_urls": "https://www.veteranshealthlibrary.va.gov/"
    },
    {
       "allow_query_string": false,
@@ -22564,19 +21459,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.bush41.org",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Bush41 Foundation",
-      "output_target": "opensearch",
-      "schedule": "36 06 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.bush41.org/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.casl.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -22587,19 +21469,6 @@
       "schedule": "47 09 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.casl.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.financialfrontline.army.mil",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Financial Frontline (Army)",
-      "output_target": "opensearch",
-      "schedule": "11 15 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.financialfrontline.army.mil/"
    },
    {
       "allow_query_string": false,
@@ -22769,19 +21638,6 @@
       "schedule": "31 16 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.science.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.solardecathlon.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "Solar Decathlon",
-      "output_target": "opensearch",
-      "schedule": "43 19 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.solardecathlon.gov/"
    },
    {
       "allow_query_string": false,
@@ -23041,7 +21897,7 @@
       "handle_javascript": false,
       "name": "www.acq.osd.mil/asda/dpc/",
       "output_target": "opensearch",
-      "schedule": "20 12 * * TUE",
+      "schedule": "20 12 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.acq.osd.mil/asda/dpc/index.html"
    },
@@ -23054,7 +21910,7 @@
       "handle_javascript": false,
       "name": "bjatta.bja.ojp.gov",
       "output_target": "opensearch",
-      "schedule": "30 12 * * TUE",
+      "schedule": "30 12 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://bjatta.bja.ojp.gov/"
    },
@@ -23067,7 +21923,7 @@
       "handle_javascript": false,
       "name": "www.unemployment.gov",
       "output_target": "opensearch",
-      "schedule": "40 12 * * TUE",
+      "schedule": "40 12 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.unemployment.gov/"
    },
@@ -23080,7 +21936,7 @@
       "handle_javascript": false,
       "name": "www.dspo.mil",
       "output_target": "opensearch",
-      "schedule": "50 12 * * TUE",
+      "schedule": "50 12 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.dspo.mil/"
    },
@@ -23093,7 +21949,7 @@
       "handle_javascript": false,
       "name": "Army University",
       "output_target": "opensearch",
-      "schedule": "00 19 * * TUE",
+      "schedule": "00 19 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://www.army.edu/"
    },
@@ -23106,7 +21962,7 @@
       "handle_javascript": false,
       "name": "U.S. Office of Special Counsel",
       "output_target": "opensearch",
-      "schedule": "10 19 * * TUE",
+      "schedule": "10 19 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://www.osc.gov/"
    },
@@ -23119,7 +21975,7 @@
       "handle_javascript": false,
       "name": "oig-files.ssa.gov",
       "output_target": "opensearch",
-      "schedule": "20 19 * * TUE",
+      "schedule": "20 19 * * MON",
       "sitemap_urls": [
          "https://oig-files.ssa.gov/sitemap.xml"
       ],
@@ -23127,18 +21983,18 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "dsacms.github.io/ospo-guide/",
+      "allowed_domains": "dsacms.github.io",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "dsacms.github.io/ospo-guide/",
+      "name": "dsacms.github.io",
       "output_target": "opensearch",
       "schedule": "0 12 * * WED",
       "sitemap_urls": [
          "https://dsacms.github.io/ospo-guide/sitemap.xml"
       ],
-      "starting_urls": "https://dsacms.github.io/ospo-guide/"
+      "starting_urls": "https://dsacms.github.io/ospo-guide/,https://dsacms.github.io/share-it-act-lp/"
    },
    {
       "allow_query_string": false,
@@ -23248,7 +22104,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.nasic.af.mil/",
+      "allowed_domains": "www.nasic.af.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -23427,5 +22283,408 @@
       "schedule": "12 12 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://www.caed.uscourts.gov"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "bush41.org",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Bush41 Foundation",
+      "output_target": "opensearch",
+      "schedule": "22 10 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://bush41.org/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.deadiversion.usdoj.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 3,
+      "handle_javascript": false,
+      "name": "DEA Diversion Control Division (justice-odc)",
+      "output_target": "opensearch",
+      "schedule": "05 21 * * SAT",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.deadiversion.usdoj.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.aspr.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "ASPR HHS",
+      "output_target": "opensearch",
+      "schedule": "04 01 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.aspr.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "mipav.cit.nih.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NIH MIPAV",
+      "output_target": "opensearch",
+      "schedule": "34 07 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://mipav.cit.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "brics.cit.nih.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NIH BRICS",
+      "output_target": "opensearch",
+      "schedule": "32 12 * * SAT",
+      "sitemap_urls": null,
+      "starting_urls": "https://brics.cit.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "sas.cit.nih.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NIH SAS",
+      "output_target": "opensearch",
+      "schedule": "41 13 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://sas.cit.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.nflis.deadiversion.usdoj.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NFLIS",
+      "output_target": "opensearch",
+      "schedule": "48 18 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.nflis.deadiversion.usdoj.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "forensec.nflis.deadiversion.usdoj.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "FNLIS FORENSEC",
+      "output_target": "opensearch",
+      "schedule": "51 19 * * SAT",
+      "sitemap_urls": null,
+      "starting_urls": "https://forensec.nflis.deadiversion.usdoj.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.itskrs.its.dot.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "DOT ITSKRS",
+      "output_target": "opensearch",
+      "schedule": "40 20 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.itskrs.its.dot.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "toolkit.ncats.nih.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NIH NCATS Toolkit",
+      "output_target": "opensearch",
+      "schedule": "44 20 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://toolkit.ncats.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "registries.ncats.nih.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NIH RaDaR",
+      "output_target": "opensearch",
+      "schedule": "05 21 * * SAT",
+      "sitemap_urls": null,
+      "starting_urls": "https://registries.ncats.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "pave-gt.ncats.nih.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NIH PaVe-GT",
+      "output_target": "opensearch",
+      "schedule": "43 22 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://pave-gt.ncats.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "rdas.ncats.nih.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NIH RADS",
+      "output_target": "opensearch",
+      "schedule": "26 01 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://rdas.ncats.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "irp.nida.nih.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NIH IRP",
+      "output_target": "opensearch",
+      "schedule": "55 01 * * SAT",
+      "sitemap_urls": null,
+      "starting_urls": "https://irp.nida.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "datashare.nida.nih.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NIDA Datashare",
+      "output_target": "opensearch",
+      "schedule": "45 02 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://datashare.nida.nih.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "petitions.obamawhitehouse.archives.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Obama White House Petitions",
+      "output_target": "opensearch",
+      "schedule": "04 05 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://petitions.obamawhitehouse.archives.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "tmcpfs.ops.fhwa.dot.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "TMC Pooled-Fund Study",
+      "output_target": "opensearch",
+      "schedule": "28 06 * * SAT",
+      "sitemap_urls": null,
+      "starting_urls": "https://tmcpfs.ops.fhwa.dot.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ce.permitting.innovation.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Permitting Innovation Center",
+      "output_target": "opensearch",
+      "schedule": "48 09 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://ce.permitting.innovation.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "beasleywildlifelab.srel.uga.edu",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Beasley Wildlife Lab",
+      "output_target": "opensearch",
+      "schedule": "53 10 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://beasleywildlifelab.srel.uga.edu/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "tuberville.srel.uga.edu",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Tuberville Lab",
+      "output_target": "opensearch",
+      "schedule": "01 11 * * SAT",
+      "sitemap_urls": null,
+      "starting_urls": "https://tuberville.srel.uga.edu/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "espanol.womenshealth.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Espanol womenshealth.gov",
+      "output_target": "opensearch",
+      "schedule": "00 16 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://espanol.womenshealth.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "rtc.sandia.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Sandia RTC",
+      "output_target": "opensearch",
+      "schedule": "41 23 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://rtc.sandia.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "crf.sandia.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Sandia CRF",
+      "output_target": "opensearch",
+      "schedule": "41 01 * * SAT",
+      "sitemap_urls": null,
+      "starting_urls": "https://crf.sandia.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "newsreleases.sandia.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Sandia News Releases",
+      "output_target": "opensearch",
+      "schedule": "15 04 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://newsreleases.sandia.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "doepeerreview.sandia.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "DoE ES Peer Review",
+      "output_target": "opensearch",
+      "schedule": "43 06 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://doepeerreview.sandia.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "energy.sandia.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Sandia Energy",
+      "output_target": "opensearch",
+      "schedule": "47 06 * * SAT",
+      "sitemap_urls": null,
+      "starting_urls": "https://energy.sandia.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "ldesconsortium.sandia.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Sandia LDES National Consortium",
+      "output_target": "opensearch",
+      "schedule": "43 11 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://ldesconsortium.sandia.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "pvpact.sandia.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Sandia PACT",
+      "output_target": "opensearch",
+      "schedule": "38 12 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://pvpact.sandia.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "rsec.sandia.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Sandia RSEC",
+      "output_target": "opensearch",
+      "schedule": "49 15 * * SAT",
+      "sitemap_urls": null,
+      "starting_urls": "https://rsec.sandia.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "wellnessatnih.ors.od.nih.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Wellness At NIH",
+      "output_target": "opensearch",
+      "schedule": "41 18 * * SUN",
+      "sitemap_urls": null,
+      "starting_urls": "https://wellnessatnih.ors.od.nih.gov/Pages/default.aspx"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "salud.ors.od.nih.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NIH ORS Espanol",
+      "output_target": "opensearch",
+      "schedule": "14 18 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://salud.ors.od.nih.gov/Pages/default.aspx"
    }
 ]
