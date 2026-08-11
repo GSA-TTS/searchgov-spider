@@ -21,21 +21,25 @@ class FreshnessSpiderPipeline:
         self.searchgov_settings = crawler.spider.searchgov_settings
         self.opensearch = SearchGovOpensearch(
             searchgov_settings=self.searchgov_settings,
-            opensearch_index=self.searchgov_settings,
             logger=self.spider_logger,
         )
 
     def open_spider(self):
         """Create the freshness index if it doesn't exist"""
         # with contextlib.suppress(RequestError):
-        if not self.opensearch.index_exists():
-            self.opensearch.create_index(template=FreshnessSpiderItem.generate_template())
+        if not self.opensearch.index_exists(index_name=self.searchgov_settings.opensearch_freshness_index):
+            self.opensearch.create_index(
+                template=FreshnessSpiderItem.generate_template(),
+                index_name=self.searchgov_settings.opensearch_freshness_index,
+            )
 
     def process_item(self, item: FreshnessSpiderItem) -> None:
         """Log the URL and status code from the freshness spider item."""
         self.spider_logger.info("Stale URL found, Result: %s.  URL: %s", item.result, item.path)
         try:
-            self.opensearch.add_to_batch(doc=item.to_dict())
+            self.opensearch.add_to_batch(
+                doc=item.to_dict(), index_name=self.searchgov_settings.opensearch_freshness_index
+            )
         except Exception as exc:
             msg = "Failed to add item to Opensearch batch"
             self.spider_logger.exception(msg)
