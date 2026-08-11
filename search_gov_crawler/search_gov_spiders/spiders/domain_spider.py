@@ -1,5 +1,8 @@
+import warnings
+
 from scrapy import Request
 from scrapy.crawler import Crawler
+from scrapy.exceptions import ScrapyDeprecationWarning
 from scrapy.http.response import Response
 from scrapy.linkextractors import LinkExtractor
 from scrapy.settings import BaseSettings
@@ -9,6 +12,8 @@ import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 from search_gov_crawler.config.settings import SearchgovSettings
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 from search_gov_crawler.search_gov_spiders.spiders import SpiderStartedBy
+
+warnings.filterwarnings("ignore", category=ScrapyDeprecationWarning, module="scrapy_redis")
 
 
 class DomainSpider(CrawlSpider):
