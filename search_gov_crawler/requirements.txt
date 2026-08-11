@@ -6,8 +6,8 @@ coverage==7.14.3
 defusedxml==0.7.1
 freezegun==1.5.5
 langdetect==1.0.9
-lxml-html-clean==0.4.1 # Required by newspaper4k, ignored by dependabot
-newspaper4k[all]==0.9.3.1 # This also installs the nltk library
+newspaper4k[all]==0.9.6 # This also installs the nltk library
+nltk==3.10.0 # locked here to avoid an import error in 3.10.1
 opensearch-py==3.0.0
 pymysql==1.1.2
 pypdf==6.13.2
@@ -25,5 +25,4 @@ scrapy==2.16.0
 scrapy-playwright==0.0.46
 scrapy-redis==0.9.1
 spidermon[monitoring]==1.24.0
-typing-extensions==4.12.2 # Required by newspaper4k, ignored by dependabot
 zstandard==0.25.0 # adds zstd compression support to scrapy
