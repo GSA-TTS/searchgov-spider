@@ -46,7 +46,7 @@ class FreshnessSpider(Spider):
     def __init__(self, *args, query: str, max_results: str | None = None, **kwargs):
         super().__init__(*args, **kwargs)
         self.searchgov_settings = SearchgovSettings()
-        self.opensearch = SearchGovOpensearch(settings=self.settings, logger=self.logger)
+        self.opensearch = SearchGovOpensearch(searchgov_settings=self.searchgov_settings, logger=self.logger)
         self.query = ensure_valid_query(opensearch=self.opensearch, query=query)
         self.max_results = int(max_results) if max_results else None
         self.doc_count = 0

@@ -18,10 +18,10 @@ class FreshnessSpiderPipeline:
     def __init__(self, *, crawler: Crawler) -> None:
         self.crawler = crawler
         self.spider_logger = crawler.spider.logger
-        self.spider_settings = crawler.spider.settings
+        self.searchgov_settings = crawler.spider.searchgov_settings
         self.opensearch = SearchGovOpensearch(
-            settings=self.spider_settings,
-            opensearch_index=self.crawler.spider.settings.opensearch_freshness_index,
+            searchgov_settings=self.searchgov_settings,
+            opensearch_index=self.searchgov_settings,
             logger=self.spider_logger,
         )
 
