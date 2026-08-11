@@ -43,7 +43,7 @@ class SearchGovOpensearch:
         self._opensearch_host = opensearch_host or self.searchgov_settings.opensearch_search_host
         self._opensearch_index = opensearch_index or self.searchgov_settings.opensearch_search_index
         self._opensearch_user = opensearch_user or self.searchgov_settings.opensearch_search_user
-        self._opensearch_password = opensearch_password or self.searchgov_settings.opensearch_search_password
+        self._opensearch_password = opensearch_password or self.searchgov_settings.opensearch_search_pass
         self._timeout = timeout
         self._max_retries = max_retries
         self._opensearch_client: OpenSearch | None = None
@@ -72,6 +72,10 @@ class SearchGovOpensearch:
             )
         return self._opensearch_client
 
+    def _resolved_index_name(self, index_name: str | None = None):
+        """Resuable private method to resolve index name arguments as the passed value or the default"""
+        return index_name or self.index_name
+
     def add_to_batch(self, doc: dict[str, Any] | None, operation: str = "index", index_name: str | None = None) -> None:
         """Add a document to the Opensearch batch.
 
@@ -81,7 +85,7 @@ class SearchGovOpensearch:
         if not doc:
             return
 
-        self._current_batch.append((operation, index_name or self.index_name, doc))
+        self._current_batch.append((operation, self._resolved_index_name(index_name), doc))
         if len(self._current_batch) >= self._batch_size:
             self.batch_upload()
 
@@ -132,26 +136,28 @@ class SearchGovOpensearch:
         except Exception:
             self.logger.exception("Bulk upload to Opensearch failed")
 
-    def index_exists(self) -> bool:
+    def index_exists(self, index_name: str | None = None) -> bool:
         """Wrapper around opensearch-py client check"""
-        return self.client.indices.exists(index=self.index_name)
+        return self.client.indices.exists(index=self._resolved_index_name(index_name))
 
-    def create_index(self, template: dict) -> None:
+    def create_index(self, template: dict, index_name: str | None = None) -> None:
         """Creates index with a given template"""
-        self.client.indices.create(index=self.index_name, body=template)
-        log.info("Created index %s with template!", self.index_name)
+        resolved_index_name = self._resolved_index_name(index_name)
+        self.client.indices.create(index=resolved_index_name, body=template)
+        log.info("Created index %s with template!", resolved_index_name)
 
-    def update_index_template(self, template: dict) -> None:
+    def update_index_template(self, template: dict, index_name: str | None = None) -> None:
         """Updates index with a given template"""
 
-        if self.index_exists():
+        resolved_index_name = self._resolved_index_name(index_name)
+        if self.index_exists(resolved_index_name):
             try:
-                self.client.indices.put_mapping(index=self.index_name, body=template["mappings"])
-                log.info("Updated mappings for index %s", self.index_name)
-                self.client.indices.put_settings(index=self.index_name, body=template["settings"])
-                log.info("Updated settings for index %s", self.index_name)
+                self.client.indices.put_mapping(index=resolved_index_name, body=template["mappings"])
+                log.info("Updated mappings for index %s", resolved_index_name)
+                self.client.indices.put_settings(index=resolved_index_name, body=template["settings"])
+                log.info("Updated settings for index %s", resolved_index_name)
             except (KeyError, RequestError):
-                log.exception("Error updating index %s", self.index_name)
+                log.exception("Error updating index %s", resolved_index_name)
                 raise
         else:
-            log.error("Index %s does not exist, create it first!", self.index_name)
+            log.error("Index %s does not exist, create it first!", resolved_index_name)
