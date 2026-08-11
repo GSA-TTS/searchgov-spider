@@ -30,6 +30,7 @@
         "langdetect",
         "newspaper4k*",
         "opensearch-py",
+        "pydantic*",
         "pymysql",
         "pypdf",
         "python-dateutil",
