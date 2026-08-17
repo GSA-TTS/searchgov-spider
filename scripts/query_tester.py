@@ -7,14 +7,14 @@ from rich.panel import Panel
 from rich.text import Text
 from urllib3.exceptions import InsecureRequestWarning
 
-from search_gov_crawler.config.settings import SearchgovSpiderSettings
+from search_gov_crawler.config.settings import SearchgovSettings
 from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
 
 
-def initialize_opensearch(settings: SearchgovSpiderSettings) -> tuple[OpenSearch, str]:
+def initialize_opensearch(searchgov_settings: SearchgovSettings) -> tuple[OpenSearch, str]:
     """Initialize the Opensearch client."""
 
-    opensearch = SearchGovOpensearch(settings=settings)
+    opensearch = SearchGovOpensearch(searchgov_settings=searchgov_settings)
     return opensearch.client, opensearch.index_name
 
 
@@ -306,8 +306,8 @@ def cli(): ...  # noqa: D103
 def full_govt_search(search_term: str, size: int, page: int) -> None:
     """Mimic search.gov results page with full governtment search.  Used for testing query relevance"""
 
-    settings = SearchgovSpiderSettings()
-    client, index_name = initialize_opensearch(settings=settings)
+    searchgov_settings = SearchgovSettings()
+    client, index_name = initialize_opensearch(searchgov_settings=searchgov_settings)
 
     search_terms = " ".join(search_term)
 
@@ -327,8 +327,8 @@ def full_govt_search(search_term: str, size: int, page: int) -> None:
 def affiliate_search(search_term: str, domains: str, size: int, page: int) -> None:
     """Mimic search.gov results page with affiliate search.  Used for testing query relevance"""
 
-    settings = SearchgovSpiderSettings()
-    client, index_name = initialize_opensearch(settings=settings)
+    searchgov_settings = SearchgovSettings()
+    client, index_name = initialize_opensearch(searchgov_settings=searchgov_settings)
 
     search_terms = " ".join(search_term)
 

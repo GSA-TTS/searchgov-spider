@@ -8,21 +8,21 @@ import argparse
 
 from opensearchpy import OpenSearch
 
-from search_gov_crawler.config.settings import SearchgovSpiderSettings
+from search_gov_crawler.config.settings import SearchgovSettings
 from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
 
 
-def initialize_opensearch(settings: SearchgovSpiderSettings) -> tuple[OpenSearch, str]:
+def initialize_opensearch(searchgov_settings: SearchgovSettings) -> tuple[OpenSearch, str]:
     """Initialize the OpenSearch client."""
 
-    es = SearchGovOpensearch(settings=settings)
+    es = SearchGovOpensearch(searchgov_settings=searchgov_settings)
     return es.client, es.index_name
 
 
-def delete_by_domain(settings: SearchgovSpiderSettings, domain_name: str, apply: bool) -> None:  # noqa: FBT001
+def delete_by_domain(searchgov_settings: SearchgovSettings, domain_name: str, apply: bool) -> None:  # noqa: FBT001
     """Delete documents from Elasticsearch by domain."""
 
-    es_client, index_name = initialize_opensearch(settings=settings)
+    es_client, index_name = initialize_opensearch(searchgov_settings=searchgov_settings)
     query = {"query": {"term": {"domain_name": {"value": domain_name}}}}
 
     response = es_client.count(index=index_name, body=query)
@@ -53,6 +53,6 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    settings = SearchgovSpiderSettings()
+    settings = SearchgovSettings()
     # Call the function with the provided domain
-    delete_by_domain(settings=settings, domain_name=args.domain, apply=args.apply)
+    delete_by_domain(searchgov_settings=settings, domain_name=args.domain, apply=args.apply)
