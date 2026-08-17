@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from pydantic import PositiveInt
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -12,7 +13,11 @@ class SearchgovSettings(BaseSettings):
     opensearch_search_pass: str = ""
     opensearch_search_index: str = "spider-searchgov"
     opensearch_freshness_index: str = "spider-freshness"
-    dlm_max_docs_circuit_breaker: int = 50
+    dap_extractor_schedule: str = ""
+    dap_visits_days_back: PositiveInt = 7
+    dap_visits_max_age: PositiveInt = 28
+    dlm_schedule: str = ""
+    dlm_max_docs: int = 1000
 
     model_config = SettingsConfigDict(
         dotenv_filtering="only_existing",

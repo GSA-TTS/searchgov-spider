@@ -1,9 +1,13 @@
+import argparse
 import logging
 import math
 from itertools import batched
 
+from apscheduler.triggers.cron import CronTrigger
+
 from search_gov_crawler.config.settings import SearchgovSettings
 from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
+from search_gov_crawler.run.schedule import init_singleton_job_scheduler
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT, JsonFormatter
 from search_gov_crawler.search_gov_spiders.helpers.freshness_spider import (
     count_matching_documents,
@@ -58,14 +62,14 @@ def run_stale_document_deletion(searchgov_settings: SearchgovSettings):
         opensearch=opensearch, query=query, scroll="10m", index_name=searchgov_settings.opensearch_freshness_index
     )
 
-    max_batches = math.floor(searchgov_settings.dlm_max_docs_circuit_breaker / opensearch.batch_size)
+    max_batches = math.floor(searchgov_settings.dlm_max_docs / opensearch.batch_size)
     total_deletions = 0
     total_errors = 0
     for idx, docs in enumerate(batched(matching_docs, opensearch.batch_size), start=1):
         if idx > max_batches:
             log.warning(
                 "Circuit breaker triggered! Stopping process because next batch would exceed %d documents.",
-                searchgov_settings.dlm_max_docs_circuit_breaker,
+                searchgov_settings.dlm_max_docs,
             )
             break
 
@@ -90,5 +94,34 @@ def run_stale_document_deletion(searchgov_settings: SearchgovSettings):
     )
 
 
+def main(searchgov_settings: SearchgovSettings) -> None:
+    """Main function, handles getting the schedule and starting the scheduler for document lifecycle management"""
+
+    try:
+        cron_trigger = CronTrigger.from_crontab(expr=searchgov_settings.dlm_schedule)
+    except (AttributeError, TypeError, ValueError):
+        log.exception("Invalid crontab expression from DLM_SCHEDULE: %s", searchgov_settings.dlm_schedule)
+        raise
+
+    scheduler = init_singleton_job_scheduler()
+    scheduler.add_job(func=run_stale_document_deletion, trigger=cron_trigger, name="document_lifecycle_manager")
+
+    log.info(
+        "Starting scheduler for document lifecycle manager based on crontab expression %s",
+        searchgov_settings.dlm_schedule,
+    )
+
+    scheduler.start()
+
+
 if __name__ == "__main__":
-    run_stale_document_deletion(searchgov_settings=searchgov_settings)
+    parser = argparse.ArgumentParser(description="Run Document Lifecycle Manager job")
+    parser.add_argument(
+        "--run-now", action="store_true", default=False, help="Flag to trigger a single run, right now (default False)"
+    )
+
+    args = parser.parse_args()
+    if not args.run_now:
+        main(searchgov_settings=searchgov_settings)
+    else:
+        run_stale_document_deletion(searchgov_settings=searchgov_settings)
