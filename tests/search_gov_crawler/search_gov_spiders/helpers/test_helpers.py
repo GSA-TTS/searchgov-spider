@@ -267,7 +267,9 @@ def test_ensure_valid_query_not_a_dict(mocker, mock_opensearch):
         ensure_valid_query(opensearch=mock_opensearch, query='{"invalid": "query"}')
 
 
-@pytest.mark.parametrize("query", [{"test": "query"}, {"test": "query", "size": 100}])
+@pytest.mark.parametrize(
+    "query", [{"test": "query"}, {"test": "query", "size": 100}, {"test": "query", "size": 100, "sort": "field"}]
+)
 def test_count_matching_documents(mock_opensearch, query):
     mock_opensearch.client.count.return_value = {"count": 10}
     assert count_matching_documents(opensearch=mock_opensearch, query=query) == 10

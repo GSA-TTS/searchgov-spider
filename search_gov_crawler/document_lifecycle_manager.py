@@ -18,7 +18,7 @@ searchgov_settings = SearchgovSettings()
 
 logging.basicConfig(level=searchgov_settings.scrapy_log_level)
 logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
-log = logging.getLogger(__name__)
+log = logging.getLogger("search_gov_crawler.document_lifecycle_manager")
 
 
 def process_deletion_batch(opensearch: SearchGovOpensearch, actions: list, urls: dict):
@@ -48,7 +48,7 @@ def run_stale_document_deletion(searchgov_settings: SearchgovSettings):
     from the freshness index itself.
     """
     opensearch = SearchGovOpensearch(searchgov_settings=searchgov_settings)
-    query = {"query": {"term": {"marked_for_deletion": True}}}
+    query = {"query": {"term": {"marked_for_deletion": True}}, "sort": [{"checked_at": {"order": "asc"}}]}
     matching_document_count = count_matching_documents(
         opensearch=opensearch, query=query, index_name=searchgov_settings.opensearch_freshness_index
     )

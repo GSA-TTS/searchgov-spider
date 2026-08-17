@@ -31,6 +31,7 @@ def count_matching_documents(opensearch: SearchGovOpensearch, query: dict, index
     Return count of documents matching given query from opensearch index
     """
     query.pop("size", None)  # ensure size is not set for count query
+    query.pop("sort", None)  # ensure size is not set for count query
     index = index_name or opensearch.index_name
     return opensearch.client.count(index=index, body=query)["count"]
 
