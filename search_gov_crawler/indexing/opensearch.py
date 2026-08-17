@@ -1,4 +1,5 @@
 import logging
+from collections.abc import Generator
 from logging import Logger, LoggerAdapter
 from typing import Any
 
@@ -55,6 +56,11 @@ class SearchGovOpensearch:
         return self._opensearch_index
 
     @property
+    def batch_size(self) -> int:
+        """Current batch size for parallel bulk"""
+        return self._batch_size
+
+    @property
     def client(self) -> OpenSearch:
         """Lazily initialize and return the Opensearch client."""
         if self._opensearch_client is None:
@@ -72,7 +78,7 @@ class SearchGovOpensearch:
             )
         return self._opensearch_client
 
-    def _resolved_index_name(self, index_name: str | None = None):
+    def _resolved_index_name(self, index_name: str | None = None) -> str:
         """Resuable private method to resolve index name arguments as the passed value or the default"""
         return index_name or self.index_name
 
@@ -81,6 +87,8 @@ class SearchGovOpensearch:
 
         Args:
             doc: dict The document to be indexed, which must include an "id" field for the document ID in Opensearch
+            operation: string The type of action to take on the doc in the index.
+            index_name: string The index to perform the action on
         """
         if not doc:
             return
@@ -90,19 +98,38 @@ class SearchGovOpensearch:
             self.batch_upload()
 
     def _create_actions(self, batch: list[tuple[str, str, dict]]) -> list[dict[str, Any]]:
-        """Build bulk actions, popping out any explicit _id fields."""
+        """Build bulk actions basd on operation type"""
         actions: list[dict[str, Any]] = []
+
         for operation, index_name, doc in batch:
-            if doc["id"]:
-                action = {"_op_type": operation, "_index": index_name, "_id": doc["id"], "_source": doc}
+            id_field = "_id" if operation == "delete" else "id"
+            if id_value := doc.get(id_field):
+                action = {"_op_type": operation, "_index": index_name, "_id": id_value, "_source": doc}
             else:
-                self.logger.error("Missing required 'id' property in document: %s", doc)
+                self.logger.error("Missing required '%s' property in document: %s", id_field, doc)
                 continue
             actions.append(action)
         return actions
 
+    def bulk_batch_upload(self, batch: list[tuple[str, str, dict]]) -> tuple[list, list]:
+        """
+        Allow use of batch upload bypassing normal addition of documents one by one.  Process documents
+        in batch and return docs in either success or error buckets for additional processing.
+        """
+
+        successful_actions = []
+        failed_actions = []
+        actions = self._create_actions(batch=batch)
+        for success, info in self._get_parallel_bulk_generator(actions=actions):
+            if success:
+                successful_actions.append(info)
+            else:
+                failed_actions.append(info)
+
+        return successful_actions, failed_actions
+
     def batch_upload(self) -> None:
-        """Send batch of documents to Opensearch via bulk API."""
+        """Send current batch of documents to Opensearch via bulk API."""
 
         if not self._current_batch:
             return
@@ -115,26 +142,30 @@ class SearchGovOpensearch:
         failures: list[Any] = []
 
         try:
-            for ok, info in helpers.parallel_bulk(
-                client=self.client,
-                actions=actions,
-                thread_count=4,
-                queue_size=4,
-                chunk_size=self._batch_size,
-                max_chunk_bytes=10 * 1024 * 1024,
-                raise_on_error=False,
-            ):
+            for ok, info in self._get_parallel_bulk_generator(actions=actions):
                 if not ok:
                     failure_count += 1
                     failures.append(info)
 
             if not failure_count:
-                self.logger.info("Loaded %s records to Opensearch!", len(batch))
+                self.logger.info("Performed %s actions on Opensearch!", len(batch))
             else:
-                self.logger.error("Failed to index %d documents; errors: %r", failure_count, failures)
+                self.logger.error("Failed to perform actions on %d documents; errors: %r", failure_count, failures)
 
         except Exception:
             self.logger.exception("Bulk upload to Opensearch failed")
+
+    def _get_parallel_bulk_generator(self, actions) -> Generator[Any, None, None]:
+        """Allows reuse between multiple methos calling the parallel_bulk helper"""
+        return helpers.parallel_bulk(
+            client=self.client,
+            actions=actions,
+            thread_count=4,
+            queue_size=4,
+            chunk_size=self._batch_size,
+            max_chunk_bytes=10 * 1024 * 1024,
+            raise_on_error=False,
+        )
 
     def index_exists(self, index_name: str | None = None) -> bool:
         """Wrapper around opensearch-py client check"""

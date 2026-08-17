@@ -20,6 +20,18 @@ def test_index_name_property(opensearch_instance):
     assert opensearch_instance.index_name == "test-index"
 
 
+def test_batch_size_property(opensearch_instance):
+    assert opensearch_instance.batch_size == 2
+
+
+@pytest.mark.parametrize(
+    ("test_kwargs", "expected_output"),
+    [({}, "test-index"), ({"index_name": "new-unit-test-index"}, "new-unit-test-index")],
+)
+def test_resolved_index_name(opensearch_instance, test_kwargs, expected_output):
+    assert opensearch_instance._resolved_index_name(**test_kwargs) == expected_output
+
+
 def test_client_lazy_init(mocker, opensearch_instance):
     mock_client = mocker.MagicMock()
     mock_cls = mocker.patch("search_gov_crawler.indexing.opensearch.OpenSearch", return_value=mock_client)
@@ -74,7 +86,7 @@ def test_batch_upload_success(mocker, opensearch_instance):
     mocker.patch("search_gov_crawler.indexing.opensearch.helpers.parallel_bulk", return_value=mock_bulk)
     opensearch_instance.batch_upload()
 
-    opensearch_instance.logger.info.assert_called_once_with("Loaded %s records to Opensearch!", 2)
+    opensearch_instance.logger.info.assert_called_once_with("Performed %s actions on Opensearch!", 2)
 
 
 def test_batch_upload_failure(mocker, opensearch_instance):
@@ -103,6 +115,20 @@ def test_batch_upload_no_docs(mocker, opensearch_instance):
     mock_bulk = mocker.patch("search_gov_crawler.indexing.opensearch.helpers.parallel_bulk")
     opensearch_instance.batch_upload()
     mock_bulk.assert_not_called()
+
+
+def test_bulk_batch_upload(mocker, opensearch_instance):
+    mock_bulk = mocker.patch("search_gov_crawler.indexing.opensearch.helpers.parallel_bulk")
+    mock_bulk.return_value = iter([(True, {"index": {}}), (True, {"delete": {}}), (False, {"index": {}})])
+
+    batch = [
+        ("index", "test-index", {"path": "http://www.example.com/1", "field": "v1", "id": "1234"}),
+        ("delete", "test-index", {"_id": "5678"}),
+        ("index", "non-existent-index", {"id": "9012", "path": "https://www.example.com/2", "field": "v2"}),
+    ]
+    successful_actions, failed_actions = opensearch_instance.bulk_batch_upload(batch)
+    assert len(successful_actions) == 2
+    assert len(failed_actions) == 1
 
 
 @pytest.mark.parametrize("return_val", [True, False])

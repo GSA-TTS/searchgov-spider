@@ -10,8 +10,9 @@ class SearchgovSettings(BaseSettings):
     opensearch_search_host: str = "http://localhost:9200"
     opensearch_search_user: str = ""
     opensearch_search_pass: str = ""
-    opensearch_search_index: str = "development-i14y-documents-searchgov"
+    opensearch_search_index: str = "spider-searchgov"
     opensearch_freshness_index: str = "spider-freshness"
+    dlm_max_docs_circuit_breaker: int = 50
 
     model_config = SettingsConfigDict(
         dotenv_filtering="only_existing",
