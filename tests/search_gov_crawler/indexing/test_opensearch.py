@@ -57,12 +57,18 @@ def test_add_to_batch_no_doc(mocker, opensearch_instance):
     mock_upload.assert_not_called()
 
 
-def test_create_actions_with_and_without_id(opensearch_instance):
+def test_create_actions_index_with_and_without_id(opensearch_instance):
     path = "http://www.example.com/1"
     doc_id = generate_url_sha256(path)
     batch = [
+        # good input
         ("index", "test-index", {"id": doc_id, "path": path, "field": "value"}),
+        ("delete", "test-index", {"_id": doc_id}),
+        # bad input
         ("index", "test-index", {"id": None, "field": "missing id"}),
+        ("delete", "test-index", {"id": doc_id, "field": "wrong id field"}),
+        ("index", "test-index", {"field": "there is no id"}),
+        ("delete", "test-index", {"field": "there is no _id"}),
     ]
     actions = opensearch_instance._create_actions(batch=batch)
     assert actions == [
@@ -72,8 +78,14 @@ def test_create_actions_with_and_without_id(opensearch_instance):
             "_id": doc_id,
             "_source": {"path": "http://www.example.com/1", "field": "value", "id": doc_id},
         },
+        {
+            "_op_type": "delete",
+            "_index": "test-index",
+            "_id": doc_id,
+            "_source": {"_id": doc_id},
+        },
     ]
-    opensearch_instance.logger.error.assert_called_once()
+    assert opensearch_instance.logger.error.call_count == 4
 
 
 def test_batch_upload_success(mocker, opensearch_instance):
