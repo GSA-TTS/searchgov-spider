@@ -21,7 +21,7 @@ logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 log = logging.getLogger("search_gov_crawler.document_lifecycle_manager")
 
 
-def process_deletion_batch(opensearch: SearchGovOpensearch, actions: list, urls: dict):
+def process_deletion_batch(opensearch: SearchGovOpensearch, actions: list, urls: dict) -> tuple[list, list]:
     """Create actions, submit to opensearch, and log results"""
 
     batch_deletions, batch_failures = opensearch.bulk_batch_upload(batch=actions)
@@ -55,8 +55,9 @@ def run_stale_document_deletion(searchgov_settings: SearchgovSettings):
 
     if not matching_document_count:
         log.info("No documents found as marked for deletion! Stopping process.")
-    else:
-        log.info("Found %d documents marked for deletion!", matching_document_count)
+        return
+
+    log.info("Found %d documents marked for deletion!", matching_document_count)
 
     matching_docs = get_matching_documents(
         opensearch=opensearch, query=query, scroll="10m", index_name=searchgov_settings.opensearch_freshness_index

@@ -17,7 +17,7 @@ class SearchgovSettings(BaseSettings):
     dap_visits_days_back: PositiveInt = 7
     dap_visits_max_age: PositiveInt = 28
     dlm_schedule: str = "30 6 * * *"
-    dlm_max_docs: int = 2500
+    dlm_max_docs: int = 5000
 
     model_config = SettingsConfigDict(
         dotenv_filtering="only_existing",
