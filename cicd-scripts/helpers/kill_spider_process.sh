@@ -1,10 +1,17 @@
 #!/bin/bash
+# Check if a filename argument is provided
+if [ -z "$1" ]; then
+    echo "Usage: kill_spider_process.sh <filename>"
+    return
+fi
 
-# Find all process PIDs matching check_freshness.py. Should only be one, but just in case
-pids=$(pgrep -f "check_freshness.py")
+filename="$1"
+
+# Find all process PIDs matching filenam. Should only be one, but just in case
+pids=$(pgrep -f $filename)
 
 if [ -z "$pids" ]; then
-    echo "No 'check_freshness.py' processes found"
+    echo "No '${filename}' processes found"
 else
     for pid in $pids; do
         echo "Sending SIGTERM to process $pid"
