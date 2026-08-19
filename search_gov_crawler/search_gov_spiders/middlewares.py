@@ -90,7 +90,7 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
         Should return either None or an iterable of Request or item objects.
         """
         if response.request.meta.get("is_start_request", False):
-            self.crawler.spider.logger.exception(
+            self.crawler.spider.logger.error(
                 "Error occured while accessing start url: %s: response: %s, %s",
                 response.request.url,
                 response,
