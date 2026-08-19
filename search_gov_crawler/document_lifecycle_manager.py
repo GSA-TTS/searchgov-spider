@@ -7,7 +7,7 @@ from apscheduler.triggers.cron import CronTrigger
 
 from search_gov_crawler.config.settings import SearchgovSettings
 from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
-from search_gov_crawler.run.schedule import init_singleton_job_scheduler
+from search_gov_crawler.run.schedule import ensure_positive_int, init_singleton_job_scheduler
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT, JsonFormatter
 from search_gov_crawler.search_gov_spiders.helpers.freshness_spider import (
     count_matching_documents,
@@ -105,7 +105,12 @@ def main(searchgov_settings: SearchgovSettings) -> None:
         raise
 
     scheduler = init_singleton_job_scheduler()
-    scheduler.add_job(func=run_stale_document_deletion, trigger=cron_trigger, name="document_lifecycle_manager")
+    scheduler.add_job(
+        func=run_stale_document_deletion,
+        trigger=cron_trigger,
+        args=(searchgov_settings,),
+        name="document_lifecycle_manager",
+    )
 
     log.info(
         "Starting scheduler for document lifecycle manager based on crontab expression %s",
@@ -120,9 +125,16 @@ if __name__ == "__main__":
     parser.add_argument(
         "--run-now", action="store_true", default=False, help="Flag to trigger a single run, right now (default False)"
     )
+    parser.add_argument(
+        "--max_docs",
+        type=ensure_positive_int,
+        default=searchgov_settings.dlm_max_docs,
+        help="The max number of docs to delete in a single run, applies only if the `run-now` flag is used",
+    )
 
     args = parser.parse_args()
     if not args.run_now:
         main(searchgov_settings=searchgov_settings)
     else:
+        searchgov_settings.dlm_max_docs = args.max_docs
         run_stale_document_deletion(searchgov_settings=searchgov_settings)
