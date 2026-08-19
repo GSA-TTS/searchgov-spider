@@ -20,9 +20,11 @@ We currently run python 3.12.  The spider is based on the open source [scrapy](h
 
 ```bash
 ├── search_gov_crawler              # scrapy root
+|   ├── config                      # contains configuration and settings
 │   ├── dap                         # code for handling data from DAP
 │   ├── domains                     # json files with domains to scrape
 │   ├── indexing                    # code related to indexing content in opensearch
+|   ├── run                         # code used to help run and schedule jobs
 │   ├── scheduling                  # code for job scheduling and storing schedules in redis
 |   ├── search_gov_app              # code for communicating with the searchgov app
 │   ├── search_gov_spider           # scrapy project dir
@@ -112,6 +114,8 @@ For more advanced usage, see the [Advanced Setup and Use Page](docs/advanced_set
 * [Sitemap Monitor](search_gov_crawler/run_sitemap_monitor.py) - Process that monitors domains for changes in their sitemaps and triggers spider runs to capture changes.
 
 * [DAP Extractor](search_gov_crawler/dap_extractor.py) - Stand-alone job that handles extracting and loading DAP visits data for use in spider crawls.
+
+* [Document Lifecycle Manager](search_gov_crawler/dap_extractor.py) - Stand-alone job that deletes documents from the search index when they are no longer needed.
 
 * [Benchmark](search_gov_crawler/benchmark.py) - Allows for manual testing and benchmarking using similar mechanisms as scheduled runs.
 
