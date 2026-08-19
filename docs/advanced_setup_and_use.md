@@ -171,5 +171,5 @@ This command will start a scheduler and run the document lifecycle manager  base
 python search_gov_crawler/document_lifecycle_manager.py --help
 
 # Increase the circuit breaker count
-python search_gov_crawler/document_lifecycle_manager.py --max_docs 1000
+python search_gov_crawler/document_lifecycle_manager.py --run_now --max_docs 1000
 ```

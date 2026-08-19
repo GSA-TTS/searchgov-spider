@@ -123,7 +123,7 @@ def main(searchgov_settings: SearchgovSettings) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run Document Lifecycle Manager job")
     parser.add_argument(
-        "--run-now", action="store_true", default=False, help="Flag to trigger a single run, right now (default False)"
+        "--run_now", action="store_true", default=False, help="Flag to trigger a single run, right now (default False)"
     )
     parser.add_argument(
         "--max_docs",
