@@ -170,9 +170,9 @@ def test_document_lifecycle_manager_main(caplog, mocker):
     mock_crontrigger.return_value = True
 
     mock_scheduler = mocker.patch("search_gov_crawler.document_lifecycle_manager.init_singleton_job_scheduler")
-
+    searchgov_settings = SearchgovSettings(dlm_schedule="*/10 * * * *")
     with caplog.at_level("INFO"):
-        main(searchgov_settings=SearchgovSettings(dlm_schedule="*/10 * * * *"))
+        main(searchgov_settings=searchgov_settings)
 
     assert (
         "Starting scheduler for document lifecycle manager based on crontab expression */10 * * * *" in caplog.messages
@@ -180,6 +180,7 @@ def test_document_lifecycle_manager_main(caplog, mocker):
     mock_scheduler.return_value.add_job.assert_called_once_with(
         func=run_stale_document_deletion,
         trigger=True,
+        args=(searchgov_settings,),
         name="document_lifecycle_manager",
     )
     mock_scheduler.return_value.start.assert_called_once()
