@@ -174,7 +174,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "oceanservice.noaa.gov",
+      "allowed_domains": "oceanservice.noaa.gov,cdn.oceanservice.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 3,
@@ -531,7 +531,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "coastalscience.noaa.gov",
+      "allowed_domains": "coastalscience.noaa.gov,cdn.coastalscience.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 3,
@@ -16489,7 +16489,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "asprtracie.hhs.gov",
+      "allowed_domains": "asprtracie.hhs.gov,files.asprtracie.hhs.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -22299,7 +22299,7 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.deadiversion.usdoj.gov",
+      "allowed_domains": "www.deadiversion.usdoj.gov,apps.deadiversion.usdoj.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 3,
@@ -22686,5 +22686,44 @@
       "schedule": "14 18 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://salud.ors.od.nih.gov/Pages/default.aspx"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "maps.coast.noaa.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Maps ArcGIC REST Services Directory",
+      "output_target": "opensearch",
+      "schedule": "55 07 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://maps.coast.noaa.gov/arcgis/rest/services"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "chs.coast.noaa.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "Lake Level Viewer Data Download",
+      "output_target": "opensearch",
+      "schedule": "14 18 * * MON",
+      "sitemap_urls": null,
+      "starting_urls": "https://chs.coast.noaa.gov/htdata/Inundation/GreatLakes/BulkDownload/index.html"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "products.coastalscience.noaa.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "NCCOS Data Collections",
+      "output_target": "opensearch",
+      "schedule": "01 20 * * THU",
+      "sitemap_urls": null,
+      "starting_urls": "https://products.coastalscience.noaa.gov/collections/default.aspx"
    }
 ]
