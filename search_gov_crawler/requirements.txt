@@ -4,11 +4,13 @@ cchardet==2.2.0a2 # C version of chardet
 click==8.4.1
 coverage==7.14.3
 defusedxml==0.7.1
+faker==40.36.0
 freezegun==1.5.5
 langdetect==1.0.9
 newspaper4k[all]==0.9.6 # This also installs the nltk library
 nltk==3.10.0 # locked here to avoid an import error in 3.10.1
 opensearch-py==3.0.0
+pydantic-settings==2.15.0
 pymysql==1.1.2
 pypdf==6.13.2
 pytest==9.1.1
@@ -18,7 +20,7 @@ pytest-mock==3.15.1
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.2
 python-json-logger==3.3.0
-redis==5.2.1,<6.0.0 # 6.0.0 is not compatible with redis 6
+redis==5.2.1 # 6.0.0 is not compatible with redis 6
 rich==15.0.0
 ruff==0.15.19 # this version also need to be updated in precommit
 scrapy==2.16.0

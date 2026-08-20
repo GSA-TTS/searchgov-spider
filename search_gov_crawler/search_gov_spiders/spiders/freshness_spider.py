@@ -10,6 +10,7 @@ from scrapy.http.response import Response
 from scrapy.settings import BaseSettings
 from scrapy.signals import spider_idle
 
+from search_gov_crawler.config.settings import SearchgovSettings
 from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
 from search_gov_crawler.search_gov_spiders.helpers.freshness_spider import (
     count_matching_documents,
@@ -44,8 +45,10 @@ class FreshnessSpider(Spider):
 
     def __init__(self, *args, query: str, max_results: str | None = None, **kwargs):
         super().__init__(*args, **kwargs)
-        self.opensearch = SearchGovOpensearch()
-        self.query = ensure_valid_query(opensearch=self.opensearch, query=query)
+        self.searchgov_settings = SearchgovSettings()
+        self.freshness_index = self.searchgov_settings.opensearch_freshness_index
+        self.opensearch = SearchGovOpensearch(searchgov_settings=self.searchgov_settings, logger=self.logger)
+        self.query = ensure_valid_query(opensearch=self.opensearch, query=query, index_name=self.freshness_index)
         self.max_results = int(max_results) if max_results else None
         self.doc_count = 0
         self.source_documents = None
@@ -54,7 +57,9 @@ class FreshnessSpider(Spider):
         """
         Generates list of URLs from opensearch to send into the freshness spider.
         """
-        matching_documents = count_matching_documents(opensearch=self.opensearch, query=self.query)
+        matching_documents = count_matching_documents(
+            opensearch=self.opensearch, query=self.query, index_name=self.freshness_index
+        )
         if not matching_documents:
             self.logger.info("No documents found matching query")
             return
