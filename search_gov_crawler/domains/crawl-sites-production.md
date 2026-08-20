@@ -1,10 +1,10 @@
 # Production Schedule
  * [Sunday (250)](#sunday-250)
- * [Monday (248)](#monday-248)
+ * [Monday (249)](#monday-249)
  * [Tuesday (255)](#tuesday-255)
  * [Wednesday (248)](#wednesday-248)
- * [Thursday (247)](#thursday-247)
- * [Friday (246)](#friday-246)
+ * [Thursday (248)](#thursday-248)
+ * [Friday (247)](#friday-247)
  * [Saturday (247)](#saturday-247)
 
 
@@ -263,7 +263,7 @@
 |1st Infantry Division (army_11d)|23:50|www.1id.army.mil|N|3||
 
 
-## Monday (248)
+## Monday (249)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |cgaux.org (cgaux)|00:00|www.cgaux.org|N|8||
@@ -317,7 +317,7 @@
 |Seymour Johnson AFB (seymourjohnson)|05:32|www.seymourjohnson.af.mil|N|8||
 |NIH DTB Main Search Box (dtb-main-search-box)|05:36|discover.nci.nih.gov|N|3||
 |ae.usembassy.gov (dos_emb_mena_uae)|05:39|ae.usembassy.gov|N|8||
-|ASPR TRACIE|05:45|asprtracie.hhs.gov|N|8||
+|ASPR TRACIE|05:45|asprtracie.hhs.gov,files.asprtracie.hhs.gov|N|8||
 |NAVSUP (navy_navsup)|05:55|www.navsup.navy.mil|N|8||
 |tricare_blanchfield|06:00|blanchfield.tricare.mil|N|8||
 |Navy All Hands Magazine|06:00|allhands.navy.mil|Y|8||
@@ -477,6 +477,7 @@
 |tricare_guam|18:00|guam.tricare.mil|N|8||
 |mag.ncep.noaa.gov (nws.noaa.gov)|18:00|mag.ncep.noaa.gov|N|3||
 |NASA HEC (hec)|18:01|hec.nasa.gov|N|3||
+|Lake Level Viewer Data Download|18:14|chs.coast.noaa.gov|N|8||
 |Nellis Air Force Base (nellis)|18:28|www.nellis.af.mil|N|8||
 |Scott Air Force Base (afpw_scott)|18:31|www.scott.af.mil|N|8||
 |Army 2ID Korea (army_2idkorea)|18:38|www.2id.korea.army.mil|N|8||
@@ -1029,7 +1030,7 @@
 |Army 2nd Signal Brigade (army_2sigbde)|23:52|www.2sigbde.army.mil|N|3||
 
 
-## Thursday (247)
+## Thursday (248)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |niccs.cisa.gov (niccs.cisa)|00:00|niccs.cisa.gov|N|8||
@@ -1247,10 +1248,11 @@
 |NOAA Fisheries (fisheries)|19:02|www.fisheries.noaa.gov|N|3||
 |NOAA Water (water)|19:02|water.noaa.gov|N|3||
 |Weather Prediction Center (wpc)|19:03|www.wpc.ncep.noaa.gov|N|3||
-|NOAA Ocean Service (oceanservice)|19:03|oceanservice.noaa.gov|N|3||
+|NOAA Ocean Service (oceanservice)|19:03|oceanservice.noaa.gov,cdn.oceanservice.noaa.gov|N|3||
 |www.dote.osd.mil (usagov-replacement)|19:32|www.dote.osd.mil|N|3||
 |FEMA Training (usagov-replacement)|19:42|training.fema.gov|N|8||
 |188th WG, Arkansas ANG (afpw_188fw)|19:43|www.188wg.ang.af.mil|N|8||
+|NCCOS Data Collections|20:01|products.coastalscience.noaa.gov|N|8||
 |US Embassy Brazzaville (dos_emb_afr_brazzaville)|20:05|cg.usembassy.gov|N|3||
 |National Institute of Nursing Research (NINR) (www.ninr.nih.gov)|20:18|www.ninr.nih.gov|N|8||
 |Air Education and Training Command (aetc)|20:18|www.aetc.af.mil|N|8||
@@ -1281,7 +1283,7 @@
 |WRAIR (wrair)|23:53|wrair.health.mil|N|3||
 
 
-## Friday (246)
+## Friday (247)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Buckley Space Force Base (buckley)|00:27|www.buckley.spaceforce.mil|N|3||
@@ -1347,6 +1349,7 @@
 |NIH MIPAV|07:34|mipav.cit.nih.gov|N|8||
 |SWF-WC (swf-wc)|07:44|www.swf-wc.usace.army.mil|N|3||
 |Michigan National Guard (ng_michigan)|07:48|minationalguard.dodlive.mil|N|3||
+|Maps ArcGIC REST Services Directory|07:55|maps.coast.noaa.gov|N|8||
 |Army Line of Departure|07:56|www.lineofdeparture.army.mil|N|8||
 |tricare_20mg|08:00|shaw.tricare.mil|N|8||
 |Maritime Administration|08:11|www.maritime.dot.gov|N|8||
@@ -1478,7 +1481,7 @@
 |NOAA Virtual Lab (vlab)|19:13|vlab.noaa.gov|N|3||
 |Office of Response and Restoration (response_restoration)|19:13|response.restoration.noaa.gov|N|3||
 |NOAA Ready (ready)|19:14|www.ready.noaa.gov|N|3||
-|NOAA Coastal Science (coastalscience)|19:14|coastalscience.noaa.gov|N|3||
+|NOAA Coastal Science (coastalscience)|19:14|coastalscience.noaa.gov,cdn.coastalscience.noaa.gov|N|3||
 |NOAA Ocean Today (oceantoday)|19:14|oceantoday.noaa.gov|N|8||
 |NOAA Library (library)|19:15|library.noaa.gov|N|3||
 |Tsunami Warning Center (tsunami)|19:15|www.tsunami.noaa.gov|N|3||
@@ -1762,7 +1765,7 @@
 |tricare_hurlburt|21:00|hurlburt.tricare.mil|N|8||
 |341st Medical Group - Malmstrom Air Force Base|21:00|malmstrom.tricare.mil|N|8||
 |8tharmy.korea.army.mil (8tharmy)|21:02|8tharmy.korea.army.mil|N|8||
-|DEA Diversion Control Division (justice-odc)|21:05|www.deadiversion.usdoj.gov|N|3||
+|DEA Diversion Control Division (justice-odc)|21:05|www.deadiversion.usdoj.gov,apps.deadiversion.usdoj.gov|N|3||
 |NIH RaDaR|21:05|registries.ncats.nih.gov|N|8||
 |Office of Special Investigations (afosi)|21:13|www.osi.af.mil|N|8||
 |USITC.gov (USITC)|21:15|www.usitc.gov|N|8||
