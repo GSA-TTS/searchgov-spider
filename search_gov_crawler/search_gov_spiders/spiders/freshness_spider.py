@@ -5,7 +5,12 @@ from typing import ClassVar
 
 from scrapy import Request, Spider
 from scrapy.crawler import Crawler
-from scrapy.exceptions import DontCloseSpider
+from scrapy.exceptions import (
+    CannotResolveHostError,
+    DontCloseSpider,
+    DownloadConnectionRefusedError,
+    DownloadFailedError,
+)
 from scrapy.http.response import Response
 from scrapy.settings import BaseSettings
 from scrapy.signals import spider_idle
@@ -19,6 +24,7 @@ from search_gov_crawler.search_gov_spiders.helpers.freshness_spider import (
 from search_gov_crawler.search_gov_spiders.items import (
     FreshnessSpiderException,
     FreshnessSpiderExceptionItem,
+    FreshnessSpiderExceptionMarkedForDeletionItem,
     FreshnessSpiderMarkedForDeletionItem,
     FreshnessSpiderNotMarkedForDeletionItem,
 )
@@ -41,6 +47,11 @@ class FreshnessSpider(Spider):
     status_codes_to_mark_for_deletion: ClassVar[set[int]] = {
         code.value for code in HTTPStatus if code.is_redirection or code == HTTPStatus.NOT_FOUND
     }
+    error_types_to_mark_for_deletion: ClassVar[tuple[type, ...]] = (
+        DownloadFailedError,
+        CannotResolveHostError,
+        DownloadConnectionRefusedError,
+    )
 
     def __init__(self, *args, query: str, max_results: str | None = None, **kwargs):
         super().__init__(*args, **kwargs)
@@ -128,19 +139,34 @@ class FreshnessSpider(Spider):
         Otherwise, ignore the response since we only care about URLs that are not valid.
         """
         if exception := response.meta.get("exception"):
-            item = FreshnessSpiderExceptionItem(
-                checked_at=datetime.now(tz=UTC),
-                result=exception.__class__.__name__,
-                status_code=None,
-                index_name=self.opensearch.index_name,
-                id=response.meta["document_id"],
-                path=response.url,
-                domain_name=response.meta["domain_name"],
-                exception=FreshnessSpiderException(
-                    exception_type=exception.__class__.__name__,
-                    exception_message=str(exception),
-                ),
-            )
+            if isinstance(exception, self.error_types_to_mark_for_deletion):
+                item = FreshnessSpiderExceptionMarkedForDeletionItem(
+                    checked_at=datetime.now(tz=UTC),
+                    result=exception.__class__.__name__,
+                    status_code=None,
+                    index_name=self.opensearch.index_name,
+                    id=response.meta["document_id"],
+                    path=response.url,
+                    domain_name=response.meta["domain_name"],
+                    exception=FreshnessSpiderException(
+                        exception_type=exception.__class__.__name__,
+                        exception_message=str(exception),
+                    ),
+                )
+            else:
+                item = FreshnessSpiderExceptionItem(
+                    checked_at=datetime.now(tz=UTC),
+                    result=exception.__class__.__name__,
+                    status_code=None,
+                    index_name=self.opensearch.index_name,
+                    id=response.meta["document_id"],
+                    path=response.url,
+                    domain_name=response.meta["domain_name"],
+                    exception=FreshnessSpiderException(
+                        exception_type=exception.__class__.__name__,
+                        exception_message=str(exception),
+                    ),
+                )
         elif response.status in self.status_codes_to_ignore:
             self.logger.debug(
                 "Ignoring %s response from %s since it does not indicate a failure.",
