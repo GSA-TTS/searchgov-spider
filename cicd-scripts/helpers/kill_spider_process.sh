@@ -2,7 +2,7 @@
 # Check if a filename argument is provided
 if [ -z "$1" ]; then
     echo "Usage: kill_spider_process.sh <filename>"
-    return
+    return 1
 fi
 
 filename="$1"
