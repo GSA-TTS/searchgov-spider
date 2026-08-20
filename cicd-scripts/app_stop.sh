@@ -45,7 +45,7 @@ display_remaining_scrapy_processes() {
 }
 
 # Force kill any remaining scrapy background jobs
-# kill_remaining_scrapy_jobs() {
+kill_remaining_scrapy_jobs() {
     echo "Force killing remaining scrapy background jobs..."
 
     local SCRAPY_PIDS=$(ps aux | grep -ie [s]crapy | awk '{print $2}')
