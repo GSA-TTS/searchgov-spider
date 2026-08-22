@@ -80,9 +80,14 @@ def run_stale_document_deletion(searchgov_settings: SearchgovSettings):
             opensearch=opensearch, actions=search_actions, urls=document_urls
         )
 
+        # docs not found in the search index can be safely deleted from the freshness index
+        search_docs_not_found = [
+            search_error for search_error in search_errors if search_error.get("result") == "not_found"
+        ]
+
         freshness_actions = [
             ("delete", searchgov_settings.opensearch_freshness_index, search_deletion_taken["delete"])
-            for search_deletion_taken in search_deletions
+            for search_deletion_taken in search_deletions + search_docs_not_found
         ]
         freshness_deletions, freshness_errors = process_deletion_batch(
             opensearch=opensearch, actions=freshness_actions, urls=document_urls
