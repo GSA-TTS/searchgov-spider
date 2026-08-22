@@ -11,7 +11,7 @@ SITEMAP_DIR=/var/tmp/spider_sitemaps
 DAP_SCRIPT=search_gov_crawler/dap_extractor.py
 VENV_PYTHON=./venv/bin/python
 FRESHNESS_SCRIPT=search_gov_crawler/check_freshness.py
-DLM_SCRIPT=search_gov_crawler/document_lifecyle_manager.py
+DLM_SCRIPT=search_gov_crawler/document_lifecycle_manager.py
 
 # ensure profile vars and log file are configured
 source ~/.profile
