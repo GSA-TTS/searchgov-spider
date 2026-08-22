@@ -92,9 +92,18 @@ def mock_deletion_batch(mocker):
                 (
                     [
                         {"delete": {"_index": "test-search-index", "_id": str(i), "result": "deleted", "status": 200}}
-                        for i in range(success_count)
+                        for i in range(success_count - 1)
                     ],
-                    [],
+                    [
+                        {
+                            "delete": {
+                                "_index": "test-search-index",
+                                "_id": str(success_count),
+                                "result": "not_found",
+                                "status": 404,
+                            }
+                        }
+                    ],
                 ),
                 (
                     [
