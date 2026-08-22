@@ -10,7 +10,7 @@ class SearchgovSettings(BaseSettings):
     scrapy_log_level: str = "INFO"
     opensearch_search_host: str = "http://localhost:9200"
     opensearch_search_user: str = ""
-    opensearch_search_pass: str = ""
+    opensearch_search_password: str = ""
     opensearch_search_index: str = "spider-searchgov"
     opensearch_freshness_index: str = "spider-freshness"
     dap_extractor_schedule: str = ""
