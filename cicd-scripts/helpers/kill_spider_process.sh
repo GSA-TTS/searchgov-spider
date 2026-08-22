@@ -8,7 +8,7 @@ fi
 filename="$1"
 
 # Find all process PIDs matching filenam. Should only be one, but just in case
-pids=$(pgrep -f $filename)
+pids=$(pgrep -Af $filename)
 
 if [ -z "$pids" ]; then
     echo "No '${filename}' processes found"
