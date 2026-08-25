@@ -4,7 +4,7 @@
  * [Tuesday (255)](#tuesday-255)
  * [Wednesday (248)](#wednesday-248)
  * [Thursday (248)](#thursday-248)
- * [Friday (247)](#friday-247)
+ * [Friday (248)](#friday-248)
  * [Saturday (247)](#saturday-247)
 
 
@@ -1283,7 +1283,7 @@
 |WRAIR (wrair)|23:53|wrair.health.mil|N|3||
 
 
-## Friday (247)
+## Friday (248)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Buckley Space Force Base (buckley)|00:27|www.buckley.spaceforce.mil|N|3||
@@ -1315,6 +1315,7 @@
 |Medical Countermeasures (mcmbarda)|03:33|medicalcountermeasures.gov|N|8||
 |Army Research Institute (ARI)|03:35|research.ari.army.mil|N|8||
 |Job Corps|03:48|www.jobcorps.gov|N|8||
+|US Embassy in Singapore|03:58|sg.usembassy.gov/|N|8||
 |tricare_goodfellow|04:00|goodfellow.tricare.mil|N|8||
 |138th Fighter Wing, Oklahoma ANG (afpw_138fw)|04:05|www.138fw.ang.af.mil|N|8||
 |chemicalhazardsemergencymedicalma|04:15|chemm.hhs.gov|N|3||

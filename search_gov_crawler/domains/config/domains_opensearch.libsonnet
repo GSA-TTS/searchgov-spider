@@ -13984,4 +13984,12 @@ local output_target = 'opensearch';
                          output_target=output_target,
                          depth_limit=8),
   },
+  {
+    name: 'US Embassy in Singapore',
+    config: DomainConfig(allowed_domains='sg.usembassy.gov/',
+                         starting_urls='https://sg.usembassy.gov/',
+                         schedule='58 03 * * FRI',
+                         output_target=output_target,
+                         depth_limit=8),
+  },
 ]

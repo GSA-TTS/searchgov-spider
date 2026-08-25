@@ -22725,5 +22725,18 @@
       "schedule": "01 20 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://products.coastalscience.noaa.gov/collections/default.aspx"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "sg.usembassy.gov/",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "US Embassy in Singapore",
+      "output_target": "opensearch",
+      "schedule": "58 03 * * FRI",
+      "sitemap_urls": null,
+      "starting_urls": "https://sg.usembassy.gov/"
    }
 ]
