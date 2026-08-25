@@ -1,14 +1,14 @@
 # Production Schedule
- * [Sunday (247)](#sunday-247)
- * [Monday (246)](#monday-246)
- * [Tuesday (245)](#tuesday-245)
- * [Wednesday (237)](#wednesday-237)
- * [Thursday (239)](#thursday-239)
- * [Friday (247)](#friday-247)
- * [Saturday (244)](#saturday-244)
+ * [Sunday (245)](#sunday-245)
+ * [Monday (244)](#monday-244)
+ * [Tuesday (242)](#tuesday-242)
+ * [Wednesday (236)](#wednesday-236)
+ * [Thursday (235)](#thursday-235)
+ * [Friday (245)](#friday-245)
+ * [Saturday (242)](#saturday-242)
 
 
-## Sunday (247)
+## Sunday (245)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |NDBC NOAA (ndbc.noaa.gov)|00:09|dods.ndbc.noaa.gov|N|3||
@@ -60,7 +60,6 @@
 |9/11 Commission Report|03:29|govinfo.library.unt.edu/911|N|8||
 |Commission of Fine Arts|03:30|www.cfa.gov|N|8||
 |Spectrum.gov|03:30|www.spectrum.gov|N|8||
-|WMAP (wmap)|03:33|wmap.gsfc.nasa.gov|N|3||
 |Safe to Sleep|03:42|safetosleep.nichd.nih.gov|N|8||
 |tricare_redstone|04:00|redstone.tricare.mil|N|8||
 |15th Medical Group - Joint Base Pearl Harbor-Hickam|04:00|pearlharborhickam.tricare.mil|N|8||
@@ -180,7 +179,7 @@
 |Joint UNC (joint_unc)|13:09|www.unc.mil|N|3||
 |US EU OSH|13:12|www.useuosh.org|N|8||
 |125th Fighter Wing (afpw_125fw and afpw_flang)|13:15|www.125fw.ang.af.mil|N|8||
-|FDA Food and Nutrition Administration|13:26|www.fna.usda.gov|N|8||
+|FDA Food and Nutrition Administration|13:26|www.fna.usda.gov|N|8|www.fna.usda.gov/print/|
 |NIH SAS|13:41|sas.cit.nih.gov|N|8||
 |New depth 8 (br.usembassy.gov/pt)|13:50|br.usembassy.gov/pt|N|8||
 |Air Force Nuclear Weapons Center (usaf_afnwc)|13:51|www.afnwc.af.mil|N|8||
@@ -222,7 +221,6 @@
 |Hanford Site|18:27|www.hanford.gov|N|8||
 |US Consulate Curacao (dos_emb_wha_curacao)|18:40|cw.usconsulate.gov|N|8||
 |Wellness At NIH|18:41|wellnessatnih.ors.od.nih.gov|N|8||
-|www1.grc.nasa.gov (nasa-glenn)|18:47|www.nasa.gov/glenn/|N|8||
 |WIC Works|18:47|wicworks.fns.usda.gov|N|8||
 |US Embassy Burkina Faso|18:55|bf.usembassy.gov|N|8||
 |Brookhaven National Lab|19:08|www.bnl.gov|N|8||
@@ -260,7 +258,7 @@
 |1st Infantry Division (army_11d)|23:50|www.1id.army.mil|N|3||
 
 
-## Monday (246)
+## Monday (244)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |cgaux.org (cgaux)|00:00|www.cgaux.org|N|8||
@@ -279,7 +277,7 @@
 |US Embassy Somalia|02:07|so.usembassy.gov|N|8||
 |US Embassy Nepal|02:12|np.usembassy.gov|N|8||
 |Personal Property Activity|02:31|www.ppa.mil|N|8||
-|NREL|02:35|www.nrel.gov|N|8||
+|AHRQ|02:35|hcup-us.ahrq.gov/|N|8||
 |www.dodcui.mil (dod_cui)|02:41|www.dodcui.mil|N|8||
 |Spangdahlem Air Base (spangdahlem)|02:46|www.spangdahlem.af.mil|N|8||
 |Navy CUSNC (navy_cusnc)|02:48|www.cusnc.navy.mil|N|3||
@@ -426,7 +424,6 @@
 |NOAA American Samoa|14:00|americansamoa.noaa.gov|N|8||
 |Young Leaders of the Americas Initiative|14:00|ylai.state.gov|N|8||
 |Navy NAVWAR (navy_navwar)|14:10|www.navwar.navy.mil|N|3||
-|NASA Astronomy Picture of the Day|14:15|apod.nasa.gov|N|8||
 |Apprenticeship USA|14:30|www.apprenticeship.gov|N|8||
 |Choose VA (choose.va)|14:35|choose.va.gov|N|8||
 |U.S. Court of International Trade (cit.uscourts)|14:37|www.cit.uscourts.gov|N|8||
@@ -486,7 +483,6 @@
 |National Museum of the USAF (museum)|20:18|www.nationalmuseum.af.mil|N|8||
 |Employer.gov|20:20|www.employer.gov|N|8||
 |US Northern Command (northcom)|20:23|www.northcom.mil|N|8||
-|NASA Blogs|20:27|www.nasa.gov/blogs/|N|8||
 |Southwestern Division (swd)|20:33|www.swd.usace.army.mil|N|3||
 |Defense SBIR/STTR (dod_defensesbirsttr)|20:50|www.defensesbirsttr.mil|N|3||
 |Nuclear Energy University Program|21:08|neup.inl.gov|N|8||
@@ -511,7 +507,7 @@
 |EBCCP Cancer Control (ebccp.cancercontrol.cancer.gov)|23:29|ebccp.cancercontrol.cancer.gov|N|8||
 
 
-## Tuesday (245)
+## Tuesday (242)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Minot Air Force Base (minot)|00:00|www.minot.af.mil|N|8||
@@ -534,7 +530,6 @@
 |EPACT SFP Fleets (epact-sfp-fleets)|02:09|epact.energy.gov|N|3||
 |113th Wing, Air National Guard (afpw_113wg)|02:11|www.113wg.ang.af.mil|N|8||
 |Bonneville Power Administration|02:24|www.bpa.gov|N|8||
-|www.nasa.gov (usagov-replacement)|02:30|www.nasa.gov|N|8||
 |www.energy.gov (usagov-replacement)|02:32|www.energy.gov|N|3||
 |Navy OWA (navy_owa)|02:46|www.owa.navy.mil|N|3||
 |106th Rescue Wing (afpw_106rqw)|02:53|www.106rqw.ang.af.mil|N|8||
@@ -545,7 +540,6 @@
 |National Institute of Biomedical Imaging and Bioengineering (NIBIB) (www.nibib.nih.gov)|03:42|www.nibib.nih.gov|N|8||
 |Malmstrom Air Force Base (malmstrom)|03:42|www.malmstrom.af.mil|N|8||
 |Armed Forces Court (armfor)|03:49|www.armfor.uscourts.gov|N|8||
-|GSFC SEWP (gsfc210)|03:58|www.sewp.nasa.gov|N|8||
 |Choose Work SSA|04:00|choosework.ssa.gov|N|8||
 |www.ice.gov (usagov-replacement)|04:10|www.ice.gov|N|8||
 |Air Force Civil Engineer Center (afpw_afcec)|04:17|www.afcec.af.mil|N|8||
@@ -571,7 +565,6 @@
 |US Embassy Haiti (dos_emb_wha_haiti)|05:35|ht.usembassy.gov|N|8||
 |Air Force Sustainment Center (afpw_sustainment)|05:41|www.afsc.af.mil|N|8||
 |NIH Research Festival (nih-oir-research_festival)|06:00|researchfestival.nih.gov|N|3||
-|NASA en Español|06:00|ciencia.nasa.gov|N|8||
 |www.fema.gov (usagov-replacement)|06:12|www.fema.gov|N|8||
 |Bureau of Engraving and Printing (bep)|06:15|www.bep.gov|N|3||
 |Department of Energy - Hydrogen (doe-h2)|06:15|www.hydrogen.energy.gov|N|3||
@@ -761,7 +754,7 @@
 |McConnell Air Force Base (afpw_mcconnell)|23:48|www.mcconnell.af.mil|N|8||
 
 
-## Wednesday (237)
+## Wednesday (236)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |www.fec.gov (usagov-replacement)|00:00|www.fec.gov|N|8||
@@ -873,7 +866,6 @@
 |Los Alamos National Laboratory|09:29|www.lanl.gov|N|8||
 |US Mission Guinea-Bissau|09:34|gw.usmission.gov|N|8||
 |US Embassy Burundi|09:36|bi.usembassy.gov|N|8||
-|www.climate.gov (usagov-replacement)|09:51|www.climate.gov|N|8||
 |tricare_mahc|10:00|moncrief.tricare.mil|N|8||
 |nwc.ndu.edu (nduedu)|10:01|nwc.ndu.edu|N|8||
 |USACE Kansas City District (usace_all)|10:08|www.nwk.usace.army.mil|N|3||
@@ -1003,7 +995,7 @@
 |Army 2nd Signal Brigade (army_2sigbde)|23:52|www.2sigbde.army.mil|N|3||
 
 
-## Thursday (239)
+## Thursday (235)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |niccs.cisa.gov (niccs.cisa)|00:00|niccs.cisa.gov|N|8||
@@ -1054,7 +1046,6 @@
 |Aviano Air Base (aviano)|05:32|www.aviano.af.mil|N|8||
 |Department of Health and Human Services|05:33|www.hhs.gov|N|8||
 |Army Ordnance (ord)|05:41|goordnance.army.mil|N|8||
-|NASA Earth Observatory (usagov-replacement)|05:42|earthobservatory.nasa.gov|N|8||
 |Air Force Global Strike Command (afpw_afgsc)|05:47|www.afgsc.af.mil|N|8||
 |www.atlanticarea.uscg.mil (uscg_all)|05:47|www.atlanticarea.uscg.mil|N|8||
 |Office of Surface Mining (osm)|05:51|www.osmre.gov|N|8||
@@ -1122,7 +1113,6 @@
 |www.history.uscg.mil (uscg_all)|09:44|www.history.uscg.mil|N|8||
 |Joint Base Charleston|09:45|www.jbcharleston.jb.mil|N|8||
 |US District Court Southern District of West Virginia|09:45|www.wvsd.uscourts.gov|N|8||
-|NASA JSC History Collection|09:46|historycollection.jsc.nasa.gov|N|8||
 |CASL|09:47|www.casl.gov|N|8||
 |173rd Fighter Wing, Oregon Air National Guard (afpw_173fw)|09:58|www.173fw.ang.af.mil|N|8||
 |Joint Trauma System|10:00|jts.health.mil|N|8||
@@ -1150,7 +1140,6 @@
 |176th Wing, Alaska Air National Guard (afpw_176wg)|11:21|www.176wg.ang.af.mil|N|8||
 |www.ihs.gov (usagov-replacement)|11:22|www.ihs.gov|N|8||
 |Merit Systems Protection Board|11:30|www.mspb.gov|N|8||
-|NASA Images|11:38|images.nasa.gov|N|8||
 |SSCWeb (GSFC)|11:44|sscweb.gsfc.nasa.gov|N|8||
 |US Embassy Malta|11:45|mt.usembassy.gov|N|8||
 |SPK-WC (spk-wc)|11:55|www.spk-wc.usace.army.mil|N|3||
@@ -1205,7 +1194,6 @@
 |Navy NAVIFOR (navy_navifor)|18:16|www.navifor.usff.navy.mil|N|3||
 |186th Air Refueling Wing, Mississippi Air National Guard (afpw_186arw)|18:19|www.186arw.ang.af.mil|N|8||
 |Army AHRPO (army_ahrpo)|18:25|ahrpo.army.mil|N|3||
-|www.ferc.gov (usagov-replacement)|18:32|www.ferc.gov|N|3||
 |New depth 8 (th.usembassy.gov/th)|18:38|th.usembassy.gov/th|N|8||
 |NOAA (noaa)|19:01|www.noaa.gov|N|8||
 |National Centers for Environmental Information (ncei)|19:01|www.ncei.noaa.gov|N|8|/pub/,/thredds/,/thredds-ocean/|
@@ -1247,7 +1235,7 @@
 |WRAIR (wrair)|23:53|wrair.health.mil|N|3||
 
 
-## Friday (247)
+## Friday (245)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |Buckley Space Force Base (buckley)|00:27|www.buckley.spaceforce.mil|N|3||
@@ -1451,7 +1439,6 @@
 |Tsunami Warning Center (tsunami)|19:15|www.tsunami.noaa.gov|N|3||
 |Arctic Program (arctic)|19:15|arctic.noaa.gov|N|3||
 |NOAA Charts (charts)|19:16|www.charts.noaa.gov|N|8||
-|NOAA Marine Debris Program (marinedebris)|19:16|marinedebris.noaa.gov|N|3||
 |NOAA Climate Program Office (cpo)|19:16|cpo.noaa.gov|N|3||
 |Marine Navigation (marinenavigation)|19:17|marinenavigation.noaa.gov|N|3||
 |HDSC (hdsc)|19:17|hdsc.nws.noaa.gov|N|3||
@@ -1475,7 +1462,6 @@
 |Army USAMRDG (army_usamrdg)|19:26|mrdg.health.mil|N|3||
 |US Embassy Slovakia|20:18|sk.usembassy.gov|N|8||
 |New depth 8 (142wg.ang.af.mil)|20:20|www.142wg.ang.af.mil|N|8||
-|NASA CDDIS (cddis)|20:26|cddis.nasa.gov|N|8||
 |US Embassy Jamaica|20:27|jm.usembassy.gov|N|8||
 |US Embassy Angola|20:34|ao.usembassy.gov|N|8||
 |NIH NCATS Toolkit|20:44|toolkit.ncats.nih.gov|N|8||
@@ -1499,7 +1485,7 @@
 |DOS Embassy Comoros (dos_emb_afr_comoros)|23:54|km.usembassy.gov|N|3||
 
 
-## Saturday (244)
+## Saturday (242)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |New depth 8 (151wg.af.mil)|00:17|www.151wg.af.mil|N|8||
@@ -1526,7 +1512,6 @@
 |US Embassy Mozambique|02:27|mz.usembassy.gov|N|8||
 |USACE Philadelphia District (usace_all)|02:32|www.nap.usace.army.mil|N|3||
 |37th Training Wing (37trw)|02:46|www.37trw.af.mil|N|8||
-|DOS Embassy Sample2 (dos_emb_wha_sample2)|02:55|sample2.usembassy.gov|N|3||
 |tricare_beale|03:00|beale.tricare.mil|N|8||
 |87th Medical Group - Joint Base McGuire-Dix-Lakehurst|03:00|mcguiredixlakehurst.tricare.mil|N|8||
 |111th Attack Wing (afpw_111fw)|03:05|www.111attackwing.ang.af.mil|N|8||
@@ -1631,7 +1616,6 @@
 |NIH BRICS|12:32|brics.cit.nih.gov|N|8||
 |Justice COPS (justice-cops)|12:41|cops.usdoj.gov|N|8||
 |US Embassy Norway|12:44|no.usembassy.gov|N|8||
-|NASA Plus|12:47|plus.nasa.gov|N|8||
 |129th Rescue Wing, California ANG (afpw_129rqw)|12:51|www.129rqw.ang.af.mil|N|8||
 |1st Air Force (1af)|12:55|www.1af.acc.af.mil|N|8||
 |tricare_whiteman|13:00|whiteman.tricare.mil|N|8||

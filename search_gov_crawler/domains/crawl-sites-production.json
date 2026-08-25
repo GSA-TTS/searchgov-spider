@@ -609,19 +609,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "marinedebris.noaa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "NOAA Marine Debris Program (marinedebris)",
-      "output_target": "opensearch",
-      "schedule": "16 19 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://marinedebris.noaa.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "cpo.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -1360,19 +1347,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "www.nasa.gov (usagov-replacement)",
-      "output_target": "opensearch",
-      "schedule": "30 02 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.nasa.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "2021-2025.state.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -1945,19 +1919,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.climate.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "www.climate.gov (usagov-replacement)",
-      "output_target": "opensearch",
-      "schedule": "51 09 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.climate.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.nhlbi.nih.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -2428,19 +2389,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.ferc.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "www.ferc.gov (usagov-replacement)",
-      "output_target": "opensearch",
-      "schedule": "32 18 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.ferc.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.dote.osd.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -2490,19 +2438,6 @@
       "schedule": "42 03 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://ods.od.nih.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "earthobservatory.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "NASA Earth Observatory (usagov-replacement)",
-      "output_target": "opensearch",
-      "schedule": "42 05 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://earthobservatory.nasa.gov/"
    },
    {
       "allow_query_string": false,
@@ -8126,19 +8061,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.nasa.gov/glenn/",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "www1.grc.nasa.gov (nasa-glenn)",
-      "output_target": "opensearch",
-      "schedule": "47 18 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.nasa.gov/glenn/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.acq.osd.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -10587,19 +10509,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "wmap.gsfc.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "WMAP (wmap)",
-      "output_target": "opensearch",
-      "schedule": "33 03 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://wmap.gsfc.nasa.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "ssi.armywarcollege.edu",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -11624,19 +11533,6 @@
       "schedule": "24 18 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://ky.ng.mil"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "cddis.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "NASA CDDIS (cddis)",
-      "output_target": "opensearch",
-      "schedule": "26 20 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://cddis.nasa.gov"
    },
    {
       "allow_query_string": false,
@@ -14201,19 +14097,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "sample2.usembassy.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 3,
-      "handle_javascript": false,
-      "name": "DOS Embassy Sample2 (dos_emb_wha_sample2)",
-      "output_target": "opensearch",
-      "schedule": "55 02 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://sample2.usembassy.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "nmio.ise.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -14809,19 +14692,6 @@
       "schedule": "57 02 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://www.cdse.edu"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.sewp.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "GSFC SEWP (gsfc210)",
-      "output_target": "opensearch",
-      "schedule": "58 03 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.sewp.nasa.gov"
    },
    {
       "allow_query_string": false,
@@ -15969,19 +15839,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "apod.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "NASA Astronomy Picture of the Day",
-      "output_target": "opensearch",
-      "schedule": "15 14 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://apod.nasa.gov"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "www.apprenticeship.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -16122,19 +15979,6 @@
       "schedule": "00 05 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://ci.usembassy.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "ciencia.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "NASA en Español",
-      "output_target": "opensearch",
-      "schedule": "00 06 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://ciencia.nasa.gov/"
    },
    {
       "allow_query_string": false,
@@ -16567,19 +16411,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "historycollection.jsc.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "NASA JSC History Collection",
-      "output_target": "opensearch",
-      "schedule": "46 09 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://historycollection.jsc.nasa.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "ictbaseline.access-board.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -16590,19 +16421,6 @@
       "schedule": "22 10 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://ictbaseline.access-board.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "images.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "NASA Images",
-      "output_target": "opensearch",
-      "schedule": "38 11 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://images.nasa.gov/"
    },
    {
       "allow_query_string": false,
@@ -16970,19 +16788,6 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "plus.nasa.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "NASA Plus",
-      "output_target": "opensearch",
-      "schedule": "47 12 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://plus.nasa.gov/"
-   },
-   {
-      "allow_query_string": false,
       "allowed_domains": "primis.phmsa.dot.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -17279,19 +17084,6 @@
       "schedule": "42 21 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://yourtickettowork.ssa.gov/"
-   },
-   {
-      "allow_query_string": false,
-      "allowed_domains": "www.nasa.gov/blogs/",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "NASA Blogs",
-      "output_target": "opensearch",
-      "schedule": "27 20 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://www.nasa.gov/blogs/"
    },
    {
       "allow_query_string": false,
@@ -21056,16 +20848,16 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.nrel.gov",
+      "allowed_domains": "hcup-us.ahrq.gov/",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "NREL",
+      "name": "AHRQ",
       "output_target": "opensearch",
       "schedule": "35 02 * * MON",
       "sitemap_urls": null,
-      "starting_urls": "https://www.nrel.gov/"
+      "starting_urls": "https://hcup-us.ahrq.gov/"
    },
    {
       "allow_query_string": false,
@@ -21638,7 +21430,9 @@
       "allow_query_string": false,
       "allowed_domains": "www.fna.usda.gov",
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "www.fna.usda.gov/print/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "FDA Food and Nutrition Administration",
