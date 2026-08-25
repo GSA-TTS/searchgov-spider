@@ -57,9 +57,7 @@ class FreshnessSpider(Spider):
         """
         Generates list of URLs from opensearch to send into the freshness spider.
         """
-        matching_documents = count_matching_documents(
-            opensearch=self.opensearch, query=self.query, index_name=self.freshness_index
-        )
+        matching_documents = count_matching_documents(opensearch=self.opensearch, query=self.query)
         if not matching_documents:
             self.logger.info("No documents found matching query")
             return
