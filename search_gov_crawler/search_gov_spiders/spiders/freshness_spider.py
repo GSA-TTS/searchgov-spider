@@ -37,7 +37,7 @@ class FreshnessSpider(Spider):
     doc_count: int
     doc_batch_size: ClassVar[int] = 250
 
-    scroll: ClassVar[str] = "24h"
+    scroll: ClassVar[str] = "10m"
     status_codes_to_ignore: ClassVar[set[int]] = {200}
     status_codes_to_mark_for_deletion: ClassVar[set[int]] = {
         code.value for code in HTTPStatus if code.is_redirection or code == HTTPStatus.NOT_FOUND
