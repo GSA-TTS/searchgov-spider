@@ -511,7 +511,8 @@ local output_target = 'opensearch';
                          starting_urls='https://www.usa.gov/',
                          schedule='30 06 * * TUE',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         lower_environments=['development', 'staging']),
   },
   {
     name: 'SSA (usagov-replacement)',
@@ -657,7 +658,8 @@ local output_target = 'opensearch';
                          starting_urls='https://www.gsa.gov/',
                          schedule='15 16 * * SUN',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         lower_environments=['development', 'staging']),
   },
   {
     name: 'www.fbi.gov (usagov-replacement)',
@@ -1292,7 +1294,8 @@ local output_target = 'opensearch';
                          starting_urls='https://digital.gov/',
                          schedule='12 16 * * THU',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         lower_environments=['development', 'staging']),
   },
   {
     name: 'www.armyupress.army.mil (usagov-replacement)',
@@ -5704,7 +5707,8 @@ local output_target = 'opensearch';
                          starting_urls='https://studentaid.gov',
                          schedule='22 02 * * SUN',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         lower_environments=['development', 'staging']),
   },
   {
     name: 'USFK (usfk)',
@@ -10995,7 +10999,8 @@ local output_target = 'opensearch';
                          starting_urls='https://www.cloud.gov/',
                          schedule='39 14 * * MON',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         lower_environments=['development', 'staging']),
   },
   {
     name: 'Committee on the Marine Transportation System (cmts)',
@@ -12994,7 +12999,8 @@ local output_target = 'opensearch';
                          starting_urls='https://docs.cloud.gov/',
                          schedule='30 12 * * MON',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         lower_environments=['development', 'staging']),
   },
   {
     name: 'www.seaway.dot.gov',
