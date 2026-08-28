@@ -1,9 +1,9 @@
 # Production Schedule
  * [Sunday (245)](#sunday-245)
- * [Monday (244)](#monday-244)
+ * [Monday (243)](#monday-243)
  * [Tuesday (242)](#tuesday-242)
- * [Wednesday (236)](#wednesday-236)
- * [Thursday (235)](#thursday-235)
+ * [Wednesday (240)](#wednesday-240)
+ * [Thursday (238)](#thursday-238)
  * [Friday (245)](#friday-245)
  * [Saturday (242)](#saturday-242)
 
@@ -113,7 +113,7 @@
 |CFPB (usagov-replacement)|07:15|www.consumerfinance.gov|N|8||
 |FDC.NAL.USDA.gov (USDA NAL)|07:15|fdc.nal.usda.gov|N|8||
 |Defense Contract Management Agency|07:15|www.dcma.mil|N|8||
-|PACOM (dod_pacom)|07:18|www.pacom.mil|N|8||
+|PACOM (dod_pacom)|07:18|www.pacom.mil|N|8|/NewsTestPage/|
 |United States Air Force Academy (usafacademy)|07:23|www.usafa.af.mil|N|8||
 |CIA (usagov-replacement)|07:30|www.cia.gov|N|8||
 |US Bankruptcy Court District of Delaware|07:30|www.deb.uscourts.gov|N|8||
@@ -258,7 +258,7 @@
 |1st Infantry Division (army_11d)|23:50|www.1id.army.mil|N|3||
 
 
-## Monday (244)
+## Monday (243)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |cgaux.org (cgaux)|00:00|www.cgaux.org|N|8||
@@ -354,9 +354,6 @@
 |tricare_kenner|09:00|kenner.tricare.mil|N|8||
 |OSHA (osha)|09:04|www.osha.gov|N|8||
 |US Embassy Slovenia|09:15|si.usembassy.gov|N|8||
-|toolkit.climate.gov - endpoint|09:30|toolkit.climate.gov|N|3||
-|ED Office of Hearings and Appeals OHA|09:30|oha.ed.gov|N|3||
-|FDA Import Alerts|09:30|www.accessdata.fda.gov|N|8||
 |VA Access To Care|09:30|www.accesstocare.va.gov|N|3||
 |USCOURTS CACB|09:30|www.cacb.uscourts.gov|N|3||
 |USDA FPAC Business Center|09:30|www.fpacbc.usda.gov|N|8||
@@ -376,6 +373,8 @@
 |Digital.gov Standards|09:30|standards.digital.gov|N|8||
 |NOAA CoastWatch West Coast|09:30|coastwatch.pfeg.noaa.gov|N|8||
 |DOS AIS USVISA INFO|09:30|ais.usvisa-info.com|N|8||
+|toolkit.climate.gov|09:30|toolkit.climate.gov|N|3||
+|FDA Import Alerts|09:30|www.accessdata.fda.gov|N|8||
 |it.usembassy.gov (dos_emb_eur_italy)|09:36|it.usembassy.gov|N|8||
 |New depth 8 (ee.usembassy.gov/et)|09:36|ee.usembassy.gov/et|N|8||
 |San Francisco District (sanfrancisco_district)|09:45|www.spn.usace.army.mil|N|3||
@@ -754,7 +753,7 @@
 |McConnell Air Force Base (afpw_mcconnell)|23:48|www.mcconnell.af.mil|N|8||
 
 
-## Wednesday (236)
+## Wednesday (240)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |www.fec.gov (usagov-replacement)|00:00|www.fec.gov|N|8||
@@ -771,6 +770,7 @@
 |Air Force Mortuary Affairs Operations (afpw_mortuary)|01:12|www.mortuary.af.mil|N|8||
 |USACE Transatlantic Division (usace_transatlanticdiv)|01:14|www.tad.usace.army.mil|N|3||
 |Greater Farallones National Marine Sanctuary|01:15|farallones.noaa.gov|N|8||
+|clinical.nih.gov|01:27|clinical.nih.gov|N|8||
 |NIST Metaschema (metaschema)|01:31|pages.nist.gov|N|3||
 |Offutt Air Force Base (afpw_offutt)|01:54|www.offutt.af.mil|N|8||
 |ml.usembassy.gov (usagov-replacement)|01:59|ml.usembassy.gov|N|8||
@@ -847,6 +847,7 @@
 |Office of Environmental Stewardship (GSA OES)|08:03|oes.gsa.gov|N|8||
 |National Flood Insurance Program|08:05|www.floodsmart.gov|N|8||
 |Air Force Compliance Division (afpw_foia)|08:10|www.compliance.af.mil|N|8||
+|archive.dni.gov|08:12|archive.dni.gov|N|8||
 |www.af.mil (usagov-replacement)|08:16|www.af.mil|N|8||
 |Eglin Air Force Base (eglin)|08:18|www.eglin.af.mil|N|8||
 |Japan District (japan_district)|08:21|www.poj.usace.army.mil|N|3||
@@ -892,6 +893,7 @@
 |iucrc.nsf.gov (nsf)|12:00|iucrc.nsf.gov|N|8||
 |rcnsc.ndu.edu (nduedu)|12:00|rcnsc.ndu.edu|N|8||
 |dsacms.github.io|12:00|dsacms.github.io|N|8||
+|health.nih.gov|12:03|health.nih.gov|N|8||
 |USDA Food Buying Guide|12:05|foodbuyingguide.fns.usda.gov|N|8||
 |www.eia.gov (usagov-replacement)|12:12|www.eia.gov|N|8||
 |Altus Air Force Base (afpw_altus)|12:21|www.altus.af.mil|N|8||
@@ -970,6 +972,7 @@
 |Far East District (far_east_district)|20:40|www.pof.usace.army.mil|N|3||
 |Dover Air Force Base (afpw_dover)|20:43|www.dover.af.mil|N|8||
 |Space Systems Command (dod_ssc)|20:50|www.ssc.spaceforce.mil|N|3||
+|rare.nih.gov|20:51|rare.nih.gov|N|8||
 |Comptroller (war.gov)|20:53|comptroller.war.gov|N|8||
 |New depth 8 (palestinianaffairs.state.gov/ar)|20:54|palestinianaffairs.state.gov/ar|N|8||
 |Eastern Air Defense Sector (afpw_eads)|21:25|www.eads.ang.af.mil|N|8||
@@ -995,7 +998,7 @@
 |Army 2nd Signal Brigade (army_2sigbde)|23:52|www.2sigbde.army.mil|N|3||
 
 
-## Thursday (235)
+## Thursday (238)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |niccs.cisa.gov (niccs.cisa)|00:00|niccs.cisa.gov|N|8||
@@ -1031,6 +1034,7 @@
 |Baltimore District (baltimore_district)|03:54|www.nab.usace.army.mil|N|3||
 |tricare_beaufort|04:00|beaufort.tricare.mil|N|8||
 |US Embassy Uzbekistan (dos_emb_csa_uzbekistan)|04:02|uz.usembassy.gov|N|3||
+|tech.nih.gov|04:04|tech.nih.gov|N|8||
 |Navy EWTGPAC (navy_ewtgpac)|04:11|www.ewtgpac.navy.mil|N|3||
 |NIH Healthy Eating|04:18|healthyeating.nhlbi.nih.gov|N|8||
 |www.ams.usda.gov (usagov-replacement)|04:22|www.ams.usda.gov|N|3||
@@ -1182,6 +1186,7 @@
 |www.shaw.af.mil (usagov-replacement)|16:32|www.shaw.af.mil|N|3||
 |www.southcom.mil (dod_southcom)|16:40|www.southcom.mil|N|8||
 |New depth 8 (sz.usembassy.gov)|16:40|sz.usembassy.gov|N|8||
+|data.nih.gov|16:43|data.nih.gov|N|8||
 |184th Intelligence Wing, Kansas Air National Guard (afpw_184iw)|16:56|www.184iw.ang.af.mil|N|8||
 |Army FIRST (army_first)|17:13|www.first.army.mil|N|3||
 |www.fsa.usda.gov (usagov-replacement)|17:22|www.fsa.usda.gov|N|8||
@@ -1220,6 +1225,7 @@
 |Alaska National Guard (guard_akng)|21:41|ak.ng.mil|N|3||
 |US Embassy in Dominican Republic (usagov-replacement)|21:42|do.usembassy.gov|N|8||
 |Department of Commerce OIG (oig.doc.gov)|21:51|www.oig.doc.gov|N|8||
+|research.nih.gov|22:01|research.nih.gov|N|8||
 |US Embassy Colombia|22:05|co.usembassy.gov|N|8||
 |Air Combat Command (acc)|22:09|www.acc.af.mil|N|8||
 |192D WG (afpw_192fw)|22:30|www.192wg.ang.af.mil|N|8||
