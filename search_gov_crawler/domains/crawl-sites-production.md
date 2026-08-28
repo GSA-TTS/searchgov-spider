@@ -3,7 +3,7 @@
  * [Monday (243)](#monday-243)
  * [Tuesday (242)](#tuesday-242)
  * [Wednesday (240)](#wednesday-240)
- * [Thursday (238)](#thursday-238)
+ * [Thursday (240)](#thursday-240)
  * [Friday (245)](#friday-245)
  * [Saturday (242)](#saturday-242)
 
@@ -998,7 +998,7 @@
 |Army 2nd Signal Brigade (army_2sigbde)|23:52|www.2sigbde.army.mil|N|3||
 
 
-## Thursday (238)
+## Thursday (240)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |niccs.cisa.gov (niccs.cisa)|00:00|niccs.cisa.gov|N|8||
@@ -1139,6 +1139,8 @@
 |US Embassy Sri Lanka (dos_emb_csa_srilanka)|11:02|lk.usembassy.gov|N|8||
 |Andersen Air Force Base (andersen)|11:05|www.andersen.af.mil|N|8||
 |Navy NDW (navy_ndw)|11:09|ndw.cnic.navy.mil|N|3||
+|museum.dea.gov|11:12|museum.dea.gov|N|8||
+|DFBA|11:12|www.dfba.mil|N|8||
 |US Bankruptcy Court District of Minnesota|11:15|www.msnb.uscourts.gov|N|8||
 |NOAA Foster Scholars (fosterscholars.noaa.gov)|11:18|fosterscholars.noaa.gov|N|8||
 |176th Wing, Alaska Air National Guard (afpw_176wg)|11:21|www.176wg.ang.af.mil|N|8||

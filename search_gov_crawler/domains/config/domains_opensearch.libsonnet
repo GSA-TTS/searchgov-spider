@@ -13623,4 +13623,20 @@ local output_target = 'opensearch';
                          output_target=output_target,
                          depth_limit=8),
   },
+  {
+    name: 'museum.dea.gov',
+    config: DomainConfig(allowed_domains='museum.dea.gov',
+                         starting_urls='https://museum.dea.gov/',
+                         schedule='12 11 * * THU',
+                         output_target=output_target,
+                         depth_limit=8),
+  },
+  {
+    name: 'DFBA',
+    config: DomainConfig(allowed_domains='www.dfba.mil',
+                         starting_urls='https://www.dfba.mil/',
+                         schedule='12 11 * * THU',
+                         output_target=output_target,
+                         depth_limit=8),
+  },
 ]

@@ -22092,5 +22092,31 @@
       "schedule": "12 08 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://archive.dni.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "museum.dea.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "museum.dea.gov",
+      "output_target": "opensearch",
+      "schedule": "12 11 * * THU",
+      "sitemap_urls": null,
+      "starting_urls": "https://museum.dea.gov/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "www.dfba.mil",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "DFBA",
+      "output_target": "opensearch",
+      "schedule": "12 11 * * THU",
+      "sitemap_urls": null,
+      "starting_urls": "https://www.dfba.mil/"
    }
 ]
