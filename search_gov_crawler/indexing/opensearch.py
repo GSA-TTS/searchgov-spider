@@ -44,7 +44,7 @@ class SearchGovOpensearch:
         self._opensearch_host = opensearch_host or self.searchgov_settings.opensearch_search_host
         self._opensearch_index = opensearch_index or self.searchgov_settings.opensearch_search_index
         self._opensearch_user = opensearch_user or self.searchgov_settings.opensearch_search_user
-        self._opensearch_password = opensearch_password or self.searchgov_settings.opensearch_search_pass
+        self._opensearch_password = opensearch_password or self.searchgov_settings.opensearch_search_password
         self._timeout = timeout
         self._max_retries = max_retries
         self._opensearch_client: OpenSearch | None = None

@@ -11,7 +11,7 @@ source ./cicd-scripts/helpers/ensure_executable.sh
 stop_process() {
     local process_filename="$1"
     echo "Stopping ${process_filename} (if running)..."
-    run_executable "./cicd-scripts/helpers/kill_spider_process.sh ${process_filename}"
+    run_executable ./cicd-scripts/helpers/kill_spider_process.sh ${process_filename}
 }
 
 # Remove virtual environment if it exists

@@ -3,7 +3,7 @@ def test_searchgov_settings_defaults(default_searchgov_settings):
         "scrapy_log_level": "INFO",
         "opensearch_search_host": "http://localhost:9200",
         "opensearch_search_user": "",
-        "opensearch_search_pass": "",
+        "opensearch_search_password": "",
         "opensearch_search_index": "spider-searchgov",
         "opensearch_freshness_index": "spider-freshness",
         "dap_extractor_schedule": "",

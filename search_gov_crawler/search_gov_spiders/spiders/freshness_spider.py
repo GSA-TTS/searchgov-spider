@@ -37,7 +37,7 @@ class FreshnessSpider(Spider):
     doc_count: int
     doc_batch_size: ClassVar[int] = 250
 
-    scroll: ClassVar[str] = "24h"
+    scroll: ClassVar[str] = "10m"
     status_codes_to_ignore: ClassVar[set[int]] = {200}
     status_codes_to_mark_for_deletion: ClassVar[set[int]] = {
         code.value for code in HTTPStatus if code.is_redirection or code == HTTPStatus.NOT_FOUND
@@ -57,9 +57,7 @@ class FreshnessSpider(Spider):
         """
         Generates list of URLs from opensearch to send into the freshness spider.
         """
-        matching_documents = count_matching_documents(
-            opensearch=self.opensearch, query=self.query, index_name=self.freshness_index
-        )
+        matching_documents = count_matching_documents(opensearch=self.opensearch, query=self.query)
         if not matching_documents:
             self.logger.info("No documents found matching query")
             return

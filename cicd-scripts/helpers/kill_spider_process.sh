@@ -2,13 +2,13 @@
 # Check if a filename argument is provided
 if [ -z "$1" ]; then
     echo "Usage: kill_spider_process.sh <filename>"
-    return
+    return 1
 fi
 
 filename="$1"
 
 # Find all process PIDs matching filenam. Should only be one, but just in case
-pids=$(pgrep -f $filename)
+pids=$(pgrep -Af $filename)
 
 if [ -z "$pids" ]; then
     echo "No '${filename}' processes found"
