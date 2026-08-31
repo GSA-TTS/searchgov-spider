@@ -119,7 +119,7 @@ remove_cron_entry() {
 stop_process "dap_extractor.py"
 
 # Stop freshness checker
-stop_process "freshness_checker.py"
+stop_process "check_freshness.py"
 
 # Stop document lifecycle manager
 stop_process "document_lifecycle_manager.py"
