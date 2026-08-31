@@ -19,7 +19,7 @@ pytest-console-scripts==1.4.1
 pytest-mock==3.15.1
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.2
-python-json-logger==3.3.0
+python-json-logger==4.2.0
 redis==5.2.1 # 6.0.0 is not compatible with redis 6
 rich==15.0.0
 ruff==0.15.19 # this version also need to be updated in precommit
