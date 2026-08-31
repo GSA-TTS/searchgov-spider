@@ -15,7 +15,8 @@ In the config directory, there is one file for each of the different output targ
 - domain_config.libsonnet: contains source for `DomainConfig` function used to generate domain configurations for all output targets.
 
 ### Domain Configuration
-A shared DomainConfig function is used to generate crawl site records in a specific format. When creating a new domain, choose the file that matches the output target and add a record to the file similar to the example below.  See the [DomainConfig](config/domain_config.libsonnet) function for more details.
+A shared DomainConfig function is used to generate crawl site records in a specific format. When creating a new domain, choose the file that matches the output target and add a record to the file similar to the example below.  Additional options exist for restricting the domain to a speciic environment, or passing in additional spider arguments.  See the [DomainConfig](config/domain_config.libsonnet) function for more details.
+
 ```bash
   {
     name: 'New Domain To Crawl',

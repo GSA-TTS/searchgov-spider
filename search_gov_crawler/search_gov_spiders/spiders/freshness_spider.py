@@ -5,11 +5,17 @@ from typing import ClassVar
 
 from scrapy import Request, Spider
 from scrapy.crawler import Crawler
-from scrapy.exceptions import DontCloseSpider
+from scrapy.exceptions import (
+    CannotResolveHostError,
+    DontCloseSpider,
+    DownloadConnectionRefusedError,
+    DownloadFailedError,
+)
 from scrapy.http.response import Response
 from scrapy.settings import BaseSettings
 from scrapy.signals import spider_idle
 
+from search_gov_crawler.config.settings import SearchgovSettings
 from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
 from search_gov_crawler.search_gov_spiders.helpers.freshness_spider import (
     count_matching_documents,
@@ -19,6 +25,7 @@ from search_gov_crawler.search_gov_spiders.helpers.freshness_spider import (
 from search_gov_crawler.search_gov_spiders.items import (
     FreshnessSpiderException,
     FreshnessSpiderExceptionItem,
+    FreshnessSpiderExceptionMarkedForDeletionItem,
     FreshnessSpiderMarkedForDeletionItem,
     FreshnessSpiderNotMarkedForDeletionItem,
 )
@@ -36,16 +43,23 @@ class FreshnessSpider(Spider):
     doc_count: int
     doc_batch_size: ClassVar[int] = 250
 
-    scroll: ClassVar[str] = "24h"
+    scroll: ClassVar[str] = "10m"
     status_codes_to_ignore: ClassVar[set[int]] = {200}
     status_codes_to_mark_for_deletion: ClassVar[set[int]] = {
         code.value for code in HTTPStatus if code.is_redirection or code == HTTPStatus.NOT_FOUND
     }
+    error_types_to_mark_for_deletion: ClassVar[tuple[type, ...]] = (
+        DownloadFailedError,
+        CannotResolveHostError,
+        DownloadConnectionRefusedError,
+    )
 
     def __init__(self, *args, query: str, max_results: str | None = None, **kwargs):
         super().__init__(*args, **kwargs)
-        self.opensearch = SearchGovOpensearch()
-        self.query = ensure_valid_query(opensearch=self.opensearch, query=query)
+        self.searchgov_settings = SearchgovSettings()
+        self.freshness_index = self.searchgov_settings.opensearch_freshness_index
+        self.opensearch = SearchGovOpensearch(searchgov_settings=self.searchgov_settings, logger=self.logger)
+        self.query = ensure_valid_query(opensearch=self.opensearch, query=query, index_name=self.freshness_index)
         self.max_results = int(max_results) if max_results else None
         self.doc_count = 0
         self.source_documents = None
@@ -128,19 +142,34 @@ class FreshnessSpider(Spider):
         Otherwise, ignore the response since we only care about URLs that are not valid.
         """
         if exception := response.meta.get("exception"):
-            item = FreshnessSpiderExceptionItem(
-                checked_at=datetime.now(tz=UTC),
-                result=exception.__class__.__name__,
-                status_code=None,
-                index_name=self.opensearch.index_name,
-                id=response.meta["document_id"],
-                path=response.url,
-                domain_name=response.meta["domain_name"],
-                exception=FreshnessSpiderException(
-                    exception_type=exception.__class__.__name__,
-                    exception_message=str(exception),
-                ),
-            )
+            if isinstance(exception, self.error_types_to_mark_for_deletion):
+                item = FreshnessSpiderExceptionMarkedForDeletionItem(
+                    checked_at=datetime.now(tz=UTC),
+                    result=exception.__class__.__name__,
+                    status_code=None,
+                    index_name=self.opensearch.index_name,
+                    id=response.meta["document_id"],
+                    path=response.url,
+                    domain_name=response.meta["domain_name"],
+                    exception=FreshnessSpiderException(
+                        exception_type=exception.__class__.__name__,
+                        exception_message=str(exception),
+                    ),
+                )
+            else:
+                item = FreshnessSpiderExceptionItem(
+                    checked_at=datetime.now(tz=UTC),
+                    result=exception.__class__.__name__,
+                    status_code=None,
+                    index_name=self.opensearch.index_name,
+                    id=response.meta["document_id"],
+                    path=response.url,
+                    domain_name=response.meta["domain_name"],
+                    exception=FreshnessSpiderException(
+                        exception_type=exception.__class__.__name__,
+                        exception_message=str(exception),
+                    ),
+                )
         elif response.status in self.status_codes_to_ignore:
             self.logger.debug(
                 "Ignoring %s response from %s since it does not indicate a failure.",

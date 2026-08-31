@@ -9,6 +9,7 @@
       "matchPackageNames": [
         "click",
         "coverage",
+        "faker",
         "freezegun",
         "pytest*",
         "rich",
@@ -30,6 +31,7 @@
         "langdetect",
         "newspaper4k*",
         "opensearch-py",
+        "pydantic*",
         "pymysql",
         "pypdf",
         "python-dateutil",

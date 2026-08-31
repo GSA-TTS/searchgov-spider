@@ -7,22 +7,11 @@ source ./cicd-scripts/helpers/ensure_executable.sh
 
 ### FUNCTIONS ###
 
-# stop dap extractor
-stop_dap_extractor() {
-    echo "Stopping dap_extractor.py (if running)..."
-    run_executable "./cicd-scripts/helpers/kill_dap_extractor.sh"
-}
-
-# Stop sitemap monitor
-stop_sitemap_monitor() {
-    echo "Stopping run_sitemap_monitor.py (if running)..."
-    run_executable "./cicd-scripts/helpers/kill_sitemap_monitor.sh"
-}
-
-# Stop freshness checker
-stop_freshness_checker() {
-    echo "Stopping check_freshness.py (if running)..."
-    ensure_executable "./cicd-scripts/helpers/kill_freshness_checker.sh"
+# generic stop process function
+stop_process() {
+    local process_filename="$1"
+    echo "Stopping ${process_filename} (if running)..."
+    run_executable ./cicd-scripts/helpers/kill_spider_process.sh ${process_filename}
 }
 
 # Remove virtual environment if it exists
@@ -47,18 +36,6 @@ remove_venv() {
 purge_pip_cache() {
     echo "Purging pip cache..."
     rm -rf ~/.cache/pip
-}
-
-# Stop freshness checker
-stop_freshness_checker() {
-    echo "Stopping check_freshness.py (if running)..."
-    run_executable "./cicd-scripts/helpers/kill_freshness_checker.sh"
-}
-
-# Stop scrapy scheduler if running
-stop_scrapy_scheduler() {
-    echo "Stopping scrapy_scheduler.py (if running)..."
-    run_executable "./cicd-scripts/helpers/kill_scheduler.sh"
 }
 
 # Display remaining scrapy processes
@@ -139,22 +116,19 @@ remove_cron_entry() {
 ### SCRIPT EXECUTION ###
 
 # Stop DAP Extractor
-stop_dap_extractor
-
-# Stop sitemap monitoring
-stop_sitemap_monitor
-
-# Remove virtual environment
-remove_venv
-
-# Purge pip cache
-purge_pip_cache
+stop_process "dap_extractor.py"
 
 # Stop freshness checker
-stop_freshness_checker
+stop_process "check_freshness.py"
+
+# Stop document lifecycle manager
+stop_process "document_lifecycle_manager.py"
+
+# Stop sitemap monitoring
+stop_process "run_sitemap_monitor.py"
 
 # Stop scrapy scheduler if running
-stop_scrapy_scheduler
+stop_process "scrapy_scheduler.py"
 
 # Display remaining scrapy processes (if any)
 display_remaining_scrapy_processes
@@ -164,6 +138,12 @@ kill_remaining_scrapy_jobs
 
 # Remove nohup jobs (python)
 remove_nohup_jobs
+
+# Remove virtual environment
+remove_venv
+
+# Purge pip cache
+purge_pip_cache
 
 # Remove specific cron jobs
 remove_cron_entry "check_cloudwatch.sh"
