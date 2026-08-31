@@ -117,3 +117,13 @@ class FreshnessSpiderExceptionItem(FreshnessSpiderItem):
 
     marked_for_deletion: bool = False
     status_code: int | None = None
+
+
+@dataclass(kw_only=True)
+class FreshnessSpiderExceptionMarkedForDeletionItem(FreshnessSpiderItem):
+    """
+    Item for an exception from the freshness spider that is marked for deletion
+    """
+
+    marked_for_deletion: bool = True
+    status_code: int | None = None
