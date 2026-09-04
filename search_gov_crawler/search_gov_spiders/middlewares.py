@@ -91,10 +91,10 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
         """
         if response.request.meta.get("is_start_request", False):
             self.crawler.spider.logger.error(
-                "Error occured while accessing start url: %s: response: %s, %s",
+                "Error occured while accessing start url: %s: response: %s",
                 response.request.url,
                 response,
-                exception,
+                exc_info=exception,
             )
 
     def get_processed_request(self, request: Request, response: Response | None) -> Request | None:  # noqa: ARG002
