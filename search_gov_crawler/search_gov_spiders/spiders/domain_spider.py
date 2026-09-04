@@ -10,6 +10,11 @@ from scrapy.spiders.crawl import CrawlSpider, Rule
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 from search_gov_crawler.config.settings import SearchgovSettings
+from search_gov_crawler.search_gov_spiders.helpers.common import (
+    OptionalStrOrSequence,
+    StrOrSequence,
+    split_optional_str_or_sequence,
+)
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 from search_gov_crawler.search_gov_spiders.spiders import SpiderStartedBy
 
@@ -70,11 +75,12 @@ class DomainSpider(CrawlSpider):
         self,
         *args,
         allow_query_string: bool = False,
-        allowed_domains: str,
-        start_urls: str,
+        allowed_domains: StrOrSequence,
+        start_urls: StrOrSequence,
         output_target: str,
-        deny_paths: str | None = None,
-        sitemap_url: str | None = None,
+        allow_paths: OptionalStrOrSequence = None,
+        deny_paths: OptionalStrOrSequence = None,
+        sitemap_url: OptionalStrOrSequence = None,
         started_by: str = SpiderStartedBy.MANUAL.value,
         **kwargs,
     ) -> None:
@@ -85,8 +91,11 @@ class DomainSpider(CrawlSpider):
             self.rules = (
                 Rule(
                     LinkExtractor(
-                        allow=(),
-                        deny=helpers.set_link_extractor_deny(deny_paths=deny_paths),
+                        allow=split_optional_str_or_sequence(input_argument=allow_paths),
+                        deny=(
+                            *helpers.LINK_DENY_REGEX_STR,
+                            *split_optional_str_or_sequence(input_argument=allow_paths),
+                        ),
                         deny_extensions=helpers.FILTER_EXTENSIONS,
                         tags=helpers.LINK_TAGS,
                         unique=True,
@@ -100,7 +109,6 @@ class DomainSpider(CrawlSpider):
         self.allow_query_string = helpers.force_bool(allow_query_string)
         self.output_target = output_target
         self.allowed_domains = helpers.split_allowed_domains(allowed_domains)
-        self.allowed_domain_paths = allowed_domains.split(",")
         self.start_urls = start_urls.split(",")
         self.started_by = started_by
 

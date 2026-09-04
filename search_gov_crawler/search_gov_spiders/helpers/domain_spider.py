@@ -9,6 +9,7 @@ from scrapy.http.response import Response
 from search_gov_crawler.dap.datastore import get_avg_daily_visits_by_domain
 from search_gov_crawler.dap.transform import normalize_domain_for_dap_lookup
 from search_gov_crawler.scheduling.redis import init_redis_client
+from search_gov_crawler.search_gov_spiders.helpers.common import OptionalStrOrSequence, split_optional_str_or_sequence
 from search_gov_crawler.search_gov_spiders.spiders import SearchGovDomainSpider
 
 # fmt: off
@@ -70,13 +71,13 @@ ALLOWED_CONTENT_TYPE_OUTPUT_MAP = {
     "opensearch": OPENSEARCH_ALLOWED_CONTENT_TYPE,
 }
 
-LINK_DENY_REGEX_STR = set()  # place global deny regex strings here
+LINK_DENY_REGEX_STR: set[str] = set()  # place global deny regex strings here
 
 LINK_TAGS = ("a", "area", "va-link")  # specified to account for custom link tags
 
 
 def set_link_extractor_deny(deny_paths: str | None) -> set[str]:
-    """Set the rules for the domain spiders to follow, union the global set with the input"""
+    """Set the deny rules for the domain spiders to follow, union the global set with the input"""
 
     return LINK_DENY_REGEX_STR | set(deny_paths.split(",") if deny_paths else [])
 
@@ -163,18 +164,21 @@ def default_allowed_domains(*, handle_javascript: bool, remove_paths: bool = Tru
 
 
 def validate_spider_arguments(
-    allowed_domains: str | None, start_urls: str | None, sitemap_url: str | None, output_target: str
+    allowed_domains: OptionalStrOrSequence,
+    start_urls: OptionalStrOrSequence,
+    sitemap_url: OptionalStrOrSequence,
+    output_target: str,
 ) -> None:
     """Common logic used to validate spider arguements and raise errors"""
 
-    url_fields = [allowed_domains, start_urls]
-    if sitemap_url:
-        url_fields.append(sitemap_url)
+    url_fields = (field for field in (allowed_domains, start_urls, sitemap_url) if field)
 
-    for field in url_fields:
-        if len(str(field)) < 2 or "." not in str(field):  # noqa: PLR2004
-            msg = f"Invalid argument! '{field}' must be a valid URL or domain name."
-            raise ValueError(msg)
+    for url_field in url_fields:
+        field_values = split_optional_str_or_sequence(url_field)
+        for field_value in field_values:
+            if len(str(field_value)) < 2 or "." not in str(field_value):  # noqa: PLR2004
+                msg = f"Invalid argument! '{url_field}' must be a valid list of URLs or domain name."
+                raise ValueError(msg)
 
     if output_target not in ALLOWED_CONTENT_TYPE_OUTPUT_MAP:
         msg = (

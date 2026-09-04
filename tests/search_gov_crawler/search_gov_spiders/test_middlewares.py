@@ -35,6 +35,7 @@ MIDDLEWARE_TEST_CASES = [
     (["sub.example.com"], ["sub.example.com/path/"], "http://sub.example.com/path/1", True),
     (["example.com"], None, "http://www.example.com/2", True),
     (["example.com"], [None], "http://www.example.com/2", True),
+    (["example.gov"], None, "https://example.gov.some-service.com", False),
 ]
 
 
