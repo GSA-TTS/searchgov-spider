@@ -1,10 +1,10 @@
 apscheduler==3.11.0
 brotli==1.2.0 # adds br compression support to scrapy
 cchardet==2.2.0a2 # C version of chardet
-click==8.4.1
-coverage==7.14.3
+click==8.5.0
+coverage==7.16.0
 defusedxml==0.7.1
-faker==40.36.0
+faker==40.38.0
 freezegun==1.5.5
 langdetect==1.0.9
 newspaper4k[all]==0.9.6 # This also installs the nltk library
@@ -22,7 +22,7 @@ python-dotenv==1.2.2
 python-json-logger==3.3.0
 redis==5.2.1 # 6.0.0 is not compatible with redis 6
 rich==15.0.0
-ruff==0.15.19 # this version also need to be updated in precommit
+ruff==0.16.6 # this version also need to be updated in precommit
 scrapy==2.16.0
 scrapy-playwright==0.0.46
 scrapy-redis==0.9.1
