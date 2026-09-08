@@ -32,7 +32,7 @@
 |Wright-Patterson Air Force Base (wrightpatt)|01:51|www.wpafb.af.mil|N|8||
 |DOT PHMSA (dot-phmsa)|01:56|www.phmsa.dot.gov|N|8||
 |www.healthit.gov (healthit.gov)|01:59|healthit.gov|N|8||
-|New depth 8 (ait.org.tw/zhtw)|01:59|ait.org.tw/zhtw|N|8||
+|New depth 8 (ait.org.tw/zhtw)|01:59|ait.org.tw|N|8||
 |Customs and Border Protection (usagov-replacement)|02:00|www.cbp.gov|N|8||
 |tricare_martin|02:00|martin.tricare.mil|N|8||
 |19th Medical Group - Little Rock Air Force Base|02:00|littlerock.tricare.mil|N|8||
@@ -57,7 +57,7 @@
 |IN.Usembassy.gov (dos_emb_csa_newdelhi)|03:15|in.usembassy.gov|N|8||
 |US Mission to OAS|03:15|usoas.usmission.gov|N|8||
 |Army Letterkenny (army_letterkenny)|03:23|www.letterkenny.army.mil|N|3||
-|9/11 Commission Report|03:29|govinfo.library.unt.edu/911|N|8||
+|9/11 Commission Report|03:29|govinfo.library.unt.edu|N|8||
 |Commission of Fine Arts|03:30|www.cfa.gov|N|8||
 |Spectrum.gov|03:30|www.spectrum.gov|N|8||
 |Safe to Sleep|03:42|safetosleep.nichd.nih.gov|N|8||
@@ -82,7 +82,7 @@
 |US Mission to ASEAN|05:15|asean.usmission.gov|N|8||
 |US Embassy Azerbaijan|05:30|az.usembassy.gov|N|8||
 |Vance Air Force Base (vance)|05:32|www.vance.af.mil|N|8||
-|Department of Education Sites|05:32|sites.ed.gov/idea/|N|8||
+|Department of Education Sites|05:32|sites.ed.gov|N|8||
 |Air Force Resilience (afpw_resil)|05:35|www.resilience.af.mil|N|8||
 |Pennsylvania National Guard (ng_pang)|05:35|www.pa.ng.mil|N|3||
 |US Embassy Cape Verde|05:39|cv.usembassy.gov|N|8||
@@ -119,7 +119,7 @@
 |US Bankruptcy Court District of Delaware|07:30|www.deb.uscourts.gov|N|8||
 |US Mission to NATO|07:39|nato.usmission.gov|N|8||
 |Air Force Inspector General (afpw_afinspectorgeneral)|07:40|www.afinspectorgeneral.af.mil|N|8||
-|New depth 8 (ba.usembassy.gov/bs)|07:54|ba.usembassy.gov/bs|N|8||
+|New depth 8 (ba.usembassy.gov/bs)|07:54|ba.usembassy.gov|N|8||
 |tricare_womack|08:00|womack.tricare.mil|N|8||
 |Kirk U.S. Army Medical Health Clinic|08:00|kirk.tricare.mil|N|8||
 |NOAA TPIO (noaa_tpio)|08:03|nosc.noaa.gov|N|3||
@@ -137,7 +137,7 @@
 |Army 10th AAMDC (army_10aamdc)|09:46|www.10thaamdc.army.mil|N|3||
 |Permitting Innovation Center|09:48|ce.permitting.innovation.gov|N|8||
 |www.dsca.mil (dod_dsca)|09:53|www.dsca.mil|N|8||
-|New depth 8 (bd.usembassy.gov/bn)|09:53|bd.usembassy.gov/bn|N|8||
+|New depth 8 (bd.usembassy.gov/bn)|09:53|bd.usembassy.gov|N|8||
 |tricare_charleston|10:00|nhc-charleston.tricare.mil|N|8||
 |14th Medical Group - Columbus Air Force Base|10:00|columbus.tricare.mil|N|8||
 |FMCSA TPR|10:17|tpr.fmcsa.dot.gov|N|8||
@@ -155,7 +155,7 @@
 |Army Inspector General (army_ig)|11:33|ig.army.mil|N|8||
 |Sandia LDES National Consortium|11:43|ldesconsortium.sandia.gov|N|8||
 |US Embassy Myanmar|11:51|mm.usembassy.gov|N|8||
-|New depth 8 (bg.usembassy.gov/bg)|11:52|bg.usembassy.gov/bg|N|8||
+|New depth 8 (bg.usembassy.gov/bg)|11:52|bg.usembassy.gov|N|8||
 |www.war.gov (usagov-replacement)|12:00|www.war.gov|N|8||
 |tricare_paxriver|12:00|paxriver.tricare.mil|N|8||
 |31st Medical Group - Aviano Air Base|12:00|aviano.tricare.mil|N|8||
@@ -181,7 +181,7 @@
 |125th Fighter Wing (afpw_125fw and afpw_flang)|13:15|www.125fw.ang.af.mil|N|8||
 |FDA Food and Nutrition Administration|13:26|www.fna.usda.gov|N|8|www.fna.usda.gov/print/|
 |NIH SAS|13:41|sas.cit.nih.gov|N|8||
-|New depth 8 (br.usembassy.gov/pt)|13:50|br.usembassy.gov/pt|N|8||
+|New depth 8 (br.usembassy.gov/pt)|13:50|br.usembassy.gov|N|8||
 |Air Force Nuclear Weapons Center (usaf_afnwc)|13:51|www.afnwc.af.mil|N|8||
 |174th Attack Wing (afpw_174aw)|13:57|www.174attackwing.ang.af.mil|N|8||
 |tricare_raymondbliss|14:00|raymond-bliss.tricare.mil|N|8||
@@ -194,7 +194,7 @@
 |Army PEO GCS (army_peogcs)|15:04|www.peogcs.army.mil|N|3||
 |Navy 6th Fleet (navy_us6fleet)|15:21|www.c6f.navy.mil|N|3||
 |Web Harvest|15:42|webharvest.gov|N|8||
-|New depth 8 (by.usembassy.gov/be)|15:49|by.usembassy.gov/be|N|8||
+|New depth 8 (by.usembassy.gov/be)|15:49|by.usembassy.gov|N|8||
 |tricare_leonardwood|16:00|leonard-wood.tricare.mil|N|8||
 |Espanol womenshealth.gov|16:00|espanol.womenshealth.gov|N|8||
 |Army ASC (army_asc)|16:01|www.aschq.army.mil|N|3||
@@ -228,7 +228,7 @@
 |US Embassy Montenegro (dos_emb_eur_podgorica_me)|19:22|me.usembassy.gov|N|8||
 |US Embassy Sudan (dos_emb_afr_sudan)|19:32|sd.usembassy.gov|N|8||
 |Army CPEST3|19:45|www.cpest3.army.mil|N|8||
-|New depth 8 (cg.usembassy.gov/fr)|19:46|cg.usembassy.gov/fr|N|8||
+|New depth 8 (cg.usembassy.gov/fr)|19:46|cg.usembassy.gov|N|8||
 |Open Defense (opendgov)|19:49|open.defense.gov|N|3||
 |FHWA Environment|19:58|www.environment.fhwa.dot.gov|N|8||
 |Air University (afpw_au)|20:13|www.airuniversity.af.edu|N|8||
@@ -242,7 +242,7 @@
 |Interagency Autism Coordinating Committee (iacc)|21:19|iacc.hhs.gov|N|3||
 |DoD LA (dodla)|21:28|la.defense.gov|N|3||
 |SSA Ticket to Work|21:42|yourtickettowork.ssa.gov|N|8||
-|New depth 8 (ch.usembassy.gov/de/sitemap-de)|21:44|ch.usembassy.gov/de/sitemap-de|N|8||
+|New depth 8 (ch.usembassy.gov/de/sitemap-de)|21:44|ch.usembassy.gov|N|8||
 |OALM (nih)|22:07|oalm.od.nih.gov|N|8||
 |16th Air Force (usaf_16af)|22:09|www.16af.af.mil|N|8||
 |JAMRS (jamrs)|22:11|jamrs.defense.gov|N|3||
@@ -254,7 +254,7 @@
 |Army 21st TSC (army_21tsc)|23:08|www.21tsc.army.mil|N|8||
 |HRSA Injury Compensation (hrsaics)|23:28|injurycompensation.hrsa.gov|N|3||
 |VA Mental Health|23:32|www.mentalhealth.va.gov|N|8||
-|New depth 8 (ch.usembassy.gov/fr/sitemap-fr)|23:43|ch.usembassy.gov/fr/sitemap-fr|N|8||
+|New depth 8 (ch.usembassy.gov/fr/sitemap-fr)|23:43|ch.usembassy.gov|N|8||
 |1st Infantry Division (army_11d)|23:50|www.1id.army.mil|N|3||
 
 
