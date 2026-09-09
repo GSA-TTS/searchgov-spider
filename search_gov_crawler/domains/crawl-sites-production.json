@@ -15867,20 +15867,6 @@
    {
       "allow_paths": null,
       "allow_query_string": false,
-      "allowed_domains": "do.usembassy.gov/es/",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "do.usembassy.gov/es/ (do.usembassy)",
-      "output_target": "opensearch",
-      "schedule": "0 12 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://do.usembassy.gov/es/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
       "allowed_domains": "gis.myfwc.com",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -15921,9 +15907,11 @@
       "starting_urls": "https://hoover.archives.gov/"
    },
    {
-      "allow_paths": null,
+      "allow_paths": [
+         "lhncbc.nlm.nih.gov/newbornscreeningcodes"
+      ],
       "allow_query_string": false,
-      "allowed_domains": "lhncbc.nlm.nih.gov/newbornscreeningcodes/",
+      "allowed_domains": "lhncbc.nlm.nih.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -15991,9 +15979,11 @@
       "starting_urls": "https://www.cisa.gov/"
    },
    {
-      "allow_paths": null,
+      "allow_paths": [
+         "www.glerl.noaa.gov/blog"
+      ],
       "allow_query_string": false,
-      "allowed_domains": "www.glerl.noaa.gov/blog/",
+      "allowed_domains": "www.glerl.noaa.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -16063,86 +16053,6 @@
       "starting_urls": "https://ait.org.tw/zhtw/"
    },
    {
-      "allow_paths": [
-         "ba.usembassy.gov/bs"
-      ],
-      "allow_query_string": false,
-      "allowed_domains": "ba.usembassy.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (ba.usembassy.gov/bs)",
-      "output_target": "opensearch",
-      "schedule": "54 7 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://ba.usembassy.gov/bs/"
-   },
-   {
-      "allow_paths": [
-         "bd.usembassy.gov/bn"
-      ],
-      "allow_query_string": false,
-      "allowed_domains": "bd.usembassy.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (bd.usembassy.gov/bn)",
-      "output_target": "opensearch",
-      "schedule": "53 9 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://bd.usembassy.gov/bn/"
-   },
-   {
-      "allow_paths": [
-         "bg.usembassy.gov/bg"
-      ],
-      "allow_query_string": false,
-      "allowed_domains": "bg.usembassy.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (bg.usembassy.gov/bg)",
-      "output_target": "opensearch",
-      "schedule": "52 11 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://bg.usembassy.gov/bg/"
-   },
-   {
-      "allow_paths": [
-         "br.usembassy.gov/pt"
-      ],
-      "allow_query_string": false,
-      "allowed_domains": "br.usembassy.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (br.usembassy.gov/pt)",
-      "output_target": "opensearch",
-      "schedule": "50 13 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://br.usembassy.gov/pt/"
-   },
-   {
-      "allow_paths": [
-         "by.usembassy.gov/be"
-      ],
-      "allow_query_string": false,
-      "allowed_domains": "by.usembassy.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (by.usembassy.gov/be)",
-      "output_target": "opensearch",
-      "schedule": "49 15 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://by.usembassy.gov/be/"
-   },
-   {
       "allow_paths": null,
       "allow_query_string": false,
       "allowed_domains": "ca.water.usgs.gov",
@@ -16155,68 +16065,6 @@
       "schedule": "47 17 * * SUN",
       "sitemap_urls": null,
       "starting_urls": "https://ca.water.usgs.gov/"
-   },
-   {
-      "allow_paths": [
-         "cg.usembassy.gov/fr"
-      ],
-      "allow_query_string": false,
-      "allowed_domains": "cg.usembassy.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (cg.usembassy.gov/fr)",
-      "output_target": "opensearch",
-      "schedule": "46 19 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://cg.usembassy.gov/fr/"
-   },
-   {
-      "allow_paths": [
-         "ch.usembassy.gov/de"
-      ],
-      "allow_query_string": false,
-      "allowed_domains": "ch.usembassy.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (ch.usembassy.gov/de/sitemap-de)",
-      "output_target": "opensearch",
-      "schedule": "44 21 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://ch.usembassy.gov/de/sitemap-de/"
-   },
-   {
-      "allow_paths": [
-         "ch.usembassy.gov/fr"
-      ],
-      "allow_query_string": false,
-      "allowed_domains": "ch.usembassy.gov",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (ch.usembassy.gov/fr/sitemap-fr)",
-      "output_target": "opensearch",
-      "schedule": "43 23 * * SUN",
-      "sitemap_urls": null,
-      "starting_urls": "https://ch.usembassy.gov/fr/sitemap-fr/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "ch.usembassy.gov/it/sitemap-it",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (ch.usembassy.gov/it/sitemap-it)",
-      "output_target": "opensearch",
-      "schedule": "42 1 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://ch.usembassy.gov/it/sitemap-it/"
    },
    {
       "allow_paths": null,
@@ -16235,48 +16083,6 @@
    {
       "allow_paths": null,
       "allow_query_string": false,
-      "allowed_domains": "ee.usembassy.gov/et",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (ee.usembassy.gov/et)",
-      "output_target": "opensearch",
-      "schedule": "36 9 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://ee.usembassy.gov/et/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "ee.usembassy.gov/ru",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (ee.usembassy.gov/ru)",
-      "output_target": "opensearch",
-      "schedule": "35 11 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://ee.usembassy.gov/ru/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "ga.usembassy.gov/fr",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (ga.usembassy.gov/fr)",
-      "output_target": "opensearch",
-      "schedule": "33 13 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://ga.usembassy.gov/fr/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
       "allowed_domains": "hk.usconsulate.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -16287,48 +16093,6 @@
       "schedule": "29 19 * * MON",
       "sitemap_urls": null,
       "starting_urls": "https://hk.usconsulate.gov"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "ht.usembassy.gov/fr",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (ht.usembassy.gov/fr)",
-      "output_target": "opensearch",
-      "schedule": "28 21 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://ht.usembassy.gov/fr/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "il.usembassy.gov/he",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (il.usembassy.gov/he)",
-      "output_target": "opensearch",
-      "schedule": "26 23 * * MON",
-      "sitemap_urls": null,
-      "starting_urls": "https://il.usembassy.gov/he/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "in.usembassy.gov/hi",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (in.usembassy.gov/hi)",
-      "output_target": "opensearch",
-      "schedule": "25 1 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://in.usembassy.gov/hi/"
    },
    {
       "allow_paths": null,
@@ -16347,20 +16111,6 @@
    {
       "allow_paths": null,
       "allow_query_string": false,
-      "allowed_domains": "it.usembassy.gov/it",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (it.usembassy.gov/it)",
-      "output_target": "opensearch",
-      "schedule": "22 5 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://it.usembassy.gov/it/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
       "allowed_domains": "kg.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -16371,34 +16121,6 @@
       "schedule": "20 7 * * TUE",
       "sitemap_urls": null,
       "starting_urls": "https://kg.usembassy.gov/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "kz.usembassy.gov/kk",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (kz.usembassy.gov/kk)",
-      "output_target": "opensearch",
-      "schedule": "19 9 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://kz.usembassy.gov/kk/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "kz.usembassy.gov/ru",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (kz.usembassy.gov/ru)",
-      "output_target": "opensearch",
-      "schedule": "18 11 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://kz.usembassy.gov/ru/"
    },
    {
       "allow_paths": null,
@@ -16443,79 +16165,11 @@
       "starting_urls": "https://ly.usembassy.gov/"
    },
    {
-      "allow_paths": null,
+      "allow_paths": [
+         "mepi.state.gov/ar"
+      ],
       "allow_query_string": false,
-      "allowed_domains": "ma.usembassy.gov/ar",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (ma.usembassy.gov/ar)",
-      "output_target": "opensearch",
-      "schedule": "12 19 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://ma.usembassy.gov/ar/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "ma.usembassy.gov/fr",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (ma.usembassy.gov/fr)",
-      "output_target": "opensearch",
-      "schedule": "11 21 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://ma.usembassy.gov/fr/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "md.usembassy.gov/ro",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (md.usembassy.gov/ro)",
-      "output_target": "opensearch",
-      "schedule": "9 23 * * TUE",
-      "sitemap_urls": null,
-      "starting_urls": "https://md.usembassy.gov/ro/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "md.usembassy.gov/ru",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (md.usembassy.gov/ru)",
-      "output_target": "opensearch",
-      "schedule": "8 1 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://md.usembassy.gov/ru/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "me.usembassy.gov/me",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (me.usembassy.gov/me)",
-      "output_target": "opensearch",
-      "schedule": "6 3 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://me.usembassy.gov/me/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "mepi.state.gov/ar",
+      "allowed_domains": "mepi.state.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -16527,79 +16181,11 @@
       "starting_urls": "https://mepi.state.gov/ar/"
    },
    {
-      "allow_paths": null,
+      "allow_paths": [
+         "osce.usmission.gov/ru"
+      ],
       "allow_query_string": false,
-      "allowed_domains": "mg.usembassy.gov/fr",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (mg.usembassy.gov/fr)",
-      "output_target": "opensearch",
-      "schedule": "2 9 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://mg.usembassy.gov/fr/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "mk.usembassy.gov/mk",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (mk.usembassy.gov/mk)",
-      "output_target": "opensearch",
-      "schedule": "1 11 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://mk.usembassy.gov/mk/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "mk.usembassy.gov/sq",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (mk.usembassy.gov/sq)",
-      "output_target": "opensearch",
-      "schedule": "59 12 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://mk.usembassy.gov/sq/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "mn.usembassy.gov/mn",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (mn.usembassy.gov/mn)",
-      "output_target": "opensearch",
-      "schedule": "58 14 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://mn.usembassy.gov/mn/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "om.usembassy.gov/ar",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (om.usembassy.gov/ar)",
-      "output_target": "opensearch",
-      "schedule": "56 16 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://om.usembassy.gov/ar/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "osce.usmission.gov/ru",
+      "allowed_domains": "osce.usmission.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -16609,62 +16195,6 @@
       "schedule": "55 18 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://osce.usmission.gov/ru/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "palestinianaffairs.state.gov/ar",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (palestinianaffairs.state.gov/ar)",
-      "output_target": "opensearch",
-      "schedule": "54 20 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://palestinianaffairs.state.gov/ar/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "qa.usembassy.gov/ar",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (qa.usembassy.gov/ar)",
-      "output_target": "opensearch",
-      "schedule": "52 22 * * WED",
-      "sitemap_urls": null,
-      "starting_urls": "https://qa.usembassy.gov/ar/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "ro.usembassy.gov/ro",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (ro.usembassy.gov/ro)",
-      "output_target": "opensearch",
-      "schedule": "51 0 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://ro.usembassy.gov/ro/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "ru.usembassy.gov/ru",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (ru.usembassy.gov/ru)",
-      "output_target": "opensearch",
-      "schedule": "49 2 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://ru.usembassy.gov/ru/"
    },
    {
       "allow_paths": null,
@@ -16697,62 +16227,6 @@
    {
       "allow_paths": null,
       "allow_query_string": false,
-      "allowed_domains": "th.usembassy.gov/th",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (th.usembassy.gov/th)",
-      "output_target": "opensearch",
-      "schedule": "38 18 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://th.usembassy.gov/th/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "tj.usembassy.gov/ru",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (tj.usembassy.gov/ru)",
-      "output_target": "opensearch",
-      "schedule": "37 20 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://tj.usembassy.gov/ru/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "tn.usembassy.gov/ar",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (tn.usembassy.gov/ar)",
-      "output_target": "opensearch",
-      "schedule": "35 22 * * THU",
-      "sitemap_urls": null,
-      "starting_urls": "https://tn.usembassy.gov/ar/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "tn.usembassy.gov/fr",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (tn.usembassy.gov/fr)",
-      "output_target": "opensearch",
-      "schedule": "34 0 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://tn.usembassy.gov/fr/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
       "allowed_domains": "usapc.army.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
@@ -16763,48 +16237,6 @@
       "schedule": "32 2 * * FRI",
       "sitemap_urls": null,
       "starting_urls": "https://usapc.army.mil/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "ua.usembassy.gov/ru",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (ua.usembassy.gov/ru)",
-      "output_target": "opensearch",
-      "schedule": "31 4 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://ua.usembassy.gov/ru/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "uz.usembassy.gov/ru",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (uz.usembassy.gov/ru)",
-      "output_target": "opensearch",
-      "schedule": "27 10 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://uz.usembassy.gov/ru/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "vote.gov/tl",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (vote.gov/tl)",
-      "output_target": "opensearch",
-      "schedule": "24 14 * * FRI",
-      "sitemap_urls": null,
-      "starting_urls": "https://vote.gov/tl/"
    },
    {
       "allow_paths": null,
@@ -16917,62 +16349,6 @@
       "schedule": "7 14 * * SAT",
       "sitemap_urls": null,
       "starting_urls": "https://www.ncoworldwide.army.mil/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "xk.usembassy.gov/sq",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (xk.usembassy.gov/sq)",
-      "output_target": "opensearch",
-      "schedule": "6 16 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://xk.usembassy.gov/sq/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "xk.usembassy.gov/sr",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (xk.usembassy.gov/sr)",
-      "output_target": "opensearch",
-      "schedule": "4 18 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://xk.usembassy.gov/sr/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "yali.state.gov/fr",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (yali.state.gov/fr)",
-      "output_target": "opensearch",
-      "schedule": "3 20 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://yali.state.gov/fr/"
-   },
-   {
-      "allow_paths": null,
-      "allow_query_string": false,
-      "allowed_domains": "yali.state.gov/pt",
-      "check_sitemap_hours": null,
-      "deny_paths": null,
-      "depth_limit": 8,
-      "handle_javascript": false,
-      "name": "New depth 8 (yali.state.gov/pt)",
-      "output_target": "opensearch",
-      "schedule": "1 22 * * SAT",
-      "sitemap_urls": null,
-      "starting_urls": "https://yali.state.gov/pt/"
    },
    {
       "allow_paths": null,
@@ -17353,9 +16729,11 @@
       "starting_urls": "https://farmtoschoolcensus.fns.usda.gov/"
    },
    {
-      "allow_paths": null,
+      "allow_paths": [
+         "www.fda.gov/safety/recalls-market-withdrawals-safety-alerts"
+      ],
       "allow_query_string": false,
-      "allowed_domains": "www.fda.gov/safety/recalls-market-withdrawals-safety-alerts",
+      "allowed_domains": "www.fda.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -17367,9 +16745,11 @@
       "starting_urls": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts"
    },
    {
-      "allow_paths": null,
+      "allow_paths": [
+         "www.fda.gov/tobacco-products"
+      ],
       "allow_query_string": false,
-      "allowed_domains": "www.fda.gov/tobacco-products",
+      "allowed_domains": "www.fda.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -18475,9 +17855,11 @@
       "starting_urls": "https://fsapartners.ed.gov/"
    },
    {
-      "allow_paths": null,
+      "allow_paths": [
+         "www.archives.gov/milestone-documents"
+      ],
       "allow_query_string": false,
-      "allowed_domains": "www.archives.gov/milestone-documents/",
+      "allowed_domains": "www.archives.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -20745,9 +20127,11 @@
       "starting_urls": "https://zm.usembassy.gov/"
    },
    {
-      "allow_paths": null,
+      "allow_paths": [
+         "www.justice.gov/crt/limited-english-proficiency"
+      ],
       "allow_query_string": false,
-      "allowed_domains": "www.justice.gov/crt/limited-english-proficiency",
+      "allowed_domains": "www.justice.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -22431,7 +21815,7 @@
    {
       "allow_paths": null,
       "allow_query_string": false,
-      "allowed_domains": "hcup-us.ahrq.gov/",
+      "allowed_domains": "hcup-us.ahrq.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -22767,9 +22151,11 @@
       "starting_urls": "https://www.ustranscom.mil/"
    },
    {
-      "allow_paths": null,
+      "allow_paths": [
+         "www.acq.osd.mil/asda/dpc"
+      ],
       "allow_query_string": false,
-      "allowed_domains": "www.acq.osd.mil/asda/dpc/",
+      "allowed_domains": "www.acq.osd.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -23013,7 +22399,7 @@
    {
       "allow_paths": null,
       "allow_query_string": false,
-      "allowed_domains": "www.safety.af.mil/",
+      "allowed_domains": "www.safety.af.mil",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -23673,7 +23059,7 @@
    {
       "allow_paths": null,
       "allow_query_string": false,
-      "allowed_domains": "sg.usembassy.gov/",
+      "allowed_domains": "sg.usembassy.gov",
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
