@@ -8,6 +8,7 @@
         "output_target": "csv",
         "starting_urls": "https://quotes.toscrape.com/",
         "depth_limit": 3,
+        "allow_paths": null,
         "deny_paths": null,
         "sitemap_urls": null,
         "check_sitemap_hours": null
@@ -15,12 +16,13 @@
     {
         "name": "Quotes 2",
         "allow_query_string": false,
-        "allowed_domains": "quotes.toscrape.com/js",
+        "allowed_domains": "quotes.toscrape.com",
         "handle_javascript": true,
         "schedule": "0,15,30,45 * * * *",
         "output_target": "csv",
         "starting_urls": "https://quotes.toscrape.com/js/",
         "depth_limit": 3,
+        "allow_paths": ["quotes.toscrape.com/js"],
         "deny_paths": null,
         "sitemap_urls": null,
         "check_sitemap_hours": null
@@ -28,12 +30,13 @@
     {
         "name": "Quotes 3",
         "allow_query_string": false,
-        "allowed_domains": "quotes.toscrape.com/js-delayed",
+        "allowed_domains": "quotes.toscrape.com",
         "handle_javascript": true,
         "schedule": "0,15,30,45 * * * *",
         "output_target": "endpoint",
         "starting_urls": "https://quotes.toscrape.com/js-delayed/",
         "depth_limit": 3,
+        "allow_paths": ["quotes.toscrape.com/js-delayed"],
         "deny_paths": ["/author/", "/tag/"],
         "sitemap_urls": null,
         "check_sitemap_hours": null
@@ -41,12 +44,13 @@
     {
         "name": "Quotes 4",
         "allow_query_string": false,
-        "allowed_domains": "quotes.toscrape.com/tag/",
+        "allowed_domains": "quotes.toscrape.com",
         "handle_javascript": false,
         "schedule": "0,15,30,45 * * * *",
         "output_target": "endpoint",
         "starting_urls": "https://quotes.toscrape.com/tag/love/",
         "depth_limit": 3,
+        "allow_paths": ["quotes.toscrape.com/tag/"],
         "deny_paths": ["/author/"],
         "sitemap_urls": null,
         "check_sitemap_hours": null

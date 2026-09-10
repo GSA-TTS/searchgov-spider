@@ -36,6 +36,8 @@ def test_valid_crawl_config(base_crawl_config_args):
         {"schedule": "* * * 1 1"},
         {"deny_paths": None},
         {"deny_paths": ["/path1/", "/path2/"]},
+        {"allow_paths": None},
+        {"allow_paths": ["/path1", "path2/"]},
     ],
 )
 def test_valid_crawl_config_optional_fields(base_crawl_config_args, optional_args):
@@ -49,6 +51,7 @@ def test_crawl_config_to_dict(base_crawl_config_args, exclude):
     output = cs.to_dict(exclude=exclude)
     expected_output = base_crawl_config_args | {
         "schedule": None,
+        "allow_paths": None,
         "deny_paths": None,
         "check_sitemap_hours": None,
         "sitemap_urls": None,
@@ -117,9 +120,10 @@ def test_invalid_crawl_config_output_target(base_crawl_config_args, field, new_v
         CrawlConfig(**test_args)
 
 
-def test_invalid_crawl_config_duplicate_deny_path(base_crawl_config_args):
-    test_args = base_crawl_config_args | {"deny_paths": ["/duplicate_path/", "/duplicate_path/"]}
-    match = f"Values in deny_paths must be unique! {base_crawl_config_args['name']} has duplicates!"
+@pytest.mark.parametrize(("path_field"), ["deny_paths", "allow_paths"])
+def test_invalid_crawl_config_duplicate_path_field(base_crawl_config_args, path_field):
+    test_args = base_crawl_config_args | {path_field: ["/duplicate_path/", "/duplicate_path/"]}
+    match = f"Values in {path_field} must be unique! {base_crawl_config_args['name']} has duplicates!"
     with pytest.raises(CrawlConfigValidationError, match=match):
         CrawlConfig(**test_args)
 
@@ -169,7 +173,7 @@ def test_invalid_crawl_configs_duplicate_domain_in_target(base_crawl_config_args
     duplicate_job_id_args = base_crawl_config_args | {"name": "test 2"}
     with pytest.raises(
         CrawlConfigsValidationError,
-        match=r".*allowed_domain and output_target must be unique.*",
+        match=r".*allowed_domains, allow_paths, and output_target must be unique.*",
     ):
         CrawlConfigs([CrawlConfig(**base_crawl_config_args), CrawlConfig(**duplicate_job_id_args)])
 
@@ -234,6 +238,7 @@ def fixture_valid_crawl_config():
         "starting_urls": '["https://www.example.gov", "https://subdomain.example.gov"]',
         "depth_limit": 3,
         "schedule": "0 0 * * *",
+        "allow_paths": '["/path3/]',
         "deny_paths": '["path1/", "path2/"]',
         "check_sitemap_hours": None,
         "sitemap_urls": '["https://www.example.gov/sitemap.xml"]',
@@ -262,6 +267,7 @@ def test_crawl_configs_from_database(monkeypatch, valid_crawl_config):
         "starting_urls": "https://www.example.gov,https://subdomain.example.gov",
         "depth_limit": 3,
         "schedule": "0 0 * * *",
+        "allow_paths": None,
         "deny_paths": ["path1/", "path2/"],
         "check_sitemap_hours": None,
         "sitemap_urls": ["https://www.example.gov/sitemap.xml"],
