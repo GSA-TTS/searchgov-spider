@@ -80,6 +80,7 @@ def create_apscheduler_job(
     output_target: str,
     runtime_offset_seconds: int,
     depth_limit: int,
+    allow_paths: list,
     deny_paths: list,
     job_id: str | None = None,
 ) -> dict:
@@ -99,6 +100,7 @@ def create_apscheduler_job(
             "start_urls": starting_urls,
             "output_target": output_target,
             "depth_limit": depth_limit,
+            "allow_paths": allow_paths or [],
             "deny_paths": deny_paths or [],
             "started_by": SpiderStartedBy.MANUAL.value,
         },
@@ -145,6 +147,7 @@ def benchmark_from_args(
     output_target: str,
     runtime_offset_seconds: int,
     depth_limit: int,
+    allow_paths: str,
     deny_paths: str,
 ):
     """Run an individual benchmarking job based on args"""
@@ -153,7 +156,7 @@ def benchmark_from_args(
         "Starting benchmark from args! "
         "allow_query_string=%s allowed_domains=%s starting_urls=%s "
         "handle_javascript=%s output_target=%s runtime_offset_seconds=%s "
-        "depth_limit=%s deny_paths=%s"
+        "depth_limit=%s allow_paths=%s deny_paths=%s"
     )
     log.info(
         msg,
@@ -164,6 +167,7 @@ def benchmark_from_args(
         output_target,
         runtime_offset_seconds,
         depth_limit,
+        allow_paths,
         deny_paths,
     )
 
@@ -176,6 +180,7 @@ def benchmark_from_args(
         "output_target": output_target,
         "runtime_offset_seconds": runtime_offset_seconds,
         "depth_limit": depth_limit,
+        "allow_paths": allow_paths.split(","),
         "deny_paths": deny_paths.split(","),
         "job_id": None,
     }
@@ -256,6 +261,13 @@ if __name__ == "__main__":
         default="",
         help="Comma separated list of paths to deny",
     )
+    parser.add_argument(
+        "-ap",
+        "--allow_paths",
+        type=str,
+        default="",
+        help="Comma separated list of paths to allow",
+    )
     args = parser.parse_args()
 
     if no_input_arg:
@@ -267,6 +279,7 @@ if __name__ == "__main__":
             "output_target": args.output_target,
             "runtime_offset_seconds": args.runtime_offset,
             "depth_limit": args.depth_limit,
+            "allow_paths": args.allow_paths,
             "deny_paths": args.deny_paths,
         }
         benchmark_from_args(**benchmark_args)

@@ -86,10 +86,11 @@ FULL_CRAWL_TEST_CASES = [
         False,
         {
             "allow_query_string": False,
-            "allowed_domains": "quotes.toscrape.com/tag/",
+            "allowed_domains": "quotes.toscrape.com",
             "start_urls": "https://quotes.toscrape.com/",
             "output_target": "csv",
             "depth_limit": 20,
+            "allow_paths": ["quotes.toscrape.com/tag"],
             "deny_paths": None,
         },
         120,

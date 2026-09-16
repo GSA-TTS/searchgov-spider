@@ -62,6 +62,7 @@ def test_create_apscheduler_job(handle_javascript, spider_arg):
         "output_target": "csv",
         "runtime_offset_seconds": 5,
         "depth_limit": 3,
+        "allow_paths": ["/good-stuff"],
         "deny_paths": ["/deny-path1/", "/deny-path2/"],
         "job_id": None,
     }
@@ -78,6 +79,7 @@ def test_create_apscheduler_job(handle_javascript, spider_arg):
             "start_urls": test_args["starting_urls"],
             "output_target": test_args["output_target"],
             "depth_limit": test_args["depth_limit"],
+            "allow_paths": test_args["allow_paths"],
             "deny_paths": test_args["deny_paths"],
             "started_by": "manual_run",
         },
@@ -113,6 +115,7 @@ def test_benchmark_from_args(caplog, monkeypatch, mock_opensearch_client):
             "output_target": "csv",
             "runtime_offset_seconds": 0,
             "depth_limit": 3,
+            "allow_paths": "/good-stuff-here",
             "deny_paths": "/deny-path1/,/deny-path2/",
         }
         with caplog.at_level("INFO"):
@@ -121,7 +124,7 @@ def test_benchmark_from_args(caplog, monkeypatch, mock_opensearch_client):
         expected_log_msg = (
             "Starting benchmark from args! allow_query_string=True allowed_domains=unit-test.example.com "
             "starting_urls=https://unit-test.example.com handle_javascript=False output_target=csv "
-            "runtime_offset_seconds=0 depth_limit=3 deny_paths=/deny-path1/,/deny-path2/"
+            "runtime_offset_seconds=0 depth_limit=3 allow_paths=/good-stuff-here deny_paths=/deny-path1/,/deny-path2/"
         )
         assert expected_log_msg in caplog.messages
 

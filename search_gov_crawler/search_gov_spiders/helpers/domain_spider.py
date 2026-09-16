@@ -177,7 +177,7 @@ def validate_spider_arguments(
         field_values = split_optional_str_or_sequence(url_field)
         for field_value in field_values:
             if len(str(field_value)) < 2 or "." not in str(field_value):  # noqa: PLR2004
-                msg = f"Invalid argument! '{url_field}' must be a valid list of URLs or domain name."
+                msg = f"Invalid argument! '{url_field}' must be a valid list of URLs or domain names."
                 raise ValueError(msg)
 
     if output_target not in ALLOWED_CONTENT_TYPE_OUTPUT_MAP:

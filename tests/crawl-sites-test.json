@@ -50,7 +50,7 @@
         "output_target": "endpoint",
         "starting_urls": "https://quotes.toscrape.com/tag/love/",
         "depth_limit": 3,
-        "allow_paths": ["quotes.toscrape.com/tag/"],
+        "allow_paths": ["quotes.toscrape.com/tag"],
         "deny_paths": ["/author/"],
         "sitemap_urls": null,
         "check_sitemap_hours": null

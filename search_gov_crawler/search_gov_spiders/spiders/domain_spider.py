@@ -80,7 +80,7 @@ class DomainSpider(CrawlSpider):
         output_target: str,
         allow_paths: OptionalStrOrSequence = None,
         deny_paths: OptionalStrOrSequence = None,
-        sitemap_url: str | None,
+        sitemap_url: str | None = None,
         started_by: str = SpiderStartedBy.MANUAL.value,
         **kwargs,
     ) -> None:
@@ -94,7 +94,7 @@ class DomainSpider(CrawlSpider):
                         allow=split_optional_str_or_sequence(input_argument=allow_paths),
                         deny=(
                             *helpers.LINK_DENY_REGEX_STR,
-                            *split_optional_str_or_sequence(input_argument=allow_paths),
+                            *split_optional_str_or_sequence(input_argument=deny_paths),
                         ),
                         deny_extensions=helpers.FILTER_EXTENSIONS,
                         tags=helpers.LINK_TAGS,
@@ -108,7 +108,7 @@ class DomainSpider(CrawlSpider):
         super().__init__(*args, **kwargs)
         self.allow_query_string = helpers.force_bool(allow_query_string)
         self.output_target = output_target
-        self.allowed_domains = split_optional_str_or_sequence(allowed_domains)
+        self.allowed_domains = list(split_optional_str_or_sequence(allowed_domains))
         self.start_urls = list(split_optional_str_or_sequence(start_urls))
         self.started_by = started_by
 

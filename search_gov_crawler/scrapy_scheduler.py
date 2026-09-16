@@ -60,6 +60,7 @@ def transform_crawl_configs(crawl_configs: CrawlConfigs) -> list[dict]:
                     "start_urls": crawl_config.starting_urls,
                     "output_target": crawl_config.output_target,
                     "depth_limit": crawl_config.depth_limit,
+                    "allow_paths": crawl_config.allow_paths or [],
                     "deny_paths": crawl_config.deny_paths or [],
                     "started_by": SpiderStartedBy.SCHEDULED.value,
                 },
