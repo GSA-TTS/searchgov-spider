@@ -1,5 +1,6 @@
 import os
 import time
+from dataclasses import asdict
 from datetime import UTC, datetime
 from pathlib import Path
 from unittest.mock import MagicMock, patch
@@ -10,11 +11,13 @@ from opensearchpy import OpenSearch
 
 from search_gov_crawler import scrapy_scheduler
 from search_gov_crawler.benchmark import (
+    BenchmarkJobArguments,
     benchmark_from_args,
     benchmark_from_file,
     create_apscheduler_job,
     init_scheduler,
 )
+from search_gov_crawler.search_gov_app.crawl_config import CrawlConfig
 
 
 @pytest.fixture(name="mock_opensearch_client")
@@ -53,34 +56,34 @@ def test_init_scheduler(caplog, monkeypatch, scrapy_max_workers, expected_val):
     [(True, "domain_spider_js"), (False, "domain_spider")],
 )
 def test_create_apscheduler_job(handle_javascript, spider_arg):
-    test_args = {
-        "name": "test",
-        "allow_query_string": True,
-        "allowed_domains": "example.com",
-        "starting_urls": "https://www.example.com",
-        "handle_javascript": handle_javascript,
-        "output_target": "csv",
-        "runtime_offset_seconds": 5,
-        "depth_limit": 3,
-        "allow_paths": ["/good-stuff"],
-        "deny_paths": ["/deny-path1/", "/deny-path2/"],
-        "job_id": None,
-    }
+    test_args = BenchmarkJobArguments(
+        name="test",
+        allow_query_string=True,
+        allowed_domains="example.com",
+        starting_urls="https://www.example.com",
+        handle_javascript=handle_javascript,
+        output_target="csv",
+        runtime_offset_seconds=5,
+        depth_limit=3,
+        allow_paths=["/good-stuff"],
+        deny_paths=["/deny-path1/", "/deny-path2/"],
+        job_id=None,
+    )
 
-    assert create_apscheduler_job(**test_args) == {
+    assert create_apscheduler_job(benchmark_job_args=test_args) == {
         "func": scrapy_scheduler.run_scrapy_crawl,
-        "id": f"benchmark - {test_args['name']}",
-        "name": f"benchmark - {test_args['name']}",
+        "id": f"benchmark - {test_args.name}",
+        "name": f"benchmark - {test_args.name}",
         "next_run_time": datetime(2024, 1, 1, 0, 0, 5, tzinfo=UTC),
         "kwargs": {
             "spider": spider_arg,
-            "allow_query_string": test_args["allow_query_string"],
-            "allowed_domains": test_args["allowed_domains"],
-            "start_urls": test_args["starting_urls"],
-            "output_target": test_args["output_target"],
-            "depth_limit": test_args["depth_limit"],
-            "allow_paths": test_args["allow_paths"],
-            "deny_paths": test_args["deny_paths"],
+            "allow_query_string": test_args.allow_query_string,
+            "allowed_domains": test_args.allowed_domains,
+            "start_urls": test_args.starting_urls,
+            "output_target": test_args.output_target,
+            "depth_limit": test_args.depth_limit,
+            "allow_paths": test_args.allow_paths,
+            "deny_paths": test_args.deny_paths,
             "started_by": "manual_run",
         },
     }
@@ -150,3 +153,57 @@ def test_benchmark_from_file_missing_file():
     input_file = Path("/does/not/exist.json")
     with pytest.raises(FileNotFoundError, match=f"Input file {input_file} does not exist!"):
         benchmark_from_file(input_file=input_file, runtime_offset_seconds=0)
+
+
+@pytest.fixture
+def benchmark_test_args():
+    return BenchmarkJobArguments(
+        name="test",
+        allow_query_string=True,
+        allowed_domains="example.com",
+        starting_urls="https://www.example.com",
+        handle_javascript=False,
+        output_target="csv",
+        runtime_offset_seconds=5,
+        depth_limit=3,
+        allow_paths=["/good-stuff"],
+        deny_paths=["/deny-path1/", "/deny-path2/"],
+        job_id=None,
+    )
+
+
+@pytest.fixture
+def from_crawl_configs_test_args():
+    crawl_config = CrawlConfig(
+        name="test",
+        allow_query_string=True,
+        allowed_domains="example.com",
+        starting_urls="https://www.example.com",
+        handle_javascript=False,
+        output_target="csv",
+        depth_limit=3,
+        allow_paths=["/good-stuff"],
+        deny_paths=["/deny-path1/", "/deny-path2/"],
+        schedule="* * * * *",
+        sitemap_urls=None,
+        check_sitemap_hours=None,
+    )
+    return BenchmarkJobArguments.from_crawl_config(runtime_offset_seconds=5, crawl_config=crawl_config)
+
+
+@pytest.mark.parametrize("benchmark_job_args", ["benchmark_test_args", "from_crawl_configs_test_args"])
+def test_benchmark_job_arguments(request, benchmark_job_args):
+
+    assert asdict(request.getfixturevalue(benchmark_job_args)) == {
+        "name": "test",
+        "allow_query_string": True,
+        "allowed_domains": "example.com",
+        "starting_urls": "https://www.example.com",
+        "handle_javascript": False,
+        "output_target": "csv",
+        "runtime_offset_seconds": 5,
+        "depth_limit": 3,
+        "allow_paths": ["/good-stuff"],
+        "deny_paths": ["/deny-path1/", "/deny-path2/"],
+        "job_id": None,
+    }
