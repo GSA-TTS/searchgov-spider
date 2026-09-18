@@ -25,7 +25,6 @@
       "matchManagers": ["pip_requirements", "pep621"],
       "matchPackageNames": [
         "apscheduler",
-        "brotli",
         "defusedxml",
         "cchardet",
         "langdetect",
@@ -39,8 +38,7 @@
         "python-json-logger",
         "redis",
         "scrapy*",
-        "spidermon*",
-        "zstandard"
+        "spidermon*"
       ],
       "addLabels": ["dependencies", "pip", "production"]
     },

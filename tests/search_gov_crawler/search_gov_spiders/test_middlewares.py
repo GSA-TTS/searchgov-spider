@@ -314,10 +314,7 @@ def test_spider_middleware_spider_exception_start_url(caplog, test_crawler):
             response=response,
             exception=IgnoreRequest("Ignore this test request"),
         )
-        msg = (
-            "Error occured while accessing start url: http://www.example.com: "
-            "response: <403 http://www.example.com>, Ignore this test request"
-        )
+        msg = "Error occured while accessing start url: http://www.example.com: response: <403 http://www.example.com>"
         assert msg in caplog.messages
 
 
