@@ -57,6 +57,7 @@ def transform_crawl_configs(crawl_configs: CrawlConfigs) -> list[dict]:
                     "spider": ("domain_spider" if not crawl_config.handle_javascript else "domain_spider_js"),
                     "allow_query_string": crawl_config.allow_query_string,
                     "allowed_domains": crawl_config.allowed_domains,
+                    "allowed_domains_strict": crawl_config.allowed_domains_strict,
                     "start_urls": crawl_config.starting_urls,
                     "output_target": crawl_config.output_target,
                     "depth_limit": crawl_config.depth_limit,

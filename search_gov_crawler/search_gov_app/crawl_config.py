@@ -31,6 +31,7 @@ class CrawlConfig:
     name: str
     allow_query_string: bool
     allowed_domains: str
+    allowed_domains_strict: bool
     handle_javascript: bool
     starting_urls: str
     output_target: str
@@ -194,6 +195,7 @@ class CrawlConfigs:
             )
             # these fields do not exist in the source table
             record["allow_paths"] = None
+            record["allowed_domains_strict"] = False
 
         crawl_configs = []
         for record in records:

@@ -801,10 +801,11 @@ local output_target = 'opensearch';
   },
   {
     name: 'login.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='www.login.gov',
-                         starting_urls='https://www.login.gov/',
+    config: DomainConfig(allowed_domains='login.gov',
+                         starting_urls='https://login.gov/',
                          schedule='30 01 * * TUE',
                          output_target=output_target,
+                         options=['allowed_domains_strict'],
                          depth_limit=8),
   },
   {

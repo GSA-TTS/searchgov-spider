@@ -29,6 +29,7 @@ function(
   lower_environments=[]
 ) {
   allowed_domains: allowed_domains,
+  allowed_domains_strict: if ['allowed_domains_strict'] == [o for o in options if o == 'allowed_domains_strict'] then true else false,
   allow_query_string: if ['allow_query_string'] == [o for o in options if o == 'allow_query_string'] then true else false,
   starting_urls: starting_urls,
   schedule: schedule,

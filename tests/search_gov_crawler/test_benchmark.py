@@ -60,6 +60,7 @@ def test_create_apscheduler_job(handle_javascript, spider_arg):
         name="test",
         allow_query_string=True,
         allowed_domains="example.com",
+        allowed_domains_strict=False,
         starting_urls="https://www.example.com",
         handle_javascript=handle_javascript,
         output_target="csv",
@@ -79,6 +80,7 @@ def test_create_apscheduler_job(handle_javascript, spider_arg):
             "spider": spider_arg,
             "allow_query_string": test_args.allow_query_string,
             "allowed_domains": test_args.allowed_domains,
+            "allowed_domains_strict": test_args.allowed_domains_strict,
             "start_urls": test_args.starting_urls,
             "output_target": test_args.output_target,
             "depth_limit": test_args.depth_limit,
@@ -113,6 +115,7 @@ def test_benchmark_from_args(caplog, monkeypatch, mock_opensearch_client):
         test_args = {
             "allow_query_string": True,
             "allowed_domains": "unit-test.example.com",
+            "allowed_domains_strict": False,
             "starting_urls": "https://unit-test.example.com",
             "handle_javascript": False,
             "output_target": "csv",
@@ -126,8 +129,9 @@ def test_benchmark_from_args(caplog, monkeypatch, mock_opensearch_client):
 
         expected_log_msg = (
             "Starting benchmark from args! allow_query_string=True allowed_domains=unit-test.example.com "
-            "starting_urls=https://unit-test.example.com handle_javascript=False output_target=csv "
-            "runtime_offset_seconds=0 depth_limit=3 allow_paths=/good-stuff-here deny_paths=/deny-path1/,/deny-path2/"
+            "allowed_domains_strict=False starting_urls=https://unit-test.example.com handle_javascript=False "
+            "output_target=csv runtime_offset_seconds=0 depth_limit=3 allow_paths=/good-stuff-here "
+            "deny_paths=/deny-path1/,/deny-path2/"
         )
         assert expected_log_msg in caplog.messages
 
@@ -161,6 +165,7 @@ def benchmark_test_args():
         name="test",
         allow_query_string=True,
         allowed_domains="example.com",
+        allowed_domains_strict=False,
         starting_urls="https://www.example.com",
         handle_javascript=False,
         output_target="csv",
@@ -178,6 +183,7 @@ def from_crawl_configs_test_args():
         name="test",
         allow_query_string=True,
         allowed_domains="example.com",
+        allowed_domains_strict=False,
         starting_urls="https://www.example.com",
         handle_javascript=False,
         output_target="csv",
@@ -198,6 +204,7 @@ def test_benchmark_job_arguments(request, benchmark_job_args):
         "name": "test",
         "allow_query_string": True,
         "allowed_domains": "example.com",
+        "allowed_domains_strict": False,
         "starting_urls": "https://www.example.com",
         "handle_javascript": False,
         "output_target": "csv",

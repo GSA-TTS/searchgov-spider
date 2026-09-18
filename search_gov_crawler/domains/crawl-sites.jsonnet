@@ -9,6 +9,7 @@ local CrawlSite(domain) = {
   name: domain.name,
   allow_query_string: domain.config.allow_query_string,
   allowed_domains: domain.config.allowed_domains,
+  allowed_domains_strict: domain.config.allowed_domains_strict,
   handle_javascript: domain.config.handle_javascript,
   schedule: domain.config.schedule,
   output_target: domain.config.output_target,

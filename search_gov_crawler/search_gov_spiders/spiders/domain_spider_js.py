@@ -85,6 +85,7 @@ class DomainSpiderJs(CrawlSpider):
         *args,
         allow_query_string: bool = False,
         allowed_domains: StrOrSequence,
+        allowed_domains_strict: bool = False,
         start_urls: StrOrSequence,
         output_target: str,
         allow_paths: OptionalStrOrSequence = None,
@@ -119,6 +120,7 @@ class DomainSpiderJs(CrawlSpider):
         self.allow_query_string = helpers.force_bool(allow_query_string)
         self.output_target = output_target
         self.allowed_domains = list(split_optional_str_or_sequence(allowed_domains))
+        self.allowed_domains_strict = helpers.force_bool(allowed_domains_strict)
         self.start_urls = list(split_optional_str_or_sequence(start_urls))
         self.started_by = started_by
 
@@ -147,11 +149,12 @@ class DomainSpiderJs(CrawlSpider):
         max_depth_limit = 250
 
         spider = super().from_crawler(crawler, *args, **kwargs)
-        if int(depth_limit) > max_depth_limit or int(depth_limit) < 1:
-            msg = f"Search Depth must be between 1 and 250 inclusive. You submitted: {depth_limit} "
-            raise ValueError(msg)
+        if depth_limit:
+            if int(depth_limit) > max_depth_limit or int(depth_limit) < 1:
+                msg = f"Search Depth must be between 1 and 250 inclusive. You submitted: {depth_limit} "
+                raise ValueError(msg)
 
-        spider.settings.set("DEPTH_LIMIT", depth_limit, priority="spider")
+            spider.settings.set("DEPTH_LIMIT", depth_limit, priority="spider")
         return spider
 
     @property

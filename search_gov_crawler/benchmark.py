@@ -59,6 +59,7 @@ class BenchmarkJobArguments:
     name: str
     allow_query_string: bool
     allowed_domains: str
+    allowed_domains_strict: bool
     starting_urls: str
     handle_javascript: bool
     output_target: str
@@ -75,6 +76,7 @@ class BenchmarkJobArguments:
             name=crawl_config.name,
             allow_query_string=crawl_config.allow_query_string,
             allowed_domains=crawl_config.allowed_domains,
+            allowed_domains_strict=crawl_config.allowed_domains_strict,
             starting_urls=crawl_config.starting_urls,
             handle_javascript=crawl_config.handle_javascript,
             output_target=crawl_config.output_target,
@@ -120,6 +122,7 @@ def create_apscheduler_job(benchmark_job_args: BenchmarkJobArguments) -> dict:
             "spider": "domain_spider" if not benchmark_job_args.handle_javascript else "domain_spider_js",
             "allow_query_string": benchmark_job_args.allow_query_string,
             "allowed_domains": benchmark_job_args.allowed_domains,
+            "allowed_domains_strict": benchmark_job_args.allowed_domains_strict,
             "start_urls": benchmark_job_args.starting_urls,
             "output_target": benchmark_job_args.output_target,
             "depth_limit": benchmark_job_args.depth_limit,
@@ -165,6 +168,7 @@ def benchmark_from_file(input_file: Path, runtime_offset_seconds: int):
 def benchmark_from_args(
     allow_query_string: bool,  # noqa: FBT001
     allowed_domains: str,
+    allowed_domains_strict: bool,  # noqa: FBT001
     starting_urls: str,
     handle_javascript: bool,  # noqa: FBT001
     output_target: str,
@@ -177,7 +181,7 @@ def benchmark_from_args(
 
     msg = (
         "Starting benchmark from args! "
-        "allow_query_string=%s allowed_domains=%s starting_urls=%s "
+        "allow_query_string=%s allowed_domains=%s allowed_domains_strict=%s starting_urls=%s "
         "handle_javascript=%s output_target=%s runtime_offset_seconds=%s "
         "depth_limit=%s allow_paths=%s deny_paths=%s"
     )
@@ -185,6 +189,7 @@ def benchmark_from_args(
         msg,
         allow_query_string,
         allowed_domains,
+        allowed_domains_strict,
         starting_urls,
         handle_javascript,
         output_target,
@@ -198,6 +203,7 @@ def benchmark_from_args(
         name="benchmark",
         allow_query_string=allow_query_string,
         allowed_domains=allowed_domains,
+        allowed_domains_strict=allowed_domains_strict,
         starting_urls=starting_urls,
         handle_javascript=handle_javascript,
         output_target=output_target,
@@ -232,6 +238,13 @@ if __name__ == "__main__":
         type=str,
         help="domains allowed to crawl",
         required=no_input_arg,
+    )
+    parser.add_argument(
+        "-ds",
+        "--allowed_domains_strict",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+        help="Flag to enable strict domain following",
     )
     parser.add_argument(
         "-u",
@@ -297,6 +310,7 @@ if __name__ == "__main__":
         benchmark_args = {
             "allow_query_string": args.allow_query_string,
             "allowed_domains": args.allowed_domains,
+            "allowed_domains_strict": args.allowed_domains_strict,
             "starting_urls": args.starting_urls,
             "handle_javascript": args.handle_js,
             "output_target": args.output_target,
