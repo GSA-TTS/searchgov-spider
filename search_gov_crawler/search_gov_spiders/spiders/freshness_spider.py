@@ -32,7 +32,14 @@ from search_gov_crawler.search_gov_spiders.items import (
 
 
 class FreshnessSpider(Spider):
-    """Spider used to check URLs from documents in opensearch to determine if they still exist."""
+    """
+    Spider used to check URLs from documents in opensearch to determine if they still exist.
+
+    NB: opensearch scroll length (`scroll` below) set to 24h does not limit the total run time of
+    this process to 24h rather it ensures that the scroll context remains in place long enough to
+    process the next batch.  We experiented with a lower interval (10m) but found that this did
+    cause the process to stop prior to completion while leaving at 24h showed no adverse effects.
+    """
 
     name = "freshness_spider"
     opensearch: SearchGovOpensearch
@@ -43,7 +50,7 @@ class FreshnessSpider(Spider):
     doc_count: int
     doc_batch_size: ClassVar[int] = 250
 
-    scroll: ClassVar[str] = "10m"
+    scroll: ClassVar[str] = "24h"
     status_codes_to_ignore: ClassVar[set[int]] = {200}
     status_codes_to_mark_for_deletion: ClassVar[set[int]] = {
         code.value for code in HTTPStatus if code.is_redirection or code == HTTPStatus.NOT_FOUND
