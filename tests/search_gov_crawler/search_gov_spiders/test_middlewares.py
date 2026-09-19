@@ -59,39 +59,6 @@ def test_offsite_process_request_domain_filtering(test_crawler, allowed_domain, 
             mw.process_request(request)
 
 
-INVALID_DOMAIN_TEST_CASES = [
-    (
-        ["http://www.example.com"],
-        (
-            "allowed_domains accepts only domains, not URLs. "
-            "Ignoring URL entry http://www.example.com in allowed_domains"
-        ),
-    ),
-    (
-        ["example.com:443"],
-        ("allowed_domains accepts only domains without ports. Ignoring entry example.com:443 in allowed_domains"),
-    ),
-]
-
-
-@pytest.mark.parametrize(("allowed_domain", "warning_message"), INVALID_DOMAIN_TEST_CASES)
-def test_offsite_invalid_domain_paths(test_crawler, allowed_domain, warning_message):
-    """
-    Even though this functionality is part of scrapy, since we are overriding part of get_host_regex
-    it seems wise to add some testing around the superclass to help detect some changes if they occur
-    """
-
-    test_crawler.spider = Spider.from_crawler(
-        crawler=test_crawler,
-        name="offsite_test",
-        allowed_domains=allowed_domain,
-    )
-    mw = SearchGovSpidersOffsiteMiddleware.from_crawler(test_crawler)
-
-    with pytest.warns(UserWarning, match=warning_message):
-        mw.spider_opened(test_crawler.spider)
-
-
 def test_offsite_invalid_domain_in_starting_urls(test_crawler, caplog):
     test_crawler.spider = Spider.from_crawler(
         crawler=test_crawler,

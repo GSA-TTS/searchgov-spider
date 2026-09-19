@@ -40,7 +40,8 @@ repos:
     rev: v8.30.0
     hooks:
       - id: gitleaks
-  # - repo: https://github.com/pre-commit/mirrors-mypy
-  #   rev: "v1.9.0"
-  #   hooks:
-  #     - id: mypy
+
+  - repo: https://github.com/scrapy/scrapy-lint
+    rev: v0.1.1
+    hooks:
+      - id: scrapy-lint

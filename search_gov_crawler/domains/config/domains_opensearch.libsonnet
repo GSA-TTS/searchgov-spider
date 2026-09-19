@@ -11491,7 +11491,7 @@ local output_target = 'opensearch';
   {
     name: 'US Embassy Vatican',
     config: DomainConfig(allowed_domains='va.usembassy.gov',
-                         starting_urls='http://va.usembassy.gov/',
+                         starting_urls='https://va.usembassy.gov/',
                          schedule='00 11 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -12382,7 +12382,7 @@ local output_target = 'opensearch';
   {
     name: 'US Mission Vienna',
     config: DomainConfig(allowed_domains='vienna.usmission.gov',
-                         starting_urls='http://vienna.usmission.gov/',
+                         starting_urls='https://vienna.usmission.gov/',
                          schedule='05 10 * * THU',
                          output_target=output_target,
                          depth_limit=8),

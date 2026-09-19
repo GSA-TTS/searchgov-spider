@@ -21497,7 +21497,7 @@
       "output_target": "opensearch",
       "schedule": "00 11 * * MON",
       "sitemap_urls": null,
-      "starting_urls": "http://va.usembassy.gov/"
+      "starting_urls": "https://va.usembassy.gov/"
    },
    {
       "allow_paths": null,
@@ -23168,7 +23168,7 @@
       "output_target": "opensearch",
       "schedule": "05 10 * * THU",
       "sitemap_urls": null,
-      "starting_urls": "http://vienna.usmission.gov/"
+      "starting_urls": "https://vienna.usmission.gov/"
    },
    {
       "allow_paths": null,

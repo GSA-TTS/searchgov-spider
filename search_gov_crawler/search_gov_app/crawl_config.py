@@ -76,7 +76,26 @@ class CrawlConfig:
                 )
                 raise CrawlConfigValidationError(msg)
 
-    def _validate_fields(self) -> None:
+    @staticmethod
+    def _domain_name_is_valid(domain_name: str) -> bool:
+        minimum_domain_length = 3
+
+        return bool(
+            all(char.isalnum() or char in [".", "-"] for char in domain_name)
+            and "." in domain_name
+            and len(domain_name) >= minimum_domain_length
+        )
+
+    @staticmethod
+    def _starting_url_is_valid(starting_url: str) -> bool:
+        minimum_starting_url_length = 11
+        return bool(
+            starting_url.startswith("https://")
+            and "." in starting_url
+            and len(starting_url) >= minimum_starting_url_length
+        )
+
+    def _validate_fields(self) -> None:  # noqa: C901
         """Validate Individual Fields"""
 
         # validate no duplicates in deny_paths or allow_paths
@@ -107,10 +126,15 @@ class CrawlConfig:
         if self.allowed_domains:
             domains = self.allowed_domains.split(",")
             for domain in domains:
-                if not all(char.isalnum() or char in [".", "-"] for char in domain):
-                    msg = (
-                        f"Invalid allowed_domains entry: {domain}. Only letters, numbers, dashes, and periods allowed."
-                    )
+                if not self._domain_name_is_valid(domain):
+                    msg = f"Invalid allowed_domains entry: {domain}. Not properly formatted!"
+                    raise CrawlConfigValidationError(msg)
+
+        if self.starting_urls:
+            starting_urls = self.starting_urls.split(",")
+            for starting_url in starting_urls:
+                if not self._starting_url_is_valid(starting_url):
+                    msg = f"Invalid starting_urls entry {starting_url}.  Not properly formatted!"
                     raise CrawlConfigValidationError(msg)
 
     def _validate_required_fields(self) -> None:
