@@ -23,6 +23,7 @@ redis==5.2.1 # 6.0.0 is not compatible with redis 6
 rich==15.0.0
 ruff==0.16.5 # this version also need to be updated in .pre-commit-config.yaml
 scrapy==2.18.0
+scrapy-lint==0.1.1
 scrapy-playwright==0.0.48
 scrapy-redis==0.9.1
 spidermon[monitoring]==1.25.1

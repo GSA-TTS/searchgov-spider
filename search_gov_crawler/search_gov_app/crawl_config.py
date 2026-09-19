@@ -31,11 +31,13 @@ class CrawlConfig:
     name: str
     allow_query_string: bool
     allowed_domains: str
+    allowed_domains_strict: bool
     handle_javascript: bool
     starting_urls: str
     output_target: str
     depth_limit: int
     job_id: str | None = field(default=None, init=False)
+    allow_paths: list | None = None
     deny_paths: list | None = None
     schedule: str | None = None
     sitemap_urls: list | None = None
@@ -74,15 +76,35 @@ class CrawlConfig:
                 )
                 raise CrawlConfigValidationError(msg)
 
-    def _validate_fields(self) -> None:
+    @staticmethod
+    def _domain_name_is_valid(domain_name: str) -> bool:
+        minimum_domain_length = 3
+
+        return bool(
+            all(char.isalnum() or char in [".", "-"] for char in domain_name)
+            and "." in domain_name
+            and len(domain_name) >= minimum_domain_length
+        )
+
+    @staticmethod
+    def _starting_url_is_valid(starting_url: str) -> bool:
+        minimum_starting_url_length = 11
+        return bool(
+            starting_url.startswith("https://")
+            and "." in starting_url
+            and len(starting_url) >= minimum_starting_url_length
+        )
+
+    def _validate_fields(self) -> None:  # noqa: C901
         """Validate Individual Fields"""
 
-        # validate no duplicates in deny_paths
-        if self.deny_paths is not None:
-            unique_deny_paths = set(self.deny_paths)
-            if len(unique_deny_paths) != len(self.deny_paths):
-                msg = f"Values in deny_paths must be unique! {self.name} has duplicates!"
-                raise CrawlConfigValidationError(msg)
+        # validate no duplicates in deny_paths or allow_paths
+        for field_name, field_value in [(k, v) for k, v in asdict(self).items() if k in ("allow_paths", "deny_paths")]:
+            if field_value is not None:
+                unique_paths = set(field_value)
+                if len(unique_paths) != len(field_value):
+                    msg = f"Values in {field_name} must be unique! {self.name} has duplicates!"
+                    raise CrawlConfigValidationError(msg)
 
         # validate output_target values
         if self.output_target not in ALLOWED_CONTENT_TYPE_OUTPUT_MAP:
@@ -100,12 +122,34 @@ class CrawlConfig:
                 msg = f"Invalid cron expression in schedule value: {self.schedule}"
                 raise CrawlConfigValidationError(msg) from err
 
+        # validate allowed_paths only contains letters and periods
+        if self.allowed_domains:
+            domains = self.allowed_domains.split(",")
+            for domain in domains:
+                if not self._domain_name_is_valid(domain):
+                    msg = f"Invalid allowed_domains entry: {domain}. Not properly formatted!"
+                    raise CrawlConfigValidationError(msg)
+
+        if self.starting_urls:
+            starting_urls = self.starting_urls.split(",")
+            for starting_url in starting_urls:
+                if not self._starting_url_is_valid(starting_url):
+                    msg = f"Invalid starting_urls entry {starting_url}.  Not properly formatted!"
+                    raise CrawlConfigValidationError(msg)
+
     def _validate_required_fields(self) -> None:
         """Ensure all required fields are present"""
 
         missing_field_names = []
         for cls_field in fields(self):
-            if cls_field.name in {"schedule", "deny_paths", "sitemap_urls", "check_sitemap_hours", "job_id"}:
+            if cls_field.name in {
+                "schedule",
+                "allow_paths",
+                "deny_paths",
+                "sitemap_urls",
+                "check_sitemap_hours",
+                "job_id",
+            }:
                 pass
             elif getattr(self, cls_field.name) is None:
                 missing_field_names.append(cls_field.name)
@@ -145,10 +189,10 @@ class CrawlConfigs:
 
             unique_job_ids.add(job_id)
 
-            site_key = f"{site.output_target}::{site.allowed_domains}"
+            site_key = f"{site.output_target}::{site.allowed_domains}::{site.allow_paths}"
             if site_key in unique_domains_by_target:
                 msg = (
-                    "The combination of allowed_domain and output_target must be unique in file. "
+                    "The combination of allowed_domains, allow_paths, and output_target must be unique in file. "
                     f"Duplicate site domain:\n{site}"
                 )
                 raise CrawlConfigsValidationError(msg)
@@ -173,6 +217,9 @@ class CrawlConfigs:
             record["allowed_domains"] = ",".join(
                 json.loads(record["allowed_domains"]) if record["allowed_domains"] else [],
             )
+            # these fields do not exist in the source table
+            record["allow_paths"] = None
+            record["allowed_domains_strict"] = False
 
         crawl_configs = []
         for record in records:

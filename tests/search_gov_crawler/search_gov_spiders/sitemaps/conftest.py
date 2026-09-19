@@ -14,6 +14,8 @@ def fixture_make_mock_crawl_config():
             self.handle_javascript = kwargs.get("handle_javascript", False)
             self.allow_query_string = kwargs.get("allow_query_string", False)
             self.allowed_domains = kwargs.get("allowed_domains", [])
+            self.allowed_domains_strict = kwargs.get("allowed_domains_strict", False)
+            self.allow_paths = kwargs.get("allow_paths", [])
             self.deny_paths = kwargs.get("deny_paths", [])
             self.output_target = kwargs.get("output_target", "default")
 

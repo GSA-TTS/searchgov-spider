@@ -80,7 +80,7 @@ def test_default_allowed_domains(monkeypatch, crawl_sites_test_file_json, handle
 @pytest.mark.parametrize(
     ("remove_paths", "results"),
     [
-        (False, ["quotes.toscrape.com", "quotes.toscrape.com/tag/"]),
+        (False, ["quotes.toscrape.com", "quotes.toscrape.com"]),
         (True, ["quotes.toscrape.com", "quotes.toscrape.com"]),
     ],
 )

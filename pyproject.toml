@@ -28,3 +28,10 @@ exclude_also = [
 [tool.pytest.ini_options]
 asyncio_default_fixture_loop_scope = "module"
 filterwarnings = []
+
+[tool.scrapy-lint]
+ignore = ["SCP13"]
+known-settings = [
+    "JSON_LOGGING_ENABLED",
+    "SCHEDULER_DUPEFILTER_KEY",
+]
