@@ -271,7 +271,9 @@ class SearchGovSpidersOffsiteMiddleware(OffsiteMiddleware):
                 )
                 warnings.warn(message, stacklevel=2)
             else:
-                domains.append(re.escape(domain))
+                # the entry has to end where a path segment ends, otherwise a scope of
+                # "example.com/path" also admits "example.com/pathology"
+                domains.append(rf"{re.escape(domain.rstrip('/'))}(?:[/?#]|$)")
         regex = rf"{'|'.join(domains)}"
         return re.compile(regex)
 

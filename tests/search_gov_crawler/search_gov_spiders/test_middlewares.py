@@ -33,6 +33,10 @@ MIDDLEWARE_TEST_CASES = [
     (["example.com"], ["example.com/path"], "http://example.com/1", False),
     (["sub.example.com"], ["sub.example.com/path/"], "http://sub.example.com/path/more/more", True),
     (["sub.example.com"], ["sub.example.com/path/"], "http://sub.example.com/path/1", True),
+    (["sub.example.com"], ["sub.example.com/path"], "http://sub.example.com/path", True),
+    (["sub.example.com"], ["sub.example.com/path"], "http://sub.example.com/path/1", True),
+    (["sub.example.com"], ["sub.example.com/path"], "http://sub.example.com/path?q=1", True),
+    (["sub.example.com"], ["sub.example.com/path"], "http://sub.example.com/pathology/1", False),
     (["example.com"], None, "http://www.example.com/2", True),
     (["example.com"], [None], "http://www.example.com/2", True),
 ]
