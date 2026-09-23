@@ -1,6 +1,7 @@
 import pytest
 from freezegun import freeze_time
 
+from search_gov_crawler.config.settings import SearchgovSettings
 from search_gov_crawler.dap_extractor import main, run_dap_extractor
 
 
@@ -9,10 +10,10 @@ def test_dap_extractor_main(caplog, monkeypatch, mocker):
     mock_crontrigger = mocker.patch("apscheduler.triggers.cron.CronTrigger.from_crontab")
     mock_crontrigger.return_value = True
 
-    mock_scheduler = mocker.patch("search_gov_crawler.dap_extractor.init_scheduler")
+    mock_scheduler = mocker.patch("search_gov_crawler.dap_extractor.init_singleton_job_scheduler")
 
     with caplog.at_level("INFO"):
-        main(10, 10)
+        main(SearchgovSettings(), 10, 10)
 
     assert "Starting scheduler for dap extractor based on crontab expression */10 * * * *" in caplog.messages
     mock_scheduler.return_value.add_job.assert_called_once_with(
@@ -28,7 +29,7 @@ def test_dap_extractor_main_crontrigger_error(caplog, monkeypatch):
     monkeypatch.setenv("DAP_EXTRACTOR_SCHEDULE", "THIS IS NOT A SCHEDULE")
 
     with caplog.at_level("INFO"), pytest.raises(ValueError, match="Invalid month name"):
-        main(10, 10)
+        main(SearchgovSettings(), 10, 10)
 
     assert "Invalid crontab expression from in DAP_EXTRACTOR_SCHEDULE!" in caplog.messages
 

@@ -8,7 +8,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 log = logging.getLogger(__name__)
 
 
-def init_scheduler() -> BlockingScheduler:
+def init_singleton_job_scheduler() -> BlockingScheduler:
     """Initialize in memory scheduler with capacity to run a single job at a time."""
 
     return BlockingScheduler(

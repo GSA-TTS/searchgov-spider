@@ -20,12 +20,13 @@ ensure_executable() {
 # Use for standalone scripts that do not need to share the current shell environment.
 run_executable() {
   local script="$1"
+  shift
 
   if [ -f "$script" ]; then
     sudo chmod +x "$script"
     sudo chown -R "$(whoami)" "$script"
     echo "$script is now executable."
-    bash "$script"
+    bash "$script" "$@"
   else
     echo "Error: $script not found!"
     return 1
