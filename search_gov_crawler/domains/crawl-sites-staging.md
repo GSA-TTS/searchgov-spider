@@ -2,10 +2,10 @@
  * [Sunday (2)](#sunday-2)
  * [Monday (2)](#monday-2)
  * [Tuesday (1)](#tuesday-1)
- * [Wednesday (0)](#wednesday-0)
+ * Wednesday (0)
  * [Thursday (1)](#thursday-1)
- * [Friday (0)](#friday-0)
- * [Saturday (0)](#saturday-0)
+ * Friday (0)
+ * Saturday (0)
 
 
 ## Sunday (2)
@@ -28,22 +28,7 @@
 |USA.gov (usagov-replacement)|06:30|www.usa.gov|N|N|8|||
 
 
-## Wednesday (0)
-|Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
-|---|---|---|---|---|---|---|---|
-
-
 ## Thursday (1)
 |Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
 |---|---|---|---|---|---|---|---|
 |digital.gov (usagov-replacement)|16:12|digital.gov|N|N|8|||
-
-
-## Friday (0)
-|Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
-|---|---|---|---|---|---|---|---|
-
-
-## Saturday (0)
-|Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
-|---|---|---|---|---|---|---|---|
