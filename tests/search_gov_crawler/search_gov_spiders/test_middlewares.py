@@ -127,6 +127,25 @@ def test_spider_middleware_allow_query_string_request(test_crawler, dont_filter,
     assert getattr(operator, none_test)(mw.get_processed_request(request=request, response=None), None)
 
 
+@pytest.mark.parametrize(
+    ("request_url", "allowed_domains_strict", "bool_test"),
+    [("https://www.example.com", False, "truth"), ("https://www.example.com", True, "not_")],
+)
+def test_spider_middleware_dont_filter_update(test_crawler, request_url, allowed_domains_strict, bool_test):
+    test_crawler.spider = Spider.from_crawler(
+        crawler=test_crawler,
+        name="test",
+        start_urls="https://www.example.com",
+        allowed_domains="example.com",
+        allowed_domains_strict=allowed_domains_strict,
+    )
+    mw = SearchGovSpidersSpiderMiddleware.from_crawler(test_crawler)
+    request = Request(request_url, dont_filter=True)
+    output = mw.get_processed_request(request=request, response=None)
+    assert isinstance(output, Request)
+    assert getattr(operator, bool_test)(output.dont_filter)
+
+
 JSESSIONID_REMOVAL_TEST_CASES = [
     ("https://www.example.com/test", "https://www.example.com/test"),
     ("http://www.example.com/test;jsessionid=12345", "http://www.example.com/test"),

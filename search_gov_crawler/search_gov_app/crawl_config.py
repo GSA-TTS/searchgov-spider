@@ -78,7 +78,7 @@ class CrawlConfig:
 
     @staticmethod
     def _domain_name_is_valid(domain_name: str) -> bool:
-        minimum_domain_length = 3
+        minimum_domain_length = 4
 
         return bool(
             all(char.isalnum() or char in [".", "-"] for char in domain_name)
@@ -88,7 +88,7 @@ class CrawlConfig:
 
     @staticmethod
     def _starting_url_is_valid(starting_url: str) -> bool:
-        minimum_starting_url_length = 11
+        minimum_starting_url_length = 12
         return bool(
             starting_url.startswith("https://")
             and "." in starting_url
@@ -134,7 +134,7 @@ class CrawlConfig:
             starting_urls = self.starting_urls.split(",")
             for starting_url in starting_urls:
                 if not self._starting_url_is_valid(starting_url):
-                    msg = f"Invalid starting_urls entry {starting_url}.  Not properly formatted!"
+                    msg = f"Invalid starting_urls entry: {starting_url}. Not properly formatted!"
                     raise CrawlConfigValidationError(msg)
 
     def _validate_required_fields(self) -> None:

@@ -129,6 +129,22 @@ def test_invalid_crawl_config_duplicate_path_field(base_crawl_config_args, path_
         CrawlConfig(**test_args)
 
 
+@pytest.mark.parametrize(("invalid_allowed_domain"), ["c.o", "exampledotgov", "hi!there.gov/"])
+def test_invalid_crawl_config_invalid_allowed_domain(base_crawl_config_args, invalid_allowed_domain):
+    base_crawl_config_args["allowed_domains"] = invalid_allowed_domain
+    match = f"Invalid allowed_domains entry: {invalid_allowed_domain}. Not properly formatted!"
+    with pytest.raises(CrawlConfigValidationError, match=match):
+        CrawlConfig(**base_crawl_config_args)
+
+
+@pytest.mark.parametrize(("invalid_starting_url"), ["www.example.gov", "http://www.example.gov", "https://c.o"])
+def test_invalid_crawl_config_invalid_starting_url(base_crawl_config_args, invalid_starting_url):
+    base_crawl_config_args["starting_urls"] = invalid_starting_url
+    match = f"Invalid starting_urls entry: {invalid_starting_url}. Not properly formatted!"
+    with pytest.raises(CrawlConfigValidationError, match=match):
+        CrawlConfig(**base_crawl_config_args)
+
+
 def test_valid_crawl_configs(base_crawl_config_args):
     cs = CrawlConfigs([CrawlConfig(**base_crawl_config_args)])
 
