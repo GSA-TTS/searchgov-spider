@@ -32,7 +32,7 @@ def test_get_simple_content_type(mocker, content_type_header, output_target, res
 
 
 def test_get_crawl_sites_test_file(crawl_sites_test_file):
-    assert len(ds_helpers.get_crawl_sites(str(crawl_sites_test_file.resolve()))) == 4
+    assert len(ds_helpers.get_crawl_sites(str(crawl_sites_test_file.resolve()))) == 5
 
 
 def test_get_crawl_sites_no_input():
@@ -49,7 +49,7 @@ def test_get_download_milliseconds(mocker, download_latency, download_millisecon
     assert ds_helpers.get_download_milliseconds(response=mock_response) == download_milliseconds
 
 
-@pytest.mark.parametrize(("handle_javascript", "results"), [(True, 2), (False, 2)])
+@pytest.mark.parametrize(("handle_javascript", "results"), [(True, 2), (False, 3)])
 def test_default_starting_urls(monkeypatch, crawl_sites_test_file_json, handle_javascript, results):
     def mock_get_crawl_sites(*_args, **_kwargs):
         return crawl_sites_test_file_json
@@ -63,7 +63,7 @@ def test_default_starting_urls(monkeypatch, crawl_sites_test_file_json, handle_j
     assert len(starting_urls) == results
 
 
-@pytest.mark.parametrize(("handle_javascript", "results"), [(True, 2), (False, 2)])
+@pytest.mark.parametrize(("handle_javascript", "results"), [(True, 2), (False, 3)])
 def test_default_allowed_domains(monkeypatch, crawl_sites_test_file_json, handle_javascript, results):
     def mock_get_crawl_sites(*_args, **_kwargs):
         return crawl_sites_test_file_json
@@ -80,8 +80,8 @@ def test_default_allowed_domains(monkeypatch, crawl_sites_test_file_json, handle
 @pytest.mark.parametrize(
     ("remove_paths", "results"),
     [
-        (False, ["quotes.toscrape.com", "quotes.toscrape.com/tag/"]),
-        (True, ["quotes.toscrape.com", "quotes.toscrape.com"]),
+        (False, ["quotes.toscrape.com", "quotes.toscrape.com", "toscrape.com"]),
+        (True, ["quotes.toscrape.com", "quotes.toscrape.com", "toscrape.com"]),
     ],
 )
 def test_default_allowed_domains_remove_paths(monkeypatch, crawl_sites_test_file_json, remove_paths, results):

@@ -60,17 +60,21 @@ def create_markdown_tables(transformed_schedule: dict) -> str:
     md_tables = ""
     for day in days_of_week:
         entries = transformed_schedule[day]
-        md_tables += f"\n\n## {day} ({len(entries)})\n|Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|\n"
-        md_tables += "|---|---|---|---|---|---|\n"
-        for entry in entries:
-            name = entry["name"]
-            schedule = entry["time"]
-            allowed_domains = entry["allowed_domains"]
-            js = "Y" if entry["handle_javascript"] else "N"
-            depth = entry["depth_limit"]
-            deny_paths = ",".join(entry["deny_paths"]) if entry["deny_paths"] else ""
-            row = f"|{name}|{schedule}|{allowed_domains}|{js}|{depth}|{deny_paths}|\n"
-            md_tables += row
+        if entries:
+            md_tables += f"\n\n## {day} ({len(entries)})\n|"
+            md_tables += "Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|\n"
+            md_tables += "|---|---|---|---|---|---|---|---|\n"
+            for entry in entries:
+                name = entry["name"]
+                schedule = entry["time"]
+                allowed_domains = entry["allowed_domains"]
+                strict = "Y" if entry["allowed_domains_strict"] else "N"
+                js = "Y" if entry["handle_javascript"] else "N"
+                depth = entry["depth_limit"]
+                allow_paths = ",".join(entry["allow_paths"]) if entry["allow_paths"] else ""
+                deny_paths = ",".join(entry["deny_paths"]) if entry["deny_paths"] else ""
+                row = f"|{name}|{schedule}|{allowed_domains}|{strict}|{js}|{depth}|{allow_paths}|{deny_paths}|\n"
+                md_tables += row
 
     return md_tables
 
@@ -84,7 +88,10 @@ def create_header_and_toc(environment: str, transformed_schedule: dict) -> tuple
     days_of_week = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
     for day in days_of_week:
         daily_entries = len(transformed_schedule[day])
-        toc += f" * [{day} ({daily_entries})](#{day.lower()}-{daily_entries})\n"
+        if daily_entries:
+            toc += f" * [{day} ({daily_entries})](#{day.lower()}-{daily_entries})\n"
+        else:
+            toc += f" * {day} ({daily_entries})\n"
 
     return header, toc
 

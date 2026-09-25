@@ -27,24 +27,26 @@ def fixture_test_crawler():
 
 
 MIDDLEWARE_TEST_CASES = [
-    (["example.com"], ["example.com"], "http://www.example.com/1", True),
-    (["sub.example.com"], ["sub.example.com"], "http://sub.example.com/1", True),
-    (["sub.example.com"], ["sub.example.com"], "http://www.example.com/1", False),
-    (["example.com"], ["example.com/path"], "http://example.com/1", False),
-    (["sub.example.com"], ["sub.example.com/path/"], "http://sub.example.com/path/more/more", True),
-    (["sub.example.com"], ["sub.example.com/path/"], "http://sub.example.com/path/1", True),
-    (["example.com"], None, "http://www.example.com/2", True),
-    (["example.com"], [None], "http://www.example.com/2", True),
+    (["example.com"], False, "http://www.example.com/1", True),
+    (["example.com"], True, "http://www.example.com/1", False),
+    (["sub.example.com"], False, "http://sub.example.com/1", True),
+    (["sub.example.com"], True, "http://www.example.com/1", False),
+    (["example.com"], False, "http://example.com/1", True),
+    (["example.com"], True, "http://example.com/1", True),
+    (["sub.example.com"], False, "http://sub.example.com/path/more/more", True),
+    (["sub.example.com"], True, "http://sub.example.com/path/more/more", True),
+    (["example.gov"], False, "https://example.gov.some-service.com", False),
+    (["example.gov"], True, "https://example.gov.some-service.com", False),
 ]
 
 
-@pytest.mark.parametrize(("allowed_domain", "allowed_domain_path", "url", "allowed"), MIDDLEWARE_TEST_CASES)
-def test_offsite_process_request_domain_filtering(test_crawler, allowed_domain, allowed_domain_path, url, allowed):
+@pytest.mark.parametrize(("allowed_domain", "strict", "url", "allowed"), MIDDLEWARE_TEST_CASES)
+def test_offsite_process_request_domain_filtering(test_crawler, allowed_domain, strict, url, allowed):
     spider = Spider.from_crawler(
         crawler=test_crawler,
         name="offsite_test",
         allowed_domains=allowed_domain,
-        allowed_domain_paths=allowed_domain_path,
+        allowed_domains_strict=strict,
     )
     test_crawler.spider = spider
     mw = SearchGovSpidersOffsiteMiddleware.from_crawler(test_crawler)
@@ -55,43 +57,6 @@ def test_offsite_process_request_domain_filtering(test_crawler, allowed_domain, 
     else:
         with pytest.raises(IgnoreRequest):
             mw.process_request(request)
-
-
-INVALID_DOMAIN_TEST_CASES = [
-    (
-        ["example.com"],
-        ["http://www.example.com"],
-        (
-            "allowed_domain_paths accepts only domains, not URLs. "
-            "Ignoring URL entry http://www.example.com in allowed_domain_paths."
-        ),
-    ),
-    (
-        ["example.com"],
-        ["example.com:443"],
-        (
-            "allowed_domain_paths accepts only domains without ports. "
-            "Ignoring entry example.com:443 in allowed_domain_paths."
-        ),
-    ),
-]
-
-
-@pytest.mark.parametrize(("allowed_domain", "allowed_domain_path", "warning_message"), INVALID_DOMAIN_TEST_CASES)
-def test_offsite_invalid_domain_paths(test_crawler, allowed_domain, allowed_domain_path, warning_message):
-    test_crawler.spider = Spider.from_crawler(
-        crawler=test_crawler,
-        name="offsite_test",
-        allowed_domains=allowed_domain,
-        allowed_domain_paths=allowed_domain_path,
-    )
-    mw = SearchGovSpidersOffsiteMiddleware.from_crawler(test_crawler)
-
-    with pytest.warns(UserWarning, match=warning_message):
-        mw.spider_opened(test_crawler.spider)
-
-    request = Request("http://www.example.com")
-    assert mw.process_request(request) is None
 
 
 def test_offsite_invalid_domain_in_starting_urls(test_crawler, caplog):
@@ -160,6 +125,25 @@ def test_spider_middleware_allow_query_string_request(test_crawler, dont_filter,
     request = Request("http://www.example.com/test?parm=value", dont_filter=dont_filter)
 
     assert getattr(operator, none_test)(mw.get_processed_request(request=request, response=None), None)
+
+
+@pytest.mark.parametrize(
+    ("request_url", "allowed_domains_strict", "bool_test"),
+    [("https://www.example.com", False, "truth"), ("https://www.example.com", True, "not_")],
+)
+def test_spider_middleware_dont_filter_update(test_crawler, request_url, allowed_domains_strict, bool_test):
+    test_crawler.spider = Spider.from_crawler(
+        crawler=test_crawler,
+        name="test",
+        start_urls="https://www.example.com",
+        allowed_domains="example.com",
+        allowed_domains_strict=allowed_domains_strict,
+    )
+    mw = SearchGovSpidersSpiderMiddleware.from_crawler(test_crawler)
+    request = Request(request_url, dont_filter=True)
+    output = mw.get_processed_request(request=request, response=None)
+    assert isinstance(output, Request)
+    assert getattr(operator, bool_test)(output.dont_filter)
 
 
 JSESSIONID_REMOVAL_TEST_CASES = [
