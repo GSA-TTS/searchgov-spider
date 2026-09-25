@@ -130,6 +130,23 @@ def test_transform_crawl_configs(crawl_configs_from_test_file):
                 "started_by": "scheduled_spider",
             },
         },
+        {
+            "func": run_scrapy_crawl,
+            "id": "toscrape",
+            "name": "ToScrape",
+            "kwargs": {
+                "spider": "domain_spider",
+                "allow_query_string": False,
+                "allowed_domains": "toscrape.com",
+                "allowed_domains_strict": True,
+                "start_urls": "https://toscrape.com/",
+                "output_target": "csv",
+                "depth_limit": 3,
+                "allow_paths": [],
+                "deny_paths": [],
+                "started_by": "scheduled_spider",
+            },
+        },
     ]
 
 
