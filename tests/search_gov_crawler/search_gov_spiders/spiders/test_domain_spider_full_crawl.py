@@ -61,6 +61,7 @@ FULL_CRAWL_TEST_CASES = [
         {
             "allow_query_string": False,
             "allowed_domains": "quotes.toscrape.com",
+            "allowed_domains_strict": False,
             "start_urls": "https://quotes.toscrape.com/",
             "output_target": "csv",
             "depth_limit": 20,
@@ -74,6 +75,7 @@ FULL_CRAWL_TEST_CASES = [
         {
             "allow_query_string": False,
             "allowed_domains": "quotes.toscrape.com",
+            "allowed_domains_strict": False,
             "start_urls": "https://quotes.toscrape.com/",
             "output_target": "csv",
             "depth_limit": 20,
@@ -87,6 +89,7 @@ FULL_CRAWL_TEST_CASES = [
         {
             "allow_query_string": False,
             "allowed_domains": "quotes.toscrape.com",
+            "allowed_domains_strict": False,
             "start_urls": "https://quotes.toscrape.com/",
             "output_target": "csv",
             "depth_limit": 20,
@@ -101,6 +104,7 @@ FULL_CRAWL_TEST_CASES = [
         {
             "allow_query_string": False,
             "allowed_domains": "quotes.toscrape.com",
+            "allowed_domains_strict": False,
             "start_urls": "https://quotes.toscrape.com/js/",
             "output_target": "endpoint",
             "depth_limit": 20,
@@ -113,13 +117,45 @@ FULL_CRAWL_TEST_CASES = [
         True,
         {
             "allow_query_string": False,
-            "allowed_domains": "quotes.toscrape.com/js/",
+            "allowed_domains": "quotes.toscrape.com",
+            "allowed_domains_strict": False,
             "start_urls": "https://quotes.toscrape.com/js/",
             "output_target": "endpoint",
             "depth_limit": 20,
             "deny_paths": None,
+            "allow_paths": ["quotes.toscrape.com/js/"],
         },
         0,
+    ),
+    (
+        DomainSpider,
+        True,
+        {
+            "allow_query_string": False,
+            "allowed_domains": "toscrape.com,quotes.toscrape.com",
+            "allowed_domains_strict": True,
+            "start_urls": "https://toscrape.com/",
+            "output_target": "csv",
+            "depth_limit": 3,
+            "deny_paths": None,
+            "allow_paths": None,
+        },
+        260,
+    ),
+    (
+        DomainSpider,
+        True,
+        {
+            "allow_query_string": False,
+            "allowed_domains": "toscrape.com",
+            "allowed_domains_strict": False,
+            "start_urls": "https://toscrape.com/",
+            "output_target": "csv",
+            "depth_limit": 3,
+            "deny_paths": None,
+            "allow_paths": None,
+        },
+        846,
     ),
 ]
 
