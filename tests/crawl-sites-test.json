@@ -58,5 +58,20 @@
         "deny_paths": ["/author/"],
         "sitemap_urls": null,
         "check_sitemap_hours": null
+    },
+    {
+        "name": "ToScrape",
+        "allow_query_string": false,
+        "allowed_domains": "toscrape.com",
+        "allowed_domains_strict": true,
+        "handle_javascript": false,
+        "schedule": "0,15,30,45 * * * *",
+        "output_target": "csv",
+        "starting_urls": "https://toscrape.com/",
+        "depth_limit": 3,
+        "allow_paths": null,
+        "deny_paths": null,
+        "sitemap_urls": null,
+        "check_sitemap_hours": null
     }
 ]
