@@ -13406,4 +13406,12 @@ local output_target = 'opensearch';
                          output_target=output_target,
                          depth_limit=8),
   },
+  {
+    name: 'beta.nih.gov',
+    config: DomainConfig(allowed_domains='beta.nih.gov',
+                         starting_urls='https://beta.nih.gov/',
+                         schedule='50 04 * * THU',
+                         output_target=output_target,
+                         depth_limit=8),
+  },
 ]

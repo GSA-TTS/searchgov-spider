@@ -3,7 +3,7 @@
  * [Monday (241)](#monday-241)
  * [Tuesday (238)](#tuesday-238)
  * [Wednesday (236)](#wednesday-236)
- * [Thursday (232)](#thursday-232)
+ * [Thursday (233)](#thursday-233)
  * [Friday (241)](#friday-241)
  * [Saturday (239)](#saturday-239)
 
@@ -984,7 +984,7 @@
 |Army 2nd Signal Brigade (army_2sigbde)|23:52|www.2sigbde.army.mil|N|3||
 
 
-## Thursday (232)
+## Thursday (233)
 |Name|Time (UTC)|Allowed Domains|JS|Depth|Deny Paths|
 |---|---|---|---|---|---|
 |niccs.cisa.gov (niccs.cisa)|00:00|niccs.cisa.gov|N|8||
@@ -1028,6 +1028,7 @@
 |careers.state.gov (usagov-replacement)|04:32|careers.state.gov|N|8||
 |www.mycg.uscg.mil (uscg_all)|04:48|www.mycg.uscg.mil|N|8||
 |New Hampshire National Guard (ng_nh)|04:48|nh.ng.mil|N|3||
+|beta.nih.gov|04:50|beta.nih.gov|N|8||
 |tricare_annapolis|05:00|annapolis.tricare.mil|N|8||
 |NIH MD-PhD (md-phd)|05:00|mdphd.gpp.nih.gov|N|3||
 |jp.usembassy.gov (usagov-replacement)|05:22|jp.usembassy.gov|N|3||

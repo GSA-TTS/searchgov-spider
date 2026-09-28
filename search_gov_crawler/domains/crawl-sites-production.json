@@ -21737,5 +21737,18 @@
       "schedule": "12 11 * * THU",
       "sitemap_urls": null,
       "starting_urls": "https://www.dfba.mil/"
+   },
+   {
+      "allow_query_string": false,
+      "allowed_domains": "beta.nih.gov",
+      "check_sitemap_hours": null,
+      "deny_paths": null,
+      "depth_limit": 8,
+      "handle_javascript": false,
+      "name": "beta.nih.gov",
+      "output_target": "opensearch",
+      "schedule": "50 04 * * THU",
+      "sitemap_urls": null,
+      "starting_urls": "https://beta.nih.gov/"
    }
 ]
