@@ -35,10 +35,12 @@ def fixture_invalid_item():
 
 
 @pytest.fixture(name="sample_crawler")
-def fixture_sample_crawler() -> Crawler:
+def fixture_sample_crawler(mocker) -> Crawler:
     """Fixture for a mock crawlerwith a logger."""
     crawler = get_crawler(Spider)
-    spider = Spider.from_crawler(crawler=crawler, name="dedup_test", allowed_domains="www.example.com")
+    spider = Spider.from_crawler(
+        crawler=crawler, name="dedup_test", allowed_domains="www.example.com", searchgov_settings=mocker.MagicMock()
+    )
     crawler.spider = spider
     return crawler
 

@@ -1,23 +1,22 @@
 import argparse
 import logging
-import os
 from datetime import UTC, datetime, timedelta
 
 import requests
 from apscheduler.triggers.cron import CronTrigger
-from dotenv import load_dotenv
 from redis import Redis
 
+from search_gov_crawler.config.settings import SearchgovSettings
 from search_gov_crawler.dap.connect import get_dap_api_configs, get_dap_data_by_date
 from search_gov_crawler.dap.datastore import age_off_dap_records, write_dap_record_to_redis
-from search_gov_crawler.dap.schedule import ensure_positive_int, init_scheduler
 from search_gov_crawler.dap.transform import transform_dap_response
+from search_gov_crawler.run.schedule import ensure_positive_int, init_singleton_job_scheduler
 from search_gov_crawler.scheduling.redis import get_redis_connection_args
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT, JsonFormatter
 
-load_dotenv()
+searchgov_settings = SearchgovSettings()
 
-logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
+logging.basicConfig(level=searchgov_settings.scrapy_log_level)
 logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 log = logging.getLogger("search_gov_crawler.dap_extractor")
 
@@ -63,20 +62,21 @@ def run_dap_extractor(days_back: int, max_age: int) -> None:
     log.info("Aged off %d records older than %d days", dap_records_aged_off, max_age)
 
 
-def main(days_back: int, max_age: int) -> None:
+def main(searchgov_setings: SearchgovSettings, days_back: int, max_age: int) -> None:
     """Main function, handles getting the schedule and starting the scheduler for the dap extractor job"""
 
-    dap_extractor_schedule = os.getenv("DAP_EXTRACTOR_SCHEDULE")
     try:
-        cron_trigger = CronTrigger.from_crontab(dap_extractor_schedule)
+        cron_trigger = CronTrigger.from_crontab(searchgov_setings.dap_extractor_schedule)
     except (AttributeError, TypeError, ValueError):
         log.exception("Invalid crontab expression from in DAP_EXTRACTOR_SCHEDULE!")
         raise
 
-    scheduler = init_scheduler()
+    scheduler = init_singleton_job_scheduler()
     scheduler.add_job(func=run_dap_extractor, trigger=cron_trigger, args=(days_back, max_age), name="dap_extractor")
 
-    log.info("Starting scheduler for dap extractor based on crontab expression %s", dap_extractor_schedule)
+    log.info(
+        "Starting scheduler for dap extractor based on crontab expression %s", searchgov_setings.dap_extractor_schedule
+    )
 
     scheduler.start()
 
@@ -84,8 +84,8 @@ def main(days_back: int, max_age: int) -> None:
 if __name__ == "__main__":
     # Entry point for the script to run the DAP data retrieval job.
 
-    dap_days_back = ensure_positive_int(os.getenv("DAP_VISITS_DAYS_BACK", "7"))
-    dap_max_age = ensure_positive_int(os.getenv("DAP_VISITS_MAX_AGE", "28"))
+    dap_days_back = searchgov_settings.dap_visits_days_back
+    dap_max_age = searchgov_settings.dap_visits_max_age
 
     parser = argparse.ArgumentParser(description="Run DAP data retrieval job")
     parser.add_argument(
@@ -114,6 +114,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     if not args.run_now:
-        main(days_back=args.days_back, max_age=args.max_age)
+        main(searchgov_setings=searchgov_settings, days_back=args.days_back, max_age=args.max_age)
     else:
         run_dap_extractor(days_back=args.days_back, max_age=args.max_age)

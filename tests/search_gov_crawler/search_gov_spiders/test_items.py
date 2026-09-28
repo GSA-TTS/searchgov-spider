@@ -5,6 +5,7 @@ import pytest
 from search_gov_crawler.search_gov_spiders.items import (
     FreshnessSpiderException,
     FreshnessSpiderExceptionItem,
+    FreshnessSpiderExceptionMarkedForDeletionItem,
     FreshnessSpiderItem,
     FreshnessSpiderMarkedForDeletionItem,
     FreshnessSpiderNotMarkedForDeletionItem,
@@ -12,8 +13,8 @@ from search_gov_crawler.search_gov_spiders.items import (
 )
 
 
-@pytest.fixture(name="search_gov_spiders_item")
-def fixture_search_gov_spiders_item():
+@pytest.fixture
+def search_gov_spiders_item():
     return SearchGovSpidersItem(
         content_type="text/html",
         creator="unit_tests",
@@ -45,7 +46,7 @@ def test_search_gov_spiders_item(search_gov_spiders_item, field, value):
     assert search_gov_spiders_item[field] == value
 
 
-def test_searc_gov_spiders_item_repr(search_gov_spiders_item):
+def test_search_gov_spiders_item_repr(search_gov_spiders_item):
     expected_repr = (
         "Item("
         "content_type=text/html, "
@@ -61,8 +62,8 @@ def test_searc_gov_spiders_item_repr(search_gov_spiders_item):
     assert str(search_gov_spiders_item) == expected_repr
 
 
-@pytest.fixture(name="freshness_spider_marked_for_deletion_item")
-def fixture_freshness_spider_marked_for_deletion_item():
+@pytest.fixture
+def freshness_spider_marked_for_deletion_item():
     return FreshnessSpiderMarkedForDeletionItem(
         checked_at=datetime(2026, 1, 1, 0, 0, 0, tzinfo=UTC),
         result="404",
@@ -74,8 +75,8 @@ def fixture_freshness_spider_marked_for_deletion_item():
     )
 
 
-@pytest.fixture(name="freshness_spider_not_marked_for_deletion_item")
-def fixture_freshness_spider_not_marked_for_deletion_item():
+@pytest.fixture
+def freshness_spider_not_marked_for_deletion_item():
     return FreshnessSpiderNotMarkedForDeletionItem(
         checked_at=datetime(2026, 1, 1, 0, 0, 0, tzinfo=UTC),
         result="403",
@@ -87,9 +88,22 @@ def fixture_freshness_spider_not_marked_for_deletion_item():
     )
 
 
-@pytest.fixture(name="freshness_spider_exception_item")
-def fixture_freshness_spider_exception_item():
+@pytest.fixture
+def freshness_spider_exception_item():
     return FreshnessSpiderExceptionItem(
+        checked_at=datetime(2026, 1, 1, 0, 0, 0, tzinfo=UTC),
+        result="success",
+        index_name="test_index",
+        id="test_id",
+        path="test_path",
+        domain_name="test_domain",
+        exception=FreshnessSpiderException(exception_type="TestError", exception_message="Test Exception"),
+    )
+
+
+@pytest.fixture
+def freshness_spider_exception_marked_for_deletion_item():
+    return FreshnessSpiderExceptionMarkedForDeletionItem(
         checked_at=datetime(2026, 1, 1, 0, 0, 0, tzinfo=UTC),
         result="success",
         index_name="test_index",
@@ -135,6 +149,23 @@ FRESHNESS_SPIDER_ITEM_TEST_CASES = [
             "checked_at": datetime(2026, 1, 1, 0, 0, 0, tzinfo=UTC),
             "result": "success",
             "marked_for_deletion": False,
+            "status_code": None,
+            "index_name": "test_index",
+            "id": "test_id",
+            "path": "test_path",
+            "domain_name": "test_domain",
+            "exception": {
+                "exception_type": "TestError",
+                "exception_message": "Test Exception",
+            },
+        },
+    ),
+    (
+        "freshness_spider_exception_marked_for_deletion_item",
+        {
+            "checked_at": datetime(2026, 1, 1, 0, 0, 0, tzinfo=UTC),
+            "result": "success",
+            "marked_for_deletion": True,
             "status_code": None,
             "index_name": "test_index",
             "id": "test_id",

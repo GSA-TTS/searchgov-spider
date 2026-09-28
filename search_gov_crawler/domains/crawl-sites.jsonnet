@@ -3,6 +3,7 @@
 local csv_domains = import 'config/domains_csv.libsonnet';
 local endpoint_domains = import 'config/domains_endpoint.libsonnet';
 local opensearch_domains = import 'config/domains_opensearch.libsonnet';
+local all_domains = csv_domains + endpoint_domains + opensearch_domains;
 
 local CrawlSite(domain) = {
   name: domain.name,
@@ -18,15 +19,9 @@ local CrawlSite(domain) = {
   check_sitemap_hours: domain.config.check_sitemap_hours,
 };
 
-// Define output file names and their contents below.  Development files are a subset of the production files.
+// Define output file names and their contents below.  Development and staging files are a subset of the production files.
 {
-  'crawl-sites-production.json': [CrawlSite(domain) for domain in csv_domains + endpoint_domains + opensearch_domains],
-  'crawl-sites-staging.json': [
-    CrawlSite(domain)
-    for domain in csv_domains[0::10] + endpoint_domains[0::10] + opensearch_domains[0::25]
-  ],
-  'crawl-sites-development.json': [
-    CrawlSite(domain)
-    for domain in csv_domains[0::10] + endpoint_domains[0::10] + opensearch_domains[0::25]
-  ],
+  'crawl-sites-production.json': [CrawlSite(domain) for domain in all_domains],
+  'crawl-sites-staging.json': [CrawlSite(domain) for domain in all_domains if std.member(domain.config.lower_environments, 'staging')],
+  'crawl-sites-development.json': [CrawlSite(domain) for domain in all_domains if std.member(domain.config.lower_environments, 'development')],
 }

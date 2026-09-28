@@ -3,11 +3,17 @@ from datetime import UTC, datetime
 import pytest
 from freezegun import freeze_time
 from scrapy import Request
-from scrapy.exceptions import DontCloseSpider
+from scrapy.exceptions import (
+    CannotResolveHostError,
+    DontCloseSpider,
+    DownloadConnectionRefusedError,
+    DownloadFailedError,
+)
 from scrapy.http.response import Response
 
 from search_gov_crawler.search_gov_spiders.items import (
     FreshnessSpiderExceptionItem,
+    FreshnessSpiderExceptionMarkedForDeletionItem,
     FreshnessSpiderMarkedForDeletionItem,
     FreshnessSpiderNotMarkedForDeletionItem,
 )
@@ -75,26 +81,37 @@ def test_freshness_spider_response_parse(freshness_spider, response, expected_it
     }
 
 
+FRESHNESS_SPIDER_EXCEPTION_PARSE_TEST_CASES = [
+    (ValueError, False, FreshnessSpiderExceptionItem),
+    (CannotResolveHostError, True, FreshnessSpiderExceptionMarkedForDeletionItem),
+    (DownloadConnectionRefusedError, True, FreshnessSpiderExceptionMarkedForDeletionItem),
+    (DownloadFailedError, True, FreshnessSpiderExceptionMarkedForDeletionItem),
+]
+
+
 @freeze_time("2026-01-01 00:00:00", tz_offset=0)
-def test_freshness_spider_exception_parse(freshness_spider):
+@pytest.mark.parametrize(
+    ("error_cls", "marked_for_deletion", "expected_item_cls"), FRESHNESS_SPIDER_EXCEPTION_PARSE_TEST_CASES
+)
+def test_freshness_spider_exception_parse(freshness_spider, error_cls, marked_for_deletion, expected_item_cls):
     response = Response(url="http://example.com", status=0, request=Request(url="http://example.com"))
     response.meta["document_id"] = "test_id"
     response.meta["domain_name"] = "test_domain"
-    response.meta["exception"] = ValueError("This is an error!")
+    response.meta["exception"] = error_cls("This is an error!")
 
     item = next(freshness_spider.parse(response))
-    assert isinstance(item, FreshnessSpiderExceptionItem)
+    assert isinstance(item, expected_item_cls)
     assert item.to_dict() == {
         "checked_at": datetime(2026, 1, 1, 0, 0, tzinfo=UTC),
-        "result": "ValueError",
+        "result": error_cls.__name__,
         "status_code": None,
         "index_name": "test_index",
         "id": "test_id",
         "path": response.url,
         "domain_name": "test_domain",
-        "marked_for_deletion": False,
+        "marked_for_deletion": marked_for_deletion,
         "exception": {
-            "exception_type": "ValueError",
+            "exception_type": error_cls.__name__,
             "exception_message": "This is an error!",
         },
     }

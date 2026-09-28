@@ -14,6 +14,7 @@ This page gives a more detailed description and further instructions on running 
 * [Adding New Spiders](#adding-new-spiders)
 * [Running Sitemap Monitor](#running-sitemap-monitor)
 * [Running DAP Extractor](#running-dap-extractor)
+* [Running Document Lifecycle Manager](#running-document-lifecycle-manager)
 
 ## Formatting and Linting
 We use [ruff](https://astral.sh/ruff) as a formatter and linter.  This is enforced as precommit hook as well as in our circleci config.  Developers can also
@@ -155,3 +156,20 @@ python search_gov_crawler/dap_extractor.py --help
 python search_gov_crawler/dap_extractor.py --days-back 30 --max-age 365
 ```
 These retrieval and retention periods are also configurable by environment variables: `DAP_VISITS_DAYS_BACK`and `DAP_VISITS_MAX_AGE` respectively. These essentially serve as default values. Passing values on the command line will override the values in the environment variables.
+
+## Running Document Lifecycle Manager
+To start the document lifecycle manager run the following:
+```bash
+# make sure the virtual environment is activate
+python search_gov_crawler/document_lifecycle_manager.py
+```
+
+This command will start a scheduler and run the document lifecycle manager  based on environment variables `DLM_SCHEDULE` and `DLM_MAX_DOCS`.  The process will run based on the schedule gathering docs from the freshness index that have been marked for deletion and then deleting the corresponding documents from the search and freshness indices.  The process will stop when its next batch exceeds the max documents circuit breaker parameter.
+
+```bash
+# to see help message
+python search_gov_crawler/document_lifecycle_manager.py --help
+
+# Increase the circuit breaker count
+python search_gov_crawler/document_lifecycle_manager.py --run_now --max_docs 1000
+```

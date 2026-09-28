@@ -5,12 +5,12 @@ from apscheduler.executors.pool import ThreadPoolExecutor
 from apscheduler.jobstores.memory import MemoryJobStore
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-from search_gov_crawler.dap.schedule import ensure_positive_int, init_scheduler
+from search_gov_crawler.run.schedule import ensure_positive_int, init_singleton_job_scheduler
 
 
 @pytest.fixture(name="scheduler")
 def fixture_init_scheduler() -> BlockingScheduler:
-    return init_scheduler()
+    return init_singleton_job_scheduler()
 
 
 def test_init_scheduler(scheduler):
