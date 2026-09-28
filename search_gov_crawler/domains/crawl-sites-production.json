@@ -912,17 +912,17 @@
       "starting_urls": "https://www.cbp.gov/"
    },
    {
-      "allow_query_string": false,
-      "allowed_domains": "www.cdc.gov",
+      "allow_query_string": true,
+      "allowed_domains": "www.trainex.org",
       "check_sitemap_hours": null,
       "deny_paths": null,
-      "depth_limit": 3,
+      "depth_limit": 8,
       "handle_javascript": false,
-      "name": "Centers for Disease Control and Prevention (usagov-replacement)",
+      "name": "Training Exchange (Trainex)",
       "output_target": "opensearch",
       "schedule": "15 02 * * SUN",
       "sitemap_urls": null,
-      "starting_urls": "https://www.cdc.gov/"
+      "starting_urls": "https://www.trainex.org/"
    },
    {
       "allow_query_string": false,
@@ -1212,18 +1212,16 @@
    },
    {
       "allow_query_string": false,
-      "allowed_domains": "www.usgs.gov",
+      "allowed_domains": "www.fhwa.dot.gov",
       "check_sitemap_hours": null,
-      "deny_paths": [
-         "pubs.usgs.gov/metrics/"
-      ],
+      "deny_paths": null,
       "depth_limit": 8,
       "handle_javascript": false,
-      "name": "www.usgs.gov (usagov-replacement)",
+      "name": "FHWA Office of Policy and Governmental Affairs",
       "output_target": "opensearch",
       "schedule": "11 11 * * TUE",
       "sitemap_urls": null,
-      "starting_urls": "https://www.usgs.gov/"
+      "starting_urls": "https://www.fhwa.dot.gov/policy/"
    },
    {
       "allow_query_string": false,

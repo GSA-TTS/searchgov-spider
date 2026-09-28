@@ -37,7 +37,7 @@
 |tricare_martin|02:00|martin.tricare.mil|N|8||
 |19th Medical Group - Little Rock Air Force Base|02:00|littlerock.tricare.mil|N|8||
 |Federal Transit Administration|02:00|www.transit.dot.gov|N|8||
-|Centers for Disease Control and Prevention (usagov-replacement)|02:15|www.cdc.gov|N|3||
+|Training Exchange (Trainex)|02:15|www.trainex.org|N|8||
 |Comptroller.Defense.gov (osd_comptroller)|02:15|comptroller.defense.gov|N|8||
 |Alcohol and Tobacco Tax and Trade Bureau|02:15|www.ttb.gov|N|8||
 |StudentAid.gov (usagov_en_az)|02:22|studentaid.gov|N|8||
@@ -626,7 +626,7 @@
 |Cordell Bank National Marine Sanctuary|11:00|cordellbank.noaa.gov|N|8||
 |Kunsan Air Base (kunsan)|11:05|www.kunsan.af.mil|N|8||
 |US Embassy Finland|11:05|fi.usembassy.gov|N|8||
-|www.usgs.gov (usagov-replacement)|11:11|www.usgs.gov|N|8|pubs.usgs.gov/metrics/|
+|FHWA Office of Policy and Governmental Affairs|11:11|www.fhwa.dot.gov|N|8||
 |102nd Intelligence Wing (afpw_102iw)|11:15|www.102iw.ang.af.mil|N|8||
 |New depth 8 (kz.usembassy.gov/ru)|11:18|kz.usembassy.gov/ru|N|8||
 |US Embassy Bangui (dos_emb_afr_bangui)|11:48|cf.usembassy.gov|N|3||
