@@ -8,11 +8,14 @@ log = logging.getLogger(__name__)
 
 def get_redis_connection_args(db: int = 1) -> dict:
     """Get the Redis connection arguments from environment variables."""
-    return {
+    args = {
         "host": os.getenv("REDIS_HOST", "localhost"),
         "port": int(os.getenv("REDIS_PORT", "6379")),
         "db": db,  # The searchgov app uses db 0
     }
+    if os.getenv("REDIS_SSL", "").lower() == "true":
+        args["ssl"] = True
+    return args
 
 
 def init_redis_client(**extra_args) -> Redis:

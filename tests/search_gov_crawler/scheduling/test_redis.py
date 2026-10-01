@@ -7,6 +7,7 @@ from search_gov_crawler.scheduling.redis import get_redis_connection_args, init_
 def fixture_clear_redis_env_vars(monkeypatch):
     monkeypatch.delenv("REDIS_HOST", raising=False)
     monkeypatch.delenv("REDIS_PORT", raising=False)
+    monkeypatch.delenv("REDIS_SSL", raising=False)
 
 
 @pytest.fixture(name="set_redis_env_vars")
@@ -64,3 +65,14 @@ def test_init_redis_client_with_extra_args(caplog, monkeypatch, mock_redis_clien
         init_redis_client(**extra_args)
 
     assert f"Attempting conection to redis with args {expected_connection_args}" in caplog.messages
+
+
+@pytest.mark.usefixtures("clear_redis_env_vars")
+def test_get_redis_connection_args_ssl(monkeypatch):
+    monkeypatch.setenv("REDIS_SSL", "true")
+    assert get_redis_connection_args() == {
+        "host": "localhost",
+        "port": 6379,
+        "db": 1,
+        "ssl": True,
+    }
