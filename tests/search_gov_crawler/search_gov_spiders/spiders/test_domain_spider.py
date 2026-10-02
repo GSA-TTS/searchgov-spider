@@ -101,13 +101,13 @@ INVALID_ARGS_TEST_CASES = [
         DomainSpider,
         {"allowed_domains": "test.example.com", "start_urls": "123456", "output_target": "yaml"},
         ValueError,
-        "Invalid argument! '123456' must be a valid URL or domain name.",
+        "Invalid argument! '123456' must be a valid list of URLs or domain names.",
     ),
     (
         DomainSpiderJs,
         {"allowed_domains": "1", "start_urls": "http://test.example.com/", "output_target": "yaml"},
         ValueError,
-        "Invalid argument! '1' must be a valid URL or domain name.",
+        "Invalid argument! '1' must be a valid list of URLs or domain names.",
     ),
     (
         DomainSpider,
@@ -118,7 +118,7 @@ INVALID_ARGS_TEST_CASES = [
             "sitemap_url": "waaaaaa",
         },
         ValueError,
-        "Invalid argument! 'waaaaaa' must be a valid URL or domain name.",
+        "Invalid argument! 'waaaaaa' must be a valid list of URLs or domain names.",
     ),
     (
         DomainSpiderJs,
@@ -129,7 +129,7 @@ INVALID_ARGS_TEST_CASES = [
             "sitemap_url": "sitemap",
         },
         ValueError,
-        "Invalid argument! 'sitemap' must be a valid URL or domain name.",
+        "Invalid argument! 'sitemap' must be a valid list of URLs or domain names.",
     ),
 ]
 

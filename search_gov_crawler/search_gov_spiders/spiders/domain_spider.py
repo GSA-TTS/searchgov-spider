@@ -10,6 +10,11 @@ from scrapy.spiders.crawl import CrawlSpider, Rule
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as helpers
 from search_gov_crawler.config.settings import SearchgovSettings
+from search_gov_crawler.search_gov_spiders.helpers.common import (
+    OptionalStrOrSequence,
+    StrOrSequence,
+    split_optional_str_or_sequence,
+)
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 from search_gov_crawler.search_gov_spiders.spiders import SpiderStartedBy
 
@@ -70,10 +75,12 @@ class DomainSpider(CrawlSpider):
         self,
         *args,
         allow_query_string: bool = False,
-        allowed_domains: str,
-        start_urls: str,
+        allowed_domains: StrOrSequence,
+        allowed_domains_strict: bool = False,
+        start_urls: StrOrSequence,
         output_target: str,
-        deny_paths: str | None = None,
+        allow_paths: OptionalStrOrSequence = None,
+        deny_paths: OptionalStrOrSequence = None,
         sitemap_url: str | None = None,
         started_by: str = SpiderStartedBy.MANUAL.value,
         **kwargs,
@@ -85,8 +92,11 @@ class DomainSpider(CrawlSpider):
             self.rules = (
                 Rule(
                     LinkExtractor(
-                        allow=(),
-                        deny=helpers.set_link_extractor_deny(deny_paths=deny_paths),
+                        allow=split_optional_str_or_sequence(input_argument=allow_paths),
+                        deny=(
+                            *helpers.LINK_DENY_REGEX_STR,
+                            *split_optional_str_or_sequence(input_argument=deny_paths),
+                        ),
                         deny_extensions=helpers.FILTER_EXTENSIONS,
                         tags=helpers.LINK_TAGS,
                         unique=True,
@@ -99,9 +109,9 @@ class DomainSpider(CrawlSpider):
         super().__init__(*args, **kwargs)
         self.allow_query_string = helpers.force_bool(allow_query_string)
         self.output_target = output_target
-        self.allowed_domains = helpers.split_allowed_domains(allowed_domains)
-        self.allowed_domain_paths = allowed_domains.split(",")
-        self.start_urls = start_urls.split(",")
+        self.allowed_domains = list(split_optional_str_or_sequence(allowed_domains))
+        self.allowed_domains_strict = helpers.force_bool(allowed_domains_strict)
+        self.start_urls = list(split_optional_str_or_sequence(start_urls))
         self.started_by = started_by
 
         # store input args as private attributes for use in logging
@@ -133,11 +143,12 @@ class DomainSpider(CrawlSpider):
         """
         max_depth_limit = 250
         spider = super().from_crawler(crawler, *args, **kwargs)
-        if int(depth_limit) > max_depth_limit or int(depth_limit) < 1:
-            msg = f"Search Depth must be between 1 and 250 inclusive. You submitted: {depth_limit} "
-            raise ValueError(msg)
+        if depth_limit:
+            if int(depth_limit) > max_depth_limit or int(depth_limit) < 1:
+                msg = f"Search Depth must be between 1 and 250 inclusive. You submitted: {depth_limit} "
+                raise ValueError(msg)
 
-        spider.settings.set("DEPTH_LIMIT", depth_limit, priority="spider")
+            spider.settings.set("DEPTH_LIMIT", depth_limit, priority="spider")
         return spider
 
     def parse_item(self, response: Response):

@@ -11,11 +11,11 @@
         "coverage",
         "faker",
         "freezegun",
-        "pytest*",
         "rich",
         "ruff",
         "pytest*",
-        "rich"
+        "rich",
+        "scrapy-lint"
       ],
       "addLabels": ["dependencies", "pip", "dev/test"]
     },
@@ -37,7 +37,9 @@
         "python-dotenv",
         "python-json-logger",
         "redis",
-        "scrapy*",
+        "scrapy",
+        "scrapy-playwright",
+        "scrapy-redis",
         "spidermon*"
       ],
       "addLabels": ["dependencies", "pip", "production"]

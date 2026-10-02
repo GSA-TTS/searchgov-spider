@@ -39,6 +39,11 @@ jobs:
             . venv/bin/activate
             python -m ruff format --check --config ./ruff.toml --diff .
       - run:
+          name: Run Scrapy Lint
+          command: |
+            . venv/bin/activate
+            scrapy-lint
+      - run:
           name: Run Tests
           command: |
             . venv/bin/activate

@@ -2,10 +2,10 @@ import logging
 from typing import Self
 
 from pythonjsonlogger.json import JsonFormatter
+from scrapy import Spider
 from scrapy.crawler import Crawler
 from scrapy.exceptions import NotConfigured
 from scrapy.signals import spider_opened
-from scrapy.spiders import Spider
 
 LOG_FMT = "%(asctime)%(name)%(levelname)%(message)"
 SITEMAP_START_URLS = "Generated from Sitemap"
@@ -22,7 +22,7 @@ def search_gov_default(obj) -> dict | None:
             "allowed_domain_paths": getattr(obj, "allowed_domain_paths", None),
             "start_urls": SITEMAP_START_URLS if getattr(obj, "_sitemap_url", None) else obj.start_urls,
             "output_target": getattr(obj, "output_target", None),
-            "depth_limit": obj.settings.get("DEPTH_LIMIT", None),
+            "depth_limit": obj.settings.getint("DEPTH_LIMIT", None),
             "deny_paths": getattr(obj, "_deny_paths", None),
         }
 
@@ -136,7 +136,7 @@ class JsonLogging:
             ",".join(getattr(spider, "allowed_domains_paths", [])),
             SITEMAP_START_URLS if getattr(spider, "_sitemap_url", None) else ",".join(spider.start_urls),
             getattr(spider, "output_target", None),
-            spider.settings.get("DEPTH_LIMIT", None),
+            spider.settings.getint("DEPTH_LIMIT", None),
             getattr(spider, "_deny_paths", None),
             getattr(spider, "_sitemap_url", None),
         )
