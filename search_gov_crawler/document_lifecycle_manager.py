@@ -48,7 +48,7 @@ def run_stale_document_deletion(searchgov_settings: SearchgovSettings):
     from the freshness index itself.
     """
     opensearch = SearchGovOpensearch(searchgov_settings=searchgov_settings)
-    query = {"query": {"term": {"marked_for_deletion": True}}, "sort": [{"checked_at": {"order": "asc"}}]}
+    query = {"query": {"term": {"marked_for_deletion": True}}, "sort": [{"checked_at": {"order": "desc"}}]}
     matching_document_count = count_matching_documents(
         opensearch=opensearch, query=query, index_name=searchgov_settings.opensearch_freshness_index
     )
