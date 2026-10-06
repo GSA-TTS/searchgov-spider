@@ -2,6 +2,7 @@ import re
 from typing import NamedTuple
 
 import pytest
+from opensearchpy import NotFoundError
 from scrapy.spiders import Spider
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as ds_helpers
@@ -231,6 +232,11 @@ def fixture_mock_opensearch(mocker):
 
 def test_ensure_valid_query(mock_opensearch):
     mock_opensearch.client.indices.validate_query.return_value = {"valid": True}
+    assert ensure_valid_query(opensearch=mock_opensearch, query='{"test": "query"}') == {"test": "query"}
+
+
+def test_ensure_valid_query_missing_index(mock_opensearch):
+    mock_opensearch.client.indices.validate_query.side_effect = [NotFoundError, {"valid": True}]
     assert ensure_valid_query(opensearch=mock_opensearch, query='{"test": "query"}') == {"test": "query"}
 
 

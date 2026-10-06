@@ -1,20 +1,26 @@
 import ast
 from collections.abc import Generator
 
+from opensearchpy import NotFoundError
 from opensearchpy.helpers import scan
 
 from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
 
 
 def ensure_valid_query(opensearch: SearchGovOpensearch, query: str, index_name: str | None = None) -> dict:
-    """Check input query to ensure validity"""
+    """Check input query to ensure validity, default to `_all` in the rare case of a first run"""
+
     formatted_query = ast.literal_eval(query)
     if not isinstance(formatted_query, dict):
         msg = "Query input is not a valid dictionary!"
         raise TypeError(msg)
 
     index = index_name or opensearch.index_name
-    response = opensearch.client.indices.validate_query(index=index, body=formatted_query, explain=True)
+    try:
+        response = opensearch.client.indices.validate_query(index=index, body=formatted_query, explain=True)
+    except NotFoundError:
+        response = opensearch.client.indices.validate_query(index="_all", body=formatted_query, explain=True)
+
     if str(response["valid"]).lower() == "false":
         msg = f"Invalid query! Error: {response['error']}"
         explanations = response.get("explanations", [])
