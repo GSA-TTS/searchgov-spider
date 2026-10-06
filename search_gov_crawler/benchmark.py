@@ -28,6 +28,7 @@ import logging
 import os
 import sys
 import time
+from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
@@ -38,7 +39,7 @@ from dotenv import load_dotenv
 from pythonjsonlogger.json import JsonFormatter
 
 from search_gov_crawler.run.crawl import run_scrapy_crawl
-from search_gov_crawler.search_gov_app.crawl_config import CrawlConfigs
+from search_gov_crawler.search_gov_app.crawl_config import CrawlConfig, CrawlConfigs
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 from search_gov_crawler.search_gov_spiders.helpers.domain_spider import ALLOWED_CONTENT_TYPE_OUTPUT_MAP
 from search_gov_crawler.search_gov_spiders.spiders import SpiderStartedBy
@@ -49,6 +50,42 @@ logging.basicConfig(level=os.environ.get("SCRAPY_LOG_LEVEL", "INFO"))
 logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 
 log = logging.getLogger("search_gov_crawler.benchmark")
+
+
+@dataclass
+class BenchmarkJobArguments:
+    """Defines arguments for creating a benchmark scheduled job"""
+
+    name: str
+    allow_query_string: bool
+    allowed_domains: str
+    allowed_domains_strict: bool
+    starting_urls: str
+    handle_javascript: bool
+    output_target: str
+    runtime_offset_seconds: int
+    depth_limit: int
+    allow_paths: list
+    deny_paths: list
+    job_id: str | None = None
+
+    @classmethod
+    def from_crawl_config(cls, runtime_offset_seconds: int, crawl_config: CrawlConfig):
+        """Classmethod to create BenchmarkJobArguments class from crawl configs"""
+        return cls(
+            name=crawl_config.name,
+            allow_query_string=crawl_config.allow_query_string,
+            allowed_domains=crawl_config.allowed_domains,
+            allowed_domains_strict=crawl_config.allowed_domains_strict,
+            starting_urls=crawl_config.starting_urls,
+            handle_javascript=crawl_config.handle_javascript,
+            output_target=crawl_config.output_target,
+            runtime_offset_seconds=runtime_offset_seconds,
+            depth_limit=crawl_config.depth_limit,
+            allow_paths=crawl_config.allow_paths or [],
+            deny_paths=crawl_config.deny_paths or [],
+            job_id=None,
+        )
 
 
 def init_scheduler() -> BackgroundScheduler:
@@ -71,35 +108,26 @@ def init_scheduler() -> BackgroundScheduler:
     )
 
 
-def create_apscheduler_job(
-    name: str,
-    allow_query_string: bool,  # noqa: FBT001
-    allowed_domains: str,
-    starting_urls: str,
-    handle_javascript: bool,  # noqa: FBT001
-    output_target: str,
-    runtime_offset_seconds: int,
-    depth_limit: int,
-    deny_paths: list,
-    job_id: str | None = None,
-) -> dict:
+def create_apscheduler_job(benchmark_job_args: BenchmarkJobArguments) -> dict:
     """Creates job record in format needed by apscheduler"""
 
-    job_name = f"benchmark - {name}"
+    job_name = f"benchmark - {benchmark_job_args.name}"
 
     return {
         "func": run_scrapy_crawl,
-        "id": job_id or job_name,
+        "id": benchmark_job_args.job_id or job_name,
         "name": job_name,
-        "next_run_time": datetime.now(tz=UTC) + timedelta(seconds=runtime_offset_seconds),
+        "next_run_time": datetime.now(tz=UTC) + timedelta(seconds=benchmark_job_args.runtime_offset_seconds),
         "kwargs": {
-            "spider": "domain_spider" if not handle_javascript else "domain_spider_js",
-            "allow_query_string": allow_query_string,
-            "allowed_domains": allowed_domains,
-            "start_urls": starting_urls,
-            "output_target": output_target,
-            "depth_limit": depth_limit,
-            "deny_paths": deny_paths or [],
+            "spider": "domain_spider" if not benchmark_job_args.handle_javascript else "domain_spider_js",
+            "allow_query_string": benchmark_job_args.allow_query_string,
+            "allowed_domains": benchmark_job_args.allowed_domains,
+            "allowed_domains_strict": benchmark_job_args.allowed_domains_strict,
+            "start_urls": benchmark_job_args.starting_urls,
+            "output_target": benchmark_job_args.output_target,
+            "depth_limit": benchmark_job_args.depth_limit,
+            "allow_paths": benchmark_job_args.allow_paths or [],
+            "deny_paths": benchmark_job_args.deny_paths or [],
             "started_by": SpiderStartedBy.MANUAL.value,
         },
     }
@@ -127,10 +155,10 @@ def benchmark_from_file(input_file: Path, runtime_offset_seconds: int):
 
     scheduler = init_scheduler()
     for crawl_config in crawl_configs:
-        apscheduler_job = create_apscheduler_job(
-            runtime_offset_seconds=runtime_offset_seconds,
-            **crawl_config.to_dict(exclude=("schedule", "sitemap_urls", "check_sitemap_hours")),
+        from_file_job_args = BenchmarkJobArguments.from_crawl_config(
+            runtime_offset_seconds=runtime_offset_seconds, crawl_config=crawl_config
         )
+        apscheduler_job = create_apscheduler_job(benchmark_job_args=from_file_job_args)
         scheduler.add_job(**apscheduler_job, jobstore="memory")
     scheduler.start()
     time.sleep(runtime_offset_seconds + 2)
@@ -140,48 +168,54 @@ def benchmark_from_file(input_file: Path, runtime_offset_seconds: int):
 def benchmark_from_args(
     allow_query_string: bool,  # noqa: FBT001
     allowed_domains: str,
+    allowed_domains_strict: bool,  # noqa: FBT001
     starting_urls: str,
     handle_javascript: bool,  # noqa: FBT001
     output_target: str,
     runtime_offset_seconds: int,
     depth_limit: int,
+    allow_paths: str,
     deny_paths: str,
 ):
     """Run an individual benchmarking job based on args"""
 
     msg = (
         "Starting benchmark from args! "
-        "allow_query_string=%s allowed_domains=%s starting_urls=%s "
+        "allow_query_string=%s allowed_domains=%s allowed_domains_strict=%s starting_urls=%s "
         "handle_javascript=%s output_target=%s runtime_offset_seconds=%s "
-        "depth_limit=%s deny_paths=%s"
+        "depth_limit=%s allow_paths=%s deny_paths=%s"
     )
     log.info(
         msg,
         allow_query_string,
         allowed_domains,
+        allowed_domains_strict,
         starting_urls,
         handle_javascript,
         output_target,
         runtime_offset_seconds,
         depth_limit,
+        allow_paths,
         deny_paths,
     )
 
-    apscheduler_job_kwargs = {
-        "name": "benchmark",
-        "allow_query_string": allow_query_string,
-        "allowed_domains": allowed_domains,
-        "starting_urls": starting_urls,
-        "handle_javascript": handle_javascript,
-        "output_target": output_target,
-        "runtime_offset_seconds": runtime_offset_seconds,
-        "depth_limit": depth_limit,
-        "deny_paths": deny_paths.split(","),
-        "job_id": None,
-    }
+    from_args_job_args = BenchmarkJobArguments(
+        name="benchmark",
+        allow_query_string=allow_query_string,
+        allowed_domains=allowed_domains,
+        allowed_domains_strict=allowed_domains_strict,
+        starting_urls=starting_urls,
+        handle_javascript=handle_javascript,
+        output_target=output_target,
+        runtime_offset_seconds=runtime_offset_seconds,
+        depth_limit=depth_limit,
+        allow_paths=allow_paths.split(","),
+        deny_paths=deny_paths.split(","),
+        job_id=None,
+    )
 
     scheduler = init_scheduler()
-    apscheduler_job = create_apscheduler_job(**apscheduler_job_kwargs)
+    apscheduler_job = create_apscheduler_job(benchmark_job_args=from_args_job_args)
     scheduler.add_job(**apscheduler_job, jobstore="memory")
     scheduler.start()
     time.sleep(runtime_offset_seconds + 2)
@@ -204,6 +238,13 @@ if __name__ == "__main__":
         type=str,
         help="domains allowed to crawl",
         required=no_input_arg,
+    )
+    parser.add_argument(
+        "-ds",
+        "--allowed_domains_strict",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+        help="Flag to enable strict domain following",
     )
     parser.add_argument(
         "-u",
@@ -256,17 +297,26 @@ if __name__ == "__main__":
         default="",
         help="Comma separated list of paths to deny",
     )
+    parser.add_argument(
+        "-ap",
+        "--allow_paths",
+        type=str,
+        default="",
+        help="Comma separated list of paths to allow",
+    )
     args = parser.parse_args()
 
     if no_input_arg:
         benchmark_args = {
             "allow_query_string": args.allow_query_string,
             "allowed_domains": args.allowed_domains,
+            "allowed_domains_strict": args.allowed_domains_strict,
             "starting_urls": args.starting_urls,
             "handle_javascript": args.handle_js,
             "output_target": args.output_target,
             "runtime_offset_seconds": args.runtime_offset,
             "depth_limit": args.depth_limit,
+            "allow_paths": args.allow_paths,
             "deny_paths": args.deny_paths,
         }
         benchmark_from_args(**benchmark_args)
