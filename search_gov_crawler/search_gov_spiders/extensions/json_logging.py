@@ -15,6 +15,14 @@ def search_gov_default(obj) -> dict | None:
     """Function to help serialize scrapy objects in logs"""
 
     if isinstance(obj, Spider):
+        if obj.name == "freshness_spider":
+            return {
+                "name": obj.name,
+                "query": getattr(obj, "query", None),
+                "freshness_index": getattr(obj, "freshness_index", None),
+                "max_results": getattr(obj, "freshness_index", None),
+            }
+
         return {
             "name": obj.name,
             "spider_id": getattr(obj, "spider_id", None),
