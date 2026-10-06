@@ -115,6 +115,7 @@ class DomainSpider(CrawlSpider):
         self.started_by = started_by
 
         # store input args as private attributes for use in logging
+        self._allow_paths = allow_paths
         self._deny_paths = deny_paths
         self._sitemap_url = sitemap_url
 
