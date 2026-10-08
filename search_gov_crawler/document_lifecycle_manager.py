@@ -9,10 +9,6 @@ from search_gov_crawler.config.settings import SearchgovSettings
 from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
 from search_gov_crawler.run.schedule import ensure_positive_int, init_singleton_job_scheduler
 from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT, JsonFormatter
-from search_gov_crawler.search_gov_spiders.helpers.freshness_spider import (
-    count_matching_documents,
-    get_matching_documents,
-)
 
 searchgov_settings = SearchgovSettings()
 
@@ -48,19 +44,21 @@ def run_stale_document_deletion(searchgov_settings: SearchgovSettings):
     from the freshness index itself.
     """
     opensearch = SearchGovOpensearch(searchgov_settings=searchgov_settings)
-    query = {"query": {"term": {"marked_for_deletion": True}}, "sort": [{"checked_at": {"order": "desc"}}]}
-    matching_document_count = count_matching_documents(
-        opensearch=opensearch, query=query, index_name=searchgov_settings.opensearch_freshness_index
-    )
+    query = {
+        "query": {"term": {"marked_for_deletion": True}},
+        "sort": [{"checked_at": {"order": "desc"}}],
+        "size": searchgov_settings.dlm_max_docs,
+    }
 
+    matching_document_count = opensearch.count(query=query, index_name=searchgov_settings.opensearch_freshness_index)
     if not matching_document_count:
         log.info("No documents found as marked for deletion! Stopping process.")
         return
 
     log.info("Found %d documents marked for deletion!", matching_document_count)
 
-    matching_docs = get_matching_documents(
-        opensearch=opensearch, query=query, scroll="10m", index_name=searchgov_settings.opensearch_freshness_index
+    matching_docs = opensearch.search(
+        opensearch=opensearch, query=query, index_name=searchgov_settings.opensearch_freshness_index
     )
 
     max_batches = math.floor(searchgov_settings.dlm_max_docs / opensearch.batch_size)

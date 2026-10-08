@@ -5,11 +5,6 @@ import pytest
 from scrapy.spiders import Spider
 
 import search_gov_crawler.search_gov_spiders.helpers.domain_spider as ds_helpers
-from search_gov_crawler.search_gov_spiders.helpers.freshness_spider import (
-    count_matching_documents,
-    ensure_valid_query,
-    get_matching_documents,
-)
 from search_gov_crawler.search_gov_spiders.spiders.domain_spider_js import should_abort_request
 
 
@@ -222,74 +217,3 @@ def test_get_domain_visits(mocker, allowed_domains, expected_domain_visits):
     ]
 
     assert ds_helpers.get_domain_visits(spider) == expected_domain_visits
-
-
-@pytest.fixture(name="mock_opensearch")
-def fixture_mock_opensearch(mocker):
-    return mocker.Mock()
-
-
-def test_ensure_valid_query(mock_opensearch):
-    mock_opensearch.client.indices.validate_query.return_value = {"valid": True}
-    assert ensure_valid_query(opensearch=mock_opensearch, query='{"test": "query"}') == {"test": "query"}
-
-
-def test_ensure_valid_query_invalid(mock_opensearch):
-    mock_opensearch.client.indices.validate_query.return_value = {
-        "valid": False,
-        "error": "ParsingException[request does not support [invalid]]",
-        "explanations": [
-            {
-                "index": "test-index",
-                "valid": False,
-                "explanation": "This query is really bad!",
-            },
-            {
-                "index": "test-index",
-                "valid": False,
-                "explanation": "Also, its not really even a query.",
-            },
-        ],
-    }
-
-    expected_msg = (
-        "Invalid query! Error: ParsingException[request does not support [invalid]] "
-        "This query is really bad! "
-        "Also, its not really even a query."
-    )
-    with pytest.raises(ValueError, match=re.escape(expected_msg)):
-        ensure_valid_query(opensearch=mock_opensearch, query='{"invalid": "query"}')
-
-
-def test_ensure_valid_query_not_a_dict(mocker, mock_opensearch):
-    mocker.patch("ast.literal_eval", return_value=False)
-    with pytest.raises(TypeError, match=re.escape("Query input is not a valid dictionary!")):
-        ensure_valid_query(opensearch=mock_opensearch, query='{"invalid": "query"}')
-
-
-@pytest.mark.parametrize(
-    "query", [{"test": "query"}, {"test": "query", "size": 100}, {"test": "query", "size": 100, "sort": "field"}]
-)
-def test_count_matching_documents(mock_opensearch, query):
-    mock_opensearch.client.count.return_value = {"count": 10}
-    assert count_matching_documents(opensearch=mock_opensearch, query=query) == 10
-
-
-@pytest.fixture(name="expected_matching_documents")
-def fixture_expected_matching_documents():
-    return [{"document": "value"}, {"document": "value"}, {"document": "value"}]
-
-
-def test_get_matching_documents(mocker, mock_opensearch, expected_matching_documents):
-    def yield_results(*_args, **_kwargs):
-        yield from expected_matching_documents
-
-    mock_scan = mocker.patch(
-        "search_gov_crawler.search_gov_spiders.helpers.freshness_spider.scan",
-    )
-    mock_scan.side_effect = yield_results
-
-    assert (
-        list(get_matching_documents(opensearch=mock_opensearch, query={"test": "query"}, scroll="24h"))
-        == expected_matching_documents
-    )

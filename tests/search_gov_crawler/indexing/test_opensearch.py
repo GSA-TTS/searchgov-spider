@@ -1,3 +1,5 @@
+import re
+
 import pytest
 from opensearchpy.exceptions import RequestError
 
@@ -16,6 +18,13 @@ def opensearch_instance(mocker, mock_searchgov_settings):
     return SearchGovOpensearch(searchgov_settings=mock_searchgov_settings, batch_size=2, logger=mocker.MagicMock())
 
 
+@pytest.fixture
+def mock_client(mocker):
+    mock_client = mocker.MagicMock()
+    mocker.patch("search_gov_crawler.indexing.opensearch.OpenSearch", return_value=mock_client)
+    return mock_client
+
+
 def test_index_name_property(opensearch_instance):
     assert opensearch_instance.index_name == "test-index"
 
@@ -32,7 +41,7 @@ def test_resolved_index_name(opensearch_instance, test_kwargs, expected_output):
     assert opensearch_instance._resolved_index_name(**test_kwargs) == expected_output
 
 
-def test_client_lazy_init(mocker, opensearch_instance):
+def test_client_lazy_init(mocker, mock_client, opensearch_instance):
     mock_client = mocker.MagicMock()
     mock_cls = mocker.patch("search_gov_crawler.indexing.opensearch.OpenSearch", return_value=mock_client)
     client = opensearch_instance.client
@@ -183,3 +192,74 @@ def test_update_index_template_index_does_not_exist(caplog, mocker, opensearch_i
         opensearch_instance.update_index_template(template={"mappings": {}, "settings": {}})
 
     assert "Index test-index does not exist, create it first!" in caplog.messages
+
+
+def test_ensure_valid_query(mocker, opensearch_instance):
+    mock_client = mocker.MagicMock()
+    mocker.patch("search_gov_crawler.indexing.opensearch.OpenSearch", return_value=mock_client)
+    mock_client.indices.validate_query.return_value = {"valid": True}
+    assert opensearch_instance.ensure_valid_query(query='{"test": "query"}') == {"test": "query"}
+
+
+def test_ensure_valid_query_invalid(mocker, opensearch_instance):
+    mock_client = mocker.MagicMock()
+    mocker.patch("search_gov_crawler.indexing.opensearch.OpenSearch", return_value=mock_client)
+
+    mock_client.indices.validate_query.return_value = {
+        "valid": False,
+        "error": "ParsingException[request does not support [invalid]]",
+        "explanations": [
+            {
+                "index": "test-index",
+                "valid": False,
+                "explanation": "This query is really bad!",
+            },
+            {
+                "index": "test-index",
+                "valid": False,
+                "explanation": "Also, its not really even a query.",
+            },
+        ],
+    }
+
+    expected_msg = (
+        "Invalid query! Error: ParsingException[request does not support [invalid]] "
+        "This query is really bad! "
+        "Also, its not really even a query."
+    )
+    with pytest.raises(ValueError, match=re.escape(expected_msg)):
+        opensearch_instance.ensure_valid_query(query='{"invalid": "query"}')
+
+
+def test_ensure_valid_query_not_a_dict(mocker, opensearch_instance):
+    mocker.patch("ast.literal_eval", return_value=False)
+    with pytest.raises(TypeError, match=re.escape("Query input is not a valid dictionary!")):
+        opensearch_instance.ensure_valid_query(query='{"invalid": "query"}')
+
+
+@pytest.mark.parametrize(
+    "query", [{"test": "query"}, {"test": "query", "size": 100}, {"test": "query", "size": 100, "sort": "field"}]
+)
+def test_count(mocker, opensearch_instance, query):
+    mock_client = mocker.MagicMock()
+    mocker.patch("search_gov_crawler.indexing.opensearch.OpenSearch", return_value=mock_client)
+
+    mock_client.count.return_value = {"count": 10}
+    assert opensearch_instance.count(query=query) == 10
+
+
+@pytest.fixture(name="expected_matching_documents")
+def fixture_expected_matching_documents():
+    return [{"document": "value"}, {"document": "value"}, {"document": "value"}]
+
+
+@pytest.mark.usefixtures("mock_client")
+def test_scroll(mocker, opensearch_instance, expected_matching_documents):
+    def yield_results(*_args, **_kwargs):
+        yield from expected_matching_documents
+
+    mock_scan = mocker.MagicMock()
+    mocker.patch("search_gov_crawler.indexing.opensearch.helpers.scan", return_value=mock_scan)
+    mock_scan.side_effect = yield_results
+
+    assert list(opensearch_instance.scroll(query={"test": "query"}, scroll="24h")) == expected_matching_documents

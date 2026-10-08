@@ -64,10 +64,8 @@ def mock_count_documents(mocker):
 
 
 @pytest.fixture
-def mock_matching_documents(mocker):
-    def _create_mock(document_count):
-        matching_documents = mocker.patch("search_gov_crawler.document_lifecycle_manager.get_matching_documents")
-
+def mock_matching_documents():
+    def _create_mock(opensearch, document_count):
         def mock_get_matching_docs(document_count, *_args, **_kwargs):
             docs = [
                 {"_id": str(i), "_source": {"field": "value", "id": str(i), "path": f"https://www.example.com/{i}"}}
@@ -75,7 +73,7 @@ def mock_matching_documents(mocker):
             ]
             yield docs
 
-        matching_documents.side_effect = mock_get_matching_docs(document_count)
+        opensearch.return_value.search.side_effect = mock_get_matching_docs(document_count)
 
     return _create_mock
 
@@ -126,9 +124,8 @@ def mock_deletion_batch(mocker):
     return _create_mock
 
 
-@pytest.mark.usefixtures("mock_opensearch")
-def test_run_stale_document_deletion_no_docs_found(caplog, default_searchgov_settings, mock_count_documents):
-    mock_count_documents.return_value = 0
+def test_run_stale_document_deletion_no_docs_found(caplog, default_searchgov_settings, mock_opensearch):
+    mock_opensearch.return_value.count.return_value = 0
     with caplog.at_level("INFO"):
         run_stale_document_deletion(searchgov_settings=default_searchgov_settings)
 
@@ -139,13 +136,12 @@ def test_run_stale_document_deletion(
     caplog,
     default_searchgov_settings,
     mock_opensearch,
-    mock_count_documents,
     mock_matching_documents,
     mock_deletion_batch,
 ):
     mock_opensearch.return_value.batch_size = 10
-    mock_count_documents.return_value = 5
-    mock_matching_documents(5)
+    mock_opensearch.return_value.count.return_value = 5
+    mock_matching_documents(mock_opensearch, 5)
     mock_deletion_batch(5)
 
     with caplog.at_level("INFO"):
@@ -158,13 +154,12 @@ def test_run_stale_document_deletion_circuit_breaker(
     caplog,
     default_searchgov_settings,
     mock_opensearch,
-    mock_count_documents,
     mock_matching_documents,
     mock_deletion_batch,
 ):
     mock_opensearch.return_value.batch_size = 5
-    mock_count_documents.return_value = 10
-    mock_matching_documents(10)
+    mock_opensearch.return_value.count.return_value = 10
+    mock_matching_documents(mock_opensearch, 10)
     mock_deletion_batch(10)
 
     default_searchgov_settings.dlm_max_docs = 5
