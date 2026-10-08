@@ -6,7 +6,6 @@ from typing import Any
 
 from opensearchpy import OpenSearch, helpers
 from opensearchpy.exceptions import NotFoundError, RequestError
-from opensearchpy.helpers import scan
 
 from search_gov_crawler.config.settings import SearchgovSettings
 
@@ -235,7 +234,7 @@ class SearchGovOpensearch:
         optional kwargs to scan helper.
         """
         resolved_index_name = self._resolved_index_name(index_name)
-        yield from scan(self.client, index=resolved_index_name, query=query, scroll=scroll, **kwargs)
+        yield from helpers.scan(self.client, index=resolved_index_name, query=query, scroll=scroll, **kwargs)
 
     def search(self, query: dict, index_name: str | None = None, **kwargs) -> Generator[dict, None, None]:
         """
