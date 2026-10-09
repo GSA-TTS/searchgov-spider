@@ -1,10 +1,11 @@
+import ast
 import logging
 from collections.abc import Generator
 from logging import Logger, LoggerAdapter
 from typing import Any
 
 from opensearchpy import OpenSearch, helpers
-from opensearchpy.exceptions import RequestError
+from opensearchpy.exceptions import NotFoundError, RequestError
 
 from search_gov_crawler.config.settings import SearchgovSettings
 
@@ -192,3 +193,54 @@ class SearchGovOpensearch:
                 raise
         else:
             log.error("Index %s does not exist, create it first!", resolved_index_name)
+
+    def ensure_valid_query(self, query: str | dict, index_name: str | None = None) -> dict:
+        """Check input query to ensure validity"""
+
+        if isinstance(query, str):
+            formatted_query = ast.literal_eval(query)
+            if not isinstance(formatted_query, dict):
+                msg = "Query input is not a valid dictionary!"
+                raise TypeError(msg)
+
+        resolved_index_name = self._resolved_index_name(index_name)
+        try:
+            response = self.client.indices.validate_query(index=resolved_index_name, body=formatted_query, explain=True)
+        except NotFoundError:
+            response = self.client.indices.validate_query(index="_all", body=formatted_query, explain=True)
+
+        if str(response["valid"]).lower() == "false":
+            msg = f"Invalid query! Error: {response['error']}"
+            explanations = response.get("explanations", [])
+            for explanation in explanations:
+                explanation_msg = explanation.get("explanation", "")
+                msg += f" {explanation_msg}"
+            raise ValueError(msg)
+
+        return formatted_query
+
+    def count(self, query: dict, index_name: str | None = None) -> int:
+        """
+        Return count of documents matching given query from opensearch index
+        """
+        query.pop("size", None)  # ensure size is not set for count query
+        query.pop("sort", None)  # ensure sort is not set for count query
+        resolved_index_name = self._resolved_index_name(index_name)
+        return self.client.count(index=resolved_index_name, body=query)["count"]
+
+    def scroll(self, query: dict, scroll: str, index_name: str | None = None, **kwargs) -> Generator[dict, None, None]:
+        """
+        Yield documents matching given query from opensearch index using the scroll API.  Allows for passing
+        optional kwargs to scan helper.
+        """
+        resolved_index_name = self._resolved_index_name(index_name)
+        yield from helpers.scan(self.client, index=resolved_index_name, query=query, scroll=scroll, **kwargs)
+
+    def search(self, query: dict, index_name: str | None = None, **kwargs) -> Generator[dict, None, None]:
+        """
+        Yield documents matching given query from opensearch index using the standard search API.  Allows
+        for passing optional kwargs to search method.
+        """
+        resolved_index_name = self._resolved_index_name(index_name)
+        response = self.client.search(body=query, index=resolved_index_name, **kwargs)
+        yield from response.get("hits", {}).get("hits", [])
