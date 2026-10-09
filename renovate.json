@@ -29,6 +29,7 @@
         "cchardet",
         "langdetect",
         "newspaper4k*",
+        "nltk",
         "opensearch-py",
         "pydantic*",
         "pymysql",
@@ -49,13 +50,6 @@
       "matchPackageNames": ["redis"],
       "allowedVersions": "<=6",
       "addLabels": ["dependencies", "pip", "production"]
-    },
-    {
-      "groupName": "python nltk version pinned",
-      "description": "Pinned to current version due to nltk import error in 3.10.1",
-      "matchManagers": ["pip_requirements"],
-      "matchPackageNames": ["nltk"],
-      "allowedVersions": "3.10.0"
     }
   ]
 }
