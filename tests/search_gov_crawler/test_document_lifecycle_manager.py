@@ -59,11 +59,6 @@ def mock_opensearch(mocker):
 
 
 @pytest.fixture
-def mock_count_documents(mocker):
-    return mocker.patch("search_gov_crawler.document_lifecycle_manager.count_matching_documents")
-
-
-@pytest.fixture
 def mock_matching_documents():
     def _create_mock(opensearch, document_count):
         def mock_get_matching_docs(document_count, *_args, **_kwargs):

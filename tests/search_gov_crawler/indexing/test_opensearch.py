@@ -22,13 +22,6 @@ def opensearch_instance(mocker, mock_searchgov_settings):
     return opensearch
 
 
-@pytest.fixture
-def mock_client(mocker):
-    mock_client = mocker.MagicMock()
-    mocker.patch("search_gov_crawler.indexing.opensearch.OpenSearch", return_value=mock_client)
-    return mock_client
-
-
 def test_index_name_property(opensearch_instance):
     assert opensearch_instance.index_name == "test-index"
 
