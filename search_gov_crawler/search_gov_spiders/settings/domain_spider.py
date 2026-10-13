@@ -6,7 +6,7 @@ import os
 from datetime import UTC, datetime
 from pathlib import Path
 
-from search_gov_crawler.scheduling.redis import get_redis_connection_args
+from search_gov_crawler.scheduling.redis import get_redis_connection_args_for_settings
 
 spider_start = datetime.now(tz=UTC)
 # Obey robots.txt rules
@@ -25,10 +25,7 @@ CLOSESPIDER_TIMEOUT_NO_ITEM = 60 * 60 * 24  # 24 hours in seconds
 
 # Enable requests scheduler and dupefilter in redis using scrapy-redis
 # See https://github.com/rmax/scrapy-redis/wiki/Usage
-redis_connection_args = get_redis_connection_args()
-REDIS_HOST = redis_connection_args["host"]
-REDIS_PORT = redis_connection_args["port"]
-REDIS_DB = redis_connection_args["db"]
+REDIS_HOST, REDIS_PORT, REDIS_DB, REDIS_PARAMS = get_redis_connection_args_for_settings()
 
 SCHEDULER = "search_gov_spiders.job_state.scheduler.SearchGovSpiderRedisScheduler"
 DUPEFILTER_CLASS = "search_gov_spiders.job_state.dupefilter.SearchGovSpiderRedisDupeFilter"
