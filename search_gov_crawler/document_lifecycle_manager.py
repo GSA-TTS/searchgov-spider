@@ -57,9 +57,7 @@ def run_stale_document_deletion(searchgov_settings: SearchgovSettings):
 
     log.info("Found %d documents marked for deletion!", matching_document_count)
 
-    matching_docs = opensearch.search(
-        opensearch=opensearch, query=query, index_name=searchgov_settings.opensearch_freshness_index
-    )
+    matching_docs = opensearch.search(query=query, index_name=searchgov_settings.opensearch_freshness_index)
 
     max_batches = math.floor(searchgov_settings.dlm_max_docs / opensearch.batch_size)
     total_deletions = 0

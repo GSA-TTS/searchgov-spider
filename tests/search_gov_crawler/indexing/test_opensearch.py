@@ -233,6 +233,7 @@ def test_ensure_valid_query_missing_index(opensearch_instance):
 def test_count(opensearch_instance, query):
     opensearch_instance.client.count.return_value = {"count": 10}
     assert opensearch_instance.count(query=query) == 10
+    assert query["size"]
 
 
 @pytest.fixture

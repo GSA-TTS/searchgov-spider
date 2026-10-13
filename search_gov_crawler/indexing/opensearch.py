@@ -1,4 +1,5 @@
 import ast
+import copy
 import logging
 from collections.abc import Generator
 from logging import Logger, LoggerAdapter
@@ -223,10 +224,11 @@ class SearchGovOpensearch:
         """
         Return count of documents matching given query from opensearch index
         """
-        query.pop("size", None)  # ensure size is not set for count query
-        query.pop("sort", None)  # ensure sort is not set for count query
+        count_query = copy.deepcopy(query)
+        count_query.pop("size", None)  # ensure size is not set for count query
+        count_query.pop("sort", None)  # ensure sort is not set for count query
         resolved_index_name = self._resolved_index_name(index_name)
-        return self.client.count(index=resolved_index_name, body=query)["count"]
+        return self.client.count(index=resolved_index_name, body=count_query)["count"]
 
     def scroll(self, query: dict, scroll: str, index_name: str | None = None, **kwargs) -> Generator[dict, None, None]:
         """
