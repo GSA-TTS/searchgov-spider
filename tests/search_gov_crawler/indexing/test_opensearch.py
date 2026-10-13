@@ -228,12 +228,17 @@ def test_ensure_valid_query_missing_index(opensearch_instance):
 
 
 @pytest.mark.parametrize(
-    "query", [{"test": "query"}, {"test": "query", "size": 100}, {"test": "query", "size": 100, "sort": "field"}]
+    ("query_in", "query_out"),
+    [
+        ({"test": "query"}, {"test": "query"}),
+        ({"test": "query", "size": 100}, {"test": "query", "size": 100}),
+        ({"test": "query", "size": 100, "sort": "field"}, {"test": "query", "size": 100, "sort": "field"}),
+    ],
 )
-def test_count(opensearch_instance, query):
+def test_count(opensearch_instance, query_in, query_out):
     opensearch_instance.client.count.return_value = {"count": 10}
-    assert opensearch_instance.count(query=query) == 10
-    assert query["size"]
+    assert opensearch_instance.count(query=query_in) == 10
+    assert query_in == query_out
 
 
 @pytest.fixture
