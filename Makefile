@@ -68,6 +68,10 @@ ruff-all: ruff-format ruff-check
 docker-build: docker-remove-containers
 	docker build -f $(DOCKERFILE) -t $(IMAGE_NAME) .
 
+.PHONY: docker-build-no-cache
+docker-build-no-cache: docker-remove-containers
+	docker build --no-cache -f $(DOCKERFILE) -t $(IMAGE_NAME) .
+
 .PHONY: docker-remove-containers
 docker-remove-containers:
 	docker rm -f $(SCRAPY_SCHEDULER_CONTAINER) $(SITEMAP_MONITOR_CONTAINER) 2>/dev/null || true
