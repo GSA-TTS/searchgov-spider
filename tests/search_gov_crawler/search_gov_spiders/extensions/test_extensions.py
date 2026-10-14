@@ -28,12 +28,13 @@ class SpiderForTest(Spider):
         return str(
             {
                 "allow_query_string": getattr(self, "allow_query_string", None),
-                "allowed_domain_paths": getattr(self, "allowed_domain_paths", None),
+                "allowed_domains_strict": getattr(self, "allowed_domains_strict", None),
                 "allowed_domains": getattr(self, "allowed_domains", None),
                 "name": self.name,
                 "spider_id": self.spider_id,
                 "start_urls": self.start_urls,
                 "output_target": getattr(self, "output_target", None),
+                "allow_paths": getattr(self, "_allow_paths", None),
                 "deny_paths": getattr(self, "_deny_paths", None),
             },
         )
@@ -43,9 +44,9 @@ HANDLER_TEST_CASES = [
     ("This is a test message!!", "This is a test message!!", None, None),
     (
         SpiderForTest(
-            name="handler_test",
+            name="domain_spider",
             allow_query_string=False,
-            allowed_domain_paths=None,
+            allowed_domains_strict=True,
             allowed_domains="example.com",
             start_urls="https://www.example.com",
             output_target="csv",
@@ -54,19 +55,19 @@ HANDLER_TEST_CASES = [
         str(
             {
                 "allow_query_string": False,
-                "allowed_domain_paths": None,
+                "allowed_domains_strict": True,
                 "allowed_domains": "example.com",
-                "name": "handler_test",
+                "name": "domain_spider",
                 "spider_id": "testtesttest",
                 "start_urls": "https://www.example.com",
                 "output_target": "csv",
+                "allow_paths": None,
                 "deny_paths": None,
             },
         ),
         SpiderForTest(
-            name="handler_test",
+            name="domain_spider",
             allow_query_string=True,
-            allowed_domain_paths=None,
             allowed_domains="example.com",
             start_urls="https://www.example.com",
             output_target="csv",
@@ -74,12 +75,13 @@ HANDLER_TEST_CASES = [
         ),
         {
             "allow_query_string": True,
-            "allowed_domain_paths": None,
             "allowed_domains": "example.com",
-            "name": "handler_test",
+            "allowed_domains_strict": None,
+            "name": "domain_spider",
             "spider_id": "testtesttest",
             "start_urls": "https://www.example.com",
             "output_target": "csv",
+            "allow_paths": None,
             "deny_paths": None,
             "depth_limit": 3,
         },
@@ -230,17 +232,15 @@ def test_extension_from_crawler(project_settings, extension_cls):
     ("sitemap_url", "start_urls"),
     [("http://www.example.com/sitemap.xml", "Generated from Sitemap"), (None, "url 1,url 2")],
 )
-def test_extension_spider_opened(caplog, project_settings, sitemap_url, start_urls):
-    log = logging.getLogger("test_spider")
-    log.setLevel(logging.INFO)
-
+def test_extension_domain_spider_opened(caplog, project_settings, sitemap_url, start_urls):
     spider = Spider(
-        name="test_spider",
+        name="domain_spider",
         spider_id="testtesttest",
         allowed_domains=["domain 1", "domain 2"],
         start_urls=["url 1", "url 2"],
         output_target="csv",
         settings=project_settings,
+        _allow_paths="path2",
         _deny_paths="path1",
         _sitemap_url=sitemap_url,
     )
@@ -249,10 +249,37 @@ def test_extension_spider_opened(caplog, project_settings, sitemap_url, start_ur
         extension.spider_opened(spider)
 
     assert (
-        "Starting spider test_spider (spider_id testtesttest) with following args: "
-        f"allowed_domains=domain 1,domain 2 allowed_domain_paths= start_urls={start_urls} "
-        f"output_target=csv depth_limit=3 deny_paths=path1 sitemap_url={sitemap_url}"
+        "Starting spider domain_spider (spider_id testtesttest) with following args: "
+        f"allowed_domains=domain 1,domain 2 allowed_domains_strict=None start_urls={start_urls} "
+        f"output_target=csv depth_limit=3 allow_paths=path2 deny_paths=path1 sitemap_url={sitemap_url}"
     ) in caplog.messages
+
+
+def test_extension_freshness_spider_opened(caplog, project_settings):
+    spider = Spider(
+        name="freshness_spider",
+        query="{'query':{'match_all': {}}}",
+        freshness_index="test-index",
+        max_results=100,
+        settings=project_settings,
+    )
+    extension = JsonLogging(log_level=logging.INFO)
+
+    with caplog.at_level(logging.INFO):
+        extension.spider_opened(spider)
+        assert (
+            "Starting spider freshness_spider with following args: freshness_index=test-index "
+            "query={'query':{'match_all': {}}} max_results=100"
+        ) in caplog.messages
+
+
+def test_extension_spider_opened(caplog, project_settings):
+    spider = Spider(name="test_spider", settings=project_settings)
+    extension = JsonLogging(log_level=logging.INFO)
+
+    with caplog.at_level(logging.INFO):
+        extension.spider_opened(spider)
+        assert "Starting spider test_spider" in caplog.messages
 
 
 def test_extension_spider_closed(project_settings):
