@@ -1,7 +1,9 @@
 [
    {
+      "allow_paths": null,
       "allow_query_string": false,
       "allowed_domains": "www.usa.gov",
+      "allowed_domains_strict": false,
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -13,8 +15,10 @@
       "starting_urls": "https://www.usa.gov/"
    },
    {
+      "allow_paths": null,
       "allow_query_string": false,
       "allowed_domains": "www.gsa.gov",
+      "allowed_domains_strict": false,
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -26,8 +30,10 @@
       "starting_urls": "https://www.gsa.gov/"
    },
    {
+      "allow_paths": null,
       "allow_query_string": false,
       "allowed_domains": "digital.gov",
+      "allowed_domains_strict": false,
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -39,8 +45,10 @@
       "starting_urls": "https://digital.gov/"
    },
    {
+      "allow_paths": null,
       "allow_query_string": false,
       "allowed_domains": "studentaid.gov",
+      "allowed_domains_strict": false,
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -52,8 +60,10 @@
       "starting_urls": "https://studentaid.gov"
    },
    {
+      "allow_paths": null,
       "allow_query_string": false,
       "allowed_domains": "www.cloud.gov",
+      "allowed_domains_strict": false,
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
@@ -65,8 +75,10 @@
       "starting_urls": "https://www.cloud.gov/"
    },
    {
+      "allow_paths": null,
       "allow_query_string": false,
       "allowed_domains": "docs.cloud.gov",
+      "allowed_domains_strict": false,
       "check_sitemap_hours": null,
       "deny_paths": null,
       "depth_limit": 8,
