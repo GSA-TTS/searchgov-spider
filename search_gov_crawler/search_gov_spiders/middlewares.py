@@ -5,7 +5,6 @@ https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 """
 
 import re
-import warnings
 from collections.abc import Iterator
 from typing import Any, Self
 from urllib.parse import ParseResult, urlparse
@@ -17,7 +16,6 @@ from scrapy.exceptions import IgnoreRequest
 from scrapy.http import Request, Response
 from scrapy.spidermiddlewares.base import BaseSpiderMiddleware
 from scrapy.spiders import Spider
-from scrapy.utils.httpobj import urlparse_cached
 
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
@@ -41,6 +39,13 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
     Custom search gov spider middleare.  Not all methods need to be defined. If a method is not defined,
     scrapy acts as if the spider middleware does not modify the passed objects.
     """
+
+    def _unset_dont_filter(self, url: str | None) -> bool:
+        """Private helper function to indicate reasons why we would unset a don't filter attr"""
+
+        return bool(
+            url in self.crawler.spider.start_urls and getattr(self.crawler.spider, "allowed_domains_strict", False)
+        )
 
     def _filter_url_query_string(self, url: str | None) -> bool:
         """Private helper function to filter urls by existence of query string (if applicable)"""
@@ -113,9 +118,11 @@ class SearchGovSpidersSpiderMiddleware(SearchgovMiddlewareBase):
 
         :return: the processed request or ``None``
 
-        Logic should be placed here so that requests are prevented from going into the scheduler.
+        Pass the request through custom rules that change the filtering behavior or the request object
         """
         if request.dont_filter:
+            if self._unset_dont_filter(url=request.url):
+                request.dont_filter = False
             return request
 
         if self._filter_url_query_string(url=request.url):
@@ -215,28 +222,30 @@ class SearchGovSpidersDownloaderMiddleware:
 
 
 class SearchGovSpidersOffsiteMiddleware(OffsiteMiddleware):
-    """Extend OffsiteMiddleware to enable filtering of paths as well as domains"""
+    """
+    Extend OffsiteMiddleware to enable strict offsite behavior and to raise errors
+    when a start url cannot be accessed.
+    """
 
-    host_regex: re.Pattern
-    host_path_regex: re.Pattern
+    def get_host_regex(self, spider: Spider):
+        """Overrriden method to enforce strict limits on allowed_domains"""
 
-    def spider_opened(self, spider: Spider) -> None:
-        """Overridden to add assignment of host_path_regex"""
-        self.host_regex = self.get_host_regex(spider)
-        self.host_path_regex = self.get_host_path_regex(spider)
+        regex = super().get_host_regex(spider)
+        if not getattr(spider, "allowed_domains_strict", False):
+            return regex
 
-    def should_follow(self, request: Request, spider: Spider) -> bool:  # noqa: ARG002
-        """Overridden to add boolean condition on matching path regex"""
-        # hostname can be None for wrong urls (like javascript links)
-        cahched_request = urlparse_cached(request)
-        host = cahched_request.hostname or ""
-
-        return bool(self.host_regex.search(host) and self.host_path_regex.search(cahched_request.geturl()))
+        # Remove optional .* (any subdomains) from regex
+        # Assumes superclass sets regex = rf"^(.*\.)?({'|'.join(domains)})$"
+        regex = regex.pattern.replace(r"(.*\.)?", "", 1)
+        return re.compile(regex)
 
     def process_request(self, request: Request) -> None:
-        """If the superclass process_request() raises an IgnoreRequest, log the error"""
+        """
+        If the superclass process_request() raises an IgnoreRequest and the request is
+        from one of the starting urls, log the error, otherwise raise as usual
+        """
         try:
-            return super().process_request(request)
+            super().process_request(request)
         except IgnoreRequest:
             if request.url in self.crawler.spider.start_urls:
                 self.crawler.spider.logger.exception(
@@ -245,35 +254,6 @@ class SearchGovSpidersOffsiteMiddleware(OffsiteMiddleware):
                     self.crawler.spider.allowed_domains,
                 )
             raise
-
-    def get_host_path_regex(self, spider: Spider) -> re.Pattern:
-        """New method, modified from 'get_host_regex' method to return path related regex"""
-        allowed_domain_paths = getattr(spider, "allowed_domain_paths", None)
-        if not allowed_domain_paths:
-            return re.compile("")  # allow all by default
-        url_pattern = re.compile(r"^https?://.*$")
-        port_pattern = re.compile(r":\d+$")
-        domains = []
-
-        for domain in allowed_domain_paths:
-            if domain is None:
-                continue
-            if url_pattern.match(domain):
-                message = (
-                    "allowed_domain_paths accepts only domains, not URLs. "
-                    f"Ignoring URL entry {domain} in allowed_domain_paths."
-                )
-                warnings.warn(message, stacklevel=2)
-            elif port_pattern.search(domain):
-                message = (
-                    "allowed_domain_paths accepts only domains without ports. "
-                    f"Ignoring entry {domain} in allowed_domain_paths."
-                )
-                warnings.warn(message, stacklevel=2)
-            else:
-                domains.append(re.escape(domain))
-        regex = rf"{'|'.join(domains)}"
-        return re.compile(regex)
 
 
 class FreshnessSpiderDownloaderMiddleware(BaseSpiderMiddleware):

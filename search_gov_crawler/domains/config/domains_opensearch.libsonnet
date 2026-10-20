@@ -10,7 +10,7 @@ local output_target = 'opensearch';
                          starting_urls='https://researchfestival.nih.gov/',
                          schedule='00 06 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
 
   },
   {
@@ -19,7 +19,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.bep.gov/',
                          schedule='15 06 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Department of Energy - Hydrogen (doe-h2)',
@@ -27,7 +27,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.hydrogen.energy.gov/',
                          schedule='15 06 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Eisenhower Presidential Library (eisenhower)',
@@ -43,7 +43,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.cdfifund.gov/',
                          schedule='15 06 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA (noaa)',
@@ -68,7 +68,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.fisheries.noaa.gov/',
                          schedule='02 19 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA Water (water)',
@@ -76,7 +76,7 @@ local output_target = 'opensearch';
                          starting_urls='https://water.noaa.gov/',
                          schedule='02 19 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Weather Prediction Center (wpc)',
@@ -84,7 +84,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.wpc.ncep.noaa.gov/',
                          schedule='03 19 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA Ocean Service (oceanservice)',
@@ -92,7 +92,7 @@ local output_target = 'opensearch';
                          starting_urls='https://oceanservice.noaa.gov/',
                          schedule='03 19 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Climate Prediction Center (cpc)',
@@ -100,7 +100,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.cpc.ncep.noaa.gov/',
                          schedule='04 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'National Hurricane Center (nhc)',
@@ -108,7 +108,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nhc.noaa.gov/',
                          schedule='05 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'National Data Buoy Center (ndbc)',
@@ -116,7 +116,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ndbc.noaa.gov/',
                          schedule='05 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Global Monitoring Laboratory (gml)',
@@ -133,7 +133,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nesdis.noaa.gov/',
                          schedule='06 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA Tides and Currents (tidesandcurrents)',
@@ -141,7 +141,7 @@ local output_target = 'opensearch';
                          starting_urls='https://tidesandcurrents.noaa.gov/',
                          schedule='06 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA Ocean Explorer (oceanexplorer)',
@@ -157,7 +157,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.star.nesdis.noaa.gov/',
                          schedule='07 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'National Operational Hydrologic Remote Sensing Center (nohrsc)',
@@ -165,7 +165,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nohrsc.noaa.gov/',
                          schedule='08 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Northwest River Forecast Center (nwrfc)',
@@ -173,7 +173,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nwrfc.noaa.gov/',
                          schedule='08 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'National Severe Storms Laboratory (nssl)',
@@ -181,7 +181,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nssl.noaa.gov/',
                          schedule='08 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA Coast (coast)',
@@ -214,7 +214,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.cnrfc.noaa.gov/',
                          schedule='10 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Science On a Sphere (sos)',
@@ -247,7 +247,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.pmel.noaa.gov/',
                          schedule='11 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'National Marine Sanctuaries (sanctuaries)',
@@ -263,7 +263,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.goes.noaa.gov/',
                          schedule='12 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'National Geodetic Survey (ngs)',
@@ -279,7 +279,7 @@ local output_target = 'opensearch';
                          starting_urls='https://hads.ncep.noaa.gov/',
                          schedule='13 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA Virtual Lab (vlab)',
@@ -287,7 +287,7 @@ local output_target = 'opensearch';
                          starting_urls='https://vlab.noaa.gov/',
                          schedule='13 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Office of Response and Restoration (response_restoration)',
@@ -295,7 +295,7 @@ local output_target = 'opensearch';
                          starting_urls='https://response.restoration.noaa.gov/',
                          schedule='13 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA Ready (ready)',
@@ -303,7 +303,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ready.noaa.gov/',
                          schedule='14 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA Coastal Science (coastalscience)',
@@ -311,7 +311,7 @@ local output_target = 'opensearch';
                          starting_urls='https://coastalscience.noaa.gov/',
                          schedule='14 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA Ocean Today (oceantoday)',
@@ -327,7 +327,7 @@ local output_target = 'opensearch';
                          starting_urls='https://library.noaa.gov/',
                          schedule='15 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Tsunami Warning Center (tsunami)',
@@ -335,7 +335,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.tsunami.noaa.gov/',
                          schedule='15 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Arctic Program (arctic)',
@@ -343,7 +343,7 @@ local output_target = 'opensearch';
                          starting_urls='https://arctic.noaa.gov/',
                          schedule='15 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA Charts (charts)',
@@ -359,7 +359,7 @@ local output_target = 'opensearch';
                          starting_urls='https://cpo.noaa.gov/',
                          schedule='16 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Marine Navigation (marinenavigation)',
@@ -367,7 +367,7 @@ local output_target = 'opensearch';
                          starting_urls='https://marinenavigation.noaa.gov/',
                          schedule='17 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'HDSC (hdsc)',
@@ -375,7 +375,7 @@ local output_target = 'opensearch';
                          starting_urls='https://hdsc.nws.noaa.gov/',
                          schedule='17 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'CSL (csl)',
@@ -383,7 +383,7 @@ local output_target = 'opensearch';
                          starting_urls='https://csl.noaa.gov/',
                          schedule='18 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'OSPO (ospo)',
@@ -391,7 +391,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ospo.noaa.gov/',
                          schedule='18 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'OMAO (omao)',
@@ -399,7 +399,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.omao.noaa.gov/',
                          schedule='19 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Coastwatch (coastwatch)',
@@ -415,7 +415,7 @@ local output_target = 'opensearch';
                          starting_urls='https://geodesy.noaa.gov/',
                          schedule='19 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Ocean Acidification (oceanacidification)',
@@ -423,7 +423,7 @@ local output_target = 'opensearch';
                          starting_urls='https://oceanacidification.noaa.gov/',
                          schedule='20 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Nautical Charts (nauticalcharts)',
@@ -439,7 +439,7 @@ local output_target = 'opensearch';
                          starting_urls='https://coralreefwatch.noaa.gov/',
                          schedule='20 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Geophysical Fluid Dynamics Laboratory (gfdl)',
@@ -447,7 +447,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.gfdl.noaa.gov/',
                          schedule='21 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NSD RDC (nsd)',
@@ -455,7 +455,7 @@ local output_target = 'opensearch';
                          starting_urls='https://nsd.rdc.noaa.gov/',
                          schedule='21 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Global Ocean (globalocean)',
@@ -463,7 +463,7 @@ local output_target = 'opensearch';
                          starting_urls='https://globalocean.noaa.gov/',
                          schedule='22 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Storms (storms)',
@@ -471,7 +471,7 @@ local output_target = 'opensearch';
                          starting_urls='https://storms.ngs.noaa.gov/',
                          schedule='22 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'SARSAT (sarsat)',
@@ -479,7 +479,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.sarsat.noaa.gov/',
                          schedule='22 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'National Tsunami Warning Center (ntwc)',
@@ -487,7 +487,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ntwc.ncep.noaa.gov/',
                          schedule='23 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA Fisheries SPO (spo)',
@@ -495,7 +495,7 @@ local output_target = 'opensearch';
                          starting_urls='https://spo.nmfs.noaa.gov/',
                          schedule='23 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Blog - NOAA Restoration (blogresponse)',
@@ -503,7 +503,7 @@ local output_target = 'opensearch';
                          starting_urls='https://blog.response.restoration.noaa.gov/',
                          schedule='24 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USA.gov (usagov-replacement)',
@@ -579,7 +579,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.state.gov/',
                          schedule='30 02 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Housing and Urban Development (usagov-replacement)',
@@ -587,7 +587,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.hud.gov/',
                          schedule='45 02 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'FDA (usagov-replacement)',
@@ -635,7 +635,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.census.gov/',
                          schedule='00 11 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.war.gov (usagov-replacement)',
@@ -668,7 +668,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.fbi.gov/',
                          schedule='28 06 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.medicare.gov (usagov-replacement)',
@@ -676,7 +676,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.medicare.gov/',
                          schedule='37 09 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.ftc.gov (usagov-replacement)',
@@ -708,7 +708,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.cms.gov/',
                          schedule='54 00 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.energy.gov (usagov-replacement)',
@@ -716,7 +716,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.energy.gov/',
                          schedule='32 02 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.ice.gov (usagov-replacement)',
@@ -748,7 +748,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ojp.gov/',
                          schedule='56 10 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'FHWA Office of Policy and Governmental Affairs',
@@ -781,7 +781,7 @@ local output_target = 'opensearch';
                          starting_urls='https://obamawhitehouse.archives.gov/',
                          schedule='17 17 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.weather.gov (usagov-replacement)',
@@ -801,10 +801,11 @@ local output_target = 'opensearch';
   },
   {
     name: 'login.gov (usagov-replacement)',
-    config: DomainConfig(allowed_domains='www.login.gov',
-                         starting_urls='https://www.login.gov/',
+    config: DomainConfig(allowed_domains='login.gov',
+                         starting_urls='https://login.gov/',
                          schedule='30 01 * * TUE',
                          output_target=output_target,
+                         options=['allowed_domains_strict'],
                          depth_limit=8),
   },
   {
@@ -829,7 +830,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.myhealth.va.gov/',
                          schedule='30 08 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.doi.gov (usagov-replacement)',
@@ -853,7 +854,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.dfas.mil/',
                          schedule='30 14 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'medlineplus.gov (usagov-replacement)',
@@ -861,7 +862,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.medlineplus.gov/',
                          schedule='30 16 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.samhsa.gov (usagov-replacement)',
@@ -901,7 +902,7 @@ local output_target = 'opensearch';
                          starting_urls='https://history.state.gov/',
                          schedule='30 22 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.fec.gov (usagov-replacement)',
@@ -941,7 +942,7 @@ local output_target = 'opensearch';
                          starting_urls='https://safer.fmcsa.dot.gov/',
                          schedule='00 08 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'uk.usembassy.gov (usagov-replacement)',
@@ -949,7 +950,7 @@ local output_target = 'opensearch';
                          starting_urls='https://uk.usembassy.gov/',
                          schedule='00 12 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.bea.gov (usagov-replacement)',
@@ -957,7 +958,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.bea.gov/',
                          schedule='00 13 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.nist.gov (usagov-replacement)',
@@ -965,7 +966,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nist.gov/',
                          schedule='00 14 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.nimh.nih.gov (usagov-replacement)',
@@ -981,7 +982,7 @@ local output_target = 'opensearch';
                          starting_urls='https://home.army.mil/',
                          schedule='00 17 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: '2009-2017.state.gov (usagov-replacement)',
@@ -1157,7 +1158,7 @@ local output_target = 'opensearch';
                          starting_urls='https://georgewbush-whitehouse.archives.gov/',
                          schedule='53 07 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.nhlbi.nih.gov (usagov-replacement)',
@@ -1173,7 +1174,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.dcpas.osd.mil/',
                          schedule='49 11 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.bia.gov (usagov-replacement)',
@@ -1213,7 +1214,7 @@ local output_target = 'opensearch';
                          starting_urls='https://milconnect.dmdc.osd.mil/',
                          schedule='48 22 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.nsf.gov (usagov-replacement)',
@@ -1246,7 +1247,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ukraineoversight.gov/',
                          schedule='00 06 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.trumanlibrary.gov (usagov-replacement)',
@@ -1278,7 +1279,7 @@ local output_target = 'opensearch';
                          starting_urls='https://j1visa.state.gov/',
                          schedule='12 00 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'oig.ssa.gov (usagov-replacement)',
@@ -1311,7 +1312,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ams.usda.gov/',
                          schedule='22 04 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'jp.usembassy.gov (usagov-replacement)',
@@ -1319,7 +1320,7 @@ local output_target = 'opensearch';
                          starting_urls='https://jp.usembassy.gov/',
                          schedule='22 05 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.ready.gov (usagov-replacement)',
@@ -1383,7 +1384,7 @@ local output_target = 'opensearch';
                          starting_urls='https://americanenglish.state.gov/',
                          schedule='32 05 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.spaceforce.mil (usagov-replacement)',
@@ -1391,7 +1392,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.spaceforce.mil/',
                          schedule='32 06 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.mda.mil (usagov-replacement)',
@@ -1399,7 +1400,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.mda.mil/',
                          schedule='32 07 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.genome.gov (usagov-replacement)',
@@ -1415,7 +1416,7 @@ local output_target = 'opensearch';
                          starting_urls='https://eg.usembassy.gov/',
                          schedule='32 10 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: '2017-2021.state.gov (usagov-replacement)',
@@ -1439,7 +1440,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.shaw.af.mil/',
                          schedule='32 16 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.mynavyhr.navy.mil (usagov-replacement)',
@@ -1455,7 +1456,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.dote.osd.mil/',
                          schedule='32 19 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NIH NIEHS (usagov-replacement)',
@@ -2425,7 +2426,7 @@ local output_target = 'opensearch';
                          starting_urls='https://chemm.hhs.gov/',
                          schedule='15 04 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'girlshealth.gov',
@@ -2433,7 +2434,7 @@ local output_target = 'opensearch';
                          starting_urls='https://girlshealth.gov/',
                          schedule='15 06 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'mmc',
@@ -2441,7 +2442,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.mmc.gov/',
                          schedule='15 07 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'crb',
@@ -2449,7 +2450,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.crb.gov/',
                          schedule='15 08 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'firstnet',
@@ -2457,7 +2458,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.firstnet.gov/',
                          schedule='15 09 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'MIT-AF AI Accelerator (af_aiaccelerator)',
@@ -4639,7 +4640,7 @@ local output_target = 'opensearch';
                          starting_urls='https://mag.ncep.noaa.gov/',
                          schedule='0 18 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'www.roc.noaa.gov (nws.noaa.gov)',
@@ -4647,7 +4648,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.roc.noaa.gov/',
                          schedule='0 6 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'seedfund.nsf.gov (nsf)',
@@ -4760,7 +4761,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nafri.gov',
                          schedule='15 04 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'RMA.USDA.gov (risk-management-agency_sandbox)',
@@ -4880,7 +4881,7 @@ local output_target = 'opensearch';
                          starting_urls='https://iwgsc.nal.usda.gov',
                          schedule='15 16 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'InvasiveSpeciesInfo.gov (USDA NAL)',
@@ -5846,7 +5847,7 @@ local output_target = 'opensearch';
                          starting_urls='https://dods.ndbc.noaa.gov',
                          schedule='09 00 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD Doha (dod_doha)',
@@ -5870,7 +5871,7 @@ local output_target = 'opensearch';
                          starting_urls='https://triadcentral.clu-in.org',
                          schedule='06 03 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy NCIS (navy_ncis)',
@@ -5878,7 +5879,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ncis.navy.mil',
                          schedule='04 05 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy AirPac (navy_airpac)',
@@ -5886,7 +5887,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.airpac.navy.mil',
                          schedule='03 06 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'EMS (ems)',
@@ -5894,7 +5895,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ems.gov',
                          schedule='02 07 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Get Smart About Drugs (gsad)',
@@ -5926,7 +5927,7 @@ local output_target = 'opensearch';
                          starting_urls='https://cnrsw.cnic.navy.mil',
                          schedule='03 12 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'FAC Transition Site (fac-transition-site)',
@@ -5934,7 +5935,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.fac.gov',
                          schedule='09 18 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Forms Warehouse (formswarehouse)',
@@ -5942,7 +5943,7 @@ local output_target = 'opensearch';
                          starting_urls='https://forms.cgaux.org',
                          schedule='10 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE IWR (usace_all)',
@@ -5950,7 +5951,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.iwr.usace.army.mil',
                          schedule='13 22 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE MVD (usace_all)',
@@ -5958,7 +5959,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.mvd.usace.army.mil',
                          schedule='14 23 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE MVP (usace_all)',
@@ -5966,7 +5967,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.mvp.usace.army.mil',
                          schedule='15 00 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE SWL-WC (usace_all)',
@@ -5974,7 +5975,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.swl-wc.usace.army.mil',
                          schedule='16 01 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE MVR (usace_all)',
@@ -5982,7 +5983,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.mvr.usace.army.mil',
                          schedule='17 02 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE SWT (usace_all)',
@@ -5990,7 +5991,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.swt.usace.army.mil',
                          schedule='18 03 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Bureau of Safety and Environmental Enforcement (doi.gov_all_bureaus)',
@@ -6014,7 +6015,7 @@ local output_target = 'opensearch';
                          starting_urls='https://commonfund.nih.gov',
                          schedule='23 08 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA ESRL (noaa_esrl)',
@@ -6030,7 +6031,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.iaf.gov',
                          schedule='45 06 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Defense Policy (defensepolicy)',
@@ -6046,7 +6047,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.mepcom.army.mil',
                          schedule='49 10 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Office of Financial Research (ofr)',
@@ -6054,7 +6055,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.financialresearch.gov',
                          schedule='50 11 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army CID (army_cid)',
@@ -6062,7 +6063,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.cid.army.mil',
                          schedule='52 13 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Dakar (dos_emb_afr_dakar)',
@@ -6078,7 +6079,7 @@ local output_target = 'opensearch';
                          starting_urls='https://cybercoe.army.mil',
                          schedule='55 16 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Federal Mine Safety and Health Review Commission (fmshrc)',
@@ -6094,7 +6095,7 @@ local output_target = 'opensearch';
                          starting_urls='https://jsc.defense.gov',
                          schedule='57 18 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Stop Fakes (trade.gov)',
@@ -6118,7 +6119,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.dsp.dla.mil',
                          schedule='07 04 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Kazakhstan (dos_emb_csa_kazakhstan_ru)',
@@ -6134,7 +6135,7 @@ local output_target = 'opensearch';
                          starting_urls='https://am.usembassy.gov',
                          schedule='09 06 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Peterson-Schriever Space Force Base (peterson)',
@@ -6142,7 +6143,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.petersonschriever.spaceforce.mil',
                          schedule='10 07 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Broadband USA (bbusa)',
@@ -6174,7 +6175,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.patrick.spaceforce.mil',
                          schedule='20 17 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Valor (valor)',
@@ -6206,7 +6207,7 @@ local output_target = 'opensearch';
                          starting_urls='https://va.ng.mil',
                          schedule='24 21 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Strategic Command (stratcom)',
@@ -6222,7 +6223,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.buckley.spaceforce.mil',
                          schedule='27 00 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USAASC Development (usaascdev)',
@@ -6230,7 +6231,7 @@ local output_target = 'opensearch';
                          starting_urls='https://asc.army.mil',
                          schedule='28 01 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Georgetown (dos_emb_wha_georgetown)',
@@ -6238,7 +6239,7 @@ local output_target = 'opensearch';
                          starting_urls='https://gy.usembassy.gov',
                          schedule='29 02 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Algeria (dos_emb_mena_algeria)',
@@ -6246,7 +6247,7 @@ local output_target = 'opensearch';
                          starting_urls='https://dz.usembassy.gov',
                          schedule='30 03 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Vicksburg District (vicksburg_district)',
@@ -6254,7 +6255,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.mvk.usace.army.mil',
                          schedule='31 04 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Space Operations Command (dod_spoc)',
@@ -6262,7 +6263,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.spoc.spaceforce.mil',
                          schedule='32 05 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy C7F (navy_c7f)',
@@ -6270,7 +6271,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.c7f.navy.mil',
                          schedule='33 06 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Madagascar (dos_emb_afr_madagascar)',
@@ -6278,7 +6279,7 @@ local output_target = 'opensearch';
                          starting_urls='https://mg.usembassy.gov',
                          schedule='34 07 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Chief Technologist (chieftechnologist)',
@@ -6286,7 +6287,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.cto.mil',
                          schedule='35 08 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Chief Technologist DSB (chieftechnologist)',
@@ -6294,7 +6295,7 @@ local output_target = 'opensearch';
                          starting_urls='https://dsb.cto.mil',
                          schedule='39 12 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Memphis District (memphis_district)',
@@ -6302,7 +6303,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.mvm.usace.army.mil',
                          schedule='40 13 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'CTO Innovation (chieftechnologist)',
@@ -6318,7 +6319,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.aaro.mil',
                          schedule='43 16 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy CNREURAFSWA (navy_cnreurafcent)',
@@ -6326,7 +6327,7 @@ local output_target = 'opensearch';
                          starting_urls='https://cnreurafcent.cnic.navy.mil',
                          schedule='44 17 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Joint Base Anacostia-Bolling (joint_jbab)',
@@ -6334,7 +6335,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.jbab.jb.mil',
                          schedule='45 18 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army Center of Military History (achh)',
@@ -6342,7 +6343,7 @@ local output_target = 'opensearch';
                          starting_urls='https://achh.army.mil',
                          schedule='46 19 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'St. Louis District (stlouis_district)',
@@ -6350,7 +6351,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.mvs.usace.army.mil',
                          schedule='48 21 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: '1st Infantry Division (army_11d)',
@@ -6358,7 +6359,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.1id.army.mil',
                          schedule='50 23 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army Medical Logistics Command (army_amlc)',
@@ -6366,7 +6367,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.amlc.army.mil',
                          schedule='51 00 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Oman (dos_emb_mena_oman)',
@@ -6382,7 +6383,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nab.usace.army.mil',
                          schedule='54 03 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Defense Equal Opportunity Management Institute (dod_deomi)',
@@ -6390,7 +6391,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.deomi.mil',
                          schedule='56 05 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Pentagon Force Protection Agency (dod_pfpa)',
@@ -6398,7 +6399,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.pfpa.mil',
                          schedule='57 06 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE North Atlantic Division (usace_nad)',
@@ -6406,7 +6407,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nad.usace.army.mil',
                          schedule='58 07 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE New England District (usace_all)',
@@ -6414,7 +6415,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nae.usace.army.mil',
                          schedule='59 08 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army Materiel Command (army_amc)',
@@ -6438,7 +6439,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nan.usace.army.mil',
                          schedule='17 11 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE Norfolk District (usace_all)',
@@ -6446,7 +6447,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nao.usace.army.mil',
                          schedule='25 19 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE Philadelphia District (usace_all)',
@@ -6454,7 +6455,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nap.usace.army.mil',
                          schedule='32 02 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army SSI (army_ssi)',
@@ -6462,7 +6463,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ssi.armywarcollege.edu',
                          schedule='34 04 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Haiti (dos_emb_wha_haiti)',
@@ -6478,7 +6479,7 @@ local output_target = 'opensearch';
                          starting_urls='https://cnrh.cnic.navy.mil',
                          schedule='36 06 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'GSA FACA Database (gsa_faca)',
@@ -6494,7 +6495,7 @@ local output_target = 'opensearch';
                          starting_urls='https://hmspermits.noaa.gov',
                          schedule='38 08 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA GARFO Apps (nmfs.noaa.gov)',
@@ -6502,7 +6503,7 @@ local output_target = 'opensearch';
                          starting_urls='https://apps-garfo.fisheries.noaa.gov',
                          schedule='39 09 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Monrovia (dos_emb_afr_monrovia)',
@@ -6518,7 +6519,7 @@ local output_target = 'opensearch';
                          starting_urls='https://dcips.defense.gov',
                          schedule='43 13 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Cuba (dos_emb_wha_cuba)',
@@ -6534,7 +6535,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.usfj.mil',
                          schedule='45 15 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Los Angeles Space Force Base (losangeles)',
@@ -6542,7 +6543,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.losangeles.spaceforce.mil',
                          schedule='46 16 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy NIWC Atlantic (navy_niwcatlantic)',
@@ -6550,7 +6551,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.niwcatlantic.navy.mil',
                          schedule='47 17 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Department of Labor OIG (oig)',
@@ -6566,7 +6567,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ssc.spaceforce.mil',
                          schedule='50 20 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Department of Commerce OIG (oig.doc.gov)',
@@ -6590,7 +6591,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.usarpac.army.mil',
                          schedule='54 00 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE Northwestern Division (usace_all)',
@@ -6598,7 +6599,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nwd.usace.army.mil',
                          schedule='55 01 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Mongolia (dos_emb_eap_mongolia)',
@@ -6622,7 +6623,7 @@ local output_target = 'opensearch';
                          starting_urls='https://uz.usembassy.gov',
                          schedule='02 04 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Defense History (dodhistory)',
@@ -6630,7 +6631,7 @@ local output_target = 'opensearch';
                          starting_urls='https://history.defense.gov',
                          schedule='03 05 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army AMCOM (army_amcom)',
@@ -6638,7 +6639,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.amcom.army.mil',
                          schedule='04 06 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Bulgaria (dos_emb_eur_bulgaria)',
@@ -6654,7 +6655,7 @@ local output_target = 'opensearch';
                          starting_urls='https://exwc.navfac.navy.mil',
                          schedule='06 08 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Tunisia (dos_emb_mena_tunisia)',
@@ -6670,7 +6671,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nwk.usace.army.mil',
                          schedule='08 10 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy NDW (navy_ndw)',
@@ -6678,7 +6679,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ndw.cnic.navy.mil',
                          schedule='09 11 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE Omaha District (usace_all)',
@@ -6686,7 +6687,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nwo.usace.army.mil',
                          schedule='10 12 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy CNRC (navy_cnrc)',
@@ -6694,7 +6695,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.cnrc.navy.mil',
                          schedule='11 13 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NORAD (norad)',
@@ -6702,7 +6703,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.norad.mil',
                          schedule='12 14 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'South Carolina National Guard (usng_scng)',
@@ -6710,7 +6711,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.scguard.ng.mil',
                          schedule='13 15 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Fort Indiantown Gap (ng_ftig)',
@@ -6718,7 +6719,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ftig.ng.mil',
                          schedule='14 16 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Botswana (dos_emb_afr_botswana)',
@@ -6734,7 +6735,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.navifor.usff.navy.mil',
                          schedule='16 18 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE Portland District (usace_all)',
@@ -6742,7 +6743,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nwp.usace.army.mil',
                          schedule='17 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE Seattle District (usace_all)',
@@ -6750,7 +6751,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nws.usace.army.mil',
                          schedule='18 20 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Interagency Autism Coordinating Committee (iacc)',
@@ -6758,7 +6759,7 @@ local output_target = 'opensearch';
                          starting_urls='https://iacc.hhs.gov',
                          schedule='19 21 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Djibouti (dos_emb_afr_djibouti)',
@@ -6766,7 +6767,7 @@ local output_target = 'opensearch';
                          starting_urls='https://dj.usembassy.gov',
                          schedule='20 22 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'HUD Archives (archives.hud.gov)',
@@ -6774,7 +6775,7 @@ local output_target = 'opensearch';
                          starting_urls='https://archives.hud.gov',
                          schedule='21 23 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy ONI (navy_oni)',
@@ -6782,7 +6783,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.oni.navy.mil',
                          schedule='22 00 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Oklahoma National Guard (ng_ong)',
@@ -6790,7 +6791,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ok.ng.mil',
                          schedule='23 01 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE Walla Walla District (usace_all)',
@@ -6798,7 +6799,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nww.usace.army.mil',
                          schedule='24 02 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy CNRNW (navy_cnrnw)',
@@ -6806,7 +6807,7 @@ local output_target = 'opensearch';
                          starting_urls='https://cnrnw.cnic.navy.mil',
                          schedule='25 03 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Million Hearts (millionhearts.hhs.gov)',
@@ -6822,7 +6823,7 @@ local output_target = 'opensearch';
                          starting_urls='https://usnhistory.navylive.dodlive.mil',
                          schedule='28 06 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Moscow (dos_emb_eur_moscow)',
@@ -6846,7 +6847,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.usff.navy.mil',
                          schedule='31 09 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD Chief Digital and AI Office (dod_cdaio)',
@@ -6854,7 +6855,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ai.mil',
                          schedule='32 10 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army Inspector General (army_ig)',
@@ -6870,7 +6871,7 @@ local output_target = 'opensearch';
                          starting_urls='https://oar.nih.gov',
                          schedule='34 12 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Sarajevo (dos_emb_eur_sarajevo)',
@@ -6878,7 +6879,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ba.usembassy.gov',
                          schedule='35 13 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army War College Publications (army_awcp)',
@@ -6886,7 +6887,7 @@ local output_target = 'opensearch';
                          starting_urls='https://publications.armywarcollege.edu',
                          schedule='36 14 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy Pacific NAVFAC (navy_pacnavfac)',
@@ -6894,7 +6895,7 @@ local output_target = 'opensearch';
                          starting_urls='https://pacific.navfac.navy.mil',
                          schedule='37 15 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army SWCS (army_swcs)',
@@ -6902,7 +6903,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.swcs.mil',
                          schedule='39 17 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Consulate Curacao (dos_emb_wha_curacao)',
@@ -6918,7 +6919,7 @@ local output_target = 'opensearch';
                          starting_urls='https://obssr.od.nih.gov',
                          schedule='42 20 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD DC3 (dod_dc3)',
@@ -6926,7 +6927,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.dc3.mil',
                          schedule='43 21 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Arkansas National Guard (ang_akng)',
@@ -6934,7 +6935,7 @@ local output_target = 'opensearch';
                          starting_urls='https://arkansas.nationalguard.mil',
                          schedule='44 22 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NIH ORIP (orip)',
@@ -6950,7 +6951,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.csp.navy.mil',
                          schedule='46 00 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Joint METC (joint_metc)',
@@ -6958,7 +6959,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.metc.mil',
                          schedule='47 01 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy CUSNC (navy_cusnc)',
@@ -6966,7 +6967,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.cusnc.navy.mil',
                          schedule='48 02 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Armed Forces Court (armfor)',
@@ -6982,7 +6983,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.il.ngb.army.mil',
                          schedule='50 04 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Office of Surface Mining (osm)',
@@ -7006,7 +7007,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.dhra.mil',
                          schedule='53 07 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Pristina (dos_emb_eur_pristina)',
@@ -7038,7 +7039,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.usarcent.army.mil',
                          schedule='57 11 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Missouri National Guard (ng_moguard)',
@@ -7046,7 +7047,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.moguard.ngb.mil',
                          schedule='58 12 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army SMDC (army_smdc)',
@@ -7054,7 +7055,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.smdc.army.mil',
                          schedule='59 13 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy 6th Fleet (navy_us6fleet)',
@@ -7062,7 +7063,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.c6f.navy.mil',
                          schedule='21 15 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army Cyber Command (army_cybercom)',
@@ -7070,7 +7071,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.arcyber.army.mil',
                          schedule='22 16 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Wind Exchange (wind)',
@@ -7078,7 +7079,7 @@ local output_target = 'opensearch';
                          starting_urls='https://windexchange.energy.gov',
                          schedule='23 17 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Kentucky National Guard (guard_kentucky)',
@@ -7086,7 +7087,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ky.ng.mil',
                          schedule='24 18 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy AIRLANT (navy_airlant)',
@@ -7094,7 +7095,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.airlant.usff.navy.mil',
                          schedule='27 21 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Tajikistan (dos_emb_csa_tajikistan)',
@@ -7119,7 +7120,7 @@ local output_target = 'opensearch';
                          starting_urls='https://al.ng.mil',
                          schedule='30 00 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NIST Metaschema (metaschema)',
@@ -7127,7 +7128,7 @@ local output_target = 'opensearch';
                          starting_urls='https://pages.nist.gov',
                          schedule='31 01 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army Japan (army_japan)',
@@ -7135,7 +7136,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.usarj.army.mil',
                          schedule='32 02 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Medical Countermeasures (mcmbarda)',
@@ -7151,7 +7152,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.niwcpacific.navy.mil',
                          schedule='34 04 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Pennsylvania National Guard (ng_pang)',
@@ -7159,7 +7160,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.pa.ng.mil',
                          schedule='35 05 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'MRSI (mrsi)',
@@ -7167,7 +7168,7 @@ local output_target = 'opensearch';
                          starting_urls='https://mrsi.erdc.dren.mil',
                          schedule='36 06 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army Combat Capabilities Development (army_comcapdev)',
@@ -7175,7 +7176,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.avmc.army.mil',
                          schedule='39 09 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD OUSDI (dod_ousdi)',
@@ -7183,7 +7184,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ousdi.defense.gov',
                          schedule='40 10 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Florida National Guard (guard_flng)',
@@ -7191,7 +7192,7 @@ local output_target = 'opensearch';
                          starting_urls='https://fl.ng.mil',
                          schedule='41 11 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'FHFA OIG (fhfa_oig)',
@@ -7207,7 +7208,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.agc.army.mil',
                          schedule='43 13 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Georgia National Guard (joint_gang)',
@@ -7215,7 +7216,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ga.ng.mil',
                          schedule='44 14 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'West Virginia National Guard (joint_wvng)',
@@ -7223,7 +7224,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.wv.ng.mil',
                          schedule='48 18 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Open Defense (opendgov)',
@@ -7231,7 +7232,7 @@ local output_target = 'opensearch';
                          starting_urls='https://open.defense.gov',
                          schedule='49 19 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Defense SBIR/STTR (dod_defensesbirsttr)',
@@ -7239,7 +7240,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.defensesbirsttr.mil',
                          schedule='50 20 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Campus Drug Prevention (cdp)',
@@ -7255,7 +7256,7 @@ local output_target = 'opensearch';
                          starting_urls='https://wrair.health.mil',
                          schedule='53 23 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Namibia (dos_emb_afr_namibia)',
@@ -7271,7 +7272,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.peodigital.navy.mil',
                          schedule='55 01 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army JPEO (army_jpeo)',
@@ -7279,7 +7280,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.jpeocbrnd.osd.mil',
                          schedule='56 02 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'ILRS (ilrs)',
@@ -7287,7 +7288,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ilrs.cddis.eosdis.nasa.gov',
                          schedule='57 03 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Venezuela (dos_emb_wha_venezuela)',
@@ -7311,7 +7312,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nsw.navy.mil',
                          schedule='47 06 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Michigan National Guard (ng_michigan)',
@@ -7319,7 +7320,7 @@ local output_target = 'opensearch';
                          starting_urls='https://minationalguard.dodlive.mil',
                          schedule='48 07 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Alaska District (alaska_district)',
@@ -7327,7 +7328,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.poa.usace.army.mil',
                          schedule='49 08 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NIH Data Science (data_science)',
@@ -7335,7 +7336,7 @@ local output_target = 'opensearch';
                          starting_urls='https://datascience.nih.gov',
                          schedule='51 10 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Honolulu District (honolulu_district)',
@@ -7343,7 +7344,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.poh.usace.army.mil',
                          schedule='53 12 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army Tobyhanna (army_tad)',
@@ -7359,7 +7360,7 @@ local output_target = 'opensearch';
                          starting_urls='https://co.ng.mil',
                          schedule='55 14 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD STARCOM (dod_starcom)',
@@ -7367,7 +7368,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.starcom.spaceforce.mil',
                          schedule='00 15 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army ASC (army_asc)',
@@ -7375,7 +7376,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.aschq.army.mil',
                          schedule='01 16 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA Corps CPC (corpscpc.noaa.gov)',
@@ -7383,7 +7384,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.corpscpc.noaa.gov',
                          schedule='03 18 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Brazzaville (dos_emb_afr_brazzaville)',
@@ -7391,7 +7392,7 @@ local output_target = 'opensearch';
                          starting_urls='https://cg.usembassy.gov',
                          schedule='05 20 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy SSP (navy_ssp)',
@@ -7399,7 +7400,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ssp.navy.mil',
                          schedule='07 22 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army 21st TSC (army_21tsc)',
@@ -7423,7 +7424,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ct.ng.mil',
                          schedule='10 01 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Romania (dos_emb_eur_romania_ro)',
@@ -7439,7 +7440,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.fcc.navy.mil',
                          schedule='01 05 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Macedonia (dos_emb_eur_macedonia)',
@@ -7455,7 +7456,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.usafmcom.army.mil',
                          schedule='03 07 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'CJTF OIR (cjtf_oir)',
@@ -7463,7 +7464,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.inherentresolve.mil',
                          schedule='04 08 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USDA FMS (usda-fms)',
@@ -7479,7 +7480,7 @@ local output_target = 'opensearch';
                          starting_urls='https://atlantic.navfac.navy.mil',
                          schedule='07 11 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Joint UNC (joint_unc)',
@@ -7487,7 +7488,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.unc.mil',
                          schedule='09 13 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy NAVWAR (navy_navwar)',
@@ -7495,7 +7496,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.navwar.navy.mil',
                          schedule='10 14 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy NECC (navy_necc)',
@@ -7503,7 +7504,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.necc.usff.navy.mil',
                          schedule='11 15 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NIH History (nih_history)',
@@ -7519,7 +7520,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.first.army.mil',
                          schedule='13 17 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Charleston District (charleston_district)',
@@ -7527,7 +7528,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.sac.usace.army.mil',
                          schedule='14 18 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy SUBLANT (navy_sublant)',
@@ -7535,7 +7536,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.sublant.usff.navy.mil',
                          schedule='15 19 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Nebraska National Guard (guard_nng)',
@@ -7543,7 +7544,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ne.ng.mil',
                          schedule='16 20 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Moldova (dos_emb_eur_moldova)',
@@ -7559,7 +7560,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.sad.usace.army.mil',
                          schedule='18 22 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DOT FMCSA CSA (dot-fmcsa-csa)',
@@ -7583,7 +7584,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.sas.usace.army.mil',
                          schedule='21 01 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy JRM (navy_jrm)',
@@ -7591,7 +7592,7 @@ local output_target = 'opensearch';
                          starting_urls='https://jrm.cnic.navy.mil',
                          schedule='22 02 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army Letterkenny (army_letterkenny)',
@@ -7599,7 +7600,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.letterkenny.army.mil',
                          schedule='23 03 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Wilmington District (wilmington_district)',
@@ -7607,7 +7608,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.saw.usace.army.mil',
                          schedule='24 04 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Joint JPRA (joint_jpra)',
@@ -7615,7 +7616,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.jpra.mil',
                          schedule='25 05 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD OGC (dod_ogc)',
@@ -7631,7 +7632,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ocio.nih.gov',
                          schedule='27 07 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Juba (dos_emb_afr_juba)',
@@ -7639,7 +7640,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ss.usembassy.gov',
                          schedule='28 08 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Vermont National Guard (ng_vt)',
@@ -7647,7 +7648,7 @@ local output_target = 'opensearch';
                          starting_urls='https://vt.public.ng.mil',
                          schedule='29 09 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Wisconsin National Guard (army_wi.ng)',
@@ -7655,7 +7656,7 @@ local output_target = 'opensearch';
                          starting_urls='https://wi.ng.mil',
                          schedule='30 10 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Vilnius (dos_emb_eur_vilnius)',
@@ -7663,7 +7664,7 @@ local output_target = 'opensearch';
                          starting_urls='https://lt.usembassy.gov',
                          schedule='31 11 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Delaware National Guard (ng_deng)',
@@ -7671,7 +7672,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.de.ng.mil',
                          schedule='32 12 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Albuquerque District (albuquerque_district)',
@@ -7679,7 +7680,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.spa.usace.army.mil',
                          schedule='33 13 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD Basic Research Office (dod_bro)',
@@ -7687,7 +7688,7 @@ local output_target = 'opensearch';
                          starting_urls='https://basicresearch.defense.gov',
                          schedule='34 14 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USNIC Domain (usnic-domain)',
@@ -7695,7 +7696,7 @@ local output_target = 'opensearch';
                          starting_urls='https://usicecenter.gov',
                          schedule='35 15 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy NCC (navy_ncc)',
@@ -7703,7 +7704,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ncc.navfac.navy.mil',
                          schedule='36 16 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army Transportation Command (tc)',
@@ -7711,7 +7712,7 @@ local output_target = 'opensearch';
                          starting_urls='https://transportation.army.mil',
                          schedule='37 17 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army 2ID Korea (army_2idkorea)',
@@ -7727,7 +7728,7 @@ local output_target = 'opensearch';
                          starting_urls='https://lv.usembassy.gov',
                          schedule='39 19 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Far East District (far_east_district)',
@@ -7735,7 +7736,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.pof.usace.army.mil',
                          schedule='40 20 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Alaska National Guard (guard_akng)',
@@ -7743,7 +7744,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ak.ng.mil',
                          schedule='41 21 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NIH OCR (nih-ocr)',
@@ -7751,7 +7752,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ocreco.od.nih.gov',
                          schedule='42 22 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Stellwagen NOAA (stellwagen.noaa.gov)',
@@ -7767,7 +7768,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.dodmantech.mil',
                          schedule='44 00 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy OWA (navy_owa)',
@@ -7775,7 +7776,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.owa.navy.mil',
                          schedule='46 02 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Armed Forces Sports (armedforcessports)',
@@ -7783,7 +7784,7 @@ local output_target = 'opensearch';
                          starting_urls='https://armedforcessports.defense.gov',
                          schedule='47 03 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'New Hampshire National Guard (ng_nh)',
@@ -7791,7 +7792,7 @@ local output_target = 'opensearch';
                          starting_urls='https://nh.ng.mil',
                          schedule='48 04 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Estonia (dos_emb_eur_estonia)',
@@ -7807,7 +7808,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.me.ng.mil',
                          schedule='52 08 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army JBLM Design Standards (army_jblmdesignstandars)',
@@ -7815,7 +7816,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.jblmdesignstandards.army.mil',
                          schedule='53 09 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'South Pacific Division (south_pacific_division)',
@@ -7823,7 +7824,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.spd.usace.army.mil',
                          schedule='54 10 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'SPK-WC (spk-wc)',
@@ -7831,7 +7832,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.spk-wc.usace.army.mil',
                          schedule='55 11 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Gabon (dos_emb_afr_gabon)',
@@ -7847,7 +7848,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nwdc.usff.navy.mil',
                          schedule='02 14 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy CNMOC (navy_cnmoc)',
@@ -7855,7 +7856,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.surflant.usff.navy.mil',
                          schedule='03 15 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Space Force USSFS (spaceforce_ussfs)',
@@ -7863,7 +7864,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.spaceforces-space.mil',
                          schedule='04 16 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy FRCSW (navy_frcsw)',
@@ -7871,7 +7872,7 @@ local output_target = 'opensearch';
                          starting_urls='https://frcsw.navair.navy.mil',
                          schedule='05 17 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Papahānaumokuākea Marine National Monument (papahnaumokukeamarinenationalmonu)',
@@ -7879,7 +7880,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.papahanaumokuakea.gov',
                          schedule='06 18 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army JTF NCR (army_jtfncr)',
@@ -7887,7 +7888,7 @@ local output_target = 'opensearch';
                          starting_urls='https://jtfncr.mdw.army.mil',
                          schedule='07 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DCMO (dcmo)',
@@ -7903,7 +7904,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.skysoldiers.army.mil',
                          schedule='10 22 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD Live SMTC (dodlive_smtc)',
@@ -7911,7 +7912,7 @@ local output_target = 'opensearch';
                          starting_urls='https://smtc.dodlive.mil',
                          schedule='12 00 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Monterey Bay National Marine Sanctuary (mbnms)',
@@ -7927,7 +7928,7 @@ local output_target = 'opensearch';
                          starting_urls='https://marineprotectedareas.noaa.gov',
                          schedule='14 02 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Clean Cities Energy (cleancities.energy.gov)',
@@ -7935,7 +7936,7 @@ local output_target = 'opensearch';
                          starting_urls='https://cleancities.energy.gov',
                          schedule='15 03 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Newborn Screening Codes (newbornscreeningcodes)',
@@ -7951,7 +7952,7 @@ local output_target = 'opensearch';
                          starting_urls='https://coe.gsa.gov',
                          schedule='18 06 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Sacramento District (sacramento_district)',
@@ -7959,7 +7960,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.spk.usace.army.mil',
                          schedule='19 07 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army North (army_usarmynorth)',
@@ -7975,7 +7976,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.iwtsd.gov',
                          schedule='22 10 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy BRAC PMO (navy_bracpmo)',
@@ -7983,7 +7984,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.bracpmo.navy.mil',
                          schedule='23 11 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army Nevada National Guard (army_nang)',
@@ -7991,7 +7992,7 @@ local output_target = 'opensearch';
                          starting_urls='https://nv.ng.mil',
                          schedule='24 12 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'VA Developer Portal (developer.va.gov)',
@@ -8007,7 +8008,7 @@ local output_target = 'opensearch';
                          starting_urls='https://bit.niddk.nih.gov',
                          schedule='27 15 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy FRCSE (navy_frcse)',
@@ -8015,7 +8016,7 @@ local output_target = 'opensearch';
                          starting_urls='https://frcse.navair.navy.mil',
                          schedule='28 16 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army SORB (army_sorb)',
@@ -8023,7 +8024,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.goarmysof.army.mil',
                          schedule='29 17 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'TechFAR Hub (techfarhub.usds.gov)',
@@ -8039,7 +8040,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.arcp.army.mil',
                          schedule='33 21 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Los Angeles District (los_angeles_district)',
@@ -8047,7 +8048,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.spl.usace.army.mil',
                          schedule='34 22 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD JTNC (dod_jtnc)',
@@ -8055,7 +8056,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.jtnc.mil',
                          schedule='35 23 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Mission to OSCE (dos_emb_eur_osce)',
@@ -8071,7 +8072,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.2cr.army.mil',
                          schedule='37 01 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD PAC (dod_pac)',
@@ -8079,7 +8080,7 @@ local output_target = 'opensearch';
                          starting_urls='https://pac.whs.mil',
                          schedule='39 03 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD ATEAPO (dod_ateapo)',
@@ -8087,7 +8088,7 @@ local output_target = 'opensearch';
                          starting_urls='https://at.dod.mil',
                          schedule='40 04 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army Ordnance (ord)',
@@ -8111,7 +8112,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.noaasis.noaa.gov',
                          schedule='44 08 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'San Francisco District (sanfrancisco_district)',
@@ -8119,7 +8120,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.spn.usace.army.mil',
                          schedule='45 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Europe District (europe_district)',
@@ -8127,7 +8128,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nau.usace.army.mil',
                          schedule='00 11 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NICHD Annual Report (nichd_dir)',
@@ -8143,7 +8144,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.peomlb.navy.mil',
                          schedule='03 14 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army PEO GCS (army_peogcs)',
@@ -8151,7 +8152,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.peogcs.army.mil',
                          schedule='04 15 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'BARDA DRIVE (barda_drive)',
@@ -8168,7 +8169,7 @@ local output_target = 'opensearch';
                          starting_urls='https://data.defense.gov',
                          schedule='06 17 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army 405th AFSB (army_405afsb)',
@@ -8176,7 +8177,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.afsbeurope.army.mil',
                          schedule='07 18 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'JAMRS (jamrs)',
@@ -8184,7 +8185,7 @@ local output_target = 'opensearch';
                          starting_urls='https://jamrs.defense.gov',
                          schedule='11 22 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'REPI (repi)',
@@ -8192,7 +8193,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.repi.mil',
                          schedule='13 00 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USACE Transatlantic Division (usace_transatlanticdiv)',
@@ -8200,7 +8201,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.tad.usace.army.mil',
                          schedule='14 01 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army Cyber (ar_cyber)',
@@ -8208,7 +8209,7 @@ local output_target = 'opensearch';
                          starting_urls='https://cyber.army.mil',
                          schedule='15 02 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'FedCenter (fedcenter.gov)',
@@ -8224,7 +8225,7 @@ local output_target = 'opensearch';
                          starting_urls='https://dodcertpmo.defense.gov',
                          schedule='19 06 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'FEHRM (fehrm)',
@@ -8232,7 +8233,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.fehrm.gov',
                          schedule='20 07 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Japan District (japan_district)',
@@ -8240,7 +8241,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.poj.usace.army.mil',
                          schedule='21 08 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army 41st FAB (army_41fsb)',
@@ -8248,7 +8249,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.41fab.army.mil',
                          schedule='24 11 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army RMC (army_rmc)',
@@ -8256,7 +8257,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.rmc.usace.army.mil',
                          schedule='25 12 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army V Corps (army_vcorps)',
@@ -8264,7 +8265,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.vcorps.army.mil',
                          schedule='26 13 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Marshall Islands (dos_emb_eap_marshallislands)',
@@ -8280,7 +8281,7 @@ local output_target = 'opensearch';
                          starting_urls='https://tl.usembassy.gov',
                          schedule='28 15 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy C3F (navy_c3f)',
@@ -8288,7 +8289,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.c3f.navy.mil',
                          schedule='29 16 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army T2 (army_t2)',
@@ -8296,7 +8297,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.t2.army.mil',
                          schedule='30 17 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoS 2009-2017 FPC (dos_2009_2017_fpc)',
@@ -8304,7 +8305,7 @@ local output_target = 'opensearch';
                          starting_urls='https://2009-2017-fpc.state.gov',
                          schedule='31 18 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Sudan (dos_emb_afr_sudan)',
@@ -8320,7 +8321,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.swd.usace.army.mil',
                          schedule='33 20 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USDA REE (ree)',
@@ -8328,7 +8329,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ree.usda.gov',
                          schedule='34 21 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD Actuary (actuary)',
@@ -8336,7 +8337,7 @@ local output_target = 'opensearch';
                          starting_urls='https://actuary.defense.gov',
                          schedule='35 22 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'FasterData (fasterdata)',
@@ -8344,7 +8345,7 @@ local output_target = 'opensearch';
                          starting_urls='https://fasterdata.es.net',
                          schedule='36 23 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'IRT (irt)',
@@ -8352,7 +8353,7 @@ local output_target = 'opensearch';
                          starting_urls='https://irt.defense.gov',
                          schedule='37 00 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy NAVCO (navy_navco)',
@@ -8360,7 +8361,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.outreach.navy.mil',
                          schedule='38 01 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy NEPA (navy_nepa)',
@@ -8368,7 +8369,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nepa.navy.mil',
                          schedule='39 02 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USDA RD (usda-rd-es)',
@@ -8384,7 +8385,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.409csb.army.mil',
                          schedule='41 04 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DCP US Courts (dcp_uscourts)',
@@ -8392,7 +8393,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.dcp.uscourts.gov',
                          schedule='42 05 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'RFPB (rfpb)',
@@ -8400,7 +8401,7 @@ local output_target = 'opensearch';
                          starting_urls='https://rfpb.defense.gov',
                          schedule='43 06 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'SWF-WC (swf-wc)',
@@ -8408,7 +8409,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.swf-wc.usace.army.mil',
                          schedule='44 07 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'ICOADS NOAA (icoads.noaa.gov)',
@@ -8416,7 +8417,7 @@ local output_target = 'opensearch';
                          starting_urls='https://icoads.noaa.gov',
                          schedule='45 08 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army 10th AAMDC (army_10aamdc)',
@@ -8424,7 +8425,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.10thaamdc.army.mil',
                          schedule='46 09 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army MRC Europe (army_mrceurope)',
@@ -8432,7 +8433,7 @@ local output_target = 'opensearch';
                          starting_urls='https://mrc-europe.army.mil',
                          schedule='47 10 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Embassy Bangui (dos_emb_afr_bangui)',
@@ -8440,7 +8441,7 @@ local output_target = 'opensearch';
                          starting_urls='https://cf.usembassy.gov',
                          schedule='48 11 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DOS Embassy Brunei (dos_emb_eap_brunei)',
@@ -8448,7 +8449,7 @@ local output_target = 'opensearch';
                          starting_urls='https://bn.usembassy.gov',
                          schedule='49 12 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Defense MWR Resale (defense_mwr_resale)',
@@ -8456,7 +8457,7 @@ local output_target = 'opensearch';
                          starting_urls='https://dodmwrandresalepolicy.defense.gov',
                          schedule='50 13 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DOS Embassy Minsk (dos_emb_eur_minsk)',
@@ -8480,7 +8481,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.clwp.navy.mil',
                          schedule='56 19 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'SWL (swl)',
@@ -8488,7 +8489,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.swl.usace.army.mil',
                          schedule='57 20 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DOS Embassy Ukraine (dos_emb_eur_ukraine_uk)',
@@ -8504,7 +8505,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.edis.army.mil',
                          schedule='59 22 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'HRSA Injury Compensation (hrsaics)',
@@ -8512,7 +8513,7 @@ local output_target = 'opensearch';
                          starting_urls='https://injurycompensation.hrsa.gov',
                          schedule='28 23 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'ULC (ulc)',
@@ -8520,7 +8521,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ulc.usace.army.mil',
                          schedule='30 01 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy OTEV (navy_otev)',
@@ -8528,7 +8529,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.optevfor.navy.mil',
                          schedule='32 03 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army ASB (army_asb)',
@@ -8536,7 +8537,7 @@ local output_target = 'opensearch';
                          starting_urls='https://asb.army.mil',
                          schedule='33 04 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD Clearinghouse (dod_chp)',
@@ -8544,7 +8545,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.dodclearinghouse.osd.mil',
                          schedule='34 05 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy TTGP (navy_ttgp)',
@@ -8552,7 +8553,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ttgp.navy.mil',
                          schedule='35 06 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army Quartermaster Museum (qmm)',
@@ -8560,7 +8561,7 @@ local output_target = 'opensearch';
                          starting_urls='https://qmmuseum.army.mil',
                          schedule='36 07 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army NATO (army_nato)',
@@ -8568,7 +8569,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.usanato.army.mil',
                          schedule='39 10 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Joint Warfare Analysis Center (joint_wac)',
@@ -8576,7 +8577,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.jwac.mil',
                          schedule='40 11 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Justice COPS (justice-cops)',
@@ -8592,7 +8593,7 @@ local output_target = 'opensearch';
                          starting_urls='https://vwac.defense.gov',
                          schedule='43 14 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army AMC EFMP (army_amc-efmp)',
@@ -8600,7 +8601,7 @@ local output_target = 'opensearch';
                          starting_urls='https://efmp.amedd.army.mil',
                          schedule='44 15 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Reclamation Newsroom (reclamationnewsroom)',
@@ -8632,7 +8633,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.csg4.usff.navy.mil',
                          schedule='49 20 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army 20th CBRNE (army_20cbrne)',
@@ -8640,7 +8641,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.20cbrne.army.mil',
                          schedule='51 22 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army 2nd Signal Brigade (army_2sigbde)',
@@ -8648,7 +8649,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.2sigbde.army.mil',
                          schedule='52 23 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DCTC Search (dctc-search)',
@@ -8656,7 +8657,7 @@ local output_target = 'opensearch';
                          starting_urls='https://dctc.mil',
                          schedule='53 00 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD JTFN (dod_jtfn)',
@@ -8664,7 +8665,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.jtfn.northcom.mil',
                          schedule='54 01 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NMIO (nmio)',
@@ -8672,7 +8673,7 @@ local output_target = 'opensearch';
                          starting_urls='https://nmio.ise.gov',
                          schedule='30 04 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'VIREC (virec)',
@@ -8680,7 +8681,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.virec.research.va.gov',
                          schedule='31 05 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'ARMI (armi)',
@@ -8697,7 +8698,7 @@ local output_target = 'opensearch';
                          starting_urls='https://dbb.defense.gov',
                          schedule='33 07 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD JTF GTMO (dod_jtfgtmo)',
@@ -8705,7 +8706,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.jtfgtmo.southcom.mil',
                          schedule='34 08 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Health PHCP (health_phcp)',
@@ -8713,7 +8714,7 @@ local output_target = 'opensearch';
                          starting_urls='https://phcp.health.mil',
                          schedule='35 09 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy INSURV (navy_insurv)',
@@ -8721,7 +8722,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.insurv.usff.navy.mil',
                          schedule='36 10 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'GeoNetCast Americas (www.geonetcastamericas.gov)',
@@ -8737,7 +8738,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.pscc.army.mil',
                          schedule='38 12 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army USANCA (army_usanca)',
@@ -8745,7 +8746,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.usanca.army.mil',
                          schedule='39 13 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD 90th COS (dod_90thcos)',
@@ -8753,7 +8754,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.shadowsedge.mil',
                          schedule='40 14 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD AFRIMS (dod_afrims)',
@@ -8761,7 +8762,7 @@ local output_target = 'opensearch';
                          starting_urls='https://afrims.health.mil',
                          schedule='42 16 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NASA HEC (hec)',
@@ -8769,7 +8770,7 @@ local output_target = 'opensearch';
                          starting_urls='https://hec.nasa.gov',
                          schedule='01 18 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NG Massachusetts (ng_massachusetts)',
@@ -8777,7 +8778,7 @@ local output_target = 'opensearch';
                          starting_urls='https://campedwards.ng.mil',
                          schedule='02 19 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'US Courts CAEPT (caept_uscourts)',
@@ -8785,7 +8786,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.caept.uscourts.gov',
                          schedule='04 21 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Coral Reef (coralreef.gov)',
@@ -8809,7 +8810,7 @@ local output_target = 'opensearch';
                          starting_urls='https://epact.energy.gov',
                          schedule='09 02 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy EWTGPAC (navy_ewtgpac)',
@@ -8817,7 +8818,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ewtgpac.navy.mil',
                          schedule='11 04 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy Ready (navy_ready)',
@@ -8825,7 +8826,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ready.navy.mil',
                          schedule='12 05 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NIH OxCam (oxcam)',
@@ -8833,7 +8834,7 @@ local output_target = 'opensearch';
                          starting_urls='https://oxcam.gpp.nih.gov',
                          schedule='14 07 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army 12th CAB (army_12cab)',
@@ -8841,7 +8842,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.12cab.army.mil',
                          schedule='15 08 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA Foster Scholars (fosterscholars.noaa.gov)',
@@ -8857,7 +8858,7 @@ local output_target = 'opensearch';
                          starting_urls='https://gsl.noaa.gov',
                          schedule='20 13 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'JECC (jecc)',
@@ -8865,7 +8866,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.jecc.ustranscom.mil',
                          schedule='22 15 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Pacific Ocean Division (pacific_ocean_division)',
@@ -8873,7 +8874,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.pod.usace.army.mil',
                          schedule='24 17 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army AHRPO (army_ahrpo)',
@@ -8881,7 +8882,7 @@ local output_target = 'opensearch';
                          starting_urls='https://ahrpo.army.mil',
                          schedule='25 18 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army USAMRDG (army_usamrdg)',
@@ -8889,7 +8890,7 @@ local output_target = 'opensearch';
                          starting_urls='https://mrdg.health.mil',
                          schedule='26 19 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD 2025 Transition (dod_2025dtd)',
@@ -8897,7 +8898,7 @@ local output_target = 'opensearch';
                          starting_urls='https://2025dodtransition.defense.gov',
                          schedule='27 20 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DoD LA (dodla)',
@@ -8905,7 +8906,7 @@ local output_target = 'opensearch';
                          starting_urls='https://la.defense.gov',
                          schedule='28 21 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NG IR (ng_ir)',
@@ -8913,7 +8914,7 @@ local output_target = 'opensearch';
                          starting_urls='https://dc.ng.mil',
                          schedule='29 22 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NG VNGFP (ng_vngfp)',
@@ -8921,7 +8922,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ngfamily.vt.gov',
                          schedule='30 23 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Vote.gov (vote_bn)',
@@ -8945,7 +8946,7 @@ local output_target = 'opensearch';
                          starting_urls='https://discover.nci.nih.gov',
                          schedule='36 05 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy Amphibious 7th Fleet (navy_amphib7)',
@@ -8953,7 +8954,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.amphib7flt.navy.mil',
                          schedule='38 07 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy NIA (navy_nia)',
@@ -8961,7 +8962,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.nia.navy.mil',
                          schedule='39 08 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DOS Embassy USAU (dos_emb_afr_usau)',
@@ -8977,7 +8978,7 @@ local output_target = 'opensearch';
                          starting_urls='https://cnrk.cnic.navy.mil',
                          schedule='46 15 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy NCTF Red Hill (navy_nctf-redhill)',
@@ -8985,7 +8986,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.navyclosuretaskforce.navy.mil',
                          schedule='47 16 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NG Virgin Islands (ng_virginislands)',
@@ -8993,7 +8994,7 @@ local output_target = 'opensearch';
                          starting_urls='https://vi.ng.mil',
                          schedule='48 17 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Army UCD (army_ucd)',
@@ -9001,7 +9002,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.saa.usace.army.mil',
                          schedule='51 20 * * TUE',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DNI Gov Test 1 (dni-gov-test1)',
@@ -9009,7 +9010,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.dni.gov',
                          schedule='53 22 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DOS Embassy Comoros (dos_emb_afr_comoros)',
@@ -9017,7 +9018,7 @@ local output_target = 'opensearch';
                          starting_urls='https://km.usembassy.gov',
                          schedule='54 23 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DOT PHMSA (dot-phmsa)',
@@ -9041,7 +9042,7 @@ local output_target = 'opensearch';
                          starting_urls='https://iocm.noaa.gov',
                          schedule='59 04 * * WED',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NIH MD-PhD (md-phd)',
@@ -9049,7 +9050,7 @@ local output_target = 'opensearch';
                          starting_urls='https://mdphd.gpp.nih.gov',
                          schedule='00 05 * * THU',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Navy CPRW1 (navy_cprw1)',
@@ -9057,7 +9058,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.cprw1.navy.mil',
                          schedule='01 06 * * FRI',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA TPIO (noaa_tpio)',
@@ -9065,7 +9066,7 @@ local output_target = 'opensearch';
                          starting_urls='https://nosc.noaa.gov',
                          schedule='03 08 * * SUN',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'OSHA (osha)',
@@ -9080,14 +9081,6 @@ local output_target = 'opensearch';
     config: DomainConfig(allowed_domains='www.cgaux.org',
                          starting_urls='https://www.cgaux.org/',
                          schedule='0 0 * * MON',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'do.usembassy.gov/es/ (do.usembassy)',
-    config: DomainConfig(allowed_domains='do.usembassy.gov/es/',
-                         starting_urls='https://do.usembassy.gov/es/',
-                         schedule='0 12 * * MON',
                          output_target=output_target,
                          depth_limit=8),
   },
@@ -9117,11 +9110,12 @@ local output_target = 'opensearch';
   },
   {
     name: 'lhncbc.nlm.nih.gov/newbornscreeningcodes/ (lhncbc.nlm.nih)',
-    config: DomainConfig(allowed_domains='lhncbc.nlm.nih.gov/newbornscreeningcodes/',
+    config: DomainConfig(allowed_domains='lhncbc.nlm.nih.gov',
                          starting_urls='https://lhncbc.nlm.nih.gov/newbornscreeningcodes/',
                          schedule='24 14 * * WED',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         allow_paths=['lhncbc.nlm.nih.gov/newbornscreeningcodes']),
   },
   {
     name: 'nareeeab.ree.usda.gov (nareeeab.ree.usda)',
@@ -9157,11 +9151,12 @@ local output_target = 'opensearch';
   },
   {
     name: 'www.glerl.noaa.gov/blog/ (www.glerl.noaa)',
-    config: DomainConfig(allowed_domains='www.glerl.noaa.gov/blog/',
+    config: DomainConfig(allowed_domains='www.glerl.noaa.gov',
                          starting_urls='https://www.glerl.noaa.gov/blog/',
                          schedule='24 2 * * SAT',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         allow_paths=['www.glerl.noaa.gov/blog']),
   },
   {
     name: 'www.investor.gov (www.investor)',
@@ -9189,89 +9184,18 @@ local output_target = 'opensearch';
   },
   {
     name: 'New depth 8 (ait.org.tw/zhtw)',
-    config: DomainConfig(allowed_domains='ait.org.tw/zhtw',
+    config: DomainConfig(allowed_domains='ait.org.tw',
                          starting_urls='https://ait.org.tw/zhtw/',
                          schedule='59 1 * * SUN',
                          output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (ba.usembassy.gov/bs)',
-    config: DomainConfig(allowed_domains='ba.usembassy.gov/bs',
-                         starting_urls='https://ba.usembassy.gov/bs/',
-                         schedule='54 7 * * SUN',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (bd.usembassy.gov/bn)',
-    config: DomainConfig(allowed_domains='bd.usembassy.gov/bn',
-                         starting_urls='https://bd.usembassy.gov/bn/',
-                         schedule='53 9 * * SUN',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (bg.usembassy.gov/bg)',
-    config: DomainConfig(allowed_domains='bg.usembassy.gov/bg',
-                         starting_urls='https://bg.usembassy.gov/bg/',
-                         schedule='52 11 * * SUN',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (br.usembassy.gov/pt)',
-    config: DomainConfig(allowed_domains='br.usembassy.gov/pt',
-                         starting_urls='https://br.usembassy.gov/pt/',
-                         schedule='50 13 * * SUN',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (by.usembassy.gov/be)',
-    config: DomainConfig(allowed_domains='by.usembassy.gov/be',
-                         starting_urls='https://by.usembassy.gov/be/',
-                         schedule='49 15 * * SUN',
-                         output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         allow_paths=['ait.org.tw/zhtw']),
   },
   {
     name: 'New depth 8 (ca.water.usgs.gov)',
     config: DomainConfig(allowed_domains='ca.water.usgs.gov',
                          starting_urls='https://ca.water.usgs.gov/',
                          schedule='47 17 * * SUN',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (cg.usembassy.gov/fr)',
-    config: DomainConfig(allowed_domains='cg.usembassy.gov/fr',
-                         starting_urls='https://cg.usembassy.gov/fr/',
-                         schedule='46 19 * * SUN',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (ch.usembassy.gov/de/sitemap-de)',
-    config: DomainConfig(allowed_domains='ch.usembassy.gov/de/sitemap-de',
-                         starting_urls='https://ch.usembassy.gov/de/sitemap-de/',
-                         schedule='44 21 * * SUN',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (ch.usembassy.gov/fr/sitemap-fr)',
-    config: DomainConfig(allowed_domains='ch.usembassy.gov/fr/sitemap-fr',
-                         starting_urls='https://ch.usembassy.gov/fr/sitemap-fr/',
-                         schedule='43 23 * * SUN',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (ch.usembassy.gov/it/sitemap-it)',
-    config: DomainConfig(allowed_domains='ch.usembassy.gov/it/sitemap-it',
-                         starting_urls='https://ch.usembassy.gov/it/sitemap-it/',
-                         schedule='42 1 * * MON',
                          output_target=output_target,
                          depth_limit=8),
   },
@@ -9284,58 +9208,10 @@ local output_target = 'opensearch';
                          depth_limit=8),
   },
   {
-    name: 'New depth 8 (ee.usembassy.gov/et)',
-    config: DomainConfig(allowed_domains='ee.usembassy.gov/et',
-                         starting_urls='https://ee.usembassy.gov/et/',
-                         schedule='36 9 * * MON',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (ee.usembassy.gov/ru)',
-    config: DomainConfig(allowed_domains='ee.usembassy.gov/ru',
-                         starting_urls='https://ee.usembassy.gov/ru/',
-                         schedule='35 11 * * MON',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (ga.usembassy.gov/fr)',
-    config: DomainConfig(allowed_domains='ga.usembassy.gov/fr',
-                         starting_urls='https://ga.usembassy.gov/fr/',
-                         schedule='33 13 * * MON',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
     name: 'New depth 8 (hk.usconsulate.gov)',
     config: DomainConfig(allowed_domains='hk.usconsulate.gov',
                          starting_urls='https://hk.usconsulate.gov',
                          schedule='29 19 * * MON',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (ht.usembassy.gov/fr)',
-    config: DomainConfig(allowed_domains='ht.usembassy.gov/fr',
-                         starting_urls='https://ht.usembassy.gov/fr/',
-                         schedule='28 21 * * MON',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (il.usembassy.gov/he)',
-    config: DomainConfig(allowed_domains='il.usembassy.gov/he',
-                         starting_urls='https://il.usembassy.gov/he/',
-                         schedule='26 23 * * MON',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (in.usembassy.gov/hi)',
-    config: DomainConfig(allowed_domains='in.usembassy.gov/hi',
-                         starting_urls='https://in.usembassy.gov/hi/',
-                         schedule='25 1 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
   },
@@ -9348,34 +9224,10 @@ local output_target = 'opensearch';
                          depth_limit=8),
   },
   {
-    name: 'New depth 8 (it.usembassy.gov/it)',
-    config: DomainConfig(allowed_domains='it.usembassy.gov/it',
-                         starting_urls='https://it.usembassy.gov/it/',
-                         schedule='22 5 * * TUE',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
     name: 'New depth 8 (kg.usembassy.gov/ky)',
     config: DomainConfig(allowed_domains='kg.usembassy.gov',
                          starting_urls='https://kg.usembassy.gov/',
                          schedule='20 7 * * TUE',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (kz.usembassy.gov/kk)',
-    config: DomainConfig(allowed_domains='kz.usembassy.gov/kk',
-                         starting_urls='https://kz.usembassy.gov/kk/',
-                         schedule='19 9 * * TUE',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (kz.usembassy.gov/ru)',
-    config: DomainConfig(allowed_domains='kz.usembassy.gov/ru',
-                         starting_urls='https://kz.usembassy.gov/ru/',
-                         schedule='18 11 * * TUE',
                          output_target=output_target,
                          depth_limit=8),
   },
@@ -9404,132 +9256,22 @@ local output_target = 'opensearch';
                          depth_limit=8),
   },
   {
-    name: 'New depth 8 (ma.usembassy.gov/ar)',
-    config: DomainConfig(allowed_domains='ma.usembassy.gov/ar',
-                         starting_urls='https://ma.usembassy.gov/ar/',
-                         schedule='12 19 * * TUE',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (ma.usembassy.gov/fr)',
-    config: DomainConfig(allowed_domains='ma.usembassy.gov/fr',
-                         starting_urls='https://ma.usembassy.gov/fr/',
-                         schedule='11 21 * * TUE',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (md.usembassy.gov/ro)',
-    config: DomainConfig(allowed_domains='md.usembassy.gov/ro',
-                         starting_urls='https://md.usembassy.gov/ro/',
-                         schedule='9 23 * * TUE',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (md.usembassy.gov/ru)',
-    config: DomainConfig(allowed_domains='md.usembassy.gov/ru',
-                         starting_urls='https://md.usembassy.gov/ru/',
-                         schedule='8 1 * * WED',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (me.usembassy.gov/me)',
-    config: DomainConfig(allowed_domains='me.usembassy.gov/me',
-                         starting_urls='https://me.usembassy.gov/me/',
-                         schedule='6 3 * * WED',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
     name: 'New depth 8 (mepi.state.gov/ar)',
-    config: DomainConfig(allowed_domains='mepi.state.gov/ar',
+    config: DomainConfig(allowed_domains='mepi.state.gov',
                          starting_urls='https://mepi.state.gov/ar/',
                          schedule='4 7 * * WED',
                          output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (mg.usembassy.gov/fr)',
-    config: DomainConfig(allowed_domains='mg.usembassy.gov/fr',
-                         starting_urls='https://mg.usembassy.gov/fr/',
-                         schedule='2 9 * * WED',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (mk.usembassy.gov/mk)',
-    config: DomainConfig(allowed_domains='mk.usembassy.gov/mk',
-                         starting_urls='https://mk.usembassy.gov/mk/',
-                         schedule='1 11 * * WED',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (mk.usembassy.gov/sq)',
-    config: DomainConfig(allowed_domains='mk.usembassy.gov/sq',
-                         starting_urls='https://mk.usembassy.gov/sq/',
-                         schedule='59 12 * * WED',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (mn.usembassy.gov/mn)',
-    config: DomainConfig(allowed_domains='mn.usembassy.gov/mn',
-                         starting_urls='https://mn.usembassy.gov/mn/',
-                         schedule='58 14 * * WED',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (om.usembassy.gov/ar)',
-    config: DomainConfig(allowed_domains='om.usembassy.gov/ar',
-                         starting_urls='https://om.usembassy.gov/ar/',
-                         schedule='56 16 * * WED',
-                         output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         allow_paths=['mepi.state.gov/ar']),
   },
   {
     name: 'New depth 8 (osce.usmission.gov/ru)',
-    config: DomainConfig(allowed_domains='osce.usmission.gov/ru',
+    config: DomainConfig(allowed_domains='osce.usmission.gov',
                          starting_urls='https://osce.usmission.gov/ru/',
                          schedule='55 18 * * WED',
                          output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (palestinianaffairs.state.gov/ar)',
-    config: DomainConfig(allowed_domains='palestinianaffairs.state.gov/ar',
-                         starting_urls='https://palestinianaffairs.state.gov/ar/',
-                         schedule='54 20 * * WED',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (qa.usembassy.gov/ar)',
-    config: DomainConfig(allowed_domains='qa.usembassy.gov/ar',
-                         starting_urls='https://qa.usembassy.gov/ar/',
-                         schedule='52 22 * * WED',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (ro.usembassy.gov/ro)',
-    config: DomainConfig(allowed_domains='ro.usembassy.gov/ro',
-                         starting_urls='https://ro.usembassy.gov/ro/',
-                         schedule='51 0 * * THU',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (ru.usembassy.gov/ru)',
-    config: DomainConfig(allowed_domains='ru.usembassy.gov/ru',
-                         starting_urls='https://ru.usembassy.gov/ru/',
-                         schedule='49 2 * * THU',
-                         output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         allow_paths=['osce.usmission.gov/ru']),
   },
   {
     name: 'New depth 8 (sy.usembassy.gov)',
@@ -9548,66 +9290,10 @@ local output_target = 'opensearch';
                          depth_limit=8),
   },
   {
-    name: 'New depth 8 (th.usembassy.gov/th)',
-    config: DomainConfig(allowed_domains='th.usembassy.gov/th',
-                         starting_urls='https://th.usembassy.gov/th/',
-                         schedule='38 18 * * THU',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (tj.usembassy.gov/ru)',
-    config: DomainConfig(allowed_domains='tj.usembassy.gov/ru',
-                         starting_urls='https://tj.usembassy.gov/ru/',
-                         schedule='37 20 * * THU',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (tn.usembassy.gov/ar)',
-    config: DomainConfig(allowed_domains='tn.usembassy.gov/ar',
-                         starting_urls='https://tn.usembassy.gov/ar/',
-                         schedule='35 22 * * THU',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (tn.usembassy.gov/fr)',
-    config: DomainConfig(allowed_domains='tn.usembassy.gov/fr',
-                         starting_urls='https://tn.usembassy.gov/fr/',
-                         schedule='34 0 * * FRI',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
     name: 'New depth 8 (usapc.army.mil)',
     config: DomainConfig(allowed_domains='usapc.army.mil',
                          starting_urls='https://usapc.army.mil/',
                          schedule='32 2 * * FRI',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (ua.usembassy.gov/ru)',
-    config: DomainConfig(allowed_domains='ua.usembassy.gov/ru',
-                         starting_urls='https://ua.usembassy.gov/ru/',
-                         schedule='31 4 * * FRI',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (uz.usembassy.gov/ru)',
-    config: DomainConfig(allowed_domains='uz.usembassy.gov/ru',
-                         starting_urls='https://uz.usembassy.gov/ru/',
-                         schedule='27 10 * * FRI',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (vote.gov/tl)',
-    config: DomainConfig(allowed_domains='vote.gov/tl',
-                         starting_urls='https://vote.gov/tl/',
-                         schedule='24 14 * * FRI',
                          output_target=output_target,
                          depth_limit=8),
   },
@@ -9672,38 +9358,6 @@ local output_target = 'opensearch';
     config: DomainConfig(allowed_domains='www.ncoworldwide.army.mil',
                          starting_urls='https://www.ncoworldwide.army.mil/',
                          schedule='7 14 * * SAT',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (xk.usembassy.gov/sq)',
-    config: DomainConfig(allowed_domains='xk.usembassy.gov/sq',
-                         starting_urls='https://xk.usembassy.gov/sq/',
-                         schedule='6 16 * * SAT',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (xk.usembassy.gov/sr)',
-    config: DomainConfig(allowed_domains='xk.usembassy.gov/sr',
-                         starting_urls='https://xk.usembassy.gov/sr/',
-                         schedule='4 18 * * SAT',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (yali.state.gov/fr)',
-    config: DomainConfig(allowed_domains='yali.state.gov/fr',
-                         starting_urls='https://yali.state.gov/fr/',
-                         schedule='3 20 * * SAT',
-                         output_target=output_target,
-                         depth_limit=8),
-  },
-  {
-    name: 'New depth 8 (yali.state.gov/pt)',
-    config: DomainConfig(allowed_domains='yali.state.gov/pt',
-                         starting_urls='https://yali.state.gov/pt/',
-                         schedule='1 22 * * SAT',
                          output_target=output_target,
                          depth_limit=8),
   },
@@ -9926,19 +9580,21 @@ local output_target = 'opensearch';
   },
   {
     name: 'FDA Recalls & Safety Alerts',
-    config: DomainConfig(allowed_domains='www.fda.gov/safety/recalls-market-withdrawals-safety-alerts',
+    config: DomainConfig(allowed_domains='www.fda.gov',
                          starting_urls='https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts',
                          schedule='45 03 * * WED',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         allow_paths=['www.fda.gov/safety/recalls-market-withdrawals-safety-alerts']),
   },
   {
     name: 'FDA Tobacco Products',
-    config: DomainConfig(allowed_domains='www.fda.gov/tobacco-products',
+    config: DomainConfig(allowed_domains='www.fda.gov',
                          starting_urls='https://www.fda.gov/tobacco-products',
                          schedule='10 04 * * WED',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         allow_paths=['www.fda.gov/tobacco-products']),
   },
   {
     name: 'FDR Presidential Library',
@@ -10375,11 +10031,12 @@ local output_target = 'opensearch';
   },
   {
     name: 'Department of Education Sites',
-    config: DomainConfig(allowed_domains='sites.ed.gov/idea/',
+    config: DomainConfig(allowed_domains='sites.ed.gov',
                          starting_urls='https://sites.ed.gov/idea/',
                          schedule='32 05 * * SUN',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         allow_paths=['sites.ed.gov/idea']),
   },
   {
     name: 'Student Privacy',
@@ -10567,11 +10224,12 @@ local output_target = 'opensearch';
   },
   {
     name: 'Milestone Documents',
-    config: DomainConfig(allowed_domains='www.archives.gov/milestone-documents/',
+    config: DomainConfig(allowed_domains='www.archives.gov',
                          starting_urls='https://www.archives.gov/milestone-documents/',
                          schedule='19 19 * * MON',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         allow_paths=['www.archives.gov/milestone-documents']),
   },
 
   {
@@ -10589,7 +10247,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.accesstocare.va.gov',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USCOURTS CACB',
@@ -10597,7 +10255,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.cacb.uscourts.gov',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NOAA CoastWatch',
@@ -10605,7 +10263,7 @@ local output_target = 'opensearch';
                          starting_urls='https://coastwatch.noaa.gov/cw/index.html',
                          schedule='30 08 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USDA FPAC Business Center',
@@ -10622,7 +10280,7 @@ local output_target = 'opensearch';
                          schedule='30 09 * * MON',
                          output_target=output_target,
                          options=['allow_query_string'],
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'VA HSRD Research',
@@ -10630,7 +10288,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.hsrd.research.va.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USCOURTS JPML',
@@ -10662,7 +10320,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.mssd.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USCOURTS NCWBA',
@@ -10670,7 +10328,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.ncwba.uscourts.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'NIH ORWH',
@@ -10678,7 +10336,7 @@ local output_target = 'opensearch';
                          starting_urls='https://orwh.od.nih.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'USCOURTS PAWD',
@@ -10694,7 +10352,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.queri.research.va.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'VA Research & Development',
@@ -10702,7 +10360,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.research.va.gov/',
                          schedule='30 08 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'DOD Defense Travel Management Office',
@@ -10726,7 +10384,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.cfm.va.gov/til/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'Bureau of Primary Health Care',
@@ -11833,7 +11491,7 @@ local output_target = 'opensearch';
   {
     name: 'US Embassy Vatican',
     config: DomainConfig(allowed_domains='va.usembassy.gov',
-                         starting_urls='http://va.usembassy.gov/',
+                         starting_urls='https://va.usembassy.gov/',
                          schedule='00 11 * * MON',
                          output_target=output_target,
                          depth_limit=8),
@@ -11872,19 +11530,21 @@ local output_target = 'opensearch';
   },
   {
     name: 'Limited English Proficiency',
-    config: DomainConfig(allowed_domains='www.justice.gov/crt/limited-english-proficiency',
+    config: DomainConfig(allowed_domains='www.justice.gov',
                          starting_urls='https://www.justice.gov/crt/limited-english-proficiency',
                          schedule='01 03 * * TUE',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         allow_paths=['www.justice.gov/crt/limited-english-proficiency']),
   },
   {
     name: '9/11 Commission Report',
-    config: DomainConfig(allowed_domains='govinfo.library.unt.edu/911',
+    config: DomainConfig(allowed_domains='govinfo.library.unt.edu',
                          starting_urls='https://govinfo.library.unt.edu/911',
                          schedule='29 03 * * SUN',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         allow_paths=['govinfo.library.unt.edu/911']),
   },
   {
     name: 'US Embassy Afghanistan',
@@ -12585,7 +12245,7 @@ local output_target = 'opensearch';
   {
     name: 'US Mission Vienna',
     config: DomainConfig(allowed_domains='vienna.usmission.gov',
-                         starting_urls='http://vienna.usmission.gov/',
+                         starting_urls='https://vienna.usmission.gov/',
                          schedule='05 10 * * THU',
                          output_target=output_target,
                          depth_limit=8),
@@ -12632,7 +12292,7 @@ local output_target = 'opensearch';
   },
   {
     name: 'AHRQ',
-    config: DomainConfig(allowed_domains='hcup-us.ahrq.gov/',
+    config: DomainConfig(allowed_domains='hcup-us.ahrq.gov',
                          starting_urls='https://hcup-us.ahrq.gov/',
                          schedule='35 02 * * MON',
                          output_target=output_target,
@@ -12796,11 +12456,12 @@ local output_target = 'opensearch';
   },
   {
     name: 'www.acq.osd.mil/asda/dpc/',
-    config: DomainConfig(allowed_domains='www.acq.osd.mil/asda/dpc/',
+    config: DomainConfig(allowed_domains='www.acq.osd.mil',
                          starting_urls='https://www.acq.osd.mil/asda/dpc/index.html',
                          schedule='20 12 * * SAT',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=8,
+                         allow_paths=['www.acq.osd.mil/asda/dpc']),
   },
   {
     name: 'bjatta.bja.ojp.gov',
@@ -12935,7 +12596,7 @@ local output_target = 'opensearch';
   },
   {
     name: 'Air Force Safety Center',
-    config: DomainConfig(allowed_domains='www.safety.af.mil/',
+    config: DomainConfig(allowed_domains='www.safety.af.mil',
                          starting_urls='https://www.safety.af.mil/',
                          schedule='23 05 * * THU',
                          output_target=output_target,
@@ -13052,7 +12713,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.deadiversion.usdoj.gov/',
                          schedule='05 21 * * SAT',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'ASPR HHS',
@@ -13312,7 +12973,7 @@ local output_target = 'opensearch';
   },
   {
     name: 'US Embassy in Singapore',
-    config: DomainConfig(allowed_domains='sg.usembassy.gov/',
+    config: DomainConfig(allowed_domains='sg.usembassy.gov',
                          starting_urls='https://sg.usembassy.gov/',
                          schedule='58 03 * * FRI',
                          output_target=output_target,
@@ -13324,7 +12985,7 @@ local output_target = 'opensearch';
                          starting_urls='https://toolkit.climate.gov/',
                          schedule='30 09 * * MON',
                          output_target=output_target,
-                         depth_limit=3),
+                         depth_limit=8),
   },
   {
     name: 'FDA Import Alerts',

@@ -18,6 +18,12 @@ def get_redis_connection_args(db: int = 1) -> dict:
     return args
 
 
+def get_redis_connection_args_for_settings(db: int = 1) -> tuple[str, str, int, dict]:
+    """Helper to simplify getting redis connection args for scrapy settings"""
+    connection_args = get_redis_connection_args(db=db)
+    return connection_args.pop("host"), connection_args.pop("port"), connection_args.pop("db"), connection_args
+
+
 def init_redis_client(**extra_args) -> Redis:
     """Initialize a Redis client using connection arguments from environment variables."""
     # Create a Redis client with the connection arguments

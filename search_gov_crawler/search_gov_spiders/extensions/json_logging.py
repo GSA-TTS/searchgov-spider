@@ -2,10 +2,10 @@ import logging
 from typing import Self
 
 from pythonjsonlogger.json import JsonFormatter
+from scrapy import Spider
 from scrapy.crawler import Crawler
 from scrapy.exceptions import NotConfigured
 from scrapy.signals import spider_opened
-from scrapy.spiders import Spider
 
 LOG_FMT = "%(asctime)%(name)%(levelname)%(message)"
 SITEMAP_START_URLS = "Generated from Sitemap"
@@ -13,16 +13,26 @@ SITEMAP_START_URLS = "Generated from Sitemap"
 
 def search_gov_default(obj) -> dict | None:
     """Function to help serialize scrapy objects in logs"""
+
     if isinstance(obj, Spider):
+        if obj.name == "freshness_spider":
+            return {
+                "name": obj.name,
+                "query": getattr(obj, "query", None),
+                "freshness_index": getattr(obj, "freshness_index", None),
+                "max_results": getattr(obj, "freshness_index", None),
+            }
+
         return {
             "name": obj.name,
             "spider_id": getattr(obj, "spider_id", None),
             "allow_query_string": getattr(obj, "allow_query_string", None),
             "allowed_domains": getattr(obj, "allowed_domains", None),
-            "allowed_domain_paths": getattr(obj, "allowed_domain_paths", None),
+            "allowed_domains_strict": getattr(obj, "allowed_domain_strict", None),
             "start_urls": SITEMAP_START_URLS if getattr(obj, "_sitemap_url", None) else obj.start_urls,
             "output_target": getattr(obj, "output_target", None),
-            "depth_limit": obj.settings.get("DEPTH_LIMIT", None),
+            "depth_limit": obj.settings.getint("DEPTH_LIMIT", None),
+            "allow_paths": getattr(obj, "_allow_paths", None),
             "deny_paths": getattr(obj, "_deny_paths", None),
         }
 
@@ -121,22 +131,38 @@ class JsonLogging:
         return ext
 
     def spider_opened(self, spider: Spider) -> None:
-        """Try to add hanlders and then log arguments passed to the spider"""
+        """
+        Try to add hanlders and then log arguments passed to the spider.  Checking isinstance for
+        custom spiders runs into an import mismatch when running direct `scrapy crawl` commands
+        but works for scheduled runs started from `scrapy_scheduler.py`.  Instead rely on names.
+        """
 
         self._add_json_handlers()
-        spider.logger.info(
-            (
-                "Starting spider %s (spider_id %s) with following args: "
-                "allowed_domains=%s allowed_domain_paths=%s start_urls=%s "
-                "output_target=%s depth_limit=%s deny_paths=%s sitemap_url=%s"
-            ),
-            spider.name,
-            getattr(spider, "spider_id", None),
-            ",".join(getattr(spider, "allowed_domains", [])),
-            ",".join(getattr(spider, "allowed_domains_paths", [])),
-            SITEMAP_START_URLS if getattr(spider, "_sitemap_url", None) else ",".join(spider.start_urls),
-            getattr(spider, "output_target", None),
-            spider.settings.get("DEPTH_LIMIT", None),
-            getattr(spider, "_deny_paths", None),
-            getattr(spider, "_sitemap_url", None),
-        )
+        if spider.name in ("domain_spider", "domain_spider_js"):
+            spider.logger.info(
+                (
+                    "Starting spider %s (spider_id %s) with following args: "
+                    "allowed_domains=%s allowed_domains_strict=%s start_urls=%s "
+                    "output_target=%s depth_limit=%s allow_paths=%s deny_paths=%s sitemap_url=%s"
+                ),
+                spider.name,
+                getattr(spider, "spider_id", None),
+                ",".join(getattr(spider, "allowed_domains", [])),
+                getattr(spider, "allowed_domains_strict", None),
+                SITEMAP_START_URLS if getattr(spider, "_sitemap_url", None) else ",".join(spider.start_urls),
+                getattr(spider, "output_target", None),
+                spider.settings.getint("DEPTH_LIMIT", None),
+                getattr(spider, "_allow_paths", None),
+                getattr(spider, "_deny_paths", None),
+                getattr(spider, "_sitemap_url", None),
+            )
+        elif spider.name == "freshness_spider":
+            spider.logger.info(
+                "Starting spider %s with following args: freshness_index=%s query=%s max_results=%s",
+                spider.name,
+                getattr(spider, "freshness_index", None),
+                getattr(spider, "query", None),
+                getattr(spider, "max_results", None),
+            )
+        else:
+            spider.logger.info("Starting spider %s", spider.name)

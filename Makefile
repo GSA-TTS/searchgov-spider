@@ -23,6 +23,16 @@ project-requirements:
 	$(PYTHON) -m pip install --upgrade pip
 	$(PYTHON) -m pip install -r requirements.txt
 
+# --- Spider Manual Testing ---
+
+WWW_GSA_GOV_CRAWL_ARGS = \
+-a allowed_domains="www.gsa.gov" -a start_urls="https://www.gsa.gov" \
+-a output_target="opensearch" -a depth_limit=8 -a started_by=manual_run
+
+.PHONY: crawl-www.gsa.gov
+crawl-www.gsa.gov: project-requirements
+	cd search_gov_crawler && $(PYTHON) -m scrapy crawl domain_spider $(WWW_GSA_GOV_CRAWL_ARGS)
+
 # --- Schedule Management ---
 
 .PHONY: schedule-format

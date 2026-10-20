@@ -335,6 +335,8 @@ class SitemapMonitor:
                         spider_args = {
                             "allow_query_string": record.allow_query_string,
                             "allowed_domains": record.allowed_domains,
+                            "allowed_domains_strict": record.allowed_domains_strict,
+                            "allow_paths": record.allow_paths,
                             "deny_paths": record.deny_paths,
                             "start_urls": ",".join(url_batch),
                             "output_target": record.output_target,
