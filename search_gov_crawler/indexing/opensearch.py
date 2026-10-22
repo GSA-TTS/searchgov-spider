@@ -197,12 +197,21 @@ class SearchGovOpensearch:
 
     def ensure_valid_query(self, query: str | dict, index_name: str | None = None) -> dict:
         """Check input query to ensure validity"""
+        type_error = "Query input is not a valid dictionary!"
 
         if isinstance(query, str):
-            formatted_query = ast.literal_eval(query)
+            try:
+                formatted_query = ast.literal_eval(query)
+            except SyntaxError as err:
+                raise TypeError(type_error) from err
+
             if not isinstance(formatted_query, dict):
-                msg = "Query input is not a valid dictionary!"
-                raise TypeError(msg)
+                raise TypeError(type_error)
+        else:
+            try:
+                formatted_query = dict(query)
+            except (ValueError, TypeError) as err:
+                raise TypeError(type_error) from err
 
         resolved_index_name = self._resolved_index_name(index_name)
         try:

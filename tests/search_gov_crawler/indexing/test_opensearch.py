@@ -182,11 +182,10 @@ def test_update_index_template_index_does_not_exist(caplog, opensearch_instance)
     assert "Index test-index does not exist, create it first!" in caplog.messages
 
 
-def test_ensure_valid_query(mocker, opensearch_instance):
-    mock_client = mocker.MagicMock()
-    mocker.patch("search_gov_crawler.indexing.opensearch.OpenSearch", return_value=mock_client)
-    mock_client.indices.validate_query.return_value = {"valid": True}
-    assert opensearch_instance.ensure_valid_query(query='{"test": "query"}') == {"test": "query"}
+@pytest.mark.parametrize("query_input", ['{"test": "query"}', {"test": "query"}])
+def test_ensure_valid_query(opensearch_instance, query_input):
+    opensearch_instance.client.indices.validate_query.return_value = {"valid": True}
+    assert opensearch_instance.ensure_valid_query(query=query_input) == {"test": "query"}
 
 
 def test_ensure_valid_query_invalid(opensearch_instance):
@@ -216,10 +215,10 @@ def test_ensure_valid_query_invalid(opensearch_instance):
         opensearch_instance.ensure_valid_query(query='{"invalid": "query"}')
 
 
-def test_ensure_valid_query_not_a_dict(mocker, opensearch_instance):
-    mocker.patch("ast.literal_eval", return_value=False)
+@pytest.mark.parametrize("input_query", ['{"invalid: "dict,', "invalid dict", 10, False])
+def test_ensure_valid_query_not_a_dict(input_query, opensearch_instance):
     with pytest.raises(TypeError, match=re.escape("Query input is not a valid dictionary!")):
-        opensearch_instance.ensure_valid_query(query='{"invalid": "query"}')
+        opensearch_instance.ensure_valid_query(query=input_query)
 
 
 def test_ensure_valid_query_missing_index(opensearch_instance):
