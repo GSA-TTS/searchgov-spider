@@ -10,7 +10,7 @@ def split_optional_str_or_sequence(input_argument: OptionalStrOrSequence) -> Seq
     remain obscure enough in this usage to not be accounted for.
     """
 
-    if input_argument is None:
+    if not input_argument:
         return ()
 
     if isinstance(input_argument, str):

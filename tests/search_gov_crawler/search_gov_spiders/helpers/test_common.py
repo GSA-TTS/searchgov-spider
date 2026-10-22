@@ -4,6 +4,7 @@ from search_gov_crawler.search_gov_spiders.helpers.common import split_optional_
 
 SPLIT_OPTIONAL_STR_OR_SEQUENCE_TEST_CASES = [
     (None, ()),
+    ("", ()),
     ("example.com", ("example.com",)),
     ("1.example.com,2.example.com", ("1.example.com", "2.example.com")),
     (("1.example.com", "2.example.com"), ("1.example.com", "2.example.com")),
