@@ -2,8 +2,8 @@
  * [Sunday (233)](#sunday-233)
  * [Monday (234)](#monday-234)
  * [Tuesday (231)](#tuesday-231)
- * [Wednesday (227)](#wednesday-227)
- * [Thursday (228)](#thursday-228)
+ * [Wednesday (230)](#wednesday-230)
+ * [Thursday (231)](#thursday-231)
  * [Friday (237)](#friday-237)
  * [Saturday (235)](#saturday-235)
 
@@ -144,7 +144,7 @@
 |DCAA (dod_dcaa)|10:36|www.dcaa.mil|N|N|8|||
 |Navy INSURV (navy_insurv)|10:36|www.insurv.usff.navy.mil|N|N|8|||
 |ecos.fws.gov (ecos)|10:52|ecos.fws.gov|N|N|8|||
-|www.census.gov (usagov-replacement)|11:00|www.census.gov|N|N|8|||
+|www.census.gov (usagov-replacement)|11:00|www.census.gov|N|N|10|||
 |tricare_guantanamo|11:00|guantanamo.tricare.mil|N|N|8|||
 |27th Special Operations Medical Group - Cannon Air Force Base|11:00|cannon.tricare.mil|N|N|8|||
 |Defense Technical Information Center|11:11|discover.dtic.mil|N|N|8|||
@@ -721,7 +721,7 @@
 |McConnell Air Force Base (afpw_mcconnell)|23:48|www.mcconnell.af.mil|N|N|8|||
 
 
-## Wednesday (227)
+## Wednesday (230)
 |Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
 |---|---|---|---|---|---|---|---|
 |www.fec.gov (usagov-replacement)|00:00|www.fec.gov|N|N|8|||
@@ -777,6 +777,7 @@
 |Space Operations Command (dod_spoc)|05:32|www.spoc.spaceforce.mil|N|N|8|||
 |DCP US Courts (dcp_uscourts)|05:42|www.dcp.uscourts.gov|N|N|8|||
 |Maternal and Child Health Bureau|05:42|mchb.hrsa.gov|N|N|8|||
+|department.va.gov|05:50|department.va.gov|N|N|8|||
 |Financial Aid Toolkit (financialaidtoolkit)|05:59|financialaidtoolkit.ed.gov|N|N|8|||
 |www.esd.whs.mil (usagov-replacement)|06:00|www.esd.whs.mil|N|N|8|||
 |tricare_okinawa|06:00|okinawa.tricare.mil|N|N|8|||
@@ -805,7 +806,7 @@
 |GET.gov|07:38|get.gov|N|N|8|||
 |US Embassy Uruguay|07:48|uy.usembassy.gov|N|N|8|||
 |georgewbush-whitehouse.archives.gov (usagov-replacement)|07:53|georgewbush-whitehouse.archives.gov|N|N|8|||
-|SAMHSA Treatment Locator|07:55|www.findtreatment.gov|N|N|8|||
+|SAMHSA Treatment Locator|07:55|www.findtreatment.gov|N|Y|8|||
 |safer.fmcsa.dot.gov (usagov-replacement)|08:00|safer.fmcsa.dot.gov|N|N|8|||
 |tricare_wach|08:00|winn.tricare.mil|N|N|8|||
 |inss.ndu.edu (nduedu)|08:03|inss.ndu.edu|N|N|8|||
@@ -906,6 +907,7 @@
 |US Courts NEP|17:18|www.nep.uscourts.gov|N|N|8|||
 |Pacific Ocean Division (pacific_ocean_division)|17:24|www.pod.usace.army.mil|N|N|8|||
 |USAF BMT Flight Photos (bmtflightphotos)|17:32|www.bmtflightphotos.af.mil|N|N|8|||
+|mirecc.va.gov|17:37|mirecc.va.gov|N|N|8|||
 |www.blm.gov (usagov-replacement)|17:43|www.blm.gov|N|N|8|||
 |pinnacle.ndu.edu (nduedu)|17:56|pinnacle.ndu.edu|N|N|8|||
 |tricare_412mg|18:00|edwards.tricare.mil|N|N|8|||
@@ -925,6 +927,7 @@
 |Army Center of Military History (achh)|19:46|achh.army.mil|N|N|8|||
 |www.publications.usace.army.mil (usace_pubs)|19:54|www.publications.usace.army.mil|N|N|8|||
 |Navy CLWP (navy_clwp)|19:56|www.clwp.navy.mil|N|N|8|||
+|www.cob.uscourts.gov|20:01|www.cob.uscourts.gov|N|N|8|||
 |National Health Service Corps|20:12|nhsc.hrsa.gov|N|N|8|||
 |Far East District (far_east_district)|20:40|www.pof.usace.army.mil|N|N|8|||
 |Dover Air Force Base (afpw_dover)|20:43|www.dover.af.mil|N|N|8|||
@@ -953,7 +956,7 @@
 |Army 2nd Signal Brigade (army_2sigbde)|23:52|www.2sigbde.army.mil|N|N|8|||
 
 
-## Thursday (228)
+## Thursday (231)
 |Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
 |---|---|---|---|---|---|---|---|
 |niccs.cisa.gov (niccs.cisa)|00:00|niccs.cisa.gov|N|N|8|||
@@ -1072,6 +1075,7 @@
 |US Mission Vienna|10:05|vienna.usmission.gov|N|N|8|||
 |US Embassy Netherlands|10:08|nl.usembassy.gov|N|N|8|||
 |Gulfport Combat Readiness Training Center (ang_gulfportcrtc)|10:09|www.gulfportcrtc.ang.af.mil|N|N|8|||
+|atammc.tricare.mil|10:09|atammc.tricare.mil|N|N|8|||
 |US Courts Western District of Louisiana|10:15|www.lawb.uscourts.gov|N|N|8|||
 |Combined Arms Support Command (cas)|10:16|cascom.army.mil|N|N|8|||
 |www.navy.mil (usagov-replacement)|10:22|www.navy.mil|N|N|8|||
@@ -1112,6 +1116,7 @@
 |Defense MWR Resale (defense_mwr_resale)|13:50|dodmwrandresalepolicy.defense.gov|N|N|8|||
 |National Institute of Neurological Disorders and Stroke (NINDS) (www.ninds.nih.gov)|13:51|www.ninds.nih.gov|N|N|8|||
 |Copy of Little Rock Air Force Base (airforce_littlerock)|13:51|www.littlerock.af.mil|N|N|8|||
+|www.jiatfcc.northcom.mil|13:51|www.jiatfcc.northcom.mil|N|N|8|||
 |Army Tobyhanna (army_tad)|13:54|www.tobyhanna.army.mil|N|N|8|||
 |DoD Basic Research Office (dod_bro)|14:34|basicresearch.defense.gov|N|N|8|||
 |DoD 90th COS (dod_90thcos)|14:40|www.shadowsedge.mil|N|N|8|||
@@ -1157,6 +1162,7 @@
 |FEMA Training (usagov-replacement)|19:42|training.fema.gov|N|N|8|||
 |188th WG, Arkansas ANG (afpw_188fw)|19:43|www.188wg.ang.af.mil|N|N|8|||
 |NCCOS Data Collections|20:01|products.coastalscience.noaa.gov|N|N|8|||
+|www.sewp.nasa.gov|20:01|www.sewp.nasa.gov|N|N|8|||
 |US Embassy Brazzaville (dos_emb_afr_brazzaville)|20:05|cg.usembassy.gov|N|N|8|||
 |National Institute of Nursing Research (NINR) (www.ninr.nih.gov)|20:18|www.ninr.nih.gov|N|N|8|||
 |Air Education and Training Command (aetc)|20:18|www.aetc.af.mil|N|N|8|||
