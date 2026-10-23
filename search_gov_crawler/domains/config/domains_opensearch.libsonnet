@@ -635,7 +635,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.census.gov/',
                          schedule='00 11 * * SUN',
                          output_target=output_target,
-                         depth_limit=8),
+                         depth_limit=9),  // set here so that we don't trigger the delta sitemap
   },
   {
     name: 'www.war.gov (usagov-replacement)',

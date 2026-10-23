@@ -144,7 +144,7 @@
 |DCAA (dod_dcaa)|10:36|www.dcaa.mil|N|N|8|||
 |Navy INSURV (navy_insurv)|10:36|www.insurv.usff.navy.mil|N|N|8|||
 |ecos.fws.gov (ecos)|10:52|ecos.fws.gov|N|N|8|||
-|www.census.gov (usagov-replacement)|11:00|www.census.gov|N|N|8|||
+|www.census.gov (usagov-replacement)|11:00|www.census.gov|N|N|9|||
 |tricare_guantanamo|11:00|guantanamo.tricare.mil|N|N|8|||
 |27th Special Operations Medical Group - Cannon Air Force Base|11:00|cannon.tricare.mil|N|N|8|||
 |Defense Technical Information Center|11:11|discover.dtic.mil|N|N|8|||
