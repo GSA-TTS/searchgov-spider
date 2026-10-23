@@ -1176,7 +1176,7 @@
       "allowed_domains_strict": false,
       "check_sitemap_hours": null,
       "deny_paths": null,
-      "depth_limit": 8,
+      "depth_limit": 9,
       "handle_javascript": false,
       "name": "www.census.gov (usagov-replacement)",
       "output_target": "opensearch",
