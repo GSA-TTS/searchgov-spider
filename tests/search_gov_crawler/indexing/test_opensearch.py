@@ -234,10 +234,11 @@ def test_ensure_valid_query_missing_index(opensearch_instance):
         ({"test": "query", "size": 100, "sort": "field"}, {"test": "query", "size": 100, "sort": "field"}),
     ],
 )
-def test_count(opensearch_instance, query_in, query_out):
+def test_count(mocker, opensearch_instance, query_in, query_out):
     opensearch_instance.client.count.return_value = {"count": 10}
     assert opensearch_instance.count(query=query_in) == 10
     assert query_in == query_out
+    opensearch_instance.client.count.assert_called_with(index=mocker.ANY, body={"test": "query"})
 
 
 @pytest.fixture
