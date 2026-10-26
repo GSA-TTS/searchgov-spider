@@ -1,14 +1,14 @@
 # Production Schedule
- * [Sunday (233)](#sunday-233)
+ * [Sunday (232)](#sunday-232)
  * [Monday (234)](#monday-234)
  * [Tuesday (231)](#tuesday-231)
- * [Wednesday (230)](#wednesday-230)
+ * [Wednesday (231)](#wednesday-231)
  * [Thursday (231)](#thursday-231)
  * [Friday (237)](#friday-237)
  * [Saturday (235)](#saturday-235)
 
 
-## Sunday (233)
+## Sunday (232)
 |Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
 |---|---|---|---|---|---|---|---|
 |NDBC NOAA (ndbc.noaa.gov)|00:09|dods.ndbc.noaa.gov|N|N|8|||
@@ -144,7 +144,6 @@
 |DCAA (dod_dcaa)|10:36|www.dcaa.mil|N|N|8|||
 |Navy INSURV (navy_insurv)|10:36|www.insurv.usff.navy.mil|N|N|8|||
 |ecos.fws.gov (ecos)|10:52|ecos.fws.gov|N|N|8|||
-|www.census.gov (usagov-replacement)|11:00|www.census.gov|N|N|10|||
 |tricare_guantanamo|11:00|guantanamo.tricare.mil|N|N|8|||
 |27th Special Operations Medical Group - Cannon Air Force Base|11:00|cannon.tricare.mil|N|N|8|||
 |Defense Technical Information Center|11:11|discover.dtic.mil|N|N|8|||
@@ -721,7 +720,7 @@
 |McConnell Air Force Base (afpw_mcconnell)|23:48|www.mcconnell.af.mil|N|N|8|||
 
 
-## Wednesday (230)
+## Wednesday (231)
 |Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
 |---|---|---|---|---|---|---|---|
 |www.fec.gov (usagov-replacement)|00:00|www.fec.gov|N|N|8|||
@@ -927,6 +926,7 @@
 |Army Center of Military History (achh)|19:46|achh.army.mil|N|N|8|||
 |www.publications.usace.army.mil (usace_pubs)|19:54|www.publications.usace.army.mil|N|N|8|||
 |Navy CLWP (navy_clwp)|19:56|www.clwp.navy.mil|N|N|8|||
+|www.census.gov (usagov-replacement)|20:00|www.census.gov|N|N|10|||
 |www.cob.uscourts.gov|20:01|www.cob.uscourts.gov|N|N|8|||
 |National Health Service Corps|20:12|nhsc.hrsa.gov|N|N|8|||
 |Far East District (far_east_district)|20:40|www.pof.usace.army.mil|N|N|8|||
