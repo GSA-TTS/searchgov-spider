@@ -633,7 +633,7 @@ local output_target = 'opensearch';
     name: 'www.census.gov (usagov-replacement)',
     config: DomainConfig(allowed_domains='www.census.gov',
                          starting_urls='https://www.census.gov/',
-                         schedule='00 11 * * SUN',
+                         schedule='00 20 * * WED',
                          output_target=output_target,
                          depth_limit=10),
   },

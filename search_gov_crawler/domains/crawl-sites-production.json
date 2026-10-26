@@ -1180,7 +1180,7 @@
       "handle_javascript": false,
       "name": "www.census.gov (usagov-replacement)",
       "output_target": "opensearch",
-      "schedule": "00 11 * * SUN",
+      "schedule": "00 20 * * WED",
       "sitemap_urls": null,
       "starting_urls": "https://www.census.gov/"
    },
