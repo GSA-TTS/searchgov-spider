@@ -1,52 +1,57 @@
 import pytest
-from pypdf.errors import FileNotDecryptedError, PdfReadError
+from pypdf.errors import PdfReadError
 
 from search_gov_crawler.indexing import transform
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
 
 
-@pytest.fixture(autouse=True)
-def patch_helpers(monkeypatch):
-    def mock_get_base_extension(*_args, **_kwargs):
-        return ("fake_basename", "pdf", "fake_basename.pdf")
+@pytest.fixture
+def convert_simple_pdf(create_test_pdf_item):
+    """Test convert_pdf with a non-encrypted PDF simulation."""
+    simple_pdf_kwargs = {
+        "filename": "test_simple_pdf.pdf",
+        "metadata": {"Title": "Test Simple PDF"},
+        "page_text": ["This is sample text written to validate PDF parsing."],
+    }
 
-    def mock_summarize_text(*_args, **_kwargs):
-        # Return a tuple: (description, list of keywords)
-        return ("Fake description", ["keyword1", "keyword2"])
-
-    def mock_generate_url_sha256(*_args, **_kwargs):
-        return "dummy_sha"
-
-    def mock_current_utc_iso():
-        return "2023-01-01T00:00:00Z"
-
-    def mock_parse_dates_safely(*date_str):
-        # For testing, simply return the date_str (or a default if none provided)
-        return date_str or "parse_date_safely"
-
-    def mock_get_url_path(*_args, **_kwargs):
-        return "/fake/path"
-
-    def mock_get_domain_name(*_args, **_kwargs):
-        return "fake.domain.com"
-
-    def mock_sanitize_text(text):
-        return text.strip()
-
-    monkeypatch.setattr("search_gov_crawler.indexing.transform.helpers.get_base_extension", mock_get_base_extension)
-    monkeypatch.setattr("search_gov_crawler.indexing.transform.helpers.summarize_text", mock_summarize_text)
-    monkeypatch.setattr("search_gov_crawler.indexing.transform.helpers.generate_url_sha256", mock_generate_url_sha256)
-    monkeypatch.setattr("search_gov_crawler.indexing.transform.helpers.current_utc_iso", mock_current_utc_iso)
-    monkeypatch.setattr("search_gov_crawler.indexing.transform.helpers.parse_dates_safely", mock_parse_dates_safely)
-    monkeypatch.setattr("search_gov_crawler.indexing.transform.helpers.get_url_path", mock_get_url_path)
-    monkeypatch.setattr("search_gov_crawler.indexing.transform.helpers.get_domain_name", mock_get_domain_name)
-    monkeypatch.setattr("search_gov_crawler.indexing.transform.content.sanitize_text", mock_sanitize_text)
-    # Ensure the allowed language list includes "en" so that we get a valid language suffix.
-    monkeypatch.setattr("search_gov_crawler.indexing.transform.helpers.ALLOWED_LANGUAGE_CODE", {"en": "english"})
+    return transform.convert_pdf(create_test_pdf_item(**simple_pdf_kwargs))
 
 
-@pytest.fixture(name="sample_item")
-def fixture_sample_item():
+CONVERT_SIMPLE_PDF_TEST_CASES = [
+    ("title_en", "Test Simple PDF"),
+    (
+        "description_en",
+        "Test Simple PDF test_simple_pdf.pdf This is sample text written to validate PDF parsing.",
+    ),
+    ("content_en", "Test Simple PDF test_simple_pdf.pdf This is sample text written to validate PDF parsing. "),
+    ("id", "12ad0cb03901f73a72f257515736e19c60dc0e608fac895b0cf266273d2ed431"),
+    ("basename", "test_simple_pdf"),
+    ("extension", "pdf"),
+    ("url_path", "/test_simple_pdf.pdf"),
+    ("domain_name", "example.com"),
+    ("dap_domain_visits_count", None),
+]
+
+
+@pytest.mark.parametrize(("field", "value"), CONVERT_SIMPLE_PDF_TEST_CASES)
+def test_convert_pdf(convert_simple_pdf, field, value):
+    assert convert_simple_pdf.get(field) == value
+
+
+def test_convert_pdf_encrypted(create_test_pdf_item):
+    """Test convert_pdf when the PDF is actually encrypted (should return None)."""
+    encrpyted_pdf_kwargs = {
+        "filename": "test_encrpyted_pdf.pdf",
+        "metadata": {"Title": "Test Encrypted PDF"},
+        "page_text": ["This text is encrypted and you can't read it!"],
+        "encrpyted": True,
+    }
+    result = transform.convert_pdf(create_test_pdf_item(**encrpyted_pdf_kwargs))
+    assert result == {}
+
+
+@pytest.fixture
+def sample_item():
     return SearchGovSpidersItem(
         crawl_depth=5,
         creator="test",
@@ -57,50 +62,6 @@ def fixture_sample_item():
         response_language="en",
         output_target="opensearch",
     )
-
-
-@pytest.fixture(name="convert_pdf_normal")
-def fixture_convert_pdf_normal(monkeypatch, fake_page, fake_pdf_reader, sample_item):
-    """Test convert_pdf with a non-encrypted PDF simulation."""
-    fake_metadata = {"/Title": "Fake Title", "/CreationDate": "D:20230101000000"}
-    pages = [fake_page("This is the content of the PDF.")]
-    fake_reader = fake_pdf_reader(None, is_encrypted=False, pages=pages, metadata=fake_metadata)
-    # Patch PdfReader so that any instantiation returns our fake_reader.
-    monkeypatch.setattr(transform, "PdfReader", lambda _stream: fake_reader)
-    return transform.convert_pdf(item=sample_item)
-
-
-CONVERT_PDF_TEST_CASES = [
-    ("title_en", "Fake Title"),
-    ("description_en", "Fake Title fake_basename.pdf Fake description"),
-    ("content_en", "Fake Title fake_basename.pdf This is the content of the PDF. "),
-    ("id", "dummy_sha"),
-    ("basename", "fake_basename"),
-    ("extension", "pdf"),
-    ("url_path", "/fake/path"),
-    ("domain_name", "fake.domain.com"),
-    ("dap_domain_visits_count", None),
-]
-
-
-@pytest.mark.parametrize(("field", "value"), CONVERT_PDF_TEST_CASES)
-def test_convert_pdf(convert_pdf_normal, field, value):
-    assert convert_pdf_normal.get(field) == value
-
-
-def test_convert_pdf_encrypted(monkeypatch, fake_pdf_reader, sample_item):
-    """Test convert_pdf when the PDF is actually encrypted (should return None)."""
-
-    def raise_encrypted_error(*_args, **_kwargs):
-        msg = "PDF is encrypted and cannot be read."
-        raise FileNotDecryptedError(msg)
-
-    fake_reader = fake_pdf_reader(None, is_encrypted=True)
-    monkeypatch.setattr(transform, "PdfReader", lambda _stream: fake_reader)
-    monkeypatch.setattr(transform, "get_pdf_meta", raise_encrypted_error)
-
-    result = transform.convert_pdf(item=sample_item)
-    assert result == {}
 
 
 def test_convert_pdf_stream_error(caplog, mocker, sample_item):
