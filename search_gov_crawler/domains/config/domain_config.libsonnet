@@ -1,13 +1,13 @@
 /*
 Exports the domain config function used for all domain output targets. Expects the following input arguments:
   - allowed_domains (str) a single or comma-separated list of domains that the crawler is allowed to access
+  - allowed_domains_strict (bool): if true, the crawler will perform exact matching on allowed_domains, defaults to true
   - starting_urls (str): a single or comma-separated list of URLs to start crawling from
   - schedule (str): a cron schedule for when the crawler should run
   - output_target (str): the target output for the crawler - set in each output target's domain file
   - options (list): a list of options that can be passed to the domain config function.  Current options include:
     - allow_query_string: if set, the crawler will allow query strings in URLs
     - handle_javascript: if set, the crawler will handle javascript on the page
-    - allowed_domains_strict: if set, the crawler will perform exact matching on allowed_domains, defaults to true
   - depth_limit (int): how far down you want the spider to crawl the site, defaults to 8
   - allow_paths (list): Optional list of path fragments used to limit thw spider
   - deny_paths (list): Optional list of path fragments used to limit the spider
