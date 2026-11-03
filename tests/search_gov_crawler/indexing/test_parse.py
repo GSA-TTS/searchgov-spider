@@ -137,7 +137,11 @@ def test_get_pdf_text(create_test_pdf_item):
 def pdf_metadata(create_test_pdf_item):
     pdf_with_metadata = {
         "filename": "test_metadata_pdf.pdf",
-        "metadata": {"Title": "Test Metadata PDF", "TestField": "Test Value"},
+        "metadata": {
+            "Title": "Test Metadata PDF",
+            "TestField": "Test Value",
+            "IndirectCreationDate": datetime(2026, 10, 31, 0, 0, 0, tzinfo=UTC).astimezone().replace(tzinfo=None),
+        },
         "page_text": ["This is page 1 and wow there is a lot of cool stuff here!"],
     }
 
@@ -146,10 +150,10 @@ def pdf_metadata(create_test_pdf_item):
 
 
 GET_PDF_META_TEST_CASES = [
-    # ("Title", "Test Metadata PDF"),  # noqa: ERA001
-    # ("CreationDate", datetime(2026, 10, 31, 0, 0, 0, tzinfo=UTC).astimezone().replace(tzinfo=None)),  # noqa: ERA001
+    ("Title", "Test Metadata PDF"),
+    ("CreationDate", datetime(2026, 10, 31, 0, 0, 0, tzinfo=UTC).astimezone().replace(tzinfo=None)),
     ("TestField", "Test Value"),
-    # ("IndirectField", "Resolved Value"),  # noqa: ERA001
+    ("IndirectCreationDate", datetime(2026, 10, 31, 0, 0, 0, tzinfo=UTC).astimezone().replace(tzinfo=None)),
 ]
 
 

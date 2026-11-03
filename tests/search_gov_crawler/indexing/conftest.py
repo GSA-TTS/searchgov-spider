@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import pytest
-from reportlab.pdfbase.pdfdoc import PDFString
+from pypdf import PdfReader, PdfWriter
 from reportlab.pdfgen import canvas
 
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
@@ -15,26 +15,6 @@ def fixture_test_scrapy_html_1():
 @pytest.fixture(name="test_scrapy_html_2")
 def fixture_test_scrapy_html_2():
     return Path(Path(__file__).resolve().parent / "test_scrapy_html_2.html").read_text()
-
-
-class FakePage:
-    def __init__(self, text):
-        self._text = text
-        self._object = {}
-
-    def extract_text(self):
-        return self._text
-
-    def get_object(self):
-        return self._object
-
-
-@pytest.fixture(name="fake_page")
-def fixture_fake_page():
-    def _fake_page(text):
-        return FakePage(text)
-
-    return _fake_page
 
 
 @pytest.fixture(scope="session")
@@ -67,16 +47,36 @@ def create_test_pdf(temp_pdf_dir):
         }
         c = canvas.Canvas(**canvas_kwargs)
 
-        for k, v in metadata.items():
-            if str(k).lower() == "title":
-                c.setTitle(v)
-            else:
-                c._doc.info.__dict__[k] = PDFString(v)
+        title = metadata.pop("Title")
+        if title:
+            c.setTitle(title)
 
         for page in page_text:
             _write_page(canvas=c, text=page)
 
         c.save()
+
+        if metadata:
+            reader = PdfReader(pdf_path)
+            writer = PdfWriter()
+            existing_metadata = reader.metadata
+            if existing_metadata:
+                writer.add_metadata(existing_metadata)
+
+            new_metadata = {}
+            for k, v in metadata.items():
+                new_metadata_key = f"/{k}" if not k.startswith("/") else k
+                if new_metadata_key.startswith("/Indirect"):
+                    raw_indirect = reader.metadata.raw_get(new_metadata_key.replace("Indirect", ""))
+                    resolved_value = raw_indirect.get_object()
+                    new_metadata_value = resolved_value
+                else:
+                    new_metadata_value = v
+
+                new_metadata[new_metadata_key] = new_metadata_value
+
+            writer.add_metadata(new_metadata)
+            writer.write(pdf_path)
         return pdf_path, pdf_path.read_bytes()
 
     return _pdf_generator
