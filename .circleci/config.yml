@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   python-lint-and-test:
     docker:
-      - image: cimg/python:3.12.1 # should match `.python-version` file
+      - image: cimg/python:3.12.1@sha256:f0fcca28a92ab27345aef1adb1da1a3a18a7ef2d93dd08802674662eb46ebb2b # should match `.python-version` file
     steps:
       - checkout
       - run:
@@ -53,7 +53,7 @@ jobs:
 
   jsonnet-check-domain-configs:
     docker:
-      - image: cimg/go:1.23
+      - image: cimg/go:1.23@sha256:49588f32f7beb6eb4d363d22f7f41f1e54e8ac321a0990756c654161266f8187
     environment:
       DOMAINS_PATH: search_gov_crawler/domains
     steps:
