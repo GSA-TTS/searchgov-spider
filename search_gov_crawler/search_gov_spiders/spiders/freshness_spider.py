@@ -17,11 +17,6 @@ from scrapy.signals import spider_idle
 
 from search_gov_crawler.config.settings import SearchgovSettings
 from search_gov_crawler.indexing.opensearch import SearchGovOpensearch
-from search_gov_crawler.search_gov_spiders.helpers.freshness_spider import (
-    count_matching_documents,
-    ensure_valid_query,
-    get_matching_documents,
-)
 from search_gov_crawler.search_gov_spiders.items import (
     FreshnessSpiderException,
     FreshnessSpiderExceptionItem,
@@ -66,7 +61,7 @@ class FreshnessSpider(Spider):
         self.searchgov_settings = SearchgovSettings()
         self.freshness_index = self.searchgov_settings.opensearch_freshness_index
         self.opensearch = SearchGovOpensearch(searchgov_settings=self.searchgov_settings, logger=self.logger)
-        self.query = ensure_valid_query(opensearch=self.opensearch, query=query, index_name=self.freshness_index)
+        self.query = self.opensearch.ensure_valid_query(query=query, index_name=self.freshness_index)
         self.max_results = int(max_results) if max_results else None
         self.doc_count = 0
         self.source_documents = None
@@ -75,16 +70,14 @@ class FreshnessSpider(Spider):
         """
         Generates list of URLs from opensearch to send into the freshness spider.
         """
-        matching_documents = count_matching_documents(opensearch=self.opensearch, query=self.query)
+        matching_documents = self.opensearch.count(query=self.query)
         if not matching_documents:
             self.logger.info("No documents found matching query")
             return
             yield  # this is needed to make this an async generator, even though we have nothing to yield in this case
         else:
             self.logger.info("Found %d documents matching query", matching_documents)
-            self.source_documents = get_matching_documents(
-                opensearch=self.opensearch, query=self.query, scroll=self.scroll
-            )
+            self.source_documents = self.opensearch.scroll(query=self.query, scroll=self.scroll)
             # Yield the first batch requests
             for request in self._next_batch():
                 yield request

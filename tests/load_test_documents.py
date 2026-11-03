@@ -47,7 +47,7 @@ def generate_fake_freshness_documents(opensearch: SearchGovOpensearch, search_do
         return []
 
     results = opensearch.client.search(
-        body={"query": {"match_all": {}}, "size": search_docs, "sort": [{"updated_at": {"order": "asc"}}]},
+        body={"query": {"match_all": {}}, "size": search_docs, "sort": [{"updated_at": {"order": "desc"}}]},
         index=opensearch.searchgov_settings.opensearch_search_index,
     )
     return [
