@@ -7,7 +7,8 @@ Exports the domain config function used for all domain output targets. Expects t
   - options (list): a list of options that can be passed to the domain config function.  Current options include:
     - allow_query_string: if set, the crawler will allow query strings in URLs
     - handle_javascript: if set, the crawler will handle javascript on the page
-  - depth_limit (int): how far down you want the spider to crawl the site
+    - allowed_domains_strict: if set, the crawler will perform exact matching on allowed_domains, defaults to true
+  - depth_limit (int): how far down you want the spider to crawl the site, defaults to 8
   - allow_paths (list): Optional list of path fragments used to limit thw spider
   - deny_paths (list): Optional list of path fragments used to limit the spider
   - sitemap_urls (list): Optional sitemap URLs list to check for updates
@@ -17,10 +18,11 @@ Exports the domain config function used for all domain output targets. Expects t
 
 function(
   allowed_domains,
+  allowed_domains_strict=true,
   starting_urls,
   schedule,
   output_target,
-  depth_limit=3,
+  depth_limit=8,
   options=[],
   allow_paths=null,
   deny_paths=null,
@@ -29,7 +31,7 @@ function(
   lower_environments=[]
 ) {
   allowed_domains: allowed_domains,
-  allowed_domains_strict: if ['allowed_domains_strict'] == [o for o in options if o == 'allowed_domains_strict'] then true else false,
+  allowed_domains_strict: allowed_domains_strict,
   allow_query_string: if ['allow_query_string'] == [o for o in options if o == 'allow_query_string'] then true else false,
   starting_urls: starting_urls,
   schedule: schedule,
