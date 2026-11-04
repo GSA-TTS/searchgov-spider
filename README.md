@@ -44,26 +44,33 @@ We currently run python 3.12.  The spider is based on the open source [scrapy](h
 ```
 
 ## Quick Start - Docker
-Docker can be used to run spider from this repo or from [search-services](https://www.github.com/GSA/search-services).  If you want to run other SearchGov services besides spider and its dependencies, you should use the search services repo.
+Docker can be used to run spider from this repo. Make commands have been added for convenience.
 
-1. Start docker:
-
-The spider profile must be used to start the spider and its dependencies.
-```bash
-docker compose --profile spider up
+0. Start [search-services](https://www.github.com/GSA/search-services).
+After cloning and changing directories to this projects root, run:
+```
+docker compose up
 ```
 
-2. Watch Logs and Check Output:
-
-The default behavior is that the `spider-scheduler` and `spider-sitemap` containers start running based on our development schedule.  It may be that no jobs are scheduled for a while so nothing will run.  Likewise, the sitemap process may not detect changes and index any documents.
-
-If a crawl does start watch the logs for information about records loaded to Opensearch.  Then, visit [Opensearch Dashboards](http://localhost:5602) to view indexed documents.
-
-3. Run an on-demand crawl
-To direct documents from a specific domain, use the helper script to trigger an on-demand crawl.  Here the `spider crawl` command can be used as a shortcut to trigger a non-js crawl starting at `https://www.gsa.gov` and limited to pages in the `www.gsa.gov` domain.
+1. Build spider image
+After search services is running, build
 
 ```bash
-docker compose run spider /bin/bash -c "spider crawl www.gsa.gov https://www.gsa.gov"
+make docker-build
+```
+
+2. Run the scrapy scheduler process.
+This will start the spider-scheduler container and run domains based on the development schedule.  Watch logs and check output.  It may be that no jobs are scheduled for a while so nothing will run. If a crawl does start watch the logs for information about records loaded to Opensearch.  Then, visit [Opensearch Dashboards](http://localhost:5602) to view indexed documents.
+
+```
+make docker-run-scrapy-scheduler
+```
+
+3. Run an on-demand crawl
+To direct documents from a specific domain, use the helper make command to trigger an on-demand crawl.  The `docker-scrapy-crawl` command as a shortcut to running any `scrapy crawl` command. Use `ARGS` to pass in all other arguments.  For instance, starting at `https://www.gsa.gov` and limited to pages in the `www.gsa.gov` domain, you might run:
+
+```bash
+make docker-scrapy-crawl ARGS="domain_spider -a allowed_domains='www.gsa.gov' -a start_urls='https://www.gsa.gov' -a output_target='opensearch' -a depth_limit=3"
 ```
 
 

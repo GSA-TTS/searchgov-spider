@@ -1,3 +1,8 @@
+import os
+
+from search_gov_crawler.config.settings import MAX_OPENSEARCH_QUERY_DOCS, SearchgovSettings
+
+
 def test_searchgov_settings_defaults(default_searchgov_settings):
     assert default_searchgov_settings.model_dump() == {
         "scrapy_log_level": "INFO",
@@ -12,3 +17,14 @@ def test_searchgov_settings_defaults(default_searchgov_settings):
         "dlm_schedule": "45 * * * *",
         "dlm_max_docs": 500,
     }
+
+
+def test_searchgov_settings_dlm_max_docs_validator(mocker, caplog, monkeypatch):
+    mocker.patch.dict(os.environ, clear=True)
+    monkeypatch.setitem(SearchgovSettings.model_config, "env_file", "")
+
+    with caplog.at_level("WARNING"):
+        settings = SearchgovSettings(dlm_max_docs=20000)
+
+    assert "Setting dlm_max_docs reduced from 20000 to 10000" in caplog.messages
+    assert settings.dlm_max_docs == MAX_OPENSEARCH_QUERY_DOCS
