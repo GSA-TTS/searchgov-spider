@@ -500,7 +500,7 @@ local output_target = 'opensearch';
                          starting_urls='https://www.trainex.org/',
                          schedule='15 02 * * SUN',
                          output_target=output_target,
-                         options=['allow_query_string', 'allowed_domains_strict']),
+                         options=['allow_query_string']),
   },
   {
     name: 'State Dept (usagov-replacement)',
