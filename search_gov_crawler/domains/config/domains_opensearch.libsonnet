@@ -5910,7 +5910,8 @@ local output_target = 'opensearch';
     config: DomainConfig(allowed_domains='www.nws.usace.army.mil',
                          starting_urls='https://www.nws.usace.army.mil',
                          schedule='18 20 * * SAT',
-                         output_target=output_target),
+                         output_target=output_target,
+                         deny_paths=['/igphoto/']),
   },
   {
     name: 'Interagency Autism Coordinating Committee (iacc)',
@@ -7038,7 +7039,8 @@ local output_target = 'opensearch';
     config: DomainConfig(allowed_domains='www.arcp.army.mil',
                          starting_urls='https://www.arcp.army.mil',
                          schedule='33 21 * * WED',
-                         output_target=output_target),
+                         output_target=output_target,
+                         deny_paths=['/Family-Caregivers/']),
   },
   {
     name: 'Los Angeles District (los_angeles_district)',
