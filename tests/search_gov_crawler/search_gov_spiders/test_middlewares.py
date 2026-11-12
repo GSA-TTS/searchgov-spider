@@ -64,7 +64,7 @@ def test_offsite_invalid_domain_in_starting_urls(test_crawler, caplog):
         crawler=test_crawler,
         name="offsite_test",
         allowed_domains=["example.com"],
-        start_urls=["http://www.not-an-example.com"],
+        start_urls=["http://www.not-an-example.com/"],
     )
     mw = SearchGovSpidersOffsiteMiddleware.from_crawler(test_crawler)
     mw.spider_opened(test_crawler.spider)
@@ -129,13 +129,13 @@ def test_spider_middleware_allow_query_string_request(test_crawler, dont_filter,
 
 @pytest.mark.parametrize(
     ("request_url", "allowed_domains_strict", "bool_test"),
-    [("https://www.example.com", False, "truth"), ("https://www.example.com", True, "not_")],
+    [("https://www.example.com/", False, "truth"), ("https://www.example.com/", True, "not_")],
 )
 def test_spider_middleware_dont_filter_update(test_crawler, request_url, allowed_domains_strict, bool_test):
     test_crawler.spider = Spider.from_crawler(
         crawler=test_crawler,
         name="test",
-        start_urls="https://www.example.com",
+        start_urls="https://www.example.com/",
         allowed_domains="example.com",
         allowed_domains_strict=allowed_domains_strict,
     )
@@ -177,12 +177,15 @@ URL_PORT_REMOVAL_TEST_CASES = [
     ("https://www.example.com:8080/test/test/test.html", "https://www.example.com/test/test/test.html"),
     ("https://www.example.com:8080/test/test/test.pdf", "https://www.example.com/test/test/test.pdf"),
     ("https://www.example.com:8080/", "https://www.example.com/"),
-    ("https://www.example.com:8080", "https://www.example.com"),
-    ("https://www.example.com:443", "https://www.example.com"),
+]
+
+URL_PORT_REMOVE_REQUEST_TEST_CASES = [
+    ("https://www.example.com:8080", "https://www.example.com/"),
+    ("https://www.example.com:443", "https://www.example.com/"),
 ]
 
 
-@pytest.mark.parametrize(("url_in", "url_out"), URL_PORT_REMOVAL_TEST_CASES)
+@pytest.mark.parametrize(("url_in", "url_out"), URL_PORT_REMOVAL_TEST_CASES + URL_PORT_REMOVE_REQUEST_TEST_CASES)
 def test_spider_middleware_port_removal_request(test_crawler, url_in, url_out):
     test_crawler.spider = Spider.from_crawler(
         crawler=test_crawler,
@@ -233,7 +236,13 @@ def test_spider_middleware_jsessionid_removal_item(test_crawler, url_in, url_out
     assert mw.get_processed_item(item, response).get("url") == url_out
 
 
-@pytest.mark.parametrize(("url_in", "url_out"), URL_PORT_REMOVAL_TEST_CASES)
+URL_PORT_REMOVE_ITEM_TEST_CASES = [
+    ("https://www.example.com:8080", "https://www.example.com"),
+    ("https://www.example.com:443", "https://www.example.com"),
+]
+
+
+@pytest.mark.parametrize(("url_in", "url_out"), URL_PORT_REMOVAL_TEST_CASES + URL_PORT_REMOVE_ITEM_TEST_CASES)
 def test_spider_middleware_port_removal_item(test_crawler, url_in, url_out):
     test_crawler.spider = Spider.from_crawler(
         crawler=test_crawler,
@@ -281,16 +290,16 @@ def test_spider_middleware_spider_exception_start_url(caplog, test_crawler):
         name="test",
         allow_query_string=True,
         allowed_domains="example.com",
-        start_urls=["http://www.example.com"],
+        start_urls=["http://www.example.com/"],
     )
     test_crawler.spider = spider
     mw = SearchGovSpidersSpiderMiddleware.from_crawler(test_crawler)
 
     mw.spider_opened(spider)
     response = Response(
-        url="http://www.example.com",
+        url="http://www.example.com/",
         status=403,
-        request=Request("http://www.example.com", meta={"is_start_request": True}),
+        request=Request("http://www.example.com/", meta={"is_start_request": True}),
     )
 
     with caplog.at_level("ERROR"):
@@ -298,7 +307,9 @@ def test_spider_middleware_spider_exception_start_url(caplog, test_crawler):
             response=response,
             exception=IgnoreRequest("Ignore this test request"),
         )
-        msg = "Error occured while accessing start url: http://www.example.com: response: <403 http://www.example.com>"
+        msg = (
+            "Error occured while accessing start url: http://www.example.com/: response: <403 http://www.example.com/>"
+        )
         assert msg in caplog.messages
 
 
@@ -307,14 +318,14 @@ def test_freshness_spider_downloader_middleware(caplog, test_crawler):
 
     with caplog.at_level("INFO"):
         mw = FreshnessSpiderDownloaderMiddleware.from_crawler(test_crawler)
-    mw_kwargs = {"request": Request("http://www.example.com"), "exception": Exception("This is just a test!")}
+    mw_kwargs = {"request": Request("http://www.example.com/"), "exception": Exception("This is just a test!")}
     result = mw.process_exception(**mw_kwargs)
-    expected_result = Response(url="http://www.example.com", status=0, request=mw_kwargs["request"])
+    expected_result = Response(url="http://www.example.com/", status=0, request=mw_kwargs["request"])
     expected_result.meta["exception"] = mw_kwargs["exception"]
 
     assert isinstance(result, Response)
-    assert result.url == "http://www.example.com"
+    assert result.url == "http://www.example.com/"
     assert result.status == 0
     assert result.request == mw_kwargs["request"]
     assert result.meta["exception"] == mw_kwargs["exception"]
-    assert "Error occured while accessing URL: http://www.example.com: This is just a test!" in caplog.messages
+    assert "Error occured while accessing URL: http://www.example.com/: This is just a test!" in caplog.messages
