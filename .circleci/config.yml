@@ -33,6 +33,7 @@ jobs:
       - run:
           name: List Python dependencies and versions
           command: |
+            . venv/bin/activate
             python -m pip list
       - run:
           name: Run Ruff Linter
