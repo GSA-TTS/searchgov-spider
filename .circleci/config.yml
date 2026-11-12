@@ -30,9 +30,9 @@ jobs:
           paths:
             - ./venv
           key: deps-{{ .Branch }}-{{ checksum "./search_gov_crawler/requirements.txt" }}-{{ checksum "python_version"}}
-      - list_dependencies:
+      - run:
           name: List Python dependencies and versions
-          commans: |
+          command: |
             python -m pip list
       - run:
           name: Run Ruff Linter
