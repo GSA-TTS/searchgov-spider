@@ -12618,7 +12618,9 @@
       "allowed_domains": "www.nws.usace.army.mil",
       "allowed_domains_strict": true,
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "/igphoto/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "USACE Seattle District (usace_all)",
@@ -15033,7 +15035,9 @@
       "allowed_domains": "www.arcp.army.mil",
       "allowed_domains_strict": true,
       "check_sitemap_hours": null,
-      "deny_paths": null,
+      "deny_paths": [
+         "/Family-Caregivers/"
+      ],
       "depth_limit": 8,
       "handle_javascript": false,
       "name": "Army ARCP (army_arcp)",

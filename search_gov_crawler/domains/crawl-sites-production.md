@@ -935,7 +935,7 @@
 |rare.nih.gov|20:51|rare.nih.gov|Y|N|8|||
 |Comptroller (war.gov)|20:53|comptroller.war.gov|Y|N|8|||
 |Eastern Air Defense Sector (afpw_eads)|21:25|www.eads.ang.af.mil|Y|N|8|||
-|Army ARCP (army_arcp)|21:33|www.arcp.army.mil|Y|N|8|||
+|Army ARCP (army_arcp)|21:33|www.arcp.army.mil|Y|N|8||/Family-Caregivers/|
 |nareeeab.ree.usda.gov (nareeeab.ree.usda)|21:36|nareeeab.ree.usda.gov|Y|N|8|||
 |US Embassy Guatemala|21:40|gt.usembassy.gov|Y|N|8|||
 |ofac.treasury.gov (usagov-replacement)|21:42|ofac.treasury.gov|Y|N|8|||
@@ -1649,7 +1649,7 @@
 |www.sam.usace.army.mil (mobile_district)|20:03|www.sam.usace.army.mil|Y|N|8|||
 |DCMO (dcmo)|20:08|dam.defense.gov|Y|N|8|||
 |116th Air Control Wing (116acw)|20:18|www.116acw.ang.af.mil|Y|N|8|||
-|USACE Seattle District (usace_all)|20:18|www.nws.usace.army.mil|Y|N|8|||
+|USACE Seattle District (usace_all)|20:18|www.nws.usace.army.mil|Y|N|8||/igphoto/|
 |DoD 2025 Transition (dod_2025dtd)|20:27|2025dodtransition.defense.gov|Y|N|8|||
 |Air Force Materiel Command (afmc)|20:31|www.afmc.af.mil|Y|N|8|||
 |tricare_hurlburt|21:00|hurlburt.tricare.mil|Y|N|8|||

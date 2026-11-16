@@ -31,6 +31,11 @@ jobs:
             - ./venv
           key: deps-{{ .Branch }}-{{ checksum "./search_gov_crawler/requirements.txt" }}-{{ checksum "python_version"}}
       - run:
+          name: List Python dependencies and versions
+          command: |
+            . venv/bin/activate
+            python -m pip list
+      - run:
           name: Run Ruff Linter
           command: |
             . venv/bin/activate

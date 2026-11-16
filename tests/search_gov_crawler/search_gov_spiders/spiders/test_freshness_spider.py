@@ -139,11 +139,11 @@ async def test_freshness_spider_start_no_docs(caplog, freshness_spider):
 @pytest.fixture(name="matching_documents")
 def fixture_matching_documents():
     return [
-        {"_id": "1", "_source": {"path": "http://example1.com", "domain_name": "example1.com"}},
-        {"_id": "2", "_source": {"path": "http://example2.com", "domain_name": "example2.com"}},
-        {"_id": "3", "_source": {"path": "http://example3.com", "domain_name": "example3.com"}},
-        {"_id": "4", "_source": {"path": "http://example4.com", "domain_name": "example4.com"}},
-        {"_id": "5", "_source": {"path": "http://example5.com", "domain_name": "example5.com"}},
+        {"_id": "1", "_source": {"path": "http://example1.com/", "domain_name": "example1.com"}},
+        {"_id": "2", "_source": {"path": "http://example2.com/", "domain_name": "example2.com"}},
+        {"_id": "3", "_source": {"path": "http://example3.com/", "domain_name": "example3.com"}},
+        {"_id": "4", "_source": {"path": "http://example4.com/", "domain_name": "example4.com"}},
+        {"_id": "5", "_source": {"path": "http://example5.com/", "domain_name": "example5.com"}},
     ]
 
 
@@ -159,7 +159,7 @@ async def test_freshness_spider_start(matching_documents, freshness_spider):
     assert len(results) == 5
     for idx, result in enumerate(results, start=1):
         assert isinstance(result, Request)
-        assert result.url == f"http://example{idx}.com"
+        assert result.url == f"http://example{idx}.com/"
         assert result.method == "HEAD"
         assert result.meta["document_id"] == str(idx)
         assert result.meta["domain_name"] == f"example{idx}.com"

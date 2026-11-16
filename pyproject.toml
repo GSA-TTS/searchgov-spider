@@ -27,7 +27,9 @@ exclude_also = [
 
 [tool.pytest.ini_options]
 asyncio_default_fixture_loop_scope = "module"
-filterwarnings = []
+filterwarnings = [
+    "ignore:The default_encoding and auto_detect_fun parameters:DeprecationWarning:scrapy.*",
+]
 
 [tool.scrapy-lint]
 ignore = ["SCP13"]
