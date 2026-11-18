@@ -12,13 +12,17 @@ RUN apt-get update && apt-get install -y \
     curl \
     jq
 
-# Copy project files and set up virtual environment
-COPY . .
-COPY scripts/docker/spider.sh /usr/local/bin/spider
-RUN chmod +x /usr/local/bin/spider
+# Install and cache libraries
+COPY search_gov_crawler/requirements.txt ./search_gov_crawler/requirements.txt
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install --upgrade pip && \
+    pip install -r search_gov_crawler/requirements.txt
 
-# Install dependencies
-RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
-RUN playwright install chromium --with-deps --force
-RUN python search_gov_crawler/indexing/install_nltk.py
+# Install chromium
+RUN playwright install chromium --with-deps
+
+# Install NLTK packages
+RUN python -m nltk.downloader popular punkt_tab punkt perluniprops nonbreaking_prefixes stopwords
+
+# Copy project files
+COPY . .

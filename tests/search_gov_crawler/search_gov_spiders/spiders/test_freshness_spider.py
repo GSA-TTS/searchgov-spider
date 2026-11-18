@@ -24,6 +24,7 @@ from search_gov_crawler.search_gov_spiders.spiders.freshness_spider import Fresh
 def fixture_freshness_spider(mocker):
     mock_opensearch = mocker.patch("search_gov_crawler.search_gov_spiders.spiders.freshness_spider.SearchGovOpensearch")
     mock_opensearch.return_value.index_name = "test_index"
+    mock_opensearch.return_value.ensure_valid_query.return_value = {"test": "query"}
 
     freshness_spider = FreshnessSpider(query='{"test": "query"}', max_results="100")
     freshness_spider.crawler = mocker.MagicMock()
@@ -127,10 +128,8 @@ def test_freshness_spider_ignore_parse(caplog, freshness_spider):
 
 
 @pytest.mark.asyncio
-async def test_freshness_spider_start_no_docs(mocker, caplog, freshness_spider):
-    mock_count = mocker.patch("search_gov_crawler.search_gov_spiders.spiders.freshness_spider.count_matching_documents")
-    mock_count.return_value = 0
-
+async def test_freshness_spider_start_no_docs(caplog, freshness_spider):
+    freshness_spider.opensearch.count.return_value = 0
     with caplog.at_level("INFO"):
         _ = {value async for value in freshness_spider.start()}
 
@@ -140,48 +139,41 @@ async def test_freshness_spider_start_no_docs(mocker, caplog, freshness_spider):
 @pytest.fixture(name="matching_documents")
 def fixture_matching_documents():
     return [
-        {"_id": "1", "_source": {"path": "http://example1.com", "domain_name": "example1.com"}},
-        {"_id": "2", "_source": {"path": "http://example2.com", "domain_name": "example2.com"}},
-        {"_id": "3", "_source": {"path": "http://example3.com", "domain_name": "example3.com"}},
-        {"_id": "4", "_source": {"path": "http://example4.com", "domain_name": "example4.com"}},
-        {"_id": "5", "_source": {"path": "http://example5.com", "domain_name": "example5.com"}},
+        {"_id": "1", "_source": {"path": "http://example1.com/", "domain_name": "example1.com"}},
+        {"_id": "2", "_source": {"path": "http://example2.com/", "domain_name": "example2.com"}},
+        {"_id": "3", "_source": {"path": "http://example3.com/", "domain_name": "example3.com"}},
+        {"_id": "4", "_source": {"path": "http://example4.com/", "domain_name": "example4.com"}},
+        {"_id": "5", "_source": {"path": "http://example5.com/", "domain_name": "example5.com"}},
     ]
 
 
 @pytest.mark.asyncio
-async def test_freshness_spider_start(mocker, matching_documents, freshness_spider):
-    mock_count = mocker.patch("search_gov_crawler.search_gov_spiders.spiders.freshness_spider.count_matching_documents")
-    mock_count.return_value = 5
-
+async def test_freshness_spider_start(matching_documents, freshness_spider):
     def yield_docs(*_args, **_kwargs):
         yield from matching_documents
 
-    mock_docs = mocker.patch("search_gov_crawler.search_gov_spiders.spiders.freshness_spider.get_matching_documents")
-    mock_docs.side_effect = yield_docs
+    freshness_spider.opensearch.count.return_value = 5
+    freshness_spider.opensearch.scroll.side_effect = yield_docs
 
     results = [request async for request in freshness_spider.start()]
     assert len(results) == 5
     for idx, result in enumerate(results, start=1):
         assert isinstance(result, Request)
-        assert result.url == f"http://example{idx}.com"
+        assert result.url == f"http://example{idx}.com/"
         assert result.method == "HEAD"
         assert result.meta["document_id"] == str(idx)
         assert result.meta["domain_name"] == f"example{idx}.com"
 
 
 @pytest.mark.asyncio
-async def test_freshness_spider_start_max_results(mocker, matching_documents):
-    mock_count = mocker.patch("search_gov_crawler.search_gov_spiders.spiders.freshness_spider.count_matching_documents")
-    mock_count.return_value = 5
+async def test_freshness_spider_start_max_results(freshness_spider, matching_documents):
 
     def yield_docs(*_args, **_kwargs):
         yield from matching_documents
 
-    mock_docs = mocker.patch("search_gov_crawler.search_gov_spiders.spiders.freshness_spider.get_matching_documents")
-    mock_docs.side_effect = yield_docs
-
-    mocker.patch("search_gov_crawler.search_gov_spiders.spiders.freshness_spider.SearchGovOpensearch")
-    freshness_spider = FreshnessSpider(query='{"test": "query"}', max_results="2")
+    freshness_spider.opensearch.scroll.side_effect = yield_docs
+    freshness_spider.opensearch.count.return_value = 5
+    freshness_spider.max_results = 2
 
     results = [request async for request in freshness_spider.start()]
     assert len(results) == 2
@@ -197,15 +189,12 @@ FRESHNESS_SPIDER_START_INVALID_DOCS = [
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("invalid_doc", FRESHNESS_SPIDER_START_INVALID_DOCS)
-async def test_freshness_spider_start_invalid_doc(mocker, freshness_spider, invalid_doc):
-    mock_count = mocker.patch("search_gov_crawler.search_gov_spiders.spiders.freshness_spider.count_matching_documents")
-    mock_count.return_value = 1
-
+async def test_freshness_spider_start_invalid_doc(freshness_spider, invalid_doc):
     def yield_docs(*_args, **_kwargs):
         yield from [invalid_doc]
 
-    mock_docs = mocker.patch("search_gov_crawler.search_gov_spiders.spiders.freshness_spider.get_matching_documents")
-    mock_docs.side_effect = yield_docs
+    freshness_spider.opensearch.count.return_value = 1
+    freshness_spider.opensearch.scroll.side_effect = yield_docs
 
     with pytest.raises(ValueError, match="Invalid Document:"):
         _ = {value async for value in freshness_spider.start()}

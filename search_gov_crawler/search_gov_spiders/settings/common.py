@@ -1,12 +1,20 @@
 # Scrapy settings for all search_gov_spiders spiders.  Only place settings here if they
 # can apply to all spiders without affecting functionliaty.
 
+import logging
 import os
+
+from pythonjsonlogger.json import JsonFormatter
+
+from search_gov_crawler.search_gov_spiders.extensions.json_logging import LOG_FMT
 
 # Settings for logging and json logging
 LOG_ENABLED = False
 JSON_LOGGING_ENABLED = True
 LOG_LEVEL = os.environ.get("SCRAPY_LOG_LEVEL", "INFO")
+
+logging.basicConfig(level=LOG_LEVEL)
+logging.getLogger().handlers[0].setFormatter(JsonFormatter(fmt=LOG_FMT))
 
 BOT_NAME = "search_gov_spiders"
 SPIDER_MODULES = ["search_gov_spiders.spiders"]
