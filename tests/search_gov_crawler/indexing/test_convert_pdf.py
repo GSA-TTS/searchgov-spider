@@ -11,7 +11,7 @@ def convert_simple_pdf(create_test_pdf_item):
     simple_pdf_kwargs = {
         "filename": "test_simple_pdf.pdf",
         "metadata": {"Title": "Test Simple PDF"},
-        "page_text": ["This is sample text written to validate PDF parsing."],
+        "pages": [{"text": "This is sample text written to validate PDF parsing.", "links": []}],
     }
 
     return transform.convert_pdf(create_test_pdf_item(**simple_pdf_kwargs))
@@ -43,7 +43,7 @@ def test_convert_pdf_encrypted(create_test_pdf_item):
     encrpyted_pdf_kwargs = {
         "filename": "test_encrpyted_pdf.pdf",
         "metadata": {"Title": "Test Encrypted PDF"},
-        "page_text": ["This text is encrypted and you can't read it!"],
+        "pages": [{"text": "This text is encrypted and you can't read it!", "links": []}],
         "encrpyted": True,
     }
     result = transform.convert_pdf(create_test_pdf_item(**encrpyted_pdf_kwargs))

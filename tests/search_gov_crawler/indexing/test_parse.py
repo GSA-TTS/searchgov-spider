@@ -4,7 +4,6 @@ from io import BytesIO
 import pytest
 from freezegun import freeze_time
 from pypdf import PdfReader
-from pypdf.generic import ByteStringObject, DictionaryObject, TextStringObject
 from scrapy import Selector
 
 from search_gov_crawler.indexing.parse import (
@@ -115,20 +114,35 @@ def test_parse_exif_date_non_string():
     assert parse_exif_date(value=non_string, apply_tz_offset=False) == non_string
 
 
-def test_get_pdf_text(create_test_pdf_item):
-    """Test that get_pdf_text concatenates text from each page."""
-    multi_page_pdf_kwargs = {
+@pytest.fixture
+def multi_page_pdf_kwargs():
+    return {
         "filename": "test_multi_page_pdf.pdf",
         "metadata": {"Title": "Test Multi Page PDF"},
-        "page_text": [
-            "This is page 1 and wow there is a lot of cool stuff here!",
-            "But here on page 2 you wouldn't believe how interesting it is.",
+        "pages": [
+            {
+                "text": (
+                    "This is page 1 and wow there is a lot of cool stuff here! Visit https://example.com for more info."
+                ),
+                "links": ["https://hidden-link1.example.com"],
+            },
+            {
+                "text": "But here on page 2 you wouldn't believe how interesting it is. Check out www.test.com and also https://example.com",
+                "links": ["https://hidden-link2.example.com"],
+            },
         ],
     }
 
-    multi_page_pdf_item = create_test_pdf_item(**multi_page_pdf_kwargs)
+
+@pytest.fixture
+def multi_page_pdf_item(create_test_pdf_item, multi_page_pdf_kwargs):
+    return create_test_pdf_item(**multi_page_pdf_kwargs)
+
+
+def test_get_pdf_text(multi_page_pdf_item, multi_page_pdf_kwargs):
+    """Test that get_pdf_text concatenates text from each page."""
     result, _ = get_pdf_text(PdfReader(BytesIO(multi_page_pdf_item.get("response_bytes"))))
-    expected = " ".join(multi_page_pdf_kwargs["page_text"]) + " "
+    expected = " ".join([page["text"] for page in multi_page_pdf_kwargs["pages"]]) + " "
     assert result == expected
 
 
@@ -142,7 +156,7 @@ def pdf_metadata(create_test_pdf_item):
             "TestField": "Test Value",
             "IndirectCreationDate": datetime(2026, 10, 31, 0, 0, 0, tzinfo=UTC).astimezone().replace(tzinfo=None),
         },
-        "page_text": ["This is page 1 and wow there is a lot of cool stuff here!"],
+        "pages": [{"text": "This is page 1 and wow there is a lot of cool stuff here!", "links": []}],
     }
 
     pdf_with_metadata = create_test_pdf_item(**pdf_with_metadata)
@@ -163,35 +177,12 @@ def test_get_pdf_meta(pdf_metadata, metadata_field, metadata_value):
     assert pdf_metadata[metadata_field] == metadata_value
 
 
-def test_get_pdf_links(mocker):
-    """Test that get_pdf_links extracts unique links from PDF pages."""
-    page1_text = "Visit https://example.com for more info."
-    page2_text = "Check out www.test.com and also https://example.com"
-
-    fake_page1 = mocker.MagicMock()
-    fake_page1.get_object.return_value = {
-        "/Annots": [
-            DictionaryObject(
-                {"/A": DictionaryObject({"/URI": TextStringObject("https://hidden-link1.example.com")})},
-            ),
-            DictionaryObject(
-                {"/A": DictionaryObject({"/URI": ByteStringObject(b"https://hidden-link2.example.com")})},
-            ),
-        ],
-    }
-
-    fake_page2 = mocker.MagicMock()
-    fake_page2.get_object.return_value = {}
-
-    page_items = [(page1_text, fake_page1), (page2_text, fake_page2)]
-
-    links = get_pdf_links(page_items)
-
-    expected_links = {
+def test_get_pdf_links(multi_page_pdf_item):
+    _, pages = get_pdf_text(PdfReader(BytesIO(multi_page_pdf_item.get("response_bytes"))))
+    links = get_pdf_links(pages)
+    assert set(links) == {
         "https://example.com",
         "www.test.com",
         "https://hidden-link1.example.com",
         "https://hidden-link2.example.com",
     }
-
-    assert set(links) == expected_links

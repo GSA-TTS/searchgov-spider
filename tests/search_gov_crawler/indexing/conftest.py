@@ -2,6 +2,7 @@ from pathlib import Path
 
 import pytest
 from pypdf import PdfReader, PdfWriter
+from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
@@ -24,19 +25,21 @@ def temp_pdf_dir(tmp_path_factory):
 
 @pytest.fixture
 def create_test_pdf(temp_pdf_dir):
-    def _write_page(canvas: canvas.Canvas, text: str) -> canvas.Canvas:
+    def _write_page(canvas: canvas.Canvas, page: dict) -> canvas.Canvas:
         text_obj = canvas.beginText(100, 750)
         text_obj.setFont("Helvetica", 12)
 
-        text_obj.textOut(text)
+        text_obj.textOut(page["text"])
         canvas.drawText(text_obj)
+        for idx, link in enumerate(page["links"], start=1):
+            canvas.linkURL(link, rect=(0, 0 + idx, *letter))
         canvas.showPage()
 
         return canvas
 
     def _pdf_generator(
         filename: str,
-        page_text: list[str],
+        pages: list[dict],
         metadata: dict,
         encrpyted: bool = False,  # noqa: FBT001,FBT002
     ) -> tuple[Path, bytes]:
@@ -45,14 +48,14 @@ def create_test_pdf(temp_pdf_dir):
             "filename": str(pdf_path),
             "encrypt": "user_password123" if encrpyted else None,
         }
-        c = canvas.Canvas(**canvas_kwargs)
+        c = canvas.Canvas(**canvas_kwargs, pagesize=letter)
 
         title = metadata.pop("Title")
         if title:
             c.setTitle(title)
 
-        for page in page_text:
-            _write_page(canvas=c, text=page)
+        for page in pages:
+            _write_page(canvas=c, page=page)
 
         c.save()
 
