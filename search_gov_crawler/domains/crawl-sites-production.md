@@ -1,20 +1,20 @@
 # Production Schedule
- * [Sunday (232)](#sunday-232)
+ * [Sunday (233)](#sunday-233)
  * [Monday (234)](#monday-234)
- * [Tuesday (231)](#tuesday-231)
- * [Wednesday (231)](#wednesday-231)
- * [Thursday (231)](#thursday-231)
- * [Friday (237)](#friday-237)
- * [Saturday (235)](#saturday-235)
+ * [Tuesday (232)](#tuesday-232)
+ * [Wednesday (232)](#wednesday-232)
+ * [Thursday (232)](#thursday-232)
+ * [Friday (238)](#friday-238)
+ * [Saturday (236)](#saturday-236)
 
 
-## Sunday (232)
+## Sunday (233)
 |Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
 |---|---|---|---|---|---|---|---|
 |NDBC NOAA (ndbc.noaa.gov)|00:09|dods.ndbc.noaa.gov|Y|N|8|||
-|FTC Consumer Advice (usagov-replacement)|00:15|consumer.ftc.gov|Y|N|8|||
 |USACE.Army.mil (u.s.armycorpsofengineersheadquart)|00:15|www.usace.army.mil|Y|N|8|||
 |CDMRP (cdmrp)|00:15|cdmrp.health.mil|Y|N|8|||
+|FTC Consumer Advice (consumer)|00:15|consumer.ftc.gov|Y|N|8||/system/files/|
 |National Park Service (usagov-replacement)|00:30|www.nps.gov|Y|N|8|||
 |DoD ManTech (dod_mantech)|00:44|www.dodmantech.mil|Y|N|8|||
 |Army Pacific (army_pac)|00:54|www.usarpac.army.mil|Y|N|8|||
@@ -158,6 +158,7 @@
 |Air Force Technology Transfer and Transition Program (usaf_aft3)|12:00|www.aft3.af.mil|Y|N|8|||
 |efile.fara.gov|12:10|efile.fara.gov|Y|N|8|||
 |US Embassy Tanzania (dos_emb_afr_tanzania)|12:15|tz.usembassy.gov|Y|N|8|||
+|Federal Trade Commission (ftc)|12:15|www.ftc.gov|Y|N|8||/system/files/documents/cases/,/sites/default/files/|
 |US Embassy Indonesia|12:16|id.usembassy.gov|Y|N|8|||
 |etd.gsfc.nasa.gov|12:20|etd.gsfc.nasa.gov|Y|N|8|||
 |Army RMC (army_rmc)|12:25|www.rmc.usace.army.mil|Y|N|8|||
@@ -250,6 +251,7 @@
 |---|---|---|---|---|---|---|---|
 |cgaux.org (cgaux)|00:00|www.cgaux.org|Y|N|8|||
 |Army Cyber Defense Review (army_cdr)|00:09|cyberdefensereview.army.mil|Y|N|8|||
+|Defense.gov DOC (doc)|00:15|doc.defense.gov|Y|N|8|||
 |www.acq.osd.mil (www.acq.osd.mil)|00:42|www.acq.osd.mil|Y|N|8|||
 |Army Medical Logistics Command (army_amlc)|00:51|www.amlc.army.mil|Y|N|8|||
 |tricare_brooke|01:00|bamc.tricare.mil|Y|N|8|||
@@ -397,7 +399,6 @@
 |tricare_yokosuka|13:00|yokosuka.tricare.mil|Y|N|8|||
 |Access Board|13:00|www.access-board.gov|Y|N|8|||
 |US Embassy Israel (dos_emb_mena_israel)|13:03|il.usembassy.gov|Y|N|8|||
-|GSA Fleet (gsafleet.gov)|13:16|www.gsafleet.gov|Y|N|8|||
 |Army V Corps (army_vcorps)|13:26|www.vcorps.army.mil|Y|N|8|||
 |Army Geospatial Center (agc)|13:43|www.agc.army.mil|Y|N|8|||
 |Pacific Air Forces (pacaf)|13:51|www.pacaf.af.mil|Y|N|8|||
@@ -484,7 +485,7 @@
 |EBCCP Cancer Control (ebccp.cancercontrol.cancer.gov)|23:29|ebccp.cancercontrol.cancer.gov|Y|N|8|||
 
 
-## Tuesday (231)
+## Tuesday (232)
 |Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
 |---|---|---|---|---|---|---|---|
 |Minot Air Force Base (minot)|00:00|www.minot.af.mil|Y|N|8|||
@@ -517,6 +518,7 @@
 |Armed Forces Court (armfor)|03:49|www.armfor.uscourts.gov|Y|N|8|||
 |Choose Work SSA|04:00|choosework.ssa.gov|Y|N|8|||
 |www.ice.gov (usagov-replacement)|04:10|www.ice.gov|Y|N|8|||
+|PA EC2 Counter C2 Army (paec2counterc2)|04:15|paec2counterc2.army.mil|Y|N|8|||
 |Air Force Civil Engineer Center (afpw_afcec)|04:17|www.afcec.af.mil|Y|N|8|||
 |US Consulate Bermuda|04:19|bm.usconsulate.gov|Y|N|8|||
 |US Mission to OECD|04:22|usoecd.usmission.gov|Y|N|8|||
@@ -720,7 +722,7 @@
 |McConnell Air Force Base (afpw_mcconnell)|23:48|www.mcconnell.af.mil|Y|N|8|||
 
 
-## Wednesday (231)
+## Wednesday (232)
 |Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
 |---|---|---|---|---|---|---|---|
 |www.fec.gov (usagov-replacement)|00:00|www.fec.gov|Y|N|8|||
@@ -813,6 +815,7 @@
 |National Flood Insurance Program|08:05|www.floodsmart.gov|Y|N|8|||
 |Air Force Compliance Division (afpw_foia)|08:10|www.compliance.af.mil|Y|N|8|||
 |archive.dni.gov|08:12|archive.dni.gov|Y|N|8|||
+|GSA Fleet (gsafleet)|08:15|gsafleet.gov|N|Y|8|||
 |www.af.mil (usagov-replacement)|08:16|www.af.mil|Y|N|8|||
 |Eglin Air Force Base (eglin)|08:18|www.eglin.af.mil|Y|N|8|||
 |Japan District (japan_district)|08:21|www.poj.usace.army.mil|Y|N|8|||
@@ -956,7 +959,7 @@
 |Army 2nd Signal Brigade (army_2sigbde)|23:52|www.2sigbde.army.mil|Y|N|8|||
 
 
-## Thursday (231)
+## Thursday (232)
 |Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
 |---|---|---|---|---|---|---|---|
 |niccs.cisa.gov (niccs.cisa)|00:00|niccs.cisa.gov|Y|N|8|||
@@ -1104,6 +1107,7 @@
 |Air Mobility Command (amc)|12:00|www.amc.af.mil|Y|N|8|||
 |NICHD Annual Report (nichd_dir)|12:01|annualreport.nichd.nih.gov|Y|N|8|||
 |177th Fighter Wing, New Jersey ANG (afpw_177fw)|12:03|www.177fw.ang.af.mil|Y|N|8|||
+|Strategic Intelligence (si)|12:15|www.si.mil|Y|N|8|||
 |www.unemployment.gov|12:40|www.unemployment.gov|Y|N|8|||
 |Lawrence Berkeley National Lab|12:41|www.lbl.gov|Y|N|8|||
 |178th Wing, Ohio Air National Guard (afpw_178fw)|12:45|www.178wing.ang.af.mil|Y|N|8|||
@@ -1192,7 +1196,7 @@
 |WRAIR (wrair)|23:53|wrair.health.mil|Y|N|8|||
 
 
-## Friday (237)
+## Friday (238)
 |Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
 |---|---|---|---|---|---|---|---|
 |Buckley Space Force Base (buckley)|00:27|www.buckley.spaceforce.mil|Y|N|8|||
@@ -1335,6 +1339,7 @@
 |157th ARW, New Hampshire ANG (afpw_157arw)|15:56|www.157arw.ang.af.mil|Y|N|8|||
 |tricare_luke|16:00|luke.tricare.mil|Y|N|8|||
 |USDA Nutrition Evidence Systematic Review|16:06|nesr.usda.gov|Y|N|8|||
+|Office of the Comptroller of the Currency (occ)|16:15|www.occ.gov|Y|N|8|||
 |kh.usembassy.gov (dos_emb_eap_cambodia)|16:23|kh.usembassy.gov|Y|N|8|||
 |Navy FRCSE (navy_frcse)|16:28|frcse.navair.navy.mil|Y|N|8|||
 |501st Combat Support Wing (501csw)|16:37|www.501csw.usafe.af.mil|Y|N|8|||
@@ -1434,7 +1439,7 @@
 |DOS Embassy Comoros (dos_emb_afr_comoros)|23:54|km.usembassy.gov|Y|N|8|||
 
 
-## Saturday (235)
+## Saturday (236)
 |Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
 |---|---|---|---|---|---|---|---|
 |New depth 8 (151wg.af.mil)|00:17|www.151wg.af.mil|Y|N|8|||
@@ -1648,6 +1653,7 @@
 |354th Medical Group - Eielson Air Force Base|20:00|eielson.tricare.mil|Y|N|8|||
 |www.sam.usace.army.mil (mobile_district)|20:03|www.sam.usace.army.mil|Y|N|8|||
 |DCMO (dcmo)|20:08|dam.defense.gov|Y|N|8|||
+|Darnall Army Medical Center (darnall)|20:15|darnall.tricare.mil|Y|N|8|||
 |116th Air Control Wing (116acw)|20:18|www.116acw.ang.af.mil|Y|N|8|||
 |USACE Seattle District (usace_all)|20:18|www.nws.usace.army.mil|Y|N|8||/igphoto/|
 |DoD 2025 Transition (dod_2025dtd)|20:27|2025dodtransition.defense.gov|Y|N|8|||
