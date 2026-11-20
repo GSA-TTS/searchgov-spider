@@ -11,24 +11,24 @@
 ## Sunday (2)
 |Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
 |---|---|---|---|---|---|---|---|
-|StudentAid.gov (usagov_en_az)|02:22|studentaid.gov|N|N|8|||
-|www.gsa.gov (usagov-replacement)|16:15|www.gsa.gov|N|N|8|||
+|StudentAid.gov (usagov_en_az)|02:22|studentaid.gov|Y|N|8|||
+|www.gsa.gov (usagov-replacement)|16:15|www.gsa.gov|Y|N|8|||
 
 
 ## Monday (2)
 |Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
 |---|---|---|---|---|---|---|---|
-|docs.cloud.gov|12:30|docs.cloud.gov|N|N|8|||
-|Cloud.gov (cloud)|14:39|www.cloud.gov|N|N|8|||
+|docs.cloud.gov|12:30|docs.cloud.gov|Y|N|8|||
+|Cloud.gov (cloud)|14:39|www.cloud.gov|Y|N|8|||
 
 
 ## Tuesday (1)
 |Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
 |---|---|---|---|---|---|---|---|
-|USA.gov (usagov-replacement)|06:30|www.usa.gov|N|N|8|||
+|USA.gov (usagov-replacement)|06:30|www.usa.gov|Y|N|8|||
 
 
 ## Thursday (1)
 |Name|Time (UTC)|Allowed Domains|Strict|JS|Depth|Allow Paths|Deny Paths|
 |---|---|---|---|---|---|---|---|
-|digital.gov (usagov-replacement)|16:12|digital.gov|N|N|8|||
+|digital.gov (usagov-replacement)|16:12|digital.gov|Y|N|8|||
