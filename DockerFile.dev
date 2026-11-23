@@ -8,6 +8,7 @@ SHELL ["/bin/bash", "-c"]
 
 # Ensure latest apt packages
 RUN apt-get update && apt-get install -y \
+    libatomic \
     vim \
     curl \
     jq
