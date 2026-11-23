@@ -6,9 +6,9 @@ WORKDIR /usr/src/searchgov-spider
 ENV PYTHONPATH=/usr/src/searchgov-spider
 SHELL ["/bin/bash", "-c"]
 
-# Ensure latest apt packages
+# Ensure latest apt packages, libatomic1 is needed for playwright for some users
 RUN apt-get update && apt-get install -y \
-    libatomic \
+    libatomic1 \
     vim \
     curl \
     jq
