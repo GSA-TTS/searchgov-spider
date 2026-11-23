@@ -7,6 +7,7 @@ from pypdf import PdfReader
 from scrapy import Selector
 
 from search_gov_crawler.indexing.parse import (
+    _extract_link_from_annotation,
     convert_html_scrapy,
     extract_article_content,
     get_html_meta,
@@ -148,8 +149,8 @@ def test_get_pdf_text(multi_page_pdf_item, multi_page_pdf_kwargs):
 
 @pytest.fixture
 @freeze_time(datetime(2026, 10, 31, 0, 0, 0, tzinfo=UTC))
-def pdf_metadata(create_test_pdf_item):
-    pdf_with_metadata = {
+def pdf_with_metadata(create_test_pdf_item):
+    pdf_metadata = {
         "filename": "test_metadata_pdf.pdf",
         "metadata": {
             "Title": "Test Metadata PDF",
@@ -159,8 +160,8 @@ def pdf_metadata(create_test_pdf_item):
         "pages": [{"text": "This is page 1 and wow there is a lot of cool stuff here!", "links": []}],
     }
 
-    pdf_with_metadata = create_test_pdf_item(**pdf_with_metadata)
-    return get_pdf_meta(PdfReader(BytesIO(pdf_with_metadata.get("response_bytes"))))
+    pdf_item = create_test_pdf_item(**pdf_metadata)
+    return get_pdf_meta(PdfReader(BytesIO(pdf_item.get("response_bytes"))))
 
 
 GET_PDF_META_TEST_CASES = [
@@ -172,9 +173,9 @@ GET_PDF_META_TEST_CASES = [
 
 
 @pytest.mark.parametrize(("metadata_field", "metadata_value"), GET_PDF_META_TEST_CASES)
-def test_get_pdf_meta(pdf_metadata, metadata_field, metadata_value):
+def test_get_pdf_meta(pdf_with_metadata, metadata_field, metadata_value):
     """Test that metadata is cleaned and dates are parsed."""
-    assert pdf_metadata[metadata_field] == metadata_value
+    assert pdf_with_metadata[metadata_field] == metadata_value
 
 
 def test_get_pdf_links(multi_page_pdf_item):
@@ -186,3 +187,51 @@ def test_get_pdf_links(multi_page_pdf_item):
         "https://hidden-link1.example.com",
         "https://hidden-link2.example.com",
     }
+
+
+def test_get_pdf_links_no_links(create_test_pdf_item):
+    pdf_with_links = {
+        "filename": "test_no_links_pdf.pdf",
+        "metadata": {"Title": "No Links Here"},
+        "pages": [{"text": "This is page 1 and there are no links, no siree Bob!", "links": []}],
+    }
+
+    pdf_item = create_test_pdf_item(**pdf_with_links)
+    _, pages = get_pdf_text(PdfReader(BytesIO(pdf_item.get("response_bytes"))))
+    links = get_pdf_links(pages)
+    assert not set(links)
+
+
+@pytest.mark.parametrize(
+    ("input_annotation", "links_out"),
+    [
+        ({"/NoAction": "Nothing Here!"}, 0),
+        ({"/A": {"/NoURI": "Nothing Here!"}}, 0),
+        ({"/A": {"/URI": b"http://example.com/bytes_test"}}, 1),
+        ({"/A": {"/URI": "http://example.com/café".encode("latin-1")}}, 0),
+    ],
+)
+def test_extract_link_from_annotation(input_annotation, links_out):
+    extracted_links = set()
+    _extract_link_from_annotation(input_annotation, extracted_links)
+    assert len(extracted_links) == links_out
+
+
+@pytest.fixture
+def pdf_without_metadata(create_test_pdf_item):
+    pdf_metadata = {
+        "filename": "test_metadata_pdf.pdf",
+        "metadata": {
+            "Title": "Test PDF Without metadata",
+        },
+        "scrub_metadata": True,
+        "pages": [{"text": "This is page 1 and wow there is a lot of cool stuff here!", "links": []}],
+    }
+
+    pdf_item = create_test_pdf_item(**pdf_metadata)
+    return get_pdf_meta(PdfReader(BytesIO(pdf_item.get("response_bytes"))))
+
+
+def test_pdf_no_metadata(pdf_without_metadata):
+
+    assert pdf_without_metadata == {}

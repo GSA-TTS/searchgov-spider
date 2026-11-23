@@ -211,6 +211,27 @@ def parse_exif_date(value: Any, *, apply_tz_offset: bool) -> Any:
     return content.sanitize_text(value)
 
 
+def _extract_link_from_annotation(annotation_obj: dict, links: set) -> None:
+    """Extract URI link from annoation object, add them to links set"""
+
+    action_obj = annotation_obj.get("/A")
+    if not action_obj:
+        return
+
+    link = action_obj.get("/URI")
+    if not link:
+        return
+
+    if isinstance(link, bytes):
+        try:
+            link = link.decode("utf-8")
+        except UnicodeDecodeError:
+            return
+
+    if isinstance(link, str) and link.strip():
+        links.add(link)
+
+
 def get_pdf_links(pages: list[tuple[str, PageObject]]):
     """
     Returns a set of links for all pages in the PDF
@@ -221,9 +242,6 @@ def get_pdf_links(pages: list[tuple[str, PageObject]]):
     Returns:
         (list[str]) unique set of links
     """
-    key = "/Annots"
-    uri = "/URI"
-    ank = "/A"
     links = set()  # Use a set for unique links
 
     for page_item in pages:
@@ -234,19 +252,10 @@ def get_pdf_links(pages: list[tuple[str, PageObject]]):
             links.add(link)
 
         # Get all hidden links from annotations
-        page_object = page.get_object()
-        if key in page_object.keys():  # noqa: SIM118
-            ann = page_object[key]
-            for a in ann:
-                u = a.get_object()
-                try:
-                    if ank in u and uri in u[ank].keys():  # noqa: SIM118
-                        link = u[ank][uri]
-                        # Convert bytes to string if necessary
-                        if isinstance(link, bytes):
-                            link = link.decode("utf-8")
-                        links.add(link)
-                except ValueError:
-                    pass
+        if "/Annots" in page:
+            for annot in page["/Annots"]:
+                annotation_obj = annot.get_object()
+                if annotation_obj:
+                    _extract_link_from_annotation(annotation_obj, links)
 
     return list(links)

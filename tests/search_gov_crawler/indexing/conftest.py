@@ -24,7 +24,7 @@ def temp_pdf_dir(tmp_path_factory):
 
 
 @pytest.fixture
-def create_test_pdf(temp_pdf_dir):
+def create_test_pdf(temp_pdf_dir):  # noqa: C901
     def _write_page(canvas: canvas.Canvas, page: dict) -> canvas.Canvas:
         text_obj = canvas.beginText(100, 750)
         text_obj.setFont("Helvetica", 12)
@@ -42,6 +42,7 @@ def create_test_pdf(temp_pdf_dir):
         pages: list[dict],
         metadata: dict,
         encrpyted: bool = False,  # noqa: FBT001,FBT002
+        scrub_metadata: bool = False,  # noqa: FBT001,FBT002
     ) -> tuple[Path, bytes]:
         pdf_path = temp_pdf_dir / filename
         canvas_kwargs = {
@@ -50,35 +51,47 @@ def create_test_pdf(temp_pdf_dir):
         }
         c = canvas.Canvas(**canvas_kwargs, pagesize=letter)
 
-        title = metadata.pop("Title")
-        if title:
-            c.setTitle(title)
+        built_in_metadata_fields = {
+            "Title": c.setTitle,
+            "Author": c.setAuthor,
+            "Subject": c.setSubject,
+            "Keywords": c.setKeywords,
+            "Creator": c.setCreator,
+        }
+        for field_name, setter in built_in_metadata_fields.items():
+            field = metadata.pop(field_name, None)
+            if field:
+                setter(field)
 
         for page in pages:
             _write_page(canvas=c, page=page)
 
         c.save()
 
-        if metadata:
+        if metadata or scrub_metadata:
             reader = PdfReader(pdf_path)
             writer = PdfWriter()
             existing_metadata = reader.metadata
-            if existing_metadata:
-                writer.add_metadata(existing_metadata)
+            if scrub_metadata:
+                writer.metadata = None
+            else:
+                if existing_metadata:
+                    writer.add_metadata(existing_metadata)
 
-            new_metadata = {}
-            for k, v in metadata.items():
-                new_metadata_key = f"/{k}" if not k.startswith("/") else k
-                if new_metadata_key.startswith("/Indirect"):
-                    raw_indirect = reader.metadata.raw_get(new_metadata_key.replace("Indirect", ""))
-                    resolved_value = raw_indirect.get_object()
-                    new_metadata_value = resolved_value
-                else:
-                    new_metadata_value = v
+                new_metadata = {}
+                for k, v in metadata.items():
+                    new_metadata_key = f"/{k}" if not k.startswith("/") else k
+                    if new_metadata_key.startswith("/Indirect"):
+                        raw_indirect = reader.metadata.raw_get(new_metadata_key.replace("Indirect", ""))
+                        resolved_value = raw_indirect.get_object()
+                        new_metadata_value = resolved_value
+                    else:
+                        new_metadata_value = v
 
-                new_metadata[new_metadata_key] = new_metadata_value
+                    new_metadata[new_metadata_key] = new_metadata_value
 
-            writer.add_metadata(new_metadata)
+                writer.add_metadata(new_metadata)
+
             writer.write(pdf_path)
         return pdf_path, pdf_path.read_bytes()
 
