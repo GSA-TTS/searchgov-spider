@@ -5,6 +5,7 @@ from operator import is_, is_not
 import pytest
 from freezegun import freeze_time
 from pypdf import PdfReader
+from pypdf.generic import IndirectObject
 from scrapy import Selector
 
 from search_gov_crawler.indexing.parse import (
@@ -230,7 +231,25 @@ def test_get_pdf_links_indirect_annotation_only(create_test_pdf_item):
         ],
     )
 
-    _, pages = get_pdf_text(PdfReader(BytesIO(pdf_item.get("response_bytes"))))
+    reader = PdfReader(BytesIO(pdf_item.get("response_bytes")))
+    page = reader.pages[0]
+
+    annots = page.raw_get("/Annots")
+    if isinstance(annots, IndirectObject):
+        annots = annots.get_object()
+
+    annotation_ref = annots[0]
+    assert isinstance(annotation_ref, IndirectObject)
+
+    annotation = annotation_ref.get_object()
+    action_ref = annotation.raw_get("/A")
+    assert isinstance(action_ref, IndirectObject)
+
+    action = action_ref.get_object()
+    uri_ref = action.raw_get("/URI")
+    assert isinstance(uri_ref, IndirectObject)
+
+    _, pages = get_pdf_text(reader)
     assert set(get_pdf_links(pages)) == {expected_link}
 
 
