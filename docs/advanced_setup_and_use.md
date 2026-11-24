@@ -17,7 +17,13 @@ This page gives a more detailed description and further instructions on running 
 * [Running Document Lifecycle Manager](#running-document-lifecycle-manager)
 
 ## Formatting and Linting
-We use [ruff](https://astral.sh/ruff) as a formatter and linter.  This is enforced as precommit hook as well as in our circleci config.  Developers can also
+This repo is configured to use [pre-commit](https://pre-commit.com/) to help reduce CI runs and ensure more tidy commits. After install and setup, pre-commit will check the files you are attempting to commit against the hooks defined in `.pre-commit-config.yaml`. To setup pre-commit run the following commands from the project root:
+```
+brew install pre-commit
+pre-commit install
+```
+
+We use [ruff](https://astral.sh/ruff) as a python formatter and linter.  This is enforced as precommit hook as well as in our circleci config.  Developers can also
 add [intergrations](https://docs.astral.sh/ruff/editors/) to their editor of choice.  Rules are defined in `ruff.toml` and can be adjusted as needed.
 
 ## Environment Variables
