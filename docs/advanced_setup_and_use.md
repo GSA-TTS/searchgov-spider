@@ -96,7 +96,7 @@ prevent this file from getting into an invalid state.
         "allow_query_string": false,
         "handle_javascript": false,
         "schedule": "30 08 * * MON",
-        "starting_urls": "https://www.gsa.com"
+        "starting_urls": "https://www.gsa.gov"
     }
 ]
 ```
