@@ -17,30 +17,20 @@ This page gives a more detailed description and further instructions on running 
 * [Running Document Lifecycle Manager](#running-document-lifecycle-manager)
 
 ## Formatting and Linting
-We use [ruff](https://astral.sh/ruff) as a formatter and linter.  This is enforced as precommit hook as well as in our circleci config.  Developers can also
+This repo is configured to use [pre-commit](https://pre-commit.com/) to help reduce CI runs and ensure more tidy commits. After install and setup, pre-commit will check the files you are attempting to commit against the hooks defined in `.pre-commit-config.yaml`. To setup pre-commit run the following commands from the project root:
+```
+brew install pre-commit
+pre-commit install
+```
+
+We use [ruff](https://astral.sh/ruff) as a python formatter and linter.  This is enforced as precommit hook as well as in our circleci config.  Developers can also
 add [intergrations](https://docs.astral.sh/ruff/editors/) to their editor of choice.  Rules are defined in `ruff.toml` and can be adjusted as needed.
 
 ## Environment Variables
-If running a scheduler or benchmark, we support the use of a `.env` file in the project root to read keys and values.  Otherwise these must be exported through other means.   We also provide a `.env.development` for use with dock as well as a example for some of these values.
+If running a scheduler or benchmark, we support the use of a `.env` file in the project root to read keys and values.  Otherwise these must be exported through other means.   We also provide a `.env.development` for use with docker as well as a example for some of these values.  For local development, sensible defaults can be configured by renaming the docker env file:
 
 ```bash
-# Optional variables for process control and info
-SCRAPY_LOG_LEVEL="INFO"
-SPIDER_SCRAPY_MAX_WORKERS="5"
-SPIDER_CRAWL_SITES_FILE_NAME="crawl-sites-sample.json"
-
-# Needed for endpoint Output Target
-SPIDER_URLS_API="https://jsonplaceholder.typicode.com/posts"
-
-# Needed for deployment
-SPIDER_PYTHON_VERSION="3.12"
-
-# Needed for DAP Extractor
-DAP_API_BASE_URL="https://api.gsa.gov/analytics/dap/v2.0.0"
-DAP_EXTRACTOR_SCHEDULE="*/5 * * * *"
-DAP_VISITS_DAYS_BACK=7
-DAP_VISITS_MAX_AGE=14
-DATA_GOV_API_KEY="NOT-A-REAL-API-KEY"
+cp .env.development .env
 ```
 
 ## Search Engines
@@ -66,13 +56,13 @@ Make sure to follow [Quick Start](../README.md#quick-start) steps, before runnin
 
 ```bash
 # write URLs to a CSV
-scrapy crawl domain_spider -a allowed_domains=quotes.toscrape.com -a start_urls=https://quotes.toscrape.com -a output_target=csv
+scrapy crawl domain_spider -a allowed_domains=www.gsa.gov -a start_urls=https://www.gsa.gov/ -a output_target=csv
 
-# post URLs to an endpoint
-scrapy crawl domain_spider -a allowed_domains=quotes.toscrape.com -a start_urls=https://quotes.toscrape.com -a output_target=endpoint
+# post URLs to the searchgov crawler endpoint
+scrapy crawl domain_spider -a allowed_domains=www.gsa.gov -a start_urls=https://www.gsa.gov/ -a output_target=endpoint
 
 # post documents to opensearch
-scrapy crawl domain_spider_js -a allowed_domains=quotes.toscrape.com -a start_urls=https://quotes.toscrape.com/js -a output_target=opensearch
+scrapy crawl domain_spider -a allowed_domains=www.gsa.gov -a start_urls=https://www.gsa.gov/ -a output_target=opensearch
 ```
 
 ### Option 2: Benchmark Command Line
@@ -81,15 +71,15 @@ The benchmark script is primarily intended for use in timing and testing scrapy 
 you want to redirect your ouput to a log file and not have the terminal session tied up the whole time you should wrap your command using something like `nohup <benchmark command> >> scrapy.log 2>&1 &`
 1. To run a single domain (specifying starting URL `-u`, allowed domain `-d`, and `-o` for output target):
 ```bash
-python search_gov_spiders/benchmark.py -u https://www.example.com -d example.com -o csv
+python search_gov_crawler/benchmark.py -u https://www.gsa.gov -d www.gsa.gov -o csv
 ```
 
 2. To run multiple spiders simultaneously, provide a json file in the format of the [*crawl-sites-development.json file*](../search_gov_crawler/domains/crawl-sites-development.json) as an argument:
 ```bash
-python search_gov_spiders/benchmark.py -f /path/to/crawl-sites-like-file.json
+python search_gov_crawler/benchmark.py -f /path/to/crawl-sites-like-file.json
 ```
 
-There are other options available.  Run `python search_gov_spiders/benchmark.py -h` for more info.
+There are other options available.  Run `python search_gov_crawler/benchmark.py -h` for more info.
 
 ### Option 3: Running scrapy scheduler
 
@@ -101,12 +91,12 @@ prevent this file from getting into an invalid state.
 ```json
 [
     {
-        "name": "Example",
-        "allowed_domains": "example.com",
+        "name": "gsa.gov",
+        "allowed_domains": "www.gsa.gov",
         "allow_query_string": false,
         "handle_javascript": false,
         "schedule": "30 08 * * MON",
-        "starting_urls": "https://www.example.com"
+        "starting_urls": "https://www.gsa.gov"
     }
 ]
 ```

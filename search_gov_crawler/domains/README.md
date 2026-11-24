@@ -1,7 +1,10 @@
 # Spider Domain Schedule and Configuration
 
 ## Using Jsonnet to generate crawl files
-So as to have better control and readabilty of these configuration files, we use [Jsonnet](https://jsonnet.org/) to generate json files that control our jobs.
+So as to have better control and readabilty of these configuration files, we use [Jsonnet](https://jsonnet.org/) to generate json files that control our jobs.  To run the commands below you must install jsonnet locally, e.g.:
+```bash
+brew install jsonnet
+```
 
 ### Legacy Files
 We are maintaining a few files that spider used to use to create crawl sites files in the case that we need to reference them.  They are not used to generate any crawl site data.  You can access the files in the [legacy_files](legacy_files) folder.
