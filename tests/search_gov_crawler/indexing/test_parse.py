@@ -217,6 +217,23 @@ def test_extract_link_from_annotation(input_annotation, none_test_op):
     assert none_test_op(_extract_link_from_annotation(input_annotation), None)
 
 
+def test_get_pdf_links_indirect_annotation_only(create_test_pdf_item):
+    expected_link = "https://indirect-only.example.com"
+    pdf_item = create_test_pdf_item(
+        filename="test_indirect_link_only.pdf",
+        metadata={},
+        pages=[
+            {
+                "text": "This page has no visible URLs.",
+                "links": [(expected_link, True)],
+            },
+        ],
+    )
+
+    _, pages = get_pdf_text(PdfReader(BytesIO(pdf_item.get("response_bytes"))))
+    assert set(get_pdf_links(pages)) == {expected_link}
+
+
 @pytest.fixture
 def pdf_without_metadata(create_test_pdf_item):
     pdf_metadata = {
