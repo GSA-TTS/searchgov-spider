@@ -3,6 +3,7 @@ from pathlib import Path
 import pytest
 from pypdf import PdfReader, PdfWriter
 from reportlab.lib.pagesizes import letter
+from reportlab.pdfbase.pdfdoc import PDFArray, PDFDictionary, PDFName, PDFString
 from reportlab.pdfgen import canvas
 
 from search_gov_crawler.search_gov_spiders.items import SearchGovSpidersItem
@@ -31,8 +32,28 @@ def create_test_pdf(temp_pdf_dir):  # noqa: C901
 
         text_obj.textOut(page["text"])
         canvas.drawText(text_obj)
-        for idx, link in enumerate(page["links"], start=1):
-            canvas.linkURL(link, rect=(0, 0 + idx, *letter))
+        for idx, (link, is_indirect) in enumerate(page["links"], start=1):
+            if is_indirect:
+                action = PDFDictionary(
+                    {
+                        "Type": PDFName("Action"),
+                        "S": PDFName("URI"),
+                        "URI": canvas._doc.Reference(PDFString(link)),
+                    }
+                )
+                canvas._addAnnotation(
+                    PDFDictionary(
+                        {
+                            "Type": PDFName("Annot"),
+                            "Subtype": PDFName("Link"),
+                            "Rect": PDFArray([100, 10, 10, 10]),
+                            "Border": PDFArray([0, 0, 0]),
+                            "A": canvas._doc.Reference(action),
+                        }
+                    )
+                )
+            else:
+                canvas.linkURL(link, rect=(0, 0 + idx, *letter))
         canvas.showPage()
 
         return canvas

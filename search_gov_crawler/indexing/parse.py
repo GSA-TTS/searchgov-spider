@@ -211,25 +211,29 @@ def parse_exif_date(value: Any, *, apply_tz_offset: bool) -> Any:
     return content.sanitize_text(value)
 
 
-def _extract_link_from_annotation(annotation_obj: dict, links: set) -> None:
-    """Extract URI link from annoation object, add them to links set"""
+def _extract_link_from_annotation(annotation_obj: dict) -> str | None:
+    """
+    Extract and return URI link from annoation object.  Return None if an exception is raised or
+    if the annotation object is otherwise invalid.
+    """
 
-    action_obj = annotation_obj.get("/A")
-    if not action_obj:
-        return
+    if not annotation_obj:
+        return None
 
-    link = action_obj.get("/URI")
-    if not link:
-        return
+    try:
+        link = annotation_obj["/A"]["/URI"]
+    except (KeyError, ValueError) as err:
+        log.debug("Error extracting link annotation, %s", err)
+        return None
 
     if isinstance(link, bytes):
         try:
             link = link.decode("utf-8")
-        except UnicodeDecodeError:
-            return
+        except UnicodeDecodeError as err:
+            log.debug("Error decoding link annotation, %s", err)
+            return None
 
-    if isinstance(link, str) and link.strip():
-        links.add(link)
+    return link if isinstance(link, str) and link.strip() else None
 
 
 def get_pdf_links(pages: list[tuple[str, PageObject]]):
@@ -255,7 +259,7 @@ def get_pdf_links(pages: list[tuple[str, PageObject]]):
         if "/Annots" in page:
             for annot in page["/Annots"]:
                 annotation_obj = annot.get_object()
-                if annotation_obj:
-                    _extract_link_from_annotation(annotation_obj, links)
+                if link := _extract_link_from_annotation(annotation_obj):
+                    links.add(link)
 
     return list(links)

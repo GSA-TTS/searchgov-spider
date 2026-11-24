@@ -1,5 +1,6 @@
 from datetime import UTC, datetime, timedelta, timezone
 from io import BytesIO
+from operator import is_, is_not
 
 import pytest
 from freezegun import freeze_time
@@ -125,11 +126,11 @@ def multi_page_pdf_kwargs():
                 "text": (
                     "This is page 1 and wow there is a lot of cool stuff here! Visit https://example.com for more info."
                 ),
-                "links": ["https://hidden-link1.example.com"],
+                "links": [("https://hidden-link1.example.com", False)],
             },
             {
                 "text": "But here on page 2 you wouldn't believe how interesting it is. Check out www.test.com and also https://example.com",
-                "links": ["https://hidden-link2.example.com"],
+                "links": [("https://hidden-link2.example.com", False), ("https://indirect-link.example.com", True)],
             },
         ],
     }
@@ -186,6 +187,7 @@ def test_get_pdf_links(multi_page_pdf_item):
         "www.test.com",
         "https://hidden-link1.example.com",
         "https://hidden-link2.example.com",
+        "https://indirect-link.example.com",
     }
 
 
@@ -203,18 +205,16 @@ def test_get_pdf_links_no_links(create_test_pdf_item):
 
 
 @pytest.mark.parametrize(
-    ("input_annotation", "links_out"),
+    ("input_annotation", "none_test_op"),
     [
-        ({"/NoAction": "Nothing Here!"}, 0),
-        ({"/A": {"/NoURI": "Nothing Here!"}}, 0),
-        ({"/A": {"/URI": b"http://example.com/bytes_test"}}, 1),
-        ({"/A": {"/URI": "http://example.com/café".encode("latin-1")}}, 0),
+        ({"/NoAction": "Nothing Here!"}, is_),
+        ({"/A": {"/NoURI": "Nothing Here!"}}, is_),
+        ({"/A": {"/URI": b"http://example.com/bytes_test"}}, is_not),
+        ({"/A": {"/URI": "http://example.com/café".encode("latin-1")}}, is_),
     ],
 )
-def test_extract_link_from_annotation(input_annotation, links_out):
-    extracted_links = set()
-    _extract_link_from_annotation(input_annotation, extracted_links)
-    assert len(extracted_links) == links_out
+def test_extract_link_from_annotation(input_annotation, none_test_op):
+    assert none_test_op(_extract_link_from_annotation(input_annotation), None)
 
 
 @pytest.fixture
