@@ -108,7 +108,7 @@ cd search_gov_crawler
 scrapy crawl domain_spider -a allowed_domains=www.gsa.gov -a start_urls=https://www.gsa.gov -a output_target=csv
 ```
 
-4. Check Output:
+5. Check Output:
 
 The output of this scrape is one or more csv files containing URLs in the [output directory](search_gov_crawler/output).
 

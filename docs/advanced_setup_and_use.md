@@ -71,15 +71,15 @@ The benchmark script is primarily intended for use in timing and testing scrapy 
 you want to redirect your ouput to a log file and not have the terminal session tied up the whole time you should wrap your command using something like `nohup <benchmark command> >> scrapy.log 2>&1 &`
 1. To run a single domain (specifying starting URL `-u`, allowed domain `-d`, and `-o` for output target):
 ```bash
-python search_gov_spiders/benchmark.py -u https://www.gsa.gov -d www.gsa.gov -o csv
+python search_gov_crawler/benchmark.py -u https://www.gsa.gov -d www.gsa.gov -o csv
 ```
 
 2. To run multiple spiders simultaneously, provide a json file in the format of the [*crawl-sites-development.json file*](../search_gov_crawler/domains/crawl-sites-development.json) as an argument:
 ```bash
-python search_gov_spiders/benchmark.py -f /path/to/crawl-sites-like-file.json
+python search_gov_crawler/benchmark.py -f /path/to/crawl-sites-like-file.json
 ```
 
-There are other options available.  Run `python search_gov_spiders/benchmark.py -h` for more info.
+There are other options available.  Run `python search_gov_crawler/benchmark.py -h` for more info.
 
 ### Option 3: Running scrapy scheduler
 
