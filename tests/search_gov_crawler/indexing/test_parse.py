@@ -1,10 +1,15 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta, timezone
+from io import BytesIO
+from operator import is_, is_not
 
 import pytest
-from pypdf.generic import ByteStringObject, DictionaryObject, IndirectObject, TextStringObject
+from freezegun import freeze_time
+from pypdf import PdfReader
+from pypdf.generic import IndirectObject
 from scrapy import Selector
 
 from search_gov_crawler.indexing.parse import (
+    _extract_link_from_annotation,
     convert_html_scrapy,
     extract_article_content,
     get_html_meta,
@@ -112,77 +117,157 @@ def test_parse_exif_date_non_string():
     assert parse_exif_date(value=non_string, apply_tz_offset=False) == non_string
 
 
-def test_get_pdf_text(fake_page, fake_pdf_reader):
-    """Test that get_pdf_text concatenates text from each page."""
-    fake_page_content_1 = """
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
-    unchanged.
-    """
-    fake_page_content_2 = f"Page 2 content: {fake_page_content_1}"
-    pages = [fake_page(fake_page_content_1), fake_page(fake_page_content_2)]
-    fake_reader = fake_pdf_reader(None, is_encrypted=False, pages=pages)
-    result, _ = get_pdf_text(fake_reader)
-    expected = f"{fake_page_content_1} {fake_page_content_2} "
-    assert result == expected
-
-
-GET_PDF_META_TEST_CASES = [
-    (None, {}),
-    (
-        {"/Title": "Fake Title", "/CreationDate": "D:20230101000000"},
-        {"Title": "Fake Title", "CreationDate": datetime(2023, 1, 1, 0, 0, 0)},  # noqa: DTZ001
-    ),
-    (
-        {"Test Field": "Test Value", "/CreationDate": "D:20230101000000"},
-        {"Test Field": "Test Value", "CreationDate": datetime(2023, 1, 1, 0, 0, 0)},  # noqa: DTZ001
-    ),
-    (
-        {"/IndirectField": IndirectObject(idnum=0, generation=0, pdf="Resolved Value")},
-        {"IndirectField": "Resolved Value"},
-    ),
-]
-
-
-@pytest.mark.parametrize(("metadata", "expected_output"), GET_PDF_META_TEST_CASES)
-def test_get_pdf_meta(monkeypatch, fake_pdf_reader, metadata, expected_output):
-    """Test that metadata is cleaned and dates are parsed."""
-    monkeypatch.setattr(IndirectObject, "get_object", lambda x: x.pdf)
-    fake_reader = fake_pdf_reader(None, is_encrypted=False, metadata=metadata)
-    assert get_pdf_meta(fake_reader) == expected_output
-
-
-def test_get_pdf_links(mocker):
-    """Test that get_pdf_links extracts unique links from PDF pages."""
-    page1_text = "Visit https://example.com for more info."
-    page2_text = "Check out www.test.com and also https://example.com"
-
-    fake_page1 = mocker.MagicMock()
-    fake_page1.get_object.return_value = {
-        "/Annots": [
-            DictionaryObject(
-                {"/A": DictionaryObject({"/URI": TextStringObject("https://hidden-link1.example.com")})},
-            ),
-            DictionaryObject(
-                {"/A": DictionaryObject({"/URI": ByteStringObject(b"https://hidden-link2.example.com")})},
-            ),
+@pytest.fixture
+def multi_page_pdf_kwargs():
+    return {
+        "filename": "test_multi_page_pdf.pdf",
+        "metadata": {"Title": "Test Multi Page PDF"},
+        "pages": [
+            {
+                "text": (
+                    "This is page 1 and wow there is a lot of cool stuff here! Visit https://example.com for more info."
+                ),
+                "links": [("https://hidden-link1.example.com", False)],
+            },
+            {
+                "text": "But here on page 2 you wouldn't believe how interesting it is. Check out www.test.com and also https://example.com",
+                "links": [("https://hidden-link2.example.com", False), ("https://indirect-link.example.com", True)],
+            },
         ],
     }
 
-    fake_page2 = mocker.MagicMock()
-    fake_page2.get_object.return_value = {}
 
-    page_items = [(page1_text, fake_page1), (page2_text, fake_page2)]
+@pytest.fixture
+def multi_page_pdf_item(create_test_pdf_item, multi_page_pdf_kwargs):
+    return create_test_pdf_item(**multi_page_pdf_kwargs)
 
-    links = get_pdf_links(page_items)
 
-    expected_links = {
+def test_get_pdf_text(multi_page_pdf_item, multi_page_pdf_kwargs):
+    """Test that get_pdf_text concatenates text from each page."""
+    result, _ = get_pdf_text(PdfReader(BytesIO(multi_page_pdf_item.get("response_bytes"))))
+    expected = " ".join([page["text"] for page in multi_page_pdf_kwargs["pages"]]) + " "
+    assert result == expected
+
+
+@pytest.fixture
+@freeze_time(datetime(2026, 10, 31, 0, 0, 0, tzinfo=UTC))
+def pdf_with_metadata(create_test_pdf_item):
+    pdf_metadata = {
+        "filename": "test_metadata_pdf.pdf",
+        "metadata": {
+            "Title": "Test Metadata PDF",
+            "TestField": "Test Value",
+            "IndirectCreationDate": datetime(2026, 10, 31, 0, 0, 0, tzinfo=UTC).astimezone().replace(tzinfo=None),
+        },
+        "pages": [{"text": "This is page 1 and wow there is a lot of cool stuff here!", "links": []}],
+    }
+
+    pdf_item = create_test_pdf_item(**pdf_metadata)
+    return get_pdf_meta(PdfReader(BytesIO(pdf_item.get("response_bytes"))))
+
+
+GET_PDF_META_TEST_CASES = [
+    ("Title", "Test Metadata PDF"),
+    ("CreationDate", datetime(2026, 10, 31, 0, 0, 0, tzinfo=UTC).astimezone().replace(tzinfo=None)),
+    ("TestField", "Test Value"),
+    ("IndirectCreationDate", datetime(2026, 10, 31, 0, 0, 0, tzinfo=UTC).astimezone().replace(tzinfo=None)),
+]
+
+
+@pytest.mark.parametrize(("metadata_field", "metadata_value"), GET_PDF_META_TEST_CASES)
+def test_get_pdf_meta(pdf_with_metadata, metadata_field, metadata_value):
+    """Test that metadata is cleaned and dates are parsed."""
+    assert pdf_with_metadata[metadata_field] == metadata_value
+
+
+def test_get_pdf_links(multi_page_pdf_item):
+    _, pages = get_pdf_text(PdfReader(BytesIO(multi_page_pdf_item.get("response_bytes"))))
+    links = get_pdf_links(pages)
+    assert set(links) == {
         "https://example.com",
         "www.test.com",
         "https://hidden-link1.example.com",
         "https://hidden-link2.example.com",
+        "https://indirect-link.example.com",
     }
 
-    assert set(links) == expected_links
+
+def test_get_pdf_links_no_links(create_test_pdf_item):
+    pdf_with_links = {
+        "filename": "test_no_links_pdf.pdf",
+        "metadata": {"Title": "No Links Here"},
+        "pages": [{"text": "This is page 1 and there are no links, no siree Bob!", "links": []}],
+    }
+
+    pdf_item = create_test_pdf_item(**pdf_with_links)
+    _, pages = get_pdf_text(PdfReader(BytesIO(pdf_item.get("response_bytes"))))
+    links = get_pdf_links(pages)
+    assert not set(links)
+
+
+@pytest.mark.parametrize(
+    ("input_annotation", "none_test_op"),
+    [
+        ({"/NoAction": "Nothing Here!"}, is_),
+        ({"/A": {"/NoURI": "Nothing Here!"}}, is_),
+        ({"/A": {"/URI": b"http://example.com/bytes_test"}}, is_not),
+        ({"/A": {"/URI": "http://example.com/café".encode("latin-1")}}, is_),
+    ],
+)
+def test_extract_link_from_annotation(input_annotation, none_test_op):
+    assert none_test_op(_extract_link_from_annotation(input_annotation), None)
+
+
+def test_get_pdf_links_indirect_annotation_only(create_test_pdf_item):
+    expected_link = "https://indirect-only.example.com"
+    pdf_item = create_test_pdf_item(
+        filename="test_indirect_link_only.pdf",
+        metadata={},
+        pages=[
+            {
+                "text": "This page has no visible URLs.",
+                "links": [(expected_link, True)],
+            },
+        ],
+    )
+
+    reader = PdfReader(BytesIO(pdf_item.get("response_bytes")))
+    page = reader.pages[0]
+
+    annots = page.raw_get("/Annots")
+    if isinstance(annots, IndirectObject):
+        annots = annots.get_object()
+
+    annotation_ref = annots[0]
+    assert isinstance(annotation_ref, IndirectObject)
+
+    annotation = annotation_ref.get_object()
+    action_ref = annotation.raw_get("/A")
+    assert isinstance(action_ref, IndirectObject)
+
+    action = action_ref.get_object()
+    uri_ref = action.raw_get("/URI")
+    assert isinstance(uri_ref, IndirectObject)
+
+    _, pages = get_pdf_text(reader)
+    assert set(get_pdf_links(pages)) == {expected_link}
+
+
+@pytest.fixture
+def pdf_without_metadata(create_test_pdf_item):
+    pdf_metadata = {
+        "filename": "test_metadata_pdf.pdf",
+        "metadata": {
+            "Title": "Test PDF Without metadata",
+        },
+        "scrub_metadata": True,
+        "pages": [{"text": "This is page 1 and wow there is a lot of cool stuff here!", "links": []}],
+    }
+
+    pdf_item = create_test_pdf_item(**pdf_metadata)
+    return get_pdf_meta(PdfReader(BytesIO(pdf_item.get("response_bytes"))))
+
+
+def test_pdf_no_metadata(pdf_without_metadata):
+
+    assert pdf_without_metadata == {}
